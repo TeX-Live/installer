@@ -1,5 +1,5 @@
 before_build:
-  - echo "TEXDIR C:\texlive" >> texlive.profile
+  - echo TEXDIR C:\texlive >> texlive.profile
 
 build_script:
   - echo | install-tl-windows.bat -v -profile=texlive.profile
