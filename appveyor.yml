@@ -1,5 +1,6 @@
 build_script:
   - echo | install-tl-windows.bat -v -profile=texlive.profile
+  - set PATH=%PATH%;C:\texlive\bin\win32
 
 test_script:
   - tlmgr --version
