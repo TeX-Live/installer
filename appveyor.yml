@@ -1,5 +1,5 @@
 build_script:
-  - echo | install-tl-windows.bat -profile=texlive.profile
+  - echo | install-tl-windows.bat -v -profile=texlive.profile
 
 test_script:
   - tlmgr --version
