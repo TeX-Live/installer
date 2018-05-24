@@ -2646,7 +2646,7 @@ sub _download_file {
   }
   
   my $downloadername = $ENV{"TL_DOWNLOAD_PROGRAM"} || $FallbackDownloaderProgram{$::progs{'downloader'}};
-  my $downloader - $::progs{$downloadername};
+  my $downloader = $::progs{$downloadername};
   my $downloaderargs;
   my @downloaderargs;
   if ($ENV{"TL_DOWNLOAD_ARGS"}) {
