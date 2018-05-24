@@ -1,0 +1,27 @@
+# Index created by AutoSplit for blib\lib\Tk\Widget.pm
+#    (file acts as timestamp)
+package Tk::Widget;
+sub bindDump  ;
+sub ASkludge 
+;
+sub clipboardKeysyms 
+;
+sub pathname 
+;
+sub UnderlineAmpersand 
+;
+sub SetAmpText 
+;
+sub AmpWidget 
+;
+sub FindAltKeyTarget 
+;
+sub AltKeyInDialog 
+;
+sub SetFocusGrab 
+;
+sub RestoreFocusGrab 
+;
+sub MasterMenu 
+;
+1;

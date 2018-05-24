@@ -1,0 +1,814 @@
+=head2 Mon Feb 19 12:44:35 2018: C<Module> L<Math::Int64|Math::Int64>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.54>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Mon Feb 19 12:46:01 2018: C<Module> L<IO::String|IO::String>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.08>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Mon Feb 19 12:48:30 2018: C<Module> L<Digest::SHA1|Digest::SHA1>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.13>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Mon Feb 19 12:49:33 2018: C<Module> L<File::Which|File::Which>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.22>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Mon Feb 19 12:50:28 2018: C<Module> L<Encode::compat|Encode::compat>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.07>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Mon Feb 19 12:51:27 2018: C<Module> L<Encode::Locale|Encode::Locale>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.05>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:12:11 2018: C<Module> L<Win32::API|Win32::API>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.84>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:17:41 2018: C<Module> L<Win32API::Registry|Win32API::Registry>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.33>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:20:46 2018: C<Module> L<Win32::Console|Win32::Console>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.10>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:21:33 2018: C<Module> L<Win32::TieRegistry|Win32::TieRegistry>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.30>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:22:56 2018: C<Module> L<Win32::Shortcut|Win32::Shortcut>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.08>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:32:12 2018: C<Module> L<Socket|Socket>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.027>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:34:00 2018: C<Module> L<Date::Parse|Date::Parse>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.30>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:37:23 2018: C<Module> L<HTTP::Date|HTTP::Date>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.02>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:38:10 2018: C<Module> L<File::Listing|File::Listing>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.04>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:39:00 2018: C<Module> L<IO::HTML|IO::HTML>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.001>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 12:39:39 2018: C<Module> L<LWP::MediaTypes|LWP::MediaTypes>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.02>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:13:26 2018: C<Module> L<Test::Needs|Test::Needs>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.002005>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:14:09 2018: C<Module> L<URI|URI>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.73>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:16:22 2018: C<Module> L<Try::Tiny|Try::Tiny>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.30>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:16:57 2018: C<Module> L<HTTP::Message|HTTP::Message>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.14>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:17:33 2018: C<Module> L<HTML::Tagset|HTML::Tagset>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 3.20>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:19:04 2018: C<Module> L<HTML::Parser|HTML::Parser>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 3.72>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:19:49 2018: C<Module> L<WWW::RobotRules|WWW::RobotRules>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.02>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:20:27 2018: C<Module> L<HTTP::Negotiate|HTTP::Negotiate>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.01>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:21:14 2018: C<Module> L<Net::HTTP|Net::HTTP>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.17>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:21:53 2018: C<Module> L<Mozilla::CA|Mozilla::CA>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 20160104>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:22:33 2018: C<Module> L<HTTP::Daemon|HTTP::Daemon>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.01>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:23:41 2018: C<Module> L<HTTP::Cookies|HTTP::Cookies>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.04>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:24:44 2018: C<Module> L<Test::Fatal|Test::Fatal>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.014>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:25:39 2018: C<Module> L<Test::RequiresInternet|Test::RequiresInternet>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.05>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Fri Feb 23 13:27:06 2018: C<Module> L<libwww::perl|libwww::perl>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.31>
+
+=item *
+
+C<EXE_FILES: bin/lwp-download bin/lwp-dump bin/lwp-mirror bin/lwp-request>
+
+=back
+
+=head2 Sat Feb 24 03:57:52 2018: C<Module> L<Tk|Tk>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 804.034>
+
+=item *
+
+C<EXE_FILES: gedi ptked ptksh>
+
+=back
+
+=head2 Sat Feb 24 04:50:15 2018: C<Module> L<Tk::DirSelect|Tk::DirSelect>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.12>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Feb 27 03:42:33 2018: C<Module> L<Cpanel::JSON::XS|Cpanel::JSON::XS>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 4.01>
+
+=item *
+
+C<EXE_FILES: bin/cpanel_json_xs>
+
+=back
+
+=head2 Tue Feb 27 03:44:06 2018: C<Module> L<JSON::MaybeXS|JSON::MaybeXS>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.003010>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Mar  6 01:25:15 2018: C<Module> L<Win32::OLE|Win32::OLE>
+
+=over 4
+
+=item *
+
+C<installed into: c:\tlperl526\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.1712>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
