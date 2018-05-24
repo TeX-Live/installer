@@ -1,0 +1,13 @@
+language: generic
+
+os:
+  - linux
+  - osx
+
+before_script:
+  - echo 'TEXDIR /usr/local/texlive' >> texlive.profile
+
+script:
+  - ./install-tl -profile=texlive.profile
+  - PATH=$PATH:/usr/local/texlive/bin/x86_64-$(if [ $TRAVIS_OS_NAME == 'osx' ]; then echo darwin; else echo linux; fi)
+  - tlmgr --version
