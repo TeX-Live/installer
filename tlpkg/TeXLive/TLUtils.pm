@@ -2426,6 +2426,9 @@ sub setup_windows_one {
     if ($ret == 0) {
       $::prog{$p} = $prog;
       $ready = 1;
+    } else {
+      tlwarn("Setting up $p with $def as $prog didn't work\n"):
+      system("$prog $arg");
     }
   }
   return($ready) if ($ready);
