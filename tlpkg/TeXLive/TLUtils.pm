@@ -2424,7 +2424,7 @@ sub setup_windows_one {
     my $prog = conv_to_w32_path($def);
     my $ret = system("$prog $arg >nul 2>&1"); # on windows
     if ($ret == 0) {
-      $::prog{$p} = $prog;
+      $::progs{$p} = $prog;
       $ready = 1;
     } else {
       tlwarn("Setting up $p with $def as $prog didn't work\n");
@@ -2437,7 +2437,7 @@ sub setup_windows_one {
   # still here, try plain name without any specification
   $ret = system("$p $arg >nul 2>&1");
   if ($ret == 0) {
-    $::prog{$p} = $p;
+    $::progs{$p} = $p;
     return(1);
   }
   return(0);
