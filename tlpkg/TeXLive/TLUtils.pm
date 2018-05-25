@@ -2433,7 +2433,7 @@ sub setup_windows_one {
   $ret = system("$p $arg >nul 2>&1");
   if ($ret == 0) {
     $::prog{$p} = $p;
-    return(1):
+    return(1);
   }
   return(0);
 }
