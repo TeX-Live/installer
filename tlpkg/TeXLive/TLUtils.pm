@@ -2430,6 +2430,8 @@ sub setup_windows_one {
       tlwarn("Setting up $p with $def as $prog didn't work\n");
       system("$prog $arg");
     }
+  } else {
+    debug("Default progrma $def not readable?\n");
   }
   return($ready) if ($ready);
   # still here, try plain name without any specification
