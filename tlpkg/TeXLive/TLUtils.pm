@@ -2418,7 +2418,7 @@ sub setup_one {
 
 sub setup_windows_one {
   my ($p, $def, $arg, $donotwarn) = @_;
-  ddebug("(w32) trying to set up $p, default $def, arg $arg\n");
+  debug("(w32) trying to set up $p, default $def, arg $arg\n");
   my $ready = 0;
   if (-r $def) {
     my $prog = conv_to_w32_path($def);
