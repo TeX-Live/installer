@@ -2435,8 +2435,10 @@ sub setup_windows_one {
   }
   return($ready) if ($ready);
   # still here, try plain name without any specification
+  debug("trying to test for plain prog name $p\n");
   $ret = system("$p $arg >nul 2>&1");
   if ($ret == 0) {
+    debug("program $p seems to be in the path!\n");
     $::progs{$p} = $p;
     return(1);
   }
