@@ -1,4 +1,4 @@
-# $Id: TLPDB.pm 47813 2018-05-23 02:41:17Z preining $
+# $Id$
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLPDB;
 
-my $svnrev = '$Revision: 47813 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -116,10 +116,10 @@ my $_listdir;
 
 C<< TeXLive::TLPDB->new >> creates a new C<TLPDB> object. If the
 argument C<root> is given it will be initialized from the respective
-location starting at $path. If C<$path> begins with C<http://> or
-C<ftp://>, the program C<wget> is used to download the file.  The
-C<$path> can also start with C<file:/> in which case it is treated as a
-file on the filesystem in the usual way.
+location starting at $path. If C<$path> begins with C<http://>, C<https://>,
+C<ftp://>, C<scp://>, C<ssh://> or C<I<user>@I<host>:>, the respective file
+is downloaded.  The C<$path> can also start with C<file:/> in which case it
+is treated as a file on the filesystem in the usual way.
 
 Returns an object of type C<TeXLive::TLPDB>, or undef if the root was
 given but no package could be read from that location.
@@ -283,7 +283,7 @@ sub from_file {
   my $rootpath = $self->root;
   if ($rootpath =~ m,https?://|ftp://,) {
     $media = 'NET';
-  } elsif ($rootpath =~ m,^[^@]*@[^:]*:,) {
+  } elsif ($rootpath =~ m,$TeXLive::TLUtils::SshURIRegex,) {
     $media = 'NET';
   } else {
     if ($rootpath =~ m,file://*(.*)$,) {
@@ -306,8 +306,7 @@ sub from_file {
   $self->{'media'} = $media;
   #
   # actually load the TLPDB
-  # if ($path =~ m;^((https?|ftp)://|file:\/\/*);) {
-  if ($media eq 'NET' || $path =~ m;^file:\/\/*;) {
+  if ($path =~ m;^((https?|ftp)://|file:\/\/*); || $path =~ m;$TeXLive::TLUtils::SshURIRegex;) {
     debug("TLPDB.pm: trying to initialize from $path\n");
     # now $xzfh filehandle is open, the file created
     # TLUtils::download_file will just overwrite what is there
@@ -325,7 +324,7 @@ sub from_file {
     # if we have xz available we try the xz file
     my $xz_succeeded = 0 ;
     my $compressorextension = "<UNSET>";
-    if (defined($::progs{$DefaultCompressorFormat})) {
+    if (defined($::progs{$DecompressorProgram{$DefaultCompressorFormat}})) {
       # we first try the xz compressed file
       my ($xzfh, $xzfile) = TeXLive::TLUtils::tl_tmpfile();
       close($xzfh);

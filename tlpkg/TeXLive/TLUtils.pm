@@ -1,4 +1,4 @@
-# $Id: TLUtils.pm 47813 2018-05-23 02:41:17Z preining $
+# $Id$
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
 # Copyright 2007-2018 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLUtils;
 
-my $svnrev = '$Revision: 47813 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -198,6 +198,7 @@ BEGIN {
     &encode_json
     &True
     &False
+    &SshURIRegex
   );
   @EXPORT = qw(setup_programs download_file process_logging_options
                tldie tlwarn info log debug ddebug dddebug debug_hash
@@ -213,6 +214,7 @@ use TeXLive::TLConfig;
 
 $::opt_verbosity = 0;  # see process_logging_options
 
+our $SshURIRegex = '^((ssh|scp)://([^@]*)@([^/]*)/|([^@]*)@([^:]*):).*$';
 
 =head2 Platform detection
 
@@ -2176,7 +2178,7 @@ sub unpack {
   $containerfile_quote = "\"$containerfile\"";
   $tarfile_quote = "\"$tarfile\"";
   $target_quote = "\"$target\"";
-  if ($what =~ m,^(https?|ftp)://, || $what =~ m,^[^@]*@[^:]*:,) {
+  if ($what =~ m,^(https?|ftp)://, || $what =~ m!$SshURIRegex!) {
     # we are installing from the NET
     # check for the presence of $what in $tempdir
     if (-r $containerfile) {
@@ -2328,13 +2330,11 @@ sub setup_programs {
   my ($bindir, $platform) = @_;
   my $ok = 1;
 
-  if ($^O =~ /^MSWin/i) {
-    $::progs{'wget'}  = conv_to_w32_path("$bindir/wget/wget.exe");
-    $::progs{'tar'}   = conv_to_w32_path("$bindir/tar.exe");
-    $::progs{'xz'}    = conv_to_w32_path("$bindir/xz/xz.exe");
-    $::progs{'lz4'}   = conv_to_w32_path("$bindir/lz4/lz4.exe");
-    $::progs{'working_downloaders'} = [ qw/wget/ ];
-    $::progs{'working_compressors'} = [ qw/xz lz4/ ];
+  my $isWin = ($^O =~ /^MSWin/i);
+
+  if ($isWin) {
+    setup_windows_one('tar', "$bindir/tar.exe", "--version", 1);
+    $platform = "exe";
   } else {
     # tar needs to be provided by the system!
     $::progs{'tar'} = "tar";
@@ -2347,52 +2347,56 @@ sub setup_programs {
       $::installerdir = "$bindir/../..";
       $platform = platform();
     }
-    # setup of the fallback downloaders
-    my @working_downloaders;
-    for my $dltype (@AcceptedFallbackDownloaders) {
-      my $defprog = $FallbackDownloaderProgram{$dltype};
-      # do not warn on errors
-      push @working_downloaders, $dltype if 
-        setup_unix_one($defprog, "$bindir/$dltype/$defprog.$platform", "--version", 1);
-    }
-    $::progs{'working_downloaders'} = [ @working_downloaders ];
-    my @working_compressors;
-    for my $comptype (@AcceptedCompressors) {
-      my $defprog = $CompressorProgram{$comptype};
-      # do not warn on errors
-      push @working_compressors, $comptype if
-        setup_unix_one($defprog, "$bindir/$comptype/$defprog.$platform", "--version", 1);
-    }
-    $::progs{'working_compressors'} = [ @working_compressors ];
   }
 
-  # setup downloaders based on env var and available programs
-  $::progs{'downloader'} = 
-    setup_program_with_env('TEXLIVE_DOWNLOADER',
-                           $DefaultFallbackDownloader,
-                           @{$::progs{'working_downloaders'}});
-  $::progs{'compressor'} = 
-    setup_program_with_env('TEXLIVE_COMPRESSOR',
-                           $DefaultCompressorFormat,,
-                           @{$::progs{'working_compressors'}});
-
-  # now check that compressor, decompressor, and downloader actually work 
-  my %tested_progs;
-  my $nd = nulldev();
-  for my $selector ("downloader", "compressor") {
-    my $progtype = $::progs{$selector};
-    my $prog = $selector eq "downloader" ? $FallbackDownloaderProgram{$progtype} :
-                                           $CompressorProgram{$progtype};
-    my $ret = system("$::progs{$prog} --version >$nd 2>&1");
-    if ($ret != 0) {
-      tlwarn("TeXLive::TLUtils::setup_programs failed\n");
-      tlwarn("  program $::progs{$prog} --version (for $prog) (ret status: $ret): $!\n");
-      tlwarn("Output is:\n");
-      system ("$::progs{$prog} --version");
-      tlwarn ("\n");
-      $ok = 0;
+  # setup of the fallback downloaders
+  my @working_downloaders;
+  for my $dltype (@AcceptedFallbackDownloaders) {
+    my $defprog = $FallbackDownloaderProgram{$dltype};
+    # do not warn on errors
+    push @working_downloaders, $dltype if 
+      setup_one(($isWin ? "w32" : "unix"), $defprog, "$bindir/$dltype/$defprog.$platform", "--version", 1);
+  }
+  $::progs{'working_downloaders'} = [ @working_downloaders ];
+  my @working_compressors;
+  for my $comptype (@AcceptedCompressors) {
+    my $defprog = $CompressorProgram{$comptype};
+    # do not warn on errors
+    if (setup_one(($isWin ? "w32" : "unix"), $defprog, "$bindir/$comptype/$defprog.$platform", "--version", 1)) {
+      push @working_compressors, $comptype;
+      # also set up $::{'compressor'} if not already done
+      # this selects the first one
+      # but we might reset this depending on TEXLIVE_COMPRESSOR setting, see below
+      defined($::prog{'compressor'}) || ($::prog{'compressor'} = $comptype);
     }
   }
+  $::progs{'working_compressors'} = [ @working_compressors ];
+
+  # check whether selected downloader/compressor is working
+  # for downloader we allow 'lwp' as setting, too
+  if ($ENV{'TEXLIVE_DOWNLOADER'} && $ENV{'TEXLIVE_DOWNLOADER'} ne 'lwp' &&
+      !TeXLive::TLUtils::member($ENV{'TEXLIVE_DOWNLOADER'}, @{$::progs{'working_downloaders'}})) {
+    tlwarn("Selected download program TEXLIVE_DOWNLOADER=$ENV{'TEXLIVE_DOWNLOADER'} is not working!\n");
+    tlwarn("Please choose a different downloader or don't set TEXLIVE_DOWNLOADER at all.\n");
+    tlwarn("Detected working downloaders @{$::progs{'working_downloaders'}}\n");
+    $ok = 0;
+  }
+  if ($ENV{'TEXLIVE_COMPRESSOR'} &&
+      !TeXLive::TLUtils::member($ENV{'TEXLIVE_COMPRESSOR'}, @{$::progs{'working_compressors'}})) {
+    tlwarn("Selected download program TEXLIVE_COMPRESSOR=$ENV{'TEXLIVE_COMPRESSOR'} is not working!\n");
+    tlwarn("Please choose a different compressor or don't set TEXLIVE_COMPRESSOR at all.\n");
+    tlwarn("Detected working compressors: @{$::progs{'working_compressors'}}\n");
+    $ok = 0;
+  }
+  #
+  # setup default compressor $::progs{'compressor'} which is used in tlmgr in the 
+  # calls to make_container. By default we have already chosen the first that is
+  # actually working from our list of @AcceptableCompressors, but let the user
+  # override this.
+  if ($ENV{'TEXLIVE_COMPRESSOR'}) {
+    $::progs{'compressor'} = $ENV{'TEXLIVE_COMPRESSOR'};
+  }
+
   if ($::opt_verbosity >= 1) {
     require Data::Dumper;
     $Data::Dumper::Indent = 1;
@@ -2402,6 +2406,38 @@ sub setup_programs {
   }
   return $ok;
 }
+
+sub setup_one {
+  my ($what, $p, $def, $arg, $donotwarn) = @_;
+  if ($what eq "unix") {
+    return(setup_unix_one($p, $def, $arg, $donotwarn));
+  } else {
+    return(setup_windows_one($p, $def, $arg, $donotwarn));
+  }
+}
+
+sub setup_windows_one {
+  my ($p, $def, $arg, $donotwarn) = @_;
+  ddebug("(w32) trying to set up $p, default $def, arg $arg\n");
+  my $ready = 0;
+  if (-r $def) {
+    my $prog = conv_to_w32_path($def);
+    my $ret = system("$prog $arg >nul 2>&1"); # on windows
+    if ($ret == 0) {
+      $::prog{$p} = $prog;
+      $ready = 1;
+    }
+  }
+  return($ready) if ($ready);
+  # still here, try plain name without any specification
+  $ret = system("$p $arg >nul 2>&1");
+  if ($ret == 0) {
+    $::prog{$p} = $p;
+    return(1):
+  }
+  return(0);
+}
+
 
 
 # setup one prog on unix using the following logic:
@@ -2511,27 +2547,6 @@ sub setup_unix_one {
 }
 
 
-=item C<setup_program_with_env($envvar, $default, @accepted)>
-
-Setup a program based on configuration in the environment of default.
-
-=cut
-
-sub setup_program_with_env {
-  my ($envvar, $default, @accepted) = @_;
-  my $sel = $default;
-  if ($ENV{$envvar}) {
-    if (TeXLive::TLUtils::member($ENV{$envvar}, @accepted)) {
-      $sel = $ENV{$envvar};
-    } else {
-      tlwarn("$prog: unknown prog in $envvar=$ENV{$envvar}, falling back to $default\n");
-    }
-  }
-  return $sel;
-}
-
-
-
 =item C<download_file( $relpath, $destination )>
 
 Try to download the file given in C<$relpath> from C<$TeXLiveURL>
@@ -2575,7 +2590,7 @@ sub download_file {
     }
   }
 
-  if ($relpath =~ m;([^@]*)@([^:]*):(.*)$;) {
+  if ($relpath =~ m!$SshURIRegex!) {
     my $downdest;
     if ($dest eq "|") {
       my ($fh, $fn) = TeXLive::TLUtils::tl_tmpfile();
@@ -2583,6 +2598,8 @@ sub download_file {
     } else {
       $downdest = $dest;
     }
+    # massage ssh:// into the scp acceptable scp://
+    $relpath =~ s!^ssh://!scp://!;
     my $retval = system("scp", "-q", $relpath, $downdest);
     if ($retval != 0) {
       $retval /= 256 if $retval > 0;
@@ -2606,10 +2623,44 @@ sub download_file {
     $url = "$TeXLiveURL/$relpath";
   }
 
-  my $fallback_retry = 0;
+  my @downloader_trials;
+  if ($ENV{'TEXLIVE_DOWNLOADER'}) {
+    push @downloader_trials, $ENV{'TEXLIVE_DOWNLOADER'};
+  } elsif ($ENV{"TL_DOWNLOAD_PROGRAM"}) {
+    push @downloader_trials, 'custom';
+  } else {
+    @downloader_trials = qw/lwp curl wget/;
+  }
+
+  my $success = 0;
+  for my $downtype (@downloader_trials) {
+    if ($downtype eq 'lwp') {
+      if (_download_file_lwp($url, $dest)) {
+        $success = $downtype;
+        last;
+      }
+    }
+    if ($downtype eq "custom" || TeXLive::TLUtils::member($downtype, @{$::progs{'working_downloaders'}})) {
+      if (_download_file_program($url, $dest, $downtype)) {
+        $success = $downtype;
+        last;
+      }
+    }
+  }
+  if ($success) {
+    debug("TLUtils::download_file: downloading using $success succeeded\n");
+    return(1);
+  } else {
+    debug("TLUtils::download_file: tried to download using @downloader_trials, none succeeded\n");
+    return(0);
+  }
+}
+
+sub _download_file_lwp {
+  my ($url, $dest) = @_;
   if (defined($::tldownload_server) && $::tldownload_server->enabled) {
     debug("persistent connection set up, trying to get $url (for $dest)\n");
-    $ret = $::tldownload_server->get_file($url, $dest);
+    my $ret = $::tldownload_server->get_file($url, $dest);
     if ($ret) {
       ddebug("downloading file via persistent connection succeeded\n");
       return $ret;
@@ -2617,7 +2668,6 @@ sub download_file {
       debug("TLUtils::download_file: persistent connection ok,"
              . " but download failed: $url\n");
       debug("TLUtils::download_file: retrying with wget.\n");
-      $fallback_retry = 1; # just so we can give another msg.
     }
   } else {
     if (!defined($::tldownload_server)) {
@@ -2625,35 +2675,31 @@ sub download_file {
     } else {
       ddebug("::tldownload_server->enabled is not set\n");
     }
-    debug("persistent connection not set up, using fallback downloader\n");
+    debug("persistent connection not set up\n");
   }
-  
-  # try again.
-  my $ret = _download_file($url, $dest);
-  
-  if ($fallback_retry) {
-    debug("TLUtils::download_file: retry "
-           . ($ret ? "succeeded" : "failed") . ": $url\n");
-  }
-  
-  return($ret);
+  # if we are still here, download with LWP didn't succeed.
+  return(0);
 }
 
-sub _download_file {
-  my ($url, $dest) = @_;
+sub _download_file_program {
+  my ($url, $dest, $type) = @_;
   if (win32()) {
     $dest =~ s!/!\\!g;
   }
   
-  my $downloadername = $ENV{"TL_DOWNLOAD_PROGRAM"} || $FallbackDownloaderProgram{$::progs{'downloader'}};
-  my $downloader = $::progs{$downloadername};
+  debug("TLUtils::_download_file_program: $type $url $dest\n");
+  my $downloader;
   my $downloaderargs;
   my @downloaderargs;
-  if ($ENV{"TL_DOWNLOAD_ARGS"}) {
-    $downloaderargs = $ENV{"TL_DOWNLOAD_ARGS"};
-    @downloaderargs = split(' ', $downloaderargs);
+  if ($type eq 'custom') {
+    $downloader = $ENV{"TL_DOWNLOAD_PROGRAM"};
+    if ($ENV{"TL_DOWNLOAD_ARGS"}) {
+      $downloaderargs = $ENV{"TL_DOWNLOAD_ARGS"};
+      @downloaderargs = split(' ', $downloaderargs);
+    }
   } else {
-    @downloaderargs = @{$FallbackDownloaderArgs{$::progs{'downloader'}}};
+    $downloader = $::progs{$FallbackDownloaderProgram{$type}};
+    @downloaderargs = @{$FallbackDownloaderArgs{$type}};
     $downloaderargs = join(' ',@downloaderargs);
   }
 
@@ -3835,7 +3881,7 @@ Returns the local file name if succeeded, otherwise undef.
 sub download_to_temp_or_file {
   my $url = shift;
   my ($url_fh, $url_file);
-  if ($url =~ m,^(https?|ftp|file)://, || $url =~ m,^[^@]*@[^:]*:,) {
+  if ($url =~ m,^(https?|ftp|file)://, || $url =~ m!$SshURIRegex!) {
     ($url_fh, $url_file) = tl_tmpfile();
     # now $url_fh filehandle is open, the file created
     # TLUtils::download_file will just overwrite what is there

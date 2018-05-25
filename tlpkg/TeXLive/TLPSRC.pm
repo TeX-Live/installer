@@ -1,4 +1,4 @@
-# $Id: TLPSRC.pm 44293 2017-05-11 18:08:47Z karl $
+# $Id$
 # TeXLive::TLPSRC.pm - module for handling tlpsrc files
 # Copyright 2007-2017 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -15,7 +15,7 @@ use TeXLive::TLTREE;
 my $_tmp;
 my %autopatterns;  # computed once internally
 
-my $svnrev = '$Revision: 44293 $';
+my $svnrev = '$Revision$';
 my $_modulerevision;
 if ($svnrev =~ m/: ([0-9]+) /) {
   $_modulerevision = $1;

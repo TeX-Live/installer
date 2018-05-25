@@ -1,4 +1,4 @@
-# $Id: TLCrypto.pm 47724 2018-05-15 18:05:15Z karl $
+# $Id$
 # TeXLive::TLCrypto.pm - handle checksums and signatures.
 # Copyright 2016-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2

@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: trans.pl 41176 2016-05-16 00:42:28Z preining $
+# $Id$
 # Copyright 2009-2016 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.

@@ -1,4 +1,4 @@
-# $Id: TLConfig.pm 47807 2018-05-23 02:33:23Z preining $
+# $Id$
 # TeXLive::TLConfig.pm - module exporting configuration values
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLConfig;
 
-my $svnrev = '$Revision: 47807 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -128,7 +128,8 @@ our %FallbackDownloaderArgs = (
 # the way we package things on the web
 our $DefaultCompressorFormat = "xz";
 our $DefaultContainerExtension = "tar.$DefaultCompressorFormat";
-our @AcceptedCompressors = qw/xz lz4 gzip/;
+# mind that the order here is important as gives also the preference!
+our @AcceptedCompressors = qw/lz4 gzip xz/;
 our $AcceptedCompressorsRegexp = "(xz|lz4|gzip)";
 our %CompressorProgram   = ( 'xz' => 'xz',     'gzip' => 'gzip',   'lz4' => 'lz4');
 our %CompressorExtension = ( 'xz' => 'xz',     'gzip' => 'gz',     'lz4' => 'lz4');
