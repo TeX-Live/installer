@@ -1,4 +1,4 @@
-# $Id: TLPOBJ.pm 48076 2018-06-23 18:36:00Z preining $
+# $Id$
 # TeXLive::TLPOBJ.pm - module for using tlpobj files
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLPOBJ;
 
-my $svnrev = '$Revision: 48076 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -822,7 +822,7 @@ sub update_from_catalogue {
       $foo =~ s/^.Date: //;
       # trying to extract the interesting part of a subversion date
       # keyword expansion here, e.g.,
-      # $Date: 2018-06-23 20:36:00 +0200 (Sat, 23 Jun 2018) $
+      # $Date$
       # ->2007-08-15 19:43:35 +0100
       $foo =~ s/ \(.*\)( *\$ *)$//;  # maybe nothing after parens
       $self->cataloguedata->{'date'} = $foo;

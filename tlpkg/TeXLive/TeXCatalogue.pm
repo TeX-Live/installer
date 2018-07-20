@@ -1,4 +1,4 @@
-# $Id: TeXCatalogue.pm 48080 2018-06-24 02:09:05Z preining $
+# $Id$
 # TeXLive::TeXCatalogue - module for accessing the TeX Catalogue
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -13,7 +13,7 @@ use Text::Unidecode;
 
 package TeXLive::TeXCatalogue::Entry;
 
-my $svnrev = '$Revision: 48080 $';
+my $svnrev = '$Revision$';
 my $_modulerevision;
 if ($svnrev =~ m/: ([0-9]+) /) {
   $_modulerevision = $1;

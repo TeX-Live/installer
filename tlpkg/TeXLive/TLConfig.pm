@@ -1,4 +1,4 @@
-# $Id: TLConfig.pm 48225 2018-07-19 01:29:33Z preining $
+# $Id$
 # TeXLive::TLConfig.pm - module exporting configuration values
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLConfig;
 
-my $svnrev = '$Revision: 48225 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: install-menu-wizard.pl 47481 2018-04-29 14:52:02Z siepo $
+# $Id$
 # Copyright 2009-2016 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.

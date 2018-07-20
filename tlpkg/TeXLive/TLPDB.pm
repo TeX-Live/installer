@@ -1,4 +1,4 @@
-# $Id: TLPDB.pm 48144 2018-07-05 18:05:05Z karl $
+# $Id$
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLPDB;
 
-my $svnrev = '$Revision: 48144 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 

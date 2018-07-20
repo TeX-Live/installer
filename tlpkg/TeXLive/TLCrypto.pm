@@ -1,4 +1,4 @@
-# $Id: TLCrypto.pm 48130 2018-07-03 22:24:07Z preining $
+# $Id$
 # TeXLive::TLCrypto.pm - handle checksums and signatures.
 # Copyright 2016-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -12,7 +12,7 @@ use TeXLive::TLConfig;
 use TeXLive::TLUtils qw(debug ddebug win32 which platform
                         conv_to_w32_path tlwarn tldie);
 
-my $svnrev = '$Revision: 48130 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 

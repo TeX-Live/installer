@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: tlmgrgui.pl 44719 2017-06-28 23:40:26Z preining $
+# $Id$
 #
 # Copyright 2009-2017 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -13,8 +13,8 @@
 $^W = 1;
 use strict;
 
-my $guisvnrev = '$Revision: 44719 $';
-my $guidatrev = '$Date: 2017-06-29 01:40:26 +0200 (Thu, 29 Jun 2017) $';
+my $guisvnrev = '$Revision$';
+my $guidatrev = '$Date$';
 my $tlmgrguirevision;
 if ($guisvnrev =~ m/: ([0-9]+) /) {
   $tlmgrguirevision = $1;

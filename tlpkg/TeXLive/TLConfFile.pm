@@ -1,4 +1,4 @@
-# $Id: TLConfFile.pm 44447 2017-06-04 02:03:31Z preining $
+# $Id$
 # TeXLive::TLConfFile.pm - reading and writing conf files
 # Copyright 2010-2017 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -8,7 +8,7 @@ package TeXLive::TLConfFile;
 
 use TeXLive::TLUtils;
 
-my $svnrev = '$Revision: 44447 $';
+my $svnrev = '$Revision$';
 my $_modulerevision;
 if ($svnrev =~ m/: ([0-9]+) /) {
   $_modulerevision = $1;

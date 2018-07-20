@@ -1,4 +1,4 @@
-# $Id: TLTREE.pm 48145 2018-07-05 21:20:15Z karl $
+# $Id$
 # TeXLive::TLTREE.pm - work with the tree of all files
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLTREE;
 
-my $svnrev = '$Revision: 48145 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 

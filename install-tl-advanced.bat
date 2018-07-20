@@ -1,5 +1,5 @@
 @echo off
-rem $Id: install-tl-advanced.bat 33536 2014-04-19 09:41:24Z siepo $
+rem $Id$
 rem Public domain.
 rem Originally written 2009 by Norbert Preining.
 rem

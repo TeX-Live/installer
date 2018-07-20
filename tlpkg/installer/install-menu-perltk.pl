@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: install-menu-perltk.pl 47845 2018-05-26 15:44:25Z karl $
+# $Id$
 #
 # Copyright 2008-2014 Norbert Preining
 # Copyright 2008 Reinhard Kotucha
@@ -9,7 +9,7 @@
 use strict;
 $^W = 1;
 
-my $svnrev = '$Revision: 47845 $';
+my $svnrev = '$Revision$';
 $svnrev =~ m/: ([0-9]+) /;
 $::menurevision = $1;
 

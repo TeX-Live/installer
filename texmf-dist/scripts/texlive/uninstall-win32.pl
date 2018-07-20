@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: uninstall-win32.pl 40579 2016-04-17 21:34:37Z siepo $
+# $Id$
 # Copyright 2008, 2010, 2011, 2012, 2014 Norbert Preining
 #
 # GUI for tlmgr

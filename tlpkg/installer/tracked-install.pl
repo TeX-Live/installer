@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: tracked-install.pl 48057 2018-06-20 02:14:01Z preining $
+# $Id$
 #
 # Copyright 2008-2017 Norbert Preining
 # Copyright 2008 Reinhard Kotucha

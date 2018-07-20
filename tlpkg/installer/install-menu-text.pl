@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: install-menu-text.pl 47845 2018-05-26 15:44:25Z karl $
+# $Id$
 # install-menu-txt.pl
 #
 # Copyright 2007-2017 Norbert Preining, Karl Berry

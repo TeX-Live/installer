@@ -1,4 +1,4 @@
-# $Id: fmtutil-hdr.cnf 37176 2015-05-04 02:06:19Z preining $
+# $Id$
 # Originally written by Thomas Esser, 1998. Public domain.
 #
 # As of TeX Live 2015, fmtutil reads *all* fmtutil.cnf files found.

@@ -1,4 +1,4 @@
-# $Id: TLUtils.pm 48226 2018-07-19 01:29:46Z preining $
+# $Id$
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
 # Copyright 2007-2018 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLUtils;
 
-my $svnrev = '$Revision: 48226 $';
+my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -2352,7 +2352,9 @@ sub setup_programs {
   my $isWin = ($^O =~ /^MSWin/i);
 
   if ($isWin) {
-    setup_one("w32", 'tar', "$bindir/tar.exe", "--version", $tlfirst);
+    # we need to make sure that we use our own tar, since 
+    # Windows system tar is stupid bsdtar ...
+    setup_one("w32", 'tar', "$bindir/tar.exe", "--version", 1);
     $platform = "exe";
   } else {
     # tar needs to be provided by the system, we not even check!
