@@ -1,6 +1,6 @@
-# $Id$
+# $Id: TeXCatalogue.pm 48080 2018-06-24 02:09:05Z preining $
 # TeXLive::TeXCatalogue - module for accessing the TeX Catalogue
-# Copyright 2007-2015 Norbert Preining
+# Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 # 
@@ -13,7 +13,7 @@ use Text::Unidecode;
 
 package TeXLive::TeXCatalogue::Entry;
 
-my $svnrev = '$Revision$';
+my $svnrev = '$Revision: 48080 $';
 my $_modulerevision;
 if ($svnrev =~ m/: ([0-9]+) /) {
   $_modulerevision = $1;
@@ -47,6 +47,7 @@ sub new {
     version => $params{'version'},
     also => defined($params{'also'}) ? $params{'also'} : [],
     topic => defined($params{'topic'}) ? $params{'topic'} : [],
+    alias => defined($params{'alias'}) ? $params{'alias'} : [],
   };
   bless $self, $class;
   if (defined($self->{'ioref'})) {
@@ -76,6 +77,12 @@ sub initialize {
   }
   if ($parser->findvalue('/entry/miktex/@location') ne "") {
     $self->{'miktex'} = $parser->findvalue('/entry/miktex/@location')->value();
+  }
+  # parse all alias entries
+  my $alset = $parser->find('/entry/alias');
+  for my $node ($alset->get_nodelist) {
+    my $id = $parser->find('./@id', $node);
+    push @{$self->{'alias'}}, "$id";
   }
   # parse the documentation entries
   my $docset = $parser->find('/entry/documentation');
@@ -169,6 +176,12 @@ sub entry {
   my %newentry = @_;
   if (@_) { $self->{'entry'} = \%newentry }
   return $self->{'entry'};
+}
+sub alias {
+  my $self = shift;
+  my @newalias = @_;
+  if (@_) { $self->{'alias'} = \@newalias }
+  return $self->{'alias'};
 }
 sub also {
   my $self = shift;

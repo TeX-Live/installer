@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: tracked-install.pl 46960 2018-03-14 17:43:23Z siepo $
+# $Id: tracked-install.pl 48057 2018-06-20 02:14:01Z preining $
 #
 # Copyright 2008-2017 Norbert Preining
 # Copyright 2008 Reinhard Kotucha
@@ -52,19 +52,21 @@ sub installer_tracker {
 
   if (@::WARNLINES) {
     foreach my $t (@::WARNLINES) {
-      update_status ($t);
+      tlwarn ("$t\n");
     }
   }
   if ($::env_warns) {
-    update_status($::env_warns);
+    tlwarn($::env_warns);
   }
   $::progressw->tagConfigure('centered', -justify => 'center');
   # basic welcome message
   foreach my $t (@::welcome_arr) {
-    #my $s = shift @$t;
-    $::progressw->insert("end", "$t\n", 'centered');
+    info("$t\n");
   }
   $::progressw->insert("end", "\n");
+
+  do_cleanup();
+
   # additional info
   if ($::LOGFILENAME) {
     $::progressw->insert ("end", "Logfile: $::LOGFILENAME");

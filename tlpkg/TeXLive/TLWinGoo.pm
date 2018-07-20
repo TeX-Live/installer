@@ -1,4 +1,4 @@
-# $Id$
+# $Id: TLWinGoo.pm 47907 2018-06-03 18:09:29Z karl $
 # TeXLive::TLWinGoo.pm - Windows goop.
 # Copyright 2008-2018 Siep Kroonenberg, Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -11,16 +11,14 @@
 
 package TeXLive::TLWinGoo;
 
-my $svnrev = '$Revision$';
+my $svnrev = '$Revision: 47907 $';
 my $_modulerevision;
 if ($svnrev =~ m/: ([0-9]+) /) {
   $_modulerevision = $1;
 } else {
   $_modulerevision = "unknown";
 }
-sub module_revision {
-  return $_modulerevision;
-}
+sub module_revision { return $_modulerevision; }
 
 =pod
 

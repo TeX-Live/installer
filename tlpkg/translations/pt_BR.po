@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-04-30 02:24+0200\n"
+"POT-Creation-Date: 2018-06-28 02:24+0200\n"
 "PO-Revision-Date: 2017-05-06 07:35-0300\n"
 "Last-Translator: Paulo Roberto Massa Cereda <cereda@users.sf.net>\n"
 "Language-Team: Paulo Roberto Massa Cereda <cereda@users.sf.net>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.12\n"
 
-#: install-tl:2389
+#: install-tl:2436
 msgid "Welcome to TeX Live!"
 msgstr "Bem-vindo ao TeX Live!"
 
-#: install-tl:2392
+#: install-tl:2439
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -34,7 +34,7 @@ msgstr ""
 "registrando-se em um destes grupos. A lista de grupos está disponível na web "
 "através do endereço http://tug.org/usergroups.html."
 
-#: install-tl:2397
+#: install-tl:2444
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -77,11 +77,11 @@ msgstr "Processo de instalação"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: tlpkg/installer/tracked-install.pl:79
+#: tlpkg/installer/tracked-install.pl:81
 msgid "Scroll back to inspect warnings"
 msgstr ""
 
-#: tlpkg/installer/tracked-install.pl:87
+#: tlpkg/installer/tracked-install.pl:89
 msgid "Finish"
 msgstr "Finalizar"
 
@@ -582,8 +582,8 @@ msgid "Create symlinks in system directories"
 msgstr "Criar links simbólicos nos diretórios do sistema"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
-msgid "After installation, get package updates from CTAN"
-msgstr "Após a instalação, obtenha atualizações de pacotes a partir de CTAN."
+msgid "After install, set CTAN as source for package updates"
+msgstr ""
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -1594,6 +1594,10 @@ msgstr "Programas de suporte exclusivos para Windows"
 #: tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX e pacotes"
+
+#~ msgid "After installation, get package updates from CTAN"
+#~ msgstr ""
+#~ "Após a instalação, obtenha atualizações de pacotes a partir de CTAN."
 
 #~ msgid "Enter path for"
 #~ msgstr "Digite o caminho para"

@@ -1,4 +1,4 @@
-# $Id$
+# $Id: TLCrypto.pm 48130 2018-07-03 22:24:07Z preining $
 # TeXLive::TLCrypto.pm - handle checksums and signatures.
 # Copyright 2016-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -9,10 +9,10 @@ package TeXLive::TLCrypto;
 use Digest::MD5;
 
 use TeXLive::TLConfig;
-use TeXLive::TLUtils qw(debug ddebug win32 which platform conv_to_w32_path tlwarn tldie);
+use TeXLive::TLUtils qw(debug ddebug win32 which platform
+                        conv_to_w32_path tlwarn tldie);
 
-
-my $svnrev = '$Revision$';
+my $svnrev = '$Revision: 48130 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -252,6 +252,17 @@ sub verify_checksum {
     debug("verify_checksum: download did not succeed for $checksum_url\n");
     return($VS_CONNECTION_ERROR, "download did not succeed: $checksum_url");
   }
+
+  # check that we have a non-trivial size for the checksum file
+  # the size should be at least 128 + 1 + length(filename) > 129
+  {
+    my $css = -s $checksum_file;
+    if ($css <= 128) {
+      debug("verify_checksum: size of checksum file suspicious: $css\n");
+      return($VS_CONNECTION_ERROR, "download corrupted: $checksum_url");
+    }
+  }
+
   # check the signature
   my ($ret, $msg) = verify_signature($checksum_file, $checksum_url);
 
@@ -418,6 +429,26 @@ sub verify_signature {
     my $signature_file
       = TeXLive::TLUtils::download_to_temp_or_file($signature_url);
     if ($signature_file) {
+      {
+        # we expect a signature to be at least
+        # 30 header line + 30 footer line + 256 > 300
+        my $sigsize = -s $signature_file;
+        if ($sigsize < 300) {
+          debug("cryptographic signature seems to be corrupted (size $sigsize<300): $signature_url, $signature_file\n");
+          return($VS_UNSIGNED, "cryptographic signature download seems to be corrupted (size $sigsize<300)");
+        }
+      }
+      # check also the first line of the signature file for
+      # -----BEGIN PGP SIGNATURE-----
+      {
+        open my $file, '<', $signature_file;
+        chomp(my $firstLine = <$file>);
+        close $file;
+        if ($firstLine !~ m/^-----BEGIN PGP SIGNATURE-----/) {
+          debug("cryptographic signature seems to be corrupted (first line not signature): $signature_url, $signature_file, $firstLine\n");
+          return($VS_UNSIGNED, "cryptographic signature download seems to be corrupted (first line of $signature_url not signature: $firstLine)");
+        }
+      }
       my ($ret, $out) = gpg_verify_signature($file, $signature_file);
       if ($ret == 1) {
         # no need to show the output

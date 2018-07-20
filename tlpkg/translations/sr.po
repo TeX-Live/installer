@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-04-30 02:24+0200\n"
+"POT-Creation-Date: 2018-06-28 02:24+0200\n"
 "PO-Revision-Date: 2018-04-04 23:06+0300\n"
 "Last-Translator: Nikola Lečić <nikola.lecic@anthesphoria.net>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.4\n"
 
-#: install-tl:2389
+#: install-tl:2436
 msgid "Welcome to TeX Live!"
 msgstr "Добродошли у TeX Live!"
 
-#: install-tl:2392
+#: install-tl:2439
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -38,7 +38,7 @@ msgstr ""
 "подршке путем прикључивања групи која Вам највише одговара. Списак група "
 "налази се на Интернет-страници http://tug.org/usergroups.html."
 
-#: install-tl:2397
+#: install-tl:2444
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -81,11 +81,11 @@ msgstr "Процес инсталације"
 msgid "Cancel"
 msgstr "Прекини"
 
-#: tlpkg/installer/tracked-install.pl:79
+#: tlpkg/installer/tracked-install.pl:81
 msgid "Scroll back to inspect warnings"
 msgstr "Скролујте навише да бисте прегледали упозорења"
 
-#: tlpkg/installer/tracked-install.pl:87
+#: tlpkg/installer/tracked-install.pl:89
 msgid "Finish"
 msgstr "Заврши"
 
@@ -583,8 +583,8 @@ msgid "Create symlinks in system directories"
 msgstr "Направи симболичке линкове у системским директоријумима"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
-msgid "After installation, get package updates from CTAN"
-msgstr "После инсталације обнављати пакете преко CTAN-а"
+msgid "After install, set CTAN as source for package updates"
+msgstr ""
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -1595,6 +1595,9 @@ msgstr "Помоћни програми за Windows"
 #: tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX и повезани пакети"
+
+#~ msgid "After installation, get package updates from CTAN"
+#~ msgstr "После инсталације обнављати пакете преко CTAN-а"
 
 #~ msgid "Enter path for"
 #~ msgstr "Унесите путању за"

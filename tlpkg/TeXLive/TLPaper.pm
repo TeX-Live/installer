@@ -1,4 +1,4 @@
-# $Id$
+# $Id: TLPaper.pm 45795 2017-11-14 08:49:25Z preining $
 # TeXLive::TLPaper.pm - query/modify paper sizes for our various programs
 # Copyright 2008-2017 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLPaper;
 
-my $svnrev = '$Revision$';
+my $svnrev = '$Revision: 45795 $';
 my $_modulerevision;
 if ($svnrev =~ m/: ([0-9]+) /) {
   $_modulerevision = $1;

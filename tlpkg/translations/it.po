@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tex Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-04-30 02:24+0200\n"
+"POT-Creation-Date: 2018-06-28 02:24+0200\n"
 "PO-Revision-Date: 2018-02-23 08:42+0100\n"
 "Last-Translator: Marco Pallane <marco.pallante@gmail.com>\n"
 "Language-Team: <>\n"
@@ -12,12 +12,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: install-tl:2389
+#: install-tl:2436
 #, fuzzy
 msgid "Welcome to TeX Live!"
 msgstr "Benvenuto in TeX Live!"
 
-#: install-tl:2392
+#: install-tl:2439
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -34,7 +34,7 @@ msgstr ""
 "La lista dei gruppi è disponibile sul web alla pagina http://tug.org/"
 "usergroups.html."
 
-#: install-tl:2397
+#: install-tl:2444
 #, fuzzy, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -77,12 +77,12 @@ msgstr "Installazione"
 msgid "Cancel"
 msgstr "Annulla"
 
-#: tlpkg/installer/tracked-install.pl:79
+#: tlpkg/installer/tracked-install.pl:81
 #, fuzzy
 msgid "Scroll back to inspect warnings"
 msgstr "Scorri all'indietro per esaminare i warnings"
 
-#: tlpkg/installer/tracked-install.pl:87
+#: tlpkg/installer/tracked-install.pl:89
 msgid "Finish"
 msgstr "Fine"
 
@@ -592,8 +592,8 @@ msgid "Create symlinks in system directories"
 msgstr "Crea i collegamenti simbolici nelle directory di sistema"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
-msgid "After installation, get package updates from CTAN"
-msgstr "Dopo l'installazione, ottieni gli aggiornamenti dei pacchetti da CTAN"
+msgid "After install, set CTAN as source for package updates"
+msgstr ""
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -1654,6 +1654,10 @@ msgstr "Programmi di supporto solo per Windows"
 #: tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX e pacchetti"
+
+#~ msgid "After installation, get package updates from CTAN"
+#~ msgstr ""
+#~ "Dopo l'installazione, ottieni gli aggiornamenti dei pacchetti da CTAN"
 
 #~ msgid "Enter path for"
 #~ msgstr "Inserisci il percorso per"

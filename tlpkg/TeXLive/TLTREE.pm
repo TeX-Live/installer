@@ -1,4 +1,4 @@
-# $Id$
+# $Id: TLTREE.pm 48145 2018-07-05 21:20:15Z karl $
 # TeXLive::TLTREE.pm - work with the tree of all files
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,16 +6,9 @@
 
 package TeXLive::TLTREE;
 
-my $svnrev = '$Revision$';
-my $_modulerevision;
-if ($svnrev =~ m/: ([0-9]+) /) {
-  $_modulerevision = $1;
-} else {
-  $_modulerevision = "unknown";
-}
-sub module_revision {
-  return $_modulerevision;
-}
+my $svnrev = '$Revision: 48145 $';
+my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
+sub module_revision { return $_modulerevision; }
 
 use TeXLive::TLUtils;
 
@@ -326,13 +319,21 @@ of bin patterns for that arch).
 sub get_matching_files {
   my ($self, $type, $p, $pkg, $arch) = @_;
   my $ARCH = $arch;
-  my $PKGNAME = $pkg;
   my $newp;
-  eval "\$newp = \"$p\"";
-  if (!defined($newp)) {
-    print "Huuu: cannot generate newp from p: p=$p, pkg=$pkg, arch=$arch, type=$type\n";
+  {
+    my $warnstr = "";
+    local $SIG{__WARN__} = sub { $warnstr = $_[0]; };
+    eval "\$newp = \"$p\"";
+    if (!defined($newp)) {
+      die "cannot set newp from p: p=$p, pkg=$pkg, arch=$arch, type=$type";
+    }
+    if ($warnstr) {
+      tlwarn("Warning `$warnstr' while evaluating: $p "
+             . "(pkg=$pkg, arch=$arch, type=$type), returning empty list\n");
+      return ();
+    }
   }
-  return($self->_get_matching_files($type,$newp));
+  return $self->_get_matching_files($type,$newp);
 }
 
   

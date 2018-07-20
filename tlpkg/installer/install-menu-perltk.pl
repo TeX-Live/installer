@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: install-menu-perltk.pl 47481 2018-04-29 14:52:02Z siepo $
+# $Id: install-menu-perltk.pl 47845 2018-05-26 15:44:25Z karl $
 #
 # Copyright 2008-2014 Norbert Preining
 # Copyright 2008 Reinhard Kotucha
@@ -9,7 +9,7 @@
 use strict;
 $^W = 1;
 
-my $svnrev = '$Revision: 47481 $';
+my $svnrev = '$Revision: 47845 $';
 $svnrev =~ m/: ([0-9]+) /;
 $::menurevision = $1;
 
@@ -582,7 +582,7 @@ Please select a different mirror.',
   if ($media ne 'NET') {
     $row++;
     $fr->Label(
-      -text => __('After installation, get package updates from CTAN'),
+      -text => __('After install, set CTAN as source for package updates'),
       -anchor => 'w')
       ->grid(-row => $row, -column => 1, -sticky => 'w');
     $fr->Label(-anchor => 'w', -textvariable => \$adjustrepoyesno)

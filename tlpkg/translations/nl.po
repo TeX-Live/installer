@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-04-30 02:24+0200\n"
+"POT-Creation-Date: 2018-06-28 02:24+0200\n"
 "PO-Revision-Date: 2018-03-31 14:09+0200\n"
 "Last-Translator: Siep Kroonenberg <siepo@cybercomm.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -13,11 +13,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 2.0.4\n"
 
-#: install-tl:2389
+#: install-tl:2436
 msgid "Welcome to TeX Live!"
 msgstr "Welkom bij TeX Live!"
 
-#: install-tl:2392
+#: install-tl:2439
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -33,7 +33,7 @@ msgstr ""
 "overweeg ondersteuning door lid te worden van zo'n groep.\n"
 "De lijst van gebruikersgroepen staat op http://tug.org/usergroups.html."
 
-#: install-tl:2397
+#: install-tl:2444
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -76,11 +76,11 @@ msgstr "Installatie"
 msgid "Cancel"
 msgstr "Afbreken"
 
-#: tlpkg/installer/tracked-install.pl:79
+#: tlpkg/installer/tracked-install.pl:81
 msgid "Scroll back to inspect warnings"
 msgstr "Schuif terug om waarschuwingen te inspekteren"
 
-#: tlpkg/installer/tracked-install.pl:87
+#: tlpkg/installer/tracked-install.pl:89
 msgid "Finish"
 msgstr "Sluit af"
 
@@ -578,8 +578,8 @@ msgid "Create symlinks in system directories"
 msgstr "Maak symlinks naar standaard-folders"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
-msgid "After installation, get package updates from CTAN"
-msgstr "Aktualiseer pakketten vanuit CTAN na installatie"
+msgid "After install, set CTAN as source for package updates"
+msgstr ""
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -1584,6 +1584,9 @@ msgstr "Ondersteunende programma's specifiek voor Windows"
 #: tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX en bijbehorende pakketten"
+
+#~ msgid "After installation, get package updates from CTAN"
+#~ msgstr "Aktualiseer pakketten vanuit CTAN na installatie"
 
 #~ msgid "Enter path for"
 #~ msgstr "Pad voor"

@@ -1,4 +1,4 @@
-# $Id$
+# $Id: TLUtils.pm 48226 2018-07-19 01:29:46Z preining $
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
 # Copyright 2007-2018 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLUtils;
 
-my $svnrev = '$Revision$';
+my $svnrev = '$Revision: 48226 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -39,6 +39,7 @@ C<TeXLive::TLUtils> -- utilities used in TeX Live infrastructure
   TeXLive::TLUtils::wsystem($msg,@args);
   TeXLive::TLUtils::xsystem(@args);
   TeXLive::TLUtils::run_cmd($cmd);
+  TeXLive::TLUtils::system_pipe($prog, $infile, $outfile, $removeIn, @extraargs);
 
 =head2 File utilities
 
@@ -177,6 +178,7 @@ BEGIN {
     &wsystem
     &xsystem
     &run_cmd
+    &system_pipe
     &announce_execute_actions
     &add_symlinks
     &remove_symlinks
@@ -202,7 +204,7 @@ BEGIN {
   );
   @EXPORT = qw(setup_programs download_file process_logging_options
                tldie tlwarn info log debug ddebug dddebug debug_hash
-               win32 xchdir xsystem run_cmd sort_archs);
+               win32 xchdir xsystem run_cmd system_pipe sort_archs);
 }
 
 use Cwd;
@@ -623,6 +625,37 @@ sub run_cmd {
   return ($output,$retval);
 }
 
+=item C<system_pipe($prog, $infile, $outfile, $removeIn, @extraargs)>
+
+Runs C<$prog> with C<@extraargs> redirecting stdin from C<$infile>, stdout to C<$outfile>.
+Removes C<$infile> if C<$removeIn> is true.
+
+=cut
+
+sub system_pipe {
+  my ($prog, $infile, $outfile, $removeIn, @extraargs) = @_;
+  
+  my $progQuote = quotify_path_with_spaces($prog);
+  if (win32()) {
+    $infile =~ s!/!\\!g;
+    $outfile =~ s!/!\\!g;
+  }
+  my $infileQuote = "\"$infile\"";
+  my $outfileQuote = "\"$outfile\"";
+  debug("TLUtils::system_pipe: calling $progQuote @extraargs < $infileQuote > $outfileQuote\n");
+  my $retval = system("$progQuote @extraargs < $infileQuote > $outfileQuote");
+  if ($retval != 0) {
+    $retval /= 256 if $retval > 0;
+    debug("TLUtils::system_pipe: system exit code = $retval\n");
+    return 0;
+  } else {
+    if ($removeIn) {
+      debug("TLUtils::system_pipe: removing $infile\n");
+      unlink($infile);
+    }
+    return 1;
+  }
+}
 
 =back
 
@@ -877,7 +910,7 @@ sub mkdirhier {
     } elsif (defined wantarray) {
       return(0);
     } else {
-      die "$0: $reterror\n";
+      die "$0: $reterror";
     }
   }
 }
@@ -1124,7 +1157,7 @@ sub copy {
     chmod $mode, "$outfile";
 
     while ($read = sysread (IN, $buffer, $blocksize)) {
-      die "read($infile) failed: $!\n" unless defined $read;
+      die "read($infile) failed: $!" unless defined $read;
       $offset = 0;
       while ($read) {
         $written = syswrite (OUT, $buffer, $read, $offset);
@@ -2075,7 +2108,8 @@ sub check_file {
   my ($xzfile, $checksum, $checksize) = @_;
   debug("check_file $xzfile, $checksum, $checksize\n");
   if (!$checksum && !$checksize) {
-    tlwarn("TLUtils::check_file: neither checksum nor checksize available for $xzfile, cannot check integrity!\n");
+    tlwarn("TLUtils::check_file: neither checksum nor checksize " .
+           "available for $xzfile, cannot check integrity"); 
     return;
   }
   # only run checksum tests if we can actually compute the checksum
@@ -2135,30 +2169,23 @@ sub unpack {
     return (0, "nothing to unpack");
   }
 
-  my $type;
+  my $decompressorType;
   my $compressorextension;
-  for my $comptype (@AcceptedCompressors) {
-    my $ext = $CompressorExtension{$comptype};
-    if ($what =~  m/\.tar\.$ext$/) {
-      $type = $comptype;
-      $compressorextension = $ext;
-    }
+  if ($what =~ m/\.tar\.$CompressorExtRegexp$/) {
+    $compressorextension = $1;
+    $decompressorType = $1 eq "gz" ? "gzip" : $1;
   }
-  if (!$type) {
+  if (!$decompressorType) {
     return(0, "don't know how to unpack");
   }
   # make sure that the found uncompressor type is also available
-  if (!member($type, @{$::progs{'working_compressors'}})) {
-    return(0, "unsupported container format $type");
+  if (!member($decompressorType, @{$::progs{'working_compressors'}})) {
+    return(0, "unsupported container format $decompressorType");
   }
 
   # only check the necessary compressor program
-  my $decompressor = TeXLive::TLUtils::quotify_path_with_spaces($::progs{$DecompressorProgram{$type}});
-  my @decompressorArgs = @{$DecompressorArgs{$type}};
-  if (!defined($decompressor)) {
-    return (0, "programs not set up properly");
-  }
-
+  my $decompressor = $::progs{$decompressorType};
+  my @decompressorArgs = @{$Compressors{$decompressorType}{'decompress_args'}};
 
   my $fn = basename($what);
   my $pkg = $fn;
@@ -2167,17 +2194,6 @@ sub unpack {
   my $containerfile = "$tempdir/$fn";
   my $tarfile = "$tempdir/$fn"; 
   $tarfile =~ s/\.$compressorextension$//;
-  my $containerfile_quote;
-  my $tarfile_quote;
-  my $target_quote;
-  if (win32()) {
-    $containerfile =~ s!/!\\!g;
-    $tarfile =~ s!/!\\!g;
-    $target =~ s!/!\\!g;
-  }
-  $containerfile_quote = "\"$containerfile\"";
-  $tarfile_quote = "\"$tarfile\"";
-  $target_quote = "\"$target\"";
   if ($what =~ m,^(https?|ftp)://, || $what =~ m!$SshURIRegex!) {
     # we are installing from the NET
     # check for the presence of $what in $tempdir
@@ -2208,14 +2224,12 @@ sub unpack {
     # we can remove it afterwards
     $remove_containerfile = 1;
   }
-  debug("decompressing $containerfile to $tarfile\n");
-  debug("calling $decompressor @decompressorArgs < $containerfile_quote > $tarfile_quote\n");
-  system("$decompressor @decompressorArgs < $containerfile_quote > $tarfile_quote");
-  if (! -f $tarfile) {
+  if (!system_pipe($decompressor, $containerfile, $tarfile, $remove_container, @decompressorArgs)
+      ||
+      ! -f $tarfile) {
     unlink($tarfile, $containerfile);
     return(0, "Decompressing $containerfile failed");
   }
-  unlink($containerfile) if $remove_containerfile;
   if (untar($tarfile, $target, 1)) {
     return (1, "$pkg");
   } else {
@@ -2316,34 +2330,38 @@ sub read_file_ignore_cr {
 =item C<setup_programs($bindir, $platform)>
 
 Populate the global C<$::progs> hash containing the paths to the
-programs C<wget>, C<tar>, C<xz>. The C<$bindir> argument specifies
+programs C<lz4>, C<tar>, C<wget>, C<xz>. The C<$bindir> argument specifies
 the path to the location of the C<xz> binaries, the C<$platform>
 gives the TeX Live platform name, used as the extension on our
 executables.  If a program is not present in the TeX Live tree, we also
 check along PATH (without the platform extension.)
+
+Check many different downloads and compressors to determine what is
+working.
 
 Return 0 if failure, nonzero if success.
 
 =cut
 
 sub setup_programs {
-  my ($bindir, $platform) = @_;
+  my ($bindir, $platform, $tlfirst) = @_;
   my $ok = 1;
+
+  debug("setup_programs: preferring " . ($tlfirst ? "TL" : "system") . " versions\n");
 
   my $isWin = ($^O =~ /^MSWin/i);
 
   if ($isWin) {
-    setup_windows_one('tar', "$bindir/tar.exe", "--version", 1);
+    setup_one("w32", 'tar', "$bindir/tar.exe", "--version", $tlfirst);
     $platform = "exe";
   } else {
-    # tar needs to be provided by the system!
+    # tar needs to be provided by the system, we not even check!
     $::progs{'tar'} = "tar";
 
     if (!defined($platform) || ($platform eq "")) {
-      # we assume that we run from uncompressed media, so we can call platform() and
-      # thus also the config.guess script
-      # but we have to setup $::installerdir because the platform script
-      # relies on it
+      # we assume that we run from uncompressed media, so we can call
+      # platform() and thus also the config.guess script but we have to
+      # setup $::installerdir because the platform script relies on it
       $::installerdir = "$bindir/../..";
       $platform = platform();
     }
@@ -2355,202 +2373,185 @@ sub setup_programs {
     my $defprog = $FallbackDownloaderProgram{$dltype};
     # do not warn on errors
     push @working_downloaders, $dltype if 
-      setup_one(($isWin ? "w32" : "unix"), $defprog, "$bindir/$dltype/$defprog.$platform", "--version", 1);
+      setup_one(($isWin ? "w32" : "unix"), $defprog,
+                 "$bindir/$dltype/$defprog.$platform", "--version", $tlfirst);
   }
   $::progs{'working_downloaders'} = [ @working_downloaders ];
   my @working_compressors;
-  for my $comptype (@AcceptedCompressors) {
-    my $defprog = $CompressorProgram{$comptype};
+  for my $defprog (sort {$Compressors{$a}{'priority'} <=> $Compressors{$b}{'priority'}} keys %Compressors) {
     # do not warn on errors
-    if (setup_one(($isWin ? "w32" : "unix"), $defprog, "$bindir/$comptype/$defprog.$platform", "--version", 1)) {
-      push @working_compressors, $comptype;
+    if (setup_one(($isWin ? "w32" : "unix"), $defprog,
+                  "$bindir/$defprog/$defprog.$platform", "--version", $tlfirst)) {
+      push @working_compressors, $defprog;
       # also set up $::{'compressor'} if not already done
-      # this selects the first one
-      # but we might reset this depending on TEXLIVE_COMPRESSOR setting, see below
-      defined($::prog{'compressor'}) || ($::prog{'compressor'} = $comptype);
+      # this selects the first one, but we might reset this depending on
+      # TEXLIVE_COMPRESSOR setting, see below
+      defined($::progs{'compressor'}) || ($::progs{'compressor'} = $defprog);
     }
   }
   $::progs{'working_compressors'} = [ @working_compressors ];
 
   # check whether selected downloader/compressor is working
   # for downloader we allow 'lwp' as setting, too
-  if ($ENV{'TEXLIVE_DOWNLOADER'} && $ENV{'TEXLIVE_DOWNLOADER'} ne 'lwp' &&
-      !TeXLive::TLUtils::member($ENV{'TEXLIVE_DOWNLOADER'}, @{$::progs{'working_downloaders'}})) {
-    tlwarn("Selected download program TEXLIVE_DOWNLOADER=$ENV{'TEXLIVE_DOWNLOADER'} is not working!\n");
-    tlwarn("Please choose a different downloader or don't set TEXLIVE_DOWNLOADER at all.\n");
-    tlwarn("Detected working downloaders @{$::progs{'working_downloaders'}}\n");
+  if ($ENV{'TEXLIVE_DOWNLOADER'} 
+      && $ENV{'TEXLIVE_DOWNLOADER'} ne 'lwp'
+      && !TeXLive::TLUtils::member($ENV{'TEXLIVE_DOWNLOADER'},
+                                   @{$::progs{'working_downloaders'}})) {
+    tlwarn(<<END_DOWNLOADER_BAD);
+Selected download program TEXLIVE_DOWNLOADER=$ENV{'TEXLIVE_DOWNLOADER'}
+is not working!
+Please choose a different downloader or don't set TEXLIVE_DOWNLOADER.
+Detected working downloaders: @{$::progs{'working_downloaders'}}.
+END_DOWNLOADER_BAD
     $ok = 0;
   }
-  if ($ENV{'TEXLIVE_COMPRESSOR'} &&
-      !TeXLive::TLUtils::member($ENV{'TEXLIVE_COMPRESSOR'}, @{$::progs{'working_compressors'}})) {
-    tlwarn("Selected download program TEXLIVE_COMPRESSOR=$ENV{'TEXLIVE_COMPRESSOR'} is not working!\n");
-    tlwarn("Please choose a different compressor or don't set TEXLIVE_COMPRESSOR at all.\n");
-    tlwarn("Detected working compressors: @{$::progs{'working_compressors'}}\n");
+  if ($ENV{'TEXLIVE_COMPRESSOR'}
+      && !TeXLive::TLUtils::member($ENV{'TEXLIVE_COMPRESSOR'},
+                                   @{$::progs{'working_compressors'}})) {
+    tlwarn(<<END_COMPRESSOR_BAD);
+Selected compression program TEXLIVE_COMPRESSOR=$ENV{'TEXLIVE_COMPRESSOR'}
+is not working!
+Please choose a different compressor or don't set TEXLIVE_COMPRESSOR.
+Detected working compressors: @{$::progs{'working_compressors'}}.
+END_COMPRESSOR_BAD
     $ok = 0;
   }
-  #
-  # setup default compressor $::progs{'compressor'} which is used in tlmgr in the 
-  # calls to make_container. By default we have already chosen the first that is
-  # actually working from our list of @AcceptableCompressors, but let the user
-  # override this.
+  # setup default compressor $::progs{'compressor'} which is used in
+  # tlmgr in the calls to make_container. By default we have already
+  # chosen the first that is actually working from our list of
+  # @AcceptableCompressors, but let the user override this.
   if ($ENV{'TEXLIVE_COMPRESSOR'}) {
     $::progs{'compressor'} = $ENV{'TEXLIVE_COMPRESSOR'};
   }
 
   if ($::opt_verbosity >= 1) {
     require Data::Dumper;
+    use vars qw($Data::Dumper::Indent $Data::Dumper::Sortkeys
+                $Data::Dumper::Purity); # -w pain
     $Data::Dumper::Indent = 1;
     $Data::Dumper::Sortkeys = 1;  # stable output
     $Data::Dumper::Purity = 1; # recursive structures must be safe
+    print STDERR "DD:dumping ";
     print STDERR Data::Dumper->Dump([\%::progs], [qw(::progs)]);
   }
   return $ok;
 }
 
 sub setup_one {
-  my ($what, $p, $def, $arg, $donotwarn) = @_;
-  if ($what eq "unix") {
-    return(setup_unix_one($p, $def, $arg, $donotwarn));
+  my ($what, $p, $def, $arg, $tlfirst) = @_;
+  my $setupfunc = ($what eq "unix") ? \&setup_unix_tl_one : \&setup_windows_tl_one ;
+  if ($tlfirst) {
+    if (&$setupfunc($p, $def, $arg)) {
+      return(1);
+    } else {
+      return(setup_system_one($p, $arg));
+    }
   } else {
-    return(setup_windows_one($p, $def, $arg, $donotwarn));
+    if (setup_system_one($p, $arg)) {
+      return(1);
+    } else {
+      return(&$setupfunc($p, $def, $arg));
+    }
   }
 }
 
-sub setup_windows_one {
-  my ($p, $def, $arg, $donotwarn) = @_;
+sub setup_system_one {
+  my ($p, $arg) = @_;
+  my $nulldev = nulldev();
+  my $ret = system("$p $arg >$nulldev 2>&1");
+  if ($ret == 0) {
+    debug("program $p found in the path\n");
+    $::progs{$p} = $p;
+    return(1);
+  } else {
+    return(0);
+  }
+}
+
+sub setup_windows_tl_one {
+  my ($p, $def, $arg) = @_;
   debug("(w32) trying to set up $p, default $def, arg $arg\n");
-  my $ready = 0;
+
   if (-r $def) {
     my $prog = conv_to_w32_path($def);
     my $ret = system("$prog $arg >nul 2>&1"); # on windows
     if ($ret == 0) {
       $::progs{$p} = $prog;
-      $ready = 1;
+      return(1);
     } else {
       tlwarn("Setting up $p with $def as $prog didn't work\n");
       system("$prog $arg");
+      return(0);
     }
   } else {
-    debug("Default progrma $def not readable?\n");
+    debug("Default program $def not readable?\n");
+    return(0);
   }
-  return($ready) if ($ready);
-  # still here, try plain name without any specification
-  debug("trying to test for plain prog name $p\n");
-  $ret = system("$p $arg >nul 2>&1");
-  if ($ret == 0) {
-    debug("program $p seems to be in the path!\n");
-    $::progs{$p} = $p;
-    return(1);
-  }
-  return(0);
 }
-
 
 
 # setup one prog on unix using the following logic:
 # - if the shipped one is -x and can be executed, use it
 # - if the shipped one is -x but cannot be executed, copy it. set -x
 #   . if the copy is -x and executable, use it
-#   . if the copy is not executable, GOTO fallback
 # - if the shipped one is not -x, copy it, set -x
 #   . if the copy is -x and executable, use it
-#   . if the copy is not executable, GOTO fallback
-# - if nothing shipped, GOTO fallback
-#
-# fallback:
-# if prog is found in PATH and can be executed, use it.
-#
-# Return 0 if failure, 1 if success.
-#
-sub setup_unix_one {
-  my ($p, $def, $arg, $donotwarn) = @_;
+sub setup_unix_tl_one {
+  my ($p, $def, $arg) = @_;
   our $tmp;
-  my $test_fallback = 0;
-  ddebug("trying to set up $p, default $def, arg $arg\n");
+  debug("(unix) trying to set up $p, default $def, arg $arg\n");
   if (-r $def) {
-    my $ready = 0;
     if (-x $def) {
       ddebug("default $def has executable permissions\n");
       # we have to check for actual "executability" since a "noexec"
       # mount option may interfere, which is not taken into account by -x.
-      $::progs{$p} = $def;
-      if ($arg ne "notest") {
-        my $ret = system("'$def' $arg >/dev/null 2>&1" ); # we are on Unix
-        if ($ret == 0) {
-          $ready = 1;
-          debug("Using shipped $def for $p (tested).\n");
-        } else {
-          ddebug("Shipped $def has -x but cannot be executed, "
-                 . "trying tmp copy.\n");
-        }
+      my $ret = system("'$def' $arg >/dev/null 2>&1" ); # we are on Unix
+      if ($ret == 0) {
+        $::progs{$p} = $def;
+        debug("Using shipped $def for $p (tested).\n");
+        return(1);
       } else {
-        # do not test, just return
-        $ready = 1;
-        debug("Using shipped $def for $p (not tested).\n");
+        ddebug("Shipped $def has -x but cannot be executed, "
+               . "trying tmp copy.\n");
       }
     }
-    if (!$ready) {
-      # out of some reasons we couldn't execute the shipped program
-      # try to copy it to a temp directory and make it executable
-      #
-      # create tmp dir only when necessary
-      $tmp = TeXLive::TLUtils::tl_tmpdir() unless defined($tmp);
-      # probably we are running from uncompressed media and want to copy it to
-      # some temporary location
-      copy($def, $tmp);
-      my $bn = basename($def);
-      $::progs{$p} = "$tmp/$bn";
-      chmod(0755,$::progs{$p});
-      # we do not check the return value of chmod, but check whether
-      # the -x bit is now set, the only thing that counts
-      if (! -x $::progs{$p}) {
-        # hmm, something is going really bad, not even the copy is
-        # executable. Fall back to normal path element
-        $test_fallback = 1;
-        ddebug("Copied $p $::progs{$p} does not have -x bit, strange!\n");
+    # we are still here
+    # out of some reasons we couldn't execute the shipped program
+    # try to copy it to a temp directory and make it executable
+    #
+    # create tmp dir only when necessary
+    $tmp = TeXLive::TLUtils::tl_tmpdir() unless defined($tmp);
+    # probably we are running from uncompressed media and want to copy it to
+    # some temporary location
+    copy($def, $tmp);
+    my $bn = basename($def);
+    my $tmpprog = "$tmp/$bn";
+    chmod(0755,$tmpprog);
+    # we do not check the return value of chmod, but check whether
+    # the -x bit is now set, the only thing that counts
+    if (! -x $tmpprog) {
+      # hmm, something is going really bad, not even the copy is
+      # executable. Fall back to normal path element
+      ddebug("Copied $p $tmpprog does not have -x bit, strange!\n");
+      return(0);
+    } else {
+      # check again for executability
+      my $ret = system("$tmpprog $arg > /dev/null 2>&1");
+      if ($ret == 0) {
+        # ok, the copy works
+        debug("Using copied $tmpprog for $p (tested).\n");
+        $::progs{$p} = $tmpprog;
+        return(1);
       } else {
-        # check again for executability
-        if ($arg ne "notest") {
-          my $ret = system("$::progs{$p} $arg > /dev/null 2>&1");
-          if ($ret == 0) {
-            # ok, the copy works
-            debug("Using copied $::progs{$p} for $p (tested).\n");
-          } else {
-            # even the copied prog is not executable, strange
-            $test_fallback = 1;
-            ddebug("Copied $p $::progs{$p} has x bit but not executable, strange!\n");
-          }
-        } else {
-          debug("Using copied $::progs{$p} for $p (not tested).\n");
-        }
+        # even the copied prog is not executable, strange
+        ddebug("Copied $p $tmpprog has x bit but not executable?!\n");
+        return(0);
       }
     }
   } else {
-    # hope that we can find in the global PATH
-    $test_fallback = 1;
+    # default program is not readable
+    return(0);
   }
-  if ($test_fallback) {
-    # all our playing around and copying did not succeed, try PATH.
-    $::progs{$p} = $p;
-    if ($arg ne "notest") {
-      my $ret = system("$p $arg >/dev/null 2>&1");
-      if ($ret == 0) {
-        debug("Using system $p (tested).\n");
-      } else {
-        if ($donotwarn) {
-          debug("$0: initialization of $p failed but ignored!\n");
-        } else {
-          tlwarn("$0: Initialization failed (in setup_unix_one):\n");
-          tlwarn("$0: could not find a usable $p.\n");
-          tlwarn("$0: Please install $p and try again.\n");
-        }
-        return 0;
-      }
-    } else {
-      debug ("Using system $p (not tested).\n");
-    }
-  }
-  return 1;
 }
 
 
@@ -2560,13 +2561,14 @@ Try to download the file given in C<$relpath> from C<$TeXLiveURL>
 into C<$destination>, which can be either
 a filename of simply C<|>. In the latter case a file handle is returned.
 
-Downloading honors two environment variables: C<TL_DOWNLOAD_PROGRAM> and
-C<TL_DOWNLOAD_ARGS>. The former overrides the above specification
-devolving to C<wget>, and the latter overrides the default wget
-arguments.
+Downloading first checks for the environment variable C<TEXLIVE_DOWNLOADER>,
+which takes various built-in values. If not set, the next check is fr
+C<TL_DOWNLOAD_PROGRAM> and C<TL_DOWNLOAD_ARGS>. The former overrides the
+above specification devolving to C<wget>, and the latter overrides the
+default wget arguments.
 
 C<TL_DOWNLOAD_ARGS> must be defined so that the file the output goes to
-is the first argument after the C<TL_DOWNLOAD_ARGS>.  Thus, typically it
+is the first argument after the C<TL_DOWNLOAD_ARGS>.  Thus, for wget it
 would end in C<-O>.  Use with care.
 
 =cut
@@ -2605,7 +2607,7 @@ sub download_file {
     } else {
       $downdest = $dest;
     }
-    # massage ssh:// into the scp acceptable scp://
+    # massage ssh:// into the scp-acceptable scp://
     $relpath =~ s!^ssh://!scp://!;
     my $retval = system("scp", "-q", $relpath, $downdest);
     if ($retval != 0) {
@@ -3553,7 +3555,8 @@ sub process_logging_options {
 
   # open log file if one was requested.
   if ($opt_logfile) {
-    open(TLUTILS_LOGFILE, ">$opt_logfile") || die "open(>$opt_logfile) failed: $!\n";
+    open(TLUTILS_LOGFILE, ">$opt_logfile")
+    || die "open(>$opt_logfile) failed: $!\n";
     $::LOGFILE = \*TLUTILS_LOGFILE;
     $::LOGFILENAME = $opt_logfile;
   }
@@ -3878,7 +3881,8 @@ sub slurp_file {
 
 =item C<< download_to_temp_or_file($url) >>
 
-If C<$url> tries to download the file into a temporary file.
+If C<$url> is a url, tries to download the file into a temporary file.
+Otherwise assume that C<$url> is a local file.
 In both cases returns the local file.
 
 Returns the local file name if succeeded, otherwise undef.
@@ -4184,7 +4188,7 @@ sub mktexupd {
       # check whether files exist
       if ($mustexist) {
         foreach my $file (keys %files) {
-          die "File \"$file\" doesn't exist.\n" if (! -f $file);
+          die "mktexupd: exec file does not exist: $file" if (! -f $file);
         }
       }
       my $delim= (&win32)? ';' : ':';
@@ -4302,10 +4306,19 @@ sub prepend_own_path {
 }
 
 
+=item C<repository_to_array($r)>
+
+Return hash of tags to urls for space-separated list of repositories
+passed in C<$r>. If passed undef or empty string, die.
+
+=cut
+
 sub repository_to_array {
   my $r = shift;
   my %r;
-  my @repos = split ' ', $r;
+  die "internal error, repository_to_array passed nothing (caller="
+      . caller . ")" if (!$r);
+  my @repos = split (' ', $r);
   if ($#repos == 0) {
     # only one repo, this is the main one!
     $r{'main'} = $repos[0];
@@ -4398,7 +4411,7 @@ sub ensure_json_available {
     # that didn't work out, use home-grown json
     if ($envdefined) {
       # environment asks for JSON but cannot be loaded, die!
-      tldie("env variable TL_JSONMODE request JSON module but cannot be load!\n");
+      tldie("envvar TL_JSONMODE request JSON module but cannot be loaded!\n");
     }
     $jsonmode = "texlive";
     debug("texlive json module used!\n");

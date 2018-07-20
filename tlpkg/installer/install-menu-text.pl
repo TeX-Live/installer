@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: install-menu-text.pl 46802 2018-03-03 21:53:20Z karl $
+# $Id: install-menu-text.pl 47845 2018-05-26 15:44:25Z karl $
 # install-menu-txt.pl
 #
 # Copyright 2007-2017 Norbert Preining, Karl Berry
@@ -832,7 +832,7 @@ EOF
     print " <W> install TeXworks front end:               $b_addoneditor\n";
   }
   if ($media ne "NET") {
-    print " <Y> after installation, get package updates from CTAN: $b_adjustrepo\n";
+    print " <Y> after install, set CTAN as source for package updates: $b_adjustrepo\n";
   }
   other_options qw(R Q diskspace);
   my $answer = prompt 'Enter command';
@@ -1120,7 +1120,7 @@ EOF
   print "   $b_path create symlinks to standard directories\n"
     unless ($vars{'instopt_portable'} || win32());
   
-  print "   $b_adjustrepo after install, use tlnet on CTAN "
+  print "   $b_adjustrepo after install, set CTAN as source "
           . "for package updates\n"
     unless ($media eq 'NET');
 

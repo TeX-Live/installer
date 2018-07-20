@@ -1,4 +1,4 @@
-# $Id$
+# $Id: TLPDB.pm 48144 2018-07-05 18:05:05Z karl $
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLPDB;
 
-my $svnrev = '$Revision$';
+my $svnrev = '$Revision: 48144 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -91,15 +91,13 @@ C<TeXLive::TLPDB> -- A database of TeX Live Packages
 
 use TeXLive::TLConfig qw($CategoriesRegexp $DefaultCategory $InfraLocation
       $DatabaseName $MetaCategoriesRegexp $Archive
-      $DefaultCompressorFormat $DefaultContainerExtension 
-      @AcceptedCompressors $AcceptedCompressorsRegexp %CompressorProgram
-      %CompressorExtension %CompressorArgs %DecompressorProgram %DecompressorArgs
+      $DefaultCompressorFormat %Compressors $CompressorExtRegexp
       %TLPDBOptions %TLPDBSettings $ChecksumExtension
       $RelocPrefix $RelocTree);
 use TeXLive::TLCrypto;
 use TeXLive::TLPOBJ;
 use TeXLive::TLUtils qw(dirname mkdirhier member win32 info log debug ddebug
-                        tlwarn basename download_file merge_into tldie);
+                        tlwarn basename download_file merge_into tldie system_pipe);
 use TeXLive::TLWinGoo;
 
 use Cwd 'abs_path';
@@ -316,26 +314,16 @@ sub from_file {
     ($tlpdbfh, $tlpdbfile) = TeXLive::TLUtils::tl_tmpfile();
     # same as above
     close($tlpdbfh);
-    my $tlpdbfile_quote = $tlpdbfile;
-    if (win32()) {
-      $tlpdbfile =~ s!/!\\!g;
-    }
-    $tlpdbfile_quote = "\"$tlpdbfile\"";
     # if we have xz available we try the xz file
     my $xz_succeeded = 0 ;
     my $compressorextension = "<UNSET>";
-    if (defined($::progs{$DecompressorProgram{$DefaultCompressorFormat}})) {
+    if (defined($::progs{$DefaultCompressorFormat})) {
       # we first try the xz compressed file
       my ($xzfh, $xzfile) = TeXLive::TLUtils::tl_tmpfile();
       close($xzfh);
-      my $xzfile_quote = $xzfile;
-      if (win32()) {
-        $xzfile  =~ s!/!\\!g;
-      }
-      $xzfile_quote = "\"$xzfile\"";
-      my $decompressor = TeXLive::TLUtils::quotify_path_with_spaces($::progs{$DecompressorProgram{$DefaultCompressorFormat}});
-      $compressorextension = $CompressorExtension{$DefaultCompressorFormat};
-      my @decompressorArgs = @{$DecompressorArgs{$DefaultCompressorFormat}};
+      my $decompressor = $::progs{$DefaultCompressorFormat};
+      $compressorextension = $Compressors{$DefaultCompressorFormat}{'extension'};
+      my @decompressorArgs = @{$Compressors{$DefaultCompressorFormat}{'decompress_args'}};
       debug("trying to download $path.$compressorextension to $xzfile\n");
       my $ret = TeXLive::TLUtils::download_file("$path.$compressorextension", "$xzfile");
       # better to check both, the return value AND the existence of the file
@@ -345,12 +333,10 @@ sub from_file {
         # xz *hopefully* returns 0 on success and anything else on failure
         # we don't have to negate since not zero means error in the shell
         # and thus in perl true
-        if (system("$decompressor @decompressorArgs <$xzfile_quote >$tlpdbfile_quote")) {
+        if (!system_pipe($decompressor, $xzfile, $tlpdbfile, 1, @decompressorArgs)) {
           debug("$decompressor $xzfile failed, trying plain file\n");
-          # to be sure we unlink the xz file and the tlpdbfile
-          unlink($xzfile);
+          unlink($xzfile); # the above command only removes in case of success
         } else {
-          unlink($xzfile);
           $xz_succeeded = 1;
           debug("found the uncompressed $DefaultCompressorFormat file\n");
         }
@@ -384,7 +370,7 @@ sub from_file {
       } elsif ($r == $VS_CONNECTION_ERROR) {
         tldie("$0: cannot download: $m\n");
       } elsif ($r == $VS_UNSIGNED) {
-        debug("$0: remote database checksum is not signed, continuing anyway!\n");
+        debug("$0: remote database checksum is not signed, continuing anyway: $m\n");
         $self->verification_status($r);
       } elsif ($r == $VS_GPG_UNAVAILABLE) {
         debug("$0: TLPDB: no gpg available, continuing anyway!\n");
@@ -808,7 +794,7 @@ sub list_packages {
     }
     # we have to be careful here: If a package
     # is only present in a subsidiary repository
-    # and the package is *not* explicitely
+    # and the package is *not* explicitly
     # pinned to it, it will not be installable.
     # This is what we want. But in this case
     # we don't want it to be listed by default.
@@ -1080,7 +1066,7 @@ sub _generate_listfile {
         push @lop, $d;
       }
     } else {
-      # speudo dependencies on $Package.ARCH can be ignored
+      # pseudo-dependencies on $Package.ARCH can be ignored
       if ($d !~ m/\.ARCH$/) {
         tlwarn("TLPDB: package $tlp->name depends on $d, but this does not exist\n");
       }
@@ -1114,7 +1100,7 @@ sub _generate_listfile {
     print TMP "*Title: ", $tlp->shortdesc, "\n";
     my $s = 0;
     # schemes size includes ONLY those packages which are directly
-    # included and direclty included files, not the size of the
+    # included and directly included files, not the size of the
     # included collections. But if a package is included in one of
     # the called for collections AND listed directly, we don't want
     # to count its size two times
@@ -1274,7 +1260,7 @@ sub verification_status {
 =item C<< $tlpdb->listdir >>
 
 The function C<listdir> allows to read and set the packages variable
-specifiying where generated list files are created.
+specifying where generated list files are created.
 
 =cut
 
@@ -1822,17 +1808,17 @@ sub not_virtual_install_package {
     if ($media eq 'local_uncompressed') {
       $container = \@installfiles;
     } elsif ($media eq 'local_compressed') {
-      for my $ext (@AcceptedCompressors) {
+      for my $ext (map { $Compressors{$_}{'extension'} } keys %Compressors) {
         if (-r "$root/$Archive/$pkg.tar.$ext") {
           $container = "$root/$Archive/$pkg.tar.$ext";
         }
       }
       if (!$container) {
-        tlwarn("TLPDB: cannot find package $pkg.tar.$AcceptedCompressorsRegexp in $root/$Archive\n");
+        tlwarn("TLPDB: cannot find package $pkg.tar.$CompressorExtRegexp in $root/$Archive\n");
         return(0);
       }
     } elsif (&media eq 'NET') {
-      $container = "$root/$Archive/$pkg.$DefaultContainerExtension";
+      $container = "$root/$Archive/$pkg.tar." . $Compressors{$DefaultCompressorFormat}{'extension'};
     }
     debug("TLPDB::not_virtual_install_package: trying to install $container\n");
     $self->_install_data ($container, $reloc, \@installfiles, $totlpdb, $tlpobj->containersize, $tlpobj->containerchecksum)
@@ -1853,13 +1839,13 @@ sub not_virtual_install_package {
       # - there are actually src/doc files present
       if ($container_src_split && $opt_src && $tlpobj->srcfiles) {
         my $srccontainer = $container;
-        $srccontainer =~ s/\.tar\.$AcceptedCompressorsRegexp$/.source.tar.$1/;
+        $srccontainer =~ s/\.tar\.$CompressorExtRegexp$/.source.tar.$1/;
         $self->_install_data ($srccontainer, $reloc, \@installfiles, $totlpdb, $tlpobj->srccontainersize, $tlpobj->srccontainerchecksum)
           || return(0);
       }
       if ($container_doc_split && $real_opt_doc && $tlpobj->docfiles) {
         my $doccontainer = $container;
-        $doccontainer =~ s/\.tar\.$AcceptedCompressorsRegexp$/.doc.tar.$1/;
+        $doccontainer =~ s/\.tar\.$CompressorExtRegexp$/.doc.tar.$1/;
         $self->_install_data ($doccontainer, $reloc, \@installfiles, $totlpdb, $tlpobj->doccontainersize, $tlpobj->doccontainerchecksum)
           || return(0);
       }
@@ -1979,7 +1965,7 @@ sub _install_data {
     }
     # we always assume that copy will work
     return(1);
-  } elsif ($what =~ m,\.tar\.$AcceptedCompressorsRegexp$,) {
+  } elsif ($what =~ m,\.tar\.$CompressorExtRegexp$,) {
     if ($reloc) {
       if (!$totlpdb->setting("usertree")) {
         $target .= "/$RelocTree";
@@ -2078,7 +2064,7 @@ sub remove_package {
           } else {
             # NO NOTHING HERE!!!
             # DON'T PUSH IT ON @goodfiles, it will be removed, which we do
-            # NOT want. We only want to supress the warning!
+            # NOT want. We only want to suppress the warning!
             push @debugfiles, $f;
           }
         } else {

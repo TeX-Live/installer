@@ -1,4 +1,4 @@
-# $Id$
+# $Id: TLPOBJ.pm 48076 2018-06-23 18:36:00Z preining $
 # TeXLive::TLPOBJ.pm - module for using tlpobj files
 # Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,13 +6,13 @@
 
 package TeXLive::TLPOBJ;
 
-my $svnrev = '$Revision$';
+my $svnrev = '$Revision: 48076 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
 use TeXLive::TLConfig qw($DefaultCategory $CategoriesRegexp 
                          $MetaCategoriesRegexp $InfraLocation 
-                         @AcceptedCompressors %CompressorArgs %CompressorProgram %CompressorExtension
+                         %Compressors $DefaultCompressorFormat
                          $RelocPrefix $RelocTree);
 use TeXLive::TLCrypto;
 use TeXLive::TLTREE;
@@ -559,8 +559,9 @@ sub common_texmf_tree {
 
 sub make_container {
   my ($self,$type,$instroot,$destdir,$containername,$relative) = @_;
-  if (!TeXLive::TLUtils::member($type, @{$::progs{'working_compressors'}})) {
-    tlwarn "$0: TLPOBJ supports @{$::progs{'working_compressors'}} containers, not $type\n";
+  if (!($type eq 'tar' ||
+        TeXLive::TLUtils::member($type, @{$::progs{'working_compressors'}}))) {
+    tlwarn "$0: TLPOBJ supports @{$::progs{'working_compressors'}} and tar containers, not $type\n";
     tlwarn "$0: falling back to $DefaultCompressorFormat as container type!\n";
     $type = $DefaultCompressorFormat;
   }
@@ -634,17 +635,8 @@ sub make_container {
     $tar = "tar";
   }
 
-  my $compressor = $::progs{$CompressorProgram{$type}};
-  my @compressorargs = @{$CompressorArgs{$type}};
-  my $compressorextension = $CompressorExtension{$type};
-  $containername = "$tarname.$compressorextension";
-  debug("selected compressor: $compressor with @compressorargs\n");
-  if (!defined($compressor)) {
-    # fall back to $type as compressor, but that shouldn't happen
-    tlwarn("$0: programs not set up, trying \"$type\".\n");
-    $compressor = $type;
-  }
-  
+  $containername = $tarname;
+
   # Here we need to distinguish between making the master containers for
   # tlnet (where we can assume GNU tar) and making backups on a user's
   # machine (where we can assume nothing).  We determine this by whether
@@ -722,12 +714,31 @@ sub make_container {
   unlink("$destdir/$containername");
   xsystem(@cmdline);
 
-  # compress it.
-  if (-r "$destdir/$tarname") {
-    system($compressor, @compressorargs, "$destdir/$tarname");
-  } else {
-    tlwarn("$0: Couldn't find $destdir/$tarname to run $compressor\n");
-    return (0, 0, "");
+  if ($type ne 'tar') {
+    # compress it
+    my $compressor = $::progs{$type};
+    if (!defined($compressor)) {
+      # fall back to $type as compressor, but that shouldn't happen
+      tlwarn("$0: programs not set up, trying \"$type\".\n");
+      $compressor = $type;
+    }
+    my @compressorargs = @{$Compressors{$type}{'compress_args'}};
+    my $compressorextension = $Compressors{$type}{'extension'};
+    $containername = "$tarname.$compressorextension";
+    debug("selected compressor: $compressor with @compressorargs, "
+          . "on $destdir/$tarname\n");
+  
+    # compress it.
+    if (-r "$destdir/$tarname") {
+      # system return 0 on success
+      if (system($compressor, @compressorargs, "$destdir/$tarname")) {
+        tlwarn("$0: Couldn't compress $destdir/$tarname\n");
+        return (0,0, "");
+      }
+    } else {
+      tlwarn("$0: Couldn't find $destdir/$tarname to run $compressor\n");
+      return (0, 0, "");
+    }
   }
   
   # compute the size.
@@ -811,7 +822,7 @@ sub update_from_catalogue {
       $foo =~ s/^.Date: //;
       # trying to extract the interesting part of a subversion date
       # keyword expansion here, e.g.,
-      # $Date$
+      # $Date: 2018-06-23 20:36:00 +0200 (Sat, 23 Jun 2018) $
       # ->2007-08-15 19:43:35 +0100
       $foo =~ s/ \(.*\)( *\$ *)$//;  # maybe nothing after parens
       $self->cataloguedata->{'date'} = $foo;
@@ -832,6 +843,9 @@ sub update_from_catalogue {
     # so stringify these lists
     if (@{$entry->also}) {
       $self->cataloguedata->{'also'} = "@{$entry->also}";
+    }
+    if (@{$entry->alias}) {
+      $self->cataloguedata->{'alias'} = "@{$entry->alias}";
     }
     if (@{$entry->topics}) {
       $self->cataloguedata->{'topics'} = "@{$entry->topics}";

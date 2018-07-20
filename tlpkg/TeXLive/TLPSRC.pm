@@ -1,6 +1,6 @@
-# $Id$
+# $Id: TLPSRC.pm 48145 2018-07-05 21:20:15Z karl $
 # TeXLive::TLPSRC.pm - module for handling tlpsrc files
-# Copyright 2007-2017 Norbert Preining
+# Copyright 2007-2018 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -12,19 +12,12 @@ use TeXLive::TLUtils;
 use TeXLive::TLPOBJ;
 use TeXLive::TLTREE;
 
-my $_tmp;
-my %autopatterns;  # computed once internally
+my $svnrev = '$Revision: 48145 $';
+my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
+sub module_revision { return $_modulerevision; }
 
-my $svnrev = '$Revision$';
-my $_modulerevision;
-if ($svnrev =~ m/: ([0-9]+) /) {
-  $_modulerevision = $1;
-} else {
-  $_modulerevision = "unknown";
-}
-sub module_revision {
-  return $_modulerevision;
-}
+my $_tmp; # sorry
+my %autopatterns;  # computed once internally
 
 sub new {
   my $class = shift;
@@ -72,7 +65,6 @@ sub from_file {
   close(TMP);
 
   my $name = $pkgname;
-  # default category = Package
   my $category = "Package";
   my $shortdesc = "";
   my $longdesc= "";
@@ -84,13 +76,13 @@ sub from_file {
   my $finished = 0;
   my $savedline = "";
   my %tlpvars;
+  $tlpvars{"PKGNAME"} = $name;
 
   my $lineno = 0;
   for my $line (@lines) {
     $lineno++;
     
-    # we allow continuation lines in tlpsrc files, i.e., lines with a \ at
-    # the end
+    # we allow continuation lines in tlpsrc files, i.e., lines ending with \.
     if ($line =~ /^(.*)\\$/) {
       $savedline .= $1;
       next;
@@ -104,75 +96,102 @@ sub from_file {
     $line =~ /^\s*#/ && next;          # skip comment lines
     next if $line =~ /^\s*$/;          # skip blank lines
     # (blank lines are significant in tlpobj, but not tlpsrc)
-
-    if ($line =~ /^ /) {
-      die "$srcfile:$lineno: non-continuation indentation not allowed: `$line'";
-    }
-    # remove terminal white space
+    #
+    $line =~ /^ /
+      && die "$srcfile:$lineno: non-continuation indentation not allowed: `$line'";
+    #
+    # remove trailing white space.
     $line =~ s/\s+$//;
+
+    # expand tlpvars while reading in (except in descriptions).
+    # that means we have to respect *order* and define variables
+    # as we read the tlpsrc file.
+    if ($line !~ /^(short|long)desc\s/) {
+      #debug: my $origline = $line;
+      for my $k (keys %tlpvars) {
+        $line =~ s/\$\{\Q$k\E\}/$tlpvars{$k}/g;
+      }
+      # check that no variables remain unexpanded, or rather, for any
+      # remaining $ (which we don't otherwise allow in tlpsrc files, so
+      # should never occur) ... except for ${ARCH} which we specially
+      # expand in TLTREE.pm. (Sigh: we distribute one file dvi$pdf.bat,
+      # but fortunately it is matched by a directory.)
+      # 
+      (my $testline = $line) =~ s,\$\{ARCH\},,g;
+      $testline =~ /\$/
+        && die "$srcfile:$lineno: variable undefined or syntax error: $line\n";
+      #debug: warn "new line $line, from $origline\n" if $origline ne $line;
+    } # end variable expansion.
+
     # names of source packages can either be
     # - normal names: ^[-\w]+$
     # - win32 specific packages: ^[-\w]+\.win32$
     # - normal texlive specific packages: ^texlive.*\..*$
     # - configuration texlive specific packages: ^00texlive.*\..*$
-    if ($line =~ /^name\s*([-\w]+(\.win32)?|00texlive.*|texlive\..*)$/) {
+    if ($line =~ /^name\s/) {
+      $line =~ /^name\s+([-\w]+(\.win32)?|(00)?texlive\..*)$/;
+      $foundnametag 
+        && die "$srcfile:$lineno: second name directive not allowed: $line"
+               . "(have $name)\n";
       $name = $1;
-      $foundnametag && die "$srcfile: second name directive not allowed: $name";
       $foundnametag = 1;
+      # let's assume that $PKGNAME doesn't occur before any name
+      # directive (which would result in different expansions); there is
+      # no need for it in practice.
+      $tlpvars{"PKGNAME"} = $name;
+
+    } elsif ($line =~ /^category\s+$CategoriesRegexp$/) {
+      $category = $1;
+
+    } elsif ($line =~ /^shortdesc\s*(.*)$/) {
+      # although we would like to do this, hyphen-latin.tlpsrc contains
+      # multiple short/longdesc entries. Not worth following up.
+      # $shortdesc
+      #   && die "$srcfile:$lineno: second shortdesc not allowed: $line"
+      #          . "(have $shortdesc)\n";
+      $shortdesc = $1;
+
+    } elsif ($line =~ /^shortdesc$/) {
+      $shortdesc = "";
+
+    } elsif ($line =~ /^longdesc$/) {
+      $longdesc .= "\n";
+
+    } elsif ($line =~ /^longdesc\s+(.*)$/) {
+      $longdesc .= "$1 ";
+
+    } elsif ($line =~ /^catalogue\s+(.*)$/) {
+      $catalogue
+        && die "$srcfile:$lineno: second catalogue not allowed: $line"
+               . "(have $catalogue)\n";
+      $catalogue = $1;
+
+    } elsif ($line =~ /^runpattern\s+(.*)$/) {
+      push (@runpatterns, $1) if ($1 ne "");
+
+    } elsif ($line =~ /^srcpattern\s+(.*)$/) {
+      push (@srcpatterns, $1) if ($1 ne "");
+
+    } elsif ($line =~ /^docpattern\s+(.*)$/) {
+      push (@docpatterns, $1) if ($1 ne "");
+
+    } elsif ($line =~ /^binpattern\s+(.*)$/) {
+      push (@binpatterns, $1) if ($1 ne "");
+
+    } elsif ($line =~ /^execute\s+(.*)$/) {
+      push (@executes, $1) if ($1 ne "");
+
+    } elsif ($line =~ /^depend\s+(.*)$/) {
+      push (@depends, $1) if ($1 ne "");
+
+    } elsif ($line =~ /^postaction\s+(.*)$/) {
+      push (@postactions, $1) if ($1 ne "");
+
+    } elsif ($line =~ /^tlpsetvar\s+([-_a-zA-Z0-9]+)\s+(.*)$/) {
+      $tlpvars{$1} = $2;
+
     } else {
-      # expand tlpvars while reading in
-      # that means we have to respect *order* and define variables
-      # first in the tlpsrc file
-      for my $k (keys %tlpvars) {
-        $line =~ s/\$\{\Q$k\E\}/$tlpvars{$k}/g;
-      }
-      # we default to the file name as package name
-      # $started || die "$srcfile: first directive must be `name', not $line";
-      if ($line =~ /^shortdesc\s*(.*)$/) {
-        $shortdesc = $1;
-        next;
-      } elsif ($line =~ /^shortdesc$/) {
-        $shortdesc = "";
-        next;
-      } elsif ($line =~ /^category\s+$CategoriesRegexp$/) {
-        $category = $1;
-        next;
-      } elsif ($line =~ /^longdesc$/) {
-        $longdesc .= "\n";
-        next;
-      } elsif ($line =~ /^longdesc\s+(.*)$/) {
-        $longdesc .= "$1 ";
-        next;
-      } elsif ($line =~ /^catalogue\s+(.*)$/) {
-        $catalogue = $1;
-        next;
-      } elsif ($line =~ /^runpattern\s+(.*)$/) {
-        push @runpatterns, $1 if ($1 ne "");
-        next;
-      } elsif ($line =~ /^srcpattern\s+(.*)$/) {
-        push @srcpatterns, $1 if ($1 ne "");
-        next;
-      } elsif ($line =~ /^docpattern\s+(.*)$/) {
-        push @docpatterns, $1 if ($1 ne "");
-        next;
-      } elsif ($line =~ /^binpattern\s+(.*)$/) {
-        push @binpatterns, $1 if ($1 ne "");
-        next;
-      } elsif ($line =~ /^execute\s+(.*)$/) {
-        push @executes, $1 if ($1 ne "");
-        next;
-      } elsif ($line =~ /^depend\s+(.*)$/) {
-        push @depends, $1 if ($1 ne "");
-        next;
-      } elsif ($line =~ /^postaction\s+(.*)$/) {
-        push @postactions, $1 if ($1 ne "");
-        next;
-      } elsif ($line =~ /^tlpsetvar\s+([-_a-zA-Z0-9]+)\s+(.*)$/) {
-        $tlpvars{$1} = $2;
-        next;
-      } else {
-        tlwarn("$srcfile:$lineno: unknown tlpsrc directive, fix fix: $line\n");
-      }
+      die "$srcfile:$lineno: unknown tlpsrc directive, fix: $line\n";
     }
   }
   $self->_srcfile($srcfile);
@@ -1042,8 +1061,8 @@ ease the writing of patterns, we have the following:
 
 =item Architecture expansion
 
-In case the string C<${>I<ARCH>} occurs in one C<binpattern> it is
-automatically expanded to the respective architecture.
+Within a binpattern, the string C<${ARCH}> is automatically expanded to
+all available architectures.
 
 =item C<bat/exe/dll/texlua> for Windows
 

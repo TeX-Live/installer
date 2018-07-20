@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: install-tl 47804 2018-05-23 02:32:50Z preining $
+# $Id: install-tl 48098 2018-06-27 16:10:39Z siepo $
 # 
 # Copyright 2007-2018
 # Reinhard Kotucha, Norbert Preining, Karl Berry, Siep Kroonenberg.
@@ -19,7 +19,7 @@
 #   thingy as described in the Perl/Tk book in the chapter that can be
 #   found on the net)   (Werner 28.10.08)
 
-my $svnrev = '$Revision: 47804 $';
+my $svnrev = '$Revision: 48098 $';
 $svnrev =~ m/: ([0-9]+) /;
 $::installerrevision = ($1 ? $1 : 'unknown');
 
@@ -94,6 +94,18 @@ use strict;
 
 # global list of warnings
 @::WARNLINES = ();
+
+# debugging communication with external gui: use shared logfile
+
+our $dblfile = "/tmp/dblog";
+$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O=~/^MSWin/i);
+$dblfile = $ENV{'TMPDIR'} . "/dblog" if ($^O eq 'darwin');
+sub dblog {
+  my $s = shift;
+  open(my $dbf, ">>", $dblfile);
+  print $dbf "PERL: $s\n";
+  close $dbf;
+}
 
 # we play around with the environment, place to keep original
 my %origenv = ();
@@ -200,15 +212,40 @@ $::fileassocdesc[0] = "None";
 $::fileassocdesc[1] = "Only new";
 $::fileassocdesc[2] = "All";
 
+# before we try to interact with the user, we need to know whether or not
+# install-tl was called from an external gui. This gui will start install-tl
+# with "-from_ext_gui" as its first command-line option.
+
+my $from_ext_gui = 0;
+if ((defined $ARGV[0]) && $ARGV[0] eq "-from_ext_gui") {
+  shift @ARGV;
+  $from_ext_gui = 1;
+
+  # do not buffer output to the frontend
+  select(STDERR);
+  $| = 1;
+  select(STDOUT);
+  $| = 1;
+
+  # windows: suppress console windows when invoking other programs
+  Win32::SetChildShowWindow(0) if win32();
+  # ___, defined in this file, replaces the GUI translating function
+  *__ = \&::___;
+}
+
 # if we find a file installation.profile we ask the user whether we should
 # continue with the installation
 # note, we are in the directory from which the aborted installation was run.
 my %profiledata;
 if (-r "installation.profile") {
+  if ($from_ext_gui) { # prepare for dialog interaction
+    print "mess_yesno\n";
+  }
   my $pwd = Cwd::getcwd();
   print "ABORTED TL INSTALLATION FOUND: installation.profile (in $pwd)\n";
   print
     "Do you want to continue with the exact same settings as before (y/N): ";
+  print "\nendmess\n" if $from_ext_gui;
   my $answer = <STDIN>;
   if ($answer =~ m/^y(es)?$/i) {
     $opt_profile = "installation.profile";
@@ -251,6 +288,9 @@ if ($opt_gui eq "") {
 if ($opt_gui eq "expert") {
   $opt_gui = "perltk";
 }
+if ($from_ext_gui) {
+  $opt_gui = "extl";
+}
 
 if ($opt_help) {
   # theoretically we could make a subroutine with all the same
@@ -288,11 +328,14 @@ if ($opt_version) {
     close (REL_TL);
   }
   if ($::opt_verbosity > 0) {
-    print "Revision of modules:";
+    print "Module revisions:";
     print "\nTLConfig: " . TeXLive::TLConfig->module_revision();
-    print "\nTLUtils:  " . TeXLive::TLUtils->module_revision();
-    print "\nTLPOBJ:   " . TeXLive::TLPOBJ->module_revision();
+    print "\nTLCrypto: " . TeXLive::TLCrypto->module_revision();
+    print "\nTLDownload: ".TeXLive::TLDownload->module_revision();
     print "\nTLPDB:    " . TeXLive::TLPDB->module_revision();
+    print "\nTLPOBJ:   " . TeXLive::TLPOBJ->module_revision();
+    print "\nTLTREE:   " . TeXLive::TLTREE->module_revision();
+    print "\nTLUtils:  " . TeXLive::TLUtils->module_revision();
     print "\nTLWinGoo: " . TeXLive::TLWinGoo->module_revision() if win32();
     print "\n";
   }
@@ -344,8 +387,6 @@ our $tlpdb;
 my $localtlpdb;
 my $location;
 
-# $finished == 1 if the menu call already did the installation
-my $finished = 0;
 @::info_hook = ();
 
 our $media;
@@ -393,7 +434,8 @@ END_NO_CHECKSUMS
 
 # check as soon as possible for GUI functionality to give people a chance
 # to interrupt.
-if (($opt_gui ne "text") && !$opt_no_gui && ($opt_profile eq "")) {
+# not needed for extl, because in this case install-tl is invoked by external gui
+if (($opt_gui ne "extl") && ($opt_gui ne "text") && !$opt_no_gui && ($opt_profile eq "")) {
   # try to load Tk.pm, but don't die if it doesn't work
   eval { require Tk; };
   if ($@) {
@@ -508,7 +550,6 @@ if ($opt_profile eq "") {
   our $MENU_INSTALL = 0;
   our $MENU_ABORT   = 1;
   our $MENU_QUIT    = 2;
-  our $MENU_ALREADYDONE = 3;
   $opt_gui = "text" if ($opt_no_gui);
   # finally do check for additional screens in the $opt_gui setting:
   # format:
@@ -559,7 +600,7 @@ if ($opt_profile eq "") {
     flushlog();
     exit(2);
   }
-  if (!$finished && ($ret != $MENU_INSTALL)) {
+  if ($ret != $MENU_INSTALL) {
     tlwarn("Unknown return value of run_menu: $ret\n");
     exit(3);
   }
@@ -569,6 +610,9 @@ if ($opt_profile eq "") {
     die ("Exiting installation.\n");
   }
   read_profile($opt_profile);
+  if ($from_ext_gui) {
+    print STDOUT "startinst\n";
+  }
 }
 
 my $varsdump = "";
@@ -585,20 +629,17 @@ install_warnlines_hook(); # collect warnings in @::WARNLINES
 info("Installing to: $vars{TEXDIR}\n");
 
 $::env_warns = "";
-check_env() unless $ENV{"TEXLIVE_INSTALL_ENV_NOCHECK"};
 create_welcome();
 my $status = 1;
-if ($opt_gui eq 'text' or $opt_profile ne "" or
+if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "" or
       !(-r "$::installerdir/tlpkg/installer/tracked-install.pl")) {
   $status = do_installation();
   if (@::WARNLINES) {
     foreach my $t (@::WARNLINES) { print STDERR $t; }
   }
-  if ($::env_warns) { print STDERR $::env_warns; }
+  if ($::env_warns) { tlwarn($::env_warns); }
   unless ($ENV{"TEXLIVE_INSTALL_NO_WELCOME"}) {
-    foreach my $t (@::welcome_arr) {
-      print STDOUT "$t\n";
-    }
+    info(join("\n", @::welcome_arr));
   }
   do_cleanup(); # sets $::LOGFILENAME if not already defined
   if ($LOGFILENAME) {
@@ -885,8 +926,12 @@ sub do_installation {
 
   # check environment for possibly tex-related strings:
   check_env() unless $ENV{"TEXLIVE_INSTALL_ENV_NOCHECK"};
+
+  # We do clean up in the main installation part
+  # don't do this here because it closes the log file and
+  # further messages (warnings, welcome) are not logged.
   # log, profile, temp files:
-  do_cleanup();
+  # do_cleanup();
 
   create_welcome();
   if (@::WARNLINES) {
@@ -2292,20 +2337,22 @@ sub update_numbers {
 
 # to be called at exit when the installation did not complete
 sub flushlog {
-  my $fh;
-  my $logfile = "install-tl.log";
-  if (open (LOG, ">$logfile")) {
-    my $pwd = Cwd::getcwd();
-    $logfile = "$pwd/$logfile";
-    print "$0: Writing log in current directory: $logfile\n";
-    $fh = \*LOG;
-  } else {
-    $fh = \*STDERR;
-    print "$0: Could not write to $logfile, so flushing messages to stderr.\n";
-  }
-
-  foreach my $l (@::LOGLINES) {
-    print $fh $l;
+  if (!defined($::LOGFILENAME)) {
+    my $fh;
+    my $logfile = "install-tl.log";
+    if (open (LOG, ">$logfile")) {
+      my $pwd = Cwd::getcwd();
+      $logfile = "$pwd/$logfile";
+      print "$0: Writing log in current directory: $logfile\n";
+      $fh = \*LOG;
+    } else {
+      $fh = \*STDERR;
+      print
+        "$0: Could not write to $logfile, so flushing messages to stderr.\n";
+    }
+    foreach my $l (@::LOGLINES) {
+      print $fh $l;
+    }
   }
 } # flushlog
 
@@ -2496,9 +2543,9 @@ install-tl-advanced.bat [I<option>]...
 =head1 DESCRIPTION
 
 This installer creates a runnable TeX Live installation from various
-media, including over the network, from local hard disk, a DVD, etc.
-The installer works across all platforms supported by TeX Live.  For
-information on initially downloading the TeX Live, see
+media, including over the network, from local hard disk, a DVD, etc. The
+installer works on all platforms supported by TeX Live. For information
+on initially downloading TeX Live, see
 L<http://tug.org/texlive/acquire.html>.
 
 The basic idea of TeX Live installation is for you to choose one of the
@@ -2517,7 +2564,7 @@ highly recommended.
 
 =head1 REFERENCES
 
-Post-installation configuration, package updates, and much more, are
+Post-installation configuration, package updates, and more, are
 handled through B<tlmgr>(1), the TeX Live Manager
 (L<http://tug.org/texlive/tlmgr.html>).
 
@@ -2588,51 +2635,29 @@ simplified Chinese (zh_CN), and traditional Chinese (zh_TW).
 =item B<-repository> I<url|path>
 
 Specify the package repository to be used as the source of the
-installation, either a local directory via C</path/to/directory> or a
-C<file:/> url, or a network location via a C<http://>, C<https://>, or
-C<ftp://> url.  (No other protocols are supported, and C<https://> may
-not work on all platforms.)
+installation. In short, this can be a directory name or a url using
+http(s), ftp, or scp. The documentation for C<tlmgr> has the details
+(L<http://tug.org/texlive/doc/tlmgr.html#OPTIONS>).
 
-The default is to pick a mirror automatically, using
+For installation, the default is to pick a mirror automatically, using
 L<http://mirror.ctan.org/systems/texlive/tlnet>; the chosen mirror is
-used for the entire download.  You can use the special argument C<ctan>
-as an abbreviation for this.  See L<http://ctan.org> for more about CTAN
-and its mirrors.
-
-If the repository is on the network, trailing C</> characters and/or
-trailing C</tlpkg> and C</archive> components are ignored.  For example,
-you could choose a particular CTAN mirror with something like this:
-
-  -repository http://ctan.example.org/its/ctan/dir/systems/texlive/tlnet
-
-Of course a real hostname and its particular top-level CTAN directory
-have to be specified.  The list of CTAN mirrors is available at
-L<http://ctan.org/mirrors>.
-
-If the repository is local, the installation type (compressed or live) is
-automatically determined, by checking for the presence of a
-C<archive> directory relative to the root.  Compressed is
-preferred if both are available, since it is faster.  Here's an example
-of using a local directory:
-
-  -repository /local/TL/repository
+used for the entire download. You can use the special argument C<ctan>
+as an abbreviation for this. (See L<http://ctan.org> for more about CTAN
+and its mirrors.)
 
 After installation is complete, you can use that installation as the
 repository for another installation.  If you chose to install less than
 the full scheme containing all packages, the list of available schemes
 will be adjusted accordingly.
 
-For backward compatibility and convenience, C<--location> and C<--repo>
-are accepted as aliases for this option.
-
 =item B<-select-repository>
 
-This option allows manual selection of a mirror from the current list of
-active CTAN mirrors.  This option is supported in all installer modes
-(text, wizard, perltk), and will also offer to install from local media
-if available, or from a repository specified on the command line (see
-above).  It's useful when the (default) automatic redirection does not
-choose a good host for you.
+This option allows you to choose a particular mirror from the current
+list of active CTAN mirrors. This option is supported in all installer
+modes (text, wizard, perltk), and will also offer to install from local
+media if available, or from a repository specified on the command line.
+It's useful when the (default) automatic redirection does not choose a
+good host for you.
 
 =item B<-all-options>
 
@@ -2659,9 +2684,9 @@ building TeX Live, see L<http://tug.org/texlive/build.html>.
 
 =item B<-debug-translation>
 
-In GUI mode, this switch makes C<tlmgr> report any missing, or more
-likely untranslated, messages to standard error.  Helpful for
-translators to see what remains to be done.
+In GUI mode, this options reports any missing, or more likely
+untranslated, messages to standard error. Helpful for translators to see
+what remains to be done.
 
 =item B<-force-platform> I<platform>
 
@@ -2671,12 +2696,12 @@ runnable, or installation will fail.  C<-force-arch> is a synonym.
 
 =item B<-help>, B<--help>, B<-?>
 
-Display this help and exit.  (This help is on the web at
-L<http://tug.org/texlive/doc/install-tl.html>).  Sometimes the
-C<perldoc> and/or C<PAGER> programs on the system have problems,
-possibly resulting in control characters being literally output.  This
-can't always be detected, but you can set the C<NOPERLDOC> environment
-variable and C<perldoc> will not be used.
+Display this help and exit. (This help is also on the web at
+L<http://tug.org/texlive/doc/install-tl.html>). Sometimes the C<perldoc>
+and/or C<PAGER> programs on the system have problems, possibly resulting
+in control characters being literally output. This can't always be
+detected, but you can set the C<NOPERLDOC> environment variable and
+C<perldoc> will not be used.
 
 =item B<-in-place>
 
@@ -2709,13 +2734,9 @@ release.
 For the text mode installer only: do not clear the screen when entering
 a new menu (for debugging purposes).
 
-=item B<-non-admin>
-
-For Windows only: configure for the current user, not for all users.
+=item B<-no-persistent-downloads>
 
 =item B<-persistent-downloads>
-
-=item B<-no-persistent-downloads>
 
 For network installs, activating this option makes the installer try to
 set up a persistent connection using the C<Net::LWP> Perl module.  This
@@ -2734,6 +2755,10 @@ verified against a cryptographic signature. This option disables such
 verification.  The full description is in the Crytographic Verification
 section of the C<tlmgr> documentation, e.g.,
 L<http://tug.org/texlive/doc/tlmgr.html#CRYPTOGRAPHIC-VERIFICATION>
+
+=item B<-non-admin>
+
+For Windows only: configure for the current user, not for all users.
 
 =item B<-portable>
 
@@ -2772,8 +2797,8 @@ Include verbose debugging messages; repeat for maximum debugging: C<-v
 
 =item B<-version>, B<--version>
 
-Output version information and exit.  If C<-v> has also been given the
-revisions of the used modules are reported, too.
+Output version information and exit.  If C<-v> is also given, the
+versions of the TeX Live modules used are also reported.
 
 =back
 
@@ -2908,13 +2933,24 @@ written, the names above are always used.
 For more details on all of the above options, consult the TeX Live
 installation manual, linked from L<http://tug.org/texlive/doc>.
 
+
 =head1 ENVIRONMENT VARIABLES
 
-For ease in scripting and debugging, C<install-tl> will look for the
-following environment variables.  They are not of interest for normal
+For ease in scripting and debugging, C<install-tl> looks for the
+following environment variables. They are not of interest for normal
 user installations.
 
 =over 4
+
+=item C<TEXLIVE_DOWNLOADER>
+
+=item C<TL_DOWNLOAD_PROGRAM>
+
+=item C<TL_DOWNLOAD_ARGS>
+
+These override the normal choice of a download program; see the C<tlmgr>
+documentation, e.g.,
+L<http://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
 
 =item C<TEXLIVE_INSTALL_ENV_NOCHECK>
 
@@ -2929,7 +2965,7 @@ Omit creating the ConTeXt cache.  This is useful for redistributors.
 =item C<TEXLIVE_INSTALL_NO_WELCOME>
 
 Omit printing the welcome message after successful installation, e.g.,
-for testing.
+when testing.
 
 =item C<TEXLIVE_INSTALL_PREFIX>
 
@@ -2966,7 +3002,7 @@ This script and its documentation were written for the TeX Live
 distribution (L<http://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
-$Id: install-tl 47804 2018-05-23 02:32:50Z preining $
+$Id: install-tl 48098 2018-06-27 16:10:39Z siepo $
 =cut
 
 # to remake HTML version: pod2html --cachedir=/tmp install-tl >/tmp/itl.html
