@@ -1,4 +1,7 @@
 before_build:
+  - ps: Start-FileDownload 'http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip'
+  - 7z x install-tl.zip
+  - cd install-tl-20*
   - ps: Set-Content texlive.profile "selected_scheme scheme-minimal`nTEXDIR C:\texlive`noption_doc 0`noption_src 0`n"
 
 build_script:
