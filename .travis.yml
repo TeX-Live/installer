@@ -1,0 +1,13 @@
+language: generic
+
+os:
+  - linux
+  - osx
+
+before_script:
+  - echo -e "selected_scheme scheme-infraonly\nTEXDIR /usr/local/texlive\noption_doc 0\noption_src 0" > texlive.profile
+
+script:
+  - sudo ./install-tl -profile=texlive.profile
+  - PATH=$PATH:/usr/local/texlive/bin/x86_64-$(if [ $TRAVIS_OS_NAME == 'osx' ]; then echo darwin; else echo linux; fi)
+  - tlmgr --version
