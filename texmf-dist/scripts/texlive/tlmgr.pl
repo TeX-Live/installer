@@ -8178,7 +8178,7 @@ With the C<list> argument, C<key> lists all keys.
 
 The C<add> argument requires another argument, either a filename or
 C<-> for stdin, from which the key is added. The key is added to the
-local keyring C<GNUPGHOME/repository-keys.gpg>, which is normally)
+local keyring C<GNUPGHOME/repository-keys.gpg>, which is normally
 C<tlpkg/gpg/repository-keys.gpg>.
 
 The C<remove> argument requires a key id and removes the requested id
