@@ -44,10 +44,24 @@ option add *Dialog.msg.font TkDefaultFont userDefault
 # larger font
 font create lfont {*}[font configure TkDefaultFont]
 font configure lfont -size [expr {round(1.2 * [font actual lfont -size])}]
+font create hfont {*}[font configure lfont]
+font configure hfont -weight bold
 
 ## italicized items; not used
 #font create it_font {*}[font configure TkDefaultFont]
 #font configure it_font -slant italic
+
+# default text color
+
+# string representation of booleans
+proc yesno {b} {
+  return [expr {$b ? "Yes" : "No"}]
+}
+
+# default foreground color; may not be black in e.g. dark color schemes
+label .dummy -text ""
+set blk [option get .dummy foreground Foreground]
+destroy .dummy
 
 ### initialize some globals ###
 
@@ -77,7 +91,7 @@ set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
 
 set ::perlbin "perl"
 if {$::tcl_platform(platform) eq "windows"} {
-  set ::perlbin "${::instroot}/tlpkg/tlperl/bin/perl.exe"
+  set ::perlbin "${::instroot}/tlpkg/tlperl/bin/wperl.exe"
 }
 
 ### procedures, mostly organized bottom-up ###
@@ -228,12 +242,14 @@ proc place_dlg {wnd {p "."}} {
   if {$wy < 0} { set wy 0}
   wm geometry $wnd [format "+%d+%d" $wx $wy]
   wm state $wnd normal
+  wm attributes $wnd -topmost
   raise $wnd $p
   tkwait visibility $wnd
   focus $wnd
   grab set $wnd
 } ; # place_dlg
 
+# place dialog answer in ::dialog_ans, raise parent, close dialog
 proc end_dlg {ans wnd {p "."}} {
   set ::dialog_ans $ans
   raise $p
@@ -248,7 +264,7 @@ proc show_log {{do_abort 0}} {
   }
 
   # wallpaper
-  pack [ttk::frame .bg] -fill both -expand 1
+  pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
   pack [ttk::frame .log] -in .bg -fill both -expand 1
   pack [ttk::scrollbar .log.scroll -command ".log.tx yview"] \
@@ -277,6 +293,8 @@ proc show_log {{do_abort 0}} {
   set w [expr {80 * $::cw}]
   wm geometry . "${w}x${h}"
   wm state . normal
+  wm attributes . -topmost
+  raise .
 }; # show_log
 
 proc log_exit {{mess ""}} {
@@ -295,6 +313,7 @@ proc log_exit {{mess ""}} {
 }; # log_exit
 
 proc make_splash {} {
+  
   # picture and logo
   catch {
     image create photo tlimage -file \
@@ -304,13 +323,14 @@ proc make_splash {} {
     pack .image -in .white
   }
   # wallpaper
-  pack [ttk::frame .bg] -fill both -expand 1
+  pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
   ppack [ttk::label .text -text "TeX Live 2018" -font bigfont] \
     -in .bg
   ppack [ttk::label .loading -text "Loading..."] -in .bg
 
   wm state . normal
+  wm attributes . -topmost
   raise .
   update
 }; # make_splash
@@ -335,101 +355,107 @@ proc native_slashify {s} {
   return $r
 }
 
-## Code to populate a node of the tree
-proc populateTree {tree node} {
-  if {[$tree set $node type] ne "directory"} {
-    set type [$tree set $node type]
-    return
-  }
-  $tree delete [$tree children $node]
-  foreach f [lsort [glob -nocomplain -directory $node *]] {
-    set type [file type $f]
-    if {$type eq "directory"} {
-      $tree insert $node end \
-          -id $f -text [file tail $f] -values [list $type]
-      # Need at least one child to make this node openable,
-      # will be deleted when actually populating this node
-      $tree insert $f 0 -text "dummy"
+if {$::tcl_platform(platform) ne "windows"} {
+
+  # Unix directory browser, based on the tcl/tk widget demo.
+  # Use also for MacOS, because we want to see /usr.
+  # For windows, the native browser widget is better.
+
+  ## Code to populate a single directory node
+  proc populateTree {tree node} {
+    if {[$tree set $node type] ne "directory"} {
+      set type [$tree set $node type]
+      return
     }
-  }
-  # Stop this code from rerunning on the current node
-  $tree set $node type processedDirectory
-}
-
-# Unix directory browser.
-# Also use for MacOS, because we want to see /usr.
-proc choose_dir {initdir {parent .}} {
-
-  create_dlg .browser $parent
-  wm title .browser "Browse..."
-
-  # wallpaper
-  pack [ttk::frame .browser.bg] -fill both -expand 1
-  ## Create the tree and set it up
-  pack [ttk::frame .browser.fr0] -in .browser.bg -fill both -expand 1
-  set tree [ttk::treeview .browser.tree \
-                -columns {type} -displaycolumns {} -selectmode browse \
-                -yscroll ".browser.vsb set"]
-  .browser.tree column 0 -minwidth 500 -stretch 0
-  ttk::scrollbar .browser.vsb -orient vertical -command "$tree yview"
-  # hor. scrolling does not work, but toplevel and widget are resizable
-  $tree heading \#0 -text "/"
-  $tree insert {} end -id "/" -text "/" -values [list "directory"]
-
-  populateTree $tree "/"
-  bind $tree <<TreeviewOpen>> {
-    populateTree %W [%W focus]
-  }
-  bind $tree <ButtonRelease-1> {
-    .browser.tree heading \#0 -text [%W focus]
-  }
-
-  ## Arrange the tree and its scrollbar in the toplevel
-  # horizontal scrolling does not work.
-  # possible solution: very wide treeview in smaller paned window
-  # (may as well use pack in the absence of a horizontal scrollbar)
-  grid $tree .browser.vsb -sticky nsew -in .browser.fr0
-  grid columnconfigure .browser.fr0 0 -weight 1
-  grid rowconfigure .browser.fr0 0 -weight 1
-
-  # ok and cancel buttons
-  pack [ttk::frame .browser.fr1] -in .browser.bg -fill x -expand 1
-  ppack [ttk::button .browser.ok -text "Ok"] -side right
-  ppack [ttk::button .browser.cancel -text "Cancel"] -side right
-  .browser.ok configure -command {
-    set ::dialog_ans [.browser.tree focus]
-    destroy .browser
-  }
-  .browser.cancel configure -command {
-    set ::dialog_ans ""
-    destroy .browser
-  }
-  unset -nocomplain ::dialog_ans
-
-  # navigate tree to $initdir
-  set chosenDir {}
-  foreach d [file split [file normalize $initdir]] {
-    set nextdir [file join $chosenDir $d]
-    if [file isdirectory $nextdir] {
-      if {! [$tree exists $nextdir]} {
-        $tree insert $chosenDir end -id $nextdir \
-            -text $d -values [list "directory"]
+    $tree delete [$tree children $node]
+    foreach f [lsort [glob -nocomplain -directory $node *]] {
+      set type [file type $f]
+      if {$type eq "directory"} {
+        $tree insert $node end \
+            -id $f -text [file tail $f] -values [list $type]
+        # Need at least one child to make this node openable,
+        # will be deleted when actually populating this node
+        $tree insert $f 0 -text "dummy"
       }
-      populateTree $tree $nextdir
-      set chosenDir $nextdir
-    } else {
-      break
     }
+    # Stop this code from rerunning on the current node
+    $tree set $node type processedDirectory
   }
-  $tree see $chosenDir
-  $tree selection set [list $chosenDir]
-  $tree focus $chosenDir
-  $tree heading \#0 -text $chosenDir
 
-  place_dlg .browser $parent
-  tkwait window .browser
-  return $::dialog_ans
-}; # choose_dir
+  proc choose_dir {initdir {parent .}} {
+
+    create_dlg .browser $parent
+    wm title .browser "Browse..."
+
+    # wallpaper
+    pack [ttk::frame .browser.bg -padding 3] -fill both -expand 1
+    ## Create the tree and set it up
+    pack [ttk::frame .browser.fr0] -in .browser.bg -fill both -expand 1
+    set tree [ttk::treeview .browser.tree \
+                  -columns {type} -displaycolumns {} -selectmode browse \
+                  -yscroll ".browser.vsb set"]
+    .browser.tree column 0 -minwidth 500 -stretch 0
+    ttk::scrollbar .browser.vsb -orient vertical -command "$tree yview"
+    # hor. scrolling does not work, but toplevel and widget are resizable
+    $tree heading \#0 -text "/"
+    $tree insert {} end -id "/" -text "/" -values [list "directory"]
+
+    populateTree $tree "/"
+    bind $tree <<TreeviewOpen>> {
+      populateTree %W [%W focus]
+    }
+    bind $tree <ButtonRelease-1> {
+      .browser.tree heading \#0 -text [%W focus]
+    }
+
+    ## Arrange the tree and its scrollbar in the toplevel
+    # horizontal scrolling does not work.
+    # possible solution: very wide treeview in smaller paned window
+    # (may as well use pack in the absence of a horizontal scrollbar)
+    grid $tree .browser.vsb -sticky nsew -in .browser.fr0
+    grid columnconfigure .browser.fr0 0 -weight 1
+    grid rowconfigure .browser.fr0 0 -weight 1
+
+    # ok and cancel buttons
+    pack [ttk::frame .browser.fr1] -in .browser.bg -fill x -expand 1
+    ppack [ttk::button .browser.ok -text "Ok"] -side right
+    ppack [ttk::button .browser.cancel -text "Cancel"] -side right
+    .browser.ok configure -command {
+      set ::dialog_ans [.browser.tree focus]
+      destroy .browser
+    }
+    .browser.cancel configure -command {
+      set ::dialog_ans ""
+      destroy .browser
+    }
+    unset -nocomplain ::dialog_ans
+
+    # navigate tree to $initdir
+    set chosenDir {}
+    foreach d [file split [file normalize $initdir]] {
+      set nextdir [file join $chosenDir $d]
+      if [file isdirectory $nextdir] {
+        if {! [$tree exists $nextdir]} {
+          $tree insert $chosenDir end -id $nextdir \
+              -text $d -values [list "directory"]
+        }
+        populateTree $tree $nextdir
+        set chosenDir $nextdir
+      } else {
+        break
+      }
+    }
+    $tree see $chosenDir
+    $tree selection set [list $chosenDir]
+    $tree focus $chosenDir
+    $tree heading \#0 -text $chosenDir
+
+    place_dlg .browser $parent
+    tkwait window .browser
+    return $::dialog_ans
+  }; # choose_dir
+
+}; # if not windows
 
 proc update_full_path {} {
   set val [file join \
@@ -438,16 +464,18 @@ proc update_full_path {} {
                [.tltd.rel_l cget -text]]
   set val [native_slashify $val]
   .tltd.path_l configure -text $val
-  if [file isdir [.tltd.prefix_l cget -text]] {
-    .tltd.ok_b configure -state normal
-  } else {
+  # ask perl to check path
+  chan puts $::inst "checkdir"
+  chan puts $::inst [forward_slashify [.tltd.path_l cget -text]]
+  chan flush $::inst
+  if {[read_line_no_eof] eq "0"} {
+    .tltd.path_l configure -text \
+        "Cannot be created or cannot be written to" \
+        -foreground red
     .tltd.ok_b configure -state disabled
-  }
-  if {[.tltd.rel_l cget -text] eq ""} {
-    .tltd.warn configure -text \
-        [trans "TL release component highly recommended!"]
   } else {
-    .tltd.warn configure -text ""
+    .tltd.path_l configure -text $val -foreground $::blk
+    .tltd.ok_b configure -state !disabled
   }
   return
 } ; # update_full_path
@@ -475,7 +503,7 @@ proc edit_name {} {
   if $::plain_unix {wm attributes .tled -type dialog}
 
   # wallpaper
-  pack [ttk::frame .tled.bg] -fill both -expand 1
+  pack [ttk::frame .tled.bg -padding 3] -fill both -expand 1
 
   # widgets
   ttk::label .tled.l -text [trans "Change name (slashes not allowed)"]
@@ -499,71 +527,89 @@ proc edit_name {} {
   ppack .tled.q_b -in .tled.buttons -side right -padx 5 -pady 5
 
   place_dlg .tled .tltd
-  # focus .tled.e; # does not help
 } ; # edit_name
 
 proc toggle_rel {} {
-  if {[.tltd.rel_l cget -text] eq ""} {
-    .tltd.rel_l configure -text $::release_year
-  } else {
+  if {[.tltd.rel_l cget -text] ne ""} {
+    set ans \
+        [tk_messageBox -message \
+             "TL release component highly recommended!\nAre you sure?" \
+        -title "Warning" \
+        -type yesno \
+        -default no]
+    if {$ans eq no} {
+      return
+    }
     .tltd.rel_l configure -text ""
+  } else {
+    .tltd.rel_l configure -text $::release_year
   }
   update_full_path
 } ; # toggle_rel
 
-### main dialog ###
-
-proc commit_path {} {
-  # ask perl to check path
-  set new_td [forward_slashify [.tltd.path_l cget -text]]
-  chan puts $::inst "checkdir"
-  chan puts $::inst $new_td
-  chan flush $::inst
-  if {[read_line_no_eof] ne "0"} {
-    set ::vars(TEXDIR) $new_td
-    destroy .tltd
+proc canonical_local {} {
+  if {[file tail $::vars(TEXDIR)] eq $::release_year} {
+    set l [file dirname $::vars(TEXDIR)]
   } else {
-    tk_messageBox -message \
-        "$new_td is forbidden or cannot be written to;
-create it outside the installer or choose something else"
+    set l $::vars(TEXDIR)
+  }
+  if {[forward_slashify $l] ne \
+          [forward_slashify [file dirname $::vars(TEXMFLOCAL)]]} {
+    set ::vars(TEXMFLOCAL) [forward_slashify [file join $l "texmf-local"]]
   }
 }
 
-proc change_path {} {
+proc commit_path {} {
+  set ::vars(TEXDIR) [forward_slashify [.tltd.path_l cget -text]]
+  set ::vars(TEXMFSYSVAR) "$::vars(TEXDIR)/texmf-var"
+  set ::vars(TEXMFSYSCONFIG) "$::vars(TEXDIR)/texmf-var"
+  canonical_local
+
+  if {$::vars(instopt_portable)} reset_personal_dirs
+  destroy .tltd
+}
+
+### main directory dialog ###
+
+proc texdir_setup {} {
 
   ### widgets ###
 
   create_dlg .tltd .
-  wm title .tltd "Installation directory"
+  wm title .tltd "Installation root"
 
   # wallpaper
-  pack [ttk::frame .tltd.bg] -expand 1 -fill both
+  pack [ttk::frame .tltd.bg -padding 3] -expand 1 -fill both
 
   # full path
-  ppack [ttk::label .tltd.path_l -font lfont] -in .tltd.bg -side top
+  ppack [ttk::label .tltd.path_l -font lfont -anchor center] \
+      -in .tltd.bg -fill x -expand 1
 
-  # grid with path components and corresponding buttons
-  pack [ttk::frame .tltd.fr1] -in .tltd.bg
-  # component strings (negative => minimum value)
-  pgrid [ttk::label .tltd.prefix_l -anchor e] \
-      -in .tltd.fr1 -row 0 -column 0 -sticky e
-  pgrid [ttk::label .tltd.sep0_l -text $::sep] -in .tltd.fr1 -row 0 -column 1
-  pgrid [ttk::label .tltd.name_l -anchor center] \
-      -in .tltd.fr1 -row 0 -column 2
-  pgrid [ttk::label .tltd.sep1_l -text $::sep] -in .tltd.fr1 -row 0 -column 3
-  pgrid [ttk::label .tltd.rel_l -width 6 -anchor w] \
-      -in .tltd.fr1 -row 0 -column 4 -sticky w
+  # installation root components, gridded
+  pack [ttk::frame .tltd.fr1 -borderwidth 2 -relief groove] \
+      -in .tltd.bg -fill x -expand 1
+  grid columnconfigure .tltd.fr1 0 -weight 1
+  grid columnconfigure .tltd.fr1 2 -weight 1
+  grid columnconfigure .tltd.fr1 4 -weight 1
+  set rw -1
+  # path components, as labels
+  incr rw
+  pgrid [ttk::label .tltd.prefix_l] -in .tltd.fr1 -row $rw -column 0
+  pgrid [ttk::label .tltd.sep0_l -text $::sep] -in .tltd.fr1 -row $rw -column 1
+  pgrid [ttk::label .tltd.name_l] -in .tltd.fr1 -row $rw -column 2
+  pgrid [ttk::label .tltd.sep1_l -text $::sep] -in .tltd.fr1 -row $rw -column 3
+  pgrid [ttk::label .tltd.rel_l -width 6] \
+      -in .tltd.fr1 -row $rw -column 4
   # corresponding buttons
+  incr rw
   pgrid [ttk::button .tltd.prefix_b -text [trans "Change"] \
              -command browse_path] \
-      -in .tltd.fr1 -row 1 -column 0 -sticky e
+      -in .tltd.fr1 -row $rw -column 0
   pgrid [ttk::button .tltd.name_b -text [trans "Change"] -command edit_name] \
-      -in .tltd.fr1 -row 1 -column 2
-  pgrid [ttk::button .tltd.rel_b -text [trans "Toggle"] -command toggle_rel] \
-      -in .tltd.fr1 -row 1 -column 4 -sticky w
-  # warning about missing release component
-  ppack [ttk::label .tltd.warn -anchor e -foreground red] \
-      -in .tltd.bg -fill x -expand 1
+      -in .tltd.fr1 -row $rw -column 2
+  pgrid [ttk::button .tltd.rel_b -text [trans "Toggle year"] \
+      -command toggle_rel] \
+      -in .tltd.fr1 -row $rw -column 4
 
   # windows: note about localized names
   if {$::tcl_platform(platform) eq "windows"} {
@@ -574,7 +620,7 @@ proc change_path {} {
   }
 
   # ok/cancel buttons
-  pack [ttk::frame .tltd.frbt] -in .tltd.bg -fill x -expand 1
+  pack [ttk::frame .tltd.frbt] -in .tltd.bg -pady [list 10 0] -fill x -expand 1
   ttk::button .tltd.ok_b -text [trans "Ok"] -command commit_path
   ppack .tltd.ok_b -in .tltd.frbt -side right
   ttk::button .tltd.cancel_b -text [trans "Cancel"] \
@@ -585,7 +631,6 @@ proc change_path {} {
 
   set val [native_slashify [file normalize $::vars(TEXDIR)]]
   regsub {[\\/]$} $val {} val
-  .tltd.path_l configure -text $val
 
   set initdir $val
   set name ""
@@ -619,17 +664,92 @@ proc change_path {} {
     append initdir $::sep
   }
   .tltd.prefix_l configure -text $initdir
+  update_full_path
 
   bind .tltd <Return> commit_path
   bind .tltd <Escape> {destroy .tltd}
 
   place_dlg .tltd
-} ; # change_path
+} ; # texdir_setup
+
+# other: TEXMFLOCAL, TEXMFHOME, portable
+
+proc edit_dir {d} {
+  create_dlg .td .
+  wm title .td $d
+  if $::plain_unix {wm attributes .td -type dialog}
+
+  # wallpaper
+  pack [ttk::frame .td.bg -padding 3] -fill both -expand 1
+
+  if {$d eq "TEXMFHOME"} {
+    # explain tilde
+    if {$::tcl_platform(platform) eq "windows"} {
+      set ev "%USERPROFILE%"
+      set xpl $::env(USERPROFILE)
+    } else {
+      set ev "\$HOME"
+      set xpl $::env(HOME)
+    }
+    ppack [ttk::label .td.tilde -text "'~' equals $ev, e.g. $xpl"] \
+        -in .td.bg -anchor w
+  }
+
+  # other widgets
+
+  ppack [ttk::entry .td.e -width 60] -in .td.bg -fill x -expand 1
+  .td.e insert 0 [native_slashify $::vars($d)]
+
+  pack [ttk::frame .td.f] -fill x -expand 1
+  ttk::button .td.ok -text "Ok" -command {
+    set v [wm title .td]
+    set ::vars($v) [forward_slashify [.td.e get]]
+    end_dlg 1 .td .
+  }
+  ppack .td.ok -in .td.f -side right
+  ttk::button .td.cancel -text "Cancel" -command {end_dlg 0 .td .}
+  ppack .td.cancel -in .td.f -side right
+
+  place_dlg .td .
+  tkwait window .td
+  #tk_messageBox -message $::dialog_ans
+  #return $::dialog_ans
+}
+
+proc reset_personal_dirs {} {
+  if {$::vars(instopt_portable)} {
+    set ::vars(TEXMFHOME) $::vars(TEXMFLOCAL)
+    set ::vars(TEXMFVAR) $::vars(TEXMFSYSVAR)
+    set ::vars(TEXMFCONFIG) $::vars(TEXMFSYSCONFIG)
+    .tlocb configure -state disabled
+    .thomeb configure -state disabled
+  } else {
+    set ::vars(TEXMFHOME) "~/texmf"
+    set ::vars(TEXMFVAR) "~/.texlive${::release_year}/texmf-var"
+    set ::vars(TEXMFCONFIG) "~/.texlive${::release_year}/texmf-config"
+    .tlocb configure -state !disabled
+    .thomeb configure -state !disabled
+  }
+  .dirportvl configure -text [yesno $::vars(instopt_portable)]
+}
+
+proc toggle_port {} {
+  if {$::vars(instopt_portable)} {
+    set ::vars(instopt_portable) 0
+  } else {
+    set ::vars(instopt_portable) 1
+  }
+  canonical_local
+  reset_personal_dirs
+}
 
 #############################################################
 
+##### binaries, scheme, collections #####
+
 # short descriptions for collections and schemes from texlive.tlpdb,
 # not from the backend
+
 proc get_short_descs {} {
   set dbfile [file join $::instroot "tlpkg/texlive.tlpdb"]
   set fid [open $dbfile r]
@@ -715,7 +835,7 @@ proc select_binaries {} {
   wm title .tlbin "Binaries"
 
   # wallpaper
-  pack [ttk::frame .tlbin.bg] -expand 1 -fill both
+  pack [ttk::frame .tlbin.bg -padding 3] -expand 1 -fill both
 
   set max_width 0
   foreach b [array names ::bin_descs] {
@@ -761,12 +881,13 @@ proc select_binaries {} {
 #############################################################
 
 ### scheme ###
+
 proc select_scheme {} {
   create_dlg .tlschm .
   wm title .tlschm "Schemes"
 
   # wallpaper
-  pack [ttk::frame .tlschm.bg] -fill both -expand 1
+  pack [ttk::frame .tlschm.bg -padding 3] -fill both -expand 1
 
   set max_width 0
   foreach s $::schemes_order {
@@ -851,7 +972,7 @@ proc select_collections {} {
   wm title .tlcoll "Collections"
 
   # wallpaper
-  pack [ttk::frame .tlcoll.bg]
+  pack [ttk::frame .tlcoll.bg -padding 3]
 
   # Treeview and scrollbar for non-language- and language collections resp.
   pack [ttk::frame .tlcoll.both] -in .tlcoll.bg -expand 1 -fill y
@@ -935,20 +1056,24 @@ proc select_collections {} {
 # of this array.
 # We still use blocking i/o: frontend and backend wait for each other.
 
+# idea: follow submenu organization of text installer
+# for 3-way options, create an extra level of children
+# instead of wizard install, supppress some options
+
 proc show_stats {} {
+  # portable option
+  .dirportvl configure -text [yesno $::vars(instopt_portable)]
   # n. of additional platforms
   if {$::tcl_platform(platform) ne "windows"} {
     if {$::vars(n_systems_selected) < 2} {
-      .binlm configure -text "None selected"
+      .binlm configure -text "None"
     } else {
-      .binlm configure -text \
-          [format "%d additional system(s) selected" \
-               [expr {$::vars(n_systems_selected) - 1}]]
+      .binlm configure -text [expr {$::vars(n_systems_selected) - 1}]
     }
   }
   # n. out of n. packages
-  .lcoll configure -text \
-      [format "%d out of %d collection(s)" \
+  .lcolv configure -text \
+      [format "%d / %d" \
            $::vars(n_collections_selected) \
            $::vars(n_collections_available)]
   # diskspace: can use -textvariable here
@@ -956,64 +1081,123 @@ proc show_stats {} {
 
 proc run_menu {} {
   wm withdraw .
-  # destroy .splash
   foreach c [winfo children .] {
     destroy $c
   }
 
-  # wallpaper and grid
-  pack [ttk::frame .bg] -fill both -expand 1
-  pack [ttk::frame .gridf] -in .bg -fill x -expand 1
+  # titlebar serves as header
+
+  # wallpaper
+  pack [ttk::frame .bg -padding 3] -fill both -expand 1
+
+  # labelframes look not quite right on macos
+
+  # directory section
+  pack [ttk::frame .dirf] -in .bg -fill x -expand 1
+  grid columnconfigure .dirf 1 -weight 1
   set rw -1
 
-  # platforms
   incr rw
-  ttk::label .binl0 \
-      -text "Current platform"
-  pgrid .binl0 -in .gridf -row $rw -column 0 -sticky e
-  ttk::label .binl1 \
-      -text "$::bin_descs($::vars(this_platform))"
-  pgrid .binl1 -in .gridf -row $rw -column 1 -sticky w
+  pgrid [ttk::label .dirftitle -text "Directories" -font hfont] \
+      -in .dirf -row $rw -column 0 -columnspan 3 -sticky w
 
   incr rw
+  pgrid [ttk::label .tdirll -text "TEXDIR:\nInstallation root"] \
+      -in .dirf -row $rw -column 0 -sticky nw
+  pgrid [ttk::label .tdirvl -textvariable ::vars(TEXDIR)] \
+      -in .dirf -row $rw -column 1 -sticky nw
+  pgrid [ttk::button .tdirb -text "Change" -command texdir_setup] \
+    -in .dirf -row $rw -column 2 -sticky new
+
+  incr rw
+  pgrid [ttk::label .tlocll -text "TEXMFLOCAL:\nLocal additions"] \
+      -in .dirf -row $rw -column 0 -sticky nw
+  pgrid [ttk::label .tlocvl -textvariable ::vars(TEXMFLOCAL)] \
+      -in .dirf -row $rw -column 1 -sticky nw
+  ttk::button .tlocb -text "Change" -command {edit_dir "TEXMFLOCAL"}
+  pgrid .tlocb -in .dirf -row $rw -column 2 -sticky new
+
+  incr rw
+  pgrid [ttk::label .thomell -text "TEXMFHOME:\nPer-user additions"] \
+      -in .dirf -row $rw -column 0 -sticky nw
+  pgrid [ttk::label .thomevl -textvariable ::vars(TEXMFHOME)] \
+      -in .dirf -row $rw -column 1 -sticky nw
+  ttk::button .thomeb -text "Change" -command {edit_dir "TEXMFHOME"}
+  pgrid .thomeb -in .dirf -row $rw -column 2 -sticky ne
+
+  incr rw
+  pgrid [ttk::label .dirportll \
+             -text "Portable setup:\nMay reset TEXMFLOCAL and TEXMFHOME"] \
+      -in .dirf -row $rw -column 0 -sticky nw
+  pgrid [ttk::label .dirportvl] -in .dirf -row $rw -column 1 -sticky nw
+  pgrid [ttk::button .tportb -text "Toggle" -command toggle_port] \
+    -in .dirf -row $rw -column 2 -sticky ne
+
+  # platforms section
   if {$::tcl_platform(platform) ne "windows"} {
-    ttk::button .binb -text "Additional platform(s)" -command select_binaries
-    pgrid .binb -in .gridf -row $rw -column 0 -sticky e
-    pgrid [ttk::label .binlm -text ""] -in .gridf -row $rw -column 1 -sticky w
+    pack [ttk::frame .platf] -in .bg -fill x -expand 1
+    grid columnconfigure .platf 1 -weight 1
+    set rw -1
+
+    incr rw
+    pgrid [ttk::label .binftitle -text "Platforms" -font hfont] \
+      -in .platf -row $rw -column 0 -columnspan 3 -sticky w
+
+    # current platform
+    incr rw
+    ttk::label .binl0 \
+        -text "Current platform:"
+    pgrid .binl0 -in .platf -row $rw -column 0 -sticky w
+    ttk::label .binl1 \
+        -text "$::bin_descs($::vars(this_platform))"
+    pgrid .binl1 -in .platf -row $rw -column 1 -sticky w
+    # additional platforms
+    incr rw
+    pgrid [ttk::label .binll -text "N. of additional platform(s):"] \
+        -in .platf -row $rw -column 0 -sticky w
+    pgrid [ttk::label .binlm] -in .platf -row $rw -column 1 -sticky w
+    pgrid [ttk::button .binb -text "Change" -command select_binaries] \
+        -in .platf -row $rw -column 2 -sticky e
   }
+
+  # Selections section
+  pack [ttk::frame .selsf] -in .bg -fill x -expand 1
+  grid columnconfigure .selsf 1 -weight 1
+  set rw -1
+
+  incr rw
+  pgrid [ttk::label .selftitle -text "Selections" -font hfont] \
+      -in .selsf -row $rw -column 0 -columnspan 3 -sticky w
 
   # schemes
   incr rw
-  ttk::button .schmb -text "Scheme" -command select_scheme
-  pgrid .schmb -in .gridf -row $rw -column 0 -sticky e
-  ttk::label .schml -textvariable ::vars(selected_scheme)
-  pgrid .schml -in .gridf -row $rw -column 1 -sticky w
+  pgrid [ttk::label .schmll -text "Scheme:"] \
+      -in .selsf -row $rw -column 0 -sticky w
+  pgrid [ttk::label .schml -textvariable ::vars(selected_scheme)] \
+      -in .selsf -row $rw -column 1 -sticky w
+  pgrid [ttk::button .schmb -text "Change" -command select_scheme] \
+      -in .selsf -row $rw -column 2 -sticky e
 
   # collections
   incr rw
-  ttk::button .collb -text "Customize collections" -command select_collections
-  pgrid .collb -in .gridf -row $rw -column 0 -sticky e
-  pgrid [ttk::label .lcoll -text ""] -in .gridf -row $rw -column 1 -sticky w
+  pgrid [ttk::label .lcoll -text "N. of collections:"] \
+      -in .selsf -row $rw -column 0 -sticky w
+  pgrid [ttk::label .lcolv] -in .selsf -row $rw -column 1 -sticky w
+  pgrid [ttk::button .collb -text "Customize" -command select_collections] \
+      -in .selsf -row $rw -column 2 -sticky e
 
   # total size
   incr rw
-  ttk::label .lsize -text "Disk space required (in MB)"
-  pgrid .lsize -in .gridf -row $rw -column 0 -sticky e
+  ttk::label .lsize -text "Disk space required (in MB):"
+  pgrid .lsize -in .selsf -row $rw -column 0 -sticky e
   ttk::label .size_req -textvariable ::vars(total_size)
-  pgrid .size_req -in .gridf -row $rw -column 1 -sticky w
-
-
-  # directory setup
-  incr rw
-  ttk::button .tdirb -text "Installation root" -command change_path
-  pgrid .tdirb -in .gridf -row $rw -column 0 -sticky e
-  ttk::label .tdirl -textvariable ::vars(TEXDIR)
-  pgrid .tdirl -in .gridf -row $rw -column 1 -sticky w
+  pgrid .size_req -in .selsf -row $rw -column 1 -sticky w
 
   # options
 
   # final buttons
-  pack [ttk::frame .final] -in .bg -side bottom -fill x -expand 1
+  pack [ttk::frame .final] \
+      -in .bg -side bottom -pady [list 5 2] -fill x -expand 1
   ttk::button .install -text "Install" -command {
     set ::menu_ans "startinst"
   }
@@ -1026,6 +1210,8 @@ proc run_menu {} {
 
   show_stats
   wm state . normal
+  wm attributes . -topmost
+  raise .
   unset -nocomplain ::menu_ans
   vwait ::menu_ans
   return $::menu_ans
@@ -1177,6 +1363,9 @@ proc main_prog {} {
 
   wm title . "TeX Live $::release_year Installer"
   make_splash
+
+  # for windows < 10: make sure the main window is still on top
+  wm attributes . -topmost
 
   # do not start event-driven, non-blocking io
   # until the actual installation starts
