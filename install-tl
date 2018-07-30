@@ -1138,6 +1138,7 @@ operations might be disturbed.\n\n";
 
   # luatex/context setup.
   if (exists($install{"context"}) && $install{"context"} == 1
+      && -x "$plat_bindir/texlua$progext"
       && !exists $ENV{"TEXLIVE_INSTALL_NO_CONTEXT_CACHE"}) {
     info("setting up ConTeXt cache: ");
     $errcount += run_postinst_cmd("mtxrun --generate");
