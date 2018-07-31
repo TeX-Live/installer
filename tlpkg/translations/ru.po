@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-06-28 02:24+0200\n"
+"POT-Creation-Date: 2018-07-31 02:24+0200\n"
 "PO-Revision-Date: 2017-05-05 07:57+0800\n"
 "Last-Translator: Vladimir Lomov <irk.translator@yandex.ru>\n"
 "Language-Team: Russian <tldoc@tug.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: install-tl:2436
+#: install-tl:2437
 msgid "Welcome to TeX Live!"
 msgstr "Вас приветствует TeX Live!"
 
-#: install-tl:2439
+#: install-tl:2440
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -37,7 +37,7 @@ msgstr ""
 "всей планеты; поддержите проект, присоединившись к подходящей вам группе. "
 "Список групп доступен на странице http://tug.org/usergroups.html."
 
-#: install-tl:2444
+#: install-tl:2445
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
