@@ -617,7 +617,8 @@ if ($opt_profile eq "") {
 
 my $varsdump = "";
 foreach my $key (sort keys %vars) {
-  $varsdump .= "  $key: \"" . $vars{$key} . "\"\n";
+  my $val = $vars{$key} || "";
+  $varsdump .= "  $key: \"$val\"\n";
 }
 log("Settings:\n" . $varsdump);
 
@@ -1956,9 +1957,9 @@ sub read_profile {
   # if there are still keys in the %pro array, some unknown keys have
   # been written in the profile, bail out
   if (my @foo = keys(%pro)) {
-    tlwarn("Unknown key in profile $profilepath: @foo\n");
+    tlwarn("Unknown key(s) in profile $profilepath: @foo\n");
     tlwarn("Stopping here.\n");
-    exit(1);
+    exit 1;
   }
 
   # if a profile contains *only* the selected_scheme setting without
@@ -2919,11 +2920,11 @@ Here is the current list:
 B<platform options> (prefix C<binary_>)
 
 For each supported platform in TeX Live (directories under C<bin/>), the
-variable C<binary_>I<PLATFORM> can be set.  For example:
+variable C<binary_>I<PLATFORM> can be set with value 1.  For example:
 
-  binary_x86_64-linux
+  binary_x86_64-linux 1
 
-If no C<binary_> variable is specified, the default is whatever the
+If no C<binary_> settings are made, the default is whatever the
 current machine is running.
 
 In releases before 2017, many profile variables had different
