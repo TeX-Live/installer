@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2010\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-07-31 02:24+0200\n"
+"POT-Creation-Date: 2018-08-01 02:23+0200\n"
 "PO-Revision-Date: 2013-08-07 08:27+0300\n"
 "Last-Translator: Andriy Bandura <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <andriykopanytsia@gmail.com>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: install-tl:2437
+#: install-tl:2438
 msgid "Welcome to TeX Live!"
 msgstr "Ласкаво просимо до TeX Live!"
 
-#: install-tl:2440
+#: install-tl:2441
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -37,7 +37,7 @@ msgstr ""
 "світу; будь ласка, підтримайте проект, приєднавшись до найкращої для вас "
 "групи. Список груп доступний на веб-сайті http://tug.org/usergroups.html."
 
-#: install-tl:2445
+#: install-tl:2446
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-07-31 02:24+0200\n"
+"POT-Creation-Date: 2018-08-01 02:23+0200\n"
 "PO-Revision-Date: 2017-05-08 23:22+0200\n"
 "Last-Translator: Ján Buša <jan.busa@tuke.sk>\n"
 "Language-Team: tex-live@tug.org\n"
@@ -13,11 +13,11 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.8.12\n"
 
-#: install-tl:2437
+#: install-tl:2438
 msgid "Welcome to TeX Live!"
 msgstr "Vitajte vo svete TeX Live!"
 
-#: install-tl:2440
+#: install-tl:2441
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -33,7 +33,7 @@ msgstr ""
 "ktorá je Vám najbližšia. Zoznam skupí­n je k dispozí­cii na webe na stránke "
 "http://tug.org/usergroups.html."
 
-#: install-tl:2445
+#: install-tl:2446
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

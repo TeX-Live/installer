@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2010\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-07-31 02:24+0200\n"
+"POT-Creation-Date: 2018-08-01 02:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: install-tl:2437
+#: install-tl:2438
 msgid "Welcome to TeX Live!"
 msgstr ""
 
-#: install-tl:2440
+#: install-tl:2441
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -31,7 +31,7 @@ msgid ""
 "list of groups is available on the web at http://tug.org/usergroups.html."
 msgstr ""
 
-#: install-tl:2445
+#: install-tl:2446
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
