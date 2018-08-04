@@ -2460,12 +2460,14 @@ sub setup_one {
 sub setup_system_one {
   my ($p, $arg) = @_;
   my $nulldev = nulldev();
+  debug("trying to set up system $p, arg $arg\n");
   my $ret = system("$p $arg >$nulldev 2>&1");
   if ($ret == 0) {
     debug("program $p found in the path\n");
     $::progs{$p} = $p;
     return(1);
   } else {
+    debug("program $p not usable from path\n");
     return(0);
   }
 }
@@ -2478,6 +2480,7 @@ sub setup_windows_tl_one {
     my $prog = conv_to_w32_path($def);
     my $ret = system("$prog $arg >nul 2>&1"); # on windows
     if ($ret == 0) {
+      debug("Using shipped $def for $p (tested).\n");
       $::progs{$p} = $prog;
       return(1);
     } else {
