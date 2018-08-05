@@ -75,7 +75,6 @@ perl "%~dp0install-tl" %*
 
 rem The nsis installer will need this:
 if errorlevel 1 set errlev=1
-pause
 goto :eoff
 
 :tooold
