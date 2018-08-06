@@ -850,7 +850,7 @@ sub handle_execute_actions {
   if ($::files_changed) {
     $errors += do_cmd_and_check("mktexlsr");
     if (defined($localtlpdb->get_package('context'))
-	    && (-x "$bindir/luatex" || -x "$bindir/luatex.exe")) {
+	    && (-x "$bindir/texlua" || -x "$bindir/texlua.exe")) {
       $errors += do_cmd_and_check("mtxrun --generate");
     }
     $::files_changed = 0;
