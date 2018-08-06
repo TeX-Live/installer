@@ -10,6 +10,7 @@ my $datrev = '$Date$';
 my $tlmgrrevision;
 my $tlmgrversion;
 my $prg;
+my $bindir;
 if ($svnrev =~ m/: ([0-9]+) /) {
   $tlmgrrevision = $1;
 } else {
@@ -46,7 +47,7 @@ BEGIN {
   # Unix-specific problems with use as library will probably go undetected.
 
   # make subprograms (including kpsewhich) have the right path:
-  my ($bindir, $kpsewhichname);
+  my $kpsewhichname;
   if ($^O =~ /^MSWin/i) {
     # on w32 $0 and __FILE__ point directly to tlmgr.pl; they can be relative
     $Master = __FILE__;
@@ -848,7 +849,8 @@ sub handle_execute_actions {
 
   if ($::files_changed) {
     $errors += do_cmd_and_check("mktexlsr");
-    if (defined($localtlpdb->get_package('context'))) {
+    if (defined($localtlpdb->get_package('context'))
+	    && (-x "$bindir/luatex" || -x "$bindir/luatex.exe")) {
       $errors += do_cmd_and_check("mtxrun --generate");
     }
     $::files_changed = 0;
