@@ -1452,61 +1452,78 @@ sub set_platforms_supported {
 #   TEXLIVE_INSTALL_TEXMFVAR       ~/.texlive2010/texmf-var
 #   TEXLIVE_INSTALL_TEXMFCONFIG    ~/.texlive2010/texmf-config
 
+sub set_var_from_alternatives {
+  my ($whatref, @alternatives) = @_;
+  my $final;
+  while (@alternatives) {
+    my $el = pop @alternatives;
+    $final = $el if ($el);
+  }
+  $$whatref = $final;
+}
+
+sub set_standard_var {
+  my ($what, $envstr, $default) = @_;
+  # warn if a value was set from both the profile and
+  # via env var
+  my $envvar = getenv($envstr);
+  if ($vars{$what} && $envvar && $vars{$what} ne $envvar) {
+    tlwarn("Trying to define $what via conflicting settings\n");
+    tlwarn("  from profile: " . $vars{$what} . "\n");
+    tlwarn("  from envvar:  $envvar ($envstr)\n");
+    tlwarn("Preferring the profile variable!\n");
+    $envvar = undef;
+  }
+  # default for most variables is in increasing priority
+  # - some default
+  # - setting from profile saved already in $vars{$what}
+  # - environment variable
+  set_var_from_alternatives( \$vars{$what},
+    $envvar,
+    $vars{$what},
+    $default);
+}
+
 sub set_texlive_default_dirs {
-  my $tex_prefix = $opt_in_place ? abs_path($::installerdir)
-                                 : getenv('TEXLIVE_INSTALL_PREFIX');
-  if (win32) {
-    $tex_prefix ||= getenv('SystemDrive') . '/texlive';
-    # we use SystemDrive because ProgramFiles requires admin rights
-    # we don't use USERPROFILE here because that will be copied back and
-    # forth on roaming profiles
-  } else {
-    $tex_prefix ||= '/usr/local/texlive';
-  }
-  # for portable and in_place installation we want everything in one directory
-  $vars{'TEXDIR'} = ($vars{'instopt_portable'} || $opt_in_place)
-                     ? $tex_prefix : "$tex_prefix/$texlive_release";
-
-  my $texmfsysvar = getenv('TEXLIVE_INSTALL_TEXMFSYSVAR');
-  $texmfsysvar ||= $vars{'TEXDIR'} . '/texmf-var';
-  $vars{'TEXMFSYSVAR'} = $texmfsysvar;
-
-  my $texmfsysconfig = getenv('TEXLIVE_INSTALL_TEXMFSYSCONFIG');
-  $texmfsysconfig ||= $vars{'TEXDIR'} . '/texmf-config';
-  $vars{'TEXMFSYSCONFIG'}=$texmfsysconfig;
-
-  my $texmflocal = getenv('TEXLIVE_INSTALL_TEXMFLOCAL');
-  $texmflocal ||= "$tex_prefix/texmf-local";
-  $vars{'TEXMFLOCAL'} = $texmflocal;
-
-  $vars{'TEXDIR'} = $opt_in_place
-                    ? abs_path($::installerdir) : $vars{'TEXDIR'};
-
-  my $texmfhome = getenv('TEXLIVE_INSTALL_TEXMFHOME');
-  if (platform() =~ m/darwin/) {
-    $texmfhome ||= "~/Library";
-  } else {
-    $texmfhome ||= "~";
-  }
-  $vars{'TEXMFHOME'} = "$texmfhome/texmf";
-
-  # use the $texmfhome value just computed for these.
+  my $homedir = (platform() =~ m/darwin/) ? "~/Library" : "~";
   my $yyyy = $TeXLive::TLConfig::ReleaseYear;
-  my $texmfvar = getenv('TEXLIVE_INSTALL_TEXMFVAR');
-  if (platform() =~ m/darwin/) {
-    $texmfvar ||= "$texmfhome/texlive/$yyyy/texmf-var";
-  } else {
-    $texmfvar ||= "$texmfhome/.texlive$yyyy/texmf-var";
+  #
+  my $tlprefixenv = getenv('TEXLIVE_INSTALL_PREFIX');
+  if ($tlprefixenv && $vars{'TEXDIR'}) {
+    # NOTE we cannot compare these two values because the one might
+    # contain the YYYY part (TEXDIR) while the other is the one without.
+    tlwarn("Trying to setup basic path using two incompatible methods\n");
+    tlwarn("  from profile: " . $vars{'TEXDIR'} . "\n");
+    tlwarn("  from envvar:  $tlprefixenv ('TEXLIVE_INSTALL_PREFIX')\n");
+    tlwarn("Preferring the profile variable!\n");
+    $tlprefixenv = undef;
   }
-  $vars{'TEXMFVAR'} = $texmfvar;
-
-  my $texmfconfig = getenv('TEXLIVE_INSTALL_TEXMFCONFIG');
-  if (platform() =~ m/darwin/) {
-    $texmfconfig ||= "$texmfhome/texlive/$yyyy/texmf-config";
-  } else {
-    $texmfconfig ||= "$texmfhome/.texlive$yyyy/texmf-config";
-  }
-  $vars{'TEXMFCONFIG'} = $texmfconfig;
+  # first set $tex_prefix
+  my $tex_prefix;
+  set_var_from_alternatives( \$tex_prefix,
+    ($opt_in_place ? abs_path($::installerdir) : undef),
+    $tlprefixenv,
+    (win32() ? getenv('SystemDrive') . '/texlive' : '/usr/local/texlive'));
+  set_var_from_alternatives( \$vars{'TEXDIR'},
+    $vars{'TEXDIR'},
+    ($vars{'instopt_portable'} || $opt_in_place)
+      ? $tex_prefix : "$tex_prefix/$texlive_release");
+  set_standard_var('TEXMFSYSVAR', 'TEXLIVE_INSTALL_TEXMFSYSVAR',
+    $vars{'TEXDIR'} . '/texmf-var');
+  set_standard_var('TEXMFSYSCONFIG', 'TEXLIVE_INSTALL_TEXMFSYSCONFIG',
+    $vars{'TEXDIR'} . '/texmf-config');
+  set_standard_var('TEXMFLOCAL', 'TEXLIVE_INSTALL_TEXMFLOCAL',
+    "$tex_prefix/texmf-local");
+  set_standard_var('TEXMFHOME', 'TEXLIVE_INSTALL_TEXMFHOME',
+    "$homedir/texmf");
+  set_standard_var('TEXMFVAR', 'TEXLIVE_INSTALL_TEXMFVAR',
+    (platform() =~ m/darwin/)
+      ? "$homedir/texlive/$yyyy/texmf-var"
+      : "$homedir/.texlive$yyyy/texmf-var");
+  set_standard_var('TEXMFCONFIG', 'TEXLIVE_INSTALL_TEXMFCONFIG',
+    (platform() =~ m/darwin/)
+      ? "$homedir/texlive/$yyyy/texmf-config"
+      : "$homedir/.texlive$yyyy/texmf-config");
 
   # for portable installation we want everything in one directory
   if ($vars{'instopt_portable'}) {
