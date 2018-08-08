@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2010\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-08-01 02:23+0200\n"
+"POT-Creation-Date: 2018-08-08 02:24+0200\n"
 "PO-Revision-Date: 2018-04-04 19:16+0200\n"
 "Last-Translator: Zofia Walczak <pelagia48@gmail.com>\n"
 "Language-Team: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: install-tl:2438
+#: install-tl:2455
 msgid "Welcome to TeX Live!"
 msgstr "TeX Live wita!"
 
-#: install-tl:2441
+#: install-tl:2458
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -39,7 +39,7 @@ msgstr ""
 "proszę rozważyć wsparcie poprzez przystąpienie do grupy.\n"
 "Lista grup dostępna jest na stronie http://tug.org/usergroups.html."
 
-#: install-tl:2446
+#: install-tl:2463
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

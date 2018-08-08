@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-08-01 02:23+0200\n"
+"POT-Creation-Date: 2018-08-08 02:24+0200\n"
 "PO-Revision-Date: 2018-03-31 14:09+0200\n"
 "Last-Translator: Siep Kroonenberg <siepo@cybercomm.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -13,11 +13,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 2.0.4\n"
 
-#: install-tl:2438
+#: install-tl:2455
 msgid "Welcome to TeX Live!"
 msgstr "Welkom bij TeX Live!"
 
-#: install-tl:2441
+#: install-tl:2458
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -33,7 +33,7 @@ msgstr ""
 "overweeg ondersteuning door lid te worden van zo'n groep.\n"
 "De lijst van gebruikersgroepen staat op http://tug.org/usergroups.html."
 
-#: install-tl:2446
+#: install-tl:2463
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

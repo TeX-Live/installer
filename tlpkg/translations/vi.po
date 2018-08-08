@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-08-01 02:23+0200\n"
+"POT-Creation-Date: 2018-08-08 02:24+0200\n"
 "PO-Revision-Date: 2012-05-14 07:07+0700\n"
 "Last-Translator: Anh K. Huỳnh <kyanh@viettug.org>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: install-tl:2438
+#: install-tl:2455
 msgid "Welcome to TeX Live!"
 msgstr "Chào mừng đến với TeX Live!"
 
-#: install-tl:2441
+#: install-tl:2458
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -35,7 +35,7 @@ msgstr ""
 "thích hợp nhất với bạn. Danh sách các nhóm người dùng có thể tìm thấy tại "
 "http://tug.org/usergroups.html."
 
-#: install-tl:2446
+#: install-tl:2463
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

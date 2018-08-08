@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-08-01 02:23+0200\n"
+"POT-Creation-Date: 2018-08-08 02:24+0200\n"
 "PO-Revision-Date: 2017-05-06 07:35-0300\n"
 "Last-Translator: Paulo Roberto Massa Cereda <cereda@users.sf.net>\n"
 "Language-Team: Paulo Roberto Massa Cereda <cereda@users.sf.net>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.12\n"
 
-#: install-tl:2438
+#: install-tl:2455
 msgid "Welcome to TeX Live!"
 msgstr "Bem-vindo ao TeX Live!"
 
-#: install-tl:2441
+#: install-tl:2458
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -34,7 +34,7 @@ msgstr ""
 "registrando-se em um destes grupos. A lista de grupos está disponível na web "
 "através do endereço http://tug.org/usergroups.html."
 
-#: install-tl:2446
+#: install-tl:2463
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

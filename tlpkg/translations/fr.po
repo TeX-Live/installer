@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-08-01 02:23+0200\n"
+"POT-Creation-Date: 2018-08-08 02:24+0200\n"
 "PO-Revision-Date: 2018-03-18 19:09+0100\n"
 "Last-Translator: Denis Bitouzé <dbitouze@wanadoo.fr>\n"
 "Language-Team: French <>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: s;\n"
 "X-Generator: Poedit 2.0.2\n"
 
-#: install-tl:2438
+#: install-tl:2455
 msgid "Welcome to TeX Live!"
 msgstr "Bienvenue sous TeX Live !"
 
-#: install-tl:2441
+#: install-tl:2458
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -40,7 +40,7 @@ msgstr ""
 "groupes est disponible sur le web à l'adresse http://tug.org/usergroups."
 "html ; la page du groupe francophone est http://www.gutenberg.eu.org/."
 
-#: install-tl:2446
+#: install-tl:2463
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
