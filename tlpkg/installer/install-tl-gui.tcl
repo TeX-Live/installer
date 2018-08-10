@@ -54,8 +54,6 @@ font configure titlefont -weight bold \
 #font create it_font {*}[font configure TkDefaultFont]
 #font configure it_font -slant italic
 
-# default text color
-
 # string representation of booleans
 proc yesno {b} {
   return [expr {$b ? "Yes" : "No"}]
@@ -91,6 +89,11 @@ set ::out_log {}; # list of strings
 # tcl parameters from script parameters
 set ::instroot [file normalize [info script]]
 set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
+
+# localization support
+package require msgcat
+namespace import msgcat::mc
+::msgcat::mcload [file join $::instroot "tlpkg" "translations"]
 
 set ::perlbin "perl"
 if {$::tcl_platform(platform) eq "windows"} {
@@ -135,7 +138,7 @@ proc dblog {s} {
 }
 
 # dummy translation function
-proc trans {fmt args} {return [format $fmt {*}$args]}
+#proc mc {fmt args} {return [format $fmt {*}$args]}
 
 # what exit procs do we need?
 # - plain error exit with messagebox and stacktrace
@@ -497,7 +500,7 @@ proc dirbrowser2widget {w} {
     set retval [choose_dir $retval [winfo parent $w]]
   } else {
     set retval [tk_chooseDirectory \
-                    -initialdir $retval -title [trans "select or type"]]
+                    -initialdir $retval -title [mc "select or type"]]
   }
   if {$retval eq ""} {
     return 0
@@ -529,7 +532,7 @@ proc update_full_path {} {
   chan flush $::inst
   if {[read_line_no_eof] eq "0"} {
     .tltd.path_l configure -text \
-        "Cannot be created or cannot be written to" \
+        [mc "Cannot be created or cannot be written to"] \
         -foreground red
     .tltd.ok_b state disabled
   } else {
@@ -541,23 +544,23 @@ proc update_full_path {} {
 
 proc edit_name {} {
   create_dlg .tled .tltd
-  wm title .tled [trans "Directory name..."]
+  wm title .tled [mc "Directory name..."]
   if $::plain_unix {wm attributes .tled -type dialog}
 
   # wallpaper
   pack [ttk::frame .tled.bg -padding 3] -fill both -expand 1
 
   # widgets
-  ttk::label .tled.l -text [trans "Change name (slashes not allowed)"]
+  ttk::label .tled.l -text [mc "Change name (slashes not allowed)"]
   pack .tled.l -in .tled.bg -padx 5 -pady 5
   ttk::entry .tled.e -width 20 -state normal
   pack .tled.e -in .tled.bg -pady 5
   .tled.e insert 0 [.tltd.name_l cget -text]
   # now frame with ok and cancel buttons
   pack [ttk::frame .tled.buttons] -in .tled.bg -fill x -expand 1
-  ttk::button .tled.ok_b -text [trans "Ok"] -command {
+  ttk::button .tled.ok_b -text [mc "Ok"] -command {
     if [regexp {[\\/]} [.tled.e get]] {
-      tk_messageBox -type ok -icon error -message [trans "No slashes allowed"]
+      tk_messageBox -type ok -icon error -message [mc "No slashes allowed"]
     } else {
       .tltd.name_l configure -text [.tled.e get]
       update_full_path
@@ -565,7 +568,7 @@ proc edit_name {} {
     }
   }
   ppack .tled.ok_b -in .tled.buttons -side right -padx 5 -pady 5
-  ttk::button .tled.q_b -text [trans "Cancel"] -command {destroy .tled}
+  ttk::button .tled.q_b -text [mc "Cancel"] -command {destroy .tled}
   ppack .tled.q_b -in .tled.buttons -side right -padx 5 -pady 5
 
   place_dlg .tled .tltd
@@ -644,12 +647,12 @@ proc texdir_setup {} {
       -in .tltd.fr1 -row $rw -column 4
   # corresponding buttons
   incr rw
-  pgrid [ttk::button .tltd.prefix_b -text [trans "Change"] \
+  pgrid [ttk::button .tltd.prefix_b -text [mc "Change"] \
              -command {if [dirbrowser2widget .tltd.prefix_l] update_full_path}] \
       -in .tltd.fr1 -row $rw -column 0
-  pgrid [ttk::button .tltd.name_b -text [trans "Change"] -command edit_name] \
+  pgrid [ttk::button .tltd.name_b -text [mc "Change"] -command edit_name] \
       -in .tltd.fr1 -row $rw -column 2
-  pgrid [ttk::button .tltd.rel_b -text [trans "Toggle year"] \
+  pgrid [ttk::button .tltd.rel_b -text [mc "Toggle year"] \
       -command toggle_rel] \
       -in .tltd.fr1 -row $rw -column 4
 
@@ -657,15 +660,15 @@ proc texdir_setup {} {
   if {$::tcl_platform(platform) eq "windows"} {
     ttk::label .tltd.loc -anchor w
     .tltd.loc configure -text \
-        [trans "Localized directory names will be replaced by their real names"]
+        [mc "Localized directory names will be replaced by their real names"]
     ppack .tltd.loc -in .tltd.bg -fill x -expand 1
   }
 
   # ok/cancel buttons
   pack [ttk::frame .tltd.frbt] -in .tltd.bg -pady [list 10 0] -fill x -expand 1
-  ttk::button .tltd.ok_b -text [trans "Ok"] -command commit_root
+  ttk::button .tltd.ok_b -text [mc "Ok"] -command commit_root
   ppack .tltd.ok_b -in .tltd.frbt -side right
-  ttk::button .tltd.cancel_b -text [trans "Cancel"] \
+  ttk::button .tltd.cancel_b -text [mc "Cancel"] \
              -command {destroy .tltd}
   ppack .tltd.cancel_b -in .tltd.frbt -side right
 
@@ -1279,7 +1282,7 @@ proc run_menu {} {
       -in .bg -side bottom -pady [list 5 2] -fill x -expand 1
   ppack [ttk::button .install -text "Install" -command {
     set ::menu_ans "startinst"}] -in .final -side right
-  ppack [ttk::button .quit -text "Quit" -command {
+  ppack [ttk::button .quit -text [mc "Quit"] -command {
     set ::out_log {}
     set ::menu_ans "no_inst"}] -in .final -side right
   if {!$::advanced} {
@@ -1743,13 +1746,33 @@ proc run_installer {} {
 }; # run_installer
 
 proc main_prog {} {
+  # handle appropriate language command-line argument
+  # the windows batch wrapper sets LANG based on
+  # registry values unless it was already set
+  if [info exists ::env(LANG)] {catch {::msgcat::mclocale $::env(LANG)}}
+  set inx 0
+  set perl_args [list]
+  while {$inx <= [llength $::argv]} {
+    if [regexp {^--?lang=(.*)$} [lindex $::argv $inx] m l] {
+      ::msgcat::mclocale $l
+    } elseif [regexp {^--?lang$} [lindex $::argv $inx]] {
+      incr inx
+      if {$inx >= [llength $::argv]} {
+        err_exit "lang parameter without value"
+      }
+      ::msgcat::mclocale [lindex $::argv $inx]
+    } else {
+      lappend ::perl_args [lindex $::argv $inx]
+    }
+    incr inx
+  }
 
-  wm title . "TeX Live Installer"
+  wm title . [mc "TeX Live %s" "Installer"]
   make_splash
 
   # start install-tl-[tcl] via a pipe
   set cmd [list ${::perlbin} "${::instroot}/install-tl" \
-               "-from_ext_gui" {*}$::argv]
+               "-from_ext_gui" {*}$perl_args]
   show_time "opening pipe"
   if [catch {open "|[join $cmd " "] 2>@1" r+} ::inst] {
     # "2>@1" ok under Windows >= XP
