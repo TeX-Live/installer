@@ -38,6 +38,7 @@ $mirrors = {
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
     },
     'Korea' => {
+      'http://ftp.harukasan.org/CTAN/' => 1,
       'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://ftp.neowiz.com/CTAN/' => 1,
@@ -97,7 +98,6 @@ $mirrors = {
       'http://ctan.mirror.garr.it/mirrors/CTAN/' => 1
     },
     'Netherlands' => {
-      'http://ctan.cs.uu.nl/' => 1,
       'http://ctan.triasinformatica.nl/' => 1,
       'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'http://mirror.koddos.net/CTAN/' => 1
