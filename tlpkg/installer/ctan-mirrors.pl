@@ -98,6 +98,7 @@ $mirrors = {
       'http://ctan.mirror.garr.it/mirrors/CTAN/' => 1
     },
     'Netherlands' => {
+      'http://ctan.cs.uu.nl/' => 1,
       'http://ctan.triasinformatica.nl/' => 1,
       'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'http://mirror.koddos.net/CTAN/' => 1
