@@ -48,6 +48,7 @@ sub new {
     also => defined($params{'also'}) ? $params{'also'} : [],
     topic => defined($params{'topic'}) ? $params{'topic'} : [],
     alias => defined($params{'alias'}) ? $params{'alias'} : [],
+    contact => defined($params{'contact'}) ? $params{'contact'} : {},
   };
   bless $self, $class;
   if (defined($self->{'ioref'})) {
@@ -102,6 +103,14 @@ sub initialize {
   foreach my $node ($parser->find('/entry/also')->get_nodelist) {
     my $alsoid = $parser->find('./@refid',$node);
     push @{$self->{'also'}}, "$alsoid";
+  }
+  # parse the contact entries
+  foreach my $node ($parser->find('/entry/contact')->get_nodelist) {
+    my $contacttype = $parser->find('./@type',$node);
+    my $contacthref = $parser->find('./@href',$node);
+    if ($contacttype && $contacthref) {
+      $self->{'contact'}{$contacttype} = $contacthref;
+    }
   }
   # parse the keyval/topic entries
   foreach my $node ($parser->find('/entry/keyval')->get_nodelist) {
@@ -194,6 +203,12 @@ sub topics {
   my @newtopics = @_;
   if (@_) { $self->{'topic'} = \@newtopics }
   return $self->{'topic'};
+}
+sub contact {
+  my $self = shift;
+  my %newcontact = @_;
+  if (@_) { $self->{'contact'} = \%newcontact }
+  return $self->{'contact'};
 }
 
 

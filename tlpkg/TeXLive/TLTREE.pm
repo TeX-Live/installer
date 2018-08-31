@@ -82,6 +82,7 @@ sub init_from_git {
   chomp(@foo);
 
   my $curcom = "";
+  my $rev = 0;
   for my $l (@foo) {
     if ($l eq "") {
       $curcom = "";
@@ -118,8 +119,11 @@ sub init_from_git {
   # now reverse the order
   for my $f (keys %files) {
     my $n = - ( $files{$f} - $rev ) + 1;
+    # special case for TL: remove Master if it is present
+    $f =~ s!^Master/!!;
     push @lines, "             $n $n dummy $f"
   }
+  # debug(join("\n", @lines));
   # TODO needs to be made better!
   $self->{'revision'} = $rev;
   $self->_initialize_lines(@lines);

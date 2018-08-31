@@ -850,6 +850,11 @@ sub update_from_catalogue {
     if (@{$entry->topics}) {
       $self->cataloguedata->{'topics'} = "@{$entry->topics}";
     }
+    if (%{$entry->contact}) {
+      for my $k (keys %{$entry->contact}) {
+        $self->cataloguedata->{"contact-$k"} = $entry->contact->{$k};
+      }
+    }
     #if (defined($entry->texlive)) {
     # $self->cataloguedata->{'texlive'} = $entry->texlive;
     #}
