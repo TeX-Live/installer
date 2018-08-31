@@ -1575,7 +1575,7 @@ sub action_info {
     my $load_remote = 0;
     for my $d (@datafields) {
       $load_remote = 1 if ($d eq "remoterev");
-      if ($d !~ m/name|category|localrev|remoterev|shortdesc|longdesc|size|installed|relocatable|depends|cat-version|cat-date|cat-license/) {
+      if ($d !~ m/^(name|category|localrev|remoterev|shortdesc|longdesc|size|installed|relocatable|depends|cat-version|cat-date|cat-license|cat-contact-.*)$/) {
         tlwarn("unknown data field: $d\n");
         return($F_ERROR);
       }
@@ -3919,6 +3919,8 @@ sub show_one_package_csv {
       push @out, ($tlp->cataloguedata->{'date'} || "");
     } elsif ($d eq "cat-license") {
       push @out, ($tlp->cataloguedata->{'license'} || "");
+    } elsif ($d =~ m/^cat-(contact-.*)$/) {
+      push @out, ($tlp->cataloguedata->{$1} || "");
     } elsif ($d eq "localrev") {
       push @out, ($is_installed ? $loctlp->revision : 0);
     } elsif ($d eq "remoterev") {
@@ -4117,6 +4119,10 @@ sub show_one_package_detail {
       }
     }
   }
+  # {
+  #   require Data::Dumper;
+  #   print Data::Dumper->Dump([\$tlp], [qw(tlp)]);
+  # }
   # some packages might depend on other packages, so do not
   # include arbitrary packages in the list of collections, but
   # only collections:
@@ -4190,6 +4196,12 @@ sub show_one_package_detail {
     if $tlp->cataloguedata->{'topics'};
   print "cat-related: ", $tlp->cataloguedata->{'also'}, "\n"
     if $tlp->cataloguedata->{'also'};
+  # print all the contact-* keys
+  for my $k (keys %{$tlp->cataloguedata}) {
+    if ($k =~ m/^contact-/) {
+      print "cat-$k: ", $tlp->cataloguedata->{$k}, "\n";
+    }
+  }
   print "collection:  ", @colls, "\n" if (@colls);
   if ($opts{"list"}) {
     if ($tlp->category eq "Collection" || $tlp->category eq "Scheme") {
