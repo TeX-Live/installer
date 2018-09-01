@@ -202,6 +202,7 @@ $::opt_all_options = 0;
 $::lang = "en";
 
 # use the fancy directory selector for TEXDIR
+# no longer used, although we still accept the parameter
 $::alternative_selector = 0;
 
 # do not debug translations by default
@@ -276,6 +277,7 @@ GetOptions(
            "profile=s"                   => \$opt_profile,
            "scheme=s"                    => \$opt_scheme,
            "select-repository"           => \$::opt_select_repository,
+           "tcl",                       # handled by wrapper
            "verify-downloads!"           => \$opt_verify_downloads,
            "version"                     => \$opt_version,
            "warn-checksums!"             => \$opt_warn_checksums,
@@ -639,7 +641,7 @@ if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "" or
     foreach my $t (@::WARNLINES) { print STDERR $t; }
   }
   if ($::env_warns) { tlwarn($::env_warns); }
-  unless ($ENV{"TEXLIVE_INSTALL_NO_WELCOME"}) {
+  unless ($ENV{"TEXLIVE_INSTALL_NO_WELCOME"} or $opt_gui eq 'extl') {
     info(join("\n", @::welcome_arr));
   }
   do_cleanup(); # sets $::LOGFILENAME if not already defined
@@ -651,6 +653,8 @@ if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "" or
     print STDERR
       "Cannot create logfile $vars{'TEXDIR'}/install-tl.log: $!\n";
   }
+  printf STDOUT "Installed on platform %s at %s\n",
+      $vars{'this_platform'}, $vars{'TEXDIR'} if ($opt_gui eq 'extl');
 } else {
   require("installer/tracked-install.pl");
   $status = installer_tracker();
@@ -934,7 +938,7 @@ sub do_installation {
   # log, profile, temp files:
   # do_cleanup();
 
-  create_welcome();
+  # create_welcome(); already invoked in main program
   if (@::WARNLINES) {
     unshift @::WARNLINES, ("\nSummary of warnings:\n");
   }

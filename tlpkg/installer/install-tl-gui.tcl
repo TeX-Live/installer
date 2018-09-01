@@ -55,8 +55,8 @@ font configure titlefont -weight bold \
 #font configure it_font -slant italic
 
 # string representation of booleans
-proc yesno {b} {
-  return [expr {$b ? "Yes" : "No"}]
+proc yes_no {b} {
+  return [expr {$b ? [__"Yes"] : [__ "No"]}]
 }
 
 # default foreground color and disabled foreground color
@@ -91,9 +91,42 @@ set ::instroot [file normalize [info script]]
 set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
 
 # localization support
+# tcl 8.5 observes LC_ALL on linux, LANG on Mac OS.
+# so let the shell wrapper handle a language option.
+# for 8.5, locale setting from within tcl may not work.
+
+# exception: windows, for which there is a bundled 8.6.
+# consult registry for default locale if LANG is not set.
+# The wrapper already does this, but here we do it again
+# in case company policy blocked reg.exe.
+
+if {$::tcl_platform(platform) eq "windows"} {
+  if {! [info exists ::env(LANG)] || $::env(LANG) eq ""} {
+    if {! [catch {package require registry}]} {
+      set regpath [join {HKEY_LOCAL_MACHINE system currentcontrolset
+        control nls language} "\\"]
+      if {! [catch {registry get $regpath "Installlanguage"} lcode]} {
+        set regpath [join {HKEY_CLASSES_ROOT mime database rfc1766} "\\"]
+        if {! [catch {registry get $regpath $lcode} lng]} {
+          set l [string first ";" $lng]
+          if {$l > 0} {
+            incr l -1
+            set lng [string range $lng 0 $l]
+          }
+          set ::env(LANG) $lng
+          # tk_messageBox -message "Language $lng in registry found"
+        }
+      }
+    }
+  }
+}
+
+# inside tcl, just load the message catalogs (all languages)
 package require msgcat
 namespace import msgcat::mc
 ::msgcat::mcload [file join $::instroot "tlpkg" "translations"]
+
+proc __ {s args} {return [::msgcat::mc $s {*}$args]}
 
 set ::perlbin "perl"
 if {$::tcl_platform(platform) eq "windows"} {
@@ -138,7 +171,7 @@ proc dblog {s} {
 }
 
 # dummy translation function
-#proc mc {fmt args} {return [format $fmt {*}$args]}
+#proc _ {fmt args} {return [format $fmt {*}$args]}
 
 # what exit procs do we need?
 # - plain error exit with messagebox and stacktrace
@@ -148,7 +181,7 @@ proc dblog {s} {
 # is closing the pipe $::inst guaranteed to kill perl? It should be
 
 proc err_exit {{mess ""}} {
-  if {$mess eq ""} {set mess "Error"}
+  if {$mess eq ""} {set mess [__ "Error"]}
   append mess "\n" [get_stacktrace]
   tk_messageBox -icon error -message $mess
   # kill perl process, just in case
@@ -162,11 +195,59 @@ proc err_exit {{mess ""}} {
   exit
 } ; # err_exit
 
+proc maybe_print_welcome {} {
+  # if the last non-empty line was "All done", then installation is completed.
+  # otherwise, it was help output or an interrupted installation.
+  # we allow for spurious empty lines at the end of the backend output.
+
+  set all_done 0
+  for {set i [.log.tx count -lines 1.0 end]} {$i > 0} {incr i -1} {
+    set l  [.log.tx get ${i}.0 ${i}.end]
+    if {$l ne ""} {
+      puts $l
+      if {[string range $l 0 11] eq "Installed on"} {
+        set all_done 1
+      }
+      break
+    }
+  }
+  if {!$all_done} return
+  # need TEXDIR and this_platform in case of profile install
+  if {! [info exists ::vars(this_platform)] || \
+          ! [info exists ::vars(TEXDIR)]} {
+    if [regexp {^Installed on platform (.*) at (.*)$} $l m p r] {
+      set ::vars(this_platform) $p
+      set ::vars(TEXDIR) $r
+    } else {
+      set ::vars(this_platform) "PLATFORM"
+      set ::vars(TEXDIR) "ROOT"
+    }
+  }
+
+  .log.tx configure -state normal
+  .log.tx tag configure center -justify center
+  .log.tx delete ${i}.0 end
+  .log.tx insert end "\n\n"
+  .log.tx insert end [__ "Welcome to TeX Live!"] center
+  .log.tx insert end "\n\n"
+  # tags appear to interfere with --/::msgcat::mc !?!
+  set s  [__ "See %s/index.html for links to documentation.\nThe TeX Live web site (http://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at http://tug.org/usergroups.html." $::vars(TEXDIR)]
+  .log.tx insert end $s center
+  if {$::tcl_platform(platform) ne "windows"} {
+    .log.tx insert end "\n\n"
+    set s [__ "Add %s/texmf-dist/doc/man to MANPATH.\nAdd %s/texmf-dist/doc/info to INFOPATH.\nMost importantly, add %s/bin/%s\nto your PATH for current and future sessions."  $::vars(TEXDIR) $::vars(TEXDIR) $::vars(TEXDIR) $::vars(this_platform)]
+    .log.tx insert end $s center
+  }
+  .log.tx insert end "\n"
+  .log.tx yview moveto 1
+  if {$::tcl_platform(os) ne "Darwin"} {.log.tx configure -state disabled}
+}
+
 # regular read_line
 proc read_line {} {
   if [catch {chan gets $::inst l} len] {
     # catch [chan close $::inst]
-    err_exit "Error while reading from Perl backend"
+    err_exit [__ "Error while reading from Perl backend"]
   } elseif {$len < 0} {
     # catch [chan close $::inst]
     return [list -1 ""]
@@ -178,7 +259,7 @@ proc read_line {} {
 proc read_line_no_eof {} {
   set ll [read_line]
   if {[lindex $ll 0] < 0} {
-    log_exit "Unexpected closed backend"
+    log_exit [__ "Unexpected closed backend"]
   }
   set l [lindex $ll 1]
   # TODO: test under debug mode
@@ -193,9 +274,9 @@ proc read_line_cb {} {
     catch {chan close $::inst}
     # note. the right way to terminate is terminating the GUI shell.
     # This closes stdin of the child
-    # puts stderr "read_line_cb: pipe no longer readable"
     .close state !disabled
     if [winfo exists .abort] {.abort state disabled}
+    maybe_print_welcome
   } elseif {$len >= 0} {
     # regular output
     .log.tx configure -state normal
@@ -267,6 +348,7 @@ proc place_dlg {wnd {p "."}} {
 proc end_dlg {ans wnd {p "."}} {
   set ::dialog_ans $ans
   raise $p
+  wm withdraw $wnd
   destroy $wnd
 } ; # end_dlg
 
@@ -287,9 +369,9 @@ proc make_splash {} {
   # wallpaper
   pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
-  ppack [ttk::label .text -text "TeX Live Installer" \
+  ppack [ttk::label .text -text [__ "TeX Live Installer"] \
              -font bigfont] -in .bg
-  ppack [ttk::label .loading -text "Loading..."] -in .bg
+  ppack [ttk::label .loading -text [__ "Loading..."]] -in .bg
 
   wm state . normal
   wm attributes . -topmost
@@ -322,10 +404,10 @@ proc show_log {{do_abort 0}} {
   .log.tx yview moveto 1
 
   pack [ttk::frame .bottom] -in .bg -side bottom -fill x
-  ttk::button .close -text "close" -command exit
+  ttk::button .close -text [__ "Close"] -command exit
   ppack .close -in .bottom -side right; # -anchor e
   if $do_abort {
-    ttk::button .abort -text "abort" \
+    ttk::button .abort -text [__ "Cancel"] \
         -command {catch {chan close $::inst}; exit}
     ppack .abort -in .bottom -side right
   }
@@ -406,7 +488,7 @@ if {$::tcl_platform(platform) ne "windows"} {
   proc choose_dir {initdir {parent .}} {
 
     create_dlg .browser $parent
-    wm title .browser "Browse..."
+    wm title .browser [__ "Browse..."]
 
     # wallpaper
     pack [ttk::frame .browser.bg -padding 3] -fill both -expand 1
@@ -439,9 +521,9 @@ if {$::tcl_platform(platform) ne "windows"} {
 
     # ok and cancel buttons
     pack [ttk::frame .browser.fr1] -in .browser.bg -fill x -expand 1
-    ppack [ttk::button .browser.ok -text "Ok"] \
+    ppack [ttk::button .browser.ok -text [__ "Ok"]] \
         -in .browser.fr1 -side right
-    ppack [ttk::button .browser.cancel -text "Cancel"] \
+    ppack [ttk::button .browser.cancel -text [__ "Cancel"]] \
         -in .browser.fr1 -side right
     .browser.ok configure -command {
       set ::dialog_ans [.browser.tree focus]
@@ -500,7 +582,7 @@ proc dirbrowser2widget {w} {
     set retval [choose_dir $retval [winfo parent $w]]
   } else {
     set retval [tk_chooseDirectory \
-                    -initialdir $retval -title [mc "select or type"]]
+                    -initialdir $retval -title [__ "Select or type"]]
   }
   if {$retval eq ""} {
     return 0
@@ -532,7 +614,7 @@ proc update_full_path {} {
   chan flush $::inst
   if {[read_line_no_eof] eq "0"} {
     .tltd.path_l configure -text \
-        [mc "Cannot be created or cannot be written to"] \
+        [__ "Cannot be created or cannot be written to"] \
         -foreground red
     .tltd.ok_b state disabled
   } else {
@@ -544,23 +626,23 @@ proc update_full_path {} {
 
 proc edit_name {} {
   create_dlg .tled .tltd
-  wm title .tled [mc "Directory name..."]
+  wm title .tled [__ "Directory name..."]
   if $::plain_unix {wm attributes .tled -type dialog}
 
   # wallpaper
   pack [ttk::frame .tled.bg -padding 3] -fill both -expand 1
 
   # widgets
-  ttk::label .tled.l -text [mc "Change name (slashes not allowed)"]
+  ttk::label .tled.l -text [__ "Change name (slashes not allowed)"]
   pack .tled.l -in .tled.bg -padx 5 -pady 5
   ttk::entry .tled.e -width 20 -state normal
   pack .tled.e -in .tled.bg -pady 5
   .tled.e insert 0 [.tltd.name_l cget -text]
   # now frame with ok and cancel buttons
   pack [ttk::frame .tled.buttons] -in .tled.bg -fill x -expand 1
-  ttk::button .tled.ok_b -text [mc "Ok"] -command {
+  ttk::button .tled.ok_b -text [__ "Ok"] -command {
     if [regexp {[\\/]} [.tled.e get]] {
-      tk_messageBox -type ok -icon error -message [mc "No slashes allowed"]
+      tk_messageBox -type ok -icon error -message [__ "No slashes allowed"]
     } else {
       .tltd.name_l configure -text [.tled.e get]
       update_full_path
@@ -568,7 +650,7 @@ proc edit_name {} {
     }
   }
   ppack .tled.ok_b -in .tled.buttons -side right -padx 5 -pady 5
-  ttk::button .tled.q_b -text [mc "Cancel"] -command {destroy .tled}
+  ttk::button .tled.q_b -text [__ "Cancel"] -command {destroy .tled}
   ppack .tled.q_b -in .tled.buttons -side right -padx 5 -pady 5
 
   place_dlg .tled .tltd
@@ -578,8 +660,8 @@ proc toggle_rel {} {
   if {[.tltd.rel_l cget -text] ne ""} {
     set ans \
         [tk_messageBox -message \
-             "TL release component highly recommended!\nAre you sure?" \
-        -title "Warning" \
+             [__ "TL release component highly recommended!\nAre you sure?"] \
+             -title [__ "Warning"] \
         -type yesno \
         -default no]
     if {$ans eq no} {
@@ -621,7 +703,7 @@ proc texdir_setup {} {
   ### widgets ###
 
   create_dlg .tltd .
-  wm title .tltd "Installation root"
+  wm title .tltd [__ "Installation root"]
 
   # wallpaper
   pack [ttk::frame .tltd.bg -padding 3] -expand 1 -fill both
@@ -647,12 +729,12 @@ proc texdir_setup {} {
       -in .tltd.fr1 -row $rw -column 4
   # corresponding buttons
   incr rw
-  pgrid [ttk::button .tltd.prefix_b -text [mc "Change"] \
-             -command {if [dirbrowser2widget .tltd.prefix_l] update_full_path}] \
+  pgrid [ttk::button .tltd.prefix_b -text [__ "Change"] \
+          -command {if [dirbrowser2widget .tltd.prefix_l] update_full_path}] \
       -in .tltd.fr1 -row $rw -column 0
-  pgrid [ttk::button .tltd.name_b -text [mc "Change"] -command edit_name] \
+  pgrid [ttk::button .tltd.name_b -text [__ "Change"] -command edit_name] \
       -in .tltd.fr1 -row $rw -column 2
-  pgrid [ttk::button .tltd.rel_b -text [mc "Toggle year"] \
+  pgrid [ttk::button .tltd.rel_b -text [__ "Toggle year"] \
       -command toggle_rel] \
       -in .tltd.fr1 -row $rw -column 4
 
@@ -660,15 +742,15 @@ proc texdir_setup {} {
   if {$::tcl_platform(platform) eq "windows"} {
     ttk::label .tltd.loc -anchor w
     .tltd.loc configure -text \
-        [mc "Localized directory names will be replaced by their real names"]
+        [__ "Localized directory names will be replaced by their real names"]
     ppack .tltd.loc -in .tltd.bg -fill x -expand 1
   }
 
   # ok/cancel buttons
   pack [ttk::frame .tltd.frbt] -in .tltd.bg -pady [list 10 0] -fill x -expand 1
-  ttk::button .tltd.ok_b -text [mc "Ok"] -command commit_root
+  ttk::button .tltd.ok_b -text [__ "Ok"] -command commit_root
   ppack .tltd.ok_b -in .tltd.frbt -side right
-  ttk::button .tltd.cancel_b -text [mc "Cancel"] \
+  ttk::button .tltd.cancel_b -text [__ "Cancel"] \
              -command {destroy .tltd}
   ppack .tltd.cancel_b -in .tltd.frbt -side right
 
@@ -736,7 +818,8 @@ proc edit_dir {d} {
       set ev "\$HOME"
       set xpl $::env(HOME)
     }
-    ppack [ttk::label .td.tilde -text "'~' equals $ev, e.g. $xpl"] \
+    ppack [ttk::label .td.tilde \
+               -text [__ "'~' equals %s, e.g. %s" $ev $xpl]] \
         -in .td.bg -anchor w
   }
 
@@ -747,11 +830,12 @@ proc edit_dir {d} {
 
   pack [ttk::frame .td.f] -fill x -expand 1
   # below, ensure that $v is evaluated while the interface is built:
+  # the variable won't be available to the button callback
   # quoted string rather than curly braces
-  ttk::button .td.ok -text "Ok" -command \
+  ttk::button .td.ok -text [__ "Ok"] -command \
       "set ::vars($d) [forward_slashify [.td.e get]]; end_dlg 1 .td ."
   ppack .td.ok -in .td.f -side right
-  ttk::button .td.cancel -text "Cancel" -command {end_dlg 0 .td .}
+  ttk::button .td.cancel -text [__ "Cancel"] -command {end_dlg 0 .td .}
   ppack .td.cancel -in .td.f -side right
 
   place_dlg .td .
@@ -762,7 +846,7 @@ proc edit_dir {d} {
 
 proc toggle_port {} {
   set ::vars(instopt_portable) [expr {!$::vars(instopt_portable)}]
-  .dirportvl configure -text [yesno $::vars(instopt_portable)]
+  .dirportvl configure -text [yes_no $::vars(instopt_portable)]
   canonical_local
   if {$::vars(instopt_portable)} {
     set ::vars(TEXMFHOME) $::vars(TEXMFLOCAL)
@@ -861,7 +945,7 @@ proc show_stats {} {
 # toggle platform in treeview widget, but not in underlying data
 proc toggle_bin {b} {
   if {$b eq $::vars(this_platform)} {
-    tk_messageBox -message "Cannot deselect own platform"
+    tk_messageBox -message [__ "Cannot deselect own platform"]
     return
   }
   set m [.tlbin.lst set $b "mk"]
@@ -892,14 +976,14 @@ proc save_bin_selections {} {
 
 proc select_binaries {} {
   create_dlg .tlbin .
-  wm title .tlbin "Binaries"
+  wm title .tlbin [__ "Binaries"]
 
   # wallpaper
   pack [ttk::frame .tlbin.bg -padding 3] -expand 1 -fill both
 
   set max_width 0
   foreach b [array names ::bin_descs] {
-    set bl [font measure TkTextFont $::bin_descs($b)]
+    set bl [font measure TkTextFont [__ $::bin_descs($b)]]
     if {$bl > $max_width} {set max_width $bl}
   }
   incr max_width 10
@@ -916,7 +1000,7 @@ proc select_binaries {} {
   foreach b [array names ::bin_descs] {
     set bb "binary_$b"
     .tlbin.lst insert {}  end -id $b -values \
-        [list [mark_sym $::vars($bb)] $::bin_descs($b)]
+        [list [mark_sym $::vars($bb)] [__ $::bin_descs($b)]]
   }
   ppack .tlbin.lst -in .tlbin.binsf -side left -expand 1 -fill both
   ppack .tlbin.binsc -in .tlbin.binsf -side right -expand 1 -fill y
@@ -927,10 +1011,10 @@ proc select_binaries {} {
 
   # ok, cancel buttons
   pack [ttk::frame .tlbin.buts] -in .tlbin.bg -expand 1 -fill x
-  ttk::button .tlbin.ok -text "Ok" -command \
+  ttk::button .tlbin.ok -text [__ "Ok"] -command \
       {save_bin_selections; update_vars; end_dlg 1 .tlbin .}
   ppack .tlbin.ok -in .tlbin.buts -side right
-  ttk::button .tlbin.cancel -text "Cancel" -command {end_dlg 0 .tlbin .}
+  ttk::button .tlbin.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlbin .}
   ppack .tlbin.cancel -in .tlbin.buts -side right
 
   place_dlg .tlbin .
@@ -944,7 +1028,7 @@ proc select_binaries {} {
 
 proc select_scheme {} {
   create_dlg .tlschm .
-  wm title .tlschm "Schemes"
+  wm title .tlschm [__ "Schemes"]
 
   # wallpaper
   pack [ttk::frame .tlschm.bg -padding 3] -fill both -expand 1
@@ -960,12 +1044,12 @@ proc select_scheme {} {
   .tlschm.lst column "desc" -width $max_width -stretch 1
   ppack .tlschm.lst -in .tlschm.bg -fill x -expand 1
   foreach s $::schemes_order {
-    .tlschm.lst insert {} end -id $s -values [list $::scheme_descs($s)]
+    .tlschm.lst insert {} end -id $s -values [list [__ $::scheme_descs($s)]]
   }
   # we already made sure that $::vars(selected_scheme) has a valid value
   .tlschm.lst selection set [list $::vars(selected_scheme)]
   pack [ttk::frame .tlschm.buts] -in .tlschm.bg -expand 1 -fill x
-  ttk::button .tlschm.ok -text "Ok" -command {
+  ttk::button .tlschm.ok -text [__ "Ok"] -command {
     # tree selection is a list:
     set ::vars(selected_scheme) [lindex [.tlschm.lst selection] 0]
     foreach v [array names ::vars] {
@@ -982,7 +1066,7 @@ proc select_scheme {} {
     end_dlg 1 .tlschm .
   }
   ppack .tlschm.ok -in .tlschm.buts -side right
-  ttk::button .tlschm.cancel -text "Cancel" -command {end_dlg 0 .tlschm .}
+  ttk::button .tlschm.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlschm .}
   ppack .tlschm.cancel -in .tlschm.buts -side right
 
   place_dlg .tlschm .
@@ -1029,7 +1113,7 @@ proc select_collections {} {
   # buttons: select all, select none, ok, cancel
   # should some collections be excluded? Check install-menu-* code.
   create_dlg .tlcoll .
-  wm title .tlcoll "Collections"
+  wm title .tlcoll [__ "Collections"]
 
   # wallpaper
   pack [ttk::frame .tlcoll.bg -padding 3]
@@ -1052,9 +1136,9 @@ proc select_collections {} {
         -height 20 -selectmode extended -yscrollcommand "${wgt}sc set"
     $wgt heading "mk" -text ""
     if {$t eq "lang"} {
-      $wgt heading "desc" -text "Languages"
+      $wgt heading "desc" -text [__ "Languages"]
     } else {
-      $wgt heading "desc" -text "Other collections"
+      $wgt heading "desc" -text [__ "Other collections"]
     }
 
     ttk::scrollbar ${wgt}sc -orient vertical -command "$wgt yview"
@@ -1075,13 +1159,13 @@ proc select_collections {} {
       set wgt ".tlcoll.other"
     }
     $wgt insert {} end -id $c -values \
-        [list [mark_sym $::vars($c)] $::coll_descs($c)]
+        [list [mark_sym $::vars($c)] [__ $::coll_descs($c)]]
   }
 
   # select none, select all, ok and cancel buttons
   pack [ttk::frame .tlcoll.butf] -fill x
   ttk::button .tlcoll.all \
-      -text "Select all" \
+      -text [__ "Select all"] \
       -command \
       {foreach wgt {.tlcoll.other .tlcoll.lang} {
         foreach c [$wgt children {}] {$wgt set $c "mk" [mark_sym 1]}
@@ -1089,17 +1173,17 @@ proc select_collections {} {
       }
   ppack .tlcoll.all -in .tlcoll.butf -side left
   ttk::button .tlcoll.none \
-      -text "Select none" \
+      -text [__ "Select none"] \
       -command \
       {foreach wgt {.tlcoll.other .tlcoll.lang} {
         foreach c [$wgt children {}] {$wgt set $c "mk" [mark_sym 0]}
         }
       }
   ppack .tlcoll.none -in .tlcoll.butf -side left
-  ttk::button .tlcoll.ok -text "Ok" -command \
+  ttk::button .tlcoll.ok -text [__ "Ok"] -command \
       {save_coll_selections; end_dlg 1 .tlcoll .}
   ppack .tlcoll.ok -in .tlcoll.butf -side right
-  ttk::button .tlcoll.cancel -text "Cancel" -command {end_dlg 0 .tlcoll .}
+  ttk::button .tlcoll.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlcoll .}
   ppack .tlcoll.cancel -in .tlcoll.butf -side right
 
   place_dlg .tlcoll .
@@ -1179,7 +1263,7 @@ if {$::tcl_platform(platform) ne "windows"} {
       .edsyms.warn configure -text ""
     } else {
       .edsyms.warn configure -text \
-          "Warning. Not all configured directories are writable!"
+          [__ "Warning. Not all configured directories are writable!"]
     }
   }
 
@@ -1199,7 +1283,7 @@ if {$::tcl_platform(platform) ne "windows"} {
   proc edit_symlinks {} {
 
     create_dlg .edsyms .
-    wm title .edsyms "Symlinks"
+    wm title .edsyms [__ "Symlinks"]
 
     pack [ttk::frame .edsyms.bg -padding 3] -expand 1 -fill both
     set rw -1
@@ -1222,13 +1306,13 @@ if {$::tcl_platform(platform) ne "windows"} {
       }; # else leave empty
       bind .edsyms.${v}e <KeyRelease> {+check_sym_entries}
       # browse button
-      pgrid [ttk::button .edsyms.${v}br -text "browse..." -command \
+      pgrid [ttk::button .edsyms.${v}br -text [__ "browse..."] -command \
                  "dirbrowser2widget .edsyms.${v}e; check_sym_entries"] \
          -in .edsyms.fr0 -row $rw -column 3
     }
-    .edsyms.binl configure -text "Binaries"
-    .edsyms.manl configure -text "Man pages"
-    .edsyms.infol configure -text "Info pages"
+    .edsyms.binl configure -text [__ "Binaries"]
+    .edsyms.manl configure -text [__ "Man pages"]
+    .edsyms.infol configure -text [__ "Info pages"]
 
     # warning about read-only target directories
     incr rw
@@ -1237,9 +1321,9 @@ if {$::tcl_platform(platform) ne "windows"} {
 
     # ok, cancel
     pack [ttk::frame .edsyms.fr1] -expand 1 -fill both
-    ppack [ttk::button .edsyms.ok -text "ok" -command {
+    ppack [ttk::button .edsyms.ok -text [__ "Ok"] -command {
       commit_sym_entries; end_dlg 1 .edsyms .}] -in .edsyms.fr1 -side right
-    ppack [ttk::button .edsyms.cancel -text "Cancel" -command {
+    ppack [ttk::button .edsyms.cancel -text [__ "Cancel"] -command {
       end_dlg 0 .edsyms .}] -in .edsyms.fr1 -side right
 
     check_sym_entries
@@ -1271,7 +1355,8 @@ proc run_menu {} {
   pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
   # title
-  ttk::label .title -text "TeX Live $::release_year Installer" -font titlefont
+  ttk::label .title -text [__ "TeX Live %s Installer" $::release_year] \
+      -font titlefont
   pack .title -pady 10 -in .bg
 
   pack [ttk::separator .seph0 -orient horizontal] \
@@ -1280,13 +1365,13 @@ proc run_menu {} {
   # frame at bottom with install/quit buttons
   pack [ttk::frame .final] \
       -in .bg -side bottom -pady [list 5 2] -fill x -expand 1
-  ppack [ttk::button .install -text "Install" -command {
+  ppack [ttk::button .install -text [__ "Install"] -command {
     set ::menu_ans "startinst"}] -in .final -side right
-  ppack [ttk::button .quit -text [mc "Quit"] -command {
+  ppack [ttk::button .quit -text [__ "Quit"] -command {
     set ::out_log {}
     set ::menu_ans "no_inst"}] -in .final -side right
   if {!$::advanced} {
-    ppack [ttk::button .adv -text "Advanced" -command {
+    ppack [ttk::button .adv -text [__ "Advanced"] -command {
       set ::menu_ans "advanced"}] -in .final -side left
   }
   pack [ttk::separator .seph1 -orient horizontal] \
@@ -1310,48 +1395,52 @@ proc run_menu {} {
 
   if $::advanced {
     incr rw
-      pgrid [ttk::label .dirftitle -text "Root of installation" -font hfont] \
+    pgrid [ttk::label .dirftitle -text [__ "Installation root"] \
+               -font hfont] \
         -in .dirf -row $rw -column 0 -columnspan 3 -sticky w
-      .dirftitle configure -text "Directories"
+    .dirftitle configure -text [__ "Directories"]
   }
 
   incr rw
   pgrid [ttk::label .tdirll] -in .dirf -row $rw -column 0 -sticky nw
+  set s [__ "Installation root"]
   if $::advanced {
-    .tdirll configure -text "TEXDIR:\nInstallation root"
+    .tdirll configure -text "TEXDIR:\n$s"
   } else {
-    .tdirll configure -text "Installation root"
+    .tdirll configure -text $s
   }
   pgrid [ttk::label .tdirvl -textvariable ::vars(TEXDIR)] \
       -in .dirf -row $rw -column 1 -sticky nw
-  pgrid [ttk::button .tdirb -text "Change" -command texdir_setup] \
+  pgrid [ttk::button .tdirb -text [__ "Change"] -command texdir_setup] \
     -in .dirf -row $rw -column 2 -sticky new
 
   if $::advanced {
     incr rw
-    pgrid [ttk::label .tlocll -text "TEXMFLOCAL:\nLocal additions"] \
+    set s [__ "Local additions"]
+    pgrid [ttk::label .tlocll -text "TEXMFLOCAL:\n$s"] \
         -in .dirf -row $rw -column 0 -sticky nw
     pgrid [ttk::label .tlocvl -textvariable ::vars(TEXMFLOCAL)] \
         -in .dirf -row $rw -column 1 -sticky nw
-    ttk::button .tlocb -text "Change" -command {edit_dir "TEXMFLOCAL"}
+    ttk::button .tlocb -text [__ "Change"] -command {edit_dir "TEXMFLOCAL"}
     pgrid .tlocb -in .dirf -row $rw -column 2 -sticky new
 
     incr rw
-    pgrid [ttk::label .thomell -text "TEXMFHOME:\nPer-user additions"] \
+    set s [__ "Per-user additions"]
+    pgrid [ttk::label .thomell -text "TEXMFHOME:\n$s"] \
         -in .dirf -row $rw -column 0 -sticky nw
     pgrid [ttk::label .thomevl -textvariable ::vars(TEXMFHOME)] \
         -in .dirf -row $rw -column 1 -sticky nw
-    ttk::button .thomeb -text "Change" -command {edit_dir "TEXMFHOME"}
+    ttk::button .thomeb -text [__ "Change"] -command {edit_dir "TEXMFHOME"}
     pgrid .thomeb -in .dirf -row $rw -column 2 -sticky ne
 
     incr rw
     pgrid [ttk::label .dirportll \
-               -text "Portable setup:\nMay reset TEXMFLOCAL\nand TEXMFHOME"] \
+        -text [__ "Portable setup:\nMay reset TEXMFLOCAL\nand TEXMFHOME"]] \
         -in .dirf -row $rw -column 0 -sticky nw
     pgrid [ttk::label .dirportvl] -in .dirf -row $rw -column 1 -sticky nw
-    pgrid [ttk::button .tportb -text "Toggle" -command toggle_port] \
+    pgrid [ttk::button .tportb -text [__ "Toggle"] -command toggle_port] \
       -in .dirf -row $rw -column 2 -sticky ne
-    .dirportvl configure -text [yesno $::vars(instopt_portable)]
+    .dirportvl configure -text [yes_no $::vars(instopt_portable)]
 
     # platforms section
     if {$::tcl_platform(platform) ne "windows"} {
@@ -1360,7 +1449,7 @@ proc run_menu {} {
       set rw -1
 
       incr rw
-      pgrid [ttk::label .binftitle -text "Platforms" -font hfont] \
+      pgrid [ttk::label .binftitle -text [__ "Platforms"] -font hfont] \
         -in .platf -row $rw -column 0 -columnspan 3 -sticky w
 
       # current platform
@@ -1369,14 +1458,14 @@ proc run_menu {} {
           -text "Current platform:"
       pgrid .binl0 -in .platf -row $rw -column 0 -sticky w
       ttk::label .binl1 \
-          -text "$::bin_descs($::vars(this_platform))"
+          -text [__ "$::bin_descs($::vars(this_platform))"]
       pgrid .binl1 -in .platf -row $rw -column 1 -sticky w
       # additional platforms
       incr rw
-      pgrid [ttk::label .binll -text "N. of additional platform(s):"] \
+      pgrid [ttk::label .binll -text [__ "N. of additional platform(s):"]] \
           -in .platf -row $rw -column 0 -sticky w
       pgrid [ttk::label .binlm] -in .platf -row $rw -column 1 -sticky w
-      pgrid [ttk::button .binb -text "Change" -command select_binaries] \
+      pgrid [ttk::button .binb -text [__ "Change"] -command select_binaries] \
           -in .platf -row $rw -column 2 -sticky e
     }
 
@@ -1386,31 +1475,33 @@ proc run_menu {} {
     set rw -1
 
     incr rw
-    pgrid [ttk::label .selftitle -text "Selections" -font hfont] \
+    pgrid [ttk::label .selftitle -text [__ "Selections"] -font hfont] \
         -in .selsf -row $rw -column 0 -columnspan 3 -sticky w
 
     # schemes
     incr rw
-    pgrid [ttk::label .schmll -text "Scheme:"] \
+    pgrid [ttk::label .schmll -text [__ "Scheme:"]] \
         -in .selsf -row $rw -column 0 -sticky w
     pgrid [ttk::label .schml -textvariable ::vars(selected_scheme)] \
         -in .selsf -row $rw -column 1 -sticky w
-    pgrid [ttk::button .schmb -text "Change" -command select_scheme] \
+    pgrid [ttk::button .schmb -text [__ "Change"] -command select_scheme] \
         -in .selsf -row $rw -column 2 -sticky e
 
     # collections
     incr rw
-    pgrid [ttk::label .lcoll -text "N. of collections:"] \
+    pgrid [ttk::label .lcoll -text [__ "N. of collections:"]] \
         -in .selsf -row $rw -column 0 -sticky w
     pgrid [ttk::label .lcolv] -in .selsf -row $rw -column 1 -sticky w
-    pgrid [ttk::button .collb -text "Customize" -command select_collections] \
+    pgrid [ttk::button .collb -text [__ "Customize"] \
+               -command select_collections] \
         -in .selsf -row $rw -column 2 -sticky e
   }
 
   # total size
+  # curf: current frame
   set curf [expr {$::advanced ? ".selsf" : ".dirf"}]
   incr rw
-  ttk::label .lsize -text "Disk space required (in MB):"
+  ttk::label .lsize -text [__ "Disk space required (in MB):"]
   ttk::label .size_req -textvariable ::vars(total_size)
   pgrid .lsize -in $curf -row $rw -column 0 -sticky e
   pgrid .size_req -in $curf -row $rw -column 1 -sticky w
@@ -1429,7 +1520,7 @@ proc run_menu {} {
     set rw -1
 
     incr rw
-    pgrid [ttk::label .optitle -text "Options" -font hfont] \
+    pgrid [ttk::label .optitle -text [__ "Options"] -font hfont] \
         -in $curf -row $rw -column 0 -columnspan 3 -sticky w
   } else {
     set curf .dirf
@@ -1438,9 +1529,9 @@ proc run_menu {} {
   # instopt_letter
   set ::lpapers [list "A4" "letter"]
   incr rw
-  pgrid [ttk::label .paperl -text "Default paper size"] \
+  pgrid [ttk::label .paperl -text [__ "Default paper size"]] \
       -in $curf -row $rw -column 0 -sticky w
-  pgrid [ttk::combobox .paperb -values $::lpapers -width 8] \
+  pgrid [ttk::combobox .paperb -values $::lpapers -state readonly -width 8] \
       -in $curf -row $rw -column 1 -columnspan 2 -sticky e
   var2combo "instopt_letter" .paperb
   bind .paperb <<ComboboxSelected>> {+combo2var .paperb "instopt_letter"}
@@ -1448,14 +1539,15 @@ proc run_menu {} {
   if $::advanced {
     # instopt_write18_restricted
     incr rw
-    pgrid [ttk::label .write18l -text "Allow restricted programs via write18"] \
+    pgrid [ttk::label .write18l -text \
+        [__ "Allow execution of restricted list of programs via \\write18"]] \
         -in $curf -row $rw -column 0 -columnspan 2 -sticky w
     ttk::checkbutton .write18b -variable ::vars(instopt_write18_restricted)
     pgrid .write18b -in $curf -row $rw -column 2 -sticky e
 
     # tlpdbopt_create_formats
     incr rw
-    pgrid [ttk::label .formatsl -text "Create all format files"] \
+    pgrid [ttk::label .formatsl -text [__ "Create all format files"]] \
         -in $curf -row $rw -column 0 -columnspan 2 -sticky w
     ttk::checkbutton .formatsb -variable ::vars(tlpdbopt_create_formats)
     pgrid .formatsb -in $curf -row $rw -column 2 -sticky e
@@ -1463,7 +1555,7 @@ proc run_menu {} {
     # tlpdbopt_install_docfiles
     if $::vars(doc_splitting_supported) {
       incr rw
-      pgrid [ttk::label .docl -text "Install font/macro doc tree"] \
+      pgrid [ttk::label .docl -text [__ "Install font/macro doc tree"]] \
           -in $curf -row $rw -column 0 -columnspan 2 -sticky w
       ttk::checkbutton .docb -variable ::vars(tlpdbopt_install_docfiles) \
           -command {update_vars; show_stats}
@@ -1473,7 +1565,7 @@ proc run_menu {} {
     # tlpdbopt_install_srcfiles
     if $::vars(src_splitting_supported) {
       incr rw
-      pgrid [ttk::label .srcl -text "Install font/macro source tree"] \
+      pgrid [ttk::label .srcl -text [__ "Install font/macro source tree"]] \
           -in $curf -row $rw -column 0 -columnspan 2 -sticky w
       ttk::checkbutton .srcb -variable ::vars(tlpdbopt_install_srcfiles) \
           -command {update_vars; show_stats}
@@ -1486,28 +1578,30 @@ proc run_menu {} {
     if $::advanced {
       # instopt_adjustpath
       incr rw
-      pgrid [ttk::label .pathl -text "Adjust searchpath"] \
+      pgrid [ttk::label .pathl -text [__ "Adjust searchpath"]] \
           -in $curf -row $rw -column 0 -columnspan 2 -sticky w
       ttk::checkbutton .pathb -variable ::vars(instopt_adjustpath)
       pgrid .pathb -in $curf -row $rw -column 2 -sticky e
 
       # tlpdbopt_desktop_integration
-      set ::desk_int [list "No shortcuts" "TeX Live menu" "Launcher entry"]
+      set ::desk_int \
+          [list [__ "No shortcuts"] [__ "TeX Live menu"] [__ "Launcher entry"]]
       incr rw
-      pgrid [ttk::label .dkintl -text "Desktop integration"] \
+      pgrid [ttk::label .dkintl -text [__ "Desktop integration"]] \
           -in $curf -row $rw -column 0 -sticky w
-      pgrid [ttk::combobox .dkintb -values $::desk_int -width 20] \
+      pgrid [ttk::combobox .dkintb -values $::desk_int -state readonly \
+                 -width 20] \
           -in $curf -row $rw -column 1 -columnspan 2 -sticky e
       var2combo "tlpdbopt_desktop_integration" .dkintb
       bind .dkintb <<ComboboxSelected>> \
           {+combo2var .dkintb "tlpdbopt_desktop_integration"}
 
       # tlpdbopt_file_assocs
-      set ::assoc [list "None" "Only new" "All"]
+      set ::assoc [list [__ "None"] [__ "Only new"] [__ "All"]]
       incr rw
-      pgrid [ttk::label .assocl -text "File associations"] \
+      pgrid [ttk::label .assocl -text [__ "File associations"]] \
           -in $curf -row $rw -column 0 -sticky w
-      pgrid [ttk::combobox .assocb -values $::assoc -width 12] \
+      pgrid [ttk::combobox .assocb -values $::assoc -state readonly -width 12] \
           -in $curf -row $rw -column 1 -columnspan 2 -sticky e
       var2combo "tlpdbopt_file_assocs" .assocb
       bind .assocb <<ComboboxSelected>> \
@@ -1516,7 +1610,7 @@ proc run_menu {} {
 
     # tlpdbopt_w32_multi_user
     incr rw
-    pgrid [ttk::label .adminl -text "Install for all users"] \
+    pgrid [ttk::label .adminl -text [__ "Install for all users"]] \
         -in $curf -row $rw -column 0 -columnspan 2 -sticky w
     ttk::checkbutton .adminb -variable ::vars(tlpdbopt_w32_multi_user)
     pgrid .adminb -in $curf -row $rw -column 2 -sticky e
@@ -1543,13 +1637,14 @@ proc run_menu {} {
       # instopt_adjustpath, unix edition: symlinks
       # tlpdbopt_sys_[bin|info|man]
       incr rw
-      pgrid [ttk::label .pathl -text "create symlinks in standard directories"] \
+      pgrid [ttk::label .pathl \
+                 -text [__ "create symlinks in standard directories"]] \
           -in $curf -row $rw -column 0 -columnspan 2 -sticky w
       pgrid [ttk::checkbutton .pathb -variable ::vars(instopt_adjustpath)] \
           -in $curf -row $rw -column 2 -sticky e
       dis_enable_symlink_option; # enable only if standard directories ok
       incr rw
-      pgrid [ttk::button .symspec -text "Specify directories" \
+      pgrid [ttk::button .symspec -text [__ "Specify directories"] \
                  -command edit_symlinks] \
           -in $curf -row $rw -column 1 -columnspan 2 -sticky e
     }
@@ -1563,7 +1658,7 @@ proc run_menu {} {
     # final entry: instopt_adjustrepo
     incr rw
     pgrid [ttk::label .ctanl -text \
-               "After install, set CTAN as source for package updates"] \
+               [__ "After install, set CTAN as source for package updates"]] \
         -in $curf -row $rw -column 0 -columnspan 2 -sticky w
     pgrid [ttk::checkbutton .ctanb -variable ::vars(instopt_adjustrepo)] \
       -in $curf -row $rw -column 2 -sticky e
@@ -1689,9 +1784,6 @@ proc read_menu_data {} {
   while 1 {
     set l [read_line_no_eof]
     if [regexp {^([^:]+): (.*)$} $l m k v] {
-      #if [info exists ::bin_descs($k)] {
-      #  puts stderr "Duplicate key $k in binaries section"
-      #}
       set ::bin_descs($k) $v
     } elseif {$l eq "endbinaries"} {
       break
@@ -1734,45 +1826,25 @@ proc run_installer {} {
   set ::out_log {}
   show_log 1; # 1: with abort button
   .close state disabled
-  # startinst: does not makes sense for a profile installation
   if $::did_gui {
     chan puts $::inst "startinst"
     write_vars
   }
+  # the backend was already running and needs no further encouragement
 
-  # - non-blocking i/o
+  # switch to non-blocking i/o
   chan configure $::inst -buffering line -blocking 0
   chan event $::inst readable read_line_cb
 }; # run_installer
 
 proc main_prog {} {
-  # handle appropriate language command-line argument
-  # the windows batch wrapper sets LANG based on
-  # registry values unless it was already set
-  if [info exists ::env(LANG)] {catch {::msgcat::mclocale $::env(LANG)}}
-  set inx 0
-  set perl_args [list]
-  while {$inx <= [llength $::argv]} {
-    if [regexp {^--?lang=(.*)$} [lindex $::argv $inx] m l] {
-      ::msgcat::mclocale $l
-    } elseif [regexp {^--?lang$} [lindex $::argv $inx]] {
-      incr inx
-      if {$inx >= [llength $::argv]} {
-        err_exit "lang parameter without value"
-      }
-      ::msgcat::mclocale [lindex $::argv $inx]
-    } else {
-      lappend ::perl_args [lindex $::argv $inx]
-    }
-    incr inx
-  }
 
-  wm title . [mc "TeX Live %s" "Installer"]
+  wm title . [__ "TeX Live Installer"]
   make_splash
 
   # start install-tl-[tcl] via a pipe
   set cmd [list ${::perlbin} "${::instroot}/install-tl" \
-               "-from_ext_gui" {*}$perl_args]
+               "-from_ext_gui" {*}$::argv]
   show_time "opening pipe"
   if [catch {open "|[join $cmd " "] 2>@1" r+} ::inst] {
     # "2>@1" ok under Windows >= XP
