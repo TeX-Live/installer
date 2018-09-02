@@ -126,6 +126,10 @@ package require msgcat
 namespace import msgcat::mc
 ::msgcat::mcload [file join $::instroot "tlpkg" "translations"]
 
+if {$::tcl_platform(os) eq "Darwin"} {
+  # avoid warnings 'tar: Failed to set default locale'
+  set ::env(LC_ALL) "en_US.UTF-8"
+}
 proc __ {s args} {return [::msgcat::mc $s {*}$args]}
 
 set ::perlbin "perl"
@@ -729,7 +733,7 @@ proc texdir_setup {} {
       -in .tltd.fr1 -row $rw -column 4
   # corresponding buttons
   incr rw
-  pgrid [ttk::button .tltd.prefix_b -text [__ "Change"] \
+  pgrid [ttk::button .tltd.prefix_b -text [__ "Browse..."] \
           -command {if [dirbrowser2widget .tltd.prefix_l] update_full_path}] \
       -in .tltd.fr1 -row $rw -column 0
   pgrid [ttk::button .tltd.name_b -text [__ "Change"] -command edit_name] \
