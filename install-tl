@@ -972,6 +972,7 @@ sub run_postinst_cmd {
 # Make texmf.cnf, backup directory, cleanups, path setting, and
 # (most importantly) post-install subprograms: mktexlsr, fmtutil,
 # and more.  Return count of errors detected, hopefully zero.
+#
 sub do_postinst_stuff {
   my $TEXDIR = "$vars{'TEXDIR'}";
   my $TEXMFSYSVAR = "$vars{'TEXMFSYSVAR'}";
@@ -1472,10 +1473,10 @@ sub set_standard_var {
   # via env var
   my $envvar = getenv($envstr);
   if ($vars{$what} && $envvar && $vars{$what} ne $envvar) {
-    tlwarn("Trying to define $what via conflicting settings\n");
-    tlwarn("  from profile: " . $vars{$what} . "\n");
-    tlwarn("  from envvar:  $envvar ($envstr)\n");
-    tlwarn("Preferring the profile variable!\n");
+    tlwarn("Trying to define $what via conflicting settings:\n");
+    tlwarn("  from envvar $envvar = $envvar($envstr)\n");
+    tlwarn("  from profile = $vars{$what}\n");
+    tlwarn("  Preferring the profile value!\n");
     $envvar = undef;
   }
   # default for most variables is in increasing priority
@@ -1496,10 +1497,10 @@ sub set_texlive_default_dirs {
   if ($tlprefixenv && $vars{'TEXDIR'}) {
     # NOTE we cannot compare these two values because the one might
     # contain the YYYY part (TEXDIR) while the other is the one without.
-    tlwarn("Trying to setup basic path using two incompatible methods\n");
-    tlwarn("  from profile: " . $vars{'TEXDIR'} . "\n");
-    tlwarn("  from envvar:  $tlprefixenv ('TEXLIVE_INSTALL_PREFIX')\n");
-    tlwarn("Preferring the profile variable!\n");
+    tlwarn("Trying to set up basic path using two incompatible methods:\n");
+    tlwarn("  from envvar TEXLIVE_INSTALL_PREFIX = $tlprefixenv\n");
+    tlwarn("  from profile TEXDIR = $vars{'TEXDIR'}\n");
+    tlwarn("  Preferring the profile value!\n");
     $tlprefixenv = undef;
   }
   # first set $tex_prefix
@@ -2738,9 +2739,9 @@ installer interfaces.  USE AT YOUR OWN RISK.
 
 =item B<-init-from-profile> I<profile_file>
 
-Similar to B<-profile> (see L</PROFILES> below), but only initializes the
-installation configuration from I<profile_file> and then starts the
-interactive session.
+Similar to B<-profile> (see L</PROFILES> below), but only initializes
+the installation configuration from I<profile_file> and then starts a
+normal interactive session. Environment variables are not ignored.
 
 =item B<-logfile> I<file>
 
@@ -2797,7 +2798,8 @@ C<-print-arch> is a synonym.
 =item B<-profile> I<profile_file>
 
 Load I<profile_file> and do the installation with no user interaction,
-that is, a batch (unattended) install.  See L</PROFILES> below.
+that is, a batch (unattended) install.  Environment variables are
+ignored. See L</PROFILES> below.
 
 =item B<-q>
 
