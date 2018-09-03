@@ -1,23 +1,23 @@
 #
 #
 #
-# Denis Bitouzé <denis.bitouze@univ-littoral.fr>, 2013, 2014, 2015, 2016, 2017.
+# Denis Bitouzé <denis.bitouze@univ-littoral.fr>, 2013-2018.
 # Manuel Pégourié-Gonnard <mpg@elzevir.fr>, 2010, 2011, 2012, 2013, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2018-09-02 02:24+0200\n"
-"PO-Revision-Date: 2018-03-18 19:09+0100\n"
-"Last-Translator: Denis Bitouzé <dbitouze@wanadoo.fr>\n"
-"Language-Team: French <>\n"
+"PO-Revision-Date: 2018-09-03 09:12+0100\n"
+"Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: s;\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: tlpkg/installer/tracked-install.pl:27
 msgid "Installation process"
@@ -597,6 +597,7 @@ msgstr "Créer les liens symboliques dans les répertoires-système"
 #: tlpkg/installer/install-tl-gui.tcl:1661
 msgid "After install, set CTAN as source for package updates"
 msgstr ""
+"Après l'installation, la source des mises à jour des packages sera CTAN "
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -1414,7 +1415,7 @@ msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:184
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
 #: tlpkg/installer/install-tl-gui.tcl:231 tlpkg/translations/shortdesc.pl:2509
 msgid "Welcome to TeX Live!"
@@ -1452,135 +1453,139 @@ msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:250
 msgid "Error while reading from Perl backend"
-msgstr ""
+msgstr "Erreur du backend Perl  pendant la lecture"
 
 #: tlpkg/installer/install-tl-gui.tcl:262
 msgid "Unexpected closed backend"
-msgstr ""
+msgstr "Fermeture inattendue du backend "
 
 #: tlpkg/installer/install-tl-gui.tcl:372
 #: tlpkg/installer/install-tl-gui.tcl:1842
 msgid "TeX Live Installer"
-msgstr ""
+msgstr "Installateur de la TeX Live"
 
 #: tlpkg/installer/install-tl-gui.tcl:374
 msgid "Loading..."
-msgstr ""
+msgstr "Chargement..."
 
 #: tlpkg/installer/install-tl-gui.tcl:491
 msgid "Browse..."
-msgstr ""
+msgstr "Parcourir..."
 
 #: tlpkg/installer/install-tl-gui.tcl:585
 msgid "Select or type"
-msgstr ""
+msgstr "Sélectionner ou saisir"
 
 #: tlpkg/installer/install-tl-gui.tcl:617
 msgid "Cannot be created or cannot be written to"
-msgstr ""
+msgstr "Ne peut être créé ou écrit sur"
 
 #: tlpkg/installer/install-tl-gui.tcl:629
 msgid "Directory name..."
-msgstr ""
+msgstr "Nom de répertoire..."
 
 #: tlpkg/installer/install-tl-gui.tcl:636
 msgid "Change name (slashes not allowed)"
-msgstr ""
+msgstr "Changer le nom (« slashs » interdits)"
 
 #: tlpkg/installer/install-tl-gui.tcl:645
 msgid "No slashes allowed"
-msgstr ""
+msgstr "« Slashs » interdits"
 
 #: tlpkg/installer/install-tl-gui.tcl:663
 msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
 msgstr ""
+"Composant de version TeX Live hautement recommandés\n"
+"Êtes-vous sûr(e) ?"
 
 #: tlpkg/installer/install-tl-gui.tcl:706
 #: tlpkg/installer/install-tl-gui.tcl:1398
 #: tlpkg/installer/install-tl-gui.tcl:1406
 msgid "Installation root"
-msgstr ""
+msgstr "Racine de l'installation"
 
 #: tlpkg/installer/install-tl-gui.tcl:737
 msgid "Toggle year"
-msgstr ""
+msgstr "Changer l'année"
 
 #: tlpkg/installer/install-tl-gui.tcl:745
 msgid "Localized directory names will be replaced by their real names"
-msgstr ""
+msgstr "Les nom de répertoires traduits seront remplacés par leurs noms réels"
 
 #: tlpkg/installer/install-tl-gui.tcl:822
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
-msgstr ""
+msgstr "'~' égale %s, p. ex. %s"
 
 #: tlpkg/installer/install-tl-gui.tcl:948
 msgid "Cannot deselect own platform"
-msgstr ""
+msgstr "Impossible de désélectionner  sa propre plate-forme"
 
 #: tlpkg/installer/install-tl-gui.tcl:979
 #: tlpkg/installer/install-tl-gui.tcl:1313
 msgid "Binaries"
-msgstr ""
+msgstr "Binaires"
 
 #: tlpkg/installer/install-tl-gui.tcl:1031
 msgid "Schemes"
-msgstr ""
+msgstr "Schémas"
 
 #: tlpkg/installer/install-tl-gui.tcl:1116
 msgid "Collections"
-msgstr ""
+msgstr "Collections"
 
 #: tlpkg/installer/install-tl-gui.tcl:1139
 msgid "Languages"
-msgstr ""
+msgstr "Langues"
 
 #: tlpkg/installer/install-tl-gui.tcl:1141
 msgid "Other collections"
-msgstr ""
+msgstr "Autres collections"
 
 #: tlpkg/installer/install-tl-gui.tcl:1266
 msgid "Warning. Not all configured directories are writable!"
 msgstr ""
+"Attention ! Vous n'avez pas de droit en écriture sur certains des répertoires"
+" configurés."
 
 #: tlpkg/installer/install-tl-gui.tcl:1286
 msgid "Symlinks"
-msgstr ""
+msgstr "Liens symboliques"
 
 #: tlpkg/installer/install-tl-gui.tcl:1309
 msgid "browse..."
-msgstr ""
+msgstr "parcourir..."
 
 #: tlpkg/installer/install-tl-gui.tcl:1314
 msgid "Man pages"
-msgstr ""
+msgstr "Pages de man(uels)"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Info pages"
-msgstr ""
+msgstr "Pages d'info(rmations)"
 
 #: tlpkg/installer/install-tl-gui.tcl:1358
 #, tcl-format
 msgid "TeX Live %s Installer"
-msgstr ""
+msgstr "Installateur de la TeX Live %s"
 
 #: tlpkg/installer/install-tl-gui.tcl:1374
 msgid "Advanced"
-msgstr ""
+msgstr "Avancé"
 
 #: tlpkg/installer/install-tl-gui.tcl:1401
 msgid "Directories"
-msgstr ""
+msgstr "Répertoires"
 
 #: tlpkg/installer/install-tl-gui.tcl:1419
 msgid "Local additions"
-msgstr ""
+msgstr "Additions locales"
 
 #: tlpkg/installer/install-tl-gui.tcl:1428
 msgid "Per-user additions"
-msgstr ""
+msgstr "Additions par utilisateur"
 
 #: tlpkg/installer/install-tl-gui.tcl:1438
 msgid ""
@@ -1588,50 +1593,53 @@ msgid ""
 "May reset TEXMFLOCAL\n"
 "and TEXMFHOME"
 msgstr ""
+"Configuration portable :\n"
+"Peut réinitialiser TEXMFLOCAL\n"
+"et TEXMFHOME"
 
 #: tlpkg/installer/install-tl-gui.tcl:1452
 msgid "Platforms"
-msgstr ""
+msgstr "Plates-formes"
 
 #: tlpkg/installer/install-tl-gui.tcl:1465
 msgid "N. of additional platform(s):"
-msgstr ""
+msgstr "Nombre de plates-formes additionnelles"
 
 #: tlpkg/installer/install-tl-gui.tcl:1478
 msgid "Selections"
-msgstr ""
+msgstr "Sélections"
 
 #: tlpkg/installer/install-tl-gui.tcl:1483
 msgid "Scheme:"
-msgstr ""
+msgstr "Schéma :"
 
 #: tlpkg/installer/install-tl-gui.tcl:1492
 msgid "N. of collections:"
-msgstr ""
+msgstr "Nombre de collections :"
 
 #: tlpkg/installer/install-tl-gui.tcl:1495
 msgid "Customize"
-msgstr ""
+msgstr "Personnaliser"
 
 #: tlpkg/installer/install-tl-gui.tcl:1504
 msgid "Disk space required (in MB):"
-msgstr ""
+msgstr "Espace disque requis (en MB) :"
 
 #: tlpkg/installer/install-tl-gui.tcl:1581
 msgid "Adjust searchpath"
-msgstr ""
+msgstr "Ajuster le chemin de recherche"
 
 #: tlpkg/installer/install-tl-gui.tcl:1590
 msgid "Desktop integration"
-msgstr ""
+msgstr "Intégration au poste de travail"
 
 #: tlpkg/installer/install-tl-gui.tcl:1602
 msgid "File associations"
-msgstr ""
+msgstr "Associations de fichiers"
 
 #: tlpkg/installer/install-tl-gui.tcl:1647
 msgid "Specify directories"
-msgstr ""
+msgstr "Spécifier les répertoires"
 
 #: tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
