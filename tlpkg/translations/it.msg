@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: Tex Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPO-Revision-Date: 2018-02-23 08:42+0100\nLast-Translator: Marco Pallane <marco.pallante@gmail.com>\nLanguage-Team: <>\nLanguage: it\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 2.0.6\n"
+set ::msgcat::header "Project-Id-Version: Tex Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-09-04 02:24+0200\nPO-Revision-Date: 2018-02-23 08:42+0100\nLast-Translator: Marco Pallane <marco.pallante@gmail.com>\nLanguage-Team: <>\nLanguage: it\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 2.0.6\n"
 ::msgcat::mcset it "Installation process" "Installazione"
 ::msgcat::mcset it "Cancel" "Annulla"
 ::msgcat::mcset it "Finish" "Fine"

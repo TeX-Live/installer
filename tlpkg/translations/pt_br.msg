@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPO-Revision-Date: 2017-05-06 07:35-0300\nLast-Translator: Paulo Roberto Massa Cereda <cereda@users.sf.net>\nLanguage-Team: Paulo Roberto Massa Cereda <cereda@users.sf.net>\nLanguage: pt_BR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 1.8.12\n"
+set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-09-04 02:24+0200\nPO-Revision-Date: 2017-05-06 07:35-0300\nLast-Translator: Paulo Roberto Massa Cereda <cereda@users.sf.net>\nLanguage-Team: Paulo Roberto Massa Cereda <cereda@users.sf.net>\nLanguage: pt_BR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 1.8.12\n"
 ::msgcat::mcset pt_br "Installation process" "Processo de instala\u00e7\u00e3o"
 ::msgcat::mcset pt_br "Cancel" "Cancelar"
 ::msgcat::mcset pt_br "Finish" "Finalizar"

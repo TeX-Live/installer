@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPO-Revision-Date: 2016-05-03 17:30+0200\nLast-Translator: Petr Sojka <sojka@fi.muni.cz>\nLanguage-Team: Czech <>\nLanguage: cs\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: utf-8\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Generator: Poedit 1.8.7.1\n"
+set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-09-04 02:24+0200\nPO-Revision-Date: 2016-05-03 17:30+0200\nLast-Translator: Petr Sojka <sojka@fi.muni.cz>\nLanguage-Team: Czech <>\nLanguage: cs\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: utf-8\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Generator: Poedit 1.8.7.1\n"
 ::msgcat::mcset cs "Installation process" "Instalace"
 ::msgcat::mcset cs "Cancel" "Zru\u0161it"
 ::msgcat::mcset cs "Finish" "Dokon\u010dit"
