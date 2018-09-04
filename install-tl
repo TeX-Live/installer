@@ -281,7 +281,7 @@ GetOptions(
            "verify-downloads!"           => \$opt_verify_downloads,
            "version"                     => \$opt_version,
            "warn-checksums!"             => \$opt_warn_checksums,
-           "help|?"                      => \$opt_help) or pod2usage(1);
+           "help|?"                      => \$opt_help) or pod2usage(2);
 
 if ($opt_gui eq "") {
   # the --gui option was given with an empty argument, set it to perltk
