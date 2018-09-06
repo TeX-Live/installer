@@ -9228,46 +9228,44 @@ only one enabled (as is the case by default):
    /var/www/norbert/tlnet
 
 Ok.  Let's add the C<tlcontrib> repository (this is a real
-repository, hosted at L<http://tlcontrib.metatex.org>, maintained by
-Taco Hoekwater et al.), with the tag C<tlcontrib>:
+repository hosted at L<http://contrib.texlive.info>) with the tag C<tlcontrib>:
 
- $ tlmgr repository add http://tlcontrib.metatex.org/2012 tlcontrib
+ $ tlmgr repository add http://contrib.texlive.info/current tlcontrib
 
 Check the repository list again:
 
  $ tlmgr repository list
  List of repositories (with tags if set):
-    http://tlcontrib.metatex.org/2012 (tlcontrib)
+    http://contrib.texlive.info/current (tlcontrib)
     /var/www/norbert/tlnet (main)
 
-Now we specify a pinning entry to get the package C<context> from
+Now we specify a pinning entry to get the package C<classico> from
 C<tlcontrib>:
 
- $ tlmgr pinning add tlcontrib context
+ $ tlmgr pinning add tlcontrib classico
 
-Check that we can find C<context>:
+Check that we can find C<classico>:
 
- $ tlmgr show context
+ $ tlmgr show classico
+ package:     classico
+ ...
+ shortdesc:   URW Classico fonts
+ ...
+
+- install C<classico>:
+
+ $ tlmgr install classico
  tlmgr: package repositories:
  ...
- package:     context
- repository:  tlcontrib/26867
- ...
+ [1/1,  ??:??/??:??] install: classico @tlcontrib [737k]
 
-- install C<context>:
-
- $ tlmgr install context
- tlmgr: package repositories:
- ...
- [1/1,  ??:??/??:??] install: context @tlcontrib [
-
-In the output here you can see that the C<context> package has been
+In the output here you can see that the C<classico> package has been
 installed from the C<tlcontrib> repository (C<@tlcontrib>).
 
 Finally, C<tlmgr pinning> also supports removing certain or all packages
 from a given repository:
 
-  $ tlmgr pinning remove tlcontrib context  # remove just context
+  $ tlmgr pinning remove tlcontrib classico # remove just classico
   $ tlmgr pinning remove tlcontrib --all    # take nothing from tlcontrib
 
 A summary of the C<tlmgr pinning> actions is given above.
