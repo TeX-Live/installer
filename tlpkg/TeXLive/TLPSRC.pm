@@ -145,7 +145,7 @@ sub from_file {
 
     } elsif ($line =~ /^shortdesc\s*(.*)$/) {
       # although we would like to do this, hyphen-latin.tlpsrc contains
-      # multiple short/longdesc entries. Not worth following up.
+      # multiple short/longdesc, entries. Not worth following up.
       # $shortdesc
       #   && die "$srcfile:$lineno: second shortdesc not allowed: $line"
       #          . "(have $shortdesc)\n";
@@ -795,7 +795,7 @@ Catalogue.
 =item C<shortdesc>
 
 gives a one line description of the package. Subsequent entries will
-overwrite the former ones. In TeX Live only used for collections and
+overwrite the former ones. In TeX Live primarily used for collections and
 schemes.
 
 =item C<longdesc>

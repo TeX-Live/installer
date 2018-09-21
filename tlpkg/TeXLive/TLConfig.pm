@@ -114,7 +114,8 @@ if ($^O =~ /^MSWin/i) {
 our @AcceptedFallbackDownloaders = qw/curl wget/;
 our %FallbackDownloaderProgram = ( 'wget' => 'wget', 'curl' => 'curl');
 our %FallbackDownloaderArgs = (
-  'curl' => ['--user-agent', 'texlive/curl', '--retry', '10', '--fail', '--location',
+  'curl' => ['--user-agent', 'texlive/curl', '--retry', '10', 
+             '--fail', '--location',
              '--connect-timeout', "$NetworkTimeout", '--silent', '--output'],
   'wget' => ['--user-agent=texlive/wget', '--tries=10',
              "--timeout=$NetworkTimeout", '-q', '-O'],
@@ -143,7 +144,9 @@ our %Compressors = (
     "priority"        => 30,
   },
 );
-our $CompressorExtRegexp = "(" . join("|", map { $Compressors{$_}{'extension'} } keys(%Compressors)) . ")";
+our $CompressorExtRegexp = "("
+    . join("|", map { $Compressors{$_}{'extension'} } keys %Compressors)
+    . ")";
 
 # archive (not user) settings.
 # these can be overridden by putting them into 00texlive.config.tlpsrc
@@ -223,7 +226,7 @@ our %TLPDBOptions = (
 
 our %TLPDBSettings = (
   "platform" => [ "s", "Main platform for this computer" ],
-  "available_architectures" => [ "l", "All available/installed architectures" ],
+  "available_architectures" => [ "l","All available/installed architectures" ],
   "usertree" => [ "b", "This tree acts as user tree" ]
 );
 
