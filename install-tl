@@ -189,6 +189,7 @@ my $opt_profile = "";
 my $opt_scheme = "";
 my $opt_version = 0;
 my $opt_warn_checksums = 1;
+my $opt_font;
 # unusual cases:
 $::opt_select_repository = 0;
 our $opt_in_place = 0;
@@ -277,6 +278,7 @@ GetOptions(
            "profile=s"                   => \$opt_profile,
            "scheme=s"                    => \$opt_scheme,
            "select-repository"           => \$::opt_select_repository,
+           "font=s"                      => \$opt_font,
            "tcl",                       # handled by wrapper
            "verify-downloads!"           => \$opt_verify_downloads,
            "version"                     => \$opt_version,
@@ -459,6 +461,13 @@ if (($opt_gui ne "extl") && ($opt_gui ne "text") && !$opt_no_gui && ($opt_profil
     tlwarn("  $@\n");
     tlwarn("Continuing in text mode...\n");
     $opt_gui = "text";
+  } else {
+    # try to set up fonts if $opt_gui is given
+    if ($opt_font) {
+      my @a;
+      push @a, "--font", $opt_font;
+      Tk::CmdLine::SetArguments(@a);
+    }
   }
   if ($opt_gui eq "text") {
     # we switched from GUI to non-GUI mode, tell the user and wait a bit
