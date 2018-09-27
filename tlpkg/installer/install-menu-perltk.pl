@@ -11,7 +11,7 @@ $^W = 1;
 
 my $svnrev = '$Revision$';
 $svnrev =~ m/: ([0-9]+) /;
-$::menurevision = $1;
+$::menurevision = ($1 ? $1 : 'unknown');
 
 require Tk;
 require Tk::Dialog;

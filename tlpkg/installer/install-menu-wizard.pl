@@ -9,7 +9,7 @@ $^W = 1;
 
 my $svnrev = '$Revision: 11925 $';
 $svnrev =~ m/: ([0-9]+) /;
-$::menurevision = $1;
+$::menurevision = ($1 ? $1 : 'unknown');
 
 require("TeXLive/trans.pl");
 load_translations();
