@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-09-04 02:24+0200\n"
+"POT-Creation-Date: 2018-09-28 02:23+0200\n"
 "PO-Revision-Date: 2009-09-03 12:34+0200\n"
 "Last-Translator: Norbert Preining <preining@logic.at>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1381,11 +1381,11 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:235 tlpkg/translations/shortdesc.pl:2510
+#: tlpkg/installer/install-tl-gui.tcl:235 tlpkg/translations/shortdesc.pl:2519
 msgid "Welcome to TeX Live!"
 msgstr "歡迎進入 TeX Live 的世界！"
 
-#: tlpkg/installer/install-tl-gui.tcl:238 tlpkg/translations/shortdesc.pl:2513
+#: tlpkg/installer/install-tl-gui.tcl:238 tlpkg/translations/shortdesc.pl:2522
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1400,7 +1400,7 @@ msgstr ""
 "請考慮加入合適的TeX用戶組來支持該項目。從\n"
 "http://tug.org/usergroups.html 可以獲得TeX用戶組的列表。"
 
-#: tlpkg/installer/install-tl-gui.tcl:242 tlpkg/translations/shortdesc.pl:2518
+#: tlpkg/installer/install-tl-gui.tcl:242 tlpkg/translations/shortdesc.pl:2527
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

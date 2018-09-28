@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-09-04 02:24+0200\n"
+"POT-Creation-Date: 2018-09-28 02:23+0200\n"
 "PO-Revision-Date: 2016-05-03 17:30+0200\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
@@ -1401,11 +1401,11 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:235 tlpkg/translations/shortdesc.pl:2510
+#: tlpkg/installer/install-tl-gui.tcl:235 tlpkg/translations/shortdesc.pl:2519
 msgid "Welcome to TeX Live!"
 msgstr "Vítejte v TeX Live!"
 
-#: tlpkg/installer/install-tl-gui.tcl:238 tlpkg/translations/shortdesc.pl:2513
+#: tlpkg/installer/install-tl-gui.tcl:238 tlpkg/translations/shortdesc.pl:2522
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1421,7 +1421,7 @@ msgstr ""
 "vyhovuje.\n"
 "Seznam sdružení je dostupný na http://tug.org/usergroups.html."
 
-#: tlpkg/installer/install-tl-gui.tcl:242 tlpkg/translations/shortdesc.pl:2518
+#: tlpkg/installer/install-tl-gui.tcl:242 tlpkg/translations/shortdesc.pl:2527
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
