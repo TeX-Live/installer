@@ -3765,9 +3765,8 @@ sub check_on_working_mirror {
 =cut
 
 sub give_ctan_mirror_base {
-  my @backbone = qw!http://www.ctan.org/tex-archive
-                    http://www.tex.ac.uk/tex-archive
-                    http://dante.ctan.org/tex-archive!;
+  # only one backbone has existed for a while (2018).
+  my @backbone = qw!http://www.ctan.org/tex-archive!;
 
   # start by selecting a mirror and test its operationality
   my $mirror = query_ctan_mirror();
