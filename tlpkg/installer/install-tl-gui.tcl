@@ -5,7 +5,7 @@
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
-# Tcl/Tk wrapper for TeX Live installer
+# Tcl/Tk frontend for TeX Live installer
 
 # Installation can be divided into three stages:
 #
@@ -35,102 +35,24 @@ package require Tk
 # security: disable send
 catch {rename send {}}
 
-# menus: disable tearoff feature
-option add *Menu.tearOff 0
+# this file should be in $::instroot/tlpkg/installer.
+# at the next release, it may be better to start the installer, perl or tcl,
+# from a shell wrapper, also on unix-like platforms
+# this allows automatic inclusion of '--' parameter to separate
+# tcl parameters from script parameters
 
-# no bold text for messages; `userDefault' indicates priority
-option add *Dialog.msg.font TkDefaultFont userDefault
+set ::instroot [file normalize [info script]]
+set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
 
-# larger fonts
-font create lfont {*}[font configure TkDefaultFont]
-font configure lfont -size [expr {round(1.2 * [font actual lfont -size])}]
-font create hfont {*}[font configure lfont]
-font configure hfont -weight bold
-font create titlefont {*}[font configure TkDefaultFont]
-font configure titlefont -weight bold \
-    -size [expr {round(1.5 * [font actual titlefont -size])}]
-
-## italicized items; not used
-#font create it_font {*}[font configure TkDefaultFont]
-#font configure it_font -slant italic
-
-# string representation of booleans
-proc yes_no {b} {
-  return [expr {$b ? [__"Yes"] : [__ "No"]}]
-}
-
-# default foreground color and disabled foreground color
-# may not be black in e.g. dark color schemes
-set blk [ttk::style lookup TButton -foreground]
-set gry [ttk::style lookup TButton -foreground disabled]
+# declarations and procs shared with tlshell.tcl
+source [file join $::instroot "tlpkg" "TeXLive" "tltcl.tcl"]
 
 ### initialize some globals ###
 
 # perl installer process id
 set ::perlpid 0
 
-# global variable for dialogs
-set ::dialog_ans {}
-
-set ::plain_unix 0
-if {$::tcl_platform(platform) eq "unix" && $::tcl_platform(os) ne "Darwin"} {
-  set ::plain_unix 1
-}
-
-# for help output
-set ::env(NOPERLDOC) 1
-
 set ::out_log {}; # list of strings
-
-# this file should be in $::instroot/tlpkg/installer.
-# at the next release, it may be better to start the installer, perl or tcl,
-# from a shell wrapper, also on unix-like platforms
-# this allows automatic inclusion of '--' parameter to separate
-# tcl parameters from script parameters
-set ::instroot [file normalize [info script]]
-set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
-
-# localization support
-# tcl 8.5 observes LC_ALL on linux, LANG on Mac OS.
-# so let the shell wrapper handle a language option.
-# for 8.5, locale setting from within tcl may not work.
-
-# exception: windows, for which there is a bundled 8.6.
-# consult registry for default locale if LANG is not set.
-# The wrapper already does this, but here we do it again
-# in case company policy blocked reg.exe.
-
-if {$::tcl_platform(platform) eq "windows"} {
-  if {! [info exists ::env(LANG)] || $::env(LANG) eq ""} {
-    if {! [catch {package require registry}]} {
-      set regpath [join {HKEY_LOCAL_MACHINE system currentcontrolset
-        control nls language} "\\"]
-      if {! [catch {registry get $regpath "Installlanguage"} lcode]} {
-        set regpath [join {HKEY_CLASSES_ROOT mime database rfc1766} "\\"]
-        if {! [catch {registry get $regpath $lcode} lng]} {
-          set l [string first ";" $lng]
-          if {$l > 0} {
-            incr l -1
-            set lng [string range $lng 0 $l]
-          }
-          set ::env(LANG) $lng
-          # tk_messageBox -message "Language $lng in registry found"
-        }
-      }
-    }
-  }
-}
-
-# inside tcl, just load the message catalogs (all languages)
-package require msgcat
-namespace import msgcat::mc
-::msgcat::mcload [file join $::instroot "tlpkg" "translations"]
-
-if {$::tcl_platform(os) eq "Darwin"} {
-  # avoid warnings 'tar: Failed to set default locale'
-  set ::env(LC_ALL) "en_US.UTF-8"
-}
-proc __ {s args} {return [::msgcat::mc $s {*}$args]}
 
 set ::perlbin "perl"
 if {$::tcl_platform(platform) eq "windows"} {
@@ -139,6 +61,9 @@ if {$::tcl_platform(platform) eq "windows"} {
 
 ### procedures, mostly organized bottom-up ###
 
+# the procedures which provide the menu with the necessary backend data,
+# i.e. read_descs, read_vars and read_menu_data, are defined near the end.
+
 set clock0 [clock milliseconds]
 set profiling 0
 proc show_time {s} {
@@ -146,15 +71,6 @@ proc show_time {s} {
     puts [format "%s: %d" $s [expr {[clock milliseconds] - $::clock0}]]
   }
 }
-
-proc get_stacktrace {} {
-  set level [info level]
-  set s ""
-  for {set i 1} {$i < $level} {incr i} {
-    append s [format "Level %u: %s\n" $i [info level $i]]
-  }
-  return $s
-} ; # get_stacktrace
 
 # for debugging frontend-backend communication:
 # write to a logfile which is shared with the backend.
@@ -173,31 +89,6 @@ proc dblog {s} {
   puts $db "TCL: $s\n$t"
   close $db
 }
-
-# dummy translation function
-#proc _ {fmt args} {return [format $fmt {*}$args]}
-
-# what exit procs do we need?
-# - plain error exit with messagebox and stacktrace
-# - plain messagebox exit
-# - showing log output, maybe with appended message,
-#   use log toplevel for lengthy output
-# is closing the pipe $::inst guaranteed to kill perl? It should be
-
-proc err_exit {{mess ""}} {
-  if {$mess eq ""} {set mess [__ "Error"]}
-  append mess "\n" [get_stacktrace]
-  tk_messageBox -icon error -message $mess
-  # kill perl process, just in case
-  if $::perlpid {
-    if {$::tcl_platform(platform) eq "unix"} {
-      exec -ignorestderr "kill" $::perlpid
-    } else {
-      exec -ignorestderr "taskkill" "/pid" $::perlpid
-    }
-  }
-  exit
-} ; # err_exit
 
 proc maybe_print_welcome {} {
   # if the last non-empty line was "All done", then installation is completed.
@@ -290,72 +181,6 @@ proc read_line_cb {} {
   }
 }; # read_line_cb
 
-# general gui utilities
-
-# width of '0', as a rough estimate of average character width
-# assume height == width*2
-set ::cw [font measure TkTextFont "0"]
-
-# unicode symbols as fake checkboxes in ttk::treeview widgets
-proc mark_sym {mrk} {
-  if $mrk {
-    return "\u25A3" ; # 'white square containing black small square'
-  } else {
-    return "\u25A1" ; # 'white square'
-  }
-} ; # mark_sym
-
-proc ppack {wdg args} { ; # pack command with padding
-  pack $wdg {*}$args -padx 3 -pady 3
-}
-
-proc pgrid {wdg args} { ; # grid command with padding
-  grid $wdg {*}$args -padx 3 -pady 3
-}
-
-# start new toplevel with settings appropriate for a dialog
-proc create_dlg {wnd {p .}} {
-  catch {destroy $wnd} ; # no error if it does not exist
-  toplevel $wnd -class Dialog
-  wm withdraw $wnd
-  if [winfo viewable $p] {wm transient $wnd $p}
-  if $::plain_unix {wm attributes $wnd -type dialog}
-  wm protocol $wnd WM_DELETE_WINDOW {destroy $wnd}
-}
-
-# Place a dialog centered wrt its parent.
-# If its geometry is somehow not yet available,
-# its upperleft corner will be centered.
-
-proc place_dlg {wnd {p "."}} {
-  set g [wm geometry $p]
-  scan $g "%dx%d+%d+%d" pw ph px py
-  set hcenter [expr {$px + $pw / 2}]
-  set vcenter [expr {$py + $ph / 2}]
-  set g [wm geometry $wnd]
-  set wh [winfo reqheight $wnd]
-  set ww [winfo reqwidth $wnd]
-  set wx [expr {$hcenter - $ww / 2}]
-  if {$wx < 0} { set wx 0}
-  set wy [expr {$vcenter - $wh / 2}]
-  if {$wy < 0} { set wy 0}
-  wm geometry $wnd [format "+%d+%d" $wx $wy]
-  wm state $wnd normal
-  wm attributes $wnd -topmost
-  raise $wnd $p
-  tkwait visibility $wnd
-  focus $wnd
-  grab set $wnd
-} ; # place_dlg
-
-# place dialog answer in ::dialog_ans, raise parent, close dialog
-proc end_dlg {ans wnd {p "."}} {
-  set ::dialog_ans $ans
-  raise $p
-  wm withdraw $wnd
-  destroy $wnd
-} ; # end_dlg
-
 ##############################################################
 
 ##### special-purpose uses of main window: splash, log #####
@@ -370,6 +195,7 @@ proc make_splash {} {
     label .image -image tlimage -background white
     pack .image -in .white
   }
+
   # wallpaper
   pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
@@ -441,165 +267,6 @@ proc log_exit {{mess ""}} {
 }; # log_exit
 
 #############################################################
-
-##### directories #####
-
-set sep [file separator]
-
-# slash flipping
-proc forward_slashify {s} {
-  regsub -all {\\} $s {/} r
-  return $r
-}
-proc native_slashify {s} {
-  if {$::tcl_platform(platform) eq "windows"} {
-    regsub -all {/} $s {\\} r
-  } else {
-    regsub -all {\\} $s {/} r
-  }
-  return $r
-}
-
-# unix: choose_dir replacing native directory browser
-
-if {$::tcl_platform(platform) ne "windows"} {
-
-  # Based on the tcl/tk widget demo.
-  # Also for MacOS, because we want to see /usr.
-  # For windows, the native browser widget is better.
-
-  ## Code to populate a single directory node
-  proc populateTree {tree node} {
-    if {[$tree set $node type] ne "directory"} {
-      set type [$tree set $node type]
-      return
-    }
-    $tree delete [$tree children $node]
-    foreach f [lsort [glob -nocomplain -directory $node *]] {
-      set type [file type $f]
-      if {$type eq "directory"} {
-        $tree insert $node end \
-            -id $f -text [file tail $f] -values [list $type]
-        # Need at least one child to make this node openable,
-        # will be deleted when actually populating this node
-        $tree insert $f 0 -text "dummy"
-      }
-    }
-    # Stop this code from rerunning on the current node
-    $tree set $node type processedDirectory
-  }
-
-  proc choose_dir {initdir {parent .}} {
-
-    create_dlg .browser $parent
-    wm title .browser [__ "Browse..."]
-
-    # wallpaper
-    pack [ttk::frame .browser.bg -padding 3] -fill both -expand 1
-    ## Create the tree and set it up
-    pack [ttk::frame .browser.fr0] -in .browser.bg -fill both -expand 1
-    set tree [ttk::treeview .browser.tree \
-                  -columns {type} -displaycolumns {} -selectmode browse \
-                  -yscroll ".browser.vsb set"]
-    .browser.tree column 0 -minwidth 500 -stretch 0
-    ttk::scrollbar .browser.vsb -orient vertical -command "$tree yview"
-    # hor. scrolling does not work, but toplevel and widget are resizable
-    $tree heading \#0 -text "/"
-    $tree insert {} end -id "/" -text "/" -values [list "directory"]
-
-    populateTree $tree "/"
-    bind $tree <<TreeviewOpen>> {
-      populateTree %W [%W focus]
-    }
-    bind $tree <ButtonRelease-1> {
-      .browser.tree heading \#0 -text [%W focus]
-    }
-
-    ## Arrange the tree and its scrollbar in the toplevel
-    # horizontal scrolling does not work.
-    # possible solution: very wide treeview in smaller paned window
-    # (may as well use pack in the absence of a horizontal scrollbar)
-    grid $tree .browser.vsb -sticky nsew -in .browser.fr0
-    grid columnconfigure .browser.fr0 0 -weight 1
-    grid rowconfigure .browser.fr0 0 -weight 1
-
-    # ok and cancel buttons
-    pack [ttk::frame .browser.fr1] -in .browser.bg -fill x -expand 1
-    ppack [ttk::button .browser.ok -text [__ "Ok"]] \
-        -in .browser.fr1 -side right
-    ppack [ttk::button .browser.cancel -text [__ "Cancel"]] \
-        -in .browser.fr1 -side right
-    .browser.ok configure -command {
-      set ::dialog_ans [.browser.tree focus]
-      destroy .browser
-    }
-    .browser.cancel configure -command {
-      set ::dialog_ans ""
-      destroy .browser
-    }
-    unset -nocomplain ::dialog_ans
-
-    # navigate tree to $initdir
-    set chosenDir {}
-    foreach d [file split [file normalize $initdir]] {
-      set nextdir [file join $chosenDir $d]
-      if [file isdirectory $nextdir] {
-        if {! [$tree exists $nextdir]} {
-          $tree insert $chosenDir end -id $nextdir \
-              -text $d -values [list "directory"]
-        }
-        populateTree $tree $nextdir
-        set chosenDir $nextdir
-      } else {
-        break
-      }
-    }
-    $tree see $chosenDir
-    $tree selection set [list $chosenDir]
-    $tree focus $chosenDir
-    $tree heading \#0 -text $chosenDir
-
-    place_dlg .browser $parent
-    tkwait window .browser
-    return $::dialog_ans
-  }; # choose_dir
-
-}; # if not windows
-
-
-# browse for a directory and store in entry- or label widget $w
-proc dirbrowser2widget {w} {
-  set wclass [winfo class $w]
-  if {$wclass eq "Entry" || $wclass eq "TEntry"} {
-    set is_entry 1
-  } elseif {$wclass eq "Label" || $wclass eq "TLabel"} {
-    set is_entry 0
-  } else {
-    err_exit "browse2widget invoked with unsupported widget class $wclass"
-  }
-  if $is_entry {
-    set retval [$w get]
-  } else {
-    set retval [$w cget -text]
-  }
-  if {$::tcl_platform(platform) eq "unix"} {
-    set retval [choose_dir $retval [winfo parent $w]]
-  } else {
-    set retval [tk_chooseDirectory \
-                    -initialdir $retval -title [__ "Select or type"]]
-  }
-  if {$retval eq ""} {
-    return 0
-  } else {
-    if {$wclass eq "Entry" || $wclass eq "TEntry"} {
-      $w delete 0 end
-      $w insert 0 $retval
-    } else {
-      $w configure -text $retval
-    }
-    return 1
-  }
-}
 
 ##########################################################
 
@@ -678,7 +345,7 @@ proc toggle_rel {} {
   update_full_path
 } ; # toggle_rel
 
-proc canonical_local {} {
+proc commit_canonical_local {} {
   if {[file tail $::vars(TEXDIR)] eq $::release_year} {
     set l [file dirname $::vars(TEXDIR)]
   } else {
@@ -694,7 +361,7 @@ proc commit_root {} {
   set ::vars(TEXDIR) [forward_slashify [.tltd.path_l cget -text]]
   set ::vars(TEXMFSYSVAR) "$::vars(TEXDIR)/texmf-var"
   set ::vars(TEXMFSYSCONFIG) "$::vars(TEXDIR)/texmf-var"
-  canonical_local
+  commit_canonical_local
 
   if {$::vars(instopt_portable)} reset_personal_dirs
   destroy .tltd
@@ -726,9 +393,11 @@ proc texdir_setup {} {
   # path components, as labels
   incr rw
   pgrid [ttk::label .tltd.prefix_l] -in .tltd.fr1 -row $rw -column 0
-  pgrid [ttk::label .tltd.sep0_l -text $::sep] -in .tltd.fr1 -row $rw -column 1
+  pgrid [ttk::label .tltd.sep0_l -text [file separator]] \
+      -in .tltd.fr1 -row $rw -column 1
   pgrid [ttk::label .tltd.name_l] -in .tltd.fr1 -row $rw -column 2
-  pgrid [ttk::label .tltd.sep1_l -text $::sep] -in .tltd.fr1 -row $rw -column 3
+  pgrid [ttk::label .tltd.sep1_l -text [file separator]] \
+      -in .tltd.fr1 -row $rw -column 3
   pgrid [ttk::label .tltd.rel_l -width 6] \
       -in .tltd.fr1 -row $rw -column 4
   # corresponding buttons
@@ -792,7 +461,7 @@ proc texdir_setup {} {
   if {$initdir eq "" || \
           ($::tcl_platform(platform) eq "windows" && \
                [string index $initdir end] eq ":")} {
-    append initdir $::sep
+    append initdir [file separator]
   }
   .tltd.prefix_l configure -text $initdir
   update_full_path
@@ -836,22 +505,22 @@ proc edit_dir {d} {
   # below, ensure that $v is evaluated while the interface is built:
   # the variable won't be available to the button callback
   # quoted string rather than curly braces
-  ttk::button .td.ok -text [__ "Ok"] -command \
-      "set ::vars($d) [forward_slashify [.td.e get]]; end_dlg 1 .td ."
+  ttk::button .td.ok -text [__ "Ok"] -command {end_dlg [.td.e get] .td}
   ppack .td.ok -in .td.f -side right
-  ttk::button .td.cancel -text [__ "Cancel"] -command {end_dlg 0 .td .}
+  ttk::button .td.cancel -text [__ "Cancel"] -command {end_dlg "" .td}
   ppack .td.cancel -in .td.f -side right
 
   place_dlg .td .
   tkwait window .td
-  #tk_messageBox -message $::dialog_ans
-  #return $::dialog_ans
+  if {$::dialog_ans ne ""} {set ::vars($d) $::dialog_ans}
 }
 
 proc toggle_port {} {
   set ::vars(instopt_portable) [expr {!$::vars(instopt_portable)}]
-  .dirportvl configure -text [yes_no $::vars(instopt_portable)]
-  canonical_local
+  set yn [yes_no $::vars(instopt_portable)]
+  .dirportvl configure -text $yn
+#  .dirportvl configure -text [yes_no $::vars(instopt_portable)]
+  commit_canonical_local
   if {$::vars(instopt_portable)} {
     set ::vars(TEXMFHOME) $::vars(TEXMFLOCAL)
     set ::vars(TEXMFVAR) $::vars(TEXMFSYSVAR)
@@ -879,6 +548,7 @@ proc toggle_port {} {
       }
     } else {
       set ::vars(instopt_adjustpath) 0
+      .symspec state disabled
       .pathb state disabled
       .pathl configure -foreground $::gry
     }
@@ -910,6 +580,7 @@ proc toggle_port {} {
     } else {
       # set ::vars(instopt_adjustpath) 0
       # leave false, still depends on symlink paths
+      .symspec state !disabled
       if [dis_enable_symlink_option] {
         .pathb state !disabled
         .pathl configure -foreground $::blk
@@ -926,7 +597,7 @@ proc show_stats {} {
   # n. of additional platforms
   if [winfo exists .binlm] {
     if {$::vars(n_systems_selected) < 2} {
-      .binlm configure -text "None"
+      .binlm configure -text [__ "None"]
     } else {
       .binlm configure -text [expr {$::vars(n_systems_selected) - 1}]
     }
@@ -937,6 +608,9 @@ proc show_stats {} {
         [format "%d / %d" \
              $::vars(n_collections_selected) \
              $::vars(n_collections_available)]
+  }
+  if [winfo exists .schml] {
+    .schml configure -text [__ $::scheme_descs($::vars(selected_scheme))]
   }
   # diskspace: can use -textvariable here
   # paper size
@@ -1016,14 +690,12 @@ proc select_binaries {} {
   # ok, cancel buttons
   pack [ttk::frame .tlbin.buts] -in .tlbin.bg -expand 1 -fill x
   ttk::button .tlbin.ok -text [__ "Ok"] -command \
-      {save_bin_selections; update_vars; end_dlg 1 .tlbin .}
+      {save_bin_selections; update_vars; end_dlg 1 .tlbin}
   ppack .tlbin.ok -in .tlbin.buts -side right
-  ttk::button .tlbin.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlbin .}
+  ttk::button .tlbin.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlbin}
   ppack .tlbin.cancel -in .tlbin.buts -side right
 
   place_dlg .tlbin .
-  tkwait window .tlbin
-  return $::dialog_ans
 }; # select_binaries
 
 #############################################################
@@ -1067,15 +739,13 @@ proc select_scheme {} {
     }
     update_vars
     show_stats
-    end_dlg 1 .tlschm .
+    end_dlg 1 .tlschm
   }
   ppack .tlschm.ok -in .tlschm.buts -side right
-  ttk::button .tlschm.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlschm .}
+  ttk::button .tlschm.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlschm}
   ppack .tlschm.cancel -in .tlschm.buts -side right
 
   place_dlg .tlschm .
-  tkwait window .tlschm
-  return $::dialog_ans
 }; # select_scheme
 
 #############################################################
@@ -1109,11 +779,11 @@ proc save_coll_selections {} {
 }; # save_coll_selections
 
 proc select_collections {} {
-  # 2017: more than 40 collections
-  # The tcl installer acquires collections from the database file,
+  # 2018: more than 40 collections
+  # The tcl installer acquires collections from install-menu-extl.pl,
   # but install-tl also has an array of collections.
-  # Use treeview for checkbox column and collection descriptions
-  # rather than names.
+  # Use treeview for checkbox column and display of
+  # collection descriptions rather than names.
   # buttons: select all, select none, ok, cancel
   # should some collections be excluded? Check install-menu-* code.
   create_dlg .tlcoll .
@@ -1185,15 +855,13 @@ proc select_collections {} {
       }
   ppack .tlcoll.none -in .tlcoll.butf -side left
   ttk::button .tlcoll.ok -text [__ "Ok"] -command \
-      {save_coll_selections; end_dlg 1 .tlcoll .}
+      {save_coll_selections; end_dlg 1 .tlcoll}
   ppack .tlcoll.ok -in .tlcoll.butf -side right
-  ttk::button .tlcoll.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlcoll .}
+  ttk::button .tlcoll.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlcoll}
   ppack .tlcoll.cancel -in .tlcoll.butf -side right
 
   place_dlg .tlcoll .
   wm resizable .tlcoll 0 0
-  tkwait window .tlcoll
-  return $::dialog_ans
 }; # select_collections
 
 ##################################################
@@ -1326,15 +994,13 @@ if {$::tcl_platform(platform) ne "windows"} {
     # ok, cancel
     pack [ttk::frame .edsyms.fr1] -expand 1 -fill both
     ppack [ttk::button .edsyms.ok -text [__ "Ok"] -command {
-      commit_sym_entries; end_dlg 1 .edsyms .}] -in .edsyms.fr1 -side right
+      commit_sym_entries; end_dlg 1 .edsyms}] -in .edsyms.fr1 -side right
     ppack [ttk::button .edsyms.cancel -text [__ "Cancel"] -command {
-      end_dlg 0 .edsyms .}] -in .edsyms.fr1 -side right
+      end_dlg 0 .edsyms}] -in .edsyms.fr1 -side right
 
     check_sym_entries
 
     place_dlg .edsyms .
-    tkwait window .edsyms
-    return
   }
 }
 
@@ -1486,7 +1152,7 @@ proc run_menu {} {
     incr rw
     pgrid [ttk::label .schmll -text [__ "Scheme:"]] \
         -in .selsf -row $rw -column 0 -sticky w
-    pgrid [ttk::label .schml -textvariable ::vars(selected_scheme)] \
+    pgrid [ttk::label .schml -text ""] \
         -in .selsf -row $rw -column 1 -sticky w
     pgrid [ttk::button .schmb -text [__ "Change"] -command select_scheme] \
         -in .selsf -row $rw -column 2 -sticky e
@@ -1511,7 +1177,7 @@ proc run_menu {} {
   pgrid .size_req -in $curf -row $rw -column 1 -sticky w
 
   ########################################################
-  # right: options
+  # right side: options
   # 3 columns. Column 1 can be merged with either 0 or 2.
 
   if $::advanced {
@@ -1907,7 +1573,7 @@ proc main_prog {} {
   } else {
     log_exit
   }
-}
+}; # main_prog
 
 file delete $::dblfile
 
