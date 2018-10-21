@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-09-28 02:23+0200\nPO-Revision-Date: 2010-08-23 12:05+0200\nLast-Translator: motitos <cullero@gmail.com>\nLanguage-Team: TL Translation Team <tex-live@tug.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
+set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-21 02:23+0200\nPO-Revision-Date: 2010-08-23 12:05+0200\nLast-Translator: motitos <cullero@gmail.com>\nLanguage-Team: TL Translation Team <tex-live@tug.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
 ::msgcat::mcset es "Installation process" "Proceso de instalaci\u00f3n"
 ::msgcat::mcset es "Cancel" "Cancelar"
 ::msgcat::mcset es "Finish" "Terminar"
@@ -154,3 +154,4 @@ set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bug
 ::msgcat::mcset es "Running %s failed.\nPlease consult the log window for details." "Fall\u00f3 la ejecuci\u00f3n de %s .\nVea la ventana de mensajes para ver los detalles."
 ::msgcat::mcset es "Welcome to TeX Live!" "\u00a1Bienvenido a Tex Live!"
 ::msgcat::mcset es "See %s/index.html for links to documentation.\nThe TeX Live web site (http://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at http://tug.org/usergroups.html." "Ver %s/index.html para enlaces a la documentaci\u00f3n.\nLa p\u00e1gina web de  TeX Live (http://tug.org/texlive/) contiene las actualizaciones y correctiones. TeX Live es un  proyecto conjunto de los usuarios de TeX a lo largo y ancho del mundo; por favor, considera dar su apoyo uni\u00e9ndose al grupo que m\u00e1s le convenga. La lista de grupos est\u00e1 disponible en la p\u00e1gina web http://tug.org/usergroups.html."
+::msgcat::mcset es "Update all" "Actualizar todo"

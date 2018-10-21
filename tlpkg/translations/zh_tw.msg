@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-09-28 02:23+0200\nPO-Revision-Date: 2009-09-03 12:34+0200\nLast-Translator: Norbert Preining <preining@logic.at>\nLanguage-Team: TL Translation Team <tex-live@tug.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: utf-8\n"
+set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-21 02:23+0200\nPO-Revision-Date: 2009-09-03 12:34+0200\nLast-Translator: Norbert Preining <preining@logic.at>\nLanguage-Team: TL Translation Team <tex-live@tug.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: utf-8\n"
 ::msgcat::mcset zh_tw "Cancel" "\u53d6\u6d88"
 ::msgcat::mcset zh_tw "Finish" "\u5b8c\u6210"
 ::msgcat::mcset zh_tw "TeX Live %s Installation" "TeX Live %s \u5b89\u88dd"

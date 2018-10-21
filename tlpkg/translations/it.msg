@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: Tex Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-09-28 02:23+0200\nPO-Revision-Date: 2018-02-23 08:42+0100\nLast-Translator: Marco Pallane <marco.pallante@gmail.com>\nLanguage-Team: <>\nLanguage: it\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 2.0.6\n"
+set ::msgcat::header "Project-Id-Version: Tex Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-21 02:23+0200\nPO-Revision-Date: 2018-02-23 08:42+0100\nLast-Translator: Marco Pallane <marco.pallante@gmail.com>\nLanguage-Team: <>\nLanguage: it\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 2.0.6\n"
 ::msgcat::mcset it "Installation process" "Installazione"
 ::msgcat::mcset it "Cancel" "Annulla"
 ::msgcat::mcset it "Finish" "Fine"
@@ -194,6 +194,7 @@ set ::msgcat::header "Project-Id-Version: Tex Live translation\nReport-Msgid-Bug
 ::msgcat::mcset it "Completed" "Completato"
 ::msgcat::mcset it "Running %s failed.\nPlease consult the log window for details." "L'esecuzione di %s \u00e8 fallita.\nConsulta la finestra di registro per i dettagli."
 ::msgcat::mcset it "See %s/index.html for links to documentation.\nThe TeX Live web site (http://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at http://tug.org/usergroups.html." "Consulta la pagina %s/index.html nella directory di installazione per i riferimenti alla documentazione.\nVisita il sito di TeX Live (http://tug.org/texlive/) per aggiornamenti e correzioni. TeX Live \u00e8 un progetto comune dei gruppi di utenti TeX sparsi per il mondo; per sostenere il progetto, puoi unirti al gruppo pi\u00f9 vicino. La lista dei gruppi \u00e8 disponibile sul web alla pagina http://tug.org/usergroups.html."
+::msgcat::mcset it "Update all" "Aggiorna tutti"
 ::msgcat::mcset it "basic scheme (plain and latex)" "schema base (plain e latex)"
 ::msgcat::mcset it "ConTeXt scheme" "Schema ConTeXt"
 ::msgcat::mcset it "GUST TeX Live scheme" "Schema GUST TeX Live"

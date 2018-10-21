@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPO-Revision-Date: 2018-10-19 20:30+0200\nLast-Translator: Siep Kroonenberg <siepo@cybercomm.nl>\nLanguage-Team: TL Translation Team <tex-live@tug.org>\nLanguage: nl\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 2.0.6\n"
+set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-19 20:15+0200\nPO-Revision-Date: 2018-10-19 20:30+0200\nLast-Translator: Siep Kroonenberg <siepo@cybercomm.nl>\nLanguage-Team: TL Translation Team <tex-live@tug.org>\nLanguage: nl\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: UTF-8\nX-Generator: Poedit 2.0.6\n"
 ::msgcat::mcset nl "Installation process" "Installatie-proces"
 ::msgcat::mcset nl "Cancel" "Afbreken"
 ::msgcat::mcset nl "Scroll back to inspect warnings" "Schuif terug om waarschuwingen te inspekteren"
