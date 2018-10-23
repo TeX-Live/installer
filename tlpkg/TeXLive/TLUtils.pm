@@ -4320,8 +4320,14 @@ passed in C<$r>. If passed undef or empty string, die.
 sub repository_to_array {
   my $r = shift;
   my %r;
-  die "internal error, repository_to_array passed nothing (caller="
-      . caller . ")" if (!$r);
+  if (!$r) {
+    # either empty string or undef was passed
+    # before 20181023 we die here, now we return
+    # an empty array
+    return %r;
+  }
+  #die "internal error, repository_to_array passed nothing (caller="
+  #    . caller . ")" if (!$r);
   my @repos = split (' ', $r);
   if ($#repos == 0) {
     # only one repo, this is the main one!
