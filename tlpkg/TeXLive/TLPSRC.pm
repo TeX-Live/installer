@@ -297,12 +297,6 @@ sub make_tlpobj {
         }
       }
     }
-    # we might have added the package name itself to its dependencies due
-    # to the parse_AddFormat_line. Remove it
-    @deps = (defined($tlp->depends) ? $tlp->depends : ());
-    my $tlpname = $tlp->name;
-    my @newdeps = grep { $_ ne $tlpname } @deps;
-    $tlp->depends(@newdeps);
   }
 
   my $filemax;

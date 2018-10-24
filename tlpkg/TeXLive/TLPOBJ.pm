@@ -119,17 +119,16 @@ sub from_fh {
           # do manual parsing
           # this is not optimal, but since we support only two tags there
           # are not so many cases
-          # Warning: need tp check the double cases first!!!
-          if ($rest =~ m/^language="(.*)"\s+details="(.*)"\s*$/) {
+          if ($rest =~ m/^details="(.*)"\s*$/) {
+            $self->{'docfiledata'}{$f}{'details'} = $1;
+          } elsif ($rest =~ m/^language="(.*)"\s*$/) {
+            $self->{'docfiledata'}{$f}{'language'} = $1;
+          } elsif ($rest =~ m/^language="(.*)"\s+details="(.*)"\s*$/) {
             $self->{'docfiledata'}{$f}{'details'} = $2;
             $self->{'docfiledata'}{$f}{'language'} = $1;
           } elsif ($rest =~ m/^details="(.*)"\s+language="(.*)"\s*$/) {
             $self->{'docfiledata'}{$f}{'details'} = $1;
             $self->{'docfiledata'}{$f}{'language'} = $2;
-          } elsif ($rest =~ m/^details="(.*)"\s*$/) {
-            $self->{'docfiledata'}{$f}{'details'} = $1;
-          } elsif ($rest =~ m/^language="(.*)"\s*$/) {
-            $self->{'docfiledata'}{$f}{'language'} = $1;
           } else {
             tlwarn("$0: Unparsable tagging in TLPDB line: $line\n");
           }

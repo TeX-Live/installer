@@ -3765,8 +3765,9 @@ sub check_on_working_mirror {
 =cut
 
 sub give_ctan_mirror_base {
-  # only one backbone has existed for a while (2018).
-  my @backbone = qw!http://www.ctan.org/tex-archive!;
+  my @backbone = qw!http://www.ctan.org/tex-archive
+                    http://www.tex.ac.uk/tex-archive
+                    http://dante.ctan.org/tex-archive!;
 
   # start by selecting a mirror and test its operationality
   my $mirror = query_ctan_mirror();
@@ -4320,14 +4321,8 @@ passed in C<$r>. If passed undef or empty string, die.
 sub repository_to_array {
   my $r = shift;
   my %r;
-  if (!$r) {
-    # either empty string or undef was passed
-    # before 20181023 we die here, now we return
-    # an empty array
-    return %r;
-  }
-  #die "internal error, repository_to_array passed nothing (caller="
-  #    . caller . ")" if (!$r);
+  die "internal error, repository_to_array passed nothing (caller="
+      . caller . ")" if (!$r);
   my @repos = split (' ', $r);
   if ($#repos == 0) {
     # only one repo, this is the main one!

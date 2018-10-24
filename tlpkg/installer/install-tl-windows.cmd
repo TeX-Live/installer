@@ -43,10 +43,18 @@ set tcl=yes
 set args=
 goto rebuildargs
 
-rem check for a gui argument
-rem handle it here and do not pass it on to perl or tcl.
+rem check for a gui- and lang arguments
+rem handle them here and do not pass them on to perl or tcl.
 rem cmd.exe converts '=' to a space:
 rem '-parameter=value' becomes '-parameter value': two arguments
+
+rem code block for language argument
+:dolang
+shift
+if "%0" == "" goto nomoreargs
+set LANG=%0
+set LC_ALL=
+goto rebuildargs
 
 rem code block for gui argument
 :dogui
@@ -85,6 +93,9 @@ rem loop for argument scanning
 shift
 if x%0 == x goto nomoreargs
 set p=%0
+if %p% == --lang goto dolang
+if %p% == -lang goto dolang
+
 if %p% == -print-platform set tcl=no
 if %p% == --print-platform set tcl=no
 if %p% == -version set tcl=no
@@ -117,6 +128,7 @@ rem the LANG environment variable should set the tcl default language.
 rem Since reg.exe may be disabled by e.g. company policy,
 rem tcl will yet consult the registry if LANG is not set,
 rem although under some circumstances this may cause a long delay.
+goto endreg
 if %tcl% == no goto endreg
 if not x%LANG% == x goto endreg
 rem reg.exe runnable by user?

@@ -287,9 +287,7 @@ sub from_file {
     if ($rootpath =~ m,file://*(.*)$,) {
       $rootpath = "/$1";
     }
-    if ($params{'media'}) {
-      $media = $params{'media'};
-    } elsif (-d "$rootpath/texmf-dist/web2c") {
+    if (-d "$rootpath/texmf-dist/web2c") {
       $media = 'local_uncompressed';
     } elsif (-d "$rootpath/texmf/web2c") { # older
       $media = 'local_uncompressed';
