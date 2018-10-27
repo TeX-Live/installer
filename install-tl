@@ -965,13 +965,14 @@ sub run_postinst_cmd {
   
   info ("running $cmd ...");
   my ($out,$ret) = TeXLive::TLUtils::run_cmd ("$cmd 2>&1");
-  info ("done\n");
-  log ($out);
-
-  if ($ret != 0) {
-    tlwarn ("$0: $cmd failed: $!\n");
+  if ($ret == 0) {
+    info ("done\n");
+  } else {
+    info ("failed\n");
+    tlwarn ("$0: $cmd failed (status $ret): $!\n");
     $ret = 1; # be sure we don't overflow the sum on anything crazy
   }
+  log ($out);
   
   return $ret;
 } # run_postinst_cmd
