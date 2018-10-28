@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2010\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-10-21 02:23+0200\n"
+"POT-Creation-Date: 2018-10-28 02:23+0200\n"
 "PO-Revision-Date: 2013-08-07 08:27+0300\n"
 "Last-Translator: Andriy Bandura <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <andriykopanytsia@gmail.com>\n"
@@ -1400,11 +1400,11 @@ msgstr ""
 "Невдалий запуск %s.\n"
 "Перегляньте подробиці у вікні журналу."
 
-#: tlpkg/installer/install-tl-gui.tcl:126 tlpkg/translations/shortdesc.pl:2519
+#: tlpkg/installer/install-tl-gui.tcl:126 tlpkg/translations/shortdesc.pl:2520
 msgid "Welcome to TeX Live!"
 msgstr "Ласкаво просимо до TeX Live!"
 
-#: tlpkg/installer/install-tl-gui.tcl:129 tlpkg/translations/shortdesc.pl:2522
+#: tlpkg/installer/install-tl-gui.tcl:129 tlpkg/translations/shortdesc.pl:2523
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1419,7 +1419,7 @@ msgstr ""
 "світу; будь ласка, підтримайте проект, приєднавшись до найкращої для вас "
 "групи. Список груп доступний на веб-сайті http://tug.org/usergroups.html."
 
-#: tlpkg/installer/install-tl-gui.tcl:133 tlpkg/translations/shortdesc.pl:2527
+#: tlpkg/installer/install-tl-gui.tcl:133 tlpkg/translations/shortdesc.pl:2528
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

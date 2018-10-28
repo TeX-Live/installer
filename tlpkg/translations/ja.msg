@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-21 02:23+0200\nPO-Revision-Date: 2015-05-12 17:27+0900\nLast-Translator: Koji Yokota <yokota33@gmail.com>\nLanguage-Team: Japanese <tldoc@tug.org>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Lokalize 1.5\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-28 02:23+0200\nPO-Revision-Date: 2015-05-12 17:27+0900\nLast-Translator: Koji Yokota <yokota33@gmail.com>\nLanguage-Team: Japanese <tldoc@tug.org>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Lokalize 1.5\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 ::msgcat::mcset ja "Installation process" "\u5c0e\u5165\u30d7\u30ed\u30bb\u30b9"
 ::msgcat::mcset ja "Cancel" "\u53d6\u6d88"
 ::msgcat::mcset ja "Finish" "\u7d42\u4e86"

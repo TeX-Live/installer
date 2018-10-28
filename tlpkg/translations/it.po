@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tex Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-10-21 02:23+0200\n"
+"POT-Creation-Date: 2018-10-28 02:23+0200\n"
 "PO-Revision-Date: 2018-02-23 08:42+0100\n"
 "Last-Translator: Marco Pallane <marco.pallante@gmail.com>\n"
 "Language-Team: <>\n"
@@ -1469,12 +1469,12 @@ msgstr ""
 "L'esecuzione di %s è fallita.\n"
 "Consulta la finestra di registro per i dettagli."
 
-#: tlpkg/installer/install-tl-gui.tcl:126 tlpkg/translations/shortdesc.pl:2519
+#: tlpkg/installer/install-tl-gui.tcl:126 tlpkg/translations/shortdesc.pl:2520
 #, fuzzy
 msgid "Welcome to TeX Live!"
 msgstr "Benvenuto in TeX Live!"
 
-#: tlpkg/installer/install-tl-gui.tcl:129 tlpkg/translations/shortdesc.pl:2522
+#: tlpkg/installer/install-tl-gui.tcl:129 tlpkg/translations/shortdesc.pl:2523
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1491,7 +1491,7 @@ msgstr ""
 "La lista dei gruppi è disponibile sul web alla pagina http://tug.org/"
 "usergroups.html."
 
-#: tlpkg/installer/install-tl-gui.tcl:133 tlpkg/translations/shortdesc.pl:2527
+#: tlpkg/installer/install-tl-gui.tcl:133 tlpkg/translations/shortdesc.pl:2528
 #, fuzzy, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

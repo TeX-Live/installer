@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-21 02:23+0200\nPO-Revision-Date: 2012-05-14 07:07+0700\nLast-Translator: Anh K. Hu\u1ef3nh <kyanh@viettug.org>\nLanguage-Team: TL Translation Team <tex-live@tug.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: utf-8\n"
+set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-28 02:23+0200\nPO-Revision-Date: 2012-05-14 07:07+0700\nLast-Translator: Anh K. Hu\u1ef3nh <kyanh@viettug.org>\nLanguage-Team: TL Translation Team <tex-live@tug.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: utf-8\n"
 ::msgcat::mcset vi "Installation process" "Ti\u1ebfn tr\u00ecnh c\u00e0i \u0111\u1eb7t"
 ::msgcat::mcset vi "Cancel" "B\u1ecf qua"
 ::msgcat::mcset vi "Finish" "K\u1ebft th\u00fac"

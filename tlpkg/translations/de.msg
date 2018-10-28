@@ -1,4 +1,4 @@
-set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-21 02:23+0200\nPO-Revision-Date: 2018-03-18 15:32+0100\nLast-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\nLanguage-Team: TL German Translation Team <tex-live@tug.org>\nLanguage: de\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: utf-8\nX-Generator: Poedit 2.0.6\n"
+set ::msgcat::header "Project-Id-Version: TeX Live translation\nReport-Msgid-Bugs-To: tex-live@tug.org\nPOT-Creation-Date: 2018-10-28 02:23+0200\nPO-Revision-Date: 2018-03-18 15:32+0100\nLast-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\nLanguage-Team: TL German Translation Team <tex-live@tug.org>\nLanguage: de\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Poedit-SourceCharset: utf-8\nX-Generator: Poedit 2.0.6\n"
 ::msgcat::mcset de "Installation process" "Installation"
 ::msgcat::mcset de "Cancel" "Abbruch"
 ::msgcat::mcset de "Scroll back to inspect warnings" "Scrollen Sie zur\u00fcck, um die Warnungen zu pr\u00fcfen"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-10-19 20:15+0200\n"
+"POT-Creation-Date: 2018-10-28 02:23+0200\n"
 "PO-Revision-Date: 2018-10-19 20:30+0200\n"
 "Last-Translator: Siep Kroonenberg <siepo@cybercomm.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1413,11 +1413,11 @@ msgstr ""
 "%s is met een fout geeindigd.\n"
 "Raadpleeg het log venster voor details."
 
-#: tlpkg/installer/install-tl-gui.tcl:126 tlpkg/translations/shortdesc.pl:2519
+#: tlpkg/installer/install-tl-gui.tcl:126 tlpkg/translations/shortdesc.pl:2520
 msgid "Welcome to TeX Live!"
 msgstr "Welkom bij TeX Live!"
 
-#: tlpkg/installer/install-tl-gui.tcl:129 tlpkg/translations/shortdesc.pl:2522
+#: tlpkg/installer/install-tl-gui.tcl:129 tlpkg/translations/shortdesc.pl:2523
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1433,7 +1433,7 @@ msgstr ""
 "overweeg ondersteuning door lid te worden van zo'n groep.\n"
 "De lijst van gebruikersgroepen staat op http://tug.org/usergroups.html."
 
-#: tlpkg/installer/install-tl-gui.tcl:133 tlpkg/translations/shortdesc.pl:2527
+#: tlpkg/installer/install-tl-gui.tcl:133 tlpkg/translations/shortdesc.pl:2528
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
