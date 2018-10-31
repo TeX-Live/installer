@@ -285,6 +285,7 @@ sub make_tlpobj {
   # convert each fmttrigger to a depend line, if not already present.
   if (defined($tlp->executes)) { # else no fmttriggers
     my @deps = (defined($tlp->depends) ? $tlp->depends : ());
+    my $tlpname = $tlp->name;
     for my $e ($tlp->executes) {
       # we only check for AddFormat lines
       if ($e =~ m/^\s*AddFormat\s+(.*)\s*$/) {
@@ -292,17 +293,13 @@ sub make_tlpobj {
         if (defined($fmtline{"error"})) {
           tlwarn ("error in parsing $e for return hash: $fmtline{error}\n");
         } else {
-          TeXLive::TLUtils::push_uniq (\@deps, @{$fmtline{'fmttriggers'}});
-          $tlp->depends(@deps);
+          # make sure that we don't add circular deps
+          TeXLive::TLUtils::push_uniq (\@deps,
+            grep { $_ ne $tlpname } @{$fmtline{'fmttriggers'}});
         }
       }
     }
-    # we might have added the package name itself to its dependencies due
-    # to the parse_AddFormat_line. Remove it
-    @deps = (defined($tlp->depends) ? $tlp->depends : ());
-    my $tlpname = $tlp->name;
-    my @newdeps = grep { $_ ne $tlpname } @deps;
-    $tlp->depends(@newdeps);
+    $tlp->depends(@deps);
   }
 
   my $filemax;
