@@ -5489,6 +5489,7 @@ sub check_runfiles {
             |.*-noEmbed\.map
             |ps2mfbas\.mf
             |pstricks\.con
+            |readme.*
             |sample\.bib
             |tex4ht\.env
             |test\.mf
