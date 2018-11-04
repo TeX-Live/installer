@@ -26,13 +26,6 @@ proc get_stacktrace {} {
   return $s
 } ; # get_stacktrace
 
-# what exit procs do we need?
-# - plain error exit with messagebox and stacktrace
-# - plain messagebox exit
-# - showing log output, maybe with appended message,
-#   use log toplevel for lengthy output
-# is closing the pipe $::inst guaranteed to kill perl? It should be
-
 proc err_exit {{mess ""}} {
   if {$mess eq ""} {set mess "Error"}
   append mess "\n" [get_stacktrace]
@@ -60,105 +53,171 @@ proc err_exit {{mess ""}} {
 } ; # err_exit
 
 # localization support
-# tcl 8.5 observes LANG on Unix, but is overruled by LC_ALL.
-# for 8.5 or on Mac OS, locale setting from within tcl may not work.
-# so let the shell wrapper handle a language option by setting LANG
-# and unsetting LC_ALL.
 
-# $TEXMFCONFIG/tlmgr/config can have a setting for gui-lang.
-# replace with shell script / batchfile which is sourced?
+# for the sake of our translators we use our own translation function
+# which can use .po files directly. This allows them to check their work
+# without creating or waiting for a conversion to .msg.
+# We still use the msgcat module for detecting default locale.
+# Otherwise, the localization code borrows much from Norbert Preining's
+# translation module for TL.
 
-# for windows there is a bundled 8.6 in which locale can be set on-the-fly.
-# consult registry for default locale if LANG is not set.
-# The wrapper already does this, but here we do it again
-# in case e.g. company policy blocked reg.exe.
+proc load_translations {} {
 
-# check the command-line for a lang parameter
-unset -nocomplain lang
-set i 0
-while {$i < $::argc} {
-  set p [lindex $::argv $i]
-  incr i
-  if {$p eq "-lang" || $p eq "--lang"} {
-    if {$i < $::argc} {
-      set lang [lindex $::argv $i]
-      break
-    }
-  } elseif {[string range $p 0 5] eq "-lang="} {
-    set lang [string range $p 6 end]
-    break
-  } elseif {[string range $p 0 6] eq "--lang="} {
-    set lang [string range $p 7 end]
-    break
-  }
-}
-unset i
-
-# first fallback: check config file if available
-if {! [info exists lang] || $lang eq ""} {
-  foreach tmf {"TEXMFCONFIG" "TEXMFSYSCONFIG"} {
-    if [catch {exec kpsewhich -var-value $tmf} d] {
-      break; # apparently there is not yet a TL installation
-    }
-    if [catch {open [file join $d "tlmgr" "config"] r} fid] continue
-    while 1 {
-      if [catch {chan gets $fid} l] break
-      if {[regexp {^gui-lang\s*=\s*(\S+)$} $l m lang]} {
-        chan close $fid
+  # check the command-line for a lang parameter
+  set ::lang ""
+  set i 0
+  while {$i < $::argc} {
+    set p [lindex $::argv $i]
+    incr i
+    if {$p eq "-lang" || $p eq "--lang"} {
+      if {$i < $::argc} {
+        set ::lang [lindex $::argv $i]
         break
       }
-    }
-    if {[info exists lang] && $lang ne ""} break
-  }
-}
-
-# second fallback: check environment for LC_ALL, LC_MESSAGES and LANG
-if {! [info exists lang] || $lang eq ""} {
-  foreach lng {"LC_ALL" "LC_MESSAGES" "LANG"} {
-    if {[info exists ::env($lng)] && $::env($lng) ne ""} {
-      set lang $::env($lng)
+    } elseif {[string range $p 0 5] eq "-lang="} {
+      set ::lang [string range $p 6 end]
+      break
+    } elseif {[string range $p 0 6] eq "--lang="} {
+      set ::lang [string range $p 7 end]
       break
     }
   }
-}
+  unset i
 
-# third fallback, windows-only: check registry
-if {(! [info exists lang] || $lang eq "") && \
-        $::tcl_platform(platform) eq "windows"} {
-  if {! [catch {package require registry}]} {
-    set regpath [join {HKEY_LOCAL_MACHINE system currentcontrolset \
-      control nls language} "\\"]
-    if {! [catch {registry get $regpath "Installlanguage"} lcode]} {
-      set regpath [join {HKEY_CLASSES_ROOT mime database rfc1766} "\\"]
-      if {! [catch {registry get $regpath $lcode} lng]} {
-        set l [string first ";" $lng]
-        if {$l > 0} {
-          incr l -1
-          set lng [string range $lng 0 $l]
-        }
-        set lang $lng
-        #tk_messageBox -message "Language $lang in registry found"
+  # First fallback: check config file.
+  # $TEXMFCONFIG/tlmgr/config can have a setting for gui-lang.
+  # There will not be one for the installer, only for tlmgr.
+  if {! [info exists ::lang] || $::lang eq ""} {
+    foreach tmf {"TEXMFCONFIG" "TEXMFSYSCONFIG"} {
+      if [catch {exec kpsewhich -var-value $tmf} d] {
+        break; # apparently there is not yet a TL installation
       }
+      if [catch {open [file join $d "tlmgr" "config"] r} fid] continue
+      while 1 {
+        if [catch {chan gets $fid} l] break
+        if [chan eof $fid] break
+        if {[regexp {^\s*gui-lang\s*=\s*(\S+)$} $l m ::lang]} {
+          chan close $fid
+          break
+        }
+      }
+      if {[info exists ::lang] && $::lang ne ""} break
+    }
+  }
+
+  # second fallback: what does msgcat think about it? Note that
+  # msgcat checks the environment and on windows also the registry.
+  if {! [info exists ::lang] || $::lang eq ""} {
+    package require msgcat
+    set ::lang [::msgcat::mclocale]
+  }
+
+  set messcat ""
+  if {$::lang ne ""} {
+    set messcat ""
+    set maybe ""
+    set ::lang [string tolower $::lang]
+    set tdir [file join $::instroot "tlpkg" "translations"]
+    foreach f [glob -directory $tdir *.po] {
+      set ln_f [string tolower [string range [file tail $f] 0 end-3]]
+      if {$ln_f eq $::lang} {
+        set messcat $f
+        break
+      } elseif {[string range $ln_f 0 1] eq [string range $::lang 0 1]} {
+        set maybe $f
+      }
+    }
+    if {$messcat eq ""} {
+      set messcat $maybe
+    }
+  }
+
+  # parse messcat.
+  # for now, just skip lines which make no sense.
+  # empty messcat: no suitable message catalog
+  if {$messcat ne ""} {
+    # create array with msgid keys and msgstr values
+    if {! [catch {open $messcat r} fid]} {
+      fconfigure $fid -encoding utf-8
+      set inmsgid 0
+      set inmsgstr 0
+      set msgid ""
+      set msgstr ""
+      while 1 {
+        if [catch {chan gets $fid} l] break
+        if [chan eof $fid] break
+        if [regexp {^\s*#} $l] continue
+        if [regexp {^\s*$} $l] {
+          # empty line separates msgid/msgstr pairs
+          if $inmsgid {
+            # msgstr lines missing
+            # puts stderr "no translation for $msgid in $messcat"
+            set msgid ""
+            set msgstr ""
+            set inmsgid 0
+            set inmsgstr 0
+            continue
+          }
+          if $inmsgstr {
+            # empty line signals end of msgstr
+            if {$msgstr ne ""} {
+              set msgid [string map {"\\n" "\n"} $msgid]
+              set msgstr [string map {"\\n" "\n"} $msgstr]
+              set msgid [string map {"\\\\" "\\"} $msgid]
+              set msgstr [string map {"\\\\" "\\"} $msgstr]
+              set ::TRANS($msgid) $msgstr
+            }
+            set msgid ""
+            set msgstr ""
+            set inmsgid 0
+            set inmsgstr 0
+            continue
+          }
+          continue
+        } ; # empty line
+        if [regexp {^msgid\s+"(.*)"\s*$} $l m msgid] {
+          # note. a failed match will leave msgid alone
+          set inmsgid 1
+          continue
+        }
+        if [regexp {^"(.*)"\s*$} $l m s] {
+          if $inmsgid {
+            append msgid $s
+          } elseif $inmsgstr {
+            append msgstr $s
+          }
+          continue
+        }
+        if [regexp {^msgstr\s+"(.*)"\s*$} $l m msgstr] {
+          set inmsgstr 1
+          set inmsgid 0
+        }
+      }
+      chan close $fid
     }
   }
 }
+load_translations
 
-# load the message catalog
-package require msgcat
-if {[info exists lang] && $lang ne ""} {
-  ::msgcat::mclocale $lang
-  #unset lang
+proc __ {s args} {
+  if {[info exists ::TRANS($s)]} {
+    set s $::TRANS($s)
+  #} else {
+  #  puts stderr "No translation found for $s\n[get_stacktrace]"
+  }
+  if {$args eq ""} {
+    return $s
+  } else {
+    return [format $s {*}$args]
+  }
 }
-::msgcat::mcload [file join $::instroot "tlpkg" "translations"]
-
-proc __ {s args} {return [::msgcat::mc $s {*}$args]}
 
 # string representation of booleans
 proc yes_no {b} {
   if $b {
-    set ans [::msgcat::mc "Yes"]
+    set ans [__ "Yes"]
   } else {
-    set ans [::msgcat::mc "No"]
+    set ans [__ "No"]
   }
   return $ans
 }
@@ -173,13 +232,16 @@ if {$::tcl_platform(os) eq "Darwin"} {
 # no bold text for messages; `userDefault' indicates priority
 option add *Dialog.msg.font TkDefaultFont userDefault
 
-# larger fonts: lfont and bold titlefont
-font create lfont {*}[font configure TkDefaultFont]
-font configure lfont -size [expr {round(1.2 * [font actual lfont -size])}]
+# normal size bold
 font create bfont {*}[font configure TkDefaultFont]
 font configure bfont -weight bold
+# larger, not bold: lfont
+font create lfont {*}[font configure TkDefaultFont]
+font configure lfont -size [expr {round(1.2 * [font actual lfont -size])}]
+# larger and bold
 font create hfont {*}[font configure lfont]
 font configure hfont -weight bold
+# extra large and bold
 font create titlefont {*}[font configure TkDefaultFont]
 font configure titlefont -weight bold \
     -size [expr {round(1.5 * [font actual titlefont -size])}]
@@ -190,7 +252,7 @@ font configure titlefont -weight bold \
 
 # width of '0', as a very rough estimate of average character width
 # assume height == width*2
-set ::cw [font measure TkTextFont "0"]
+set ::cw [font measure TkDefaultFont "0"]
 
 # default foreground color and disabled foreground color
 # may not be black in e.g. dark color schemes
@@ -210,10 +272,20 @@ proc pgrid {wdg args} { ; # grid command with padding
 # unicode symbols as fake checkboxes in ttk::treeview widgets
 
 proc mark_sym {mrk} {
-  if $mrk {
-    return "\u25A3" ; # 'white square containing black small square'
+  if {$::tcl_platform(platform) eq "windows"} {
+    # under windows, these look slightly better than
+    # the non-windows selections
+    if $mrk {
+      return "\u25C9" ; # 'fisheye'
+    } else {
+      return "\u25CB" ; # 'white circle'
+    }
   } else {
-    return "\u25A1" ; # 'white square'
+    if $mrk {
+      return "\u25A3" ; # 'white square containing black small square'
+    } else {
+      return "\u25A1" ; # 'white square'
+    }
   }
 } ; # mark_sym
 
@@ -225,12 +297,12 @@ set ::env(NOPERLDOC) 1
 # for example code, look at dialog.tcl, part of Tk itself
 
 # global variable for dialog return value, in case the outcome
-# must be handled by the caller rather than by the dialog itself
-
+# must be handled by the caller rather than by the dialog itself:
 set ::dialog_ans {}
 
 # start new toplevel with settings appropriate for a dialog
 proc create_dlg {wnd {p .}} {
+  unset -nocomplain ::dialog_ans
   catch {destroy $wnd} ; # no error if it does not exist
   toplevel $wnd -class Dialog
   wm withdraw $wnd
@@ -264,7 +336,6 @@ proc place_dlg {wnd {p "."}} {
   grab set $wnd
 } ; # place_dlg
 
-# place dialog answer in ::dialog_ans, raise parent, close dialog
 proc end_dlg {ans wnd} {
   set ::dialog_ans $ans
   set p [winfo parent $wnd]

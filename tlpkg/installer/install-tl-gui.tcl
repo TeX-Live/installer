@@ -1291,7 +1291,7 @@ proc run_menu {} {
 
     # collection-texworks
     incr rw
-    pgrid [ttk::label .texwl -text "Install TeXworks front end"] \
+    pgrid [ttk::label .texwl -text [__ "Install TeXworks front end"]] \
         -in $curf -row $rw -column 0 -columnspan 2 -sticky w
     ttk::checkbutton .texwb -variable ::vars(collection-texworks)
     pgrid .texwb -in $curf -row $rw -column 2 -sticky e
@@ -1371,7 +1371,7 @@ proc read_descs {} {
       err_exit "Illegal line $l in descs section"
     }
   }
-  set ::scheme_descs(scheme-custom) "Custom scheme"
+  set ::scheme_descs(scheme-custom) [__ "Custom scheme"]
 }
 
 proc read_vars {} {

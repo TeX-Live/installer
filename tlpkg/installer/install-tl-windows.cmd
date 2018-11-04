@@ -100,7 +100,7 @@ goto rebuildargs
 if %p% == -gui goto dogui
 if %p% == --gui goto dogui
 
-rem not a gui- or lang argument: copy to args string
+rem not a gui argument: copy to args string
 if "%args%" == "" (
 set args=%p%
 ) else (
@@ -112,21 +112,7 @@ goto rebuildargs
 set p=
 if %notcl% == yes set tcl=no
 
-rem locale detection for tcl
-rem the LANG environment variable should set the tcl default language.
-rem Since reg.exe may be disabled by e.g. company policy,
-rem tcl will yet consult the registry if LANG is not set,
-rem although under some circumstances this may cause a long delay.
-if %tcl% == no goto endreg
-if not x%LANG% == x goto endreg
-rem reg.exe runnable by user?
-reg /? >nul 2>&1
-goto endreg
-if errorlevel 1 goto endreg
-for /f "skip=1 usebackq tokens=3 delims= " %%a in (`reg query hklm\system\currentcontrolset\control\nls\language /v Installlanguage`) do set lid=%%a
-if errorlevel 1 goto endreg
-for /f "skip=1 usebackq tokens=3 delims=; " %%a in (`reg query hkcr\mime\database\rfc1766 /v %lid%`) do set LANG=%%a
-:endreg
+rem removed: locale detection via registry; leave to tcl msgcat
 
 rem Check for tex directories on path and remove them.
 rem Need to remove any double quotes from path
