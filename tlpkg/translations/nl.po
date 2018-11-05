@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-11-04 10:45+0100\n"
+"POT-Creation-Date: 2018-11-05 02:23+0100\n"
 "PO-Revision-Date: 2018-11-03 13:42+0100\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -47,7 +47,7 @@ msgstr "Installatie-proces"
 #: tlpkg/installer/install-tl-gui.tcl:695
 #: tlpkg/installer/install-tl-gui.tcl:745
 #: tlpkg/installer/install-tl-gui.tcl:860
-#: tlpkg/installer/install-tl-gui.tcl:998 tlpkg/TeXLive/tltcl.tcl:420
+#: tlpkg/installer/install-tl-gui.tcl:998 tlpkg/TeXLive/tltcl.tcl:430
 msgid "Cancel"
 msgstr "Afbreken"
 
@@ -466,7 +466,7 @@ msgstr "Kies een andere mirror."
 #: tlpkg/installer/install-tl-gui.tcl:692
 #: tlpkg/installer/install-tl-gui.tcl:728
 #: tlpkg/installer/install-tl-gui.tcl:857
-#: tlpkg/installer/install-tl-gui.tcl:996 tlpkg/TeXLive/tltcl.tcl:418
+#: tlpkg/installer/install-tl-gui.tcl:996 tlpkg/TeXLive/tltcl.tcl:428
 msgid "Ok"
 msgstr "Ok"
 
@@ -1491,7 +1491,7 @@ msgstr ""
 msgid "Installation root"
 msgstr "Hoofd TeX-folder"
 
-#: tlpkg/installer/install-tl-gui.tcl:405 tlpkg/TeXLive/tltcl.tcl:385
+#: tlpkg/installer/install-tl-gui.tcl:405 tlpkg/TeXLive/tltcl.tcl:395
 msgid "Browse..."
 msgstr "Bladeren..."
 
@@ -1634,7 +1634,7 @@ msgstr "Specificeer folders"
 msgid "Custom scheme"
 msgstr "Eigen schema"
 
-#: tlpkg/TeXLive/tltcl.tcl:464
+#: tlpkg/TeXLive/tltcl.tcl:474
 msgid "Select or type"
 msgstr "Kies of type"
 
