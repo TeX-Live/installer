@@ -28,6 +28,8 @@ $mirrors = {
       'http://repo.iut.ac.ir/tex-archive/' => 1
     },
     'Japan' => {
+      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
+      'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
     },
@@ -51,8 +53,7 @@ $mirrors = {
   },
   'Europe' => {
     'Austria' => {
-      'http://mirror.easyname.at/ctan/' => 1,
-      'http://mirror.reismil.ch/CTAN/' => 1
+      'http://mirror.easyname.at/ctan/' => 1
     },
     'Belarus' => {
       'http://mirror.datacenter.by/pub/mirrors/CTAN/' => 1
