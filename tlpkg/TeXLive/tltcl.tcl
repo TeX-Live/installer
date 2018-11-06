@@ -95,11 +95,11 @@ proc load_translations {} {
       if [catch {open [file join $d "tlmgr" "config"] r} fid] continue
       while 1 {
         if [catch {chan gets $fid} l] break
-        if [chan eof $fid] break
         if {[regexp {^\s*gui-lang\s*=\s*(\S+)$} $l m ::lang]} {
           chan close $fid
           break
         }
+        if [chan eof $fid] break
       }
       if {[info exists ::lang] && $::lang ne ""} break
     }
@@ -145,7 +145,6 @@ proc load_translations {} {
       set msgstr ""
       while 1 {
         if [catch {chan gets $fid} l] break
-        if [chan eof $fid] break
         if [regexp {^\s*#} $l] continue
         if [regexp {^\s*$} $l] {
           # empty line separates msgid/msgstr pairs
@@ -192,6 +191,7 @@ proc load_translations {} {
           set inmsgstr 1
           set inmsgid 0
         }
+        if [chan eof $fid] break
       }
       chan close $fid
     }
