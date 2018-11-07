@@ -13,6 +13,7 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
+      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
       'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -146,8 +147,7 @@ $mirrors = {
       'http://ctan.math.ca/tex-archive/' => 1,
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
-      'http://mirror.its.dal.ca/ctan/' => 1,
-      'http://muug.ca/mirror/ctan/' => 1
+      'http://mirror.its.dal.ca/ctan/' => 1
     },
     'Costa Rica' => {
       'http://mirrors.ucr.ac.cr/CTAN/' => 1
