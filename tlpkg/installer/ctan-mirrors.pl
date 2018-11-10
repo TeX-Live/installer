@@ -13,6 +13,7 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
+      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
       'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -54,8 +55,7 @@ $mirrors = {
   },
   'Europe' => {
     'Austria' => {
-      'http://mirror.easyname.at/ctan/' => 1,
-      'http://mirror.reismil.ch/CTAN/' => 1
+      'http://mirror.easyname.at/ctan/' => 1
     },
     'Belarus' => {
       'http://mirror.datacenter.by/pub/mirrors/CTAN/' => 1
@@ -91,9 +91,6 @@ $mirrors = {
     },
     'Greece' => {
       'http://ftp.cc.uoc.gr/mirrors/CTAN/' => 1
-    },
-    'Italy' => {
-      'http://ctan.mirror.garr.it/mirrors/CTAN/' => 1
     },
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
