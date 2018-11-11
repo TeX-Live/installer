@@ -92,6 +92,9 @@ $mirrors = {
     'Greece' => {
       'http://ftp.cc.uoc.gr/mirrors/CTAN/' => 1
     },
+    'Italy' => {
+      'http://ctan.mirror.garr.it/mirrors/CTAN/' => 1
+    },
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
       'http://ctan.triasinformatica.nl/' => 1,
