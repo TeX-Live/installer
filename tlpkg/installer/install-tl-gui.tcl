@@ -45,7 +45,7 @@ set ::instroot [file normalize [info script]]
 set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
 
 # declarations and procs shared with tlshell.tcl
-source [file join $::instroot "tlpkg" "TeXLive" "tltcl.tcl"]
+source [file join $::instroot "tlpkg" "tltcl" "tltcl.tcl"]
 
 ### initialize some globals ###
 
@@ -1512,9 +1512,22 @@ proc main_prog {} {
   wm title . [__ "TeX Live Installer"]
   make_splash
 
-  # start install-tl-[tcl] via a pipe
+  # start install-tl-[tcl] via a pipe.
+  # the command must be a string, not a list.
+  # therefore, arguments with spaces must be quoted.
+  # although we build the command at first as a list,
+  # it will be joined into a string at a second step
   set cmd [list ${::perlbin} "${::instroot}/install-tl" \
                "-from_ext_gui" {*}$::argv]
+  set i 0
+  while {$i<[llength $cmd]} {
+    set c [lindex $cmd $i]
+    if {[string first " " $c] >= 0} {
+      lset cmd $i "\"$c\""
+    }
+    incr i
+  }
+  unset i
   show_time "opening pipe"
   if [catch {open "|[join $cmd " "] 2>@1" r+} ::inst] {
     # "2>@1" ok under Windows >= XP

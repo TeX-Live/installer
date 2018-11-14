@@ -42,6 +42,59 @@ BEGIN {
   unshift (@INC, "$::installerdir/tlpkg");
 }
 
+# Unix-only: want tcl GUI?
+# If so, this run of install-tl does duty as a wrapper for install-tl-gui.tcl,
+# which in its turn will start an actual run of install-tl.
+# On windows an external batch wrapper replaces the built-in wrapper below.
+
+if ($^O !~ /^MSWin/i) {
+  my $i=-1;
+  my @new_args = ();
+  my $want_tcl = 0;
+  while ($i<$#ARGV) {
+    # build argument array for install-tl-gui.tcl.
+    # But once we know that install-tl-gui.tcl is not going to be invoked,
+    # we quit scanning and continue with the original @ARGV
+    $i++;
+    my $p = $ARGV[$i];
+    if ($p eq 'from_ext_gui') {
+      $want_tcl = 0;
+      last;
+    } elsif ($p =~ /^-?-gui=(.*$)/) {
+      if ($1 eq 'tcl') {
+        $want_tcl = 1;
+      } else {
+        last; # other gui: can forget about @new_args
+      }
+    } elsif ($p =~ /^-?-gui/) {
+      if ($i == $#ARGV) {
+        last; # default gui => not tcl
+      } elsif ($ARGV[$i+1] eq 'tcl') {
+        $i++;
+        $want_tcl = 1;
+      } else {
+        last;
+      }
+    } else {
+      # not gui-related, continue collecting @new_args
+      push (@new_args, $p);
+    }
+  }
+  if ($want_tcl) {
+    unshift (@new_args, "--");
+    unshift (@new_args, "$::installerdir/tlpkg/installer/install-tl-gui.tcl");
+    if (!exec('wish', @new_args)) {
+      if (!exec('wish8.6', @new_args)) {
+        if (!exec('wish8.5', @new_args)) {
+          if (!exec('tclkit', @new_args)) {
+            die "wish not found\n";
+          }
+        }
+      }
+    }
+  }
+}
+
 use Cwd 'abs_path';
 use Getopt::Long qw(:config no_autoabbrev);
 use Pod::Usage;
@@ -2442,6 +2495,8 @@ sub check_env {
                         |.*PWD
                         |GENDOCS_TEMPLATE_DIR|PATH|SHELLOPTS
                         |PERL5LIB
+                        |INSTROOT
+                        |ARGS
                        )$/x; # don't worry about these
     if ("$evar $origenv{$evar}" =~ /tex/i) { # check both key and value
       $::env_warns .= "    $evar=$origenv{$evar}\n";
@@ -2641,12 +2696,22 @@ questions before installing all of TeX Live.
 The expert GUI installer, providing access to more options.  
 Can also be invoked on Windows by running C<install-tl-advanced.bat>.
 
+=item C<tcl>
+
+An experimental GUI. It starts out simply, with the same options as
+the wizard installer, but a button 'Advanced' gives acces to almost
+all the options of the perltk GUI.
+
 =back
 
 The C<perltk> and C<wizard> modules, and thus also when calling with
 bare C<-gui> (with no I<module>), require the Perl/Tk module
 (L<http://tug.org/texlive/distro.html#perltk>); if Perl/Tk is not
 available, installation continues in text mode.
+
+The tcl GUI requires Tcl/Tk. This is part of Mac OS and is often
+already installed on Linux. For Windows, TeX Live provides a Tcl/Tk
+runtime.
 
 =item B<-no-gui>
 

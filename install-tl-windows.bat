@@ -26,6 +26,88 @@ for /f "usebackq tokens=2 delims='" %%a in (`perl -V:version 2^>NUL`) do (
   set extperl=%%a
 )
 
+rem set instroot before %0 gets overwritten during argument processing
+set instroot=%~dp0
+
+set notcl=no
+set tcl=yes
+set args=
+goto rebuildargs
+
+rem check for a gui argument
+rem handle -gui tcl here and do not pass it on to perl or tcl.
+rem cmd.exe converts '=' to a space:
+rem '-parameter=value' becomes '-parameter value': two arguments
+
+rem code block for gui argument
+:dogui
+if x == x%1 (
+set tcl=no
+set args=%args% -gui wizard
+shift
+goto rebuildargs
+)
+if text == %1 (
+set tcl=no
+set args=%args% -no-gui
+shift
+goto rebuildargs
+)
+if wizard == %1 (
+set tcl=no
+set args=%args% -gui wizard
+shift
+goto rebuildargs
+)
+if perltk == %1 (
+set tcl=no
+set args=%args% -gui perltk
+shift
+goto rebuildargs
+)
+if expert == %1 (
+set tcl=no
+set args=%args% -gui perltk
+shift
+goto rebuildargs
+)
+if tcl == %1 (
+set tcl=yes
+shift
+goto rebuildargs
+)
+
+rem loop for argument scanning
+:rebuildargs
+shift
+set p=
+set q=
+if x == x%0 goto nomoreargs
+set p=%0
+rem flip backslashes, if any
+set p=%p:\=/%
+rem replace -- with - but test with quotes replaced with something else
+set q=%p:"=x%
+if not "%q:~,2%" == "--" goto nominmin
+set p=%p:~1%
+:nominmin
+if -print-platform == %p% set tcl=no
+if -version == %p% set tcl=no
+if -no-gui == %p% (
+set notcl=yes
+goto rebuildargs
+)
+if -gui == %p% goto dogui
+
+rem not a gui argument: copy to args string
+rem a spurious initial blank is harmless.
+set args=%args% %p%
+
+goto rebuildargs
+:nomoreargs
+
+if yes == %notcl% set tcl=no
+
 rem Check for tex directories on path and remove them.
 rem Need to remove any double quotes from path
 set path=%path:"=%
@@ -42,11 +124,14 @@ for /d %%I in (%path%) do (
   )
 )
 path %newpath%
+set newpath=
+set q=
 if "%path:~,1%"==";" set "path=%path:~1%"
 
 rem Use TL Perl
-path %~dp0tlpkg\tlperl\bin;%path%
-set PERL5LIB=%~dp0tlpkg\tlperl\lib
+path=%instroot%tlpkg\tlperl\bin;%path%
+set PERL5LIB=%instroot%tlpkg\tlperl\lib
+rem for now, assume tcl/tk is on path
 
 rem Clean environment from other Perl variables
 set PERL5OPT=
@@ -68,10 +153,17 @@ set PERL_SIGNALS=
 set PERL_UNICODE=
 
 set errlev=0
+
 rem Start installer
-path
-echo "%~dp0install-tl" %*
-perl "%~dp0install-tl" %*
+if %tcl% == yes (
+rem echo "%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
+rem pause
+"%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
+) else (
+rem echo perl "%instroot%install-tl" %args% -no-gui
+rem pause
+perl "%instroot%install-tl" %args%
+)
 
 rem The nsis installer will need this:
 if errorlevel 1 set errlev=1
