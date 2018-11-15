@@ -30,7 +30,7 @@ rem set instroot before %0 gets overwritten during argument processing
 set instroot=%~dp0
 
 set notcl=no
-set tcl=yes
+set tcl=no
 set args=
 goto rebuildargs
 
@@ -160,7 +160,7 @@ rem echo "%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-t
 rem pause
 "%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
 ) else (
-rem echo perl "%instroot%install-tl" %args% -no-gui
+rem echo perl "%instroot%install-tl" %args%
 rem pause
 perl "%instroot%install-tl" %args%
 )
