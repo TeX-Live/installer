@@ -2267,8 +2267,9 @@ sub untar {
 
   # on w32 don't extract file modified time, because AV soft can open
   # files in the mean time causing time stamp modification to fail
-  if (system($tar, win32() ? "xmf" : "xf", $tarfile) != 0) {
-    tlwarn("untar: untarring $tarfile failed (in $targetdir)\n");
+  my $taropt = win32() ? "xmf" : "xf";
+  if (system($tar, $taropt, $tarfile) != 0) {
+    tlwarn("TLUtils::untar: $tar $taropt $tarfile failed (in $targetdir)\n");
     $ret = 0;
   } else {
     $ret = 1;
