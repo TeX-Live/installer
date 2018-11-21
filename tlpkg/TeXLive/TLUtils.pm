@@ -2355,7 +2355,7 @@ sub setup_programs {
   #
   if (!defined($tlfirst)) {
     if ($ENV{'TEXLIVE_PREFER_OWN'}) {
-      debug("setup_programs: TEXLIVE_PREFER_OWN is set!");
+      debug("setup_programs: TEXLIVE_PREFER_OWN is set!\n");
       $tlfirst = 1;
     }
   }
