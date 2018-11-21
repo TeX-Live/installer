@@ -56,8 +56,7 @@ $mirrors = {
   },
   'Europe' => {
     'Austria' => {
-      'http://mirror.easyname.at/ctan/' => 1,
-      'http://mirror.reismil.ch/CTAN/' => 1
+      'http://mirror.easyname.at/ctan/' => 1
     },
     'Belarus' => {
       'http://mirror.datacenter.by/pub/mirrors/CTAN/' => 1
