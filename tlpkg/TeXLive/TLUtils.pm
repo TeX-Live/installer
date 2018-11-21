@@ -2348,6 +2348,18 @@ sub setup_programs {
   my ($bindir, $platform, $tlfirst) = @_;
   my $ok = 1;
 
+  # tlfirst is (currently) not passed in by either the installer or
+  # tlmgr, so it will be always false.
+  # If it is not defined, we check for the env variable
+  #   TEXLIVE_PREFER_OWN
+  #
+  if (!defined($tlfirst)) {
+    if ($ENV{'TEXLIVE_PREFER_OWN'}) {
+      debug("setup_programs: TEXLIVE_PREFER_OWN is set!");
+      $tlfirst = 1;
+    }
+  }
+
   debug("setup_programs: preferring " . ($tlfirst ? "TL" : "system") . " versions\n");
 
   my $isWin = ($^O =~ /^MSWin/i);
