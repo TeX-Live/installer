@@ -83,11 +83,13 @@ if ($^O !~ /^MSWin/i) {
   if ($want_tcl) {
     unshift (@new_args, "--");
     unshift (@new_args, "$::installerdir/tlpkg/installer/install-tl-gui.tcl");
-    if (!exec('wish', @new_args)) {
-      if (!exec('wish8.6', @new_args)) {
-        if (!exec('wish8.5', @new_args)) {
-          if (!exec('tclkit', @new_args)) {
-            die "wish not found\n";
+    if (!(defined $ENV{'WISH'}) || !exec($ENV{'WISH'}, @new_args)) {
+      if (!exec('wish', @new_args)) {
+        if (!exec('wish8.6', @new_args)) {
+          if (!exec('wish8.5', @new_args)) {
+            if (!exec('tclkit', @new_args)) {
+              die "wish not found\n";
+            }
           }
         }
       }
