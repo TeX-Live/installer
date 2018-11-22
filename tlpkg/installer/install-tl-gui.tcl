@@ -35,11 +35,14 @@ package require Tk
 # security: disable send
 catch {rename send {}}
 
-# this file should be in $::instroot/tlpkg/installer.
-# at the next release, it may be better to start the installer, perl or tcl,
-# from a shell wrapper, also on unix-like platforms
-# this allows automatic inclusion of '--' parameter to separate
-# tcl parameters from script parameters
+# This file should be in $::instroot/tlpkg/installer.
+# On non-windows platforms, install-tl functions as a wrapper
+# for this file if it encounters a parameter '-gui tcl'.
+# This allows automatic inclusion of a '--' parameter to separate
+# tcl parameters from script parameters.
+# At the next release, it may be better to have a shell script wrapper
+# in the root, although [ba]sh has its challenges when it comes
+# to handling the parameter array.
 
 set ::instroot [file normalize [info script]]
 set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
@@ -76,19 +79,19 @@ proc show_time {s} {
 # write to a logfile which is shared with the backend.
 # both parties open, append and close every time.
 
-if {$::tcl_platform(platform) eq "unix" && $::tcl_platform(os) eq "Darwin"} {
-  set ::dblfile "$::env(TMPDIR)/dblog"
-} elseif {$::tcl_platform(platform) eq "unix"} {
-  set ::dblfile "/tmp/dblog"
-} else {
-  set ::dblfile "$::env(TEMP)/dblog.txt"
-}
-proc dblog {s} {
-  set db [open $::dblfile a]
-  set t [get_stacktrace]
-  puts $db "TCL: $s\n$t"
-  close $db
-}
+#if {$::tcl_platform(os) eq "Darwin"} {
+#  set ::dblfile "$::env(TMPDIR)/dblog"
+#} elseif {$::tcl_platform(platform) eq "unix"} {
+#  set ::dblfile "/tmp/dblog"
+#} else {
+#  set ::dblfile "$::env(TEMP)/dblog.txt"
+#}
+#proc dblog {s} {
+#  set db [open $::dblfile a]
+#  set t [get_stacktrace]
+#  puts $db "TCL: $s\n$t"
+#  close $db
+#}
 
 proc maybe_print_welcome {} {
   # if the last non-empty line was "All done", then installation is completed.
@@ -187,6 +190,8 @@ proc read_line_cb {} {
 
 proc make_splash {} {
 
+  # wm overrideredirect . true
+
   # picture and logo
   catch {
     image create photo tlimage -file \
@@ -203,9 +208,9 @@ proc make_splash {} {
              -font bigfont] -in .bg
   ppack [ttk::label .loading -text [__ "Loading..."]] -in .bg
 
-  wm state . normal
   wm attributes . -topmost
   update
+  wm state . normal
   raise .
 }; # make_splash
 
@@ -219,6 +224,17 @@ proc show_log {{do_abort 0}} {
   # wallpaper
   pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
+  # buttons at bottom
+  pack [ttk::frame .bottom] -in .bg -side bottom -fill x
+  ttk::button .close -text [__ "Close"] -command exit
+  ppack .close -in .bottom -side right; # -anchor e
+  if $do_abort {
+    ttk::button .abort -text [__ "Cancel"] \
+        -command {catch {chan close $::inst}; exit}
+    ppack .abort -in .bottom -side right
+  }
+
+  # logs plus their scrollbars
   pack [ttk::frame .log] -in .bg -fill both -expand 1
   pack [ttk::scrollbar .log.scroll -command ".log.tx yview"] \
       -side right -fill y
@@ -233,21 +249,11 @@ proc show_log {{do_abort 0}} {
   if {$::tcl_platform(os) ne "Darwin"} {.log.tx configure -state disabled}
   .log.tx yview moveto 1
 
-  pack [ttk::frame .bottom] -in .bg -side bottom -fill x
-  ttk::button .close -text [__ "Close"] -command exit
-  ppack .close -in .bottom -side right; # -anchor e
-  if $do_abort {
-    ttk::button .abort -text [__ "Cancel"] \
-        -command {catch {chan close $::inst}; exit}
-    ppack .abort -in .bottom -side right
-  }
-
-  set h [expr {40 * $::cw}]
-  set w [expr {80 * $::cw}]
-  wm geometry . "${w}x${h}"
-  wm state . normal
+  wm resizable . 1 1
+  wm overrideredirect . 0
   wm attributes . -topmost
   update
+  wm state . normal
   raise .
 }; # show_log
 
@@ -324,6 +330,7 @@ proc edit_name {} {
   ttk::button .tled.q_b -text [__ "Cancel"] -command {destroy .tled}
   ppack .tled.q_b -in .tled.buttons -side right -padx 5 -pady 5
 
+  wm protocol .tled WM_DELETE_WINDOW {.tled.q_b invoke}
   place_dlg .tled .tltd
 } ; # edit_name
 
@@ -469,6 +476,7 @@ proc texdir_setup {} {
   bind .tltd <Return> commit_root
   bind .tltd <Escape> {destroy .tltd}
 
+  wm protocol .tltd  WM_DELETE_WINDOW {.tltd.cancel_b invoke}
   place_dlg .tltd
 } ; # texdir_setup
 
@@ -510,6 +518,7 @@ proc edit_dir {d} {
   ttk::button .td.cancel -text [__ "Cancel"] -command {end_dlg "" .td}
   ppack .td.cancel -in .td.f -side right
 
+  wm protocol .td WM_DELETE_WINDOW {.td.cancel invoke}
   place_dlg .td .
   tkwait window .td
   if {$::dialog_ans ne ""} {set ::vars($d) $::dialog_ans}
@@ -695,6 +704,7 @@ proc select_binaries {} {
   ttk::button .tlbin.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlbin}
   ppack .tlbin.cancel -in .tlbin.buts -side right
 
+  wm protocol .tlbin WM_DELETE_WINDOW {.tlbin.cancel invoke}
   place_dlg .tlbin .
 }; # select_binaries
 
@@ -711,7 +721,7 @@ proc select_scheme {} {
 
   set max_width 0
   foreach s $::schemes_order {
-    set sl [font measure TkTextFont $::scheme_descs($s)]
+    set sl [font measure TkTextFont [__ $::scheme_descs($s)]]
     if {$sl > $max_width} {set max_width $sl}
   }
   incr max_width 10
@@ -745,6 +755,7 @@ proc select_scheme {} {
   ttk::button .tlschm.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlschm}
   ppack .tlschm.cancel -in .tlschm.buts -side right
 
+  wm protocol .tlschm WM_DELETE_WINDOW {tlschm.cancel invoke}
   place_dlg .tlschm .
 }; # select_scheme
 
@@ -792,52 +803,8 @@ proc select_collections {} {
   # wallpaper
   pack [ttk::frame .tlcoll.bg -padding 3]
 
-  # Treeview and scrollbar for non-language- and language collections resp.
-  pack [ttk::frame .tlcoll.both] -in .tlcoll.bg -expand 1 -fill y
-
-  set max_width 0
-  foreach c [array names ::coll_descs] {
-    set cl [font measure TkTextFont $::coll_descs($c)]
-    if {$cl > $max_width} {set max_width $cl}
-  }
-  incr max_width 10
-  foreach t {"lang" "other"} {
-    set wgt ".tlcoll.$t"
-    pack [ttk::frame ${wgt}f] \
-        -in .tlcoll.both -side left -fill y
-
-    ttk::treeview $wgt -columns {mk desc} -show {headings} \
-        -height 20 -selectmode extended -yscrollcommand "${wgt}sc set"
-    $wgt heading "mk" -text ""
-    if {$t eq "lang"} {
-      $wgt heading "desc" -text [__ "Languages"]
-    } else {
-      $wgt heading "desc" -text [__ "Other collections"]
-    }
-
-    ttk::scrollbar ${wgt}sc -orient vertical -command "$wgt yview"
-    $wgt column mk -width [expr {$::cw * 3}]
-    $wgt column desc -width $max_width
-    ppack $wgt -in ${wgt}f -side left
-    ppack ${wgt}sc -in ${wgt}f -side left -fill y
-
-    bind $wgt <space> {toggle_coll %W [%W focus]}
-    bind $wgt <Return> {toggle_coll %W [%W focus]}
-    bind $wgt <ButtonRelease-1> {toggle_coll %W [%W identify item %x %y]}
-  }
-
-  foreach c [array names ::coll_descs] {
-    if [string equal -length 15 "collection-lang" $c] {
-      set wgt ".tlcoll.lang"
-    } else {
-      set wgt ".tlcoll.other"
-    }
-    $wgt insert {} end -id $c -values \
-        [list [mark_sym $::vars($c)] [__ $::coll_descs($c)]]
-  }
-
-  # select none, select all, ok and cancel buttons
-  pack [ttk::frame .tlcoll.butf] -fill x
+  # frame at bottom with select none, select all, ok and cancel buttons
+  pack [ttk::frame .tlcoll.butf] -in .tlcoll.bg -side bottom -fill x
   ttk::button .tlcoll.all \
       -text [__ "Select all"] \
       -command \
@@ -860,8 +827,62 @@ proc select_collections {} {
   ttk::button .tlcoll.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlcoll}
   ppack .tlcoll.cancel -in .tlcoll.butf -side right
 
+  # Treeview and scrollbar for non-language- and language collections resp.
+  pack [ttk::frame .tlcoll.both] -in .tlcoll.bg -expand 1 -fill x
+
+  # preferred widths
+  set max_width_lang 0
+  set max_width_other 0
+  foreach c [array names ::coll_descs] {
+    set is_lang [string equal -length 15 "collection-lang" $c]
+    set cl [font measure TkTextFont [__ $::coll_descs($c)]]
+    if {$is_lang && $cl > $max_width_lang} {
+      set max_width_lang $cl
+    } elseif {$cl > $max_width_other} {
+      set max_width_other $cl
+    }
+  }
+  incr max_width_lang 10
+  incr max_width_other 10
+
+  foreach t {"lang" "other"} {
+    set wgt ".tlcoll.$t"
+    pack [ttk::frame ${wgt}f] \
+        -in .tlcoll.both -side left -fill x
+
+    ttk::treeview $wgt -columns {mk desc} -show {headings} \
+        -height 20 -selectmode extended -yscrollcommand "${wgt}sc set"
+    $wgt heading "mk" -text ""
+    if {$t eq "lang"} {
+      $wgt heading "desc" -text [__ "Languages"]
+    } else {
+      $wgt heading "desc" -text [__ "Other collections"]
+    }
+
+    ttk::scrollbar ${wgt}sc -orient vertical -command "$wgt yview"
+    $wgt column mk -width [expr {$::cw * 3}] -stretch 0
+    ppack $wgt -in ${wgt}f -side left -fill x -expand 1
+    ppack ${wgt}sc -in ${wgt}f -side left -fill y
+
+    bind $wgt <space> {toggle_coll %W [%W focus]}
+    bind $wgt <Return> {toggle_coll %W [%W focus]}
+    bind $wgt <ButtonRelease-1> {toggle_coll %W [%W identify item %x %y]}
+  }
+  .tlcoll.lang column desc -width $max_width_lang -stretch 1
+  .tlcoll.other column desc -width $max_width_other -stretch 1
+
+  foreach c [array names ::coll_descs] {
+    if [string equal -length 15 "collection-lang" $c] {
+      set wgt ".tlcoll.lang"
+    } else {
+      set wgt ".tlcoll.other"
+    }
+    $wgt insert {} end -id $c -values \
+        [list [mark_sym $::vars($c)] [__ $::coll_descs($c)]]
+  }
+
+  wm protocol .tlcoll WM_DELETE_WINDOW {.tlcoll.cancel invoke}
   place_dlg .tlcoll .
-  wm resizable .tlcoll 0 0
 }; # select_collections
 
 ##################################################
@@ -1000,6 +1021,7 @@ if {$::tcl_platform(platform) ne "windows"} {
 
     check_sym_entries
 
+    wm protocol .edsyms  WM_DELETE_WINDOW {.edsyms.cancel invoke}
     place_dlg .edsyms .
   }
 }
@@ -1016,6 +1038,7 @@ if {$::tcl_platform(platform) ne "windows"} {
 # instead of wizard install, supppress some options
 
 proc run_menu {} {
+  if [info exists ::env(dbgui)] {puts "dbgui: run_menu: advanced is now $::advanced"}
   wm withdraw .
   foreach c [winfo children .] {
     destroy $c
@@ -1042,7 +1065,9 @@ proc run_menu {} {
     set ::menu_ans "no_inst"}] -in .final -side right
   if {!$::advanced} {
     ppack [ttk::button .adv -text [__ "Advanced"] -command {
-      set ::menu_ans "advanced"}] -in .final -side left
+      set ::menu_ans "advanced"
+      if [info exists ::env(dbgui)] {puts "dbgui: requested advanced"}
+    }] -in .final -side left
   }
   pack [ttk::separator .seph1 -orient horizontal] \
       -in .bg -side bottom -pady 3 -fill x -expand 1
@@ -1308,7 +1333,7 @@ proc run_menu {} {
       # tlpdbopt_sys_[bin|info|man]
       incr rw
       pgrid [ttk::label .pathl \
-                 -text [__ "create symlinks in standard directories"]] \
+                 -text [__ "Create symlinks in system directories"]] \
           -in $curf -row $rw -column 0 -columnspan 2 -sticky w
       pgrid [ttk::checkbutton .pathb -variable ::vars(instopt_adjustpath)] \
           -in $curf -row $rw -column 2 -sticky e
@@ -1335,9 +1360,11 @@ proc run_menu {} {
   }
 
   show_stats
-  wm state . normal
+  wm overrideredirect . 0
   wm attributes . -topmost
+  wm resizable . 0 0
   update
+  wm state . normal
   raise .
   unset -nocomplain ::menu_ans
   vwait ::menu_ans
@@ -1507,9 +1534,24 @@ proc run_installer {} {
   chan event $::inst readable read_line_cb
 }; # run_installer
 
+proc whataboutclose {} {
+  if [winfo exists .abort] {
+    # log window with abort
+    .abort invoke
+  } elseif [winfo exists .log] {
+    # log window without abort
+    .close invoke
+  } elseif [winfo exists .quit] {
+    # menu window
+    .quit invoke
+  }
+  # no action for close button of splash screen
+}
 proc main_prog {} {
 
   wm title . [__ "TeX Live Installer"]
+  wm protocol . WM_DELETE_WINDOW whataboutclose
+
   make_splash
 
   # start install-tl-[tcl] via a pipe.
@@ -1535,8 +1577,6 @@ proc main_prog {} {
   }
   show_time "opened pipe"
   set ::perlpid [pid $::inst]
-
-  show_time "made splash"
 
   # for windows < 10: make sure the main window is still on top
   wm attributes . -topmost
@@ -1567,6 +1607,7 @@ proc main_prog {} {
       if {$answer eq "advanced"} {
         # this could only happen if $::advanced was 0
         set ::advanced 1
+        if [info exists ::env(dbgui)] {puts "dbgui: Setting advanced to 1"}
         set answer [run_menu]
       }
       set ::did_gui 1
@@ -1588,6 +1629,6 @@ proc main_prog {} {
   }
 }; # main_prog
 
-file delete $::dblfile
+#file delete $::dblfile
 
 main_prog
