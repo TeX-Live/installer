@@ -2328,7 +2328,7 @@ sub read_file_ignore_cr {
 }
 
 
-=item C<setup_programs($bindir, $platform)>
+=item C<setup_programs($bindir, $platform, $tlfirst)>
 
 Populate the global C<$::progs> hash containing the paths to the
 programs C<lz4>, C<tar>, C<wget>, C<xz>. The C<$bindir> argument specifies
@@ -2336,6 +2336,10 @@ the path to the location of the C<xz> binaries, the C<$platform>
 gives the TeX Live platform name, used as the extension on our
 executables.  If a program is not present in the TeX Live tree, we also
 check along PATH (without the platform extension.)
+
+If the C<$tlfirst> argument or the C<TEXLIVE_PREFER_OWN> envvar is set,
+prefer TL versions; else prefer system versions (except for Windows
+C<tar.exe>, where we always use ours).
 
 Check many different downloads and compressors to determine what is
 working.
@@ -2393,10 +2397,13 @@ sub setup_programs {
   }
   $::progs{'working_downloaders'} = [ @working_downloaders ];
   my @working_compressors;
-  for my $defprog (sort {$Compressors{$a}{'priority'} <=> $Compressors{$b}{'priority'}} keys %Compressors) {
+  for my $defprog (sort 
+              { $Compressors{$a}{'priority'} <=> $Compressors{$b}{'priority'} }
+                   keys %Compressors) {
     # do not warn on errors
     if (setup_one(($isWin ? "w32" : "unix"), $defprog,
-                  "$bindir/$defprog/$defprog.$platform", "--version", $tlfirst)) {
+                  "$bindir/$defprog/$defprog.$platform", "--version",
+                  $tlfirst)) {
       push @working_compressors, $defprog;
       # also set up $::{'compressor'} if not already done
       # this selects the first one, but we might reset this depending on
@@ -2580,7 +2587,7 @@ into C<$destination>, which can be either
 a filename of simply C<|>. In the latter case a file handle is returned.
 
 Downloading first checks for the environment variable C<TEXLIVE_DOWNLOADER>,
-which takes various built-in values. If not set, the next check is fr
+which takes various built-in values. If not set, the next check is for
 C<TL_DOWNLOAD_PROGRAM> and C<TL_DOWNLOAD_ARGS>. The former overrides the
 above specification devolving to C<wget>, and the latter overrides the
 default wget arguments.

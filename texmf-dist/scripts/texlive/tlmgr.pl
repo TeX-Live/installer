@@ -9704,10 +9704,9 @@ automatically selected by the installer. The order of selection is:
 
 =item 1.
 
-If the environment variable C<TEXLIVE_DOWNLOADER> is
-defined, use it; abort if the specified program doesn't work.
-Possible values: C<curl>, C<wget>. The necessary options are added
-internally.
+If the environment variable C<TEXLIVE_DOWNLOADER> is defined, use it;
+abort if the specified program doesn't work. Possible values: C<lwp>,
+C<curl>, C<wget>. The necessary options are added internally.
 
 =item 2.
 
@@ -9730,20 +9729,27 @@ If wget is available (either from the system or TL) and working, use that.
 
 =back
 
-TL still provides C<wget> binaries for some platforms, so
-some download method should always be available.
+TL provides C<wget> binaries for platforms where necessary, so some
+download method should always be available.
 
 =item C<TEXLIVE_PREFER_OWN>
 
-By default, programs provided by the system, i.e., found in the C<PATH> are
-preferred over those shipped with TeX Live. In particular, if C<xz> is found
-in the C<PATH> somewhere, this version is used instead of the one included
-in TeX Live.
+By default, compression and download programs provided by the system,
+i.e., found along C<PATH> are preferred over those shipped with TeX
+Live.
 
-This can create problems with too old systems, and can be overriden by
-setting the environment variable C<TEXLIVE_PREFER_OWN> to 1. In this case
-TeX Live will prefer programs for compressor and downloader as shipped with
-TeX Live over their respective variants provided by the system.
+This can create problems with systems that are too old, and so can be
+overridden by setting the environment variable C<TEXLIVE_PREFER_OWN> to
+1. In this case, executables shipped with TL will be preferred.
+
+Extra compression/download programs not provided by TL, such as gzip,
+lwp, and curl, are still checked for on the system and used if
+available, per the above. C<TEXLIVE_PREFER_OWN> only applies when the
+program being checked for is shipped with TL, namely the lz4 and
+xz compressors and wget downloader.
+
+Exception: on Windows, the C<tar.exe> shipped with TL is always used,
+regardless of any setting.
 
 =back
 
