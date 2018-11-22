@@ -9733,6 +9733,18 @@ If wget is available (either from the system or TL) and working, use that.
 TL still provides C<wget> binaries for some platforms, so
 some download method should always be available.
 
+=item C<TEXLIVE_PREFER_OWN>
+
+By default, programs provided by the system, i.e., found in the C<PATH> are
+preferred over those shipped with TeX Live. In particular, if C<xz> is found
+in the C<PATH> somewhere, this version is used instead of the one included
+in TeX Live.
+
+This can create problems with too old systems, and can be overriden by
+setting the environment variable C<TEXLIVE_PREFER_OWN> to 1. In this case
+TeX Live will prefer programs for compressor and downloader as shipped with
+TeX Live over their respective variants provided by the system.
+
 =back
 
 
