@@ -316,7 +316,7 @@ proc edit_name {} {
   pack .tled.e -in .tled.bg -pady 5
   .tled.e insert 0 [.tltd.name_l cget -text]
   # now frame with ok and cancel buttons
-  pack [ttk::frame .tled.buttons] -in .tled.bg -fill x -expand 1
+  pack [ttk::frame .tled.buttons] -in .tled.bg -fill x
   ttk::button .tled.ok_b -text [__ "Ok"] -command {
     if [regexp {[\\/]} [.tled.e get]] {
       tk_messageBox -type ok -icon error -message [__ "No slashes allowed"]
@@ -331,6 +331,7 @@ proc edit_name {} {
   ppack .tled.q_b -in .tled.buttons -side right -padx 5 -pady 5
 
   wm protocol .tled WM_DELETE_WINDOW {.tled.q_b invoke}
+  wm resizable .tled 0 0
   place_dlg .tled .tltd
 } ; # edit_name
 
@@ -423,11 +424,11 @@ proc texdir_setup {} {
     ttk::label .tltd.loc -anchor w
     .tltd.loc configure -text \
         [__ "Localized directory names will be replaced by their real names"]
-    ppack .tltd.loc -in .tltd.bg -fill x -expand 1
+    ppack .tltd.loc -in .tltd.bg -fill x
   }
 
   # ok/cancel buttons
-  pack [ttk::frame .tltd.frbt] -in .tltd.bg -pady [list 10 0] -fill x -expand 1
+  pack [ttk::frame .tltd.frbt] -in .tltd.bg -pady [list 10 0] -fill x
   ttk::button .tltd.ok_b -text [__ "Ok"] -command commit_root
   ppack .tltd.ok_b -in .tltd.frbt -side right
   ttk::button .tltd.cancel_b -text [__ "Cancel"] \
@@ -477,6 +478,7 @@ proc texdir_setup {} {
   bind .tltd <Escape> {destroy .tltd}
 
   wm protocol .tltd  WM_DELETE_WINDOW {.tltd.cancel_b invoke}
+  wm resizable .tltd 1 0
   place_dlg .tltd
 } ; # texdir_setup
 
@@ -506,19 +508,17 @@ proc edit_dir {d} {
 
   # other widgets
 
-  ppack [ttk::entry .td.e -width 60] -in .td.bg -fill x -expand 1
+  ppack [ttk::entry .td.e -width 60] -in .td.bg -fill x
   .td.e insert 0 [native_slashify $::vars($d)]
 
   pack [ttk::frame .td.f] -fill x -expand 1
-  # below, ensure that $v is evaluated while the interface is built:
-  # the variable won't be available to the button callback
-  # quoted string rather than curly braces
   ttk::button .td.ok -text [__ "Ok"] -command {end_dlg [.td.e get] .td}
   ppack .td.ok -in .td.f -side right
   ttk::button .td.cancel -text [__ "Cancel"] -command {end_dlg "" .td}
   ppack .td.cancel -in .td.f -side right
 
   wm protocol .td WM_DELETE_WINDOW {.td.cancel invoke}
+  wm resizable .td 1 0
   place_dlg .td .
   tkwait window .td
   if {$::dialog_ans ne ""} {set ::vars($d) $::dialog_ans}
@@ -528,7 +528,6 @@ proc toggle_port {} {
   set ::vars(instopt_portable) [expr {!$::vars(instopt_portable)}]
   set yn [yes_no $::vars(instopt_portable)]
   .dirportvl configure -text $yn
-#  .dirportvl configure -text [yes_no $::vars(instopt_portable)]
   commit_canonical_local
   if {$::vars(instopt_portable)} {
     set ::vars(TEXMFHOME) $::vars(TEXMFLOCAL)
@@ -668,43 +667,46 @@ proc select_binaries {} {
   # wallpaper
   pack [ttk::frame .tlbin.bg -padding 3] -expand 1 -fill both
 
-  set max_width 0
-  foreach b [array names ::bin_descs] {
-    set bl [font measure TkTextFont [__ $::bin_descs($b)]]
-    if {$bl > $max_width} {set max_width $bl}
-  }
-  incr max_width 10
-
-  # treeview for binaries, with checkbox column and vertical scrollbar
-  pack [ttk::frame .tlbin.binsf] -in .tlbin.bg -expand 1 -fill both
-
-  ttk::treeview .tlbin.lst -columns {mk desc} -show {} \
-      -height 15 -selectmode extended -yscrollcommand {.tlbin.binsc set}
-
-  ttk::scrollbar .tlbin.binsc -orient vertical -command {.tlbin.lst yview}
-  .tlbin.lst column mk -width [expr {$::cw * 3}]
-  .tlbin.lst column desc -width $max_width
-  foreach b [array names ::bin_descs] {
-    set bb "binary_$b"
-    .tlbin.lst insert {}  end -id $b -values \
-        [list [mark_sym $::vars($bb)] [__ $::bin_descs($b)]]
-  }
-  ppack .tlbin.lst -in .tlbin.binsf -side left -expand 1 -fill both
-  ppack .tlbin.binsc -in .tlbin.binsf -side right -expand 1 -fill y
-  bind .tlbin.lst <space> {toggle_bin [.tlbin.lst focus]}
-  bind .tlbin.lst <Return> {toggle_bin [.tlbin.lst focus]}
-  bind .tlbin.lst <ButtonRelease-1> \
-      {toggle_bin [.tlbin.lst identify item %x %y]}
-
   # ok, cancel buttons
-  pack [ttk::frame .tlbin.buts] -in .tlbin.bg -expand 1 -fill x
+  pack [ttk::frame .tlbin.buts] -in .tlbin.bg -side bottom -fill x
   ttk::button .tlbin.ok -text [__ "Ok"] -command \
       {save_bin_selections; update_vars; end_dlg 1 .tlbin}
   ppack .tlbin.ok -in .tlbin.buts -side right
   ttk::button .tlbin.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlbin}
   ppack .tlbin.cancel -in .tlbin.buts -side right
 
+  #set max_width 0
+  #foreach b [array names ::bin_descs] {
+  #  set bl [font measure TkTextFont [__ $::bin_descs($b)]]
+  #  if {$bl > $max_width} {set max_width $bl}
+  #}
+  #incr max_width 10
+
+  # treeview for binaries, with checkbox column and vertical scrollbar
+  pack [ttk::frame .tlbin.binsf] -in .tlbin.bg -expand 1 -fill both
+
+  ttk::treeview .tlbin.lst -columns {mk desc} -show {} \
+      -selectmode extended -yscrollcommand {.tlbin.binsc set}
+
+  ttk::scrollbar .tlbin.binsc -orient vertical -command {.tlbin.lst yview}
+  .tlbin.lst column mk -stretch 0 -width [expr {$::cw * 3}]
+  .tlbin.lst column desc -stretch 1
+  foreach b [array names ::bin_descs] {
+    set bb "binary_$b"
+    .tlbin.lst insert {}  end -id $b -values \
+        [list [mark_sym $::vars($bb)] [__ $::bin_descs($b)]]
+  }
+  pgrid .tlbin.lst -in .tlbin.binsf -row 0 -column 0 -sticky news
+  pgrid .tlbin.binsc -in .tlbin.binsf -row 0 -column 1 -sticky ns
+  grid columnconfigure .tlbin.binsf 0 -weight 1
+  grid rowconfigure .tlbin.binsf 0 -weight 1
+  bind .tlbin.lst <space> {toggle_bin [.tlbin.lst focus]}
+  bind .tlbin.lst <Return> {toggle_bin [.tlbin.lst focus]}
+  bind .tlbin.lst <ButtonRelease-1> \
+      {toggle_bin [.tlbin.lst identify item %x %y]}
+
   wm protocol .tlbin WM_DELETE_WINDOW {.tlbin.cancel invoke}
+  wm resizable .tlbin 1 1
   place_dlg .tlbin .
 }; # select_binaries
 
@@ -719,22 +721,8 @@ proc select_scheme {} {
   # wallpaper
   pack [ttk::frame .tlschm.bg -padding 3] -fill both -expand 1
 
-  set max_width 0
-  foreach s $::schemes_order {
-    set sl [font measure TkTextFont [__ $::scheme_descs($s)]]
-    if {$sl > $max_width} {set max_width $sl}
-  }
-  incr max_width 10
-  ttk::treeview .tlschm.lst -columns {desc} -show {} -selectmode browse \
-      -height [llength $::schemes_order]
-  .tlschm.lst column "desc" -width $max_width -stretch 1
-  ppack .tlschm.lst -in .tlschm.bg -fill x -expand 1
-  foreach s $::schemes_order {
-    .tlschm.lst insert {} end -id $s -values [list [__ $::scheme_descs($s)]]
-  }
-  # we already made sure that $::vars(selected_scheme) has a valid value
-  .tlschm.lst selection set [list $::vars(selected_scheme)]
-  pack [ttk::frame .tlschm.buts] -in .tlschm.bg -expand 1 -fill x
+  # buttons at bottom
+  pack [ttk::frame .tlschm.buts] -in .tlschm.bg -side bottom -fill x
   ttk::button .tlschm.ok -text [__ "Ok"] -command {
     # tree selection is a list:
     set ::vars(selected_scheme) [lindex [.tlschm.lst selection] 0]
@@ -755,7 +743,25 @@ proc select_scheme {} {
   ttk::button .tlschm.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlschm}
   ppack .tlschm.cancel -in .tlschm.buts -side right
 
+  # schemes list
+  #set max_width 0
+  #foreach s $::schemes_order {
+  #  set sl [font measure TkTextFont [__ $::scheme_descs($s)]]
+  #  if {$sl > $max_width} {set max_width $sl}
+  #}
+  #incr max_width 10
+  ttk::treeview .tlschm.lst -columns {desc} -show {} -selectmode browse \
+      -height [llength $::schemes_order]
+  .tlschm.lst column "desc" -stretch 1; # -minwidth $max_width
+  ppack .tlschm.lst -in .tlschm.bg -fill both -expand 1
+  foreach s $::schemes_order {
+    .tlschm.lst insert {} end -id $s -values [list [__ $::scheme_descs($s)]]
+  }
+  # we already made sure that $::vars(selected_scheme) has a valid value
+  .tlschm.lst selection set [list $::vars(selected_scheme)]
+
   wm protocol .tlschm WM_DELETE_WINDOW {tlschm.cancel invoke}
+  wm resizable .tlschm 1 0
   place_dlg .tlschm .
 }; # select_scheme
 
@@ -801,26 +807,10 @@ proc select_collections {} {
   wm title .tlcoll [__ "Collections"]
 
   # wallpaper
-  pack [ttk::frame .tlcoll.bg -padding 3]
+  pack [ttk::frame .tlcoll.bg -padding 3] -fill both -expand 1
 
-  # frame at bottom with select none, select all, ok and cancel buttons
+  # frame at bottom with ok and cancel buttons
   pack [ttk::frame .tlcoll.butf] -in .tlcoll.bg -side bottom -fill x
-  ttk::button .tlcoll.all \
-      -text [__ "Select all"] \
-      -command \
-      {foreach wgt {.tlcoll.other .tlcoll.lang} {
-        foreach c [$wgt children {}] {$wgt set $c "mk" [mark_sym 1]}
-        }
-      }
-  ppack .tlcoll.all -in .tlcoll.butf -side left
-  ttk::button .tlcoll.none \
-      -text [__ "Select none"] \
-      -command \
-      {foreach wgt {.tlcoll.other .tlcoll.lang} {
-        foreach c [$wgt children {}] {$wgt set $c "mk" [mark_sym 0]}
-        }
-      }
-  ppack .tlcoll.none -in .tlcoll.butf -side left
   ttk::button .tlcoll.ok -text [__ "Ok"] -command \
       {save_coll_selections; end_dlg 1 .tlcoll}
   ppack .tlcoll.ok -in .tlcoll.butf -side right
@@ -828,48 +818,53 @@ proc select_collections {} {
   ppack .tlcoll.cancel -in .tlcoll.butf -side right
 
   # Treeview and scrollbar for non-language- and language collections resp.
-  pack [ttk::frame .tlcoll.both] -in .tlcoll.bg -expand 1 -fill x
-
-  # preferred widths
-  set max_width_lang 0
-  set max_width_other 0
-  foreach c [array names ::coll_descs] {
-    set is_lang [string equal -length 15 "collection-lang" $c]
-    set cl [font measure TkTextFont [__ $::coll_descs($c)]]
-    if {$is_lang && $cl > $max_width_lang} {
-      set max_width_lang $cl
-    } elseif {$cl > $max_width_other} {
-      set max_width_other $cl
-    }
-  }
-  incr max_width_lang 10
-  incr max_width_other 10
+  pack [ttk::frame .tlcoll.both] -in .tlcoll.bg -expand 1 -fill both
 
   foreach t {"lang" "other"} {
-    set wgt ".tlcoll.$t"
-    pack [ttk::frame ${wgt}f] \
-        -in .tlcoll.both -side left -fill x
 
+    # frames with select all/none buttons, separately for lang and others
+    set wgb .tlcoll.b$t
+    ttk::frame $wgb
+    ttk::label ${wgb}sel -text [__ "Select"]
+    ttk::button ${wgb}all -text [__ "All"] -padding 1 -command \
+      "foreach c \[.tlcoll.$t children {}\] \{
+        .tlcoll.$t set \$c mk \[mark_sym 1\]\}"
+    ttk::button ${wgb}none -text [__ "None"] -padding 1 -command \
+      "foreach c \[.tlcoll.$t children {}\] \{
+        .tlcoll.$t set \$c mk \[mark_sym 0\]\}"
+    pack ${wgb}sel ${wgb}all ${wgb}none -in $wgb \
+        -side left -padx 3 -pady 3
+
+    # trees with collections and markers, lang and other separately
+    set wgt ".tlcoll.$t"
     ttk::treeview $wgt -columns {mk desc} -show {headings} \
-        -height 20 -selectmode extended -yscrollcommand "${wgt}sc set"
+        -selectmode extended -yscrollcommand "${wgt}sc set"
     $wgt heading "mk" -text ""
     if {$t eq "lang"} {
       $wgt heading "desc" -text [__ "Languages"]
     } else {
       $wgt heading "desc" -text [__ "Other collections"]
     }
-
+    # and their vertical scrollbars
     ttk::scrollbar ${wgt}sc -orient vertical -command "$wgt yview"
     $wgt column mk -width [expr {$::cw * 3}] -stretch 0
-    ppack $wgt -in ${wgt}f -side left -fill x -expand 1
-    ppack ${wgt}sc -in ${wgt}f -side left -fill y
+    $wgt column desc -stretch 1
 
     bind $wgt <space> {toggle_coll %W [%W focus]}
     bind $wgt <Return> {toggle_coll %W [%W focus]}
     bind $wgt <ButtonRelease-1> {toggle_coll %W [%W identify item %x %y]}
   }
-  .tlcoll.lang column desc -width $max_width_lang -stretch 1
-  .tlcoll.other column desc -width $max_width_other -stretch 1
+  grid .tlcoll.blang x .tlcoll.bother -in .tlcoll.both -sticky w
+  grid .tlcoll.lang .tlcoll.langsc .tlcoll.other .tlcoll.othersc \
+      -in .tlcoll.both
+  grid columnconfigure .tlcoll.both 0 -weight 1
+  grid columnconfigure .tlcoll.both 1 -weight 0
+  grid columnconfigure .tlcoll.both 2 -weight 2
+  grid columnconfigure .tlcoll.both 3 -weight 0
+  grid configure .tlcoll.lang .tlcoll.other .tlcoll.langsc .tlcoll.othersc \
+      -sticky nsew
+  grid rowconfigure .tlcoll.both 1 -weight 1
+
 
   foreach c [array names ::coll_descs] {
     if [string equal -length 15 "collection-lang" $c] {
@@ -882,6 +877,7 @@ proc select_collections {} {
   }
 
   wm protocol .tlcoll WM_DELETE_WINDOW {.tlcoll.cancel invoke}
+  wm resizable .tlcoll 1 1
   place_dlg .tlcoll .
 }; # select_collections
 
@@ -1012,6 +1008,11 @@ if {$::tcl_platform(platform) ne "windows"} {
     pgrid [ttk::label .edsyms.warn -foreground red] \
         -in .edsyms.fr0 -column 2 -columnspan 2 -sticky w
 
+    grid columnconfigure .edsyms.fr0 0 -weight 0
+    grid columnconfigure .edsyms.fr0 1 -weight 0
+    grid columnconfigure .edsyms.fr0 2 -weight 1
+    grid columnconfigure .edsyms.fr0 3 -weight 0
+
     # ok, cancel
     pack [ttk::frame .edsyms.fr1] -expand 1 -fill both
     ppack [ttk::button .edsyms.ok -text [__ "Ok"] -command {
@@ -1022,6 +1023,7 @@ if {$::tcl_platform(platform) ne "windows"} {
     check_sym_entries
 
     wm protocol .edsyms  WM_DELETE_WINDOW {.edsyms.cancel invoke}
+    wm resizable .edsyms 1 0
     place_dlg .edsyms .
   }
 }
@@ -1053,11 +1055,11 @@ proc run_menu {} {
   pack .title -pady 10 -in .bg
 
   pack [ttk::separator .seph0 -orient horizontal] \
-      -in .bg -pady 3 -fill x -expand 1
+      -in .bg -pady 3 -fill x
 
   # frame at bottom with install/quit buttons
   pack [ttk::frame .final] \
-      -in .bg -side bottom -pady [list 5 2] -fill x -expand 1
+      -in .bg -side bottom -pady [list 5 2] -fill x
   ppack [ttk::button .install -text [__ "Install"] -command {
     set ::menu_ans "startinst"}] -in .final -side right
   ppack [ttk::button .quit -text [__ "Quit"] -command {
@@ -1070,11 +1072,11 @@ proc run_menu {} {
     }] -in .final -side left
   }
   pack [ttk::separator .seph1 -orient horizontal] \
-      -in .bg -side bottom -pady 3 -fill x -expand 1
+      -in .bg -side bottom -pady 3 -fill x
 
   # directories, selections
   if $::advanced {
-    pack [ttk::frame .left] -in .bg -side left -fill y -expand 1
+    pack [ttk::frame .left] -in .bg -side left -fill both -expand 1
     set curf .left
   } else {
     pack [ttk::frame .main] -in .bg -side top -fill both -expand 1
@@ -1084,7 +1086,7 @@ proc run_menu {} {
   # labelframes do not look quite right on macos
 
   # directory section
-  pack [ttk::frame .dirf] -in $curf -fill x -expand 1
+  pack [ttk::frame .dirf] -in $curf -fill x
   grid columnconfigure .dirf 1 -weight 1
   set rw -1
 
@@ -1139,7 +1141,7 @@ proc run_menu {} {
 
     # platforms section
     if {$::tcl_platform(platform) ne "windows"} {
-      pack [ttk::frame .platf] -in .left -fill x -expand 1
+      pack [ttk::frame .platf] -in .left -fill x
       grid columnconfigure .platf 1 -weight 1
       set rw -1
 
@@ -1165,7 +1167,7 @@ proc run_menu {} {
     }
 
     # Selections section
-    pack [ttk::frame .selsf] -in .left -fill x -expand 1
+    pack [ttk::frame .selsf] -in .left -fill x
     grid columnconfigure .selsf 1 -weight 1
     set rw -1
 
@@ -1208,10 +1210,11 @@ proc run_menu {} {
   if $::advanced {
 
     pack [ttk::separator .sepv -orient vertical] \
-        -in .bg -side left -padx 3 -fill y -expand 1
-    pack [ttk::frame .options] -in .bg -side right -fill y -expand 1
+        -in .bg -side left -padx 3 -fill y
+    pack [ttk::frame .options] -in .bg -side right -fill both -expand 1
 
     set curf .options
+    grid columnconfigure .options 0 -weight 1
     set rw -1
 
     incr rw
