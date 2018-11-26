@@ -25,6 +25,7 @@ $mirrors = {
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
+      'http://ctan.asis.io/' => 1,
       'http://ctan.um.ac.ir/' => 1,
       'http://ctan.yazd.ac.ir/' => 1,
       'http://repo.iut.ac.ir/tex-archive/' => 1
