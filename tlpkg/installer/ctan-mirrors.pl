@@ -13,12 +13,10 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
-      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
       'http://mirrors.shu.edu.cn/CTAN/' => 1,
-      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
-      'http://mirrors.ustc.edu.cn/CTAN/' => 1
+      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
     },
     'India' => {
       'http://ctan.imsc.res.in/' => 1,
@@ -111,7 +109,6 @@ $mirrors = {
       'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
     'Portugal' => {
-      'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
       'ftp://ftp.ist.utl.pt/pub/ctan/' => 1,
       'http://mirrors.up.pt/pub/CTAN/' => 1
     },
