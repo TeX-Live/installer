@@ -16,7 +16,6 @@ $mirrors = {
       'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
-      'http://mirrors.shu.edu.cn/CTAN/' => 1,
       'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
     },
     'India' => {
@@ -30,6 +29,7 @@ $mirrors = {
       'http://repo.iut.ac.ir/tex-archive/' => 1
     },
     'Japan' => {
+      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
@@ -45,6 +45,7 @@ $mirrors = {
       'http://mirror.pregi.net/tex-archive/' => 1
     },
     'Taiwan' => {
+      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
       'http://ftp.yzu.edu.tw/CTAN/' => 1
     },
     'Thailand' => {
@@ -85,7 +86,8 @@ $mirrors = {
       'http://ctan.space-pro.be/tex-archive/' => 1,
       'http://ftp.fau.de/ctan/' => 1,
       'http://mirror.informatik.hs-fulda.de/tex-archive/' => 1,
-      'http://packages.oth-regensburg.de/ctan/' => 1
+      'http://packages.oth-regensburg.de/ctan/' => 1,
+      'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1
     },
     'Greece' => {
       'http://ftp.cc.uoc.gr/mirrors/CTAN/' => 1
