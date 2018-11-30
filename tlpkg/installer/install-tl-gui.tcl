@@ -227,11 +227,19 @@ proc show_log {{do_abort 0}} {
   # buttons at bottom
   pack [ttk::frame .bottom] -in .bg -side bottom -fill x
   ttk::button .close -text [__ "Close"] -command exit
-  ppack .close -in .bottom -side right; # -anchor e
+  ppack .close -in .bottom -side right
   if $do_abort {
-    ttk::button .abort -text [__ "Cancel"] \
-        -command {catch {chan close $::inst}; exit}
+    ttk::button .abort -text [__ "Cancel"]  -command {
+      set ans [tk_messageBox -message [__ "Really abort?"] -type yesno \
+                   -default no]
+      if {$ans eq "no"} return
+      catch {chan close $::inst}
+      exit
+    }
     ppack .abort -in .bottom -side right
+  }
+  bind . <Escape> {
+    if {[winfo exists .close] && ! [.close instate disabled]} {.close invoke}
   }
 
   # logs plus their scrollbars
@@ -315,6 +323,7 @@ proc edit_name {} {
   ttk::entry .tled.e -width 20 -state normal
   pack .tled.e -in .tled.bg -pady 5
   .tled.e insert 0 [.tltd.name_l cget -text]
+
   # now frame with ok and cancel buttons
   pack [ttk::frame .tled.buttons] -in .tled.bg -fill x
   ttk::button .tled.ok_b -text [__ "Ok"] -command {
@@ -323,12 +332,13 @@ proc edit_name {} {
     } else {
       .tltd.name_l configure -text [.tled.e get]
       update_full_path
-      destroy .tled
+      end_dlg "" .tled
     }
   }
   ppack .tled.ok_b -in .tled.buttons -side right -padx 5 -pady 5
-  ttk::button .tled.q_b -text [__ "Cancel"] -command {destroy .tled}
+  ttk::button .tled.q_b -text [__ "Cancel"] -command {end_dlg "" .tled}
   ppack .tled.q_b -in .tled.buttons -side right -padx 5 -pady 5
+  bind .tled <Escape> {.tled.q_b invoke}
 
   wm protocol .tled WM_DELETE_WINDOW {.tled.q_b invoke}
   wm resizable .tled 0 0
@@ -347,8 +357,12 @@ proc toggle_rel {} {
       return
     }
     .tltd.rel_l configure -text ""
+    .tltd.sep1_l configure -text " "
+    .tltd.rel_b configure -text [__ "Add year"]
   } else {
     .tltd.rel_l configure -text $::release_year
+    .tltd.sep1_l configure -text [file separator]
+    .tltd.rel_b configure -text [__ "Remove year"]
   }
   update_full_path
 } ; # toggle_rel
@@ -388,8 +402,8 @@ proc texdir_setup {} {
   pack [ttk::frame .tltd.bg -padding 3] -expand 1 -fill both
 
   # full path
-  ppack [ttk::label .tltd.path_l -font lfont -anchor center] \
-      -in .tltd.bg -fill x -expand 1
+  pack [ttk::label .tltd.path_l -font lfont -anchor center] \
+      -in .tltd.bg -pady 10 -fill x -expand 1
 
   # installation root components, gridded
   pack [ttk::frame .tltd.fr1 -borderwidth 2 -relief groove] \
@@ -415,7 +429,7 @@ proc texdir_setup {} {
       -in .tltd.fr1 -row $rw -column 0
   pgrid [ttk::button .tltd.name_b -text [__ "Change"] -command edit_name] \
       -in .tltd.fr1 -row $rw -column 2
-  pgrid [ttk::button .tltd.rel_b -text [__ "Toggle year"] \
+  pgrid [ttk::button .tltd.rel_b -text [__ "Remove year"] \
       -command toggle_rel] \
       -in .tltd.fr1 -row $rw -column 4
 
@@ -434,6 +448,7 @@ proc texdir_setup {} {
   ttk::button .tltd.cancel_b -text [__ "Cancel"] \
              -command {destroy .tltd}
   ppack .tltd.cancel_b -in .tltd.frbt -side right
+  bind .tltd <Escape> {.tltd.cancel_b invoke}
 
   ### initialization and callbacks ###
 
@@ -516,6 +531,7 @@ proc edit_dir {d} {
   ppack .td.ok -in .td.f -side right
   ttk::button .td.cancel -text [__ "Cancel"] -command {end_dlg "" .td}
   ppack .td.cancel -in .td.f -side right
+  bind .td <Escape> {.td.cancel invoke}
 
   wm protocol .td WM_DELETE_WINDOW {.td.cancel invoke}
   wm resizable .td 1 0
@@ -674,6 +690,7 @@ proc select_binaries {} {
   ppack .tlbin.ok -in .tlbin.buts -side right
   ttk::button .tlbin.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlbin}
   ppack .tlbin.cancel -in .tlbin.buts -side right
+  bind .tlbin <Escape> {.tlbin.cancel invoke}
 
   #set max_width 0
   #foreach b [array names ::bin_descs] {
@@ -742,6 +759,7 @@ proc select_scheme {} {
   ppack .tlschm.ok -in .tlschm.buts -side right
   ttk::button .tlschm.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlschm}
   ppack .tlschm.cancel -in .tlschm.buts -side right
+  bind .tlschm <Escape> {.tlschm.cancel invoke}
 
   # schemes list
   #set max_width 0
@@ -816,6 +834,7 @@ proc select_collections {} {
   ppack .tlcoll.ok -in .tlcoll.butf -side right
   ttk::button .tlcoll.cancel -text [__ "Cancel"] -command {end_dlg 0 .tlcoll}
   ppack .tlcoll.cancel -in .tlcoll.butf -side right
+  bind .tlcoll <Escape> {.tlcoll.cancel invoke}
 
   # Treeview and scrollbar for non-language- and language collections resp.
   pack [ttk::frame .tlcoll.both] -in .tlcoll.bg -expand 1 -fill both
@@ -995,7 +1014,7 @@ if {$::tcl_platform(platform) ne "windows"} {
       }; # else leave empty
       bind .edsyms.${v}e <KeyRelease> {+check_sym_entries}
       # browse button
-      pgrid [ttk::button .edsyms.${v}br -text [__ "browse..."] -command \
+      pgrid [ttk::button .edsyms.${v}br -text [__ "Browse..."] -command \
                  "dirbrowser2widget .edsyms.${v}e; check_sym_entries"] \
          -in .edsyms.fr0 -row $rw -column 3
     }
@@ -1019,6 +1038,7 @@ if {$::tcl_platform(platform) ne "windows"} {
       commit_sym_entries; end_dlg 1 .edsyms}] -in .edsyms.fr1 -side right
     ppack [ttk::button .edsyms.cancel -text [__ "Cancel"] -command {
       end_dlg 0 .edsyms}] -in .edsyms.fr1 -side right
+    bind .edsyms <Escape> {.edsyms.cancel invoke}
 
     check_sym_entries
 
@@ -1040,7 +1060,9 @@ if {$::tcl_platform(platform) ne "windows"} {
 # instead of wizard install, supppress some options
 
 proc run_menu {} {
-  if [info exists ::env(dbgui)] {puts "dbgui: run_menu: advanced is now $::advanced"}
+  if [info exists ::env(dbgui)] {
+    puts "dbgui: run_menu: advanced is now $::advanced"
+  }
   wm withdraw .
   foreach c [winfo children .] {
     destroy $c
@@ -1065,6 +1087,7 @@ proc run_menu {} {
   ppack [ttk::button .quit -text [__ "Quit"] -command {
     set ::out_log {}
     set ::menu_ans "no_inst"}] -in .final -side right
+  bind . <Escape> whataboutclose
   if {!$::advanced} {
     ppack [ttk::button .adv -text [__ "Advanced"] -command {
       set ::menu_ans "advanced"
@@ -1550,6 +1573,7 @@ proc whataboutclose {} {
   }
   # no action for close button of splash screen
 }
+
 proc main_prog {} {
 
   wm title . [__ "TeX Live Installer"]
