@@ -13,10 +13,10 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
-      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
-      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
+      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
+      'http://mirrors.ustc.edu.cn/CTAN/' => 1
     },
     'India' => {
       'http://ctan.imsc.res.in/' => 1,
@@ -29,6 +29,7 @@ $mirrors = {
       'http://repo.iut.ac.ir/tex-archive/' => 1
     },
     'Japan' => {
+      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
@@ -44,7 +45,8 @@ $mirrors = {
       'http://mirror.pregi.net/tex-archive/' => 1
     },
     'Taiwan' => {
-      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1
+      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
+      'http://ftp.yzu.edu.tw/CTAN/' => 1
     },
     'Thailand' => {
       'http://mirror.kku.ac.th/CTAN/' => 1
