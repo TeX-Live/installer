@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-12-07 02:23+0100\n"
+"POT-Creation-Date: 2018-12-08 02:23+0100\n"
 "PO-Revision-Date: 2017-05-05 07:57+0800\n"
 "Last-Translator: Vladimir Lomov <irk.translator@yandex.ru>\n"
 "Language-Team: Russian <tldoc@tug.org>\n"
@@ -1906,7 +1906,7 @@ msgid "Paper"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2005
-msgid "GUI language (restarts shell)"
+msgid "GUI language (restarts tlshell)"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2022

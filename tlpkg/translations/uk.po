@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2010\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-12-07 02:23+0100\n"
+"POT-Creation-Date: 2018-12-08 02:23+0100\n"
 "PO-Revision-Date: 2013-08-07 08:27+0300\n"
 "Last-Translator: Andriy Bandura <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <andriykopanytsia@gmail.com>\n"
@@ -1889,7 +1889,7 @@ msgid "Paper"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2005
-msgid "GUI language (restarts shell)"
+msgid "GUI language (restarts tlshell)"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2022

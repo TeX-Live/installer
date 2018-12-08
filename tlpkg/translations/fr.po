@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2018-12-07 02:23+0100\n"
+"POT-Creation-Date: 2018-12-08 02:23+0100\n"
 "PO-Revision-Date: 2018-11-08 08:01+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -1931,7 +1931,7 @@ msgid "Paper"
 msgstr "Papier"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2005
-msgid "GUI language (restarts shell)"
+msgid "GUI language (restarts tlshell)"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2022
