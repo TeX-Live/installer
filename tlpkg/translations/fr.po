@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2018-12-08 02:23+0100\n"
-"PO-Revision-Date: 2018-11-08 08:01+0100\n"
+"PO-Revision-Date: 2018-12-09 11:00+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -1331,8 +1331,8 @@ msgid ""
 "Please wait a bit after the program has terminated so that the update can be "
 "completed."
 msgstr ""
-"Veuillez attendre un peu après la fin de l'exécution du programme pour que "
-"la mise à jour puisse se terminer."
+"Veuillez attendre un peu après la fin de l'exécution du programme que "
+"la mise à jour puisse soit terminée."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2357
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2359
@@ -1485,7 +1485,7 @@ msgstr "Chargement..."
 
 #: tlpkg/installer/install-tl-gui.tcl:233
 msgid "Really abort?"
-msgstr ""
+msgstr "Vraiment annuler ?"
 
 #: tlpkg/installer/install-tl-gui.tcl:302
 msgid "Cannot be created or cannot be written to"
@@ -1513,12 +1513,12 @@ msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:361
 msgid "Add year"
-msgstr ""
+msgstr "Ajouter l'année"
 
 #: tlpkg/installer/install-tl-gui.tcl:365
 #: tlpkg/installer/install-tl-gui.tcl:432
 msgid "Remove year"
-msgstr ""
+msgstr "Supprimer l'année"
 
 #: tlpkg/installer/install-tl-gui.tcl:399
 #: tlpkg/installer/install-tl-gui.tcl:1118
@@ -1559,7 +1559,7 @@ msgstr "Collections"
 
 #: tlpkg/installer/install-tl-gui.tcl:847
 msgid "Select"
-msgstr ""
+msgstr "Sélectionner"
 
 #: tlpkg/installer/install-tl-gui.tcl:863
 msgid "Languages"
@@ -1768,7 +1768,7 @@ msgstr "Enregistrer et charger"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1207
 msgid "Abort"
-msgstr "Interrompre"
+msgstr "Annuler"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1226
 #, tcl-format
@@ -1896,7 +1896,7 @@ msgstr "Charger le dépôt par défaut"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1970
 msgid "Exit"
-msgstr "Terminer"
+msgstr "Quitter"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1979
 msgid "Regenerate filename database"
@@ -1932,7 +1932,7 @@ msgstr "Papier"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2005
 msgid "GUI language (restarts tlshell)"
-msgstr ""
+msgstr "Langue de l'interface (redémarre tlshell)"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2022
 msgid ""
@@ -1941,10 +1941,14 @@ msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk\n"
 msgstr ""
+"© 2017, 2018 Siep Kroonenberg\n"
+"\n"
+"Interface graphique pour le TeX Live Manager\n"
+"Implémenté en Tcl/Tk\n"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2027
 msgid "tlmgr help"
-msgstr ""
+msgstr "Aide du tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2044
 msgid "Restart self"
@@ -1988,7 +1992,7 @@ msgstr "Mise à jour possible"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2098
 msgid "Detail >> Global"
-msgstr ""
+msgstr "Détail >> Global"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2101
 msgid "Collections and schemes"
@@ -2000,23 +2004,23 @@ msgstr "Schémas seulement"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2111
 msgid "Mark all"
-msgstr "Tout marquer"
+msgstr "Tout sélectionner"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2113
 msgid "Mark none"
-msgstr "Ne rien marquer"
+msgstr "Ne rien sélectionner"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2119
 msgid "Install marked"
-msgstr "Installer ce qui est marqué"
+msgstr "Installer ce qui est sélectionné"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2123
 msgid "Update marked"
-msgstr "Mettre à jour ce qui est marqué"
+msgstr "Mettre à jour ce qui est sélectionné"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2127
 msgid "Remove marked"
-msgstr "Supprimer ce qui est marqué"
+msgstr "Supprimer ce qui est sélectionné"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2132
 msgid "Restore from backup..."
@@ -2036,11 +2040,11 @@ msgstr "Rechercher"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2150
 msgid "By name"
-msgstr ""
+msgstr "Par nom"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2152
 msgid "By name and description"
-msgstr ""
+msgstr "Par nom et description"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2164
 msgid "Name"
