@@ -144,11 +144,9 @@ sub from_file {
       $category = $1;
 
     } elsif ($line =~ /^shortdesc\s*(.*)$/) {
-      # although we would like to do this, hyphen-latin.tlpsrc contains
-      # multiple short/longdesc, entries. Not worth following up.
-      # $shortdesc
-      #   && die "$srcfile:$lineno: second shortdesc not allowed: $line"
-      #          . "(have $shortdesc)\n";
+      $shortdesc
+        && die "$srcfile:$lineno: second shortdesc not allowed: $line"
+               . "(have $shortdesc)\n";
       $shortdesc = $1;
 
     } elsif ($line =~ /^shortdesc$/) {
