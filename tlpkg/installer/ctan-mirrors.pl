@@ -4,7 +4,6 @@ $mirrors = {
       'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
     },
     'South Africa' => {
-      'http://ctan.mirror.ac.za/' => 1,
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1
@@ -32,7 +31,6 @@ $mirrors = {
       'http://repo.iut.ac.ir/tex-archive/' => 1
     },
     'Japan' => {
-      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
@@ -113,7 +111,6 @@ $mirrors = {
       'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
     'Portugal' => {
-      'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
       'ftp://ftp.ist.utl.pt/pub/ctan/' => 1,
       'http://mirrors.up.pt/pub/CTAN/' => 1
     },
