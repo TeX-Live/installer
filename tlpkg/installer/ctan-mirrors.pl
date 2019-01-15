@@ -177,9 +177,6 @@ $mirrors = {
     }
   },
   'South America' => {
-    'Brazil' => {
-      'http://linorg.usp.br/CTAN/' => 1
-    },
     'Chile' => {
       'http://ftp.inf.utfsm.cl/pub/tex-archive/' => 1
     }
