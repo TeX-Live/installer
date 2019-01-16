@@ -6,7 +6,6 @@ $mirrors = {
     'South Africa' => {
       'http://ctan.mirror.ac.za/' => 1,
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
-      'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1
     }
   },
@@ -177,6 +176,9 @@ $mirrors = {
     }
   },
   'South America' => {
+    'Brazil' => {
+      'http://linorg.usp.br/CTAN/' => 1
+    },
     'Chile' => {
       'http://ftp.inf.utfsm.cl/pub/tex-archive/' => 1
     }
