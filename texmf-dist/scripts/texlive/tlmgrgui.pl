@@ -1367,7 +1367,7 @@ sub do_paper_settings {
       if (($p eq "context") && !defined($localtlpdb->get_package("bin-context"))) {
         next;
       }
-      $l{$p} = $back_config_pap->Label(-text => __("Default paper for") . " $p", -anchor => "w");
+      $l{$p} = $back_config_pap->Label(-text => __("Default paper for %s", $p), -anchor => "w");
       $m{$p} = $back_config_pap->Label(-textvariable => \$changedpaper{$p}, -anchor => "w");
       $settings_label{$p} = $m{$p};
       $r{$p} = $back_config_pap->Button(-text => __("Change"),
@@ -1768,11 +1768,11 @@ sub change_paper {
 sub select_paper {
   my $back_config = shift;
   my $prog = shift;
-  my $foo = $back_config->Toplevel(-title => __("Select paper format for") . " $prog");
+  my $foo = $back_config->Toplevel(-title => __("Select paper format for %s", $prog));
   $foo->transient($back_config);
   $foo->grab();
   my $var = $changedpaper{$prog};
-  my $opt = $foo->BrowseEntry(-label => __("Default paper for") . " $prog", -variable => \$var);
+  my $opt = $foo->BrowseEntry(-label => __("Default paper for %s", $prog), -variable => \$var);
   foreach my $p (sort @{$papers{$prog}}) {
     $opt->insert("end",$p);
   }
@@ -2489,7 +2489,7 @@ sub cb_edit_string_or_dir {
   my $sw = $mw->Toplevel(-title => __("Edit directory"));
   $sw->transient($mw);
   $sw->withdraw;
-  $sw->Label(-text => __("New value for") . " $what:")->pack(@p_ii);
+  $sw->Label(-text => __("New value for %s:", $what))->pack(@p_ii);
   my $entry = $sw->Entry(-text => $cur, -width => 30);
   $entry->pack(@p_ii);
   $sw->Button(-text => __("Choose Directory"),

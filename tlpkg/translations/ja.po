@@ -1188,8 +1188,8 @@ msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1370
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1775
-msgid "Default paper for"
-msgstr "用紙サイズ：適用先＝"
+msgid "Default paper for %s"
+msgstr "%s のデフォルト用紙サイズ"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
@@ -1255,8 +1255,8 @@ msgid "Revert"
 msgstr "戻す"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1771
-msgid "Select paper format for"
-msgstr "用紙寸法を選択してください：適用先＝"
+msgid "Select paper format for %s"
+msgstr "%s 用に用紙サイズを選択してください"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1798
 msgid "keep arbitrarily many"
@@ -1360,8 +1360,8 @@ msgid "Edit directory"
 msgstr "ディレクトリを編集"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
-msgid "New value for"
-msgstr "新しい値：適用項目＝"
+msgid "New value for %s:"
+msgstr "%s の新しい値"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"
