@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2018-12-08 02:23+0100\n"
 "PO-Revision-Date: 2015-05-12 17:27+0900\n"
-"Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>, 2019\n"
+"Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -81,12 +81,12 @@ msgstr "メニューショートカットを追加"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1828
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1832
 msgid "Change file associations"
-msgstr "ファイルの関連付けを変更する"
+msgstr "ファイルの関連付けを変更"
 
 #: tlpkg/installer/install-menu-wizard.pl:44
 #: tlpkg/installer/install-menu-perltk.pl:511
 msgid "Adjust PATH setting in registry"
-msgstr "レジストリの PATH 設定を調整する"
+msgstr "レジストリの PATH 設定を調整"
 
 #: tlpkg/installer/install-menu-wizard.pl:45
 #: tlpkg/installer/install-menu-perltk.pl:556
@@ -151,7 +151,7 @@ msgstr ""
 #: tlpkg/installer/install-menu-wizard.pl:177
 msgid ""
 "In case of trouble, try to disable your virus scanner during installation."
-msgstr "トラブルが発生した場合は，ウィルス対策ソフトを無効化してみてください．"
+msgstr "トラブルが発生した場合は，ウイルス対策ソフトを無効化してみてください．"
 
 #: tlpkg/installer/install-menu-wizard.pl:179
 msgid ""
@@ -202,7 +202,7 @@ msgstr "リポジトリを選択"
 
 #: tlpkg/installer/install-menu-wizard.pl:248
 msgid "Mirror:"
-msgstr "ミラー:"
+msgstr "ミラー："
 
 #: tlpkg/installer/install-menu-wizard.pl:300
 msgid "Continent"
@@ -242,7 +242,7 @@ msgid ""
 "     local: %s\n"
 "repository: %s"
 msgstr ""
-"ローカルにインストール済の TeX Live のバージョンと\n"
+"ローカルにインストール済みの TeX Live のバージョンと\n"
 "アクセスしたリポジトリのバージョンに互換性がありません:\n"
 "  ローカル：%s\n"
 "リポジトリ：%s"
@@ -250,7 +250,7 @@ msgstr ""
 #: tlpkg/installer/install-menu-wizard.pl:423
 #: tlpkg/installer/install-menu-wizard.pl:587
 msgid "Destination folder:"
-msgstr "インストール先のフォルダ:"
+msgstr "インストール先のフォルダ："
 
 #: tlpkg/installer/install-menu-wizard.pl:425
 #: tlpkg/installer/install-menu-perltk.pl:317
@@ -301,7 +301,7 @@ msgstr "必要ディスク容量："
 #: tlpkg/installer/install-menu-wizard.pl:489
 #: tlpkg/installer/install-menu-perltk.pl:1091
 msgid "(default not allowed or not writable - please change!)"
-msgstr "（デフォルト値が不正または書き込み不能です―変更してください！）"
+msgstr "（デフォルト値が不正または書き込み不能です．変更してください！）"
 
 #: tlpkg/installer/install-menu-wizard.pl:534
 msgid "This screen allows you to configure some options"
@@ -486,7 +486,7 @@ msgid ""
 "  repository: %s\n"
 "Please select a different mirror."
 msgstr ""
-"ローカルにインストール済の TeX Live のバージョンと，アクセスしたリポジトリのバージョン"
+"ローカルにインストール済みの TeX Live のバージョンと，アクセスしたリポジトリのバージョン"
 "に互換性がありません：\n"
 "    ローカル：%s\n"
 "  リポジトリ：%s\n"
@@ -621,7 +621,7 @@ msgstr "続行"
 msgid ""
 "In case of trouble, try disabling your virus scanner during installation."
 msgstr ""
-msgstr "トラブルが発生した場合は，ウィルス対策ソフトを無効化してみてください．"
+msgstr "トラブルが発生した場合は，ウイルス対策ソフトを無効化してみてください．"
 
 #: tlpkg/installer/install-menu-perltk.pl:681
 msgid ""
@@ -740,7 +740,7 @@ msgid ""
 "\n"
 "Most buttons will be disabled."
 msgstr ""
-"インストール済のものを変更する権限がありません．\n"
+"インストール済みのものを変更する権限がありません．\n"
 "具体的には，ディレクトリ %s が書き込み可能になっていません．\n"
 "このプログラムを管理者として実行するか，コンピュータの管理者に連絡を"
 "とってください．\n"
@@ -794,7 +794,7 @@ msgstr "すべて"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:326
 msgid "installed"
-msgstr "インストール済"
+msgstr "インストール済み"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:328
 msgid "not installed"
@@ -874,7 +874,7 @@ msgstr "概要"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:434
 msgid "Update all installed"
-msgstr "インストール済のものをすべてアップデート"
+msgstr "インストール済みのものをすべてアップデート"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:438
 msgid "Reinstall previously removed packages"
@@ -916,7 +916,7 @@ msgstr "コマンドラインレポジトリの読み込み："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:537
 msgid "Load standard net repository："
-msgstr "標準ネットリポジトリの読み込み："
+msgstr "標準ネットワークリポジトリの読み込み："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:540
 msgid "Load other repository ..."
@@ -932,7 +932,7 @@ msgstr "用紙…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:555
 msgid "Platforms ..."
-msgstr "プラットフォーム"
+msgstr "プラットフォーム…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:559
 msgid "GUI Language ..."
@@ -985,7 +985,7 @@ msgstr "TeX Live %s をアンインストール…"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:628
 #, perl-format
 msgid "Remove TeX Live %s"
-msgstr "TeX Live %s をアンインストール…"
+msgstr "TeX Live %s をアンインストール"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:635
 msgid "Complete removal finished"
@@ -1027,7 +1027,7 @@ msgstr "詳細："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:699
 msgid "Installed:"
-msgstr "インストール済:"
+msgstr "インストール済み："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:702
 msgid "Local revision:"
@@ -1059,7 +1059,7 @@ msgstr "プライマリ設定:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:734
 msgid "Secondary characterization:"
-msgstr "セカンダリ設定:"
+msgstr "セカンダリ設定："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:745
 msgid "Collection:"
@@ -1080,19 +1080,19 @@ msgstr "バイナリ依存："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:793
 msgid "Runfiles:"
-msgstr "実行ファイル:"
+msgstr "実行ファイル："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:794
 msgid "Docfiles:"
-msgstr "ドキュメントファイル:"
+msgstr "ドキュメントファイル："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:795
 msgid "Srcfiles:"
-msgstr "ソースファイル:"
+msgstr "ソースファイル："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:807
 msgid "Binfiles:"
-msgstr "バイナリファイル:"
+msgstr "バイナリファイル："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:812
 msgid "Further information"
@@ -1381,7 +1381,7 @@ msgstr "ローカルディレクトリを選択してください"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2562
 msgid "Use standard net repository"
-msgstr "標準ネットリポジトリを使う"
+msgstr "標準ネットワークリポジトリを使う"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2578
 msgid ""
