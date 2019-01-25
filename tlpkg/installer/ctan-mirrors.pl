@@ -45,8 +45,7 @@ $mirrors = {
       'http://mirror.pregi.net/tex-archive/' => 1
     },
     'Taiwan' => {
-      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
-      'http://ftp.yzu.edu.tw/CTAN/' => 1
+      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1
     },
     'Thailand' => {
       'http://mirror.kku.ac.th/CTAN/' => 1
