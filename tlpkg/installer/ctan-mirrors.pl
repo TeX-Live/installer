@@ -1,5 +1,8 @@
 $mirrors = {
   'Africa' => {
+    'Algeria' => {
+      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
+    },
     'South Africa' => {
       'http://ctan.mirror.ac.za/' => 1,
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
@@ -45,7 +48,8 @@ $mirrors = {
       'http://mirror.pregi.net/tex-archive/' => 1
     },
     'Taiwan' => {
-      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1
+      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
+      'http://ftp.yzu.edu.tw/CTAN/' => 1
     },
     'Thailand' => {
       'http://mirror.kku.ac.th/CTAN/' => 1
@@ -110,7 +114,6 @@ $mirrors = {
     },
     'Portugal' => {
       'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
-      'ftp://ftp.ist.utl.pt/pub/ctan/' => 1,
       'http://mirrors.up.pt/pub/CTAN/' => 1
     },
     'Romania' => {
