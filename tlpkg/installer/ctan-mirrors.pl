@@ -114,6 +114,7 @@ $mirrors = {
     },
     'Portugal' => {
       'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
+      'ftp://ftp.ist.utl.pt/pub/ctan/' => 1,
       'http://mirrors.up.pt/pub/CTAN/' => 1
     },
     'Romania' => {
