@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
 # $Id$
-# 
-# Copyright 2007-2018
+# Copyright 2007-2019
 # Reinhard Kotucha, Norbert Preining, Karl Berry, Siep Kroonenberg.
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -471,7 +470,8 @@ if (TeXLive::TLCrypto::setup_checksum_method()) {
       log("Trying to verify cryptographic signatures!\n")
     } else {
       if ($opt_verify_downloads) {
-        tldie("No gpg found, verification explicitly requested on command line, quitting.\n");
+        tldie("$0: No gpg found, but verification explicitly requested "
+              . "on command line, so quitting.\n");
       } else {
         # implicitly requested, just 
         debug("Couldn't detect gpg so will proceed without verification!\n");
@@ -546,7 +546,8 @@ if (!$opt_custom_bin && (platform() eq "i386-cygwin")) {
   chomp( my $un = `uname -r`);
   if ($un =~ m/^(\d+)\.(\d+)\./) {
     if ($1 < 2 && $2 < 7) {
-      tldie("\nSorry, the TL binaries require at least cygwin 1.7.\n");
+      tldie("$0: Sorry, the TL binaries require at least cygwin 1.7, "
+            . "not $1.$2\n");
     }
   }
 }
@@ -833,8 +834,8 @@ sub final_remote_init {
       info("Platform overridden, binaries taken from $opt_custom_bin\n"
            . "and will be installed into .../bin/custom.\n");
     } else {
-      tldie("$opt_custom_bin: Argument to -custom-bin must be a directory "
-            . "with TeX Live binaries.\n");
+      tldie("$0: -custom-bin argument must be a directory "
+            . "with TeX Live binaries, not like: $opt_custom_bin\n");
     }
   }
   if ($media eq "local_uncompressed") {

@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
-# Copyright 2007-2018 Norbert Preining, Reinhard Kotucha
+# Copyright 2007-2019 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -3476,12 +3476,13 @@ sub tlwarn {
 
 =item C<tldie ($str1, $str2, ...)>
 
-Uses C<tlwarn> to issue a warning, then exits with exit code 1.
+Uses C<tlwarn> to issue a warning for @_ preceded by a newline, then
+exits with exit code 1.
 
 =cut
 
 sub tldie {
-  tlwarn(@_);
+  tlwarn("\n", @_);
   if ($::gui_mode) {
     Tk::exit(1);
   } else {
