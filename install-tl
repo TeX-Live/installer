@@ -2015,9 +2015,7 @@ sub read_profile {
         $vars{$_} = $pro{$_};
         delete($pro{$_});
       }
-      next;
-    }
-    if (m/^tlpdbopt_/) {
+    } elsif (m/^tlpdbopt_/) {
       my $o = $_;
       $o =~ s/^tlpdbopt_//;
       # we do not support setting the location in the profile
@@ -2027,15 +2025,14 @@ sub read_profile {
         $vars{$_} = $pro{$_};
         delete($pro{$_});
       }
-      next;
-    }
-    if (defined($path_keys{$_}) || 
-        m/^selected_scheme$/    ||
-        m/^binary_/             ||
-        m/^collection-/) {
-      $vars{$_} = $pro{$_};
+    } elsif (defined($path_keys{$_})
+             || m/^(selected_scheme$|binary|collection-)/) {
+      if ($pro{$_}) {
+        $vars{$_} = $pro{$_};
+      } else {
+        tldie("$0: Profile key must not be empty, quitting: $_\n");
+      }
       delete($pro{$_});
-      next;
     }
   }
   #require Data::Dumper;
