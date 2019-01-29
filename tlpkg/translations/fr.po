@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-01-23 02:24+0100\n"
+"POT-Creation-Date: 2019-01-29 02:23+0100\n"
 "PO-Revision-Date: 2018-12-09 11:00+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -1430,12 +1430,12 @@ msgstr ""
 "Veuillez consulter la fenêtre de log pour plus de détails."
 
 #: tlpkg/installer/install-tl-gui.tcl:129
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2578
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2575
 msgid "Welcome to TeX Live!"
 msgstr "Bienvenue sous TeX Live !"
 
 #: tlpkg/installer/install-tl-gui.tcl:132
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2581
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2578
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1453,7 +1453,7 @@ msgstr ""
 "html ; la page du groupe francophone est http://www.gutenberg.eu.org/."
 
 #: tlpkg/installer/install-tl-gui.tcl:136
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2586
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2583
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
