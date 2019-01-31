@@ -500,7 +500,7 @@ if (($opt_gui ne "extl") && ($opt_gui ne "text") && !$opt_no_gui && ($opt_profil
   if ($@) {
     # that didn't work out, so warn the user and continue with text mode
     tlwarn("Cannot load Tk, maybe something is missing and\n");
-    tlwarn("maybe http://tug.org/texlive/distro.html#perltk can help.\n");
+    tlwarn("maybe https://tug.org/texlive/distro.html#perltk can help.\n");
     tlwarn("Error message from loading Tk:\n");
     tlwarn("  $@\n");
     tlwarn("Continuing in text mode...\n");
@@ -794,7 +794,7 @@ and the repository being accessed are not compatible:
  repository: $texlive_release
 Perhaps you need to use a different CTAN mirror?
 (For more, see the output of install-tl --help, especially the
- -repository option.  Online via http://tug.org/texlive/doc.)
+ -repository option.  Online via https://tug.org/texlive/doc.)
 =============================================================================
 END_MISMATCH
   }
@@ -903,8 +903,7 @@ sub do_installation {
   }
   if ($vars{'selected_scheme'} ne "scheme-infraonly"
       && $vars{'n_collections_selected'} <= 0) {
-    tlwarn("Nothing selected, nothing to install, exiting!\n");
-    exit 1;
+    tldie("$0: Nothing selected, nothing to install, exiting!\n");
   }
   # maybe_make_ro tests for admin, local drive and NTFS before proceeding.
   # making the root read-only automatically locks everything below it.
@@ -942,7 +941,7 @@ sub do_installation {
         && ! -e "$vars{TEXDIR}/release-texlive.txt") {
       copy("$::installerdir/release-texlive.txt", "$vars{TEXDIR}/");
     }
-
+    #
     calc_depends();
     save_options_into_tlpdb();
     # we need to do that dir, since we use the TLPDB->install_package which
@@ -1126,7 +1125,7 @@ operations might be disturbed.\n\n";
   my $errcount = 0;
 
   if (!$opt_in_place) {
-    $errcount += wsystem("running", 'mktexlsr', "$TEXDIR/texmf-dist");
+    wsystem("running", 'mktexlsr', "$TEXDIR/texmf-dist") && exit(1);
   }
 
   # we have to generate the various config file. That could be done with
@@ -1165,8 +1164,9 @@ operations might be disturbed.\n\n";
     "$TEXMFSYSVAR/tex/generic/config/language.dat.lua",
     "$TEXMFLOCAL/tex/generic/config/language-local.dat.lua");
 
-  $errcount += wsystem("running", "mktexlsr",
-                       $TEXMFSYSVAR, $TEXMFSYSCONFIG, "$TEXDIR/texmf-dist");
+  wsystem("running", "mktexlsr",
+                     $TEXMFSYSVAR, $TEXMFSYSCONFIG, "$TEXDIR/texmf-dist")
+  && exit(1);
 
   if (-x "$plat_bindir/updmap-sys$progext") {
     $errcount += run_postinst_cmd("updmap-sys --nohash");
@@ -1196,7 +1196,7 @@ operations might be disturbed.\n\n";
   }
 
   # now rerun mktexlsr for updmap-sys and tlmgr paper letter updates.
-  $errcount += wsystem("re-running", "mktexlsr", $TEXMFSYSVAR,$TEXMFSYSCONFIG);
+  wsystem("re-running", "mktexlsr", $TEXMFSYSVAR, $TEXMFSYSCONFIG) && exit(1);
 
   if (win32() and !$vars{'instopt_portable'} and !$opt_in_place) {
     if ($vars{'tlpdbopt_desktop_integration'} != 2) {
@@ -1763,7 +1763,7 @@ sub load_tlpdb {
 
 You may want to try specifying an explicit or different CTAN mirror;
 see the information and examples for the -repository option at
-http://tug.org/texlive/doc/install-tl.html
+https://tug.org/texlive/doc/install-tl.html
 (or in the output of install-tl --help).
 
 You can also rerun the installer with -select-repository
@@ -2025,14 +2025,22 @@ sub read_profile {
         $vars{$_} = $pro{$_};
         delete($pro{$_});
       }
-    } elsif (defined($path_keys{$_})
-             || m/^(selected_scheme$|binary|collection-)/) {
+
+    } elsif (defined($path_keys{$_}) || m/^selected_scheme$/) {
       if ($pro{$_}) {
         $vars{$_} = $pro{$_};
+        delete($pro{$_});
       } else {
-        tldie("$0: Profile key must not be empty, quitting: $_\n");
+        tldie("$0: Quitting, profile key for path $_ must not be empty.\n");
       }
-      delete($pro{$_});
+    
+    } elsif (m/^(binary|collection-)/) {
+      if ($pro{$_} =~ /^[01]$/) {
+        $vars{$_} = $pro{$_};
+        delete($pro{$_});
+      } else {
+        tldie("$0: Quitting, profile key for $_ must be 0 or 1, not: $pro{$_}\n");
+      }
     }
   }
   #require Data::Dumper;
@@ -2126,6 +2134,7 @@ sub do_install_packages {
 # for later complete removal we want to save some options and values
 # into the local tlpdb:
 # - should links be set, and if yes, the destination (bin,man,info)
+#
 sub save_options_into_tlpdb {
   # if we are told to adjust the repository *and* we are *not*
   # installing from the network already, we adjust the repository
@@ -2149,7 +2158,9 @@ sub save_options_into_tlpdb {
   if ($opt_custom_bin) {
     push @archs, "custom";
   }
-
+  if (! @archs) {
+    tldie("$0: No binary platform specified/available, quitting.\n");
+  }
   # only if we forced the platform we do save this option into the tlpdb
   if (defined($opt_force_arch)) {
     $localtlpdb->setting ("platform", $::_platform_);
@@ -2525,7 +2536,7 @@ sub create_welcome {
   push @::welcome_arr, __("Welcome to TeX Live!");
   push @::welcome_arr, "\n";
   push @::welcome_arr, __(
-    "See %s/index.html for links to documentation.\nThe TeX Live web site (http://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at http://tug.org/usergroups.html.",
+    "See %s/index.html for links to documentation.\nThe TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html.",
     $::vars{'TEXDIR'});
   if (!win32()) {
     push @::welcome_arr, "\n";
@@ -2635,7 +2646,7 @@ This installer creates a runnable TeX Live installation from various
 media, including over the network, from local hard disk, a DVD, etc. The
 installer works on all platforms supported by TeX Live. For information
 on initially downloading TeX Live, see
-L<http://tug.org/texlive/acquire.html>.
+L<https://tug.org/texlive/acquire.html>.
 
 The basic idea of TeX Live installation is for you to choose one of the
 top-level I<schemes>, each of which is defined as a different set of
@@ -2655,13 +2666,13 @@ highly recommended.
 
 Post-installation configuration, package updates, and more, are
 handled through B<tlmgr>(1), the TeX Live Manager
-(L<http://tug.org/texlive/tlmgr.html>).
+(L<https://tug.org/texlive/tlmgr.html>).
 
 The most up-to-date version of this installer documentation is on the
-Internet at L<http://tug.org/texlive/doc/install-tl.html>.
+Internet at L<https://tug.org/texlive/doc/install-tl.html>.
 
 For the full documentation of TeX Live, see
-L<http://tug.org/texlive/doc>.
+L<https://tug.org/texlive/doc>.
 
 
 =head1 OPTIONS
@@ -2706,7 +2717,7 @@ all the options of the perltk GUI.
 
 The C<perltk> and C<wizard> modules, and thus also when calling with
 bare C<-gui> (with no I<module>), require the Perl/Tk module
-(L<http://tug.org/texlive/distro.html#perltk>); if Perl/Tk is not
+(L<https://tug.org/texlive/distro.html#perltk>); if Perl/Tk is not
 available, installation continues in text mode.
 
 The tcl GUI requires Tcl/Tk. This is part of Mac OS and is often
@@ -2736,12 +2747,12 @@ simplified Chinese (zh_CN), and traditional Chinese (zh_TW).
 Specify the package repository to be used as the source of the
 installation. In short, this can be a directory name or a url using
 http(s), ftp, or scp. The documentation for C<tlmgr> has the details
-(L<http://tug.org/texlive/doc/tlmgr.html#OPTIONS>).
+(L<https://tug.org/texlive/doc/tlmgr.html#OPTIONS>).
 
 For installation, the default is to pick a mirror automatically, using
 L<http://mirror.ctan.org/systems/texlive/tlnet>; the chosen mirror is
 used for the entire download. You can use the special argument C<ctan>
-as an abbreviation for this. (See L<http://ctan.org> for more about CTAN
+as an abbreviation for this. (See L<https://ctan.org> for more about CTAN
 and its mirrors.)
 
 After installation is complete, you can use that installation as the
@@ -2778,8 +2789,8 @@ actions.  To install multiple custom binary sets, manully rename
 C<custom> before doing each.
 
 For more information on custom binaries, see
-L<http://tug.org/texlive/custom-bin.html>.  For general information on
-building TeX Live, see L<http://tug.org/texlive/build.html>.
+L<https://tug.org/texlive/custom-bin.html>.  For general information on
+building TeX Live, see L<https://tug.org/texlive/build.html>.
 
 =item B<-debug-translation>
 
@@ -2796,7 +2807,7 @@ runnable, or installation will fail.  C<-force-arch> is a synonym.
 =item B<-help>, B<--help>, B<-?>
 
 Display this help and exit. (This help is also on the web at
-L<http://tug.org/texlive/doc/install-tl.html>). Sometimes the C<perldoc>
+L<https://tug.org/texlive/doc/install-tl.html>). Sometimes the C<perldoc>
 and/or C<PAGER> programs on the system have problems, possibly resulting
 in control characters being literally output. This can't always be
 detected, but you can set the C<NOPERLDOC> environment variable and
@@ -2853,7 +2864,7 @@ By default, if a GnuPG C<gpg> binary is found in PATH, downloads are
 verified against a cryptographic signature. This option disables such
 verification.  The full description is in the Crytographic Verification
 section of the C<tlmgr> documentation, e.g.,
-L<http://tug.org/texlive/doc/tlmgr.html#CRYPTOGRAPHIC-VERIFICATION>
+L<https://tug.org/texlive/doc/tlmgr.html#CRYPTOGRAPHIC-VERIFICATION>
 
 =item B<-non-admin>
 
@@ -3031,7 +3042,7 @@ accepted and transformed to the names given above.  When a profile is
 written, the names above are always used.
 
 For more details on all of the above options, consult the TeX Live
-installation manual, linked from L<http://tug.org/texlive/doc>.
+installation manual, linked from L<https://tug.org/texlive/doc>.
 
 
 =head1 ENVIRONMENT VARIABLES
@@ -3050,7 +3061,7 @@ user installations.
 
 These override the normal choice of a download program; see the C<tlmgr>
 documentation, e.g.,
-L<http://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
+L<https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
 
 =item C<TEXLIVE_INSTALL_ENV_NOCHECK>
 
@@ -3099,7 +3110,7 @@ Don't try to run the C<--help> message through C<perldoc>.
 =head1 AUTHORS AND COPYRIGHT
 
 This script and its documentation were written for the TeX Live
-distribution (L<http://tug.org/texlive>) and both are licensed under the
+distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
 $Id$
