@@ -78,6 +78,7 @@ $mirrors = {
       'http://ctan.tetaneutral.net/' => 1,
       'http://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'http://mirror.ibcp.fr/pub/CTAN/' => 1,
+      'http://mirrors.ircam.fr/pub/CTAN/' => 1,
       'http://mirrors.standaloneinstaller.com/ctan/' => 1
     },
     'Germany' => {
