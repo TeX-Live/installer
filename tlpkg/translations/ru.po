@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-01-29 02:23+0100\n"
+"POT-Creation-Date: 2019-02-01 02:24+0100\n"
 "PO-Revision-Date: 2018-08-09 16:19+0800\n"
 "Last-Translator: Vladimir Lomov <irk.translator@yandex.ru>\n"
 "Language-Team: Russian <tldoc@tug.org>\n"
@@ -1421,13 +1421,12 @@ msgstr ""
 "Посмотрите подробности в окне журнала."
 
 #: tlpkg/installer/install-tl-gui.tcl:129
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2575
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2586
 msgid "Welcome to TeX Live!"
 msgstr "Вас приветствует TeX Live!"
 
 #: tlpkg/installer/install-tl-gui.tcl:132
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2578
-#, tcl-format, perl-format
+#, tcl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
 "The TeX Live web site (http://tug.org/texlive/) contains any updates and "
@@ -1442,7 +1441,7 @@ msgstr ""
 "Список групп доступен на странице http://tug.org/usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:136
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2583
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2594
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -2233,6 +2232,16 @@ msgstr "Вспомогательные программы, только для W
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX и пакеты"
+
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2589
+#, perl-format
+msgid ""
+"See %s/index.html for links to documentation.\n"
+"The TeX Live web site (https://tug.org/texlive/) contains any updates and "
+"corrections. TeX Live is a joint project of the TeX user groups around the "
+"world; please consider supporting it by joining the group best for you. The "
+"list of groups is available on the web at https://tug.org/usergroups.html."
+msgstr ""
 
 #~ msgid "After installation, get package updates from CTAN"
 #~ msgstr "После установки, получайте обновления пакетов с CTAN"
