@@ -152,8 +152,9 @@ use strict;
 # debugging communication with external gui: use shared logfile
 
 our $dblfile = "/tmp/dblog";
-$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O=~/^MSWin/i);
-$dblfile = $ENV{'TMPDIR'} . "/dblog" if ($^O eq 'darwin');
+$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O = ~/^MSWin/i);
+$dblfile = $ENV{'TMPDIR'} . "/dblog" if ($^O eq 'darwin'
+                                         && exists $ENV{'TMPDIR'});
 sub dblog {
   my $s = shift;
   open(my $dbf, ">>", $dblfile);
@@ -2785,7 +2786,7 @@ the current system are present.  The installation will continue as
 usual, but at the end all files from I<path> are copied over to
 C<bin/custom/> under your installation directory and this C<bin/custom/>
 directory is what will be added to the path for the post-install
-actions.  To install multiple custom binary sets, manully rename
+actions.  To install multiple custom binary sets, manually rename
 C<custom> before doing each.
 
 For more information on custom binaries, see
@@ -3007,7 +3008,7 @@ Enable C<\write18> for a restricted set of programs.
 
 B<tlpdb options> (prefix C<tlpdbopt_>)
 
-The definitive list is given in C<tlpkg/TeXLive/TLConfig.pm>, in
+The definitive list is given in C<tlpkg/TeXLive/TLConfig.pm>, in the hash
 C<%TeXLive::TLConfig::TLPDBOptions>, together with explanations.  All
 items given there I<except> for C<tlpdbopt_location> can be specified.
 Here is the current list:
