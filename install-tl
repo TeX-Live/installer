@@ -152,7 +152,7 @@ use strict;
 # debugging communication with external gui: use shared logfile
 
 our $dblfile = "/tmp/dblog";
-$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O = ~/^MSWin/i);
+$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O =~ /^MSWin/i);
 $dblfile = $ENV{'TMPDIR'} . "/dblog" if ($^O eq 'darwin'
                                          && exists $ENV{'TMPDIR'});
 sub dblog {
