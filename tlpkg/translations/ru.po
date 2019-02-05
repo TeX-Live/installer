@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-02-01 02:24+0100\n"
+"POT-Creation-Date: 2019-02-05 02:23+0100\n"
 "PO-Revision-Date: 2018-08-09 16:19+0800\n"
 "Last-Translator: Vladimir Lomov <irk.translator@yandex.ru>\n"
 "Language-Team: Russian <tldoc@tug.org>\n"
@@ -1421,7 +1421,7 @@ msgstr ""
 "Посмотрите подробности в окне журнала."
 
 #: tlpkg/installer/install-tl-gui.tcl:129
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2586
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2587
 msgid "Welcome to TeX Live!"
 msgstr "Вас приветствует TeX Live!"
 
@@ -1441,7 +1441,7 @@ msgstr ""
 "Список групп доступен на странице http://tug.org/usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:136
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2594
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2595
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -2233,7 +2233,7 @@ msgstr "Вспомогательные программы, только для W
 msgid "XeTeX and packages"
 msgstr "XeTeX и пакеты"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2589
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2590
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
