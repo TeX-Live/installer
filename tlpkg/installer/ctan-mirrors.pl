@@ -32,7 +32,6 @@ $mirrors = {
       'http://repo.iut.ac.ir/tex-archive/' => 1
     },
     'Japan' => {
-      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
@@ -43,6 +42,9 @@ $mirrors = {
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://ftp.neowiz.com/CTAN/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1
+    },
+    'Philippines' => {
+      'http://mirror.pregi.net/tex-archive/' => 1
     },
     'Taiwan' => {
       'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
