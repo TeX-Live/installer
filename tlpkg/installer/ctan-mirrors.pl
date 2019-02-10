@@ -5,7 +5,6 @@ $mirrors = {
     },
     'South Africa' => {
       'http://ctan.mirror.ac.za/' => 1,
-      'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1
     }
@@ -50,6 +49,9 @@ $mirrors = {
     'Taiwan' => {
       'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
       'http://ftp.yzu.edu.tw/CTAN/' => 1
+    },
+    'Thailand' => {
+      'http://mirror.kku.ac.th/CTAN/' => 1
     }
   },
   'Europe' => {
@@ -91,9 +93,6 @@ $mirrors = {
     },
     'Greece' => {
       'http://ftp.cc.uoc.gr/mirrors/CTAN/' => 1
-    },
-    'Italy' => {
-      'http://ctan.mirror.garr.it/mirrors/CTAN/' => 1
     },
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
