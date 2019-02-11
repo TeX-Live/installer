@@ -5,6 +5,7 @@ $mirrors = {
     },
     'South Africa' => {
       'http://ctan.mirror.ac.za/' => 1,
+      'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1
     }
@@ -93,6 +94,9 @@ $mirrors = {
     },
     'Greece' => {
       'http://ftp.cc.uoc.gr/mirrors/CTAN/' => 1
+    },
+    'Italy' => {
+      'http://ctan.mirror.garr.it/mirrors/CTAN/' => 1
     },
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
