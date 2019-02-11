@@ -8966,8 +8966,8 @@ a possibly different hash), it's harmless to delete them.
 
 =head1 CONFIGURATION FILE FOR TLMGR
 
-There are two configuration files for C<tlmgr>: One is system-wide in
-C<TEXMFSYSCONFIG/tlmgr/config>, and the other is user-specific in
+C<tlmgr> reads two configuration files: one is system-wide, in
+C<TEXMFSYSCONFIG/tlmgr/config>, and the other is user-specific, in
 C<TEXMFCONFIG/tlmgr/config>.  The user-specific one is the default for
 the C<conf tlmgr> action.  (Run C<kpsewhich
 -var-value=TEXMFSYSCONFIG> or C<... TEXMFCONFIG ...> to see the actual
