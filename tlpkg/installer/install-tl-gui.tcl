@@ -387,6 +387,9 @@ proc commit_root {} {
   set ::vars(TEXDIR) [forward_slashify [.tltd.path_l cget -text]]
   set ::vars(TEXMFSYSVAR) "$::vars(TEXDIR)/texmf-var"
   set ::vars(TEXMFSYSCONFIG) "$::vars(TEXDIR)/texmf-config"
+  if [winfo exists .tspvl] {
+    .tspvl configure -text [file join $::vars(TEXDIR) "texmf-dist"]
+  }
   commit_canonical_local
 
   if {$::vars(instopt_portable)} reset_personal_dirs
@@ -555,6 +558,12 @@ proc toggle_port {} {
     set ::vars(TEXMFCONFIG) $::vars(TEXMFSYSCONFIG)
     .tlocb state disabled
     .thomeb state disabled
+    if $::alltrees {
+      #.tsysvb state disabled
+      #.tsyscb state disabled
+      .tvb state disabled
+      .tcb state disabled
+    }
     if {$::tcl_platform(platform) eq "windows"} {
       # adjust_path
       set ::vars(instopt_adjustpath) 0
@@ -586,6 +595,12 @@ proc toggle_port {} {
     set ::vars(TEXMFCONFIG) "~/.texlive${::release_year}/texmf-config"
     .tlocb state !disabled
     .thomeb state !disabled
+    if $::alltrees {
+      #.tsysvb state !disabled
+      #.tsyscb state !disabled
+      .tvb state !disabled
+      .tcb state !disabled
+    }
     if {$::tcl_platform(platform) eq "windows"} {
       # adjust_path
       set ::vars(instopt_adjustpath) 1
@@ -1146,12 +1161,19 @@ proc run_menu {} {
   if $::advanced {
     if $::alltrees {
       incr rw
+      pgrid [ttk::label .tspll -text [__ "support tree"]] \
+          -in .dirf -row $rw -column 0 -sticky nw
+      pgrid [ttk::label .tspvl] -in .dirf -row $rw -column 1 -sticky nw
+      .tspvl configure -text [file join $::vars(TEXDIR) "texmf-dist"]
+
+      incr rw
       pgrid [ttk::label .tsysvll -text "TEXMFSYSVAR"] \
           -in .dirf -row $rw -column 0 -sticky nw
       pgrid [ttk::label .tsysvvl -textvariable ::vars(TEXMFSYSVAR)] \
           -in .dirf -row $rw -column 1 -sticky nw
       ttk::button .tsysvb -text [__ "Change"] -command {edit_dir "TEXMFSYSVAR"}
       pgrid .tsysvb -in .dirf -row $rw -column 2 -sticky new
+
       incr rw
       pgrid [ttk::label .tsyscll -text "TEXMFSYSCONFIG"] \
           -in .dirf -row $rw -column 0 -sticky nw
@@ -1227,7 +1249,7 @@ proc run_menu {} {
       # current platform
       incr rw
       ttk::label .binl0 \
-          -text "Current platform:"
+          -text [__ "Current platform:"]
       pgrid .binl0 -in .platf -row $rw -column 0 -sticky w
       ttk::label .binl1 \
           -text [__ "$::bin_descs($::vars(this_platform))"]
