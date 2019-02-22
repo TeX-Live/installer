@@ -627,7 +627,7 @@ sub save {
   # on Windows the renaming sometimes fails, try to copy and unlink the
   # .tmp file. This we do for all archs, cannot hurt.
   # if we managed that one, we move it over
-  TeXLive::TLUtils::copy ("-f", $tmppath, $path) or die ("copy $tmppath to $path failed: $!");
+  TeXLive::TLUtils::copy ("-f", $tmppath, $path);
   unlink ($tmppath) or tlwarn ("TLPDB: cannot unlink $tmppath: $!\n");
 }
 
