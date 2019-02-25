@@ -2921,11 +2921,17 @@ A I<profile> file contains all the values needed to perform an
 installation.  After a normal installation has finished, a profile for
 that exact installation is written to the file C<tlpkg/texlive.profile>.
 In addition, from the text menu one can select C<P> to save the current
-setup as a profile at any time.  Such a profile file can be given as the
-argument to C<-profile>, for example to redo the exact same installation
-on a different system.  Alternatively, you can use a custom profile,
-most easily created by starting from a generated one and changing
-values, or an empty file, which will take all the defaults.
+setup as a profile at any time.
+
+Such a profile file can be given as the argument to C<-profile>, for
+example to redo the exact same installation on a different system.
+Alternatively, you can use a custom profile, most easily created by
+starting from a generated one and changing values, or an empty file,
+which will take all the defaults.
+
+As mentioned above, the installer only supports selection by scheme and
+collections, not individual packages, so packages cannot be specified in
+profile files either. Use C<tlmgr> to work at the package level.
 
 Within a profile file, each line consists of
 
