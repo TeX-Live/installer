@@ -56,7 +56,7 @@ BEGIN {
 
 # the year of our release, will be used in the location of the
 # network packages, and in menu names, and other places.
-$ReleaseYear = 2018;
+$ReleaseYear = 2019;
 
 # users can upgrade from this year to the current year; might be the
 # same as the release year, or any number of releases earlier.
