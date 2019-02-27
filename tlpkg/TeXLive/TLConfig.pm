@@ -158,7 +158,7 @@ our %TLPDBConfigs = (
   "container_format" => $DefaultCompressorFormat,
   "minrelease" => $MinRelease,
   "release" => $ReleaseYear,
-  "frozen" => 1,
+  "frozen" => 0,
 );
 
 # definition of the option strings and their value types 
