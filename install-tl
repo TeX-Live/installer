@@ -2503,12 +2503,14 @@ sub check_env {
   # check for tex-related envvars.
   $::env_warns = "";
   for my $evar (sort keys %origenv) {
-    next if $evar =~ /^(_
+    next if $evar =~ /^(_.*
                         |.*PWD
-                        |GENDOCS_TEMPLATE_DIR|PATH|SHELLOPTS
-                        |PERL5LIB
-                        |INSTROOT
                         |ARGS
+                        |GENDOCS_TEMPLATE_DIR
+                        |INSTROOT
+                        |PATH
+                        |PERL5LIB
+                        |SHELLOPTS
                        )$/x; # don't worry about these
     if ("$evar $origenv{$evar}" =~ /tex/i) { # check both key and value
       $::env_warns .= "    $evar=$origenv{$evar}\n";
@@ -2703,6 +2705,11 @@ C<-no-gui> option.
 The wizard mode user interface (default on Windows), asking only minimal
 questions before installing all of TeX Live.
 
+=item C<expert>
+
+A generic name for, currently, C<perltk>; it may select a different GUI
+in the future.
+
 =item C<perltk>
 
 The expert GUI installer, providing access to more options.  
@@ -2711,7 +2718,7 @@ Can also be invoked on Windows by running C<install-tl-advanced.bat>.
 =item C<tcl>
 
 An experimental GUI. It starts out simply, with the same options as
-the wizard installer, but a button 'Advanced' gives acces to almost
+the wizard installer, but a button 'Advanced' gives access to almost
 all the options of the perltk GUI.
 
 =back

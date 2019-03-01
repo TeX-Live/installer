@@ -736,6 +736,9 @@ sub make_container {
         tlwarn("$0: Couldn't compress $destdir/$tarname\n");
         return (0,0, "");
       }
+      # make sure we remove the original tar since lc does not 
+      # automatically remove it
+      unlink("$destdir/$tarname") if (-r "$destdir/$tarname");
     } else {
       tlwarn("$0: Couldn't find $destdir/$tarname to run $compressor\n");
       return (0, 0, "");

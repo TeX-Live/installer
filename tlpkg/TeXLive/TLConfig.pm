@@ -127,7 +127,7 @@ our $DefaultCompressorFormat = "xz";
 our %Compressors = (
   "lz4" => {
     "decompress_args" => ["-dcf"],
-    "compress_args"   => ["-zfmq", "--rm"],
+    "compress_args"   => ["-zfmq"],
     "extension"       => "lz4",
     "priority"        => 10,
   },
