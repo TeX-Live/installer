@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tex Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-02-18 02:23+0100\n"
+"POT-Creation-Date: 2019-03-02 02:25+0100\n"
 "PO-Revision-Date: 2018-02-23 08:42+0100\n"
 "Last-Translator: Marco Pallane <marco.pallante@gmail.com>\n"
 "Language-Team: <>\n"
@@ -1480,7 +1480,7 @@ msgstr ""
 "Consulta la finestra di registro per i dettagli."
 
 #: tlpkg/installer/install-tl-gui.tcl:133
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2587
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2589
 #, fuzzy
 msgid "Welcome to TeX Live!"
 msgstr "Benvenuto in TeX Live!"
@@ -1503,7 +1503,7 @@ msgstr ""
 "usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:140
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2595
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2597
 #, fuzzy, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -2312,7 +2312,7 @@ msgstr "Programmi di supporto solo per Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX e pacchetti"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2590
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2592
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"

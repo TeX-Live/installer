@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-02-18 02:23+0100\n"
+"POT-Creation-Date: 2019-03-02 02:25+0100\n"
 "PO-Revision-Date: 2016-05-03 17:30+0200\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
@@ -1423,7 +1423,7 @@ msgstr ""
 "Podívejte se prosím na detaily uvedené v logovacím okně."
 
 #: tlpkg/installer/install-tl-gui.tcl:133
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2587
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2589
 msgid "Welcome to TeX Live!"
 msgstr "Vítejte v TeX Live!"
 
@@ -1444,7 +1444,7 @@ msgstr ""
 "Seznam sdružení je dostupný na http://tug.org/usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:140
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2595
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2597
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -2241,7 +2241,7 @@ msgstr "Podpůrné programy výhradně pro Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX a balíky"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2590
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2592
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"

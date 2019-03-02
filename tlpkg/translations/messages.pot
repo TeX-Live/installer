@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2019\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-02-28 01:08+0100\n"
+"POT-Creation-Date: 2019-03-02 02:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1370,7 +1370,7 @@ msgid ""
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:133
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2587
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2589
 msgid "Welcome to TeX Live!"
 msgstr ""
 
@@ -1385,7 +1385,7 @@ msgid ""
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:140
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2595
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2597
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -2178,7 +2178,7 @@ msgstr ""
 msgid "XeTeX and packages"
 msgstr ""
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2590
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2592
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
