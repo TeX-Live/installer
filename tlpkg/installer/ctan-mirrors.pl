@@ -22,6 +22,7 @@ $mirrors = {
       'http://mirrors.ustc.edu.cn/CTAN/' => 1
     },
     'India' => {
+      'http://ctan.imsc.res.in/' => 1,
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
