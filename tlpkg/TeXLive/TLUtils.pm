@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
-# Copyright 2007-2018 Norbert Preining, Reinhard Kotucha
+# Copyright 2007-2019 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -322,7 +322,7 @@ sub platform_name {
     # We don't use uname numbers here.)
     #
     # this changes each year, per above:
-    my $mactex_darwin = 10;  # lowest minor rev supported by x86_64-darwin.
+    my $mactex_darwin = 12;  # lowest minor rev supported by x86_64-darwin.
     #
     # Most robust approach is apparently to check sw_vers (os version,
     # returns "10.x" values), and sysctl (processor hardware).
@@ -398,8 +398,8 @@ sub platform_desc {
     'universal-darwin' => 'MacOSX universal binaries',
     'win32'            => 'Windows',
     'x86_64-cygwin'    => 'Cygwin on x86_64',
-    'x86_64-darwin'       => 'MacOSX current (10.10-) on x86_64',
-    'x86_64-darwinlegacy' => 'MacOSX legacy (10.6-10.9) on x86_64',
+    'x86_64-darwin'       => 'MacOSX current (10.12-) on x86_64',
+    'x86_64-darwinlegacy' => 'MacOSX legacy (10.6-) on x86_64',
     'x86_64-linux'     => 'GNU/Linux on x86_64',
     'x86_64-linuxmusl' => 'GNU/Linux on x86_64 with musl',
     'x86_64-solaris'   => 'Solaris on x86_64',
@@ -1137,10 +1137,14 @@ sub copy {
     $outfile = "$destdir/$filename";
   }
 
-  mkdirhier ($destdir) unless -d "$destdir";
+  if (! -d $destdir) {
+    my ($ret,$err) = mkdirhier ($destdir);
+    die "mkdirhier($destdir) failed: $err\n" if ! $ret;
+  }
 
   if (-l "$infile") {
-    symlink (readlink $infile, "$destdir/$filename");
+    symlink (readlink $infile, "$destdir/$filename")
+    || die "symlink(readlink $infile, $destdir/$filename) failed: $!";
   } else {
     if (! open (IN, $infile)) {
       warn "open($infile) failed, not copying: $!";
@@ -1148,13 +1152,13 @@ sub copy {
     }
     binmode IN;
 
-    $mode = (-x "$infile") ? oct("0777") : oct("0666");
+    $mode = (-x $infile) ? oct("0777") : oct("0666");
     $mode &= ~umask;
 
     open (OUT, ">$outfile") || die "open(>$outfile) failed: $!";
     binmode OUT;
 
-    chmod $mode, "$outfile";
+    chmod ($mode, $outfile) || warn "chmod($mode,$outfile) failed: $!";
 
     while ($read = sysread (IN, $buffer, $blocksize)) {
       die "read($infile) failed: $!" unless defined $read;
@@ -1167,8 +1171,9 @@ sub copy {
       }
     }
     close (OUT) || warn "close($outfile) failed: $!";
-    close IN || warn "close($infile) failed: $!";;
-    @stat = lstat ("$infile");
+    close (IN) || warn "close($infile) failed: $!";;
+    @stat = lstat ($infile);
+    die "lstat($infile) failed: $!" if ! @stat;
     utime ($stat[8], $stat[9], $outfile);
   }
 }
@@ -2224,7 +2229,8 @@ sub unpack {
     # we can remove it afterwards
     $remove_containerfile = 1;
   }
-  if (!system_pipe($decompressor, $containerfile, $tarfile, $remove_container, @decompressorArgs)
+  if (!system_pipe($decompressor, $containerfile, $tarfile,
+                   $remove_containerfile, @decompressorArgs)
       ||
       ! -f $tarfile) {
     unlink($tarfile, $containerfile);
@@ -3476,12 +3482,13 @@ sub tlwarn {
 
 =item C<tldie ($str1, $str2, ...)>
 
-Uses C<tlwarn> to issue a warning, then exits with exit code 1.
+Uses C<tlwarn> to issue a warning for @_ preceded by a newline, then
+exits with exit code 1.
 
 =cut
 
 sub tldie {
-  tlwarn(@_);
+  tlwarn("\n", @_);
   if ($::gui_mode) {
     Tk::exit(1);
   } else {

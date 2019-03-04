@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPOBJ.pm - module for using tlpobj files
-# Copyright 2007-2018 Norbert Preining
+# Copyright 2007-2019 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -736,6 +736,13 @@ sub make_container {
         tlwarn("$0: Couldn't compress $destdir/$tarname\n");
         return (0,0, "");
       }
+      # make sure we remove the original tar since old lz4 versions
+      # cannot automatically delete it.
+      # We remove the tar file only when the compressed file was
+      # correctly created, something that should only happen in the
+      # most strange cases.
+      unlink("$destdir/$tarname")
+        if ((-r "$destdir/$tarname") && (-r "$destdir/$containername"));
     } else {
       tlwarn("$0: Couldn't find $destdir/$tarname to run $compressor\n");
       return (0, 0, "");

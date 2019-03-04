@@ -13,7 +13,6 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
-      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
       'http://mirrors.shu.edu.cn/CTAN/' => 1,
@@ -50,9 +49,6 @@ $mirrors = {
     'Taiwan' => {
       'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
       'http://ftp.yzu.edu.tw/CTAN/' => 1
-    },
-    'Thailand' => {
-      'http://mirror.kku.ac.th/CTAN/' => 1
     }
   },
   'Europe' => {
@@ -78,6 +74,7 @@ $mirrors = {
       'http://ctan.tetaneutral.net/' => 1,
       'http://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'http://mirror.ibcp.fr/pub/CTAN/' => 1,
+      'http://mirrors.ircam.fr/pub/CTAN/' => 1,
       'http://mirrors.standaloneinstaller.com/ctan/' => 1
     },
     'Germany' => {
@@ -159,7 +156,6 @@ $mirrors = {
       'http://ctan.math.illinois.edu/' => 1,
       'http://ctan.math.washington.edu/tex-archive/' => 1,
       'http://ctan.mirrors.hoobly.com/' => 1,
-      'http://mirror.hmc.edu/ctan/' => 1,
       'http://mirror.las.iastate.edu/tex-archive/' => 1,
       'http://mirror.utexas.edu/ctan/' => 1,
       'http://mirrors.concertpass.com/tex-archive/' => 1,

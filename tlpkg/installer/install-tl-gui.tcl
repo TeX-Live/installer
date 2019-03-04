@@ -62,6 +62,10 @@ if {$::tcl_platform(platform) eq "windows"} {
   set ::perlbin "${::instroot}/tlpkg/tlperl/bin/wperl.exe"
 }
 
+# menu modes
+set ::advanced 0
+set ::alltrees 0
+
 ### procedures, mostly organized bottom-up ###
 
 # the procedures which provide the menu with the necessary backend data,
@@ -382,7 +386,10 @@ proc commit_canonical_local {} {
 proc commit_root {} {
   set ::vars(TEXDIR) [forward_slashify [.tltd.path_l cget -text]]
   set ::vars(TEXMFSYSVAR) "$::vars(TEXDIR)/texmf-var"
-  set ::vars(TEXMFSYSCONFIG) "$::vars(TEXDIR)/texmf-var"
+  set ::vars(TEXMFSYSCONFIG) "$::vars(TEXDIR)/texmf-config"
+  if [winfo exists .tspvl] {
+    .tspvl configure -text [file join $::vars(TEXDIR) "texmf-dist"]
+  }
   commit_canonical_local
 
   if {$::vars(instopt_portable)} reset_personal_dirs
@@ -551,6 +558,12 @@ proc toggle_port {} {
     set ::vars(TEXMFCONFIG) $::vars(TEXMFSYSCONFIG)
     .tlocb state disabled
     .thomeb state disabled
+    if $::alltrees {
+      #.tsysvb state disabled
+      #.tsyscb state disabled
+      .tvb state disabled
+      .tcb state disabled
+    }
     if {$::tcl_platform(platform) eq "windows"} {
       # adjust_path
       set ::vars(instopt_adjustpath) 0
@@ -582,6 +595,12 @@ proc toggle_port {} {
     set ::vars(TEXMFCONFIG) "~/.texlive${::release_year}/texmf-config"
     .tlocb state !disabled
     .thomeb state !disabled
+    if $::alltrees {
+      #.tsysvb state !disabled
+      #.tsyscb state !disabled
+      .tvb state !disabled
+      .tcb state !disabled
+    }
     if {$::tcl_platform(platform) eq "windows"} {
       # adjust_path
       set ::vars(instopt_adjustpath) 1
@@ -813,6 +832,10 @@ proc save_coll_selections {} {
   show_stats
 }; # save_coll_selections
 
+proc sort_colls_by_value {n m} {
+  return [string compare [__ $::coll_descs($n)] [__ $::coll_descs($m)]]
+}
+
 proc select_collections {} {
   # 2018: more than 40 collections
   # The tcl installer acquires collections from install-menu-extl.pl,
@@ -885,7 +908,7 @@ proc select_collections {} {
   grid rowconfigure .tlcoll.both 1 -weight 1
 
 
-  foreach c [array names ::coll_descs] {
+  foreach c [lsort -command sort_colls_by_value [array names ::coll_descs]] {
     if [string equal -length 15 "collection-lang" $c] {
       set wgt ".tlcoll.lang"
     } else {
@@ -1061,7 +1084,8 @@ if {$::tcl_platform(platform) ne "windows"} {
 
 proc run_menu {} {
   if [info exists ::env(dbgui)] {
-    puts "dbgui: run_menu: advanced is now $::advanced"
+    puts "\ndbgui: run_menu: advanced is now $::advanced"
+    puts "dbgui: run_menu: alltrees is now $::alltrees"
   }
   wm withdraw .
   foreach c [winfo children .] {
@@ -1135,6 +1159,30 @@ proc run_menu {} {
     -in .dirf -row $rw -column 2 -sticky new
 
   if $::advanced {
+    if $::alltrees {
+      incr rw
+      pgrid [ttk::label .tspll -text [__ "support tree"]] \
+          -in .dirf -row $rw -column 0 -sticky nw
+      pgrid [ttk::label .tspvl] -in .dirf -row $rw -column 1 -sticky nw
+      .tspvl configure -text [file join $::vars(TEXDIR) "texmf-dist"]
+
+      incr rw
+      pgrid [ttk::label .tsysvll -text "TEXMFSYSVAR"] \
+          -in .dirf -row $rw -column 0 -sticky nw
+      pgrid [ttk::label .tsysvvl -textvariable ::vars(TEXMFSYSVAR)] \
+          -in .dirf -row $rw -column 1 -sticky nw
+      ttk::button .tsysvb -text [__ "Change"] -command {edit_dir "TEXMFSYSVAR"}
+      pgrid .tsysvb -in .dirf -row $rw -column 2 -sticky new
+
+      incr rw
+      pgrid [ttk::label .tsyscll -text "TEXMFSYSCONFIG"] \
+          -in .dirf -row $rw -column 0 -sticky nw
+      pgrid [ttk::label .tsyscvl -textvariable ::vars(TEXMFSYSCONFIG)] \
+          -in .dirf -row $rw -column 1 -sticky nw
+      ttk::button .tsyscb -text [__ "Change"] \
+          -command {edit_dir "TEXMFSYSCONFIG"}
+      pgrid .tsyscb -in .dirf -row $rw -column 2 -sticky new
+    }
     incr rw
     set s [__ "Local additions"]
     pgrid [ttk::label .tlocll -text "TEXMFLOCAL:\n$s"] \
@@ -1152,6 +1200,32 @@ proc run_menu {} {
         -in .dirf -row $rw -column 1 -sticky nw
     ttk::button .thomeb -text [__ "Change"] -command {edit_dir "TEXMFHOME"}
     pgrid .thomeb -in .dirf -row $rw -column 2 -sticky ne
+    if $::alltrees {
+      incr rw
+      pgrid [ttk::label .tvll -text "TEXMFVAR"] \
+          -in .dirf -row $rw -column 0 -sticky nw
+      pgrid [ttk::label .tvvl -textvariable ::vars(TEXMFVAR)] \
+          -in .dirf -row $rw -column 1 -sticky nw
+      ttk::button .tvb -text [__ "Change"] -command {edit_dir "TEXMFVAR"}
+      pgrid .tvb -in .dirf -row $rw -column 2 -sticky new
+      incr rw
+      pgrid [ttk::label .tcll -text "TEXMFCONFIG"] \
+          -in .dirf -row $rw -column 0 -sticky nw
+      pgrid [ttk::label .tcvl -textvariable ::vars(TEXMFCONFIG)] \
+          -in .dirf -row $rw -column 1 -sticky nw
+      ttk::button .tcb -text [__ "Change"] \
+          -command {edit_dir "TEXMFCONFIG"}
+      pgrid .tcb -in .dirf -row $rw -column 2 -sticky new
+    }
+
+    incr rw
+    if {!$::alltrees} {
+      ttk::button .tmoreb -text [__ "More..."] -command {
+        set ::menu_ans "alltrees"
+        if [info exists ::env(dbgui)] {puts "dbgui: requested alltrees"}
+      }
+      pgrid .tmoreb -in .dirf -row $rw -column 2 -sticky ne
+    }
 
     incr rw
     pgrid [ttk::label .dirportll \
@@ -1175,7 +1249,7 @@ proc run_menu {} {
       # current platform
       incr rw
       ttk::label .binl0 \
-          -text "Current platform:"
+          -text [__ "Current platform:"]
       pgrid .binl0 -in .platf -row $rw -column 0 -sticky w
       ttk::label .binl1 \
           -text [__ "$::bin_descs($::vars(this_platform))"]
@@ -1392,8 +1466,10 @@ proc run_menu {} {
   update
   wm state . normal
   raise .
+  if [info exists ::env(dbgui)] {puts "dbgui: unsetting menu_ans"}
   unset -nocomplain ::menu_ans
   vwait ::menu_ans
+  if [info exists ::env(dbgui)] {puts "dbgui0: menu_ans is $::menu_ans"}
   return $::menu_ans
 }; # run_menu
 
@@ -1630,12 +1706,19 @@ proc main_prog {} {
       read_menu_data
       show_time "read menu data from perl"
       set ::advanced 0
+      set ::alltrees 0
       set answer [run_menu]
+      if [info exists ::env(dbgui)] {puts "dbgui1: menu_ans is $::menu_ans"}
       if {$answer eq "advanced"} {
         # this could only happen if $::advanced was 0
         set ::advanced 1
         if [info exists ::env(dbgui)] {puts "dbgui: Setting advanced to 1"}
         set answer [run_menu]
+        if {$answer eq "alltrees"} {
+          set ::alltrees 1
+          if [info exists ::env(dbgui)] {puts "dbgui: Setting alltrees to 1"}
+          set answer [run_menu]
+        }
       }
       set ::did_gui 1
       break
