@@ -2,7 +2,7 @@ before_build:
   - ps: Set-Content texlive.profile "selected_scheme scheme-infraonly`nTEXDIR C:\texlive`noption_doc 0`noption_src 0`n"
 
 build_script:
-  - echo | install-tl-windows.bat -v -profile=texlive.profile --repository http://www.math.utah.edu/pub/tlpretest/
+  - echo | install-tl-windows.bat -v -no-gui -profile=texlive.profile --repository http://www.math.utah.edu/pub/tlpretest/
   - set PATH=%PATH%;C:\texlive\bin\win32
 
 test_script:
