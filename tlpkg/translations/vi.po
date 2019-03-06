@@ -1180,8 +1180,8 @@ msgstr "a4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1370
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1775
-msgid "Default paper for"
-msgstr "Kiểu giấy mặc định cho"
+msgid "Default paper for %s"
+msgstr "Kiểu giấy mặc định cho %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
@@ -1247,8 +1247,8 @@ msgid "Revert"
 msgstr "Phục hồi lại"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1771
-msgid "Select paper format for"
-msgstr "Kiểu giấy chọn cho"
+msgid "Select paper format for %s"
+msgstr "Kiểu giấy chọn cho %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1798
 msgid "keep arbitrarily many"
@@ -1346,8 +1346,8 @@ msgid "Edit directory"
 msgstr "Thư mục soạn thảo"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
-msgid "New value for"
-msgstr "Giá trị mới cho"
+msgid "New value for %s"
+msgstr "Giá trị mới cho %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"

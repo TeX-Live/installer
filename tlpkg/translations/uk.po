@@ -1193,8 +1193,8 @@ msgstr "a4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1370
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1775
-msgid "Default paper for"
-msgstr "Типовий папір для"
+msgid "Default paper for %s"
+msgstr "Типовий папір для %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
@@ -1260,8 +1260,8 @@ msgid "Revert"
 msgstr "Повернути"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1771
-msgid "Select paper format for"
-msgstr "Виберіть формат паперу для"
+msgid "Select paper format for %s"
+msgstr "Виберіть формат паперу для %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1798
 msgid "keep arbitrarily many"
@@ -1359,8 +1359,8 @@ msgid "Edit directory"
 msgstr "Редагувати каталог"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
-msgid "New value for"
-msgstr "Нове значення для"
+msgid "New value for %s"
+msgstr "Нове значення для %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"

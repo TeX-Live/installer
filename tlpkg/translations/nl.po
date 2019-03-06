@@ -1197,8 +1197,8 @@ msgstr "a4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1370
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1775
-msgid "Default paper for"
-msgstr "Standaard papier-formaat voor"
+msgid "Default paper for %s"
+msgstr "Standaard papier-formaat voor %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
@@ -1264,8 +1264,8 @@ msgid "Revert"
 msgstr "Herstel"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1771
-msgid "Select paper format for"
-msgstr "Selekteer papier-formaat voor"
+msgid "Select paper format for %s"
+msgstr "Selekteer papier-formaat voor %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1798
 msgid "keep arbitrarily many"
@@ -1371,8 +1371,8 @@ msgid "Edit directory"
 msgstr "Wijzig folder"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
-msgid "New value for"
-msgstr "Nieuwe waarde voor"
+msgid "New value for %s"
+msgstr "Nieuwe waarde voor %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"

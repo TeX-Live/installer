@@ -1200,8 +1200,8 @@ msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1370
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1775
-msgid "Default paper for"
-msgstr "Predvolený papier pre"
+msgid "Default paper for %s"
+msgstr "Predvolený papier pre %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
@@ -1267,8 +1267,8 @@ msgid "Revert"
 msgstr "Vrátiť"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1771
-msgid "Select paper format for"
-msgstr "Zvoliť formát papiera pre"
+msgid "Select paper format for %s"
+msgstr "Zvoliť formát papiera pre %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1798
 msgid "keep arbitrarily many"
@@ -1376,8 +1376,8 @@ msgid "Edit directory"
 msgstr "Editácia adresára"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
-msgid "New value for"
-msgstr "Nová hodnota pre"
+msgid "New value for %s"
+msgstr "Nová hodnota pre %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"

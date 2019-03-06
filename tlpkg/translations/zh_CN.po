@@ -1167,8 +1167,8 @@ msgstr "a4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1370
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1775
-msgid "Default paper for"
-msgstr "缺省的纸张给"
+msgid "Default paper for %s"
+msgstr "缺省的纸张给 %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
@@ -1234,8 +1234,8 @@ msgid "Revert"
 msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1771
-msgid "Select paper format for"
-msgstr "选择纸张格式给"
+msgid "Select paper format for %s"
+msgstr "选择纸张格式给 %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1798
 msgid "keep arbitrarily many"
@@ -1328,7 +1328,7 @@ msgid "Edit directory"
 msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
-msgid "New value for"
+msgid "New value for %s"
 msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
