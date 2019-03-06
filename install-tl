@@ -41,60 +41,69 @@ BEGIN {
   unshift (@INC, "$::installerdir/tlpkg");
 }
 
-# Unix-only: want tcl GUI?
-# If so, this run of install-tl does duty as a wrapper for install-tl-gui.tcl,
-# which in its turn will start an actual run of install-tl.
-# On windows an external batch wrapper replaces the built-in wrapper below.
+# On unix, this run of install-tl may do duty as a wrapper for
+# install-tl-gui.tcl, which in its turn will start an actual run of install-tl.
+# Skip this wrapper block if we can easily rule out a tcl gui:
 
-if ($^O !~ /^MSWin/i) {
+if (($^O !~ /^MSWin/i) &&
+      # this wrapper is only for unix, since windows has its own wrapper
+      ($#ARGV >= 0 || ($^O eq 'darwin')) &&
+      # tcl parameter may still come, or tcl is default
+      ($#ARGV < 0 || $ARGV[0] ne '-from_ext_gui')
+      # this run is not invoked by tcl
+    ) {
+  my $want_tcl = ($^O eq 'darwin');
   my $i=-1;
   my @new_args = ();
-  my $want_tcl = 0;
   while ($i<$#ARGV) {
-    # build argument array for install-tl-gui.tcl.
-    # But once we know that install-tl-gui.tcl is not going to be invoked,
-    # we quit scanning and continue with the original @ARGV
-    $i++;
-    my $p = $ARGV[$i];
-    if ($p eq 'from_ext_gui') {
-      $want_tcl = 0;
-      last;
-    } elsif ($p =~ /^-?-gui=(.*$)/) {
+    # build argument array @new_args for install-tl-gui.tcl.
+    # quit scanning and building @new_args once tcl is ruled out.
+    my $p = $ARGV[++$i];
+    if ($p =~ /^-?-gui=(.*$)/) {
       if ($1 eq 'tcl') {
         $want_tcl = 1;
       } else {
-        last; # other gui: can forget about @new_args
+        last; # other gui
       }
     } elsif ($p =~ /^-?-gui/) {
+      # look ahead at next parameter
       if ($i == $#ARGV) {
-        last; # default gui => not tcl
+        $want_tcl = 1; # default gui
+        last;
       } elsif ($ARGV[$i+1] eq 'tcl') {
         $i++;
         $want_tcl = 1;
-      } else {
+      } elsif ($ARGV[$i+1] eq 'expert' || $ARGV[$i+1] eq 'perltk' ||
+                 $ARGV[$i+1] eq 'wizard' || $ARGV[$i+1] eq 'text') {
+        $want_tcl = 0;
         last;
+      } else {
+        # next parameter relates to something else, so default gui is wanted
+        $want_tcl = 1;
       }
+    } elsif ($p =~ /^-?-no-gui/) {
+      $want_tcl = 0;
+      last;
     } else {
       # not gui-related, continue collecting @new_args
       push (@new_args, $p);
     }
   }
+  # done scanning arguments
   if ($want_tcl) {
     unshift (@new_args, "--");
     unshift (@new_args, "$::installerdir/tlpkg/installer/install-tl-gui.tcl");
-    if (!(defined $ENV{'WISH'}) || !exec($ENV{'WISH'}, @new_args)) {
-      if (!exec('wish', @new_args)) {
-        if (!exec('wish8.6', @new_args)) {
-          if (!exec('wish8.5', @new_args)) {
-            if (!exec('tclkit', @new_args)) {
-              die "wish not found\n";
-            }
-          }
-        }
+    my @wishes = qw /wish wish8.6 wish8.5 tclkit/;
+    unshift @wishes, $ENV{'WISH'} if (defined $ENV{'WISH'});
+    foreach my $w (@wishes) {
+      if (!exec($w, @new_args)) {
+        next; # no return on successful exec
       }
     }
-  }
+    # no succesful exec of wish
+  } # else continue with main installer below
 }
+# end of wrapper block, start of the real installer
 
 use Cwd 'abs_path';
 use Getopt::Long qw(:config no_autoabbrev);
@@ -231,7 +240,8 @@ my %path_keys = (
 my $opt_allow_ftp = 0;
 my $opt_custom_bin;
 my $opt_force_arch;
-my $opt_gui = (win32() ? "wizard" : "text");
+# tcl gui weeded out at start
+my $opt_gui = "text";
 my $opt_help = 0;
 my $opt_init_from_profile = "";
 my $opt_location = "";
@@ -340,12 +350,13 @@ GetOptions(
            "warn-checksums!"             => \$opt_warn_checksums,
            "help|?"                      => \$opt_help) or pod2usage(2);
 
-if ($opt_gui eq "") {
-  # the --gui option was given with an empty argument, set it to perltk
-  $opt_gui = "perltk";
-}
 if ($opt_gui eq "expert") {
   $opt_gui = "perltk";
+}
+if ($opt_gui eq "" || $opt_gui eq "tcl") {
+  # tried and failed tcl, try perltk instead
+  $opt_gui = "perltk";
+  warn "Setting opt_gui to perltk instead";
 }
 if ($from_ext_gui) {
   $opt_gui = "extl";

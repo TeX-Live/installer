@@ -30,7 +30,7 @@ rem set instroot before %0 gets overwritten during argument processing
 set instroot=%~dp0
 
 set notcl=no
-set tcl=no
+set tcl=yes
 set args=
 goto rebuildargs
 
@@ -38,12 +38,13 @@ rem check for a gui argument
 rem handle -gui tcl here and do not pass it on to perl or tcl.
 rem cmd.exe converts '=' to a space:
 rem '-parameter=value' becomes '-parameter value': two arguments
+rem we test for value == parameter rather than the other way around
+rem to avoid some weird parsing errors
 
 rem code block for gui argument
 :dogui
 if x == x%1 (
-set tcl=no
-set args=%args% -gui wizard
+set tcl=yes
 shift
 goto rebuildargs
 )
@@ -52,30 +53,27 @@ set tcl=no
 set args=%args% -no-gui
 shift
 goto rebuildargs
-)
-if wizard == %1 (
-set tcl=no
-set args=%args% -gui wizard
-shift
-goto rebuildargs
-)
-if perltk == %1 (
-set tcl=no
-set args=%args% -gui perltk
-shift
-goto rebuildargs
-)
-if expert == %1 (
-set tcl=no
-set args=%args% -gui perltk
-shift
-goto rebuildargs
-)
-if tcl == %1 (
+) else if wizard == %1 (
 set tcl=yes
 shift
 goto rebuildargs
+) else if perltk == %1 (
+set tcl=yes
+shift
+goto rebuildargs
+) else if expert == %1 (
+set tcl=yes
+shift
+goto rebuildargs
+) else if tcl == %1 (
+set tcl=yes
+shift
+goto rebuildargs
+) else (
+set tcl=yes
+goto rebuildargs
 )
+rem last case: -gui without parameter, do not shift
 
 rem loop for argument scanning
 :rebuildargs
@@ -95,6 +93,7 @@ if -print-platform == %p% set tcl=no
 if -version == %p% set tcl=no
 if -no-gui == %p% (
 set notcl=yes
+set args=%args% -no-gui
 goto rebuildargs
 )
 if -gui == %p% goto dogui
@@ -131,7 +130,6 @@ if "%path:~,1%"==";" set "path=%path:~1%"
 rem Use TL Perl
 path=%instroot%tlpkg\tlperl\bin;%path%
 set PERL5LIB=%instroot%tlpkg\tlperl\lib
-rem for now, assume tcl/tk is on path
 
 rem Clean environment from other Perl variables
 set PERL5OPT=

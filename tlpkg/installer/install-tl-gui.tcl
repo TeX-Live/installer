@@ -133,7 +133,7 @@ proc maybe_print_welcome {} {
   .log.tx insert end [__ "Welcome to TeX Live!"] center
   .log.tx insert end "\n\n"
   # tags appear to interfere with --/::msgcat::mc !?!
-  set s  [__ "See %s/index.html for links to documentation.\nThe TeX Live web site (http://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at http://tug.org/usergroups.html." $::vars(TEXDIR)]
+  set s  [__ "See %s/index.html for links to documentation.\nThe TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html." $::vars(TEXDIR)]
   .log.tx insert end $s center
   if {$::tcl_platform(platform) ne "windows"} {
     .log.tx insert end "\n\n"
@@ -1220,7 +1220,7 @@ proc run_menu {} {
 
     incr rw
     if {!$::alltrees} {
-      ttk::button .tmoreb -text [__ "More..."] -command {
+      ttk::button .tmoreb -text [__ "More ..."] -command {
         set ::menu_ans "alltrees"
         if [info exists ::env(dbgui)] {puts "dbgui: requested alltrees"}
       }
@@ -1673,6 +1673,7 @@ proc main_prog {} {
     incr i
   }
   unset i
+  # tk_messageBox -message [join $cmd " "] -title "debugging"
   show_time "opening pipe"
   if [catch {open "|[join $cmd " "] 2>@1" r+} ::inst] {
     # "2>@1" ok under Windows >= XP
