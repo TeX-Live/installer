@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-02 02:25+0100\n"
+"POT-Creation-Date: 2019-03-07 02:23+0100\n"
 "PO-Revision-Date: 2018-03-18 15:32+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
@@ -1197,6 +1197,7 @@ msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1370
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1775
+#, perl-format
 msgid "Default paper for %s"
 msgstr "Voreingestelles Papierformat für %s"
 
@@ -1264,6 +1265,7 @@ msgid "Revert"
 msgstr "Mache rückgängig"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1771
+#, perl-format
 msgid "Select paper format for %s"
 msgstr "Papierformat für %s"
 
@@ -1373,8 +1375,9 @@ msgid "Edit directory"
 msgstr "Bearbeite Pfad"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
-msgid "New value for %s"
-msgstr "Neuer Wert für %s"
+#, perl-format
+msgid "New value for %s:"
+msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"
@@ -1425,32 +1428,23 @@ msgstr ""
 "Details finden Sie im Log Fenster "
 
 #: tlpkg/installer/install-tl-gui.tcl:133
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2589
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2600
 msgid "Welcome to TeX Live!"
 msgstr "Willkommen bei TeX Live!"
 
 #: tlpkg/installer/install-tl-gui.tcl:136
-#, tcl-format
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2603
+#, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
-"The TeX Live web site (http://tug.org/texlive/) contains any updates and "
+"The TeX Live web site (https://tug.org/texlive/) contains any updates and "
 "corrections. TeX Live is a joint project of the TeX user groups around the "
 "world; please consider supporting it by joining the group best for you. The "
-"list of groups is available on the web at http://tug.org/usergroups.html."
+"list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
-"Für einen Überblick der verfügbaren Dokumentation lesen Sie bitte %s/index."
-"html.\n"
-"Die Webseite des TeX Live Projektes (http://tug.org/texlive/)\n"
-"informiert über Updates und Korrekturen.\n"
-"\n"
-"TeX Live ist ein gemeinsames Projekt verschiedener TeX Benutzer Gruppen aus "
-"aller Welt;\n"
-"durch einen Beitritt in eine dieser Gruppen können Sie TeX Live aktiv "
-"unterstützen.Eine Liste der Gruppen können Sie im Internet auf http://tug."
-"org/usergroups.html finden."
 
 #: tlpkg/installer/install-tl-gui.tcl:140
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2597
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2608
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1606,7 +1600,7 @@ msgid "Per-user additions"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1223
-msgid "More..."
+msgid "More ..."
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1232
@@ -2247,15 +2241,27 @@ msgstr "Zusatzprogramme (nur-Windows)"
 msgid "XeTeX and packages"
 msgstr "XeTeX und Pakete"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2592
-#, perl-format
-msgid ""
-"See %s/index.html for links to documentation.\n"
-"The TeX Live web site (https://tug.org/texlive/) contains any updates and "
-"corrections. TeX Live is a joint project of the TeX user groups around the "
-"world; please consider supporting it by joining the group best for you. The "
-"list of groups is available on the web at https://tug.org/usergroups.html."
-msgstr ""
+#~ msgid "New value for %s"
+#~ msgstr "Neuer Wert für %s"
+
+#~ msgid ""
+#~ "See %s/index.html for links to documentation.\n"
+#~ "The TeX Live web site (http://tug.org/texlive/) contains any updates and "
+#~ "corrections. TeX Live is a joint project of the TeX user groups around "
+#~ "the world; please consider supporting it by joining the group best for "
+#~ "you. The list of groups is available on the web at http://tug.org/"
+#~ "usergroups.html."
+#~ msgstr ""
+#~ "Für einen Überblick der verfügbaren Dokumentation lesen Sie bitte %s/"
+#~ "index.html.\n"
+#~ "Die Webseite des TeX Live Projektes (http://tug.org/texlive/)\n"
+#~ "informiert über Updates und Korrekturen.\n"
+#~ "\n"
+#~ "TeX Live ist ein gemeinsames Projekt verschiedener TeX Benutzer Gruppen "
+#~ "aus aller Welt;\n"
+#~ "durch einen Beitritt in eine dieser Gruppen können Sie TeX Live aktiv "
+#~ "unterstützen.Eine Liste der Gruppen können Sie im Internet auf http://tug."
+#~ "org/usergroups.html finden."
 
 #~ msgid "After installation, get package updates from CTAN"
 #~ msgstr "Hole nach der Installation Paket-Updates von CTAN"
