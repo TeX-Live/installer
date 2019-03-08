@@ -1161,7 +1161,7 @@ proc run_menu {} {
   if $::advanced {
     if $::alltrees {
       incr rw
-      pgrid [ttk::label .tspll -text [__ "support tree"]] \
+      pgrid [ttk::label .tspll -text [__ "Main tree"]] \
           -in .dirf -row $rw -column 0 -sticky nw
       pgrid [ttk::label .tspvl] -in .dirf -row $rw -column 1 -sticky nw
       .tspvl configure -text [file join $::vars(TEXDIR) "texmf-dist"]
