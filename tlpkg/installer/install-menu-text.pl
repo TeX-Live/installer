@@ -514,13 +514,13 @@ sub directories_menu
     ($vars{'TEXDIR'} =~ /\/$/ ? 'texmf-dist' : '/texmf-dist');
   if (!$opt_in_place) {
     print <<"EOF";
- <1> TEXDIR:       $vars{'TEXDIR'}
-     support tree: $texmfdir
+ <1> TEXDIR:         $vars{'TEXDIR'}
+     main tree:      $texmfdir
 EOF
   } else {
     print <<"EOF";
-     TEXDIR:       $vars{'TEXDIR'}
-     support tree: $texmfdir
+     TEXDIR:         $vars{'TEXDIR'}
+     main tree:      $texmfdir
 EOF
   }
   if (!$vars{'instopt_portable'}) {
