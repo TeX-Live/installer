@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-07 02:23+0100\n"
-"PO-Revision-Date: 2018-03-18 15:32+0100\n"
+"PO-Revision-Date: 2019-03-08 22:15+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: tlpkg/installer/tracked-install.pl:27
 msgid "Installation process"
@@ -604,7 +604,7 @@ msgstr "Symbolische Links in Systemverzeichnissen"
 #: tlpkg/installer/install-menu-perltk.pl:585
 #: tlpkg/installer/install-tl-gui.tcl:1456
 msgid "After install, set CTAN as source for package updates"
-msgstr ""
+msgstr "Setze nach der Installation CTAN als Paketquelle "
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -1377,7 +1377,7 @@ msgstr "Bearbeite Pfad"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
 #, perl-format
 msgid "New value for %s:"
-msgstr ""
+msgstr "Neuer Wert für %s:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"
@@ -1442,6 +1442,11 @@ msgid ""
 "world; please consider supporting it by joining the group best for you. The "
 "list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
+"Schauen Sie in die %s/index.html Für Links auf die Dokumentation.\n"
+"Die TeX Live Website (https://tug.org/texlive/) enthält Updates and "
+"Korrekturen. TeX Live ist ein vereintes Porjekt der TeX Nutzergruppen "
+"weltweit, werden Sie Mitglied um ihre Arbeit zu unterstützen. Die Liste der "
+"Gruppen finden Sie unter https://tug.org/usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:140
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2608
@@ -1459,66 +1464,68 @@ msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:152
 msgid "Error while reading from Perl backend"
-msgstr ""
+msgstr "Fehler beim Lesen vom Perl Backend"
 
 #: tlpkg/installer/install-tl-gui.tcl:164
 msgid "Unexpected closed backend"
-msgstr ""
+msgstr "Backend wurde unerwartet geschlossen"
 
 #: tlpkg/installer/install-tl-gui.tcl:211
 #: tlpkg/installer/install-tl-gui.tcl:1655
 msgid "TeX Live Installer"
-msgstr ""
+msgstr "TeX Live Installationsprogramm"
 
 #: tlpkg/installer/install-tl-gui.tcl:213
 msgid "Loading..."
-msgstr ""
+msgstr "Lade..."
 
 #: tlpkg/installer/install-tl-gui.tcl:237
 msgid "Really abort?"
-msgstr ""
+msgstr "Wirklich abbrechen?"
 
 #: tlpkg/installer/install-tl-gui.tcl:306
 msgid "Cannot be created or cannot be written to"
-msgstr ""
+msgstr "Kann nicht erstellt werden oder keine Schreibrechte vorhanden"
 
 #: tlpkg/installer/install-tl-gui.tcl:318
 msgid "Directory name..."
-msgstr ""
+msgstr "Verzeichnisname..."
 
 #: tlpkg/installer/install-tl-gui.tcl:325
 msgid "Change name (slashes not allowed)"
-msgstr ""
+msgstr "Ändere Namen (keine / erlaubt)"
 
 #: tlpkg/installer/install-tl-gui.tcl:335
 msgid "No slashes allowed"
-msgstr ""
+msgstr "Keine Slashes / erlaubt"
 
 #: tlpkg/installer/install-tl-gui.tcl:356
 msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
 msgstr ""
+"TL Release-Komponente wird sehr empfohlen\n"
+"Sind Sie sicher?"
 
 #: tlpkg/installer/install-tl-gui.tcl:365
 msgid "Add year"
-msgstr ""
+msgstr "Füge Jahr hinzu"
 
 #: tlpkg/installer/install-tl-gui.tcl:369
 #: tlpkg/installer/install-tl-gui.tcl:439
 msgid "Remove year"
-msgstr ""
+msgstr "Entferne Jahr"
 
 #: tlpkg/installer/install-tl-gui.tcl:406
 #: tlpkg/installer/install-tl-gui.tcl:1142
 #: tlpkg/installer/install-tl-gui.tcl:1150
 msgid "Installation root"
-msgstr ""
+msgstr "Stammverzeichnis für die Installation"
 
 #: tlpkg/installer/install-tl-gui.tcl:434
 #: tlpkg/installer/install-tl-gui.tcl:1040 tlpkg/tltcl/tltcl.tcl:411
 msgid "Browse..."
-msgstr ""
+msgstr "Browse..."
 
 #: tlpkg/installer/install-tl-gui.tcl:447
 msgid "Localized directory names will be replaced by their real names"
@@ -2027,19 +2034,19 @@ msgstr "Suche"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2153
 msgid "By name"
-msgstr ""
+msgstr "Nach Namen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2155
 msgid "By name and description"
-msgstr ""
+msgstr "Nach Name und Beschreibung"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2167
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2170
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
@@ -2203,7 +2210,7 @@ msgstr "LuaTeX Pakete"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "Mathematics, natural sciences, computer science packages"
-msgstr ""
+msgstr "Mathematik, Natur- und Computerwissenschaftliche Pakete"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "MetaPost and Metafont packages"
