@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-09 02:23+0100\n"
-"PO-Revision-Date: 2019-03-09 06:35+0100\n"
+"PO-Revision-Date: 2019-03-09 12:25+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -82,7 +82,7 @@ msgstr "Anpassen der Datei-Verknüpfungen"
 #: tlpkg/installer/install-menu-wizard.pl:44
 #: tlpkg/installer/install-menu-perltk.pl:511
 msgid "Adjust PATH setting in registry"
-msgstr "Ändere die PATH Einstellung in der Registry"
+msgstr "Ändere die PATH-Einstellung in der Registry"
 
 #: tlpkg/installer/install-menu-wizard.pl:45
 #: tlpkg/installer/install-menu-perltk.pl:556
@@ -161,7 +161,7 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-wizard.pl:182
 msgid "Or use install-tl-advanced.bat."
-msgstr "Oder nutzen sie die install-tl-advanced.bat."
+msgstr "Oder nutzen Sie die install-tl-advanced.bat."
 
 #: tlpkg/installer/install-menu-wizard.pl:183
 msgid "Or specify  --gui expert  to install-tl."
@@ -659,7 +659,7 @@ msgstr "Bitte geben Sie den Pfad ein für %s (~ steht für %s)"
 
 #: tlpkg/installer/install-menu-perltk.pl:832
 msgid "custom selection of collections"
-msgstr "benutzerdefinierte Auswahl der Collections"
+msgstr "Benutzerdefinierte Auswahl der Collections"
 
 #: tlpkg/installer/install-menu-perltk.pl:869
 msgid "Select the collections to be installed"
@@ -696,7 +696,7 @@ msgstr "Auswahl der Architekturen"
 #: tlpkg/installer/install-menu-perltk.pl:1037
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1063
 msgid "Removals of the main platform not possible!"
-msgstr "Entfernen der Hauptarchitekturen ist nicht möglich!"
+msgstr "Entfernen der Haupt-Architekturen ist nicht möglich!"
 
 #: tlpkg/installer/install-menu-perltk.pl:1071
 #, perl-format
@@ -736,7 +736,7 @@ msgstr "Dies kann eine Weile dauern, bitte warten ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:228
 msgid "... done loading"
-msgstr "fertig geladen"
+msgstr "… fertig geladen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:234
 #, perl-format
@@ -747,7 +747,7 @@ msgid ""
 "\n"
 "Most buttons will be disabled."
 msgstr ""
-"Sie haben keinen Berechtigung;\n"
+"Sie haben keine Berechtigung,\n"
 "in das Verzeichnis %s zu schreiben.\n"
 "Bitte starten Sie dieses Programm als Administrator bzw, kontaktieren Sie "
 "Ihren Administrator,\n"
@@ -786,7 +786,7 @@ msgstr "Standard:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:316
 msgid "Display configuration"
-msgstr "Anzeigeeigenschaften"
+msgstr "Zeige Konfiguration"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:321
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2088
@@ -832,7 +832,7 @@ msgstr "Treffer"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:347
 msgid "descriptions"
-msgstr "Kurzbeschreibungen"
+msgstr "Beschreibungen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:350
 msgid "filenames"
@@ -979,7 +979,7 @@ msgstr "Font Datenbank erneuern (updmap-sys)"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:613
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2342
 msgid "Restore packages from backup"
-msgstr "Gesicherte Pakete wiederherstellen"
+msgstr "Gesicherte Pakete aus Backup wiederherstellen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:619
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2424
@@ -1151,7 +1151,7 @@ msgstr "Voreingestellter Backup-Ordner"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1790
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1795
 msgid "Auto backup setting"
-msgstr "Auto backup Einstellungen"
+msgstr "Einstellungen Autom. Backup "
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1201
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2431
