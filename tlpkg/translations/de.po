@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-07 02:23+0100\n"
+"POT-Creation-Date: 2019-03-09 02:23+0100\n"
 "PO-Revision-Date: 2019-03-08 22:15+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
@@ -1595,7 +1595,7 @@ msgid "Directories"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1164
-msgid "support tree"
+msgid "Main tree"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1187

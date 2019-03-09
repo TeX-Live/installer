@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-07 02:23+0100\n"
+"POT-Creation-Date: 2019-03-09 02:23+0100\n"
 "PO-Revision-Date: 2018-12-09 11:00+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -1605,7 +1605,7 @@ msgid "Directories"
 msgstr "Répertoires"
 
 #: tlpkg/installer/install-tl-gui.tcl:1164
-msgid "support tree"
+msgid "Main tree"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1187

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-07 02:23+0100\n"
+"POT-Creation-Date: 2019-03-09 02:23+0100\n"
 "PO-Revision-Date: 2016-05-03 17:30+0200\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
@@ -1586,7 +1586,7 @@ msgid "Directories"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1164
-msgid "support tree"
+msgid "Main tree"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1187
