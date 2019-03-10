@@ -150,10 +150,16 @@ in older Perl releases:
     CopSTASHPV_set
     CopyD
     CPERLscope
+    croak_memory_wrap
+    croak_no_modify
+    croak_nocontext
+    croak_sv
+    croak_xs_usage
     dAX
     dAXMARK
     DEFSV
     DEFSV_set
+    die_sv
     dITEMS
     dMY_CXT
     dMY_CXT_SV
@@ -222,6 +228,9 @@ in older Perl releases:
     memEQs
     memNE
     memNEs
+    mess
+    mess_nocontext
+    mess_sv
     mg_findext
     MoveD
     mPUSHi
@@ -271,7 +280,9 @@ in older Perl releases:
     OpSIBLING
     packWARN
     PERL_ABS
+    PERL_ARGS_ASSERT_CROAK_XS_USAGE
     PERL_BCDVERSION
+    Perl_croak_no_modify
     PERL_GCC_BRACE_GROUPS_FORBIDDEN
     PERL_HASH
     PERL_INT_MAX
@@ -539,6 +550,7 @@ in older Perl releases:
     UVXf
     UVxf
     vload_module
+    vmess
     vnewSVpvf
     WARN_ALL
     WARN_AMBIGUOUS
@@ -559,6 +571,7 @@ in older Perl releases:
     WARN_MALLOC
     WARN_MISC
     WARN_NEWLINE
+    warn_nocontext
     WARN_NUMERIC
     WARN_ONCE
     WARN_OVERFLOW
@@ -578,6 +591,7 @@ in older Perl releases:
     WARN_SEVERE
     WARN_SIGNAL
     WARN_SUBSTR
+    warn_sv
     WARN_SYNTAX
     WARN_TAINT
     WARN_THREADS
@@ -774,7 +788,6 @@ Perl below which it is unsupported:
 
 =item perl 5.19.3
 
-  croak_memory_wrap
   sv_pos_b2u_flags
 
 =item perl 5.19.2
@@ -1007,7 +1020,6 @@ Perl below which it is unsupported:
 =item perl 5.13.3
 
   blockhook_register
-  croak_no_modify
 
 =item perl 5.13.2
 
@@ -1022,11 +1034,7 @@ Perl below which it is unsupported:
 
 =item perl 5.13.1
 
-  croak_sv
-  die_sv
-  mess_sv
   sv_2nv_flags
-  warn_sv
 
 =item perl 5.11.5
 
@@ -1077,7 +1085,6 @@ Perl below which it is unsupported:
 
 =item perl 5.10.1
 
-  croak_xs_usage
   mro_get_from_name
   mro_get_private_data
   mro_register
@@ -1434,7 +1441,6 @@ Perl below which it is unsupported:
   is_utf8_upper
   is_utf8_xdigit
   magic_dump
-  mess
   my_atof
   my_fflush_all
   newANONATTRSUB
@@ -1491,7 +1497,6 @@ Perl below which it is unsupported:
   utf8_hop
   vcroak
   vform
-  vmess
   vwarn
   vwarner
 
@@ -1621,8 +1626,8 @@ Perl below which it is unsupported:
 =head1 BUGS
 
 If you find any bugs, C<Devel::PPPort> doesn't seem to build on your
-system, or any of its tests fail, please file an issue here:
-L<https://github.com/mhx/Devel-PPPort/issues/>
+system, or any of its tests fail, please send a bug report to
+L<perlbug@perl.org|mailto:perlbug@perl.org>.
 
 =head1 AUTHORS
 
@@ -1668,7 +1673,7 @@ package Devel::PPPort;
 use strict;
 use vars qw($VERSION $data);
 
-$VERSION = '3.35';
+$VERSION = '3.40';
 
 sub _init_data
 {
@@ -1751,8 +1756,8 @@ SKIP
 |>  --nochanges                 don't suggest changes
 |>  --nofilter                  don't filter input files
 |>
-|>  --strip                     strip all script and doc functionality from
-|>                              ppport.h
+|>  --strip                     strip all script and doc functionality
+|>                              from ppport.h
 |>
 |>  --list-provided             list provided API
 |>  --list-unsupported          list unsupported API
@@ -1926,6 +1931,8 @@ SKIP
 |>    PL_signals                NEED_PL_signals              NEED_PL_signals_GLOBAL
 |>    SvRX()                    NEED_SvRX                    NEED_SvRX_GLOBAL
 |>    caller_cx()               NEED_caller_cx               NEED_caller_cx_GLOBAL
+|>    croak_xs_usage()          NEED_croak_xs_usage          NEED_croak_xs_usage_GLOBAL
+|>    die_sv()                  NEED_die_sv                  NEED_die_sv_GLOBAL
 |>    eval_pv()                 NEED_eval_pv                 NEED_eval_pv_GLOBAL
 |>    grok_bin()                NEED_grok_bin                NEED_grok_bin_GLOBAL
 |>    grok_hex()                NEED_grok_hex                NEED_grok_hex_GLOBAL
@@ -1934,6 +1941,9 @@ SKIP
 |>    grok_oct()                NEED_grok_oct                NEED_grok_oct_GLOBAL
 |>    gv_fetchpvn_flags()       NEED_gv_fetchpvn_flags       NEED_gv_fetchpvn_flags_GLOBAL
 |>    load_module()             NEED_load_module             NEED_load_module_GLOBAL
+|>    mess()                    NEED_mess                    NEED_mess_GLOBAL
+|>    mess_nocontext()          NEED_mess_nocontext          NEED_mess_nocontext_GLOBAL
+|>    mess_sv()                 NEED_mess_sv                 NEED_mess_sv_GLOBAL
 |>    mg_findext()              NEED_mg_findext              NEED_mg_findext_GLOBAL
 |>    my_snprintf()             NEED_my_snprintf             NEED_my_snprintf_GLOBAL
 |>    my_sprintf()              NEED_my_sprintf              NEED_my_sprintf_GLOBAL
@@ -1956,6 +1966,7 @@ SKIP
 |>    sv_setpvf_mg_nocontext()  NEED_sv_setpvf_mg_nocontext  NEED_sv_setpvf_mg_nocontext_GLOBAL
 |>    sv_unmagicext()           NEED_sv_unmagicext           NEED_sv_unmagicext_GLOBAL
 |>    vload_module()            NEED_vload_module            NEED_vload_module_GLOBAL
+|>    vmess()                   NEED_vmess                   NEED_vmess_GLOBAL
 |>    vnewSVpvf()               NEED_vnewSVpvf               NEED_vnewSVpvf_GLOBAL
 |>    warner()                  NEED_warner                  NEED_warner_GLOBAL
 |>
@@ -2035,7 +2046,7 @@ SKIP
 |>
 |>If F<ppport.h> was generated using the latest version of
 |>C<Devel::PPPort> and is causing failure of this module, please
-|>file a bug report here: L<https://github.com/mhx/Devel-PPPort/issues/>
+|>send a bug report to L<perlbug@perl.org|mailto:perlbug@perl.org>.
 |>
 |>Please include the following information:
 |>
@@ -2302,6 +2313,7 @@ PAD_SV|||
 PERLIO_FUNCS_CAST|5.009003||p
 PERLIO_FUNCS_DECL|5.009003||p
 PERL_ABS|5.008001||p
+PERL_ARGS_ASSERT_CROAK_XS_USAGE|||p
 PERL_BCDVERSION|5.024000||p
 PERL_GCC_BRACE_GROUPS_FORBIDDEN|5.008001||p
 PERL_HASH|5.003070||p
@@ -3014,13 +3026,13 @@ core_prototype|||
 coresub_op|||
 cr_textfilter|||
 create_eval_scope|||
-croak_memory_wrap||5.019003|n
+croak_memory_wrap|5.019003||pn
 croak_no_mem|||n
-croak_no_modify||5.013003|n
-croak_nocontext|||vn
+croak_no_modify|5.013003||pn
+croak_nocontext|||pvn
 croak_popstack|||n
-croak_sv||5.013001|
-croak_xs_usage||5.010001|n
+croak_sv|5.013001||p
+croak_xs_usage|5.010001||pn
 croak|||v
 csighandler||5.009003|n
 current_re_engine|||
@@ -3107,7 +3119,7 @@ deprecate_commaless_var_list|||
 despatch_signals||5.007001|
 destroy_matcher|||
 die_nocontext|||vn
-die_sv||5.013001|
+die_sv|5.013001||p
 die_unwind|||
 die|||v
 dirp_dup|||
@@ -3374,7 +3386,6 @@ handle_regex_sets|||
 he_dup|||
 hek_dup|||
 hfree_next_entry|||
-hfreeentries|||
 hsplit|||
 hv_assert|||
 hv_auxinit_internal|||n
@@ -3400,6 +3411,7 @@ hv_fetchs|5.009003||p
 hv_fetch|||
 hv_fill||5.013002|
 hv_free_ent_ret|||
+hv_free_entries|||
 hv_free_ent||5.004000|
 hv_iterinit|||
 hv_iterkeysv||5.003070|
@@ -3688,9 +3700,9 @@ mem_log_common|||n
 mem_log_free|||n
 mem_log_realloc|||n
 mess_alloc|||
-mess_nocontext|||vn
-mess_sv||5.013001|
-mess||5.006000|v
+mess_nocontext|||pvn
+mess_sv|5.013001||p
+mess|5.006000||pv
 mfree||5.007002|n
 mg_clear|||
 mg_copy|||
@@ -4579,7 +4591,7 @@ visit|||
 vivify_defelem|||
 vivify_ref|||
 vload_module|5.006000||p
-vmess||5.006000|
+vmess|5.006000||p
 vnewSVpvf|5.006000|5.004000|p
 vnormal||5.009002|
 vnumify||5.009000|
@@ -4588,8 +4600,8 @@ vverify||5.009003|
 vwarner||5.006000|
 vwarn||5.006000|
 wait4pid|||
-warn_nocontext|||vn
-warn_sv||5.013001|
+warn_nocontext|||pvn
+warn_sv|5.013001||p
 warner_nocontext|||vn
 warner|5.006000|5.004000|pv
 warn|||v
@@ -5378,8 +5390,8 @@ __DATA__
 #  endif
 #endif
 
-#define _dpppDEC2BCD(dec) ((((dec)/100)<<8)|((((dec)%100)/10)<<4)|((dec)%10))
-#define PERL_BCDVERSION ((_dpppDEC2BCD(PERL_REVISION)<<24)|(_dpppDEC2BCD(PERL_VERSION)<<12)|_dpppDEC2BCD(PERL_SUBVERSION))
+#define D_PPP_DEC2BCD(dec) ((((dec)/100)<<8)|((((dec)%100)/10)<<4)|((dec)%10))
+#define PERL_BCDVERSION ((D_PPP_DEC2BCD(PERL_REVISION)<<24)|(D_PPP_DEC2BCD(PERL_VERSION)<<12)|D_PPP_DEC2BCD(PERL_SUBVERSION))
 
 /* It is very unlikely that anyone will try to use this with Perl 6
    (or greater), but who knows.
@@ -5906,8 +5918,437 @@ __DATA__
 #ifndef Newxz
 #  define Newxz(v,n,t)                   Newz(0,v,n,t)
 #endif
+#ifndef SvGETMAGIC
+#  define SvGETMAGIC(x)                  STMT_START { if (SvGMAGICAL(x)) mg_get(x); } STMT_END
+#endif
+
+/* Some random bits for sv_unmagicext. These should probably be pulled in for
+   real and organized at some point */
+#ifndef HEf_SVKEY
+#  define HEf_SVKEY                      -2
+#endif
+
+#ifndef MUTABLE_PTR
+#if defined(__GNUC__) && !defined(PERL_GCC_BRACE_GROUPS_FORBIDDEN)
+#  define MUTABLE_PTR(p) ({ void *_p = (p); _p; })
+#else
+#  define MUTABLE_PTR(p) ((void *) (p))
+#endif
+#endif
+#ifndef MUTABLE_SV
+#  define MUTABLE_SV(p)                  ((SV *)MUTABLE_PTR(p))
+#endif
+
+/* end of random bits */
+#ifndef PERL_MAGIC_sv
+#  define PERL_MAGIC_sv                  '\0'
+#endif
+
+#ifndef PERL_MAGIC_overload
+#  define PERL_MAGIC_overload            'A'
+#endif
+
+#ifndef PERL_MAGIC_overload_elem
+#  define PERL_MAGIC_overload_elem       'a'
+#endif
+
+#ifndef PERL_MAGIC_overload_table
+#  define PERL_MAGIC_overload_table      'c'
+#endif
+
+#ifndef PERL_MAGIC_bm
+#  define PERL_MAGIC_bm                  'B'
+#endif
+
+#ifndef PERL_MAGIC_regdata
+#  define PERL_MAGIC_regdata             'D'
+#endif
+
+#ifndef PERL_MAGIC_regdatum
+#  define PERL_MAGIC_regdatum            'd'
+#endif
+
+#ifndef PERL_MAGIC_env
+#  define PERL_MAGIC_env                 'E'
+#endif
+
+#ifndef PERL_MAGIC_envelem
+#  define PERL_MAGIC_envelem             'e'
+#endif
+
+#ifndef PERL_MAGIC_fm
+#  define PERL_MAGIC_fm                  'f'
+#endif
+
+#ifndef PERL_MAGIC_regex_global
+#  define PERL_MAGIC_regex_global        'g'
+#endif
+
+#ifndef PERL_MAGIC_isa
+#  define PERL_MAGIC_isa                 'I'
+#endif
+
+#ifndef PERL_MAGIC_isaelem
+#  define PERL_MAGIC_isaelem             'i'
+#endif
+
+#ifndef PERL_MAGIC_nkeys
+#  define PERL_MAGIC_nkeys               'k'
+#endif
+
+#ifndef PERL_MAGIC_dbfile
+#  define PERL_MAGIC_dbfile              'L'
+#endif
+
+#ifndef PERL_MAGIC_dbline
+#  define PERL_MAGIC_dbline              'l'
+#endif
+
+#ifndef PERL_MAGIC_mutex
+#  define PERL_MAGIC_mutex               'm'
+#endif
+
+#ifndef PERL_MAGIC_shared
+#  define PERL_MAGIC_shared              'N'
+#endif
+
+#ifndef PERL_MAGIC_shared_scalar
+#  define PERL_MAGIC_shared_scalar       'n'
+#endif
+
+#ifndef PERL_MAGIC_collxfrm
+#  define PERL_MAGIC_collxfrm            'o'
+#endif
+
+#ifndef PERL_MAGIC_tied
+#  define PERL_MAGIC_tied                'P'
+#endif
+
+#ifndef PERL_MAGIC_tiedelem
+#  define PERL_MAGIC_tiedelem            'p'
+#endif
+
+#ifndef PERL_MAGIC_tiedscalar
+#  define PERL_MAGIC_tiedscalar          'q'
+#endif
+
 #ifndef PERL_MAGIC_qr
 #  define PERL_MAGIC_qr                  'r'
+#endif
+
+#ifndef PERL_MAGIC_sig
+#  define PERL_MAGIC_sig                 'S'
+#endif
+
+#ifndef PERL_MAGIC_sigelem
+#  define PERL_MAGIC_sigelem             's'
+#endif
+
+#ifndef PERL_MAGIC_taint
+#  define PERL_MAGIC_taint               't'
+#endif
+
+#ifndef PERL_MAGIC_uvar
+#  define PERL_MAGIC_uvar                'U'
+#endif
+
+#ifndef PERL_MAGIC_uvar_elem
+#  define PERL_MAGIC_uvar_elem           'u'
+#endif
+
+#ifndef PERL_MAGIC_vstring
+#  define PERL_MAGIC_vstring             'V'
+#endif
+
+#ifndef PERL_MAGIC_vec
+#  define PERL_MAGIC_vec                 'v'
+#endif
+
+#ifndef PERL_MAGIC_utf8
+#  define PERL_MAGIC_utf8                'w'
+#endif
+
+#ifndef PERL_MAGIC_substr
+#  define PERL_MAGIC_substr              'x'
+#endif
+
+#ifndef PERL_MAGIC_defelem
+#  define PERL_MAGIC_defelem             'y'
+#endif
+
+#ifndef PERL_MAGIC_glob
+#  define PERL_MAGIC_glob                '*'
+#endif
+
+#ifndef PERL_MAGIC_arylen
+#  define PERL_MAGIC_arylen              '#'
+#endif
+
+#ifndef PERL_MAGIC_pos
+#  define PERL_MAGIC_pos                 '.'
+#endif
+
+#ifndef PERL_MAGIC_backref
+#  define PERL_MAGIC_backref             '<'
+#endif
+
+#ifndef PERL_MAGIC_ext
+#  define PERL_MAGIC_ext                 '~'
+#endif
+
+/* That's the best we can do... */
+#ifndef sv_catpvn_nomg
+#  define sv_catpvn_nomg                 sv_catpvn
+#endif
+
+#ifndef sv_catsv_nomg
+#  define sv_catsv_nomg                  sv_catsv
+#endif
+
+#ifndef sv_setsv_nomg
+#  define sv_setsv_nomg                  sv_setsv
+#endif
+
+#ifndef sv_pvn_nomg
+#  define sv_pvn_nomg                    sv_pvn
+#endif
+
+#ifndef SvIV_nomg
+#  define SvIV_nomg                      SvIV
+#endif
+
+#ifndef SvUV_nomg
+#  define SvUV_nomg                      SvUV
+#endif
+
+#ifndef sv_catpv_mg
+#  define sv_catpv_mg(sv, ptr)          \
+   STMT_START {                         \
+     SV *TeMpSv = sv;                   \
+     sv_catpv(TeMpSv,ptr);              \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_catpvn_mg
+#  define sv_catpvn_mg(sv, ptr, len)    \
+   STMT_START {                         \
+     SV *TeMpSv = sv;                   \
+     sv_catpvn(TeMpSv,ptr,len);         \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_catsv_mg
+#  define sv_catsv_mg(dsv, ssv)         \
+   STMT_START {                         \
+     SV *TeMpSv = dsv;                  \
+     sv_catsv(TeMpSv,ssv);              \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_setiv_mg
+#  define sv_setiv_mg(sv, i)            \
+   STMT_START {                         \
+     SV *TeMpSv = sv;                   \
+     sv_setiv(TeMpSv,i);                \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_setnv_mg
+#  define sv_setnv_mg(sv, num)          \
+   STMT_START {                         \
+     SV *TeMpSv = sv;                   \
+     sv_setnv(TeMpSv,num);              \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_setpv_mg
+#  define sv_setpv_mg(sv, ptr)          \
+   STMT_START {                         \
+     SV *TeMpSv = sv;                   \
+     sv_setpv(TeMpSv,ptr);              \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_setpvn_mg
+#  define sv_setpvn_mg(sv, ptr, len)    \
+   STMT_START {                         \
+     SV *TeMpSv = sv;                   \
+     sv_setpvn(TeMpSv,ptr,len);         \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_setsv_mg
+#  define sv_setsv_mg(dsv, ssv)         \
+   STMT_START {                         \
+     SV *TeMpSv = dsv;                  \
+     sv_setsv(TeMpSv,ssv);              \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_setuv_mg
+#  define sv_setuv_mg(sv, i)            \
+   STMT_START {                         \
+     SV *TeMpSv = sv;                   \
+     sv_setuv(TeMpSv,i);                \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+
+#ifndef sv_usepvn_mg
+#  define sv_usepvn_mg(sv, ptr, len)    \
+   STMT_START {                         \
+     SV *TeMpSv = sv;                   \
+     sv_usepvn(TeMpSv,ptr,len);         \
+     SvSETMAGIC(TeMpSv);                \
+   } STMT_END
+#endif
+#ifndef SvVSTRING_mg
+#  define SvVSTRING_mg(sv)               (SvMAGICAL(sv) ? mg_find(sv, PERL_MAGIC_vstring) : NULL)
+#endif
+
+/* Hint: sv_magic_portable
+ * This is a compatibility function that is only available with
+ * Devel::PPPort. It is NOT in the perl core.
+ * Its purpose is to mimic the 5.8.0 behaviour of sv_magic() when
+ * it is being passed a name pointer with namlen == 0. In that
+ * case, perl 5.8.0 and later store the pointer, not a copy of it.
+ * The compatibility can be provided back to perl 5.004. With
+ * earlier versions, the code will not compile.
+ */
+
+#if (PERL_BCDVERSION < 0x5004000)
+
+  /* code that uses sv_magic_portable will not compile */
+
+#elif (PERL_BCDVERSION < 0x5008000)
+
+#  define sv_magic_portable(sv, obj, how, name, namlen)     \
+   STMT_START {                                             \
+     SV *SvMp_sv = (sv);                                    \
+     char *SvMp_name = (char *) (name);                     \
+     I32 SvMp_namlen = (namlen);                            \
+     if (SvMp_name && SvMp_namlen == 0)                     \
+     {                                                      \
+       MAGIC *mg;                                           \
+       sv_magic(SvMp_sv, obj, how, 0, 0);                   \
+       mg = SvMAGIC(SvMp_sv);                               \
+       mg->mg_len = -42; /* XXX: this is the tricky part */ \
+       mg->mg_ptr = SvMp_name;                              \
+     }                                                      \
+     else                                                   \
+     {                                                      \
+       sv_magic(SvMp_sv, obj, how, SvMp_name, SvMp_namlen); \
+     }                                                      \
+   } STMT_END
+
+#else
+
+#  define sv_magic_portable(a, b, c, d, e)  sv_magic(a, b, c, d, e)
+
+#endif
+
+#if !defined(mg_findext)
+#if defined(NEED_mg_findext)
+static MAGIC * DPPP_(my_mg_findext)(SV * sv, int type, const MGVTBL *vtbl);
+static
+#else
+extern MAGIC * DPPP_(my_mg_findext)(SV * sv, int type, const MGVTBL *vtbl);
+#endif
+
+#if defined(NEED_mg_findext) || defined(NEED_mg_findext_GLOBAL)
+
+#define mg_findext DPPP_(my_mg_findext)
+#define Perl_mg_findext DPPP_(my_mg_findext)
+
+
+MAGIC *
+DPPP_(my_mg_findext)(SV * sv, int type, const MGVTBL *vtbl) {
+    if (sv) {
+        MAGIC *mg;
+
+#ifdef AvPAD_NAMELIST
+        assert(!(SvTYPE(sv) == SVt_PVAV && AvPAD_NAMELIST(sv)));
+#endif
+
+        for (mg = SvMAGIC (sv); mg; mg = mg->mg_moremagic) {
+            if (mg->mg_type == type && mg->mg_virtual == vtbl)
+                return mg;
+        }
+    }
+
+    return NULL;
+}
+
+#endif
+#endif
+
+#if !defined(sv_unmagicext)
+#if defined(NEED_sv_unmagicext)
+static int DPPP_(my_sv_unmagicext)(pTHX_ SV * const sv, const int type, MGVTBL * vtbl);
+static
+#else
+extern int DPPP_(my_sv_unmagicext)(pTHX_ SV * const sv, const int type, MGVTBL * vtbl);
+#endif
+
+#if defined(NEED_sv_unmagicext) || defined(NEED_sv_unmagicext_GLOBAL)
+
+#ifdef sv_unmagicext
+#  undef sv_unmagicext
+#endif
+#define sv_unmagicext(a,b,c) DPPP_(my_sv_unmagicext)(aTHX_ a,b,c)
+#define Perl_sv_unmagicext DPPP_(my_sv_unmagicext)
+
+
+int
+DPPP_(my_sv_unmagicext)(pTHX_ SV *const sv, const int type, MGVTBL *vtbl)
+{
+    MAGIC* mg;
+    MAGIC** mgp;
+
+    if (SvTYPE(sv) < SVt_PVMG || !SvMAGIC(sv))
+	return 0;
+    mgp = &(SvMAGIC(sv));
+    for (mg = *mgp; mg; mg = *mgp) {
+	const MGVTBL* const virt = mg->mg_virtual;
+	if (mg->mg_type == type && virt == vtbl) {
+	    *mgp = mg->mg_moremagic;
+	    if (virt && virt->svt_free)
+		virt->svt_free(aTHX_ sv, mg);
+	    if (mg->mg_ptr && mg->mg_type != PERL_MAGIC_regex_global) {
+		if (mg->mg_len > 0)
+		    Safefree(mg->mg_ptr);
+		else if (mg->mg_len == HEf_SVKEY) /* Questionable on older perls... */
+		    SvREFCNT_dec(MUTABLE_SV(mg->mg_ptr));
+		else if (mg->mg_type == PERL_MAGIC_utf8)
+		    Safefree(mg->mg_ptr);
+            }
+	    if (mg->mg_flags & MGf_REFCOUNTED)
+		SvREFCNT_dec(mg->mg_obj);
+	    Safefree(mg);
+	}
+	else
+	    mgp = &mg->mg_moremagic;
+    }
+    if (SvMAGIC(sv)) {
+	if (SvMAGICAL(sv))	/* if we're under save_magic, wait for restore_magic; */
+	    mg_magical(sv);	/*    else fix the flags now */
+    }
+    else {
+	SvMAGICAL_off(sv);
+	SvFLAGS(sv) |= (SvFLAGS(sv) & (SVp_IOK|SVp_NOK|SVp_POK)) >> PRIVSHIFT;
+    }
+    return 0;
+}
+
+#endif
 #endif
 #ifndef cBOOL
 #  define cBOOL(cbool)                   ((cbool) ? (bool)1 : (bool)0)
@@ -5941,12 +6382,13 @@ static
 extern void * DPPP_(my_SvRX)(pTHX_ SV *rv);
 #endif
 
+#if defined(NEED_SvRX) || defined(NEED_SvRX_GLOBAL)
+
 #ifdef SvRX
 #  undef SvRX
 #endif
 #define SvRX(a) DPPP_(my_SvRX)(aTHX_ a)
 
-#if defined(NEED_SvRX) || defined(NEED_SvRX_GLOBAL)
 
 void *
 DPPP_(my_SvRX)(pTHX_ SV *rv)
@@ -6294,14 +6736,16 @@ typedef OP* (CPERLscope(*Perl_check_t)) (pTHX_ OP*);
 #  undef isPRINT
 # endif
 
-#ifdef HAS_QUAD
-# ifdef U64TYPE
-#  define WIDEST_UTYPE U64TYPE
+#ifndef WIDEST_UTYPE
+# ifdef QUADKIND
+#  ifdef U64TYPE
+#   define WIDEST_UTYPE U64TYPE
+#  else
+#   define WIDEST_UTYPE Quad_t
+#  endif
 # else
-#  define WIDEST_UTYPE Quad_t
+#  define WIDEST_UTYPE U32
 # endif
-#else
-# define WIDEST_UTYPE U32
 #endif
 #ifndef isALNUMC
 #  define isALNUMC(c)                    (isALPHA(c) || isDIGIT(c))
@@ -6348,6 +6792,304 @@ typedef OP* (CPERLscope(*Perl_check_t)) (pTHX_ OP*);
 
 #ifndef C_ARRAY_END
 #  define C_ARRAY_END(a)                 ((a) + C_ARRAY_LENGTH(a))
+#endif
+
+#ifndef IVdf
+#  if IVSIZE == LONGSIZE
+#    define     IVdf      "ld"
+#    define     UVuf      "lu"
+#    define     UVof      "lo"
+#    define     UVxf      "lx"
+#    define     UVXf      "lX"
+#  elif IVSIZE == INTSIZE
+#    define   IVdf      "d"
+#    define   UVuf      "u"
+#    define   UVof      "o"
+#    define   UVxf      "x"
+#    define   UVXf      "X"
+#  else
+#    error "cannot define IV/UV formats"
+#  endif
+#endif
+
+#ifndef NVef
+#  if defined(USE_LONG_DOUBLE) && defined(HAS_LONG_DOUBLE) && \
+      defined(PERL_PRIfldbl) && (PERL_BCDVERSION != 0x5006000)
+            /* Not very likely, but let's try anyway. */
+#    define NVef          PERL_PRIeldbl
+#    define NVff          PERL_PRIfldbl
+#    define NVgf          PERL_PRIgldbl
+#  else
+#    define NVef          "e"
+#    define NVff          "f"
+#    define NVgf          "g"
+#  endif
+#endif
+
+#ifdef NEED_mess_sv
+#define NEED_mess
+#endif
+
+#ifdef NEED_mess
+#define NEED_mess_nocontext
+#define NEED_vmess
+#endif
+
+#ifndef croak_sv
+#if (PERL_BCDVERSION >= 0x5007003) || ( (PERL_BCDVERSION >= 0x5006001) && (PERL_BCDVERSION < 0x5007000) )
+#  if ( (PERL_BCDVERSION >= 0x5008000) && (PERL_BCDVERSION < 0x5008009) ) || ( (PERL_BCDVERSION >= 0x5009000) && (PERL_BCDVERSION < 0x5010001) )
+#    define D_PPP_FIX_UTF8_ERRSV(errsv, sv)                     \
+        STMT_START {                                            \
+            if (sv != ERRSV)                                    \
+                SvFLAGS(ERRSV) = (SvFLAGS(ERRSV) & ~SVf_UTF8) | \
+                                 (SvFLAGS(sv) & SVf_UTF8);      \
+        } STMT_END
+#  else
+#    define D_PPP_FIX_UTF8_ERRSV(errsv, sv) STMT_START {} STMT_END
+#  endif
+#  define croak_sv(sv)                        \
+    STMT_START {                              \
+        if (SvROK(sv)) {                      \
+            sv_setsv(ERRSV, sv);              \
+            croak(NULL);                      \
+        } else {                              \
+            D_PPP_FIX_UTF8_ERRSV(ERRSV, sv);  \
+            croak("%" SVf, SVfARG(sv));       \
+        }                                     \
+    } STMT_END
+#elif (PERL_BCDVERSION >= 0x5004000)
+#  define croak_sv(sv) croak("%" SVf, SVfARG(sv))
+#else
+#  define croak_sv(sv) croak("%s", SvPV_nolen(sv))
+#endif
+#endif
+
+#ifndef die_sv
+#if defined(NEED_die_sv)
+static OP * DPPP_(my_die_sv)(pTHX_ SV *sv);
+static
+#else
+extern OP * DPPP_(my_die_sv)(pTHX_ SV *sv);
+#endif
+
+#if defined(NEED_die_sv) || defined(NEED_die_sv_GLOBAL)
+
+#ifdef die_sv
+#  undef die_sv
+#endif
+#define die_sv(a) DPPP_(my_die_sv)(aTHX_ a)
+#define Perl_die_sv DPPP_(my_die_sv)
+
+OP *
+DPPP_(my_die_sv)(pTHX_ SV *sv)
+{
+    croak_sv(sv);
+    return (OP *)NULL;
+}
+#endif
+#endif
+
+#ifndef warn_sv
+#if (PERL_BCDVERSION >= 0x5004000)
+#  define warn_sv(sv) warn("%" SVf, SVfARG(sv))
+#else
+#  define warn_sv(sv) warn("%s", SvPV_nolen(sv))
+#endif
+#endif
+
+#ifndef vmess
+#if defined(NEED_vmess)
+static SV * DPPP_(my_vmess)(pTHX_ const char * pat, va_list * args);
+static
+#else
+extern SV * DPPP_(my_vmess)(pTHX_ const char * pat, va_list * args);
+#endif
+
+#if defined(NEED_vmess) || defined(NEED_vmess_GLOBAL)
+
+#ifdef vmess
+#  undef vmess
+#endif
+#define vmess(a,b) DPPP_(my_vmess)(aTHX_ a,b)
+#define Perl_vmess DPPP_(my_vmess)
+
+SV*
+DPPP_(my_vmess)(pTHX_ const char* pat, va_list* args)
+{
+    mess(pat, args);
+    return PL_mess_sv;
+}
+#endif
+#endif
+
+#if (PERL_BCDVERSION < 0x5006000)
+#undef mess
+#endif
+
+#if !defined(mess_nocontext) && !defined(Perl_mess_nocontext)
+#if defined(NEED_mess_nocontext)
+static SV * DPPP_(my_mess_nocontext)(const char * pat, ...);
+static
+#else
+extern SV * DPPP_(my_mess_nocontext)(const char * pat, ...);
+#endif
+
+#if defined(NEED_mess_nocontext) || defined(NEED_mess_nocontext_GLOBAL)
+
+#define mess_nocontext DPPP_(my_mess_nocontext)
+#define Perl_mess_nocontext DPPP_(my_mess_nocontext)
+
+SV*
+DPPP_(my_mess_nocontext)(const char* pat, ...)
+{
+    dTHX;
+    SV *sv;
+    va_list args;
+    va_start(args, pat);
+    sv = vmess(pat, &args);
+    va_end(args);
+    return sv;
+}
+#endif
+#endif
+
+#ifndef mess
+#if defined(NEED_mess)
+static SV * DPPP_(my_mess)(pTHX_ const char * pat, ...);
+static
+#else
+extern SV * DPPP_(my_mess)(pTHX_ const char * pat, ...);
+#endif
+
+#if defined(NEED_mess) || defined(NEED_mess_GLOBAL)
+
+#define Perl_mess DPPP_(my_mess)
+
+SV*
+DPPP_(my_mess)(pTHX_ const char* pat, ...)
+{
+    SV *sv;
+    va_list args;
+    va_start(args, pat);
+    sv = vmess(pat, &args);
+    va_end(args);
+    return sv;
+}
+#ifdef mess_nocontext
+#define mess mess_nocontext
+#else
+#define mess Perl_mess_nocontext
+#endif
+#endif
+#endif
+
+#ifndef mess_sv
+#if defined(NEED_mess_sv)
+static SV * DPPP_(my_mess_sv)(pTHX_ SV * basemsg, bool consume);
+static
+#else
+extern SV * DPPP_(my_mess_sv)(pTHX_ SV * basemsg, bool consume);
+#endif
+
+#if defined(NEED_mess_sv) || defined(NEED_mess_sv_GLOBAL)
+
+#ifdef mess_sv
+#  undef mess_sv
+#endif
+#define mess_sv(a,b) DPPP_(my_mess_sv)(aTHX_ a,b)
+#define Perl_mess_sv DPPP_(my_mess_sv)
+
+SV *
+DPPP_(my_mess_sv)(pTHX_ SV *basemsg, bool consume)
+{
+    SV *tmp;
+    SV *ret;
+
+    if (SvPOK(basemsg) && SvCUR(basemsg) && *(SvEND(basemsg)-1) == '\n') {
+        if (consume)
+            return basemsg;
+        ret = mess("");
+        SvSetSV_nosteal(ret, basemsg);
+        return ret;
+    }
+
+    if (consume) {
+        sv_catsv(basemsg, mess(""));
+        return basemsg;
+    }
+
+    ret = mess("");
+    tmp = newSVsv(ret);
+    SvSetSV_nosteal(ret, basemsg);
+    sv_catsv(ret, tmp);
+    sv_dec(tmp);
+    return ret;
+}
+#endif
+#endif
+
+#ifndef warn_nocontext
+#define warn_nocontext warn
+#endif
+
+#ifndef croak_nocontext
+#define croak_nocontext croak
+#endif
+
+#ifndef croak_no_modify
+#define croak_no_modify() croak_nocontext("%s", PL_no_modify)
+#define Perl_croak_no_modify() croak_no_modify()
+#endif
+
+#ifndef croak_memory_wrap
+#if (PERL_BCDVERSION >= 0x5009002) || ( (PERL_BCDVERSION >= 0x5008006) && (PERL_BCDVERSION < 0x5009000) )
+#  define croak_memory_wrap() croak_nocontext("%s", PL_memory_wrap)
+#else
+#  define croak_memory_wrap() croak_nocontext("panic: memory wrap")
+#endif
+#endif
+
+#ifndef croak_xs_usage
+#if defined(NEED_croak_xs_usage)
+static void DPPP_(my_croak_xs_usage)(const CV * const cv, const char * const params);
+static
+#else
+extern void DPPP_(my_croak_xs_usage)(const CV * const cv, const char * const params);
+#endif
+
+#if defined(NEED_croak_xs_usage) || defined(NEED_croak_xs_usage_GLOBAL)
+
+#define croak_xs_usage DPPP_(my_croak_xs_usage)
+#define Perl_croak_xs_usage DPPP_(my_croak_xs_usage)
+
+
+#ifndef PERL_ARGS_ASSERT_CROAK_XS_USAGE
+#define PERL_ARGS_ASSERT_CROAK_XS_USAGE assert(cv); assert(params)
+#endif
+
+void
+DPPP_(my_croak_xs_usage)(const CV *const cv, const char *const params)
+{
+    dTHX;
+    const GV *const gv = CvGV(cv);
+
+    PERL_ARGS_ASSERT_CROAK_XS_USAGE;
+
+    if (gv) {
+        const char *const gvname = GvNAME(gv);
+        const HV *const stash = GvSTASH(gv);
+        const char *const hvname = stash ? HvNAME(stash) : NULL;
+
+        if (hvname)
+            croak("Usage: %s::%s(%s)", hvname, gvname, params);
+        else
+            croak("Usage: %s(%s)", gvname, params);
+    } else {
+        /* Pants. I don't think that it should be possible to get here. */
+        croak("Usage: CODE(0x%" UVxf ")(%s)", PTR2UV(cv), params);
+    }
+}
+#endif
 #endif
 
 #ifndef PERL_SIGNALS_UNSAFE_FLAG
@@ -6606,13 +7348,14 @@ static
 extern SV* DPPP_(my_eval_pv)(char *p, I32 croak_on_error);
 #endif
 
+#if defined(NEED_eval_pv) || defined(NEED_eval_pv_GLOBAL)
+
 #ifdef eval_pv
 #  undef eval_pv
 #endif
 #define eval_pv(a,b) DPPP_(my_eval_pv)(aTHX_ a,b)
 #define Perl_eval_pv DPPP_(my_eval_pv)
 
-#if defined(NEED_eval_pv) || defined(NEED_eval_pv_GLOBAL)
 
 SV*
 DPPP_(my_eval_pv)(char *p, I32 croak_on_error)
@@ -6628,8 +7371,8 @@ DPPP_(my_eval_pv)(char *p, I32 croak_on_error)
     sv = POPs;
     PUTBACK;
 
-    if (croak_on_error && SvTRUE(GvSV(errgv)))
-        croak(SvPVx(GvSV(errgv), na));
+    if (croak_on_error && SvTRUEx(ERRSV))
+        croak_sv(ERRSV);
 
     return sv;
 }
@@ -6645,13 +7388,14 @@ static
 extern void DPPP_(my_vload_module)(U32 flags, SV *name, SV *ver, va_list *args);
 #endif
 
+#if defined(NEED_vload_module) || defined(NEED_vload_module_GLOBAL)
+
 #ifdef vload_module
 #  undef vload_module
 #endif
 #define vload_module(a,b,c,d) DPPP_(my_vload_module)(aTHX_ a,b,c,d)
 #define Perl_vload_module DPPP_(my_vload_module)
 
-#if defined(NEED_vload_module) || defined(NEED_vload_module_GLOBAL)
 
 void
 DPPP_(my_vload_module)(U32 flags, SV *name, SV *ver, va_list *args)
@@ -6720,13 +7464,14 @@ static
 extern void DPPP_(my_load_module)(U32 flags, SV *name, SV *ver, ...);
 #endif
 
+#if defined(NEED_load_module) || defined(NEED_load_module_GLOBAL)
+
 #ifdef load_module
 #  undef load_module
 #endif
 #define load_module DPPP_(my_load_module)
 #define Perl_load_module DPPP_(my_load_module)
 
-#if defined(NEED_load_module) || defined(NEED_load_module_GLOBAL)
 
 void
 DPPP_(my_load_module)(U32 flags, SV *name, SV *ver, ...)
@@ -6751,13 +7496,14 @@ static
 extern SV * DPPP_(my_newRV_noinc)(SV *sv);
 #endif
 
+#if defined(NEED_newRV_noinc) || defined(NEED_newRV_noinc_GLOBAL)
+
 #ifdef newRV_noinc
 #  undef newRV_noinc
 #endif
 #define newRV_noinc(a) DPPP_(my_newRV_noinc)(aTHX_ a)
 #define Perl_newRV_noinc DPPP_(my_newRV_noinc)
 
-#if defined(NEED_newRV_noinc) || defined(NEED_newRV_noinc_GLOBAL)
 SV *
 DPPP_(my_newRV_noinc)(SV *sv)
 {
@@ -6782,13 +7528,14 @@ static
 extern void DPPP_(my_newCONSTSUB)(HV *stash, const char *name, SV *sv);
 #endif
 
+#if defined(NEED_newCONSTSUB) || defined(NEED_newCONSTSUB_GLOBAL)
+
 #ifdef newCONSTSUB
 #  undef newCONSTSUB
 #endif
 #define newCONSTSUB(a,b,c) DPPP_(my_newCONSTSUB)(aTHX_ a,b,c)
 #define Perl_newCONSTSUB DPPP_(my_newCONSTSUB)
 
-#if defined(NEED_newCONSTSUB) || defined(NEED_newCONSTSUB_GLOBAL)
 
 /* This is just a trick to avoid a dependency of newCONSTSUB on PL_parser */
 /* (There's no PL_parser in perl < 5.005, so this is completely safe)     */
@@ -6934,38 +7681,6 @@ DPPP_(my_newCONSTSUB)(HV *stash, const char *name, SV *sv)
 
 #endif
 
-#ifndef IVdf
-#  if IVSIZE == LONGSIZE
-#    define     IVdf      "ld"
-#    define     UVuf      "lu"
-#    define     UVof      "lo"
-#    define     UVxf      "lx"
-#    define     UVXf      "lX"
-#  elif IVSIZE == INTSIZE
-#    define   IVdf      "d"
-#    define   UVuf      "u"
-#    define   UVof      "o"
-#    define   UVxf      "x"
-#    define   UVXf      "X"
-#  else
-#    error "cannot define IV/UV formats"
-#  endif
-#endif
-
-#ifndef NVef
-#  if defined(USE_LONG_DOUBLE) && defined(HAS_LONG_DOUBLE) && \
-      defined(PERL_PRIfldbl) && (PERL_BCDVERSION != 0x5006000)
-            /* Not very likely, but let's try anyway. */
-#    define NVef          PERL_PRIeldbl
-#    define NVff          PERL_PRIfldbl
-#    define NVgf          PERL_PRIgldbl
-#  else
-#    define NVef          "e"
-#    define NVff          "f"
-#    define NVgf          "g"
-#  endif
-#endif
-
 #ifndef SvREFCNT_inc
 #  ifdef PERL_USE_GCC_BRACE_GROUPS
 #    define SvREFCNT_inc(sv)            \
@@ -7047,13 +7762,14 @@ static
 extern SV* DPPP_(my_newSV_type)(pTHX_ svtype const t);
 #endif
 
+#if defined(NEED_newSV_type) || defined(NEED_newSV_type_GLOBAL)
+
 #ifdef newSV_type
 #  undef newSV_type
 #endif
 #define newSV_type(a) DPPP_(my_newSV_type)(aTHX_ a)
 #define Perl_newSV_type DPPP_(my_newSV_type)
 
-#if defined(NEED_newSV_type) || defined(NEED_newSV_type_GLOBAL)
 
 SV*
 DPPP_(my_newSV_type)(pTHX_ svtype const t)
@@ -7093,13 +7809,14 @@ static
 extern SV * DPPP_(my_newSVpvn_flags)(pTHX_ const char *s, STRLEN len, U32 flags);
 #endif
 
+#if defined(NEED_newSVpvn_flags) || defined(NEED_newSVpvn_flags_GLOBAL)
+
 #ifdef newSVpvn_flags
 #  undef newSVpvn_flags
 #endif
 #define newSVpvn_flags(a,b,c) DPPP_(my_newSVpvn_flags)(aTHX_ a,b,c)
 #define Perl_newSVpvn_flags DPPP_(my_newSVpvn_flags)
 
-#if defined(NEED_newSVpvn_flags) || defined(NEED_newSVpvn_flags_GLOBAL)
 
 SV *
 DPPP_(my_newSVpvn_flags)(pTHX_ const char *s, STRLEN len, U32 flags)
@@ -7144,13 +7861,14 @@ static
 extern char * DPPP_(my_sv_2pvbyte)(pTHX_ SV *sv, STRLEN *lp);
 #endif
 
+#if defined(NEED_sv_2pvbyte) || defined(NEED_sv_2pvbyte_GLOBAL)
+
 #ifdef sv_2pvbyte
 #  undef sv_2pvbyte
 #endif
 #define sv_2pvbyte(a,b) DPPP_(my_sv_2pvbyte)(aTHX_ a,b)
 #define Perl_sv_2pvbyte DPPP_(my_sv_2pvbyte)
 
-#if defined(NEED_sv_2pvbyte) || defined(NEED_sv_2pvbyte_GLOBAL)
 
 char *
 DPPP_(my_sv_2pvbyte)(pTHX_ SV *sv, STRLEN *lp)
@@ -7241,13 +7959,14 @@ static
 extern char * DPPP_(my_sv_2pv_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags);
 #endif
 
+#if defined(NEED_sv_2pv_flags) || defined(NEED_sv_2pv_flags_GLOBAL)
+
 #ifdef sv_2pv_flags
 #  undef sv_2pv_flags
 #endif
 #define sv_2pv_flags(a,b,c) DPPP_(my_sv_2pv_flags)(aTHX_ a,b,c)
 #define Perl_sv_2pv_flags DPPP_(my_sv_2pv_flags)
 
-#if defined(NEED_sv_2pv_flags) || defined(NEED_sv_2pv_flags_GLOBAL)
 
 char *
 DPPP_(my_sv_2pv_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags)
@@ -7265,13 +7984,14 @@ static
 extern char * DPPP_(my_sv_pvn_force_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags);
 #endif
 
+#if defined(NEED_sv_pvn_force_flags) || defined(NEED_sv_pvn_force_flags_GLOBAL)
+
 #ifdef sv_pvn_force_flags
 #  undef sv_pvn_force_flags
 #endif
 #define sv_pvn_force_flags(a,b,c) DPPP_(my_sv_pvn_force_flags)(aTHX_ a,b,c)
 #define Perl_sv_pvn_force_flags DPPP_(my_sv_pvn_force_flags)
 
-#if defined(NEED_sv_pvn_force_flags) || defined(NEED_sv_pvn_force_flags_GLOBAL)
 
 char *
 DPPP_(my_sv_pvn_force_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags)
@@ -7285,9 +8005,9 @@ DPPP_(my_sv_pvn_force_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags)
 #endif
 
 #if (PERL_BCDVERSION < 0x5008008) || ( (PERL_BCDVERSION >= 0x5009000) && (PERL_BCDVERSION < 0x5009003) )
-# define DPPP_SVPV_NOLEN_LP_ARG &PL_na
+# define D_PPP_SVPV_NOLEN_LP_ARG &PL_na
 #else
-# define DPPP_SVPV_NOLEN_LP_ARG 0
+# define D_PPP_SVPV_NOLEN_LP_ARG 0
 #endif
 #ifndef SvPV_const
 #  define SvPV_const(sv, lp)             SvPV_flags_const(sv, lp, SV_GMAGIC)
@@ -7311,7 +8031,7 @@ DPPP_(my_sv_pvn_force_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags)
 #  define SvPV_flags_const_nolen(sv, flags) \
                  ((SvFLAGS(sv) & (SVf_POK)) == SVf_POK \
                   ? SvPVX_const(sv) : \
-                  (const char*) sv_2pv_flags(sv, DPPP_SVPV_NOLEN_LP_ARG, flags|SV_CONST_RETURN))
+                  (const char*) sv_2pv_flags(sv, D_PPP_SVPV_NOLEN_LP_ARG, flags|SV_CONST_RETURN))
 #endif
 #ifndef SvPV_flags_mutable
 #  define SvPV_flags_mutable(sv, lp, flags) \
@@ -7346,7 +8066,7 @@ DPPP_(my_sv_pvn_force_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags)
 #ifndef SvPV_force_flags_nolen
 #  define SvPV_force_flags_nolen(sv, flags) \
                  ((SvFLAGS(sv) & (SVf_POK|SVf_THINKFIRST)) == SVf_POK \
-                 ? SvPVX(sv) : sv_pvn_force_flags(sv, DPPP_SVPV_NOLEN_LP_ARG, flags))
+                 ? SvPVX(sv) : sv_pvn_force_flags(sv, D_PPP_SVPV_NOLEN_LP_ARG, flags))
 #endif
 #ifndef SvPV_force_flags_mutable
 #  define SvPV_force_flags_mutable(sv, lp, flags) \
@@ -7357,12 +8077,12 @@ DPPP_(my_sv_pvn_force_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags)
 #ifndef SvPV_nolen
 #  define SvPV_nolen(sv)                 \
                  ((SvFLAGS(sv) & (SVf_POK)) == SVf_POK \
-                  ? SvPVX(sv) : sv_2pv_flags(sv, DPPP_SVPV_NOLEN_LP_ARG, SV_GMAGIC))
+                  ? SvPVX(sv) : sv_2pv_flags(sv, D_PPP_SVPV_NOLEN_LP_ARG, SV_GMAGIC))
 #endif
 #ifndef SvPV_nolen_const
 #  define SvPV_nolen_const(sv)           \
                  ((SvFLAGS(sv) & (SVf_POK)) == SVf_POK \
-                  ? SvPVX_const(sv) : sv_2pv_flags(sv, DPPP_SVPV_NOLEN_LP_ARG, SV_GMAGIC|SV_CONST_RETURN))
+                  ? SvPVX_const(sv) : sv_2pv_flags(sv, D_PPP_SVPV_NOLEN_LP_ARG, SV_GMAGIC|SV_CONST_RETURN))
 #endif
 #ifndef SvPV_nomg
 #  define SvPV_nomg(sv, lp)              SvPV_flags(sv, lp, 0)
@@ -7378,7 +8098,7 @@ DPPP_(my_sv_pvn_force_flags)(pTHX_ SV *sv, STRLEN *lp, I32 flags)
 
 #ifndef SvPV_nomg_nolen
 #  define SvPV_nomg_nolen(sv)            ((SvFLAGS(sv) & (SVf_POK)) == SVf_POK \
-                                    ? SvPVX(sv) : sv_2pv_flags(sv, DPPP_SVPV_NOLEN_LP_ARG, 0))
+                                    ? SvPVX(sv) : sv_2pv_flags(sv, D_PPP_SVPV_NOLEN_LP_ARG, 0))
 #endif
 #ifndef SvPV_renew
 #  define SvPV_renew(sv,n)               STMT_START { SvLEN_set(sv, n); \
@@ -7451,13 +8171,14 @@ static
 extern SV * DPPP_(my_vnewSVpvf)(pTHX_ const char *pat, va_list *args);
 #endif
 
+#if defined(NEED_vnewSVpvf) || defined(NEED_vnewSVpvf_GLOBAL)
+
 #ifdef vnewSVpvf
 #  undef vnewSVpvf
 #endif
 #define vnewSVpvf(a,b) DPPP_(my_vnewSVpvf)(aTHX_ a,b)
 #define Perl_vnewSVpvf DPPP_(my_vnewSVpvf)
 
-#if defined(NEED_vnewSVpvf) || defined(NEED_vnewSVpvf_GLOBAL)
 
 SV *
 DPPP_(my_vnewSVpvf)(pTHX_ const char *pat, va_list *args)
@@ -7486,9 +8207,10 @@ static
 extern void DPPP_(my_sv_catpvf_mg)(pTHX_ SV *sv, const char *pat, ...);
 #endif
 
+#if defined(NEED_sv_catpvf_mg) || defined(NEED_sv_catpvf_mg_GLOBAL)
+
 #define Perl_sv_catpvf_mg DPPP_(my_sv_catpvf_mg)
 
-#if defined(NEED_sv_catpvf_mg) || defined(NEED_sv_catpvf_mg_GLOBAL)
 
 void
 DPPP_(my_sv_catpvf_mg)(pTHX_ SV *sv, const char *pat, ...)
@@ -7512,10 +8234,11 @@ static
 extern void DPPP_(my_sv_catpvf_mg_nocontext)(SV *sv, const char *pat, ...);
 #endif
 
+#if defined(NEED_sv_catpvf_mg_nocontext) || defined(NEED_sv_catpvf_mg_nocontext_GLOBAL)
+
 #define sv_catpvf_mg_nocontext DPPP_(my_sv_catpvf_mg_nocontext)
 #define Perl_sv_catpvf_mg_nocontext DPPP_(my_sv_catpvf_mg_nocontext)
 
-#if defined(NEED_sv_catpvf_mg_nocontext) || defined(NEED_sv_catpvf_mg_nocontext_GLOBAL)
 
 void
 DPPP_(my_sv_catpvf_mg_nocontext)(SV *sv, const char *pat, ...)
@@ -7557,9 +8280,10 @@ static
 extern void DPPP_(my_sv_setpvf_mg)(pTHX_ SV *sv, const char *pat, ...);
 #endif
 
+#if defined(NEED_sv_setpvf_mg) || defined(NEED_sv_setpvf_mg_GLOBAL)
+
 #define Perl_sv_setpvf_mg DPPP_(my_sv_setpvf_mg)
 
-#if defined(NEED_sv_setpvf_mg) || defined(NEED_sv_setpvf_mg_GLOBAL)
 
 void
 DPPP_(my_sv_setpvf_mg)(pTHX_ SV *sv, const char *pat, ...)
@@ -7583,10 +8307,11 @@ static
 extern void DPPP_(my_sv_setpvf_mg_nocontext)(SV *sv, const char *pat, ...);
 #endif
 
+#if defined(NEED_sv_setpvf_mg_nocontext) || defined(NEED_sv_setpvf_mg_nocontext_GLOBAL)
+
 #define sv_setpvf_mg_nocontext DPPP_(my_sv_setpvf_mg_nocontext)
 #define Perl_sv_setpvf_mg_nocontext DPPP_(my_sv_setpvf_mg_nocontext)
 
-#if defined(NEED_sv_setpvf_mg_nocontext) || defined(NEED_sv_setpvf_mg_nocontext_GLOBAL)
 
 void
 DPPP_(my_sv_setpvf_mg_nocontext)(SV *sv, const char *pat, ...)
@@ -7635,13 +8360,14 @@ static
 extern SV * DPPP_(my_newSVpvn_share)(pTHX_ const char *src, I32 len, U32 hash);
 #endif
 
+#if defined(NEED_newSVpvn_share) || defined(NEED_newSVpvn_share_GLOBAL)
+
 #ifdef newSVpvn_share
 #  undef newSVpvn_share
 #endif
 #define newSVpvn_share(a,b,c) DPPP_(my_newSVpvn_share)(aTHX_ a,b,c)
 #define Perl_newSVpvn_share DPPP_(my_newSVpvn_share)
 
-#if defined(NEED_newSVpvn_share) || defined(NEED_newSVpvn_share_GLOBAL)
 
 SV *
 DPPP_(my_newSVpvn_share)(pTHX_ const char *src, I32 len, U32 hash)
@@ -7680,13 +8406,14 @@ static
 extern GV* DPPP_(my_gv_fetchpvn_flags)(pTHX_ const char* name, STRLEN len, int flags, int types);
 #endif
 
+#if defined(NEED_gv_fetchpvn_flags) || defined(NEED_gv_fetchpvn_flags_GLOBAL)
+
 #ifdef gv_fetchpvn_flags
 #  undef gv_fetchpvn_flags
 #endif
 #define gv_fetchpvn_flags(a,b,c,d) DPPP_(my_gv_fetchpvn_flags)(aTHX_ a,b,c,d)
 #define Perl_gv_fetchpvn_flags DPPP_(my_gv_fetchpvn_flags)
 
-#if defined(NEED_gv_fetchpvn_flags) || defined(NEED_gv_fetchpvn_flags_GLOBAL)
 
 GV*
 DPPP_(my_gv_fetchpvn_flags)(pTHX_ const char* name, STRLEN len, int flags, int types) {
@@ -7923,9 +8650,10 @@ static
 extern void DPPP_(my_warner)(U32 err, const char *pat, ...);
 #endif
 
+#if defined(NEED_warner) || defined(NEED_warner_GLOBAL)
+
 #define Perl_warner DPPP_(my_warner)
 
-#if defined(NEED_warner) || defined(NEED_warner_GLOBAL)
 
 void
 DPPP_(my_warner)(U32 err, const char *pat, ...)
@@ -7992,436 +8720,6 @@ DPPP_(my_warner)(U32 err, const char *pat, ...)
 #endif
 #ifndef get_cvs
 #  define get_cvs(name, flags)           get_cvn_flags(name "", sizeof(name)-1, flags)
-#endif
-#ifndef SvGETMAGIC
-#  define SvGETMAGIC(x)                  STMT_START { if (SvGMAGICAL(x)) mg_get(x); } STMT_END
-#endif
-
-/* Some random bits for sv_unmagicext. These should probably be pulled in for
-   real and organized at some point */
-#ifndef HEf_SVKEY
-#  define HEf_SVKEY                      -2
-#endif
-
-#ifndef MUTABLE_PTR
-#if defined(__GNUC__) && !defined(PERL_GCC_BRACE_GROUPS_FORBIDDEN)
-#  define MUTABLE_PTR(p) ({ void *_p = (p); _p; })
-#else
-#  define MUTABLE_PTR(p) ((void *) (p))
-#endif
-#endif
-#ifndef MUTABLE_SV
-#  define MUTABLE_SV(p)                  ((SV *)MUTABLE_PTR(p))
-#endif
-
-/* end of random bits */
-#ifndef PERL_MAGIC_sv
-#  define PERL_MAGIC_sv                  '\0'
-#endif
-
-#ifndef PERL_MAGIC_overload
-#  define PERL_MAGIC_overload            'A'
-#endif
-
-#ifndef PERL_MAGIC_overload_elem
-#  define PERL_MAGIC_overload_elem       'a'
-#endif
-
-#ifndef PERL_MAGIC_overload_table
-#  define PERL_MAGIC_overload_table      'c'
-#endif
-
-#ifndef PERL_MAGIC_bm
-#  define PERL_MAGIC_bm                  'B'
-#endif
-
-#ifndef PERL_MAGIC_regdata
-#  define PERL_MAGIC_regdata             'D'
-#endif
-
-#ifndef PERL_MAGIC_regdatum
-#  define PERL_MAGIC_regdatum            'd'
-#endif
-
-#ifndef PERL_MAGIC_env
-#  define PERL_MAGIC_env                 'E'
-#endif
-
-#ifndef PERL_MAGIC_envelem
-#  define PERL_MAGIC_envelem             'e'
-#endif
-
-#ifndef PERL_MAGIC_fm
-#  define PERL_MAGIC_fm                  'f'
-#endif
-
-#ifndef PERL_MAGIC_regex_global
-#  define PERL_MAGIC_regex_global        'g'
-#endif
-
-#ifndef PERL_MAGIC_isa
-#  define PERL_MAGIC_isa                 'I'
-#endif
-
-#ifndef PERL_MAGIC_isaelem
-#  define PERL_MAGIC_isaelem             'i'
-#endif
-
-#ifndef PERL_MAGIC_nkeys
-#  define PERL_MAGIC_nkeys               'k'
-#endif
-
-#ifndef PERL_MAGIC_dbfile
-#  define PERL_MAGIC_dbfile              'L'
-#endif
-
-#ifndef PERL_MAGIC_dbline
-#  define PERL_MAGIC_dbline              'l'
-#endif
-
-#ifndef PERL_MAGIC_mutex
-#  define PERL_MAGIC_mutex               'm'
-#endif
-
-#ifndef PERL_MAGIC_shared
-#  define PERL_MAGIC_shared              'N'
-#endif
-
-#ifndef PERL_MAGIC_shared_scalar
-#  define PERL_MAGIC_shared_scalar       'n'
-#endif
-
-#ifndef PERL_MAGIC_collxfrm
-#  define PERL_MAGIC_collxfrm            'o'
-#endif
-
-#ifndef PERL_MAGIC_tied
-#  define PERL_MAGIC_tied                'P'
-#endif
-
-#ifndef PERL_MAGIC_tiedelem
-#  define PERL_MAGIC_tiedelem            'p'
-#endif
-
-#ifndef PERL_MAGIC_tiedscalar
-#  define PERL_MAGIC_tiedscalar          'q'
-#endif
-
-#ifndef PERL_MAGIC_qr
-#  define PERL_MAGIC_qr                  'r'
-#endif
-
-#ifndef PERL_MAGIC_sig
-#  define PERL_MAGIC_sig                 'S'
-#endif
-
-#ifndef PERL_MAGIC_sigelem
-#  define PERL_MAGIC_sigelem             's'
-#endif
-
-#ifndef PERL_MAGIC_taint
-#  define PERL_MAGIC_taint               't'
-#endif
-
-#ifndef PERL_MAGIC_uvar
-#  define PERL_MAGIC_uvar                'U'
-#endif
-
-#ifndef PERL_MAGIC_uvar_elem
-#  define PERL_MAGIC_uvar_elem           'u'
-#endif
-
-#ifndef PERL_MAGIC_vstring
-#  define PERL_MAGIC_vstring             'V'
-#endif
-
-#ifndef PERL_MAGIC_vec
-#  define PERL_MAGIC_vec                 'v'
-#endif
-
-#ifndef PERL_MAGIC_utf8
-#  define PERL_MAGIC_utf8                'w'
-#endif
-
-#ifndef PERL_MAGIC_substr
-#  define PERL_MAGIC_substr              'x'
-#endif
-
-#ifndef PERL_MAGIC_defelem
-#  define PERL_MAGIC_defelem             'y'
-#endif
-
-#ifndef PERL_MAGIC_glob
-#  define PERL_MAGIC_glob                '*'
-#endif
-
-#ifndef PERL_MAGIC_arylen
-#  define PERL_MAGIC_arylen              '#'
-#endif
-
-#ifndef PERL_MAGIC_pos
-#  define PERL_MAGIC_pos                 '.'
-#endif
-
-#ifndef PERL_MAGIC_backref
-#  define PERL_MAGIC_backref             '<'
-#endif
-
-#ifndef PERL_MAGIC_ext
-#  define PERL_MAGIC_ext                 '~'
-#endif
-
-/* That's the best we can do... */
-#ifndef sv_catpvn_nomg
-#  define sv_catpvn_nomg                 sv_catpvn
-#endif
-
-#ifndef sv_catsv_nomg
-#  define sv_catsv_nomg                  sv_catsv
-#endif
-
-#ifndef sv_setsv_nomg
-#  define sv_setsv_nomg                  sv_setsv
-#endif
-
-#ifndef sv_pvn_nomg
-#  define sv_pvn_nomg                    sv_pvn
-#endif
-
-#ifndef SvIV_nomg
-#  define SvIV_nomg                      SvIV
-#endif
-
-#ifndef SvUV_nomg
-#  define SvUV_nomg                      SvUV
-#endif
-
-#ifndef sv_catpv_mg
-#  define sv_catpv_mg(sv, ptr)          \
-   STMT_START {                         \
-     SV *TeMpSv = sv;                   \
-     sv_catpv(TeMpSv,ptr);              \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_catpvn_mg
-#  define sv_catpvn_mg(sv, ptr, len)    \
-   STMT_START {                         \
-     SV *TeMpSv = sv;                   \
-     sv_catpvn(TeMpSv,ptr,len);         \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_catsv_mg
-#  define sv_catsv_mg(dsv, ssv)         \
-   STMT_START {                         \
-     SV *TeMpSv = dsv;                  \
-     sv_catsv(TeMpSv,ssv);              \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_setiv_mg
-#  define sv_setiv_mg(sv, i)            \
-   STMT_START {                         \
-     SV *TeMpSv = sv;                   \
-     sv_setiv(TeMpSv,i);                \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_setnv_mg
-#  define sv_setnv_mg(sv, num)          \
-   STMT_START {                         \
-     SV *TeMpSv = sv;                   \
-     sv_setnv(TeMpSv,num);              \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_setpv_mg
-#  define sv_setpv_mg(sv, ptr)          \
-   STMT_START {                         \
-     SV *TeMpSv = sv;                   \
-     sv_setpv(TeMpSv,ptr);              \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_setpvn_mg
-#  define sv_setpvn_mg(sv, ptr, len)    \
-   STMT_START {                         \
-     SV *TeMpSv = sv;                   \
-     sv_setpvn(TeMpSv,ptr,len);         \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_setsv_mg
-#  define sv_setsv_mg(dsv, ssv)         \
-   STMT_START {                         \
-     SV *TeMpSv = dsv;                  \
-     sv_setsv(TeMpSv,ssv);              \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_setuv_mg
-#  define sv_setuv_mg(sv, i)            \
-   STMT_START {                         \
-     SV *TeMpSv = sv;                   \
-     sv_setuv(TeMpSv,i);                \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-
-#ifndef sv_usepvn_mg
-#  define sv_usepvn_mg(sv, ptr, len)    \
-   STMT_START {                         \
-     SV *TeMpSv = sv;                   \
-     sv_usepvn(TeMpSv,ptr,len);         \
-     SvSETMAGIC(TeMpSv);                \
-   } STMT_END
-#endif
-#ifndef SvVSTRING_mg
-#  define SvVSTRING_mg(sv)               (SvMAGICAL(sv) ? mg_find(sv, PERL_MAGIC_vstring) : NULL)
-#endif
-
-/* Hint: sv_magic_portable
- * This is a compatibility function that is only available with
- * Devel::PPPort. It is NOT in the perl core.
- * Its purpose is to mimic the 5.8.0 behaviour of sv_magic() when
- * it is being passed a name pointer with namlen == 0. In that
- * case, perl 5.8.0 and later store the pointer, not a copy of it.
- * The compatibility can be provided back to perl 5.004. With
- * earlier versions, the code will not compile.
- */
-
-#if (PERL_BCDVERSION < 0x5004000)
-
-  /* code that uses sv_magic_portable will not compile */
-
-#elif (PERL_BCDVERSION < 0x5008000)
-
-#  define sv_magic_portable(sv, obj, how, name, namlen)     \
-   STMT_START {                                             \
-     SV *SvMp_sv = (sv);                                    \
-     char *SvMp_name = (char *) (name);                     \
-     I32 SvMp_namlen = (namlen);                            \
-     if (SvMp_name && SvMp_namlen == 0)                     \
-     {                                                      \
-       MAGIC *mg;                                           \
-       sv_magic(SvMp_sv, obj, how, 0, 0);                   \
-       mg = SvMAGIC(SvMp_sv);                               \
-       mg->mg_len = -42; /* XXX: this is the tricky part */ \
-       mg->mg_ptr = SvMp_name;                              \
-     }                                                      \
-     else                                                   \
-     {                                                      \
-       sv_magic(SvMp_sv, obj, how, SvMp_name, SvMp_namlen); \
-     }                                                      \
-   } STMT_END
-
-#else
-
-#  define sv_magic_portable(a, b, c, d, e)  sv_magic(a, b, c, d, e)
-
-#endif
-
-#if !defined(mg_findext)
-#if defined(NEED_mg_findext)
-static MAGIC * DPPP_(my_mg_findext)(SV * sv, int type, const MGVTBL *vtbl);
-static
-#else
-extern MAGIC * DPPP_(my_mg_findext)(SV * sv, int type, const MGVTBL *vtbl);
-#endif
-
-#define mg_findext DPPP_(my_mg_findext)
-#define Perl_mg_findext DPPP_(my_mg_findext)
-
-#if defined(NEED_mg_findext) || defined(NEED_mg_findext_GLOBAL)
-
-MAGIC *
-DPPP_(my_mg_findext)(SV * sv, int type, const MGVTBL *vtbl) {
-    if (sv) {
-        MAGIC *mg;
-
-#ifdef AvPAD_NAMELIST
-        assert(!(SvTYPE(sv) == SVt_PVAV && AvPAD_NAMELIST(sv)));
-#endif
-
-        for (mg = SvMAGIC (sv); mg; mg = mg->mg_moremagic) {
-            if (mg->mg_type == type && mg->mg_virtual == vtbl)
-                return mg;
-        }
-    }
-
-    return NULL;
-}
-
-#endif
-#endif
-
-#if !defined(sv_unmagicext)
-#if defined(NEED_sv_unmagicext)
-static int DPPP_(my_sv_unmagicext)(pTHX_ SV * const sv, const int type, MGVTBL * vtbl);
-static
-#else
-extern int DPPP_(my_sv_unmagicext)(pTHX_ SV * const sv, const int type, MGVTBL * vtbl);
-#endif
-
-#ifdef sv_unmagicext
-#  undef sv_unmagicext
-#endif
-#define sv_unmagicext(a,b,c) DPPP_(my_sv_unmagicext)(aTHX_ a,b,c)
-#define Perl_sv_unmagicext DPPP_(my_sv_unmagicext)
-
-#if defined(NEED_sv_unmagicext) || defined(NEED_sv_unmagicext_GLOBAL)
-
-int
-DPPP_(my_sv_unmagicext)(pTHX_ SV *const sv, const int type, MGVTBL *vtbl)
-{
-    MAGIC* mg;
-    MAGIC** mgp;
-
-    if (SvTYPE(sv) < SVt_PVMG || !SvMAGIC(sv))
-	return 0;
-    mgp = &(SvMAGIC(sv));
-    for (mg = *mgp; mg; mg = *mgp) {
-	const MGVTBL* const virt = mg->mg_virtual;
-	if (mg->mg_type == type && virt == vtbl) {
-	    *mgp = mg->mg_moremagic;
-	    if (virt && virt->svt_free)
-		virt->svt_free(aTHX_ sv, mg);
-	    if (mg->mg_ptr && mg->mg_type != PERL_MAGIC_regex_global) {
-		if (mg->mg_len > 0)
-		    Safefree(mg->mg_ptr);
-		else if (mg->mg_len == HEf_SVKEY) /* Questionable on older perls... */
-		    SvREFCNT_dec(MUTABLE_SV(mg->mg_ptr));
-		else if (mg->mg_type == PERL_MAGIC_utf8)
-		    Safefree(mg->mg_ptr);
-            }
-	    if (mg->mg_flags & MGf_REFCOUNTED)
-		SvREFCNT_dec(mg->mg_obj);
-	    Safefree(mg);
-	}
-	else
-	    mgp = &mg->mg_moremagic;
-    }
-    if (SvMAGIC(sv)) {
-	if (SvMAGICAL(sv))	/* if we're under save_magic, wait for restore_magic; */
-	    mg_magical(sv);	/*    else fix the flags now */
-    }
-    else {
-	SvMAGICAL_off(sv);
-	SvFLAGS(sv) |= (SvFLAGS(sv) & (SVp_IOK|SVp_NOK|SVp_POK)) >> PRIVSHIFT;
-    }
-    return 0;
-}
-
-#endif
 #endif
 
 #ifdef USE_ITHREADS
@@ -8545,13 +8843,14 @@ static
 extern const PERL_CONTEXT * DPPP_(my_caller_cx)(pTHX_ I32 count, const PERL_CONTEXT **dbcxp);
 #endif
 
+#if defined(NEED_caller_cx) || defined(NEED_caller_cx_GLOBAL)
+
 #ifdef caller_cx
 #  undef caller_cx
 #endif
 #define caller_cx(a,b) DPPP_(my_caller_cx)(aTHX_ a,b)
 #define Perl_caller_cx DPPP_(my_caller_cx)
 
-#if defined(NEED_caller_cx) || defined(NEED_caller_cx_GLOBAL)
 
 const PERL_CONTEXT *
 DPPP_(my_caller_cx)(pTHX_ I32 count, const PERL_CONTEXT **dbcxp)
@@ -8662,13 +8961,14 @@ static
 extern bool DPPP_(my_grok_numeric_radix)(pTHX_ const char ** sp, const char * send);
 #endif
 
+#if defined(NEED_grok_numeric_radix) || defined(NEED_grok_numeric_radix_GLOBAL)
+
 #ifdef grok_numeric_radix
 #  undef grok_numeric_radix
 #endif
 #define grok_numeric_radix(a,b) DPPP_(my_grok_numeric_radix)(aTHX_ a,b)
 #define Perl_grok_numeric_radix DPPP_(my_grok_numeric_radix)
 
-#if defined(NEED_grok_numeric_radix) || defined(NEED_grok_numeric_radix_GLOBAL)
 bool
 DPPP_(my_grok_numeric_radix)(pTHX_ const char **sp, const char *send)
 {
@@ -8718,13 +9018,14 @@ static
 extern int DPPP_(my_grok_number)(pTHX_ const char * pv, STRLEN len, UV * valuep);
 #endif
 
+#if defined(NEED_grok_number) || defined(NEED_grok_number_GLOBAL)
+
 #ifdef grok_number
 #  undef grok_number
 #endif
 #define grok_number(a,b,c) DPPP_(my_grok_number)(aTHX_ a,b,c)
 #define Perl_grok_number DPPP_(my_grok_number)
 
-#if defined(NEED_grok_number) || defined(NEED_grok_number_GLOBAL)
 int
 DPPP_(my_grok_number)(pTHX_ const char *pv, STRLEN len, UV *valuep)
 {
@@ -8932,13 +9233,14 @@ static
 extern UV DPPP_(my_grok_bin)(pTHX_ const char * start, STRLEN * len_p, I32 * flags, NV * result);
 #endif
 
+#if defined(NEED_grok_bin) || defined(NEED_grok_bin_GLOBAL)
+
 #ifdef grok_bin
 #  undef grok_bin
 #endif
 #define grok_bin(a,b,c,d) DPPP_(my_grok_bin)(aTHX_ a,b,c,d)
 #define Perl_grok_bin DPPP_(my_grok_bin)
 
-#if defined(NEED_grok_bin) || defined(NEED_grok_bin_GLOBAL)
 UV
 DPPP_(my_grok_bin)(pTHX_ const char *start, STRLEN *len_p, I32 *flags, NV *result)
 {
@@ -9034,13 +9336,14 @@ static
 extern UV DPPP_(my_grok_hex)(pTHX_ const char * start, STRLEN * len_p, I32 * flags, NV * result);
 #endif
 
+#if defined(NEED_grok_hex) || defined(NEED_grok_hex_GLOBAL)
+
 #ifdef grok_hex
 #  undef grok_hex
 #endif
 #define grok_hex(a,b,c,d) DPPP_(my_grok_hex)(aTHX_ a,b,c,d)
 #define Perl_grok_hex DPPP_(my_grok_hex)
 
-#if defined(NEED_grok_hex) || defined(NEED_grok_hex_GLOBAL)
 UV
 DPPP_(my_grok_hex)(pTHX_ const char *start, STRLEN *len_p, I32 *flags, NV *result)
 {
@@ -9136,13 +9439,14 @@ static
 extern UV DPPP_(my_grok_oct)(pTHX_ const char * start, STRLEN * len_p, I32 * flags, NV * result);
 #endif
 
+#if defined(NEED_grok_oct) || defined(NEED_grok_oct_GLOBAL)
+
 #ifdef grok_oct
 #  undef grok_oct
 #endif
 #define grok_oct(a,b,c,d) DPPP_(my_grok_oct)(aTHX_ a,b,c,d)
 #define Perl_grok_oct DPPP_(my_grok_oct)
 
-#if defined(NEED_grok_oct) || defined(NEED_grok_oct_GLOBAL)
 UV
 DPPP_(my_grok_oct)(pTHX_ const char *start, STRLEN *len_p, I32 *flags, NV *result)
 {
@@ -9229,10 +9533,11 @@ static
 extern int DPPP_(my_my_snprintf)(char * buffer, const Size_t len, const char * format, ...);
 #endif
 
+#if defined(NEED_my_snprintf) || defined(NEED_my_snprintf_GLOBAL)
+
 #define my_snprintf DPPP_(my_my_snprintf)
 #define Perl_my_snprintf DPPP_(my_my_snprintf)
 
-#if defined(NEED_my_snprintf) || defined(NEED_my_snprintf_GLOBAL)
 
 int
 DPPP_(my_my_snprintf)(char *buffer, const Size_t len, const char *format, ...)
@@ -9263,10 +9568,11 @@ static
 extern int DPPP_(my_my_sprintf)(char * buffer, const char * pat, ...);
 #endif
 
+#if defined(NEED_my_sprintf) || defined(NEED_my_sprintf_GLOBAL)
+
 #define my_sprintf DPPP_(my_my_sprintf)
 #define Perl_my_sprintf DPPP_(my_my_sprintf)
 
-#if defined(NEED_my_sprintf) || defined(NEED_my_sprintf_GLOBAL)
 
 int
 DPPP_(my_my_sprintf)(char *buffer, const char* pat, ...)
@@ -9305,10 +9611,11 @@ static
 extern Size_t DPPP_(my_my_strlcat)(char * dst, const char * src, Size_t size);
 #endif
 
+#if defined(NEED_my_strlcat) || defined(NEED_my_strlcat_GLOBAL)
+
 #define my_strlcat DPPP_(my_my_strlcat)
 #define Perl_my_strlcat DPPP_(my_my_strlcat)
 
-#if defined(NEED_my_strlcat) || defined(NEED_my_strlcat_GLOBAL)
 
 Size_t
 DPPP_(my_my_strlcat)(char *dst, const char *src, Size_t size)
@@ -9335,10 +9642,11 @@ static
 extern Size_t DPPP_(my_my_strlcpy)(char * dst, const char * src, Size_t size);
 #endif
 
+#if defined(NEED_my_strlcpy) || defined(NEED_my_strlcpy_GLOBAL)
+
 #define my_strlcpy DPPP_(my_my_strlcpy)
 #define Perl_my_strlcpy DPPP_(my_my_strlcpy)
 
-#if defined(NEED_my_strlcpy) || defined(NEED_my_strlcpy_GLOBAL)
 
 Size_t
 DPPP_(my_my_strlcpy)(char *dst, const char *src, Size_t size)
@@ -9425,13 +9733,14 @@ static
 extern char * DPPP_(my_pv_escape)(pTHX_ SV * dsv, char const * const str, const STRLEN count, const STRLEN max, STRLEN * const escaped, const U32 flags);
 #endif
 
+#if defined(NEED_pv_escape) || defined(NEED_pv_escape_GLOBAL)
+
 #ifdef pv_escape
 #  undef pv_escape
 #endif
 #define pv_escape(a,b,c,d,e,f) DPPP_(my_pv_escape)(aTHX_ a,b,c,d,e,f)
 #define Perl_pv_escape DPPP_(my_pv_escape)
 
-#if defined(NEED_pv_escape) || defined(NEED_pv_escape_GLOBAL)
 
 char *
 DPPP_(my_pv_escape)(pTHX_ SV *dsv, char const * const str,
@@ -9534,13 +9843,14 @@ static
 extern char * DPPP_(my_pv_pretty)(pTHX_ SV * dsv, char const * const str, const STRLEN count, const STRLEN max, char const * const start_color, char const * const end_color, const U32 flags);
 #endif
 
+#if defined(NEED_pv_pretty) || defined(NEED_pv_pretty_GLOBAL)
+
 #ifdef pv_pretty
 #  undef pv_pretty
 #endif
 #define pv_pretty(a,b,c,d,e,f,g) DPPP_(my_pv_pretty)(aTHX_ a,b,c,d,e,f,g)
 #define Perl_pv_pretty DPPP_(my_pv_pretty)
 
-#if defined(NEED_pv_pretty) || defined(NEED_pv_pretty_GLOBAL)
 
 char *
 DPPP_(my_pv_pretty)(pTHX_ SV *dsv, char const * const str, const STRLEN count,
@@ -9588,13 +9898,14 @@ static
 extern char * DPPP_(my_pv_display)(pTHX_ SV * dsv, const char * pv, STRLEN cur, STRLEN len, STRLEN pvlim);
 #endif
 
+#if defined(NEED_pv_display) || defined(NEED_pv_display_GLOBAL)
+
 #ifdef pv_display
 #  undef pv_display
 #endif
 #define pv_display(a,b,c,d,e) DPPP_(my_pv_display)(aTHX_ a,b,c,d,e)
 #define Perl_pv_display DPPP_(my_pv_display)
 
-#if defined(NEED_pv_display) || defined(NEED_pv_display_GLOBAL)
 
 char *
 DPPP_(my_pv_display)(pTHX_ SV *dsv, const char *pv, STRLEN cur, STRLEN len, STRLEN pvlim)

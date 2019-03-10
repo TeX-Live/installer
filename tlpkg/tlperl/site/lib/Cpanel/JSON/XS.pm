@@ -1,5 +1,5 @@
 package Cpanel::JSON::XS;
-our $VERSION = '4.01';
+our $VERSION = '4.09';
 our $XS_VERSION = $VERSION;
 # $VERSION = eval $VERSION;
 
@@ -530,6 +530,13 @@ resulting JSON text is guaranteed not to contain any C<newlines>.
 
 This setting has no effect when decoding JSON texts.
 
+=item $json = $json->indent_length([$number_of_spaces])
+
+=item $length = $json->get_indent_length()
+
+Set the indent length (default C<3>).
+This option is only useful when you also enable indent or pretty.
+The acceptable range is from 0 (no indentation) to 15
 
 =item $json = $json->space_before ([$enable])
 
@@ -638,11 +645,12 @@ L</allow_barekey> option.
 
     { foo:"bar" }
 
-=item * duplicate keys
+=item * allow_dupkeys
 
-With relaxed decoding of duplicate keys does not error and are silently accepted.
+Allow decoding of duplicate keys in hashes. By default duplicate keys are forbidden.
 See L<http://seriot.ch/parsing_json.php#24>:
 RFC 7159 section 4: "The names within an object should be unique."
+See the L</allow_dupkeys> option.
 
 =back
 
@@ -692,6 +700,18 @@ If C<$enable> is true (or missing), then C<encode> will escape slashes,
 C<"\/">.
 
 This setting has no effect when decoding JSON texts.
+
+
+=item $json = $json->unblessed_bool ([$enable])
+
+=item $enabled = $json->get_unblessed_bool
+
+    $json = $json->unblessed_bool([$enable])
+
+If C<$enable> is true (or missing), then C<decode> will return
+Perl non-object boolean variables (1 and 0) for JSON booleans
+(C<true> and C<false>). If C<$enable> is false, then C<decode>
+will return C<Cpanel::JSON::XS::Boolean> objects for JSON booleans.
 
 
 =item $json = $json->allow_singlequote ([$enable])
@@ -804,6 +824,22 @@ This option does not affect C<decode> in any way.
 
 This option is special to this module, it is not supported by other
 encoders.  So it is not recommended to use it.
+
+=item $json = $json->allow_dupkeys ([$enable])
+
+=item $enabled = $json->get_allow_dupkeys
+
+If C<$enable> is true (or missing), then the C<decode> method will not
+die when it encounters duplicate keys in a hash.
+C<allow_dupkeys> is also enabled in the C<relaxed> mode.
+
+The JSON spec allows duplicate name in objects but recommends to
+disable it, however with Perl hashes they are impossible, parsing
+JSON in Perl silently ignores duplicate names, using the last value
+found.
+
+See L<http://seriot.ch/parsing_json.php#24>:
+RFC 7159 section 4: "The names within an object should be unique."
 
 =item $json = $json->allow_blessed ([$enable])
 
@@ -1491,6 +1527,14 @@ directly if you want.
 
    encode_json [Cpanel::JSON::XS::true, Cpanel::JSON::XS::true] # yields [false,true]
    encode_json [!1, !0]      # yields [false,true]
+
+eq/ne comparisons with true, false:
+
+false is eq to the empty string or the string 'false' or the special
+empty string C<!!0>, i.e. C<SV_NO>, or the numbers 0 or 0.0.
+
+true is eq to the string 'true' or to the special string C<!0>
+(i.e. C<SV_YES>) or to the numbers 1 or 1.0.
 
 =item blessed objects
 
@@ -2209,13 +2253,23 @@ BEGIN {
     "--"     => sub { $_[0] = ${$_[0]} - 1 },
     '""'     => sub { ${$_[0]} == 1 ? '1' : '0' }, # GH 29
     'eq'     => sub {
-      my ($obj, $op) = ref ($_[0]) ? ($_[0], $_[1]) : ($_[1], $_[0]);
-      if ($op eq 'true' or $op eq 'false') {
-        return "$obj" eq '1' ? 'true' eq $op : 'false' eq $op;
+      my ($obj, $op) = $_[2] ? ($_[1], $_[0]) : ($_[0], $_[1]);
+      #warn "eq obj:$obj op:$op len:", length($op) > 0, " swap:$_[2]";
+      if (ref $op) { # if 2nd also blessed might recurse endlessly
+        return $obj ? 1 == $op : 0 == $op;
+      }
+      # if string, only accept numbers or true|false or "" (e.g. !!0 / SV_NO)
+      elsif ($op !~ /^[0-9]+$/) {
+        return "$obj" eq '1' ? 'true' eq $op : 'false' eq $op || "" eq $op;
       }
       else {
         return $obj ? 1 == $op : 0 == $op;
       }
+    },
+    'ne'     => sub {
+      my ($obj, $op) = $_[2] ? ($_[1], $_[0]) : ($_[0], $_[1]);
+      #warn "ne obj:$obj op:$op";
+      return !($obj eq $op);
     },
     fallback => 1);
 }

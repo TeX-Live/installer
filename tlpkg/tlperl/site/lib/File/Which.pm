@@ -6,7 +6,7 @@ use Exporter   ();
 use File::Spec ();
 
 # ABSTRACT: Perl implementation of the which utility as an API
-our $VERSION = '1.22'; # VERSION
+our $VERSION = '1.23'; # VERSION
 
 
 our @ISA       = 'Exporter';
@@ -15,15 +15,18 @@ our @EXPORT_OK = 'where';
 
 use constant IS_VMS => ($^O eq 'VMS');
 use constant IS_MAC => ($^O eq 'MacOS');
-use constant IS_DOS => ($^O eq 'MSWin32' or $^O eq 'dos' or $^O eq 'os2');
+use constant IS_WIN => ($^O eq 'MSWin32' or $^O eq 'dos' or $^O eq 'os2');
+use constant IS_DOS => IS_WIN();
 use constant IS_CYG => ($^O eq 'cygwin' || $^O eq 'msys');
+
+our $IMPLICIT_CURRENT_DIR = IS_WIN || IS_VMS || IS_MAC;
 
 # For Win32 systems, stores the extensions used for
 # executable files
 # For others, the empty string is used
 # because 'perl' . '' eq 'perl' => easier
 my @PATHEXT = ('');
-if ( IS_DOS ) {
+if ( IS_WIN ) {
   # WinNT. PATHEXT might be set on Cygwin, but not used.
   if ( $ENV{PATHEXT} ) {
     push @PATHEXT, split ';', $ENV{PATHEXT};
@@ -77,10 +80,21 @@ sub which {
   }
 
   return $exec
-          if !IS_VMS and !IS_MAC and !IS_DOS and $exec =~ /\// and -f $exec and -x $exec;
+          if !IS_VMS and !IS_MAC and !IS_WIN and $exec =~ /\// and -f $exec and -x $exec;
 
-  my @path = File::Spec->path;
-  if ( IS_DOS or IS_VMS or IS_MAC ) {
+  my @path;
+  if($^O eq 'MSWin32') {
+    # File::Spec (at least recent versions)
+    # add the implicit . for you on MSWin32,
+    # but we may or may not want to include
+    # that.
+    @path = split(';', $ENV{PATH});
+    s/"//g for @path;
+    @path = grep length, @path;
+  } else {
+    @path = File::Spec->path;
+  }
+  if ( $IMPLICIT_CURRENT_DIR ) {
     unshift @path, File::Spec->curdir;
   }
 
@@ -99,7 +113,7 @@ sub which {
           IS_MAC
           ||
           (
-            ( IS_DOS or IS_CYG )
+            ( IS_WIN or IS_CYG )
             and
             grep {
               $file =~ /$_\z/i
@@ -146,7 +160,7 @@ File::Which - Perl implementation of the which utility as an API
 
 =head1 VERSION
 
-version 1.22
+version 1.23
 
 =head1 SYNOPSIS
 
@@ -171,7 +185,7 @@ functionality regardless of the underlying platform.
 The focus of this module is correctness and portability.  As a consequence
 platforms where the current directory is implicitly part of the search path
 such as Microsoft Windows will find executables in the current directory,
-whereas on platforms such as UNIX where this is not the case executables 
+whereas on platforms such as UNIX where this is not the case executables
 in the current directory will only be found if the current directory is
 explicitly added to the path.
 
@@ -214,7 +228,7 @@ be discovered even if they are not part of the query.  C<.COM> or extensions
 specified using the C<PATHEXT> environment variable will NOT be discovered
 without the fully qualified name, however.
 
-=head3 Windows 95, 98, ME, MS-DOS, OS/2
+=head3 Windows ME, 98, 95, MS-DOS, OS/2
 
 This set of operating systems don't have the C<PATHEXT> variable, and usually
 you will find executable files there with the extensions C<.exe>, C<.bat> and
@@ -261,15 +275,43 @@ matches.
 
 Not exported by default.
 
-Same as L</which> in array context. Same as the
-C<where> utility, will return an array containing all the path names
+Same as L</which> in array context.  Similar to the C<where> csh
+built-in command or C<which -a> command for platforms that support the
+C<-a> option. Will return an array containing all the path names
 matching C<$short_exe_name>.
+
+=head1 GLOBALS
+
+=head2 $IMPLICIT_CURRENT_DIR
+
+True if the current directory is included in the search implicitly on
+whatever platform you are using.  Normally the default is reasonable,
+but on Windows the current directory is included implicitly for older
+shells like C<cmd.exe> and C<command.com>, but not for newer shells
+like PowerShell.  If you overrule this default, you should ALWAYS
+localize the variable to the tightest scope possible, since setting
+this variable from a module can affect other modules.  Thus on Windows
+you can get the correct result if the user is running either C<cmd.exe>
+or PowerShell on Windows you can do this:
+
+ use File::Which qw( which );
+ use Shell::Guess;
+
+ my $path = do {
+   my $is_power = Shell::Guess->running_shell->is_power;
+   local $File::Which::IMPLICIT_CURRENT_DIR = !$is_power;
+   which 'foo';
+ };
+
+For a variety of reasons it is difficult to accurately compute the
+shell that a user is using, but L<Shell::Guess> makes a reasonable
+effort.
 
 =head1 CAVEATS
 
 This module has no non-core requirements for Perl 5.6.2 and better.
 
-This module is fully supported back to Perl 5.8.1.  It may work on 5.8.0.  
+This module is fully supported back to Perl 5.8.1.  It may work on 5.8.0.
 It should work on Perl 5.6.x and I may even test on 5.6.2.  I will accept
 patches to maintain compatibility for such older Perls, but you may
 need to fix it on 5.6.x / 5.8.0 and send me a patch.
@@ -296,10 +338,24 @@ Command line interface to this module.
 
 =item L<IPC::Cmd>
 
-Comes with a C<can_run> function with slightly different semantics that
-the traditional UNIX where.  It will find executables in the current
-directory, even though the current directory is not searched for by
-default on Unix.
+This module provides (among other things) a C<can_run> function, which is
+similar to C<which>.  It is a much heavier module since it does a lot more,
+and if you use C<can_run> it pulls in L<ExtUtils::MakeMaker>.  This combination
+may be overkill for applications which do not need L<IPC::Cmd>'s complicated
+interface for running programs, or do not need the memory overhead required
+for installing Perl modules.
+
+At least some older versions will find executables in the current directory,
+even if the current directory is not in the search path (which is the default
+on modern Unix).
+
+C<can_run> converts directory path name to the 8.3 version on Windows using
+C<Win32::GetShortPathName> in some cases.  This is frequently useful for tools
+that just need to run something using C<system> in scalar mode, but may be
+inconvenient for tools like L<App::pwhich> where user readability is a premium.
+Relying on C<Win32::GetShortPathName> to produce filenames without spaces
+is problematic, as 8.3 filenames can be turned off with tweaks to the
+registry (see L<https://technet.microsoft.com/en-us/library/cc959352.aspx>).
 
 =item L<Devel::CheckBin>
 

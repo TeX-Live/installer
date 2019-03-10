@@ -2,10 +2,10 @@ package Module::CoreList::Utils;
 
 use strict;
 use warnings;
-use vars qw[$VERSION %utilities];
 use Module::CoreList;
 
-$VERSION = '5.20170922_26';
+our $VERSION = '5.20181129_28';
+our %utilities;
 
 sub utilities {
     my $perl = shift;
@@ -1312,8 +1312,127 @@ my %delta = (
         removed => {
         }
     },
+    5.024003 => {
+        delta_from => 5.024002,
+        changed => {
+        },
+        removed => {
+        }
+    },
     5.026001 => {
         delta_from => 5.026000,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.027005 => {
+        delta_from => 5.027004,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.027006 => {
+        delta_from => 5.027005,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.027007 => {
+        delta_from => 5.027006,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.027008 => {
+        delta_from => 5.027007,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.027009 => {
+        delta_from => 5.027008,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.027010 => {
+        delta_from => 5.027009,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.024004 => {
+        delta_from => 5.024003,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.026002 => {
+        delta_from => 5.026001,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.027011 => {
+        delta_from => 5.027010,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.028000 => {
+        delta_from => 5.027011,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.029000 => {
+        delta_from => 5.028,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.029001 => {
+        delta_from => 5.029000,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.029002 => {
+        delta_from => 5.029001,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.029003 => {
+        delta_from => 5.029002,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.029004 => {
+        delta_from => 5.029003,
+        changed => {
+        },
+        removed => {
+        }
+    },
+    5.028001 => {
+        delta_from => 5.028000,
         changed => {
         },
         removed => {

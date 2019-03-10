@@ -8,9 +8,9 @@
 package Config;
 use strict;
 use warnings;
-use vars '%Config', '$VERSION';
+our ( %Config, $VERSION );
 
-$VERSION = "5.026001";
+$VERSION = "5.028001";
 
 # Skip @Config::EXPORT because it only contains %Config, which we special
 # case below as it's not a function. @Config::EXPORT won't change in the
@@ -56,11 +56,11 @@ sub import {
     return;
 }
 
-die "$0: Perl lib version (5.26.1) doesn't match executable '$^X' version ($])"
+die "$0: Perl lib version (5.28.1) doesn't match executable '$^X' version ($])"
     unless $^V;
 
-$^V eq 5.26.1
-    or die sprintf "%s: Perl lib version (5.26.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
+$^V eq 5.28.1
+    or die sprintf "%s: Perl lib version (5.28.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
 
 
 sub FETCH {
@@ -85,7 +85,7 @@ sub AUTOLOAD {
 my $rootdir = __FILE__;
 $rootdir =~ s![\\/][^\\/]*[\\/][^\\/]*$!!;
 $rootdir =~ s!/!\\!g;
-my $mingdir = "\\\\VBOXSVR\\mingw32";
+my $mingdir = "X:\\wprogs\\mingw6432\\mingw32";
 
 # tie returns the object, so the value returned to require will be true.
 tie %Config, 'Config', {
@@ -103,7 +103,7 @@ tie %Config, 'Config', {
     ldlibpthname => '',
     libpth => "$mingdir\\lib",
     osname => 'MSWin32',
-    osvers => '10.0',
+    osvers => '6.1.7601',
     path_sep => ';',
     privlibexp => "$rootdir\\lib",
     scriptdir => "$rootdir\\bin",
@@ -112,5 +112,5 @@ tie %Config, 'Config', {
     so => 'dll',
     useithreads => 'define',
     usevendorprefix => undef,
-    version => '5.26.1',
+    version => '5.28.1',
 };

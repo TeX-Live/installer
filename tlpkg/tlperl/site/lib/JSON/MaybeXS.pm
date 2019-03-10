@@ -4,7 +4,7 @@ use strict;
 use warnings FATAL => 'all';
 use base qw(Exporter);
 
-our $VERSION = '1.003010';
+our $VERSION = '1.004000';
 $VERSION = eval $VERSION;
 
 sub _choose_json_module {
@@ -29,6 +29,9 @@ sub _choose_json_module {
 BEGIN {
     our $JSON_Class = _choose_json_module();
     $JSON_Class->import(qw(encode_json decode_json));
+    no strict 'refs';
+    *$_ = $JSON_Class->can($_)
+      for qw(true false);
 }
 
 our @EXPORT = qw(encode_json decode_json JSON);
@@ -228,6 +231,14 @@ To include JSON-aware booleans (C<true>, C<false>) in your data, just do:
     use JSON::MaybeXS;
     my $true = JSON()->true;
     my $false = JSON()->false;
+
+The booleans are also available as subs or methods on JSON::MaybeXS.
+
+    use JSON::MaybeXS ();
+    my $true = JSON::MaybeXS::true;
+    my $true = JSON::MaybeXS->true;
+    my $false = JSON::MaybeXS::false;
+    my $false = JSON::MaybeXS->false;
 
 =head1 CONVERTING FROM JSON::Any
 
