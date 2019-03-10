@@ -149,7 +149,9 @@ proc maybe_print_welcome {} {
 proc read_line {} {
   if [catch {chan gets $::inst l} len] {
     # catch [chan close $::inst]
-    err_exit [__ "Error while reading from Perl backend"]
+    err_exit "
+Error while reading from Perl back end.
+This should not have happened!"
   } elseif {$len < 0} {
     # catch [chan close $::inst]
     return [list -1 ""]
@@ -161,7 +163,9 @@ proc read_line {} {
 proc read_line_no_eof {} {
   set ll [read_line]
   if {[lindex $ll 0] < 0} {
-    log_exit [__ "Unexpected closed backend"]
+    log_exit "
+Unexpected closed backend.
+This should not have happened!"
   }
   set l [lindex $ll 1]
   # TODO: test under debug mode
