@@ -18,31 +18,17 @@ use TeXLive::TLPDB;
 use TeXLive::TLPOBJ;
 use TeXLive::TLConfig;
 use TeXLive::TLUtils;
-use Tk;
-use Tk::Dialog;
 
-my $mw = MainWindow->new(-title => "remove tlmgr $TeXLive::TLConfig::ReleaseYear");
-
-my $f = $mw->Frame;
-my $lab = $f->Label(
-# -justify    => 'left',
-  -text => "Do you really want to remove TeX Live $TeXLive::TLConfig::ReleaseYear?");
-$lab->pack(-side => "left", -padx => "12", -pady => "6");
-
-$f->pack(# -padx => "10m",
-  -pady => "12");
-
-my $ok = $f->Button(-text => "Ok",
-                    -command => sub { $mw->destroy; doit(); exit(0); });
-my $cancel = $f->Button(-text => "Cancel",
-                        -command => sub { $mw->destroy; exit(1); });
-
-$cancel->pack(-side => 'right' , -padx => "12");
-$ok->pack(-side => 'right', -padx => "12");
-
-$mw->Label(
-  -text => "Please make sure that no TeX Live programs are still running!"
-)->pack(-padx => "12", -pady => "12");
+my $askfile = $0;
+$askfile =~ s!^(.*)([\\/])([^\\/]*)$!$1$2!;
+$askfile .= "uninstq.vbs";
+my $ans = system("wscript", $askfile);
+# 0 means yes
+if ($ans) {
+  exit(1);
+} else {
+  doit();
+}
 
 sub doit {
   # first we remove the whole bunch of shortcuts and menu entries
@@ -80,8 +66,6 @@ sub doit {
   TeXLive::TLWinGoo::broadcast_env();
   TeXLive::TLWinGoo::update_assocs();
 }
-
-Tk::MainLoop();
 
 __END__
 
