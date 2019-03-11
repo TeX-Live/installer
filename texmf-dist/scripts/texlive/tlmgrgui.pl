@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # $Id$
 #
-# Copyright 2009-2017 Norbert Preining
+# Copyright 2009-2019 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 #
@@ -2538,13 +2538,13 @@ sub cb_edit_location {
       sub {
         if ($val !~ m/^  /) {
           $val = "";
-          $okbutton->configure(-state => 'disabled');
+          # $okbutton->configure(-state => 'disabled');
         } elsif ($val =~ m!(http|ftp)://!) {
           $val = TeXLive::TLUtils::extract_mirror_entry($val);
-          $okbutton->configure(-state => 'normal');
+          # $okbutton->configure(-state => 'normal');
         } else {
           $val =~ s/^\s*//;
-          $okbutton->configure(-state => 'normal');
+          # $okbutton->configure(-state => 'normal');
         }
       },
     -variable => \$val);
@@ -2556,17 +2556,17 @@ sub cb_edit_location {
                       my $var = $sw->chooseDirectory();
                       if (defined($var)) {
                         $val = $var;
-                        $okbutton->configure(-state => 'normal');
+                        # $okbutton->configure(-state => 'normal');
                       }
                     })->pack(@left, @p_ii);
   $f1->Button(-text => __("Use standard net repository"),
     -command => sub {
                       $val = $TeXLiveURL;
-                      $okbutton->configure(-state => 'normal');
+                      # $okbutton->configure(-state => 'normal');
                     })->pack(@left, @p_ii);
   $f1->pack;
   my $f = $sw->Frame;
-  $okbutton = $f->Button(-text => __("Load"), -state => "disabled",
+  $okbutton = $f->Button(-text => __("Load"), # -state => "disabled",
     -command => sub { 
                       if ($val) {
                         $location = $val;

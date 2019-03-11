@@ -3518,6 +3518,8 @@ sub action_update {
   if (!win32() && $restart_tlmgr && !$opts{"dry-run"} && !$opts{"list"}) {
     info ("Restarting tlmgr to complete update ...\n");
     debug("restarting tlmgr @::SAVEDARGV\n");
+    # cleanup temp files before re-exec-ing tlmgr
+    File::Temp::cleanup();
     exec("tlmgr", @::SAVEDARGV);
     # we need warn here, otherwise perl gives warnings!
     warn ("$prg: cannot restart tlmgr, please retry update\n");
