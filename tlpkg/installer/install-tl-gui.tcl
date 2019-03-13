@@ -1735,9 +1735,7 @@ proc main_prog {} {
       break
     } elseif [string match "location: ?*" $l] {
       if [winfo exists .loading] {
-        wm iconify .
         .loading configure -text [__ "Loading from %s" [string range $l 10 end]]
-        wm deiconify .
         update
       }
     } else {
