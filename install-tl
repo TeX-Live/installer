@@ -788,6 +788,7 @@ sub only_load_remote {
       $media = 'NET';
     }
   }
+  if ($from_ext_gui) {print "location: $location\n";}
   return load_tlpdb();
 } # only_load_remote
 

@@ -3,9 +3,9 @@
 
 # tell the frontend about all configurable options and terminate
 # this output with an agreed-upon termination string.  the frontend
-# will read the package database itself. From this, it can deduce
-# collections, schemes and platforms, but not the names of
-# platforms.
+# will get the required package database information from the back
+# end.  From this, it can deduce collections, schemes and platforms,
+# but not the names of platforms.
 
 # needed info:
 
@@ -41,7 +41,6 @@ our %vars; # only contains simple scalars
 
 our $opt_in_place;
 our $tlpdb;
-our @media_available;
 our $media;
 our $previoustlpdb;
 our @collections_std;
@@ -64,7 +63,6 @@ $::deskintdesc[2] = "Launcher";
 
 # %vars hash should eventually include each binary, collection and scheme
 # as individual schalars.
-
 do_remote_init();
 # the above sub adds all platforms and collections to %vars
 # but maybe not schemes so we add these now:

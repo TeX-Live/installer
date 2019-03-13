@@ -1,6 +1,6 @@
 #!/usr/bin/env wish
 
-# Copyright 2018 Siep Kroonenberg
+# Copyright 2018, 2019 Siep Kroonenberg
 
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -1695,6 +1695,7 @@ proc main_prog {} {
 
   # possible input from perl until the menu starts:
   # - question about prior canceled installation
+  # - location (=repository)
   # - menu data, help, version, print-platform
   set ::did_gui 0
   set answer ""
@@ -1732,6 +1733,13 @@ proc main_prog {} {
       set ::out_log {}
       set answer "startinst"
       break
+    } elseif [string match "location: ?*" $l] {
+      if [winfo exists .loading] {
+        wm iconify .
+        .loading configure -text [__ "Loading from %s" [string range $l 10 end]]
+        wm deiconify .
+        update
+      }
     } else {
       lappend ::out_log $l
     }
