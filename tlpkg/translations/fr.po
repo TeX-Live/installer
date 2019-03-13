@@ -1,14 +1,14 @@
 #
 #
 #
-# Denis Bitouzé <denis.bitouze@univ-littoral.fr>, 2013-2018.
+# Denis Bitouzé <denis.bitouze@univ-littoral.fr>, 2013-2018, 2019.
 # Manuel Pégourié-Gonnard <mpg@elzevir.fr>, 2010, 2011, 2012, 2013, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-13 02:24+0100\n"
-"PO-Revision-Date: 2018-12-09 11:00+0100\n"
+"PO-Revision-Date: 2019-03-13 16:04+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -1388,7 +1388,7 @@ msgstr "Éditer le répertoire"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
 #, perl-format
 msgid "New value for %s:"
-msgstr ""
+msgstr "Nouvelle valeur de %s :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"
@@ -1455,6 +1455,14 @@ msgid ""
 "world; please consider supporting it by joining the group best for you. The "
 "list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
+"Voir %s/index.html pour des liens vers la documentation.\n"
+"Le site web de TeX Live (http://tug.org/texlive/) propose toutes les "
+"mises à jour et les correctifs. TeX Live est un projet commun des groupes"
+"d'utilisateurs de TeX à travers le monde ; pensez à lui apporter votre \""
+"soutien en rejoignant le groupe qui vous convient le mieux. La liste des \""
+"groupes est disponible sur le web à l'adresse http://tug.org/usergroups.html"
+" ; "
+"la page du groupe francophone est http://www.gutenberg.eu.org/."
 
 #: tlpkg/installer/install-tl-gui.tcl:140
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2608
@@ -1598,7 +1606,7 @@ msgstr "Répertoires"
 
 #: tlpkg/installer/install-tl-gui.tcl:1168
 msgid "Main tree"
-msgstr ""
+msgstr "Arborescence principale"
 
 #: tlpkg/installer/install-tl-gui.tcl:1191
 msgid "Local additions"
@@ -1610,7 +1618,7 @@ msgstr "Additions par utilisateur"
 
 #: tlpkg/installer/install-tl-gui.tcl:1227
 msgid "More ..."
-msgstr ""
+msgstr "Plus..."
 
 #: tlpkg/installer/install-tl-gui.tcl:1236
 msgid ""
@@ -1630,7 +1638,7 @@ msgstr "Plates-formes"
 
 #: tlpkg/installer/install-tl-gui.tcl:1256
 msgid "Current platform:"
-msgstr ""
+msgstr "Plate-forme en cours :"
 
 #: tlpkg/installer/install-tl-gui.tcl:1263
 msgid "N. of additional platform(s):"
@@ -1711,7 +1719,7 @@ msgstr "Un dépôt configuré est indisponible."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:747
 msgid "Loaded"
-msgstr ""
+msgstr "Chargé"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:845
 msgid "Output"
@@ -1846,6 +1854,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Installe aussi les dépendances\n"
+"\n"
+"%s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1607
 #, tcl-format
@@ -1866,7 +1877,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1663
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Mise à jour de dépendances %s malgré tout. Continuer ?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1675
 #, tcl-format
@@ -1892,7 +1903,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1729
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Suppression de dépendances %s malgré tout. Continuer ?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1806
 msgid "Info"
