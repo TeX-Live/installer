@@ -1,5 +1,9 @@
+$Id$
+
 How to update TeX Live distribution signing key
 ===============================================
+
+this should be done every year during the pretest.
 
 shut down networking service
 
@@ -12,6 +16,7 @@ gpg --edit-key $KEYID
 > key 2
 	# selects the expiring key, check!
 > expire
+> 1y
 	# choose something after the release of the next TL
 > save
 
