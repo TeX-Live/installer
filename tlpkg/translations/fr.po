@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-11 02:24+0100\n"
+"POT-Creation-Date: 2019-03-13 02:24+0100\n"
 "PO-Revision-Date: 2018-12-09 11:00+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -1865,8 +1865,8 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1663
 #, tcl-format
-msgid "Updating hard dependencies %s anyway. Continue?"
-msgstr "Mise à jour des dépendances fortes %s malgré tout. Continuer ?"
+msgid "Updating some dependencies %s anyway. Continue?"
+msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1675
 #, tcl-format
@@ -1891,8 +1891,8 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1729
 #, tcl-format
-msgid "Removing hard dependencies %s anyway. Continue?"
-msgstr "Suppression des dépendances fortes %s malgré tout. Continuer ?"
+msgid "Removing some dependencies %s anyway. Continue?"
+msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1806
 msgid "Info"
@@ -2263,6 +2263,12 @@ msgstr "Programmes pour le support de Windows seulement"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX et packages associés"
+
+#~ msgid "Updating hard dependencies %s anyway. Continue?"
+#~ msgstr "Mise à jour des dépendances fortes %s malgré tout. Continuer ?"
+
+#~ msgid "Removing hard dependencies %s anyway. Continue?"
+#~ msgstr "Suppression des dépendances fortes %s malgré tout. Continuer ?"
 
 #~ msgid "Error while reading from Perl backend"
 #~ msgstr "Erreur du backend Perl  pendant la lecture"

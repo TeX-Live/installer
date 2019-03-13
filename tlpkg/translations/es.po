@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-11 02:24+0100\n"
+"POT-Creation-Date: 2019-03-13 02:24+0100\n"
 "PO-Revision-Date: 2010-08-23 12:05+0200\n"
 "Last-Translator: motitos <cullero@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1795,7 +1795,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1663
 #, tcl-format
-msgid "Updating hard dependencies %s anyway. Continue?"
+msgid "Updating some dependencies %s anyway. Continue?"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1675
@@ -1818,7 +1818,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1729
 #, tcl-format
-msgid "Removing hard dependencies %s anyway. Continue?"
+msgid "Removing some dependencies %s anyway. Continue?"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1806
