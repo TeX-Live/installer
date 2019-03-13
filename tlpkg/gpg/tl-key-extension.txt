@@ -37,3 +37,13 @@ gpg1 --import texlive.rsa
 
 svn/git commit
 
+
+# on the TUG server
+       gpg --homedir ~texlive/etc \
+         --keyserver hkp://pool.sks-keyservers.net \
+         --recv-key $KEYID
+
+# or import from texlive.asc
+
+
+
