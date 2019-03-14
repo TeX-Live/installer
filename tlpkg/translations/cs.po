@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-13 02:24+0100\n"
+"POT-Creation-Date: 2019-03-14 02:24+0100\n"
 "PO-Revision-Date: 2016-05-03 17:30+0200\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
@@ -1426,12 +1426,12 @@ msgstr ""
 "Podívejte se prosím na detaily uvedené v logovacím okně."
 
 #: tlpkg/installer/install-tl-gui.tcl:133
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2600
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2601
 msgid "Welcome to TeX Live!"
 msgstr "Vítejte v TeX Live!"
 
 #: tlpkg/installer/install-tl-gui.tcl:136
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2603
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2604
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1442,7 +1442,7 @@ msgid ""
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:140
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2608
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2609
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1652,6 +1652,11 @@ msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1507
 msgid "Custom scheme"
+msgstr ""
+
+#: tlpkg/installer/install-tl-gui.tcl:1738
+#, tcl-format
+msgid "Loading from %s"
 msgstr ""
 
 #: tlpkg/tltcl/tltcl.tcl:492
