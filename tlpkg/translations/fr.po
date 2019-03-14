@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-14 02:24+0100\n"
-"PO-Revision-Date: 2019-03-13 16:04+0100\n"
+"PO-Revision-Date: 2019-03-14 08:49+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -1687,7 +1687,7 @@ msgstr "Schéma personnalisé"
 #: tlpkg/installer/install-tl-gui.tcl:1738
 #, tcl-format
 msgid "Loading from %s"
-msgstr ""
+msgstr "Chargement depuis %s"
 
 #: tlpkg/tltcl/tltcl.tcl:492
 msgid "Select or type"
