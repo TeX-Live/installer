@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-14 02:24+0100\n"
-"PO-Revision-Date: 2019-03-16 05:48+0100\n"
+"PO-Revision-Date: 2019-03-16 05:51+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -1670,7 +1670,7 @@ msgstr "Angepasstes Schema"
 #: tlpkg/installer/install-tl-gui.tcl:1738
 #, tcl-format
 msgid "Loading from %s"
-msgstr ""
+msgstr "Lade von %s"
 
 #: tlpkg/tltcl/tltcl.tcl:492
 msgid "Select or type"
@@ -1865,7 +1865,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1663
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Aktualisiere sowieso einige Abhängigkeiten %s. Weitermachen?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1675
 #, tcl-format
@@ -1891,7 +1891,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1729
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Entferne sowieso einige Abhängigkeiten %s. Weitermachen?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1806
 msgid "Info"
