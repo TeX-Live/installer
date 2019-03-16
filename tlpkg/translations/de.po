@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-14 02:24+0100\n"
-"PO-Revision-Date: 2019-03-09 12:25+0100\n"
+"PO-Revision-Date: 2019-03-16 05:48+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -755,7 +755,7 @@ msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:293
 msgid "Repository"
-msgstr "Quelle"
+msgstr "Repository"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:294
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2616
@@ -778,7 +778,7 @@ msgstr "Laden der voreingestellten Installationsquelle"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2612
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1055
 msgid "multiple repositories"
-msgstr "Multiple Quellen"
+msgstr "Multiple Repositories"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:310
 msgid "Default:"
@@ -1015,7 +1015,7 @@ msgstr "Dokumentation"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:674
 msgid "Details on:"
-msgstr "Details für:"
+msgstr "Details zu:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:684
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2366
@@ -1175,7 +1175,7 @@ msgstr "Erstelle Verknüpfungen auf dem Desktop"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1236
 #: tlpkg/installer/install-tl-gui.tcl:1412
 msgid "Install for all users"
-msgstr "Install for all users"
+msgstr "Installiere für alle Nutzer"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1283
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1285
@@ -1402,7 +1402,7 @@ msgstr "Nutze die Standard-Netz Quelle"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2578
 msgid ""
 "Loading remote repository - this may take some time, please be patient ..."
-msgstr "Lade remote Quelle - dies kann eine Weile dauern, bitte warten ..."
+msgstr "Lade Remote-Repository - dies kann eine Weile dauern, bitte warten ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2604
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2608
@@ -2260,7 +2260,7 @@ msgstr "Zusatzprogramme (nur-Windows)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
-msgstr "XeTeX und Pakete"
+msgstr "XeTeX und XeTeX-Pakete"
 
 #~ msgid "Updating hard dependencies %s anyway. Continue?"
 #~ msgstr "Aktualisiere Pflicht-Abhängigkeiten %s. Weitermachen?"
