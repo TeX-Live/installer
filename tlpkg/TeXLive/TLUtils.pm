@@ -881,7 +881,7 @@ sub mkdirhier {
     # from the UNC path, since (! -d //servername/) tests true
     $subdir = $& if ( win32() && ($tree =~ s!^//[^/]+/!!) );
 
-    @dirs = split (/\//, $tree);
+    @dirs = split (/[\/\\]/, $tree);
     for my $dir (@dirs) {
       $subdir .= "$dir/";
       if (! -d $subdir) {
@@ -894,7 +894,7 @@ sub mkdirhier {
         } else {
           if (! mkdir ($subdir)) {
             $ret = 0;
-            $reterror = "mkdir($subdir) failed: $!";
+            $reterror = "mkdir($subdir) failed for tree $tree: $!";
             last;
           }
         }
