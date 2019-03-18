@@ -626,7 +626,7 @@ msgstr "続行"
 msgid ""
 "In case of trouble, try disabling your virus scanner during installation."
 msgstr ""
-msgstr "トラブルが発生した場合は，ウイルス対策ソフトを無効化してみてください．"
+"トラブルが発生した場合は，ウイルス対策ソフトを無効化してみてください．"
 
 #: tlpkg/installer/install-menu-perltk.pl:681
 msgid ""
