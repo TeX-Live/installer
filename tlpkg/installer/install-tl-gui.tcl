@@ -147,16 +147,21 @@ proc maybe_print_welcome {} {
 
 # regular read_line
 proc read_line {} {
-  if [catch {chan gets $::inst l} len] {
-    # catch [chan close $::inst]
-    err_exit "
+  while 1 {
+    if [catch {chan gets $::inst l} len] {
+      # catch [chan close $::inst]
+      err_exit "
 Error while reading from Perl back end.
 This should not have happened!"
-  } elseif {$len < 0} {
-    # catch [chan close $::inst]
-    return [list -1 ""]
-  } else {
-    return [list $len $l]
+    } elseif {$len < 0} {
+      # catch [chan close $::inst]
+      return [list -1 ""]
+    } elseif {[string range $l 0 1] eq "D:" || [string range $l 0 2] eq "DD:" \
+               || [string range $l 0 3] eq "DDD:"} {
+      lappend ::out_log $l
+    } else {
+      return [list $len $l]
+    }
   }
 }; # read_line
 
@@ -426,10 +431,10 @@ proc texdir_setup {} {
   # path components, as labels
   incr rw
   pgrid [ttk::label .tltd.prefix_l] -in .tltd.fr1 -row $rw -column 0
-  pgrid [ttk::label .tltd.sep0_l -text [file separator]] \
+  pgrid [ttk::label .tltd.sep0_l -text "/"] \
       -in .tltd.fr1 -row $rw -column 1
   pgrid [ttk::label .tltd.name_l] -in .tltd.fr1 -row $rw -column 2
-  pgrid [ttk::label .tltd.sep1_l -text [file separator]] \
+  pgrid [ttk::label .tltd.sep1_l -text "/"] \
       -in .tltd.fr1 -row $rw -column 3
   pgrid [ttk::label .tltd.rel_l -width 6] \
       -in .tltd.fr1 -row $rw -column 4
@@ -495,7 +500,7 @@ proc texdir_setup {} {
   if {$initdir eq "" || \
           ($::tcl_platform(platform) eq "windows" && \
                [string index $initdir end] eq ":")} {
-    append initdir [file separator]
+    append initdir "/"
   }
   .tltd.prefix_l configure -text $initdir
   update_full_path
@@ -548,7 +553,7 @@ proc edit_dir {d} {
   wm resizable .td 1 0
   place_dlg .td .
   tkwait window .td
-  if {$::dialog_ans ne ""} {set ::vars($d) $::dialog_ans}
+  if {$::dialog_ans ne ""} {set ::vars($d) [forward_slashify $::dialog_ans]}
 }
 
 proc toggle_port {} {
