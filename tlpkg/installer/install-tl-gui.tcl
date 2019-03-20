@@ -1442,7 +1442,7 @@ proc run_menu {} {
       # tlpdbopt_sys_[bin|info|man]
       incr rw
       pgrid [ttk::label .pathl \
-                 -text [__ "Create symlinks in system directories"]] \
+                 -text [__ "Create symlinks in standard directories"]] \
           -in $curf -row $rw -column 0 -columnspan 2 -sticky w
       pgrid [ttk::checkbutton .pathb -variable ::vars(instopt_adjustpath)] \
           -in $curf -row $rw -column 2 -sticky e
