@@ -377,7 +377,7 @@ sub platform_desc {
     'amd64-kfreebsd'   => 'GNU/kFreeBSD on x86_64',
     'amd64-netbsd'     => 'NetBSD on x86_64',
     'armel-linux'      => 'GNU/Linux on ARM',
-    'armhf-linux'      => 'GNU/Linux on ARMhf',
+    'armhf-linux'      => 'GNU/Linux on ARMv6/RPi',
     'hppa-hpux'        => 'HP-UX',
     'i386-cygwin'      => 'Cygwin on Intel x86',
     'i386-darwin'      => 'MacOSX legacy (10.5-10.6) on Intel x86',
