@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-20 02:23+0100\n"
-"PO-Revision-Date: 2019-03-17 00:05-0400\n"
+"PO-Revision-Date: 2019-03-20 16:14-0400\n"
 "Last-Translator: linguafalsa <linguafalsa@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: es\n"
@@ -907,7 +907,7 @@ msgstr "Actualizar"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2014
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1810
 msgid "Remove"
-msgstr "Eliminar"
+msgstr "Remover"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:465
 msgid "Backup"
@@ -999,12 +999,12 @@ msgstr "Administrar enlaces simbólicos en directorios de sistema"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:625
 #, perl-format
 msgid "Remove TeX Live %s ..."
-msgstr "Eliminar Tex Live %s ..."
+msgstr "Remover Tex Live %s ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:628
 #, perl-format
 msgid "Remove TeX Live %s"
-msgstr "Eliminar Tex Live %s"
+msgstr "Remover Tex Live %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:635
 msgid "Complete removal finished"
@@ -1016,7 +1016,7 @@ msgid ""
 "Really remove (uninstall) the COMPLETE TeX Live %s installation?\n"
 "Your last chance to change your mind!"
 msgstr ""
-"¿De veras quiere eliminar (desinstalar) completamente Tex Lilve %s ?\n"
+"¿De veras quiere remover (desinstalar) completamente Tex Live %s ?\n"
 "¡Esta es su última oportunidad para cambiar de opinión!"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:649
@@ -1384,7 +1384,7 @@ msgstr "Actualizar enlaces simbólicos"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2456
 msgid "Remove symbolic links"
-msgstr "Eliminar enlaces simbólicos"
+msgstr "Remover enlaces simbólicos"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2489
 msgid "Edit directory"
@@ -1730,7 +1730,7 @@ msgstr "Cargado"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:834
 msgid "Output"
-msgstr "Sailda"
+msgstr "Salida"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:835
 msgid "Errors"
@@ -1966,6 +1966,8 @@ msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr ""
+"Interfaz Gráfica GUI  para TeX Live Manager\n"
+"Implementado en Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2022
 msgid "tlmgr help"
