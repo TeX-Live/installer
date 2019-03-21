@@ -7,16 +7,6 @@
 #
 # Be careful when changing wording: *every* normal informational message
 # output here must be recognized by the long grep in tl-update-tlnet.
-#
-# TODO:
-# - with -gui pop up a transient window showing:
-#      testing for compressed archive packages ...
-#      testing for uncompressed live system ...
-#      testing for network access ...
-#      loading tlpdb, this can take some time ...
-#   (that, and maybe some others can be done with the waitVariableX
-#   thingy as described in the Perl/Tk book in the chapter that can be
-#   found on the net)   (Werner 28.10.08)
 
 my $svnrev = '$Revision$';
 $svnrev =~ m/: ([0-9]+) /;
@@ -1245,7 +1235,7 @@ operations might be disturbed.\n\n";
   # for portable, this option should be unset
   # it should not be necessary to test separately for portable
   $errcount += do_path_adjustments() if
-    $vars{'instopt_adjustpath'} and $vars{tlpdbopt_desktop_integration} != 2;
+    $vars{'instopt_adjustpath'} and $vars{'tlpdbopt_desktop_integration'} != 2;
 
   # now do the system integration:
   # on unix this means setting up symlinks
@@ -2553,7 +2543,12 @@ sub create_welcome {
   push @::welcome_arr, __(
     "See %s/index.html for links to documentation.\nThe TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html.",
     $::vars{'TEXDIR'});
-  if (!win32()) {
+  if (win32()
+      || ($vars{'instopt_adjustpath'}
+         && $vars{'tlpdbopt_desktop_integration'} != 2)) {
+     ; # don't tell them to make path adjustments on Windows,
+       # or if they chose to "create symlinks".
+   } else {
     push @::welcome_arr, "\n";
     push @::welcome_arr, __(
       "Add %s/texmf-dist/doc/man to MANPATH.\nAdd %s/texmf-dist/doc/info to INFOPATH.\nMost importantly, add %s/bin/%s\nto your PATH for current and future sessions.",
