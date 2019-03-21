@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-21 02:24+0100\n"
-"PO-Revision-Date: 2019-03-20 19:43+0100\n"
+"PO-Revision-Date: 2019-03-21 22:47+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -1660,7 +1660,7 @@ msgstr "Dateiverknüpfungen"
 
 #: tlpkg/installer/install-tl-gui.tcl:1445
 msgid "Create symlinks in standard directories"
-msgstr ""
+msgstr "Erstelle Symlinks in Standardverzeichnissen"
 
 #: tlpkg/installer/install-tl-gui.tcl:1451
 msgid "Specify directories"
@@ -1718,7 +1718,7 @@ msgstr "Ausgabe"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:834
 msgid "Other"
-msgstr ""
+msgstr "Andere"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:963
 #, tcl-format
@@ -1841,10 +1841,13 @@ msgstr "Nix zu machen hier!"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1516
 msgid "If update fails, try on a command-line:"
 msgstr ""
+"Wenn das Update fehlschlägt versuchen Sie es bitte auf der Kommandozeile:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1518
 msgid "Use an admininstative command prompt for an admin install."
 msgstr ""
+"Benutzen Sie eine Kommandozeile mit Admin-Rechten für die Installation als "
+"Admin."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1596
 #, tcl-format
@@ -1962,6 +1965,8 @@ msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr ""
+"Grafische Nutzeroberflöche für TeX Live Manager\n"
+"Implementiert in Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2028
 msgid "tlmgr help"
