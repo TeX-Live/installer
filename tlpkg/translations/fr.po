@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-21 02:24+0100\n"
+"POT-Creation-Date: 2019-03-22 02:23+0100\n"
 "PO-Revision-Date: 2019-03-21 09:48+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -1464,7 +1464,7 @@ msgstr ""
 "org/."
 
 #: tlpkg/installer/install-tl-gui.tcl:140
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2599
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2604
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1860,10 +1860,8 @@ msgid "If update fails, try on a command-line:"
 msgstr "Si la mise à jour échoue, essayer en ligne de commande :"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1518
-msgid "Use an admininstative command prompt for an admin install."
+msgid "Use an administrative command prompt for an admin install."
 msgstr ""
-"Utilisez une invite de commande avec droits administrateurs pour une"
-" installation en tant qu'administrateur."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1596
 #, tcl-format
@@ -2288,6 +2286,11 @@ msgstr "Programmes pour le support de Windows seulement"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX et packages associés"
+
+#~ msgid "Use an admininstative command prompt for an admin install."
+#~ msgstr ""
+#~ "Utilisez une invite de commande avec droits administrateurs pour une "
+#~ "installation en tant qu'administrateur."
 
 #~ msgid "Errors"
 #~ msgstr "Erreurs"

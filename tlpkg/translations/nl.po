@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-21 02:24+0100\n"
+"POT-Creation-Date: 2019-03-22 02:23+0100\n"
 "PO-Revision-Date: 2019-02-17 12:46+0100\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1447,7 +1447,7 @@ msgstr ""
 "lijst van gebruikersgroepen staat op https://tug.org/usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:140
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2599
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2604
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1841,7 +1841,7 @@ msgid "If update fails, try on a command-line:"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1518
-msgid "Use an admininstative command prompt for an admin install."
+msgid "Use an administrative command prompt for an admin install."
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1596
