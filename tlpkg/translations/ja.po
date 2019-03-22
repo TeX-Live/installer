@@ -1,4 +1,4 @@
-# Copyright 2010 TeX Live Team
+# Copyright 2010-2019 TeX Live Team
 # This file is distributed under the same license as the TeX Live package.
 # Koji Yokota <yokota33@gmail.com>, 2010, 2011, 2012, 2014, 2015.
 # Takuto Asakura <tkt.asakura@gmail.com>, 2019.
@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-22 02:23+0100\n"
-"PO-Revision-Date: 2015-05-12 17:27+0900\n"
+"PO-Revision-Date: 2019-03-22 17:27+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
