@@ -921,7 +921,7 @@ msgstr "コマンドラインレポジトリの読み込み："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:537
 msgid "Load standard net repository:"
-msgstr ""
+msgstr "標準ネットワークリポジトリを読み込み："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:540
 msgid "Load other repository ..."
@@ -1437,6 +1437,12 @@ msgid ""
 "world; please consider supporting it by joining the group best for you. The "
 "list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
+"ドキュメントの一覧は %s/index.html をご覧ください．"
+"TeX Live のウェブサイト (https://tug.org/texlive/) にはすべてのアップデート"
+"とコレクションの情報が掲載されています．TeX Live は全世界の TeX ユーザ会有志"
+"による合同プロジェクトです．TeX Live プロジェクトをサポートしていただける場合"
+"お好きな TeX ユーザ会に入会することをご検討ください．TeX ユーザ会の一覧は"
+"https://tug.org/usergroups.html でご確認いただけます．"
 
 #: tlpkg/installer/install-tl-gui.tcl:140
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2604
@@ -1578,7 +1584,7 @@ msgstr "ディレクトリ"
 
 #: tlpkg/installer/install-tl-gui.tcl:1173
 msgid "Main tree"
-msgstr ""
+msgstr "メインツリー"
 
 #: tlpkg/installer/install-tl-gui.tcl:1196
 msgid "Local additions"
@@ -1590,7 +1596,7 @@ msgstr "ユーザごとに追加"
 
 #: tlpkg/installer/install-tl-gui.tcl:1232
 msgid "More ..."
-msgstr ""
+msgstr "さらに表示…"
 
 #: tlpkg/installer/install-tl-gui.tcl:1241
 msgid ""
@@ -1610,7 +1616,7 @@ msgstr "プラットフォーム"
 
 #: tlpkg/installer/install-tl-gui.tcl:1261
 msgid "Current platform:"
-msgstr ""
+msgstr "現在のプラットフォーム："
 
 #: tlpkg/installer/install-tl-gui.tcl:1268
 msgid "N. of additional platform(s):"
@@ -1650,7 +1656,7 @@ msgstr "ファイルの関連付けを変更"
 
 #: tlpkg/installer/install-tl-gui.tcl:1445
 msgid "Create symlinks in standard directories"
-msgstr ""
+msgstr "シンボリックリンクを標準ディレクトリに作成"
 
 #: tlpkg/installer/install-tl-gui.tcl:1451
 msgid "Specify directories"
@@ -1663,7 +1669,7 @@ msgstr "ススタムスキーム"
 #: tlpkg/installer/install-tl-gui.tcl:1743
 #, tcl-format
 msgid "Loading from %s"
-msgstr ""
+msgstr "%s から読み込み"
 
 #: tlpkg/tltcl/tltcl.tcl:495
 msgid "Select or type"
@@ -1704,11 +1710,11 @@ msgstr "ロード完了"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:833
 msgid "Output"
-msgstr ""
+msgstr "出力"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:834
 msgid "Other"
-msgstr ""
+msgstr "その他"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:963
 #, tcl-format
@@ -1830,11 +1836,11 @@ msgstr "何もすることがありません！"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1516
 msgid "If update fails, try on a command-line:"
-msgstr ""
+msgstr "アップデートに失敗した場合は，コマンドラインで再試行してください："
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1518
 msgid "Use an administrative command prompt for an admin install."
-msgstr ""
+msgstr "管理者としてインストールする場合，管理者権限で実行してください．"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1596
 #, tcl-format
@@ -1843,6 +1849,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"依存パッケージをインストールします\n"
+"\n"
+"%s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1603
 #, tcl-format
@@ -1863,7 +1872,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1659
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "依存パッケージ %s をアップデートします．続行しますか？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1671
 #, tcl-format
@@ -1889,7 +1898,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1725
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "依存パッケージ %s をアンインストールします．続行しますか？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1802
 msgid "Info"
@@ -1949,6 +1958,8 @@ msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr ""
+"GUI 版 TeX Live マネージャ"
+"Tcl/Tk 実装"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2028
 msgid "tlmgr help"
