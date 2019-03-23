@@ -16,7 +16,6 @@ $mirrors = {
       'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
-      'http://mirrors.shu.edu.cn/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'http://mirrors.ustc.edu.cn/CTAN/' => 1
@@ -60,9 +59,6 @@ $mirrors = {
       'http://mirror.easyname.at/ctan/' => 1,
       'http://mirror.reismil.ch/CTAN/' => 1
     },
-    'Belarus' => {
-      'http://mirror.datacenter.by/pub/mirrors/CTAN/' => 1
-    },
     'Czech Republic' => {
       'http://ftp.cvut.cz/tex-archive/' => 1
     },
@@ -91,9 +87,6 @@ $mirrors = {
       'http://mirror.informatik.hs-fulda.de/tex-archive/' => 1,
       'http://packages.oth-regensburg.de/ctan/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1
-    },
-    'Greece' => {
-      'http://ftp.cc.uoc.gr/mirrors/CTAN/' => 1
     },
     'Italy' => {
       'http://ctan.mirror.garr.it/mirrors/CTAN/' => 1
