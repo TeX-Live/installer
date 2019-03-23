@@ -40,9 +40,6 @@ catch {rename send {}}
 # for this file if it encounters a parameter '-gui tcl'.
 # This allows automatic inclusion of a '--' parameter to separate
 # tcl parameters from script parameters.
-# At the next release, it may be better to have a shell script wrapper
-# in the root, although [ba]sh has its challenges when it comes
-# to handling the parameter array.
 
 set ::instroot [file normalize [info script]]
 set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
@@ -65,6 +62,27 @@ if {$::tcl_platform(platform) eq "windows"} {
 # menu modes
 set ::advanced 0
 set ::alltrees 0
+
+# warning about non-empty target tree
+set ::td_warned 0
+
+proc is_nonempty {td} {
+  if {! [file exists $td]} {return 0}
+  return [expr {[llength [glob -directory $td *]] > 0}]
+}
+
+proc td_warn {td} {
+  set ans [tk_messageBox -icon warning -type ok \
+       -message [__ "Target directory %s non-empty;\nmay cause trouble!" $td]]
+  set ::td_warned 1
+}
+
+proc td_question {td} {
+  set ans [tk_messageBox -icon warning -type yesno \
+       -message [__ "Target directory %s non-empty;\nare you sure?" $td]]
+  set ::td_warned 1
+  return $ans
+}
 
 ### procedures, mostly organized bottom-up ###
 
@@ -393,6 +411,11 @@ proc commit_canonical_local {} {
 }
 
 proc commit_root {} {
+  set td [.tltd.path_l cget -text]
+  set ::td_warned 0
+  if [is_nonempty $td] {
+    if {[td_question $td] ne yes} return
+  }
   set ::vars(TEXDIR) [forward_slashify [.tltd.path_l cget -text]]
   set ::vars(TEXMFSYSVAR) "$::vars(TEXDIR)/texmf-var"
   set ::vars(TEXMFSYSCONFIG) "$::vars(TEXDIR)/texmf-config"
@@ -553,23 +576,27 @@ proc edit_dir {d} {
   wm resizable .td 1 0
   place_dlg .td .
   tkwait window .td
-  if {$::dialog_ans ne ""} {set ::vars($d) [forward_slashify $::dialog_ans]}
+  if {$::dialog_ans ne ""} {
+    set ::vars($d) [forward_slashify $::dialog_ans]
+    if $::vars(instopt_portable) {
+      if {$d eq "TEXMFLOCAL"} {set ::vars(TEXMFHOME) $::vars($d)}
+      if {$d eq "TEXMFSYSVAR"} {set ::vars(TEXMFVAR) $::vars($d)}
+      if {$d eq "TEXMFSYSCONFIG"} {set ::vars(TEXMFCONFIG) $::vars($d)}
+      update
+    }
+  }
 }
 
-proc toggle_port {} {
-  set ::vars(instopt_portable) [expr {!$::vars(instopt_portable)}]
+proc port_dis_or_activate {} {
+  if {!$::advanced} return
   set yn [yes_no $::vars(instopt_portable)]
   .dirportvl configure -text $yn
-  commit_canonical_local
   if {$::vars(instopt_portable)} {
     set ::vars(TEXMFHOME) $::vars(TEXMFLOCAL)
     set ::vars(TEXMFVAR) $::vars(TEXMFSYSVAR)
     set ::vars(TEXMFCONFIG) $::vars(TEXMFSYSCONFIG)
-    .tlocb state disabled
     .thomeb state disabled
     if $::alltrees {
-      #.tsysvb state disabled
-      #.tsyscb state disabled
       .tvb state disabled
       .tcb state disabled
     }
@@ -602,7 +629,7 @@ proc toggle_port {} {
     set ::vars(TEXMFHOME) "~/texmf"
     set ::vars(TEXMFVAR) "~/.texlive${::release_year}/texmf-var"
     set ::vars(TEXMFCONFIG) "~/.texlive${::release_year}/texmf-config"
-    .tlocb state !disabled
+    #.tlocb state !disabled
     .thomeb state !disabled
     if $::alltrees {
       #.tsysvb state !disabled
@@ -639,6 +666,12 @@ proc toggle_port {} {
       }
     }
   }
+}
+
+proc toggle_port {} {
+  set ::vars(instopt_portable) [expr {!$::vars(instopt_portable)}]
+  port_dis_or_activate
+  commit_canonical_local
 }; # toggle_port
 
 #############################################################
@@ -704,6 +737,10 @@ proc save_bin_selections {} {
   show_stats
 }; # save_bin_selections
 
+proc sort_bins_by_value {n m} {
+  return [string compare [__ $::bin_descs($n)] [__ $::bin_descs($m)]]
+}
+
 proc select_binaries {} {
   create_dlg .tlbin .
   wm title .tlbin [__ "Binaries"]
@@ -736,7 +773,7 @@ proc select_binaries {} {
   ttk::scrollbar .tlbin.binsc -orient vertical -command {.tlbin.lst yview}
   .tlbin.lst column mk -stretch 0 -width [expr {$::cw * 3}]
   .tlbin.lst column desc -stretch 1
-  foreach b [array names ::bin_descs] {
+  foreach b [lsort -command sort_bins_by_value [array names ::bin_descs]] {
     set bb "binary_$b"
     .tlbin.lst insert {}  end -id $b -values \
         [list [mark_sym $::vars($bb)] [__ $::bin_descs($b)]]
@@ -1107,7 +1144,8 @@ proc run_menu {} {
   # title
   ttk::label .title -text [__ "TeX Live %s Installer" $::release_year] \
       -font titlefont
-  pack .title -pady 10 -in .bg
+  pack .title -pady {10 1} -in .bg
+  pack [ttk::label .svn -text "revision $::svn"] -in .bg
 
   pack [ttk::separator .seph0 -orient horizontal] \
       -in .bg -pady 3 -fill x
@@ -1468,6 +1506,7 @@ proc run_menu {} {
       -in $curf -row $rw -column 2 -sticky e
   }
 
+  if $::advanced port_dis_or_activate
   show_stats
   wm overrideredirect . 0
   wm attributes . -topmost
@@ -1475,6 +1514,9 @@ proc run_menu {} {
   update
   wm state . normal
   raise .
+  if {[is_nonempty $::vars(TEXDIR)] && ! $::td_warned} {
+    td_warn $::vars(TEXDIR)
+  }
   if [info exists ::env(dbgui)] {puts "dbgui: unsetting menu_ans"}
   unset -nocomplain ::menu_ans
   vwait ::menu_ans
@@ -1546,7 +1588,7 @@ proc update_vars {} {
 }
 
 proc read_menu_data {} {
-  # the expected order is: year, descs, vars, schemes (one line), binaries
+  # the expected order is: year, svn, descs, vars, schemes (one line), binaries
   # note. lindex returns an empty string if the index argument is too high.
   # empty lines result in an err_exit.
 
@@ -1556,6 +1598,14 @@ proc read_menu_data {} {
     set ::release_year $y
   } else {
     err_exit "year expected but $l found"
+  }
+
+  # revision; should be second line
+  set l [read_line_no_eof]
+  if [regexp {^svn: (\S+)$} $l d y] {
+    set ::svn $y
+  } else {
+    err_exit "revision expected but $l found"
   }
 
   # windows: admin status
@@ -1739,6 +1789,8 @@ proc main_prog {} {
       set answer "startinst"
       break
     } elseif [string match "location: ?*" $l] {
+      # this one comes straight from install-tl, rather than
+      # from install-tl-extl.pl
       if [winfo exists .loading] {
         .loading configure -text [__ "Loading from %s" [string range $l 10 end]]
         update
