@@ -308,7 +308,7 @@ msgstr "espacio requerido del disco:"
 #: tlpkg/installer/install-menu-perltk.pl:1091
 msgid "(default not allowed or not writable - please change!)"
 msgstr ""
-"(el estándar no es permisible ó no se escribe -\n"
+"(el estándar no es permisible ó no se sobrescribe -\n"
 "por favor, ¡cambie! )"
 
 #: tlpkg/installer/install-menu-wizard.pl:534
