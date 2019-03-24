@@ -587,7 +587,7 @@ proc edit_dir {d} {
   }
 }
 
-proc port_dis_or_activate {} {
+proc port_dis_or_activate {toggled} {
   if {!$::advanced} return
   set yn [yes_no $::vars(instopt_portable)]
   .dirportvl configure -text $yn
@@ -626,9 +626,11 @@ proc port_dis_or_activate {} {
       .pathl configure -foreground $::gry
     }
   } else {
-    set ::vars(TEXMFHOME) "~/texmf"
-    set ::vars(TEXMFVAR) "~/.texlive${::release_year}/texmf-var"
-    set ::vars(TEXMFCONFIG) "~/.texlive${::release_year}/texmf-config"
+    if $toggled {
+      set ::vars(TEXMFHOME) "~/texmf"
+      set ::vars(TEXMFVAR) "~/.texlive${::release_year}/texmf-var"
+      set ::vars(TEXMFCONFIG) "~/.texlive${::release_year}/texmf-config"
+    } ; # else leave alone
     #.tlocb state !disabled
     .thomeb state !disabled
     if $::alltrees {
@@ -670,7 +672,7 @@ proc port_dis_or_activate {} {
 
 proc toggle_port {} {
   set ::vars(instopt_portable) [expr {!$::vars(instopt_portable)}]
-  port_dis_or_activate
+  port_dis_or_activate 1
   commit_canonical_local
 }; # toggle_port
 
@@ -1506,7 +1508,7 @@ proc run_menu {} {
       -in $curf -row $rw -column 2 -sticky e
   }
 
-  if $::advanced port_dis_or_activate
+  if $::advanced {port_dis_or_activate 0}
   show_stats
   wm overrideredirect . 0
   wm attributes . -topmost
@@ -1714,7 +1716,21 @@ proc main_prog {} {
   wm title . [__ "TeX Live Installer"]
   wm protocol . WM_DELETE_WINDOW whataboutclose
 
-  make_splash
+  # check for profile argument whether to put up a splash screen
+  set i 0
+  set do_splash 1
+  while {$i < $::argc} {
+    set p [lindex $::argv $i]
+    incr i
+    if {[string range $p 0 7] eq "-profile" || \
+            [string range $p 0 8] eq "--profile"} {
+      set do_splash 0
+      break
+    }
+  }
+  unset i
+  if $do_splash make_splash
+  unset do_splash
 
   # start install-tl-[tcl] via a pipe.
   # the command must be a string, not a list.
