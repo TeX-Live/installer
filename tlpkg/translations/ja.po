@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-25 02:23+0100\n"
-"PO-Revision-Date: 2019-03-22 17:27+0900\n"
+"PO-Revision-Date: 2019-03-25 15:43+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
@@ -1428,6 +1428,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "may cause trouble!"
 msgstr ""
+"ターゲットディレクトリ %s が空ではありません．\n"
+"これはトラブルの原因になる可能性があります！"
 
 #: tlpkg/installer/install-tl-gui.tcl:82
 #, tcl-format
@@ -1435,6 +1437,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "are you sure?"
 msgstr ""
+"ターゲットディレクトリ %s が空ではありません．\n"
+"本当に合っていますか？"
 
 #: tlpkg/installer/install-tl-gui.tcl:151
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2591
