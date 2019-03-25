@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-25 02:23+0100\n"
-"PO-Revision-Date: 2019-03-24 09:33+0100\n"
+"PO-Revision-Date: 2019-03-25 07:45+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -1872,6 +1872,8 @@ msgstr "Si la mise à jour échoue, essayer en ligne de commande :"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1532
 msgid "Use an administrative command prompt for an admin install."
 msgstr ""
+"Utilisez une invite de commande avec droits administrateurs pour une"
+" installation en tant qu'administrateur."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1538
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1564
