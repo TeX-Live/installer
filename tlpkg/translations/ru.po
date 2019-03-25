@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-03-24 02:23+0100\n"
+"POT-Creation-Date: 2019-03-25 02:23+0100\n"
 "PO-Revision-Date: 2019-03-08 15:09+0800\n"
 "Last-Translator: Vladimir Lomov <irk.translator@yandex.ru>\n"
 "Language-Team: Russian <tldoc@tug.org>\n"
@@ -50,10 +50,10 @@ msgstr "Процесс установки"
 #: tlpkg/installer/install-tl-gui.tcl:370
 #: tlpkg/installer/install-tl-gui.tcl:487
 #: tlpkg/installer/install-tl-gui.tcl:571
-#: tlpkg/installer/install-tl-gui.tcl:756
-#: tlpkg/installer/install-tl-gui.tcl:825
-#: tlpkg/installer/install-tl-gui.tcl:904
-#: tlpkg/installer/install-tl-gui.tcl:1108 tlpkg/tltcl/tltcl.tcl:424
+#: tlpkg/installer/install-tl-gui.tcl:758
+#: tlpkg/installer/install-tl-gui.tcl:827
+#: tlpkg/installer/install-tl-gui.tcl:906
+#: tlpkg/installer/install-tl-gui.tcl:1110 tlpkg/tltcl/tltcl.tcl:424
 #: texmf-dist/scripts/tlshell/tlshell.tcl:165
 msgid "Cancel"
 msgstr "Отмена"
@@ -68,7 +68,7 @@ msgstr "Закончить"
 
 #: tlpkg/installer/install-menu-wizard.pl:41
 #: tlpkg/installer/install-menu-perltk.pl:445
-#: tlpkg/installer/install-tl-gui.tcl:1374
+#: tlpkg/installer/install-tl-gui.tcl:1376
 msgid "Default paper size"
 msgstr "Размер листа по умолчанию"
 
@@ -97,7 +97,7 @@ msgstr "Доступно для всех пользователей"
 
 #: tlpkg/installer/install-menu-wizard.pl:46
 #: tlpkg/installer/install-menu-perltk.pl:569
-#: tlpkg/installer/install-tl-gui.tcl:1466
+#: tlpkg/installer/install-tl-gui.tcl:1468
 msgid "Install TeXworks front end"
 msgstr "Установить редактор TeXworks"
 
@@ -112,8 +112,8 @@ msgstr "Установка TeX Live %s"
 #: tlpkg/installer/install-menu-perltk.pl:630
 #: tlpkg/installer/install-menu-perltk.pl:676
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:544
-#: tlpkg/installer/install-tl-gui.tcl:1158
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2064
+#: tlpkg/installer/install-tl-gui.tcl:1160
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2070
 msgid "Quit"
 msgstr "Выход"
 
@@ -279,15 +279,15 @@ msgstr "Целевой каталог:"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2438
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2443
 #: tlpkg/installer/install-tl-gui.tcl:469
-#: tlpkg/installer/install-tl-gui.tcl:1205
-#: tlpkg/installer/install-tl-gui.tcl:1221
-#: tlpkg/installer/install-tl-gui.tcl:1229
-#: tlpkg/installer/install-tl-gui.tcl:1239
-#: tlpkg/installer/install-tl-gui.tcl:1248
-#: tlpkg/installer/install-tl-gui.tcl:1256
-#: tlpkg/installer/install-tl-gui.tcl:1263
-#: tlpkg/installer/install-tl-gui.tcl:1309
-#: tlpkg/installer/install-tl-gui.tcl:1328
+#: tlpkg/installer/install-tl-gui.tcl:1207
+#: tlpkg/installer/install-tl-gui.tcl:1223
+#: tlpkg/installer/install-tl-gui.tcl:1231
+#: tlpkg/installer/install-tl-gui.tcl:1241
+#: tlpkg/installer/install-tl-gui.tcl:1250
+#: tlpkg/installer/install-tl-gui.tcl:1258
+#: tlpkg/installer/install-tl-gui.tcl:1265
+#: tlpkg/installer/install-tl-gui.tcl:1311
+#: tlpkg/installer/install-tl-gui.tcl:1330
 msgid "Change"
 msgstr "Изменить"
 
@@ -363,32 +363,32 @@ msgstr "Нет"
 
 #: tlpkg/installer/install-menu-wizard.pl:604
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:456
-#: tlpkg/installer/install-tl-gui.tcl:1156
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1827
+#: tlpkg/installer/install-tl-gui.tcl:1158
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1829
 msgid "Install"
 msgstr "Установить"
 
 #: tlpkg/installer/install-menu-perltk.pl:48
 #: tlpkg/installer/install-menu-perltk.pl:1251
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:143
-#: tlpkg/installer/install-tl-gui.tcl:685
-#: tlpkg/installer/install-tl-gui.tcl:920
-#: tlpkg/installer/install-tl-gui.tcl:1442
+#: tlpkg/installer/install-tl-gui.tcl:687
+#: tlpkg/installer/install-tl-gui.tcl:922
+#: tlpkg/installer/install-tl-gui.tcl:1444
 msgid "None"
 msgstr "Нет"
 
 #: tlpkg/installer/install-menu-perltk.pl:49
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:144
-#: tlpkg/installer/install-tl-gui.tcl:1442
+#: tlpkg/installer/install-tl-gui.tcl:1444
 msgid "Only new"
 msgstr "Только новые"
 
 #: tlpkg/installer/install-menu-perltk.pl:50
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:145
-#: tlpkg/installer/install-tl-gui.tcl:917
-#: tlpkg/installer/install-tl-gui.tcl:1442
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2119
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2130
+#: tlpkg/installer/install-tl-gui.tcl:919
+#: tlpkg/installer/install-tl-gui.tcl:1444
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2125
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2136
 msgid "All"
 msgstr "Все"
 
@@ -402,17 +402,17 @@ msgid "letter"
 msgstr "Letter"
 
 #: tlpkg/installer/install-menu-perltk.pl:55
-#: tlpkg/installer/install-tl-gui.tcl:1430
+#: tlpkg/installer/install-tl-gui.tcl:1432
 msgid "No shortcuts"
 msgstr "Не создавать ярлыки"
 
 #: tlpkg/installer/install-menu-perltk.pl:56
-#: tlpkg/installer/install-tl-gui.tcl:1430
+#: tlpkg/installer/install-tl-gui.tcl:1432
 msgid "TeX Live menu"
 msgstr "Меню TeX Live"
 
 #: tlpkg/installer/install-menu-perltk.pl:57
-#: tlpkg/installer/install-tl-gui.tcl:1430
+#: tlpkg/installer/install-tl-gui.tcl:1432
 msgid "Launcher entry"
 msgstr "Только ярлыки"
 
@@ -478,10 +478,10 @@ msgstr "Выберите другое зеркало."
 #: tlpkg/installer/install-tl-gui.tcl:360
 #: tlpkg/installer/install-tl-gui.tcl:485
 #: tlpkg/installer/install-tl-gui.tcl:569
-#: tlpkg/installer/install-tl-gui.tcl:753
-#: tlpkg/installer/install-tl-gui.tcl:808
-#: tlpkg/installer/install-tl-gui.tcl:901
-#: tlpkg/installer/install-tl-gui.tcl:1106 tlpkg/tltcl/tltcl.tcl:422
+#: tlpkg/installer/install-tl-gui.tcl:755
+#: tlpkg/installer/install-tl-gui.tcl:810
+#: tlpkg/installer/install-tl-gui.tcl:903
+#: tlpkg/installer/install-tl-gui.tcl:1108 tlpkg/tltcl/tltcl.tcl:422
 #: texmf-dist/scripts/tlshell/tlshell.tcl:155
 msgid "Ok"
 msgstr "Ок"
@@ -548,7 +548,7 @@ msgstr "Настройка для мобильного использовани�
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1181
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1231
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1240
-#: tlpkg/installer/install-tl-gui.tcl:1282
+#: tlpkg/installer/install-tl-gui.tcl:1284
 msgid "Toggle"
 msgstr "Переключить"
 
@@ -574,28 +574,28 @@ msgstr "TEXMFHOME (каталог для личных файлов пользо�
 
 #: tlpkg/installer/install-menu-perltk.pl:440
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:513
-#: tlpkg/installer/install-tl-gui.tcl:1365
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2011
+#: tlpkg/installer/install-tl-gui.tcl:1367
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2013
 msgid "Options"
 msgstr "Параметры"
 
 #: tlpkg/installer/install-menu-perltk.pl:458
-#: tlpkg/installer/install-tl-gui.tcl:1385
+#: tlpkg/installer/install-tl-gui.tcl:1387
 msgid "Allow execution of restricted list of programs via \\write18"
 msgstr "Разрешить выполнение ограниченного набора программ через \\write18"
 
 #: tlpkg/installer/install-menu-perltk.pl:473
-#: tlpkg/installer/install-tl-gui.tcl:1392
+#: tlpkg/installer/install-tl-gui.tcl:1394
 msgid "Create all format files"
 msgstr "Создать все форматные файлы"
 
 #: tlpkg/installer/install-menu-perltk.pl:485
-#: tlpkg/installer/install-tl-gui.tcl:1400
+#: tlpkg/installer/install-tl-gui.tcl:1402
 msgid "Install font/macro doc tree"
 msgstr "Установить дерево с документацией font/macro"
 
 #: tlpkg/installer/install-menu-perltk.pl:498
-#: tlpkg/installer/install-tl-gui.tcl:1410
+#: tlpkg/installer/install-tl-gui.tcl:1412
 msgid "Install font/macro source tree"
 msgstr "Установить дерево исходных файлов font/macro"
 
@@ -605,7 +605,7 @@ msgid "Create symlinks in system directories"
 msgstr "Создать символьные ссылки в системных каталогах"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
-#: tlpkg/installer/install-tl-gui.tcl:1503
+#: tlpkg/installer/install-tl-gui.tcl:1505
 msgid "After install, set CTAN as source for package updates"
 msgstr "После установки задать CTAN источником обновлений пакетов"
 
@@ -613,7 +613,7 @@ msgstr "После установки задать CTAN источником о�
 #: tlpkg/installer/install-menu-perltk.pl:609
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:650
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:652
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2045
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2051
 msgid "About"
 msgstr "О программе"
 
@@ -777,7 +777,7 @@ msgstr "Загрузить репозиторий по умолчанию"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1283
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1705
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2612
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1060
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1062
 msgid "multiple repositories"
 msgstr "репозитории"
 
@@ -790,7 +790,7 @@ msgid "Display configuration"
 msgstr "Настройка отображения"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:321
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2116
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2122
 msgid "Status"
 msgstr "Статус"
 
@@ -869,12 +869,12 @@ msgid "Package name"
 msgstr "Название пакета"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:417
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2196
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2202
 msgid "Local rev. (ver.)"
 msgstr "Локальная рев. (вер.)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:418
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2197
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2203
 msgid "Remote rev. (ver.)"
 msgstr "Сетевая рев. (вер.)"
 
@@ -891,13 +891,13 @@ msgid "Reinstall previously removed packages"
 msgstr "Заново установить ранее удалённые пакеты"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:451
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1832
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1834
 msgid "Update"
 msgstr "Обновить"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:460
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2014
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1837
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1839
 msgid "Remove"
 msgstr "Удалить"
 
@@ -906,13 +906,13 @@ msgid "Backup"
 msgstr "Архивировать"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:515
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2000
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2002
 msgid "Actions"
 msgstr "Действия"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:519
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2694
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2043
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2049
 msgid "Help"
 msgstr "Справка"
 
@@ -937,7 +937,7 @@ msgid "General ..."
 msgstr "Общие ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:552
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2020
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2022
 msgid "Paper ..."
 msgstr "Размер листа ..."
 
@@ -1176,7 +1176,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "Создать ярлыки на рабочем столе"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1236
-#: tlpkg/installer/install-tl-gui.tcl:1455
+#: tlpkg/installer/install-tl-gui.tcl:1457
 msgid "Install for all users"
 msgstr "Установить для всех пользователей"
 
@@ -1356,9 +1356,9 @@ msgstr "Восстановить все пакеты до последней в�
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2417
 #: tlpkg/installer/install-tl-gui.tcl:260
-#: texmf-dist/scripts/tlshell/tlshell.tcl:798
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1300
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1512
+#: texmf-dist/scripts/tlshell/tlshell.tcl:800
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1302
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1514
 msgid "Close"
 msgstr "Закрыть"
 
@@ -1479,7 +1479,7 @@ msgstr ""
 "в ваш PATH для текущей и будущих сессий."
 
 #: tlpkg/installer/install-tl-gui.tcl:238
-#: tlpkg/installer/install-tl-gui.tcl:1714
+#: tlpkg/installer/install-tl-gui.tcl:1716
 msgid "TeX Live Installer"
 msgstr "Программа установки TeX Live"
 
@@ -1525,13 +1525,13 @@ msgid "Remove year"
 msgstr "Убрать год"
 
 #: tlpkg/installer/install-tl-gui.tcl:438
-#: tlpkg/installer/install-tl-gui.tcl:1189
-#: tlpkg/installer/install-tl-gui.tcl:1197
+#: tlpkg/installer/install-tl-gui.tcl:1191
+#: tlpkg/installer/install-tl-gui.tcl:1199
 msgid "Installation root"
 msgstr "Корневой каталог установки"
 
 #: tlpkg/installer/install-tl-gui.tcl:466
-#: tlpkg/installer/install-tl-gui.tcl:1086 tlpkg/tltcl/tltcl.tcl:414
+#: tlpkg/installer/install-tl-gui.tcl:1088 tlpkg/tltcl/tltcl.tcl:414
 msgid "Browse..."
 msgstr "Обзор..."
 
@@ -1544,81 +1544,81 @@ msgstr "Локализованные названия каталогов буд�
 msgid "'~' equals %s, e.g. %s"
 msgstr "'~' есть %s, например, %s"
 
-#: tlpkg/installer/install-tl-gui.tcl:711
+#: tlpkg/installer/install-tl-gui.tcl:713
 msgid "Cannot deselect own platform"
 msgstr "Невозможно снять выделение текущей платформы"
 
-#: tlpkg/installer/install-tl-gui.tcl:746
-#: tlpkg/installer/install-tl-gui.tcl:1090
+#: tlpkg/installer/install-tl-gui.tcl:748
+#: tlpkg/installer/install-tl-gui.tcl:1092
 msgid "Binaries"
 msgstr "Программы"
 
-#: tlpkg/installer/install-tl-gui.tcl:801
+#: tlpkg/installer/install-tl-gui.tcl:803
 msgid "Schemes"
 msgstr "Схемы"
 
-#: tlpkg/installer/install-tl-gui.tcl:894
+#: tlpkg/installer/install-tl-gui.tcl:896
 msgid "Collections"
 msgstr "Коллекции"
 
-#: tlpkg/installer/install-tl-gui.tcl:916
+#: tlpkg/installer/install-tl-gui.tcl:918
 msgid "Select"
 msgstr "Выбрать"
 
-#: tlpkg/installer/install-tl-gui.tcl:932
+#: tlpkg/installer/install-tl-gui.tcl:934
 msgid "Languages"
 msgstr "Языки"
 
-#: tlpkg/installer/install-tl-gui.tcl:934
+#: tlpkg/installer/install-tl-gui.tcl:936
 msgid "Other collections"
 msgstr "Другие коллекции"
 
-#: tlpkg/installer/install-tl-gui.tcl:1043
+#: tlpkg/installer/install-tl-gui.tcl:1045
 msgid "Warning. Not all configured directories are writable!"
 msgstr "Предупреждение. Не все каталоги доступны на запись!"
 
-#: tlpkg/installer/install-tl-gui.tcl:1063
+#: tlpkg/installer/install-tl-gui.tcl:1065
 msgid "Symlinks"
 msgstr "Символьные ссылки"
 
-#: tlpkg/installer/install-tl-gui.tcl:1091
+#: tlpkg/installer/install-tl-gui.tcl:1093
 msgid "Man pages"
 msgstr "Документация в man"
 
-#: tlpkg/installer/install-tl-gui.tcl:1092
+#: tlpkg/installer/install-tl-gui.tcl:1094
 msgid "Info pages"
 msgstr "Документация в Info"
 
-#: tlpkg/installer/install-tl-gui.tcl:1145
+#: tlpkg/installer/install-tl-gui.tcl:1147
 #, tcl-format
 msgid "TeX Live %s Installer"
 msgstr "Программа установки TeX Live %s"
 
-#: tlpkg/installer/install-tl-gui.tcl:1163
+#: tlpkg/installer/install-tl-gui.tcl:1165
 msgid "Advanced"
 msgstr "Дополнительно"
 
-#: tlpkg/installer/install-tl-gui.tcl:1192
+#: tlpkg/installer/install-tl-gui.tcl:1194
 msgid "Directories"
 msgstr "Каталоги"
 
-#: tlpkg/installer/install-tl-gui.tcl:1211
+#: tlpkg/installer/install-tl-gui.tcl:1213
 msgid "Main tree"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1234
+#: tlpkg/installer/install-tl-gui.tcl:1236
 msgid "Local additions"
 msgstr "Локальные дополнения"
 
-#: tlpkg/installer/install-tl-gui.tcl:1243
+#: tlpkg/installer/install-tl-gui.tcl:1245
 msgid "Per-user additions"
 msgstr "Пользовательские дополнения"
 
-#: tlpkg/installer/install-tl-gui.tcl:1270
+#: tlpkg/installer/install-tl-gui.tcl:1272
 msgid "More ..."
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1279
+#: tlpkg/installer/install-tl-gui.tcl:1281
 msgid ""
 "Portable setup:\n"
 "May reset TEXMFLOCAL\n"
@@ -1628,65 +1628,65 @@ msgstr ""
 "Возможна переустановка переменных TEXMFLOCAL\n"
 "и TEXMFHOME"
 
-#: tlpkg/installer/install-tl-gui.tcl:1293
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1289
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2040
+#: tlpkg/installer/install-tl-gui.tcl:1295
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1291
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2046
 msgid "Platforms"
 msgstr "Платформы"
 
-#: tlpkg/installer/install-tl-gui.tcl:1299
+#: tlpkg/installer/install-tl-gui.tcl:1301
 msgid "Current platform:"
 msgstr "Текущая платформа"
 
-#: tlpkg/installer/install-tl-gui.tcl:1306
+#: tlpkg/installer/install-tl-gui.tcl:1308
 msgid "N. of additional platform(s):"
 msgstr "Количество дополнительных платформ:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1319
+#: tlpkg/installer/install-tl-gui.tcl:1321
 msgid "Selections"
 msgstr "Подборки"
 
-#: tlpkg/installer/install-tl-gui.tcl:1324
+#: tlpkg/installer/install-tl-gui.tcl:1326
 msgid "Scheme:"
 msgstr "Схема:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1333
+#: tlpkg/installer/install-tl-gui.tcl:1335
 msgid "N. of collections:"
 msgstr "Количество коллекций:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1336
+#: tlpkg/installer/install-tl-gui.tcl:1338
 msgid "Customize"
 msgstr "Настроить"
 
-#: tlpkg/installer/install-tl-gui.tcl:1345
+#: tlpkg/installer/install-tl-gui.tcl:1347
 msgid "Disk space required (in MB):"
 msgstr "Требуется места на диске (в МБ):"
 
-#: tlpkg/installer/install-tl-gui.tcl:1423
+#: tlpkg/installer/install-tl-gui.tcl:1425
 msgid "Adjust searchpath"
 msgstr "Настроить пути поиска"
 
-#: tlpkg/installer/install-tl-gui.tcl:1432
+#: tlpkg/installer/install-tl-gui.tcl:1434
 msgid "Desktop integration"
 msgstr "Интеграция с рабочим столом"
 
-#: tlpkg/installer/install-tl-gui.tcl:1444
+#: tlpkg/installer/install-tl-gui.tcl:1446
 msgid "File associations"
 msgstr "Ассоциации файлов"
 
-#: tlpkg/installer/install-tl-gui.tcl:1483
+#: tlpkg/installer/install-tl-gui.tcl:1485
 msgid "Create symlinks in standard directories"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1489
+#: tlpkg/installer/install-tl-gui.tcl:1491
 msgid "Specify directories"
 msgstr "Укажите каталоги"
 
-#: tlpkg/installer/install-tl-gui.tcl:1554
+#: tlpkg/installer/install-tl-gui.tcl:1556
 msgid "Custom scheme"
 msgstr "Собственная схема"
 
-#: tlpkg/installer/install-tl-gui.tcl:1795
+#: tlpkg/installer/install-tl-gui.tcl:1811
 #, tcl-format
 msgid "Loading from %s"
 msgstr ""
@@ -1697,172 +1697,172 @@ msgstr "Выберите или введите"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:263
 #: texmf-dist/scripts/tlshell/tlshell.tcl:316
-#: texmf-dist/scripts/tlshell/tlshell.tcl:436
-#: texmf-dist/scripts/tlshell/tlshell.tcl:472
+#: texmf-dist/scripts/tlshell/tlshell.tcl:438
+#: texmf-dist/scripts/tlshell/tlshell.tcl:474
 msgid "Running"
 msgstr "Выполнение"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:272
-#: texmf-dist/scripts/tlshell/tlshell.tcl:456
+#: texmf-dist/scripts/tlshell/tlshell.tcl:458
 msgid "Idle"
 msgstr "Простой"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:561
+#: texmf-dist/scripts/tlshell/tlshell.tcl:563
 msgid "Needs updating"
 msgstr "Необходимо обновить"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:563
+#: texmf-dist/scripts/tlshell/tlshell.tcl:565
 msgid "Up to date"
 msgstr "Всё обновлено"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:565
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2089
+#: texmf-dist/scripts/tlshell/tlshell.tcl:567
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2095
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:729
+#: texmf-dist/scripts/tlshell/tlshell.tcl:731
 msgid "A configured repository is unavailable."
 msgstr "Настроенный репозиторий недоступен."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:752
+#: texmf-dist/scripts/tlshell/tlshell.tcl:754
 msgid "Loaded"
 msgstr "Загружено"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:850
+#: texmf-dist/scripts/tlshell/tlshell.tcl:852
 msgid "Output"
 msgstr "Вывод"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:851
+#: texmf-dist/scripts/tlshell/tlshell.tcl:853
 msgid "Other"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:980
+#: texmf-dist/scripts/tlshell/tlshell.tcl:982
 #, tcl-format
 msgid "%s not a repository"
 msgstr "%s не является репозиторием"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1122
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1124
 msgid "Main Repository"
 msgstr "Основной репозиторий"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1133
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1135
 msgid "Current:"
 msgstr "Текущий:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1139
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1141
 msgid "New"
 msgstr "Новый"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1147
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1149
 msgid "Any CTAN mirror"
 msgstr "Любое зеркало CTAN"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1157
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1159
 msgid "Specific mirror..."
 msgstr "Определённое зеркало..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1177
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1179
 msgid "Local directory..."
 msgstr "Локальный каталог..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1182
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1184
 msgid "tlcontrib additional repository"
 msgstr "Дополнительный репозиторий tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1198
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1200
 msgid "tlcontrib repository is included"
 msgstr "Репозиторий tlcontrib добавлен"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1199
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1201
 msgid "Remove tlcontrib repository"
 msgstr "Удалить репозиторий tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1201
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1203
 msgid "tlcontrib repository is not included"
 msgstr "Репозиторий tlcontrib не добавлен"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1202
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1204
 msgid "Add tlcontrib repository"
 msgstr "Добавить репозиторий tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1207
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1209
 msgid "Save and Load"
 msgstr "Сохранить и загрузить"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1213
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1215
 msgid "Abort"
 msgstr "Отмена"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1233
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1235
 #, tcl-format
 msgid "Cannot remove own platform %s"
 msgstr "Невозможно удалить текущую платформу %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1297
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1299
 msgid "Apply and close"
 msgstr "Применить и закрыть"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1317
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1319
 msgid "platform"
 msgstr "платформа"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1381
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1383
 #, tcl-format
 msgid "Restore %s to revision %s?"
 msgstr "Восстановить %s на ревизию %s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1404
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1406
 msgid "No backups configured"
 msgstr "Резервное копирование не настроено"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1414
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1416
 msgid "No backup directory defined"
 msgstr "Каталог резервных копий не задан"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1419
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1421
 #, tcl-format
 msgid "Backup directory %s does not exist"
 msgstr "Каталог %s для резервного копирования не существует"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1442
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1444
 #, tcl-format
 msgid "No packages in backup directory %s"
 msgstr "Нет пакетов в каталоге %s для резервного копирования"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1452
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2163
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1454
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2169
 msgid "Restore from backup"
 msgstr "Восстановить их резервных копий"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1468
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1470
 msgid "Package"
 msgstr "Пакет"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1469
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1471
 msgid "Revision"
 msgstr "Ревизия"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1510
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1512
 msgid "Restore all"
 msgstr "Восстановить всё"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1528
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1530
 msgid "If update fails, try on a command-line:"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1530
-msgid "Use an admininstrative command prompt for an admin install."
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1532
+msgid "Use an administrative command prompt for an admin install."
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1536
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1562
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1602
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1652
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1727
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1538
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1564
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1604
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1654
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1729
 msgid "Nothing to do!"
 msgstr "Никаких действий не требуется!"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1617
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1619
 #, tcl-format
 msgid ""
 "Also installing dependencies\n"
@@ -1873,12 +1873,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1624
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1626
 #, tcl-format
 msgid "Already installed: %s"
 msgstr "Уже установлено: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1665
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1667
 #, tcl-format
 msgid ""
 "Also updating dependencies\n"
@@ -1889,22 +1889,22 @@ msgstr ""
 "\n"
 "%s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1680
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1682
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1692
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1694
 #, tcl-format
 msgid "Skipped because not installed: %s"
 msgstr "Пропущено, поскольку не установлено: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1695
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1697
 #, tcl-format
 msgid "Skipped because already up to date: %s"
 msgstr "Пропущено, поскольку уже обновлено: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1731
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1733
 #, tcl-format
 msgid ""
 "Also remove dependencies\n"
@@ -1915,167 +1915,171 @@ msgstr ""
 "\n"
 "%s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1746
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1748
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1823
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1825
 msgid "Info"
 msgstr "Информация"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1888
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1890
 msgid "Cannot set default GUI language"
 msgstr "Невозможно установить язык по умолчанию для приложения"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1968
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1990
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1970
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1992
 msgid "File"
 msgstr "Файл"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1992
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1994
 msgid "Load default repository"
 msgstr "Загрузить репозиторий по умолчанию"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1994
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1996
 msgid "Exit"
 msgstr "Выход"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2003
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2005
 msgid "Regenerate filename database"
 msgstr "Пересоздать базу данных имён файлов"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2004
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2006
 msgid "Regenerating filename database..."
 msgstr "Пересоздание базы данных имён файлов..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2005
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2007
 msgid "Regenerate formats"
 msgstr "Пересоздать форматы"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2006
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2008
 msgid "Rebuilding formats..."
 msgstr "Пересоздание форматов..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2007
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2009
 msgid "Regenerate fontmaps"
 msgstr "Пересоздать fontmaps"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2008
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2010
 msgid "Rebuilding fontmap files..."
 msgstr "Пересоздание файлов fontmap..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2016
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2018
 msgid "Repositories"
 msgstr "Репозитории"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2029
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2031
 msgid "GUI language (restarts tlshell)"
 msgstr "Язык приложения (перезапуск tlshell)"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2048
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2054
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2049
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2055
 msgid "tlmgr help"
 msgstr "Справка по tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2066
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2072
 msgid "Restart self"
 msgstr "Перезапустить программу"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2071
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2074
+msgid "Restart tlmgr"
+msgstr "Перезапустить tlmgr"
+
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2077
 msgid "Show logs"
 msgstr "Показать журнал"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2080
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2086
 msgid "Default repositories"
 msgstr "Репозитории по умолчанию"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2084
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2090
 msgid "Not loaded"
 msgstr "Не загружено"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2087
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2093
 msgid "TL Manager up to date?"
 msgstr "Менеджер TL обновлён?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2092
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2098
 msgid "Last tlmgr command:"
 msgstr "Последняя команда tlmgr:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2107
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2113
 msgid "Package list"
 msgstr "Список пакетов"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2117
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2123
 msgid "Installed"
 msgstr "Установленные"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2121
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2127
 msgid "Updatable"
 msgstr "Есть обновления"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2129
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2135
 msgid "Detail >> Global"
 msgstr "Детали >> Глобально"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2132
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2138
 msgid "Collections and schemes"
 msgstr "Коллекции и схемы"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2134
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2140
 msgid "Only schemes"
 msgstr "Только схемы"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2142
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2148
 msgid "Mark all"
 msgstr "Отметить всё"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2144
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2150
 msgid "Mark none"
 msgstr "Снять выделение"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2150
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2156
 msgid "Install marked"
 msgstr "Установить выделенные"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2154
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2160
 msgid "Update marked"
 msgstr "Обновить выделенные"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2158
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2164
 msgid "Remove marked"
 msgstr "Удалить выделенные"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2168
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2174
 msgid "Update tlmgr"
 msgstr "Обновить tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2171
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2177
 msgid "Update all"
 msgstr "Обновить все"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2178
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2184
 msgid "Search"
 msgstr "Найти"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2181
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2187
 msgid "By name"
 msgstr "По названию"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2183
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2189
 msgid "By name and description"
 msgstr "По названию и описанию"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2195
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2201
 msgid "Name"
 msgstr "Название"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2198
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2204
 msgid "Description"
 msgstr "Описание"
 
@@ -2278,9 +2282,6 @@ msgstr "Вспомогательные программы, только для W
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX и пакеты"
-
-#~ msgid "Restart tlmgr"
-#~ msgstr "Перезапустить tlmgr"
 
 #~ msgid "Errors"
 #~ msgstr "Ошибки"
