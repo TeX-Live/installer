@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-25 02:23+0100\n"
-"PO-Revision-Date: 2019-03-21 22:47+0100\n"
+"PO-Revision-Date: 2019-03-26 06:10+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -1432,6 +1432,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "may cause trouble!"
 msgstr ""
+"Zielverzeichnis %s ist nicht leer,\n"
+"dies kann Probleme bereiten!"
 
 #: tlpkg/installer/install-tl-gui.tcl:82
 #, tcl-format
@@ -1439,6 +1441,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "are you sure?"
 msgstr ""
+"Zielverzeichnis %s ist nicht leer,\n"
+"sind Sie sicher?"
 
 #: tlpkg/installer/install-tl-gui.tcl:151
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2591
@@ -1851,7 +1855,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1532
 msgid "Use an administrative command prompt for an admin install."
-msgstr ""
+msgstr "Nutzen Sie eine Admin-Shell für die Admin-Installation."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1538
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1564
