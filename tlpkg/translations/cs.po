@@ -1,12 +1,12 @@
 #
 # Zdeněk Wagner <zdenek.wagner@gmail.com>, 2013, 2014.
-#
+# Petr Sojka <sojka@fi.muni.cz>, 2016, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-25 02:23+0100\n"
-"PO-Revision-Date: 2016-05-03 17:30+0200\n"
+"PO-Revision-Date: 2019-03-26 17:30+0200\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
 "Language: cs\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: tlpkg/installer/tracked-install.pl:27
 msgid "Installation process"
-msgstr "Instalace"
+msgstr "Instalační proces"
 
 #: tlpkg/installer/tracked-install.pl:41
 #: tlpkg/installer/install-menu-wizard.pl:383
@@ -124,7 +124,7 @@ msgstr "Ukončit"
 #: tlpkg/installer/install-menu-wizard.pl:561
 #: tlpkg/installer/install-menu-wizard.pl:607
 msgid "< Back"
-msgstr "< Předcházející"
+msgstr "< Zpět"
 
 #: tlpkg/installer/install-menu-wizard.pl:154
 #: tlpkg/installer/install-menu-wizard.pl:198
@@ -152,7 +152,7 @@ msgstr ""
 msgid ""
 "In case of trouble, try to disable your virus scanner during installation."
 msgstr ""
-"V případě problémů zkuste zakázat skenování virů během instalace."
+"V případě problémů zkuste zakázat skenování virů v průběhu instalace."
 
 #: tlpkg/installer/install-menu-wizard.pl:179
 msgid ""
@@ -233,7 +233,7 @@ msgstr "Nelze načíst vzdálenou databázi TeX Live:"
 #: tlpkg/installer/install-menu-wizard.pl:388
 #: tlpkg/installer/install-menu-wizard.pl:395
 msgid "Please go back and select a different mirror."
-msgstr "Prosím, zvolte jiné zrcadlo."
+msgstr "Prosím, o krok zpět zvolte jiné zrcadlo."
 
 #: tlpkg/installer/install-menu-wizard.pl:391
 #, perl-format
@@ -1179,7 +1179,7 @@ msgstr "Nainstaluj pro všechny uživatele"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1283
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1285
 msgid "Load default repository:"
-msgstr "Nový výchozí instalační zdroj:"
+msgstr "Načti výchozí instalační zdroj:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1342
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1351
@@ -1217,7 +1217,7 @@ msgstr "Implicitní jazyk uživatelského rozhraní (GUI):"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1434
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1463
 msgid "Changes will take effect after restart"
-msgstr "Změny se projeví po restartování"
+msgstr "Změny se projeví až po restartování"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1508
 msgid "Choose directory"
@@ -1225,11 +1225,11 @@ msgstr "Vyberte adresář"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1574
 msgid "Edit default package repositories"
-msgstr "Editovat implicitní repozitář balíků"
+msgstr "Editovat implicitní zdroj balíků"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1577
 msgid "Specify set of repositories to be used"
-msgstr "Specifikujte množinu používaných repozitářů"
+msgstr "Specifikujte množinu používaných zdrojů"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1593
 msgid "Delete"
@@ -1238,26 +1238,26 @@ msgstr "Smazat"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1607
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1610
 msgid "Change main package repository"
-msgstr "Změnit hlavní repozitář s balíky"
+msgstr "Změnit hlavní zdroj s balíky"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1608
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1611
 msgid "Change subsidiary package repository"
-msgstr "Změnit pomocný repozitář s balíky"
+msgstr "Změnit pomocný zdroj s balíky"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1632
 msgid "Add repository"
-msgstr "Přidej repozitář"
+msgstr "Přidej zdroj"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1634
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1635
 msgid "Add package repository"
-msgstr "Přidej repozitář s balíky"
+msgstr "Přidej zdroj s balíky"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1661
 #, perl-format
 msgid "Repository tag name already used: %s"
-msgstr "Označení repozitáře je již používáno: %s"
+msgstr "Označení zdroje je již používáno: %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1719
 msgid "Revert"
