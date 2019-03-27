@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-25 02:23+0100\n"
-"PO-Revision-Date: 2019-03-20 16:14-0400\n"
+"PO-Revision-Date: 2019-03-27 17:19-0400\n"
 "Last-Translator: linguafalsa <linguafalsa@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: es\n"
@@ -1449,6 +1449,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "may cause trouble!"
 msgstr ""
+"El destino del directorio %s no está vacío:\n"
+"¡esto puede causar problemas!"
 
 #: tlpkg/installer/install-tl-gui.tcl:82
 #, tcl-format
@@ -1456,6 +1458,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "are you sure?"
 msgstr ""
+"El destino del directorio %s no está vacío:\n"
+"¿Estás seguro que quieres continuar?"
 
 #: tlpkg/installer/install-tl-gui.tcl:151
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2591
@@ -1693,7 +1697,7 @@ msgstr "Asociaciones del archivo"
 
 #: tlpkg/installer/install-tl-gui.tcl:1485
 msgid "Create symlinks in standard directories"
-msgstr ""
+msgstr "Crea enlaces simbólicos en los directorios estándar"
 
 #: tlpkg/installer/install-tl-gui.tcl:1491
 msgid "Specify directories"
@@ -1751,7 +1755,7 @@ msgstr "Salida"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:853
 msgid "Other"
-msgstr ""
+msgstr "Otro(s)"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:982
 #, tcl-format
@@ -1865,11 +1869,13 @@ msgstr "Restaurar todo"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1530
 msgid "If update fails, try on a command-line:"
-msgstr ""
+msgstr "Si la actualización falla, trata en la línea de comando:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1532
 msgid "Use an administrative command prompt for an admin install."
 msgstr ""
+"Utilice una indicación de comando administrativa\n"
+"para una instalación administrativa."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1538
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1564
