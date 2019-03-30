@@ -26,11 +26,13 @@ $mirrors = {
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
+      'http://ctan.asis.io/' => 1,
       'http://ctan.um.ac.ir/' => 1,
       'http://ctan.yazd.ac.ir/' => 1,
       'http://repo.iut.ac.ir/tex-archive/' => 1
     },
     'Japan' => {
+      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
@@ -106,7 +108,8 @@ $mirrors = {
     },
     'Poland' => {
       'ftp://ftp.gust.org.pl/TeX/' => 1,
-      'ftp://sunsite.icm.edu.pl/pub/CTAN/' => 1
+      'ftp://sunsite.icm.edu.pl/pub/CTAN/' => 1,
+      'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
     'Portugal' => {
       'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
