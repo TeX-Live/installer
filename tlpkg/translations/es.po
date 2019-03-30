@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-03-25 02:23+0100\n"
-"PO-Revision-Date: 2019-03-27 17:19-0400\n"
+"PO-Revision-Date: 2019-03-30 17:58-0400\n"
 "Last-Translator: linguafalsa <linguafalsa@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: es\n"
@@ -150,8 +150,8 @@ msgstr ""
 msgid ""
 "In case of trouble, try to disable your virus scanner during installation."
 msgstr ""
-"En caso de algún problema, trate de desactivar el escáner de virus durante "
-"la instalación."
+"En caso de algún problema, trate de desactivar el escáner de virus\n"
+"durante la instalación."
 
 #: tlpkg/installer/install-menu-wizard.pl:179
 msgid ""
@@ -251,7 +251,7 @@ msgstr ""
 #: tlpkg/installer/install-menu-wizard.pl:423
 #: tlpkg/installer/install-menu-wizard.pl:587
 msgid "Destination folder:"
-msgstr "Ruta de instalación:"
+msgstr "Carpeta de instalación:"
 
 #: tlpkg/installer/install-menu-wizard.pl:425
 #: tlpkg/installer/install-menu-perltk.pl:317
@@ -295,9 +295,9 @@ msgid ""
 "The destination folder will contain the installation.\n"
 "It is strongly recommended to keep the year as the last component."
 msgstr ""
-"La ruta de instalación es el directorio donde se instalará todo.\n"
-"Se recomienda encarecidamente que se mantenga el año como la última parte de "
-"la ruta de instalación."
+"La carpeta de instalación es el directorio donde se instalará todo.\n"
+"Se recomienda encarecidamente que se mantenga el año\n"
+"como la última parte de la ruta de instalación."
 
 #: tlpkg/installer/install-menu-wizard.pl:469
 #: tlpkg/installer/install-menu-perltk.pl:1080
@@ -599,12 +599,12 @@ msgstr "Instalar la documentación de tipos de letra y macros"
 #: tlpkg/installer/install-menu-perltk.pl:498
 #: tlpkg/installer/install-tl-gui.tcl:1412
 msgid "Install font/macro source tree"
-msgstr "Instalar las fuentes de tipos de letra y macros"
+msgstr "Instalar el árbol de origen de fuentes/macros"
 
 #: tlpkg/installer/install-menu-perltk.pl:512
 #: tlpkg/installer/install-menu-perltk.pl:962
 msgid "Create symlinks in system directories"
-msgstr "Crear enlaces simbólicos en los  directorios de sistema"
+msgstr "Crear enlaces simbólicos en los directorios del sistema"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
 #: tlpkg/installer/install-tl-gui.tcl:1505
@@ -641,7 +641,7 @@ msgid ""
 "so can only install for current user."
 msgstr ""
 "El instalador no tiene permisos administrativos:\n"
-"instalará solamente para el usuario actual."
+"se instalará solamente para el usuario actual."
 
 #: tlpkg/installer/install-menu-perltk.pl:684
 msgid ""
@@ -661,7 +661,7 @@ msgstr "Cambiar el valor de la variable"
 #: tlpkg/installer/install-menu-perltk.pl:785
 #, perl-format
 msgid "Enter path for %s (use ~ for %s)"
-msgstr "Introduzca la ruta para %s (use ~ para %s)"
+msgstr "Introduzca la ruta para %s (utilice ~ para %s)"
 
 #: tlpkg/installer/install-menu-perltk.pl:832
 msgid "custom selection of collections"
@@ -677,7 +677,7 @@ msgstr "Seleccionar todo"
 
 #: tlpkg/installer/install-menu-perltk.pl:901
 msgid "Deselect All"
-msgstr "Deseleccionar todo"
+msgstr "Deshaga todo lo que se ha seleccionado"
 
 #: tlpkg/installer/install-menu-perltk.pl:967
 msgid "create symlinks in standard directories"
@@ -724,7 +724,7 @@ msgstr "(por favor, ¡cambie el TEXDIR primero!)"
 #: tlpkg/installer/install-menu-perltk.pl:1111
 #: tlpkg/installer/install-menu-perltk.pl:1129
 msgid "(default not writable - please change!)"
-msgstr "(no se permite la escritura, ¡cambie el directorio por favor!)"
+msgstr "(no se permite sobrescribir, ¡cambie el directorio por favor!)"
 
 #: tlpkg/installer/install-menu-perltk.pl:1261
 msgid ""
@@ -755,9 +755,9 @@ msgid ""
 "\n"
 "Most buttons will be disabled."
 msgstr ""
-"Usted no tiene permisos para cambiar la instalación de ninguna forma\n"
-"específicamente, el directorio %s no se puede escribir\n"
-"Por favor, ejecuta el programa como administrador, o contacte su admin "
+"Usted no tiene permisos para cambiar la instalación de ninguna manera:\n"
+"específicamente, el directorio %s no se puede sobrescribir\n"
+"Por favor, ejecute el programa como administrador, o contacte su admin "
 "local\n"
 "\n"
 "La mayoría de los botones serán desactivados."
@@ -910,7 +910,7 @@ msgstr "Remover"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:465
 msgid "Backup"
-msgstr "Copia de seguridad"
+msgstr "Copia de reserva"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:515
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2002
@@ -967,11 +967,11 @@ msgstr "Permitir salida de depuración"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:571
 msgid "Disable auto-install of new packages"
-msgstr "Deshabilitar la autoinstalación de nuevos paquetes"
+msgstr "Desactive la auto-instalación de nuevos paquetes"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:574
 msgid "Disable auto-removal of server-deleted packages"
-msgstr "Deshabilitar auto-eliminación de paquetes borrados del servidor"
+msgstr "Desactive la auto-eliminación de paquetes borrados del servidor"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:581
 msgid "Update filename database"
@@ -983,12 +983,12 @@ msgstr "Reconstruir todos los formatos"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:600
 msgid "Update font map database"
-msgstr "Actualizar la base de datos de mapas de fuentes"
+msgstr "Actualizar la base de datos de los mapas de las fuentes"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:613
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2342
 msgid "Restore packages from backup"
-msgstr "Restuarar paquetes de la copia de seguridad"
+msgstr "Restaurar paquetes de las copias de reserva"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:619
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2424
@@ -1086,8 +1086,7 @@ msgstr "Colección:"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:749
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
 msgstr ""
-"Advertencia: las versiones de los catálogos pueden estar obsoletas o "
-"equivocadas."
+"Advertencia: las versiones del Catálogo pueden estar obsoletas o incorrectas."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:787
 msgid "Depends:"
@@ -1107,7 +1106,7 @@ msgstr "Documentación:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:795
 msgid "Srcfiles:"
-msgstr "Ficheros fuentes:"
+msgstr "Ficheros de origen:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:807
 msgid "Binfiles:"
@@ -1139,7 +1138,7 @@ msgstr "Opciones generales"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1142
 msgid "Default package repository"
-msgstr "Repositorio de paquetes por defecto"
+msgstr "Repositorio de paquetes estándar"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1163
 msgid "Create formats on installation"
@@ -1147,21 +1146,21 @@ msgstr "Crear formatos durante la instalación"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1170
 msgid "Install macro/font sources"
-msgstr "Instalar fuentes de macros/tipos de letra"
+msgstr "Instalar los orígenes de macros/fuentes"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1177
 msgid "Install macro/font docs"
-msgstr "Instalar documentación de macros/tipos de letra"
+msgstr "Instalar documentación de macros/fuentes"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1184
 msgid "Default backup directory"
-msgstr "Directorio de copia de seguridad por defecto"
+msgstr "Directorio estándar de la copia local de reserva"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1192
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1790
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1795
 msgid "Auto backup setting"
-msgstr "Configuración de la copia de seguridad automática"
+msgstr "Configuración automática de la copia de reserva"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1201
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2431
@@ -1190,7 +1189,7 @@ msgstr "Instalar para todos los usuarios"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1283
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1285
 msgid "Load default repository:"
-msgstr "Cargar repositorio por defecto:"
+msgstr "Cargar repositorio estándar:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1342
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1351
@@ -1199,7 +1198,7 @@ msgstr "Opciones de papel"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1355
 msgid "Default paper for all"
-msgstr "Papel por defecto para todos"
+msgstr "Papel estándar para todo"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1356
 msgid "a4"
@@ -1209,7 +1208,7 @@ msgstr "a4"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1775
 #, perl-format
 msgid "Default paper for %s"
-msgstr "Papel por defecto para %s"
+msgstr "Papel estándar para %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
@@ -1265,7 +1264,7 @@ msgstr "Añadir repositorio"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1634
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1635
 msgid "Add package repository"
-msgstr "Añadir repositorio de paqute"
+msgstr "Añadir repositorio de paquete"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1661
 #, perl-format
@@ -1345,13 +1344,13 @@ msgid ""
 "Please wait a bit after the program has terminated so that the update can be "
 "completed."
 msgstr ""
-"Por favor, espere un poco después de que el programa haya terminado, para "
-"que la actualización se complete."
+"Por favor, espere un poco después de que el programa haya terminado,\n"
+"para que la actualización se complete."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2357
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2359
 msgid "Restore completed"
-msgstr "Recuperación completada"
+msgstr "Restauración completada"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2364
 msgid "Select the package to restore, or restore all packages"
@@ -1494,7 +1493,7 @@ msgid ""
 msgstr ""
 "Añadir %s/texmf-dist/doc/man a MANPATH.\n"
 "Añadir %s/texmf-dist/doc/info a INFOPATH.\n"
-"Más importante, añade %s/bin/%s\n"
+"Más importante aún, añade %s/bin/%s\n"
 "a tu PATH para todas las sesiones actuales y futuras."
 
 #: tlpkg/installer/install-tl-gui.tcl:238
@@ -1566,7 +1565,7 @@ msgstr "'~' igual a %s,e.g. %s"
 
 #: tlpkg/installer/install-tl-gui.tcl:713
 msgid "Cannot deselect own platform"
-msgstr "No se puede desactivar la misma plataforma"
+msgstr "No se puede desactivar la propia plataforma"
 
 #: tlpkg/installer/install-tl-gui.tcl:748
 #: tlpkg/installer/install-tl-gui.tcl:1092
@@ -1853,7 +1852,7 @@ msgstr "No hay paquetes en el directorio de reserva %s"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1454
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2169
 msgid "Restore from backup"
-msgstr "Restaurar mediante la reserva"
+msgstr "Restaurar mediante la copia de reserva"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1470
 msgid "Package"
@@ -1930,7 +1929,10 @@ msgid ""
 "Also remove dependencies\n"
 "\n"
 "%s?"
-msgstr "¿También remover dependencias %s?"
+msgstr ""
+"¿También remover las dependencias\n"
+"\n"
+"%s?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1748
 #, tcl-format
@@ -1944,8 +1946,8 @@ msgstr "Información"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1890
 msgid "Cannot set default GUI language"
 msgstr ""
-"No se puede establecer el lenguaje\n"
-"de Interfaz Gráfica del usuario"
+"No se puede establecer el idioma\n"
+"de Interfaz Gráfica del Usuario"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1970
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1992
@@ -2190,7 +2192,7 @@ msgstr "Chino"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:22
 msgid "Chinese/Japanese/Korean (base)"
-msgstr "Chino/Japonés/Koreano (base)"
+msgstr "Chino/Japonés/Coreano (base)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
 msgid "Cyrillic"
@@ -2230,7 +2232,7 @@ msgstr "Japonés"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:32
 msgid "Korean"
-msgstr "Koreano"
+msgstr "Coreano"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:33
 msgid "Other languages"
