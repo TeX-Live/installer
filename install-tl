@@ -1352,7 +1352,7 @@ sub do_texmf_cnf {
 
   # we have to find TEXMFLOCAL TEXMFSYSVAR and TEXMFHOME
   foreach my $line (@texmfcnflines) {
-    if ($line =~ m/^TEXMFLOCAL/) {
+    if ($line =~ m/^TEXMFLOCAL\b/) { # don't find TEXMFLOCALEDIR
       # by default TEXMFLOCAL = TEXDIR/../texmf-local, if this is the case
       # we don't have to write a new setting.
       my $deftmlocal = dirname($vars{'TEXDIR'});
