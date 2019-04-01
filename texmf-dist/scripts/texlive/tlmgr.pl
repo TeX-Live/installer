@@ -6908,7 +6908,10 @@ END_NO_INTERNET
         tldie("$prg: verification of checksum for $location failed: $msg\n");
       } elsif ($ret == $VS_EXPKEYSIG) {
         # do nothing, try to get new tlpdb and hope sig is better?
-        debug("$prg: gpg key expired, continuing anyway!\n");
+        debug("$prg: good signature bug gpg key expired, continuing anyway!\n");
+      } elsif ($ret == $VS_REVKEYSIG) {
+        # do nothing, try to get new tlpdb and hope sig is better?
+        debug("$prg: good signature but from revoked gpg key, continuing anyway!\n");
       } elsif ($ret == $VS_VERIFIED) {
         $remotetlpdb = TeXLive::TLPDB->new(root => $location,
           tlpdbfile => $loc_copy_of_remote_tlpdb);

@@ -57,13 +57,13 @@ BEGIN {
     %VerificationStatusDescription
     $VS_VERIFIED $VS_CHECKSUM_ERROR $VS_SIGNATURE_ERROR $VS_CONNECTION_ERROR
     $VS_UNSIGNED $VS_GPG_UNAVAILABLE $VS_PUBKEY_MISSING $VS_UNKNOWN
-    $VS_EXPKEYSIG
+    $VS_EXPKEYSIG $VS_REVKEYSIG
   );
   @EXPORT = qw(
     %VerificationStatusDescription
     $VS_VERIFIED $VS_CHECKSUM_ERROR $VS_SIGNATURE_ERROR $VS_CONNECTION_ERROR
     $VS_UNSIGNED $VS_GPG_UNAVAILABLE $VS_PUBKEY_MISSING $VS_UNKNOWN
-    $VS_EXPKEYSIG
+    $VS_EXPKEYSIG $VS_REVKEYSIG
   );
 }
 
@@ -234,8 +234,10 @@ C<$VS_CONNECTION_ERROR> on connection error,
 C<$VS_UNSIGNED> on missing signature file, 
 C<$VS_GPG_UNAVAILABLE> if no gpg program is available,
 C<$VS_PUBKEY_MISSING> if the pubkey is not available, 
-C<$VS_CHECKSUM_ERROR> on checksum errors,and 
-C<$VS_SIGNATURE_ERROR> on signature errors.
+C<$VS_CHECKSUM_ERROR> on checksum errors, 
+C<$VS_EXPKEYSIG> if the signature is good but was made with an expired key,
+C<$VS_REVKEYSIG> if the signature is good but was made with a revoked key,
+and C<$VS_SIGNATURE_ERROR> on signature errors.
 In case of errors returns an informal message as second argument.
 
 =cut
@@ -414,6 +416,8 @@ gpg signature in C<$url.asc>.
 
 Returns 
 $VS_VERIFIED on success, 
+$VS_REVKEYSIG on good signature but from revoked key,
+$VS_EXPKEYSIG on good signature but from expired key,
 $VS_UNSIGNED on missing signature file, 
 $VS_SIGNATURE_ERROR on signature error,
 $VS_GPG_UNAVAILABLE if no gpg is available, and 
@@ -460,6 +464,8 @@ sub verify_signature {
         return($VS_PUBKEY_MISSING, $out);
       } elsif ($ret == $VS_EXPKEYSIG) {
         return($VS_EXPKEYSIG, $out);
+      } elsif ($ret == $VS_REVKEYSIG) {
+        return($VS_REVKEYSIG, $out);
       } else {
         return($VS_SIGNATURE_ERROR, <<GPGERROR);
 cryptographic signature verification of
@@ -513,8 +519,11 @@ sub gpg_verify_signature {
   debug(join("\n", "STATUS OUTPUT", @status_lines));
   if ($ret == 0) {
     # verification still might return success but key is expired!
-    if (grep(/KEYEXPIRED/, @status_lines)) {
+    if (grep(/EXPKEYSIG/, @status_lines)) {
       return($VS_EXPKEYSIG, "expired key");
+    }
+    if (grep(/REVKEYSIG/, @status_lines)) {
+      return($VS_REVKEYSIG, "revoked key");
     }
     debug("verification succeeded, output:\n$out\n");
     return ($VS_VERIFIED, $out);
@@ -545,6 +554,7 @@ our $VS_GPG_UNAVAILABLE = -3;
 our $VS_PUBKEY_MISSING = -4;
 our $VS_EXPKEYSIG = -5;
 our $VS_EXPSIG = -6;
+our $VS_REVKEYSIG = -7;
 our $VS_UNKNOWN = -100;
 
 our %VerificationStatusDescription = (
