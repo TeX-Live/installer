@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
-# Copyright 2007-2018 Norbert Preining
+# Copyright 2007-2019 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -405,6 +405,9 @@ sub from_file {
         $self->verification_status($r);
       } elsif ($r == $VS_PUBKEY_MISSING) {
         debug("$0: TLPDB: pubkey missing, continuing anyway!\n");
+        $self->verification_status($r);
+      } elsif ($r == $VS_EXPKEYSIG) {
+        debug("$0: TLPDB: signature verified, but key expired, continuing anyway!\n");
         $self->verification_status($r);
       } elsif ($r == $VS_VERIFIED) {
         $is_verified = 1;

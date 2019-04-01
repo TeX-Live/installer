@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLCrypto.pm - handle checksums and signatures.
-# Copyright 2016-2018 Norbert Preining
+# Copyright 2016-2019 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -57,11 +57,13 @@ BEGIN {
     %VerificationStatusDescription
     $VS_VERIFIED $VS_CHECKSUM_ERROR $VS_SIGNATURE_ERROR $VS_CONNECTION_ERROR
     $VS_UNSIGNED $VS_GPG_UNAVAILABLE $VS_PUBKEY_MISSING $VS_UNKNOWN
+    $VS_EXPKEYSIG
   );
   @EXPORT = qw(
     %VerificationStatusDescription
     $VS_VERIFIED $VS_CHECKSUM_ERROR $VS_SIGNATURE_ERROR $VS_CONNECTION_ERROR
     $VS_UNSIGNED $VS_GPG_UNAVAILABLE $VS_PUBKEY_MISSING $VS_UNKNOWN
+    $VS_EXPKEYSIG
   );
 }
 
@@ -450,12 +452,14 @@ sub verify_signature {
         }
       }
       my ($ret, $out) = gpg_verify_signature($file, $signature_file);
-      if ($ret == 1) {
+      if ($ret == $VS_VERIFIED) {
         # no need to show the output
         debug("cryptographic signature of $url verified\n");
         return($VS_VERIFIED);
-      } elsif ($ret == -1) {
+      } elsif ($ret == $VS_PUBKEY_MISSING) {
         return($VS_PUBKEY_MISSING, $out);
+      } elsif ($ret == $VS_EXPKEYSIG) {
+        return($VS_EXPKEYSIG, $out);
       } else {
         return($VS_SIGNATURE_ERROR, <<GPGERROR);
 cryptographic signature verification of
@@ -501,19 +505,26 @@ sub gpg_verify_signature {
   close($status_fh);
   my ($out, $ret)
     = TeXLive::TLUtils::run_cmd("$::gpg --status-file \"$status_file\" --verify $sig_quote $file_quote 2>&1");
+  # read status file
+  open($status_fd, "<", $status_file) || die("Cannot open status file: $!");
+  my @status_lines = <$status_fd>;
+  close($status_fd);
+  chomp(@status_lines);
+  debug(join("\n", "STATUS OUTPUT", @status_lines));
   if ($ret == 0) {
-    debug("verification succeeded, output:\n$out\n");
-    return (1, $out);
-  } else {
-    open($status_fd, "<", $status_file) || die("Cannot open status file: $!");
-    while (<$status_fd>) {
-      if (m/^\[GNUPG:\] NO_PUBKEY (.*)/) {
-        close($status_fd);
-        debug("missing pubkey $1\n");
-        return (-1, "missing pubkey $1");
-      }
+    # verification still might return success but key is expired!
+    if (grep(/KEYEXPIRED/, @status_lines)) {
+      return($VS_EXPKEYSIG, "expired key");
     }
-    return (0, $out);
+    debug("verification succeeded, output:\n$out\n");
+    return ($VS_VERIFIED, $out);
+  } else {
+    if (grep(/^\[GNUPG:\] NO_PUBKEY (.*)/, @status_lines)) {
+      debug("missing pubkey $1\n");
+      return ($VS_PUBKEY_MISSING, "missing pubkey $1");
+    }
+    # we could do more checks on what is the actual problem here!
+    return ($VS_SIGNATURE_ERROR, $out);
   }
 }
 
@@ -532,6 +543,8 @@ our $VS_CONNECTION_ERROR = -1;
 our $VS_UNSIGNED = -2;
 our $VS_GPG_UNAVAILABLE = -3;
 our $VS_PUBKEY_MISSING = -4;
+our $VS_EXPKEYSIG = -5;
+our $VS_EXPSIG = -6;
 our $VS_UNKNOWN = -100;
 
 our %VerificationStatusDescription = (
@@ -542,6 +555,8 @@ our %VerificationStatusDescription = (
   $VS_UNSIGNED         => 'unsigned',
   $VS_GPG_UNAVAILABLE  => 'gpg unavailable',
   $VS_PUBKEY_MISSING   => 'pubkey missing',
+  $VS_EXPKEYSIG        => 'valid signature with expired key',
+  $VS_EXPSIG           => 'valid but expired signature',
   $VS_UNKNOWN          => 'unknown',
 );
 

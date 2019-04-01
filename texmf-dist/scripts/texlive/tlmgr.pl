@@ -6906,6 +6906,9 @@ END_NO_INTERNET
         # TODO should we die here? Probably yes because one of 
         # checksum file or signature file has changed!
         tldie("$prg: verification of checksum for $location failed: $msg\n");
+      } elsif ($ret == $VS_EXPKEYSIG) {
+        # do nothing, try to get new tlpdb and hope sig is better?
+        debug("$prg: gpg key expired, continuing anyway!\n");
       } elsif ($ret == $VS_VERIFIED) {
         $remotetlpdb = TeXLive::TLPDB->new(root => $location,
           tlpdbfile => $loc_copy_of_remote_tlpdb);
