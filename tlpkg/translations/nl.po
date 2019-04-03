@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-04-03 01:24+0200\n"
-"PO-Revision-Date: 2019-02-17 12:46+0100\n"
+"PO-Revision-Date: 2019-04-03 23:00+0200\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: nl\n"
@@ -1374,7 +1374,7 @@ msgstr "Wijzig folder"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
 #, perl-format
 msgid "New value for %s:"
-msgstr ""
+msgstr "Nieuwe waarde voor %s:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"
@@ -1431,6 +1431,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "may cause trouble!"
 msgstr ""
+"Doel-folder %s is niet leeg;\n"
+"kan problemen geven!"
 
 #: tlpkg/installer/install-tl-gui.tcl:82
 #, tcl-format
@@ -1438,6 +1440,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "are you sure?"
 msgstr ""
+"Doel-folder %s is niet leeg;\n"
+"weet u het zeker?"
 
 #: tlpkg/installer/install-tl-gui.tcl:151
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2591
@@ -1600,7 +1604,7 @@ msgstr "Folders"
 
 #: tlpkg/installer/install-tl-gui.tcl:1213
 msgid "Main tree"
-msgstr ""
+msgstr "Hoofd data-folder"
 
 #: tlpkg/installer/install-tl-gui.tcl:1236
 msgid "Local additions"
@@ -1612,7 +1616,7 @@ msgstr "Toevoegingen per gebruiker"
 
 #: tlpkg/installer/install-tl-gui.tcl:1272
 msgid "More ..."
-msgstr ""
+msgstr "Meer ..."
 
 #: tlpkg/installer/install-tl-gui.tcl:1281
 msgid ""
@@ -1672,7 +1676,7 @@ msgstr "Koppeling bestandsformaten"
 
 #: tlpkg/installer/install-tl-gui.tcl:1485
 msgid "Create symlinks in standard directories"
-msgstr ""
+msgstr "Maak symlinks in standaard folders"
 
 #: tlpkg/installer/install-tl-gui.tcl:1491
 msgid "Specify directories"
@@ -1685,7 +1689,7 @@ msgstr "Eigen schema"
 #: tlpkg/installer/install-tl-gui.tcl:1811
 #, tcl-format
 msgid "Loading from %s"
-msgstr ""
+msgstr "Laden van %s"
 
 #: tlpkg/tltcl/tltcl.tcl:495
 msgid "Select or type"
@@ -1730,7 +1734,7 @@ msgstr "Uitvoer"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:841
 msgid "Other"
-msgstr ""
+msgstr "Andere"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:970
 #, tcl-format
@@ -1844,11 +1848,11 @@ msgstr "Herstel alle"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1518
 msgid "If update fails, try on a command-line:"
-msgstr ""
+msgstr "Als de update mislukt, probeer op een commando-regel:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1520
 msgid "Use an administrative command prompt for an admin install."
-msgstr ""
+msgstr "Gebruik een administrator opdrachtprompt voor een admin installatie."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1526
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1552
@@ -1888,7 +1892,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1670
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Werk enkele afhankelijkheden: %s toch bij. Doorgaan?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1682
 #, tcl-format
@@ -1915,7 +1919,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1736
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Verwijder toch enkele afhankelijkheden: %s. Doorgaan?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1813
 msgid "Info"
@@ -1975,6 +1979,8 @@ msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr ""
+"GUI interface voor TeX Live Manager\n"
+"Geschreven in Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2043
 msgid "tlmgr help"
