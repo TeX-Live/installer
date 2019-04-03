@@ -56,7 +56,7 @@ set ::out_log {}; # list of strings
 
 set ::perlbin "perl"
 if {$::tcl_platform(platform) eq "windows"} {
-  set ::perlbin "${::instroot}/tlpkg/tlperl/bin/wperl.exe"
+  set ::perlbin "${::instroot}/tlpkg/tlperl/bin/perl.exe"
 }
 
 # menu modes
@@ -265,6 +265,9 @@ proc show_log {{do_abort 0}} {
                    -default no]
       if {$ans eq "no"} return
       catch {chan close $::inst}
+      if {$::tcl_platform(platform) eq "windows"} {
+        catch {exec  taskkill /pid $::perlpid /t /f}
+      }
       exit
     }
     ppack .abort -in .bottom -side right
@@ -1001,9 +1004,23 @@ if {$::tcl_platform(platform) ne "windows"} {
   # 'file writable' is only a check of unix permissions
   proc dest_ok {d} {
     if {$d eq ""} {return 0}
-    if {! [file isdirectory $d]} {return 0}
-    if {! [file writable $d]} {return 0}
-    return 1
+    set its 1
+    while 1 {
+    if [file exists $d] {
+      if {! [file isdirectory $d]} {
+        return 0
+      } elseif {! [file writable $d]} {
+        return 0
+      } else {
+        return 1
+      }
+    } ; # if file exists
+    # try a level up
+    set d [file dirname $d]
+    set its [expr {$its + 1}]
+      if {$its > 3} {return 0}
+    }
+    return 0
   }
 
   proc dis_enable_symlink_option {} {
@@ -1147,7 +1164,7 @@ proc run_menu {} {
   ttk::label .title -text [__ "TeX Live %s Installer" $::release_year] \
       -font titlefont
   pack .title -pady {10 1} -in .bg
-  pack [ttk::label .svn -text "revision $::svn"] -in .bg
+  pack [ttk::label .svn -text "r. $::svn"] -in .bg
 
   pack [ttk::separator .seph0 -orient horizontal] \
       -in .bg -pady 3 -fill x
