@@ -7603,6 +7603,9 @@ example, running
 starts you directly at the update screen.  If no action is given, the
 GUI will be started at the main screen.
 
+Note that the new GUIs, tlshell and tlcockpit, are started up as
+separate programs.
+
 =for comment Keep language list in sync with install-tl.
 
 =item B<--gui-lang> I<llcode>
@@ -7616,6 +7619,8 @@ necessarily completely translated) are: English (en, default), Czech
 Polish (pl), Brazilian Portuguese (pt_BR), Russian (ru), Slovak (sk),
 Slovenian (sl), Serbian (sr), Ukrainian (uk), Vietnamese (vi),
 simplified Chinese (zh_CN), and traditional Chinese (zh_TW).
+
+Tlshell shares its message catalog with tlmgr.
 
 =item B<--debug-translation>
 
@@ -9283,16 +9288,20 @@ A summary of the C<tlmgr pinning> actions is given above.
 =head1 GUI FOR TLMGR
 
 The graphical user interface for C<tlmgr> requires Perl/Tk
-L<https://search.cpan.org/search?query=perl%2Ftk>.  For Windows the
-necessary modules are shipped within TeX Live, for all other (i.e.,
-Unix-based) systems Perl/Tk (as well as Perl of course) has to be
-installed outside of TL.  L<https://tug.org/texlive/distro.html#perltk>
-has a list of invocations for some distros.
+L<https://search.cpan.org/search?query=perl%2Ftk>. For Unix-based
+systems Perl/Tk (as well as Perl of course) has to be installed
+outside of TL.  L<https://tug.org/texlive/distro.html#perltk> has a
+list of invocations for some distros.  For Windows the necessary
+modules are no longer shipped within TeX Live.
 
-The GUI is started with the invocation C<tlmgr gui>; assuming Tk is
-loadable, the graphical user interface will be shown.  The main window
-contains a menu bar, the main display, and a status area where messages
-normally shown on the console are displayed.
+We are talking here about the GUI built into tlmgr itself, not about
+the other tlmgr GUIs: tlshell, tlcockpit (Java-based) and, for Mac
+OS only, TeX Live Utility. These are invoked as separate programs.
+
+The GUI mode of tlmgr is started with the invocation C<tlmgr gui>;
+assuming Tk is loadable, the graphical user interface will be shown.
+The main window contains a menu bar, the main display, and a status
+area where messages normally shown on the console are displayed.
 
 Within the main display there are three main parts: the C<Display
 configuration> area, the list of packages, and the action buttons.

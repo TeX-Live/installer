@@ -55,7 +55,7 @@ if (($^O !~ /^MSWin/i) &&
       } else {
         last; # other gui
       }
-    } elsif ($p =~ /^-?-gui/) {
+    } elsif ($p =~ /^-?-gui/ && $p !~ /^-?-gui-lang/) {
       # look ahead at next parameter
       if ($i == $#ARGV) {
         $want_tcl = 1; # default gui
@@ -323,6 +323,7 @@ GetOptions(
            "in-place"                    => \$opt_in_place,
            "init-from-profile=s"         => \$opt_init_from_profile,
            "lang=s"                      => \$::opt_lang,
+           "gui-lang=s"                  => \$::opt_lang,
            "location|url|repository|repos|repo=s" => \$opt_location,
            "no-cls",                    # $::opt_no_cls in install-menu-text-pl
            "no-gui"                      => \$opt_no_gui,
@@ -2695,7 +2696,7 @@ option by either a space or C<=>.
 
 =item B<-gui> [[=]I<module>]
 
-If no I<module> is given, starts the C<perltk> (see below) GUI installer.
+If no I<module> is given, starts the Tcl/Tk (see below) GUI installer.
 
 If I<module> is given loads the given installer module. Currently the
 following modules are supported:
@@ -2707,10 +2708,18 @@ following modules are supported:
 The text mode user interface (default on Unix systems).  Same as the
 C<-no-gui> option.
 
+=item C<tcl>
+
+The tcl user interface (default on Mac OS and Windows).  It starts
+out with a small number of configuration options, roughly equivalent
+to what the wizard option below offers, but a button C<Advanced>
+takes you to a screen with roughly the same options as the perltk
+interface.
+
 =item C<wizard>
 
-The wizard mode user interface (default on Windows), asking only minimal
-questions before installing all of TeX Live.
+The wizard mode user interface, asking only minimal questions before
+installing all of TeX Live.
 
 =item C<expert>
 
@@ -2719,43 +2728,39 @@ in the future.
 
 =item C<perltk>
 
-The expert GUI installer, providing access to more options.  
-Can also be invoked on Windows by running C<install-tl-advanced.bat>.
-
-=item C<tcl>
-
-An experimental GUI. It starts out simply, with the same options as
-the wizard installer, but a button 'Advanced' gives access to almost
-all the options of the perltk GUI.
+The expert GUI installer, providing access to more options.
 
 =back
 
-The C<perltk> and C<wizard> modules, and thus also when calling with
-bare C<-gui> (with no I<module>), require the Perl/Tk module
-(L<https://tug.org/texlive/distro.html#perltk>); if Perl/Tk is not
-available, installation continues in text mode.
+The C<perltk> and C<wizard> modules require the Perl/Tk module
+(L<https://tug.org/texlive/distro.html#perltk>). if Perl/Tk is not
+available, installation continues in text mode, except on Windows,
+where all gui options except C<text> are diverted to the default
+C<tcl> GUI.
 
-The tcl GUI requires Tcl/Tk. This is part of Mac OS and is often
+The C<tcl> GUI requires Tcl/Tk. This is part of Mac OS and is often
 already installed on Linux. For Windows, TeX Live provides a Tcl/Tk
 runtime.
 
 =item B<-no-gui>
 
-Use the text mode installer (default except on Windows).
+Use the text mode installer (default except on Windows and Mac OS).
 
 =for comment Keep language list in sync with tlmgr.
 
 =item B<-lang> I<llcode>
 
-By default, the GUI tries to deduce your language from the environment
-(on Windows via the registry, on Unix via C<LC_MESSAGES>). If that fails
-you can select a different language by giving this option with a
-language code (based on ISO 639-1).  Currently supported (but not
-necessarily completely translated) are: English (en, default), Czech
-(cs), German (de), French (fr), Italian (it), Japanese (ja), Dutch (nl),
-Polish (pl), Brazilian Portuguese (pt_BR), Russian (ru), Slovak (sk),
-Slovenian (sl), Serbian (sr), Ukrainian (uk), Vietnamese (vi),
-simplified Chinese (zh_CN), and traditional Chinese (zh_TW).
+By default, the GUI tries to deduce your language from the
+environment. The tcl GUI uses the language detection built into
+Tcl/Tk; the Perl/Tk GUIs use the C<LC_MESSAGES> environment
+variable. If that fails you can select a different language by
+giving this option with a language code (based on ISO 639-1).
+Currently supported (but not necessarily completely translated) are:
+English (en, default), Czech (cs), German (de), French (fr), Italian
+(it), Japanese (ja), Dutch (nl), Polish (pl), Brazilian Portuguese
+(pt_BR), Russian (ru), Slovak (sk), Slovenian (sl), Serbian (sr),
+Ukrainian (uk), Vietnamese (vi), simplified Chinese (zh_CN), and
+traditional Chinese (zh_TW).
 
 =item B<-repository> I<url|path>
 
@@ -2777,12 +2782,12 @@ will be adjusted accordingly.
 
 =item B<-select-repository>
 
-This option allows you to choose a particular mirror from the current
-list of active CTAN mirrors. This option is supported in all installer
-modes (text, wizard, perltk), and will also offer to install from local
-media if available, or from a repository specified on the command line.
-It's useful when the (default) automatic redirection does not choose a
-good host for you.
+This option allows you to choose a particular mirror from the
+current list of active CTAN mirrors. This option is supported in the
+text, wizard and perltk installer modes, and will also offer to
+install from local media if available, or from a repository
+specified on the command line.  It's useful when the (default)
+automatic redirection does not choose a good host for you.
 
 =item B<-all-options>
 
@@ -2809,9 +2814,9 @@ building TeX Live, see L<https://tug.org/texlive/build.html>.
 
 =item B<-debug-translation>
 
-In GUI mode, this options reports any missing, or more likely
-untranslated, messages to standard error. Helpful for translators to see
-what remains to be done.
+In the Perl/Tk GUI modes, this options reports any missing, or more
+likely untranslated, messages to standard error. Helpful for
+translators to see what remains to be done.
 
 =item B<-force-platform> I<platform>
 
