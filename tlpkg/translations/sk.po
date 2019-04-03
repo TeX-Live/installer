@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-04-03 01:24+0200\n"
+"POT-Creation-Date: 2019-04-04 01:24+0200\n"
 "PO-Revision-Date: 2019-03-22 00:57+0300\n"
 "Last-Translator: Ján Buša <jan.busa@tuke.sk>\n"
 "Language-Team: tex-live@tug.org\n"
@@ -41,14 +41,14 @@ msgstr "Proces inštalácie"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2506
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2587
 #: tlpkg/installer/install-tl-gui.tcl:263
-#: tlpkg/installer/install-tl-gui.tcl:370
-#: tlpkg/installer/install-tl-gui.tcl:487
-#: tlpkg/installer/install-tl-gui.tcl:571
-#: tlpkg/installer/install-tl-gui.tcl:758
-#: tlpkg/installer/install-tl-gui.tcl:827
-#: tlpkg/installer/install-tl-gui.tcl:906
-#: tlpkg/installer/install-tl-gui.tcl:1110 tlpkg/tltcl/tltcl.tcl:424
-#: texmf-dist/scripts/tlshell/tlshell.tcl:153
+#: tlpkg/installer/install-tl-gui.tcl:373
+#: tlpkg/installer/install-tl-gui.tcl:490
+#: tlpkg/installer/install-tl-gui.tcl:574
+#: tlpkg/installer/install-tl-gui.tcl:761
+#: tlpkg/installer/install-tl-gui.tcl:830
+#: tlpkg/installer/install-tl-gui.tcl:909
+#: tlpkg/installer/install-tl-gui.tcl:1127 tlpkg/tltcl/tltcl.tcl:431
+#: texmf-dist/scripts/tlshell/tlshell.tcl:154
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -63,7 +63,7 @@ msgstr "Dokončiť"
 # Slovak translation update - Jan Busa 02/05/15.
 #: tlpkg/installer/install-menu-wizard.pl:41
 #: tlpkg/installer/install-menu-perltk.pl:445
-#: tlpkg/installer/install-tl-gui.tcl:1376
+#: tlpkg/installer/install-tl-gui.tcl:1393
 msgid "Default paper size"
 msgstr "Predvolený rozmer papiera"
 
@@ -92,7 +92,7 @@ msgstr "Inštalácia pre všetkých použí­vateľov"
 
 #: tlpkg/installer/install-menu-wizard.pl:46
 #: tlpkg/installer/install-menu-perltk.pl:569
-#: tlpkg/installer/install-tl-gui.tcl:1468
+#: tlpkg/installer/install-tl-gui.tcl:1485
 msgid "Install TeXworks front end"
 msgstr "Nainštalovať pomocný program TeXworks"
 
@@ -107,8 +107,8 @@ msgstr "Inštalácia TeX Live %s"
 #: tlpkg/installer/install-menu-perltk.pl:630
 #: tlpkg/installer/install-menu-perltk.pl:676
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:544
-#: tlpkg/installer/install-tl-gui.tcl:1160
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2058
+#: tlpkg/installer/install-tl-gui.tcl:1177
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2059
 msgid "Quit"
 msgstr "Ukončiť"
 
@@ -274,16 +274,16 @@ msgstr "Cieľový adresár:"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2433
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2438
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2443
-#: tlpkg/installer/install-tl-gui.tcl:469
-#: tlpkg/installer/install-tl-gui.tcl:1207
-#: tlpkg/installer/install-tl-gui.tcl:1223
-#: tlpkg/installer/install-tl-gui.tcl:1231
-#: tlpkg/installer/install-tl-gui.tcl:1241
-#: tlpkg/installer/install-tl-gui.tcl:1250
+#: tlpkg/installer/install-tl-gui.tcl:472
+#: tlpkg/installer/install-tl-gui.tcl:1224
+#: tlpkg/installer/install-tl-gui.tcl:1240
+#: tlpkg/installer/install-tl-gui.tcl:1248
 #: tlpkg/installer/install-tl-gui.tcl:1258
-#: tlpkg/installer/install-tl-gui.tcl:1265
-#: tlpkg/installer/install-tl-gui.tcl:1311
-#: tlpkg/installer/install-tl-gui.tcl:1330
+#: tlpkg/installer/install-tl-gui.tcl:1267
+#: tlpkg/installer/install-tl-gui.tcl:1275
+#: tlpkg/installer/install-tl-gui.tcl:1282
+#: tlpkg/installer/install-tl-gui.tcl:1328
+#: tlpkg/installer/install-tl-gui.tcl:1347
 msgid "Change"
 msgstr "Zmeniť"
 
@@ -334,8 +334,8 @@ msgstr ""
 #: tlpkg/installer/install-menu-perltk.pl:1239
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:700
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1109
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:223
-#: texmf-dist/scripts/tlshell/tlshell.tcl:147
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:230
+#: texmf-dist/scripts/tlshell/tlshell.tcl:148
 msgid "Yes"
 msgstr "Áno"
 
@@ -352,39 +352,39 @@ msgstr "Áno"
 #: tlpkg/installer/install-menu-perltk.pl:1252
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:700
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1109
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:225
-#: texmf-dist/scripts/tlshell/tlshell.tcl:149
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:232
+#: texmf-dist/scripts/tlshell/tlshell.tcl:150
 msgid "No"
 msgstr "Nie"
 
 #: tlpkg/installer/install-menu-wizard.pl:604
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:456
-#: tlpkg/installer/install-tl-gui.tcl:1158
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1817
+#: tlpkg/installer/install-tl-gui.tcl:1175
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1818
 msgid "Install"
 msgstr "Nainštalovať"
 
 #: tlpkg/installer/install-menu-perltk.pl:48
 #: tlpkg/installer/install-menu-perltk.pl:1251
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:143
-#: tlpkg/installer/install-tl-gui.tcl:687
-#: tlpkg/installer/install-tl-gui.tcl:922
-#: tlpkg/installer/install-tl-gui.tcl:1444
+#: tlpkg/installer/install-tl-gui.tcl:690
+#: tlpkg/installer/install-tl-gui.tcl:925
+#: tlpkg/installer/install-tl-gui.tcl:1461
 msgid "None"
 msgstr "Žiaden"
 
 #: tlpkg/installer/install-menu-perltk.pl:49
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:144
-#: tlpkg/installer/install-tl-gui.tcl:1444
+#: tlpkg/installer/install-tl-gui.tcl:1461
 msgid "Only new"
 msgstr "Len nové"
 
 #: tlpkg/installer/install-menu-perltk.pl:50
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:145
-#: tlpkg/installer/install-tl-gui.tcl:919
-#: tlpkg/installer/install-tl-gui.tcl:1444
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2113
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2124
+#: tlpkg/installer/install-tl-gui.tcl:922
+#: tlpkg/installer/install-tl-gui.tcl:1461
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2116
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2127
 msgid "All"
 msgstr "Všetky"
 
@@ -398,17 +398,17 @@ msgid "letter"
 msgstr "letter"
 
 #: tlpkg/installer/install-menu-perltk.pl:55
-#: tlpkg/installer/install-tl-gui.tcl:1432
+#: tlpkg/installer/install-tl-gui.tcl:1449
 msgid "No shortcuts"
 msgstr "Žiadne skratky"
 
 #: tlpkg/installer/install-menu-perltk.pl:56
-#: tlpkg/installer/install-tl-gui.tcl:1432
+#: tlpkg/installer/install-tl-gui.tcl:1449
 msgid "TeX Live menu"
 msgstr "Menu TeX Live"
 
 #: tlpkg/installer/install-menu-perltk.pl:57
-#: tlpkg/installer/install-tl-gui.tcl:1432
+#: tlpkg/installer/install-tl-gui.tcl:1449
 msgid "Launcher entry"
 msgstr "Položka zavádzača"
 
@@ -429,7 +429,7 @@ msgstr "Načí­tať"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2270
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2332
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2669
-#: tlpkg/installer/install-tl-gui.tcl:384
+#: tlpkg/installer/install-tl-gui.tcl:387
 msgid "Warning"
 msgstr "Varovanie"
 
@@ -471,14 +471,14 @@ msgstr "Zvoľte, prosí­m, iné zrkadlo."
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2466
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2504
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2669
-#: tlpkg/installer/install-tl-gui.tcl:360
-#: tlpkg/installer/install-tl-gui.tcl:485
-#: tlpkg/installer/install-tl-gui.tcl:569
-#: tlpkg/installer/install-tl-gui.tcl:755
-#: tlpkg/installer/install-tl-gui.tcl:810
-#: tlpkg/installer/install-tl-gui.tcl:903
-#: tlpkg/installer/install-tl-gui.tcl:1108 tlpkg/tltcl/tltcl.tcl:422
-#: texmf-dist/scripts/tlshell/tlshell.tcl:143
+#: tlpkg/installer/install-tl-gui.tcl:363
+#: tlpkg/installer/install-tl-gui.tcl:488
+#: tlpkg/installer/install-tl-gui.tcl:572
+#: tlpkg/installer/install-tl-gui.tcl:758
+#: tlpkg/installer/install-tl-gui.tcl:813
+#: tlpkg/installer/install-tl-gui.tcl:906
+#: tlpkg/installer/install-tl-gui.tcl:1125 tlpkg/tltcl/tltcl.tcl:429
+#: texmf-dist/scripts/tlshell/tlshell.tcl:144
 msgid "Ok"
 msgstr "OK"
 
@@ -544,7 +544,7 @@ msgstr "Prenosné nastavenie"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1181
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1231
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1240
-#: tlpkg/installer/install-tl-gui.tcl:1284
+#: tlpkg/installer/install-tl-gui.tcl:1301
 msgid "Toggle"
 msgstr "Prepnúť"
 
@@ -570,30 +570,30 @@ msgstr "TEXMFHOME (adresár uží­vateľských súborov)"
 
 #: tlpkg/installer/install-menu-perltk.pl:440
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:513
-#: tlpkg/installer/install-tl-gui.tcl:1367
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2001
+#: tlpkg/installer/install-tl-gui.tcl:1384
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2002
 msgid "Options"
 msgstr "Voľby"
 
 #: tlpkg/installer/install-menu-perltk.pl:458
-#: tlpkg/installer/install-tl-gui.tcl:1387
+#: tlpkg/installer/install-tl-gui.tcl:1404
 msgid "Allow execution of restricted list of programs via \\write18"
 msgstr ""
 "Umožniť vykonanie všeobecne neprí­stupných zoznamov programov prostrední­ctvom "
 "\\write 18"
 
 #: tlpkg/installer/install-menu-perltk.pl:473
-#: tlpkg/installer/install-tl-gui.tcl:1394
+#: tlpkg/installer/install-tl-gui.tcl:1411
 msgid "Create all format files"
 msgstr "Vytvoriť všetky formátové súbory"
 
 #: tlpkg/installer/install-menu-perltk.pl:485
-#: tlpkg/installer/install-tl-gui.tcl:1402
+#: tlpkg/installer/install-tl-gui.tcl:1419
 msgid "Install font/macro doc tree"
 msgstr "Nainštalovať strom dokumentácie fontov/makier"
 
 #: tlpkg/installer/install-menu-perltk.pl:498
-#: tlpkg/installer/install-tl-gui.tcl:1412
+#: tlpkg/installer/install-tl-gui.tcl:1429
 msgid "Install font/macro source tree"
 msgstr "Nainštalovať strom zdrojových súborov fontov/makier"
 
@@ -603,7 +603,7 @@ msgid "Create symlinks in system directories"
 msgstr "Vytvoriť symbolické odkazy v systémových adresároch"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
-#: tlpkg/installer/install-tl-gui.tcl:1505
+#: tlpkg/installer/install-tl-gui.tcl:1522
 msgid "After install, set CTAN as source for package updates"
 msgstr "Po inštalácii nastavte CTAN ako zdroj aktualizácií balíkov"
 
@@ -611,7 +611,7 @@ msgstr "Po inštalácii nastavte CTAN ako zdroj aktualizácií balíkov"
 #: tlpkg/installer/install-menu-perltk.pl:609
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:650
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:652
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2039
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2040
 msgid "About"
 msgstr "O programe"
 
@@ -778,7 +778,7 @@ msgstr "Načí­tať predvolené"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1283
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1705
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2612
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1050
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1051
 msgid "multiple repositories"
 msgstr "viacnásobné schránky"
 
@@ -791,7 +791,7 @@ msgid "Display configuration"
 msgstr "Zobraziť konfiguráciu"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:321
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2110
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2113
 msgid "Status"
 msgstr "Stav"
 
@@ -869,12 +869,12 @@ msgid "Package name"
 msgstr "Názov balí­ka"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:417
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2190
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2193
 msgid "Local rev. (ver.)"
 msgstr "Lokálna rev. (ver.)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:418
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2191
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2194
 msgid "Remote rev. (ver.)"
 msgstr "Vzdialená rev. (ver.)"
 
@@ -891,13 +891,13 @@ msgid "Reinstall previously removed packages"
 msgstr "Znova nainštalovať predtým odstránené balí­ky"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:451
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1822
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1823
 msgid "Update"
 msgstr "Aktualizovať"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:460
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2014
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1827
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1828
 msgid "Remove"
 msgstr "Odstrániť"
 
@@ -906,13 +906,13 @@ msgid "Backup"
 msgstr "Záloha"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:515
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1990
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1991
 msgid "Actions"
 msgstr "Činnosti"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:519
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2694
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2037
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2038
 msgid "Help"
 msgstr "Pomoc"
 
@@ -937,7 +937,7 @@ msgid "General ..."
 msgstr "Všeobecné ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:552
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2010
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2011
 msgid "Paper ..."
 msgstr "Papier ..."
 
@@ -1175,7 +1175,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "Vytvoriť odkazy na pracovnej ploche"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1236
-#: tlpkg/installer/install-tl-gui.tcl:1457
+#: tlpkg/installer/install-tl-gui.tcl:1474
 msgid "Install for all users"
 msgstr "Nainštalovať pre všetkých použí­vateľov"
 
@@ -1359,9 +1359,9 @@ msgstr "Obnoviť všetky balí­ky na najnovšiu verziu"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2417
 #: tlpkg/installer/install-tl-gui.tcl:260
-#: texmf-dist/scripts/tlshell/tlshell.tcl:788
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1290
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1502
+#: texmf-dist/scripts/tlshell/tlshell.tcl:789
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1291
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1503
 msgid "Close"
 msgstr "Zavrieť"
 
@@ -1447,12 +1447,12 @@ msgid ""
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:151
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2591
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2592
 msgid "Welcome to TeX Live!"
 msgstr "Vitajte vo svete TeX Live!"
 
 #: tlpkg/installer/install-tl-gui.tcl:154
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2594
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2595
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1469,7 +1469,7 @@ msgstr ""
 "html."
 
 #: tlpkg/installer/install-tl-gui.tcl:158
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2604
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2605
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1483,7 +1483,7 @@ msgstr ""
 "ku Vašej premennej PATH pre aktuálnu a budúcu prácu."
 
 #: tlpkg/installer/install-tl-gui.tcl:238
-#: tlpkg/installer/install-tl-gui.tcl:1716
+#: tlpkg/installer/install-tl-gui.tcl:1733
 msgid "TeX Live Installer"
 msgstr "Inštalátor TeX Live"
 
@@ -1495,23 +1495,23 @@ msgstr "Načítavanie ..."
 msgid "Really abort?"
 msgstr "Skutočne prerušiť?"
 
-#: tlpkg/installer/install-tl-gui.tcl:333
+#: tlpkg/installer/install-tl-gui.tcl:336
 msgid "Cannot be created or cannot be written to"
 msgstr "Nedá sa vytvoriť alebo sa nedá zapísať do"
 
-#: tlpkg/installer/install-tl-gui.tcl:345
+#: tlpkg/installer/install-tl-gui.tcl:348
 msgid "Directory name..."
 msgstr "Názov adresára ..."
 
-#: tlpkg/installer/install-tl-gui.tcl:352
+#: tlpkg/installer/install-tl-gui.tcl:355
 msgid "Change name (slashes not allowed)"
 msgstr "Zmeňte názov (lomítka nie sú dovolené)"
 
-#: tlpkg/installer/install-tl-gui.tcl:362
+#: tlpkg/installer/install-tl-gui.tcl:365
 msgid "No slashes allowed"
 msgstr "Lomítka nie sú dovolené"
 
-#: tlpkg/installer/install-tl-gui.tcl:383
+#: tlpkg/installer/install-tl-gui.tcl:386
 msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
@@ -1519,110 +1519,110 @@ msgstr ""
 "Zložka vydania TL je vysoko odporúčaná!\n"
 "Ste si istý/á?"
 
-#: tlpkg/installer/install-tl-gui.tcl:392
+#: tlpkg/installer/install-tl-gui.tcl:395
 msgid "Add year"
 msgstr "Pridať rok"
 
-#: tlpkg/installer/install-tl-gui.tcl:396
-#: tlpkg/installer/install-tl-gui.tcl:471
+#: tlpkg/installer/install-tl-gui.tcl:399
+#: tlpkg/installer/install-tl-gui.tcl:474
 msgid "Remove year"
 msgstr "Odstrániť rok"
 
-#: tlpkg/installer/install-tl-gui.tcl:438
-#: tlpkg/installer/install-tl-gui.tcl:1191
-#: tlpkg/installer/install-tl-gui.tcl:1199
+#: tlpkg/installer/install-tl-gui.tcl:441
+#: tlpkg/installer/install-tl-gui.tcl:1208
+#: tlpkg/installer/install-tl-gui.tcl:1216
 msgid "Installation root"
 msgstr "Root inštalácie"
 
-#: tlpkg/installer/install-tl-gui.tcl:466
-#: tlpkg/installer/install-tl-gui.tcl:1088 tlpkg/tltcl/tltcl.tcl:414
+#: tlpkg/installer/install-tl-gui.tcl:469
+#: tlpkg/installer/install-tl-gui.tcl:1105 tlpkg/tltcl/tltcl.tcl:421
 msgid "Browse..."
 msgstr "Prezerať ..."
 
-#: tlpkg/installer/install-tl-gui.tcl:479
+#: tlpkg/installer/install-tl-gui.tcl:482
 msgid "Localized directory names will be replaced by their real names"
 msgstr "Lokalizované názvy adresárov budú nahradené ich skutočnými názvami"
 
-#: tlpkg/installer/install-tl-gui.tcl:559
+#: tlpkg/installer/install-tl-gui.tcl:562
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
 msgstr "'~' sa rovná %s, napríklad %s"
 
-#: tlpkg/installer/install-tl-gui.tcl:713
+#: tlpkg/installer/install-tl-gui.tcl:716
 msgid "Cannot deselect own platform"
 msgstr "Nie je možné odznačiť vlastnú platformu"
 
-#: tlpkg/installer/install-tl-gui.tcl:748
-#: tlpkg/installer/install-tl-gui.tcl:1092
+#: tlpkg/installer/install-tl-gui.tcl:751
+#: tlpkg/installer/install-tl-gui.tcl:1109
 msgid "Binaries"
 msgstr "Binárky"
 
-#: tlpkg/installer/install-tl-gui.tcl:803
+#: tlpkg/installer/install-tl-gui.tcl:806
 msgid "Schemes"
 msgstr "Schémy"
 
-#: tlpkg/installer/install-tl-gui.tcl:896
+#: tlpkg/installer/install-tl-gui.tcl:899
 msgid "Collections"
 msgstr "Zbierky"
 
-#: tlpkg/installer/install-tl-gui.tcl:918
+#: tlpkg/installer/install-tl-gui.tcl:921
 msgid "Select"
 msgstr "Zvoliť"
 
-#: tlpkg/installer/install-tl-gui.tcl:934
+#: tlpkg/installer/install-tl-gui.tcl:937
 msgid "Languages"
 msgstr "Jazyky"
 
-#: tlpkg/installer/install-tl-gui.tcl:936
+#: tlpkg/installer/install-tl-gui.tcl:939
 msgid "Other collections"
 msgstr "Iné zbierky"
 
-#: tlpkg/installer/install-tl-gui.tcl:1045
+#: tlpkg/installer/install-tl-gui.tcl:1062
 msgid "Warning. Not all configured directories are writable!"
 msgstr "Varovanie. Nie všetky nakonfigurované adresáre sú zapisovateľné!"
 
-#: tlpkg/installer/install-tl-gui.tcl:1065
+#: tlpkg/installer/install-tl-gui.tcl:1082
 msgid "Symlinks"
 msgstr "Symbolické odkazy"
 
-#: tlpkg/installer/install-tl-gui.tcl:1093
+#: tlpkg/installer/install-tl-gui.tcl:1110
 msgid "Man pages"
 msgstr "Strany príručiek"
 
-#: tlpkg/installer/install-tl-gui.tcl:1094
+#: tlpkg/installer/install-tl-gui.tcl:1111
 msgid "Info pages"
 msgstr "Informačné strany"
 
-#: tlpkg/installer/install-tl-gui.tcl:1147
+#: tlpkg/installer/install-tl-gui.tcl:1164
 #, tcl-format
 msgid "TeX Live %s Installer"
 msgstr "Inštalátor TeX Live %s"
 
-#: tlpkg/installer/install-tl-gui.tcl:1165
+#: tlpkg/installer/install-tl-gui.tcl:1182
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: tlpkg/installer/install-tl-gui.tcl:1194
+#: tlpkg/installer/install-tl-gui.tcl:1211
 msgid "Directories"
 msgstr "Adresáre"
 
-#: tlpkg/installer/install-tl-gui.tcl:1213
+#: tlpkg/installer/install-tl-gui.tcl:1230
 msgid "Main tree"
 msgstr "Hlavný strom"
 
-#: tlpkg/installer/install-tl-gui.tcl:1236
+#: tlpkg/installer/install-tl-gui.tcl:1253
 msgid "Local additions"
 msgstr "Miestne doplnky"
 
-#: tlpkg/installer/install-tl-gui.tcl:1245
+#: tlpkg/installer/install-tl-gui.tcl:1262
 msgid "Per-user additions"
 msgstr "Doplnky pre používateľa"
 
-#: tlpkg/installer/install-tl-gui.tcl:1272
+#: tlpkg/installer/install-tl-gui.tcl:1289
 msgid "More ..."
 msgstr "Viac ..."
 
-#: tlpkg/installer/install-tl-gui.tcl:1281
+#: tlpkg/installer/install-tl-gui.tcl:1298
 msgid ""
 "Portable setup:\n"
 "May reset TEXMFLOCAL\n"
@@ -1632,241 +1632,241 @@ msgstr ""
 "Môže vymazať TEXMFLOCAL\n"
 "a TEXMFHOME"
 
-#: tlpkg/installer/install-tl-gui.tcl:1295
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1279
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2034
+#: tlpkg/installer/install-tl-gui.tcl:1312
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1280
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2035
 msgid "Platforms"
 msgstr "Platformy"
 
-#: tlpkg/installer/install-tl-gui.tcl:1301
+#: tlpkg/installer/install-tl-gui.tcl:1318
 msgid "Current platform:"
 msgstr "Aktuálna platforma:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1308
+#: tlpkg/installer/install-tl-gui.tcl:1325
 msgid "N. of additional platform(s):"
 msgstr "Počet dodatočných platforiem:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1321
+#: tlpkg/installer/install-tl-gui.tcl:1338
 msgid "Selections"
 msgstr "Výbery"
 
-#: tlpkg/installer/install-tl-gui.tcl:1326
+#: tlpkg/installer/install-tl-gui.tcl:1343
 msgid "Scheme:"
 msgstr "Schéma:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1335
+#: tlpkg/installer/install-tl-gui.tcl:1352
 msgid "N. of collections:"
 msgstr "Počet zbierok:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1338
+#: tlpkg/installer/install-tl-gui.tcl:1355
 msgid "Customize"
 msgstr "Prispôsobiť"
 
-#: tlpkg/installer/install-tl-gui.tcl:1347
+#: tlpkg/installer/install-tl-gui.tcl:1364
 msgid "Disk space required (in MB):"
 msgstr "Požadovaný diskový priestor (v MB)"
 
-#: tlpkg/installer/install-tl-gui.tcl:1425
+#: tlpkg/installer/install-tl-gui.tcl:1442
 msgid "Adjust searchpath"
 msgstr "Upraviť cestu vyhľadávania"
 
-#: tlpkg/installer/install-tl-gui.tcl:1434
+#: tlpkg/installer/install-tl-gui.tcl:1451
 msgid "Desktop integration"
 msgstr "Integrácia pracovnej plochy"
 
-#: tlpkg/installer/install-tl-gui.tcl:1446
+#: tlpkg/installer/install-tl-gui.tcl:1463
 msgid "File associations"
 msgstr "Súborové asociácie"
 
-#: tlpkg/installer/install-tl-gui.tcl:1485
+#: tlpkg/installer/install-tl-gui.tcl:1502
 msgid "Create symlinks in standard directories"
 msgstr "Vytvoriť symbolické odkazy v štandardných adresároch"
 
-#: tlpkg/installer/install-tl-gui.tcl:1491
+#: tlpkg/installer/install-tl-gui.tcl:1508
 msgid "Specify directories"
 msgstr "Špecifikujte adresáre"
 
-#: tlpkg/installer/install-tl-gui.tcl:1556
+#: tlpkg/installer/install-tl-gui.tcl:1573
 msgid "Custom scheme"
 msgstr "Prispôsobenie schémy"
 
-#: tlpkg/installer/install-tl-gui.tcl:1811
+#: tlpkg/installer/install-tl-gui.tcl:1828
 #, tcl-format
 msgid "Loading from %s"
 msgstr "Načítanie z %s"
 
-#: tlpkg/tltcl/tltcl.tcl:495
+#: tlpkg/tltcl/tltcl.tcl:502
 msgid "Select or type"
 msgstr "Zvoliť alebo napísať"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:251
-#: texmf-dist/scripts/tlshell/tlshell.tcl:304
-#: texmf-dist/scripts/tlshell/tlshell.tcl:426
-#: texmf-dist/scripts/tlshell/tlshell.tcl:462
+#: texmf-dist/scripts/tlshell/tlshell.tcl:252
+#: texmf-dist/scripts/tlshell/tlshell.tcl:305
+#: texmf-dist/scripts/tlshell/tlshell.tcl:427
+#: texmf-dist/scripts/tlshell/tlshell.tcl:463
 msgid "Running"
 msgstr "Prebieha"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:260
-#: texmf-dist/scripts/tlshell/tlshell.tcl:446
+#: texmf-dist/scripts/tlshell/tlshell.tcl:261
+#: texmf-dist/scripts/tlshell/tlshell.tcl:447
 msgid "Idle"
 msgstr "Nečinný"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:551
+#: texmf-dist/scripts/tlshell/tlshell.tcl:552
 msgid "Needs updating"
 msgstr "Vyžaduje aktualizáciu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:553
+#: texmf-dist/scripts/tlshell/tlshell.tcl:554
 msgid "Up to date"
 msgstr "Aktuálny"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:555
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2083
+#: texmf-dist/scripts/tlshell/tlshell.tcl:556
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2084
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:719
+#: texmf-dist/scripts/tlshell/tlshell.tcl:720
 msgid "A configured repository is unavailable."
 msgstr "Nakonfigurovaná schránka je nedostupná."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:742
+#: texmf-dist/scripts/tlshell/tlshell.tcl:743
 msgid "Loaded"
 msgstr "Načítané"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:840
+#: texmf-dist/scripts/tlshell/tlshell.tcl:841
 msgid "Output"
 msgstr "Výstup"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:841
+#: texmf-dist/scripts/tlshell/tlshell.tcl:842
 msgid "Other"
 msgstr "Iné"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:970
+#: texmf-dist/scripts/tlshell/tlshell.tcl:971
 #, tcl-format
 msgid "%s not a repository"
 msgstr "%s nie je schránka"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1112
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1113
 msgid "Main Repository"
 msgstr "Hlavná schránka"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1123
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1124
 msgid "Current:"
 msgstr "Aktuálny:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1129
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1130
 msgid "New"
 msgstr "Nový"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1137
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1138
 msgid "Any CTAN mirror"
 msgstr "Ľubovoľné zrkadlo CTAN"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1147
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1148
 msgid "Specific mirror..."
 msgstr "Konkrétne zrkadlo ..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1167
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1168
 msgid "Local directory..."
 msgstr "Lokálny adresár ..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1172
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1173
 msgid "tlcontrib additional repository"
 msgstr "doplnková schránka tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1188
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1189
 msgid "tlcontrib repository is included"
 msgstr "schránka tlcontrib je zaradená"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1189
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1190
 msgid "Remove tlcontrib repository"
 msgstr "Odstrániť schránku tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1191
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1192
 msgid "tlcontrib repository is not included"
 msgstr "schránka tlcontrib nie je zaradená"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1192
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1193
 msgid "Add tlcontrib repository"
 msgstr "Pridať schránku tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1197
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1198
 msgid "Save and Load"
 msgstr "Uložiť a Načítať"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1203
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1204
 msgid "Abort"
 msgstr "Prerušiť"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1223
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1224
 #, tcl-format
 msgid "Cannot remove own platform %s"
 msgstr "Nie je možné odznačiť vlastnú platformu %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1287
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1288
 msgid "Apply and close"
 msgstr "Použiť a zavrieť"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1307
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1308
 msgid "platform"
 msgstr "platforma"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1371
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1372
 #, tcl-format
 msgid "Restore %s to revision %s?"
 msgstr "Vrátiť %s na vydanie %s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1394
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1395
 msgid "No backups configured"
 msgstr "Žiadne zálohy nie sú nakonfigurované"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1404
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1405
 msgid "No backup directory defined"
 msgstr "Záložný adresár nie je definovaný"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1409
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1410
 #, tcl-format
 msgid "Backup directory %s does not exist"
 msgstr "Záložný adresár %s neexistuje"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1432
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1433
 #, tcl-format
 msgid "No packages in backup directory %s"
 msgstr "V záložnom adresári %s nie sú žiadne balíky"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1442
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2157
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1443
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2160
 msgid "Restore from backup"
 msgstr "Obnoviť zo zálohy"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1458
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1459
 msgid "Package"
 msgstr "Balík"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1459
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1460
 msgid "Revision"
 msgstr "Upravené vydanie"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1500
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1501
 msgid "Restore all"
 msgstr "Obnoviť všetko"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1518
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1519
 msgid "If update fails, try on a command-line:"
 msgstr "Ak aktualizácia zlyhá, vyskúšajte príkazový riadok:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1520
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1521
 msgid "Use an administrative command prompt for an admin install."
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1526
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1552
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1592
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1642
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1717
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1527
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1553
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1593
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1643
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1718
 msgid "Nothing to do!"
 msgstr "Nie je čo robiť!"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1607
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1608
 #, tcl-format
 msgid ""
 "Also installing dependencies\n"
@@ -1877,12 +1877,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1614
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1615
 #, tcl-format
 msgid "Already installed: %s"
 msgstr "Už nainštalované: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1655
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1656
 #, tcl-format
 msgid ""
 "Also updating dependencies\n"
@@ -1893,22 +1893,22 @@ msgstr ""
 "\n"
 "%s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1670
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1671
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
 msgstr "V každom prípade aktualizovať závislosti %s. Pokračovať?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1682
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1683
 #, tcl-format
 msgid "Skipped because not installed: %s"
 msgstr "Preskočené, pretože nie je nainštalované: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1685
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1686
 #, tcl-format
 msgid "Skipped because already up to date: %s"
 msgstr "Preskočené, pretože je už aktualizované: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1721
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1722
 #, tcl-format
 msgid ""
 "Also remove dependencies\n"
@@ -1919,65 +1919,65 @@ msgstr ""
 "\n"
 "%s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1736
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1737
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
 msgstr "V každom prípade odstrániť závislosti %s. Pokračovať?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1813
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1814
 msgid "Info"
 msgstr "Info"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1878
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1879
 msgid "Cannot set default GUI language"
 msgstr "Nedá sa nastaviť predvolený jazyk grafického používateľského rozhrania"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1958
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1980
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1959
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1981
 msgid "File"
 msgstr "Súbor"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1982
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1983
 msgid "Load default repository"
 msgstr "Načí­tať predvolenú schránku"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1984
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1985
 msgid "Exit"
 msgstr "Koniec"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1993
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1994
 msgid "Regenerate filename database"
 msgstr "Znovu vytvoriť databázu názvov súborov"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1994
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1995
 msgid "Regenerating filename database..."
 msgstr "Znovuvytvorenie databázy názvov súborov ..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1995
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1996
 msgid "Regenerate formats"
 msgstr "Znovu vytvoriť formáty"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1996
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1997
 msgid "Rebuilding formats..."
 msgstr "Znovuvybudovanie formátov ..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1997
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1998
 msgid "Regenerate fontmaps"
 msgstr "Znovu vygenerovať mapy fontov"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1998
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1999
 msgid "Rebuilding fontmap files..."
 msgstr "Znovuvybudovanie súborov fontových máp ..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2006
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2007
 msgid "Repositories"
 msgstr "Schránky"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2019
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2020
 msgid "GUI language (restarts tlshell)"
 msgstr "Jazyk grafického použí­vateľského rozhrania (reštartuje tlshell)"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2042
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2043
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
@@ -1985,109 +1985,121 @@ msgstr ""
 "Grafické používateľské rozhranie pre TeX Live Manager\n"
 "realizované v Tcl/Tk"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2043
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2044
 msgid "tlmgr help"
 msgstr "pomocník tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2060
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2061
 msgid "Restart self"
 msgstr "Vlastný reštart"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2062
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2063
 msgid "Restart tlmgr"
 msgstr "Reštartovať tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2065
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2066
 msgid "Show logs"
 msgstr "Ukáž záznamy"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2074
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2075
 msgid "Default repositories"
 msgstr "Predvolené schránky"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2078
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2079
 msgid "Not loaded"
 msgstr "Nenačítané"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2081
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2082
 msgid "TL Manager up to date?"
 msgstr "Je TL Manager aktualizovaný?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2086
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2087
 msgid "Last tlmgr command:"
 msgstr "Ostatný príkaz tlmgr:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2101
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2096
+#, tcl-format
+msgid "Root at %s"
+msgstr ""
+
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2104
 msgid "Package list"
 msgstr "Zoznam balíkov"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2111
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2114
 msgid "Installed"
 msgstr "Nainštalované"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2115
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2118
 msgid "Updatable"
 msgstr "Aktualizovateľné"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2123
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2126
 msgid "Detail >> Global"
 msgstr "Detailný >> Globálny"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2126
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2129
 msgid "Collections and schemes"
 msgstr "Zbierky a schémy"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2128
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2131
 msgid "Only schemes"
 msgstr "Iba schémy"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2136
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2139
 msgid "Mark all"
 msgstr "Označiť všetky"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2138
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2141
 msgid "Mark none"
 msgstr "Neoznačiť ani jeden"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2144
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2147
 msgid "Install marked"
 msgstr "Nainštalovať označené"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2148
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2151
 msgid "Update marked"
 msgstr "Aktualizovať označené"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2152
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2155
 msgid "Remove marked"
 msgstr "Odstrániť označené"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2162
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2165
 msgid "Update tlmgr"
 msgstr "Aktualizovať tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2165
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2168
 msgid "Update all"
 msgstr "Aktualizovať všetko"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2172
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2175
 msgid "Search"
 msgstr "Hľadať"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2175
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2178
 msgid "By name"
 msgstr "Podľa názvu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2177
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2180
 msgid "By name and description"
 msgstr "Podľa názvu a popisu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2189
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2192
 msgid "Name"
 msgstr "Názov"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2192
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2195
 msgid "Description"
 msgstr "Popis"
+
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2293
+#, tcl-format
+msgid ""
+"%s is not writable. You can probably not do much.\n"
+"  Are you sure you want to continue?"
+msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
