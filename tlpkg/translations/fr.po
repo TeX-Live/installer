@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-04-04 01:24+0200\n"
-"PO-Revision-Date: 2019-03-25 07:45+0100\n"
+"PO-Revision-Date: 2019-04-04 09:04+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -2037,7 +2037,7 @@ msgstr "Dernière commande tlmgr:"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2096
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "Répertoire racine en %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2104
 msgid "Package list"
@@ -2117,6 +2117,8 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"%s n'est pas accessible en écriture. Du coup, cette action ne servira\n"
+"probablement pas à grand chose. Êtes-vous sûr de vouloir continuer ?"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
