@@ -2710,10 +2710,10 @@ C<-no-gui> option.
 
 =item C<tcl>
 
-The tcl user interface (default on Mac OS and Windows).  It starts
-out with a small number of configuration options, roughly equivalent
+The Tcl/Tk user interface (default on Macs and Windows).  It starts
+with a small number of configuration options, roughly equivalent
 to what the wizard option below offers, but a button C<Advanced>
-takes you to a screen with roughly the same options as the perltk
+takes you to a screen with roughly the same options as the C<perltk>
 interface.
 
 =item C<wizard>
@@ -2738,20 +2738,20 @@ available, installation continues in text mode, except on Windows,
 where all gui options except C<text> are diverted to the default
 C<tcl> GUI.
 
-The C<tcl> GUI requires Tcl/Tk. This is part of Mac OS and is often
-already installed on Linux. For Windows, TeX Live provides a Tcl/Tk
+The C<tcl> GUI requires Tcl/Tk. This is standard on Macs and is often
+already installed on GNU/Linux. For Windows, TeX Live provides a Tcl/Tk
 runtime.
 
 =item B<-no-gui>
 
-Use the text mode installer (default except on Windows and Mac OS).
+Use the text mode installer (default except on Windows and Macs).
 
 =for comment Keep language list in sync with tlmgr.
 
 =item B<-lang> I<llcode>
 
 By default, the GUI tries to deduce your language from the
-environment. The tcl GUI uses the language detection built into
+environment. The Tcl GUI uses the language detection built into
 Tcl/Tk; the Perl/Tk GUIs use the C<LC_MESSAGES> environment
 variable. If that fails you can select a different language by
 giving this option with a language code (based on ISO 639-1).
@@ -2782,12 +2782,12 @@ will be adjusted accordingly.
 
 =item B<-select-repository>
 
-This option allows you to choose a particular mirror from the
-current list of active CTAN mirrors. This option is supported in the
-text, wizard and perltk installer modes, and will also offer to
-install from local media if available, or from a repository
-specified on the command line.  It's useful when the (default)
-automatic redirection does not choose a good host for you.
+This option allows you to choose a particular mirror from the current
+list of active CTAN mirrors. This option is supported in the C<text>,
+C<wizard> and C<perltk> installer modes, and will also offer to install
+from local media if available, or from a repository specified on the
+command line. It's useful when the (default) automatic redirection does
+not choose a good host for you.
 
 =item B<-all-options>
 
@@ -2814,7 +2814,7 @@ building TeX Live, see L<https://tug.org/texlive/build.html>.
 
 =item B<-debug-translation>
 
-In the Perl/Tk GUI modes, this options reports any missing, or more
+In the Perl/Tk GUI modes, this option reports any missing, or more
 likely untranslated, messages to standard error. Helpful for
 translators to see what remains to be done.
 

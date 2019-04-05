@@ -2520,7 +2520,7 @@ sub auto_remove_install_force_packages {
   #
   # for some packages (texworks, psview, ...) we only have w32 packages
   # in the repository, but it is possible that alternative repositories
-  # ship binaries for some platforms (like texworks for linux on tlcontrib)
+  # ship binaries for some platforms (like texworks for GNU/Linux on tlcontrib)
   # currently updating from tlnet will remove these alternative .ARCH
   # packages because they are not listed anywhere locally, so they
   # are considered as disappearing.
@@ -9292,11 +9292,13 @@ L<https://search.cpan.org/search?query=perl%2Ftk>. For Unix-based
 systems Perl/Tk (as well as Perl of course) has to be installed
 outside of TL.  L<https://tug.org/texlive/distro.html#perltk> has a
 list of invocations for some distros.  For Windows the necessary
-modules are no longer shipped within TeX Live.
+modules are no longer shipped within TeX Live, so you'll have to have an
+external Perl available that includes them.
 
-We are talking here about the GUI built into tlmgr itself, not about
-the other tlmgr GUIs: tlshell, tlcockpit (Java-based) and, for Mac
-OS only, TeX Live Utility. These are invoked as separate programs.
+We are talking here about the GUI built into tlmgr itself, not about the
+other tlmgr GUIs, which are: tlshell (Tcl/Tk-based), tlcockpit
+(Java-based) and, only on Macs, TeX Live Utility. These are invoked as
+separate programs.
 
 The GUI mode of tlmgr is started with the invocation C<tlmgr gui>;
 assuming Tk is loadable, the graphical user interface will be shown.
