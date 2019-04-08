@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-04-06 01:38+0200\n"
-"PO-Revision-Date: 2017-04-24 11:53+0200\n"
+"PO-Revision-Date: 2019-04-08 23:05+0200\n"
 "Last-Translator: Mojca Miklavec <mojca.miklavec.lists@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: sl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Bookmarks: 77,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 2.2.1\n"
 
 # 1. zavihek
 #: tlpkg/installer/tracked-install.pl:27
@@ -56,8 +56,9 @@ msgid "Cancel"
 msgstr "Prekliči"
 
 #: tlpkg/installer/tracked-install.pl:81
+#, fuzzy
 msgid "Scroll back to inspect warnings"
-msgstr ""
+msgstr "'Odskrolaj' nazaj za pregled opozoril"
 
 #: tlpkg/installer/tracked-install.pl:89
 msgid "Finish"
@@ -228,7 +229,7 @@ msgstr "Podatkovna baza iz repozitorija se nalaga. Prosimo počakajte."
 
 #: tlpkg/installer/install-menu-wizard.pl:380
 msgid "This will take some time!"
-msgstr "To utegne trajati nekaj časa."
+msgstr "To utegne trajati nekaj časa!"
 
 #: tlpkg/installer/install-menu-wizard.pl:387
 #: tlpkg/installer/install-menu-perltk.pl:277
@@ -415,7 +416,7 @@ msgstr "Ni bližnjic"
 #: tlpkg/installer/install-menu-perltk.pl:56
 #: tlpkg/installer/install-tl-gui.tcl:1449
 msgid "TeX Live menu"
-msgstr ""
+msgstr "Menu za TeX Live"
 
 #: tlpkg/installer/install-menu-perltk.pl:57
 #: tlpkg/installer/install-tl-gui.tcl:1449
@@ -614,7 +615,7 @@ msgstr "Namesti simbolne povezave v sistemske mape"
 #: tlpkg/installer/install-menu-perltk.pl:585
 #: tlpkg/installer/install-tl-gui.tcl:1522
 msgid "After install, set CTAN as source for package updates"
-msgstr ""
+msgstr "Po namestitvi nastavi CTAN za vir posodobitev paketov"
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -707,7 +708,7 @@ msgstr "Izbrane platforme"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1063
 #, fuzzy
 msgid "Removals of the main platform not possible!"
-msgstr "Odstranitev arhitekture, na kateri teče računalnik, ni mogoča."
+msgstr "Odstranitev arhitekture, na kateri teče računalnik, ni mogoča!"
 
 #: tlpkg/installer/install-menu-perltk.pl:1071
 #, perl-format
@@ -735,7 +736,7 @@ msgid ""
 "Directories have been reinitialized"
 msgstr ""
 "Spremenili ste opcijo za prenosljivo namestitev;\n"
-"Mape za namestitev so se nastavile na privzeto vrednost."
+"mape za namestitev so bile nastavljene na privzeto vrednost"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:169
 msgid "Loading local TeX Live database"
@@ -948,7 +949,7 @@ msgstr "Naloži privzeti repozitorij (iz tlpdb):"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:534
 #, fuzzy
 msgid "Load cmd line repository:"
-msgstr "Naloži privzeti oddaljeni repozitorij"
+msgstr "Naloži privzeti oddaljeni repozitorij:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:537
 #, fuzzy
@@ -957,7 +958,7 @@ msgstr "Naloži standardni spletni repozitorij:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:540
 msgid "Load other repository ..."
-msgstr "Naloži repozitorij"
+msgstr "Naloži drugi repozitorij …"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:550
 msgid "General ..."
@@ -1027,7 +1028,7 @@ msgstr "Namesti simbolne povezave v sistemske mape"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:625
 #, perl-format
 msgid "Remove TeX Live %s ..."
-msgstr "Odstrani TeX Live %s"
+msgstr "Odstrani TeX Live %s …"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:628
 #, perl-format
@@ -1040,13 +1041,13 @@ msgid "Complete removal finished"
 msgstr "Program je bil v celoti odstranjen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:640
-#, fuzzy, perl-format
+#, perl-format
 msgid ""
 "Really remove (uninstall) the COMPLETE TeX Live %s installation?\n"
 "Your last chance to change your mind!"
 msgstr ""
 "Ste prepričani, da želite odstraniti TeX Live %s?\n"
-"To je še zadnja možnost, da si premislite."
+"To je še zadnja možnost, da si premislite!"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:649
 msgid "Manual"
@@ -1231,7 +1232,7 @@ msgstr "Namesti za vse uporabnike"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1283
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1285
 msgid "Load default repository:"
-msgstr "Naloži privzeti repozitorij"
+msgstr "Naloži privzeti repozitorij:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1342
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1351
@@ -1390,9 +1391,8 @@ msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2357
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2359
-#, fuzzy
 msgid "Restore completed"
-msgstr "Popolna odstranitev programa končana."
+msgstr "Popolna odstranitev programa končana"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2364
 msgid "Select the package to restore, or restore all packages"
@@ -1435,9 +1435,9 @@ msgid "Edit directory"
 msgstr "Uredi direktorij"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
-#, perl-format
+#, fuzzy, perl-format
 msgid "New value for %s:"
-msgstr ""
+msgstr "Nova vrednost za %s:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"
@@ -1498,6 +1498,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "may cause trouble!"
 msgstr ""
+"Ciljna mapa %s ni prazna;\n"
+"lahko pride do težav!"
 
 #: tlpkg/installer/install-tl-gui.tcl:82
 #, tcl-format
@@ -1505,6 +1507,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "are you sure?"
 msgstr ""
+"Ciljna mapa %s ni prazna;\n"
+"ste prepričani?"
 
 #: tlpkg/installer/install-tl-gui.tcl:151
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2592
@@ -1521,6 +1525,11 @@ msgid ""
 "world; please consider supporting it by joining the group best for you. The "
 "list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
+"Glej %s/index.html za povezave do dokumentacije.\n"
+"Domača stran za TeX Live-a (https://tug.org/texlive/) vsebuje popravke in "
+"posodobitve. TeX Live je skupni projekt društev uporabnikov TeX-a širom "
+"sveta; podprete ga lahko s pridružitvijo vam najbližjemu društvu. Seznam le-"
+"teh je na voljo na strani https://tug.org/usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:158
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2605
@@ -1535,143 +1544,159 @@ msgstr ""
 "Dodajte %s/texmf-dist/doc/info v spremenljivko INFOPATH.\n"
 "Najpomembneje - dodajte %s/bin/%s v spremenljivko PATH."
 
-#: tlpkg/installer/install-tl-gui.tcl:238
-#: tlpkg/installer/install-tl-gui.tcl:1733
+#: tlpkg/installer/install-tl-gui.tcl:152
+#, fuzzy
+msgid "Error while reading from Perl backend"
+msgstr "Napaka pri branju iz Perla"
+
+#: tlpkg/installer/install-tl-gui.tcl:164
+#, fuzzy
+msgid "Unexpected closed backend"
+msgstr "Nepričakovano ustavljen backend"
+
+#: tlpkg/installer/install-tl-gui.tcl:211
+#: tlpkg/installer/install-tl-gui.tcl:1655
 msgid "TeX Live Installer"
-msgstr ""
+msgstr "Namestitev TeX Live-a"
 
 #: tlpkg/installer/install-tl-gui.tcl:240
 msgid "Loading..."
-msgstr ""
+msgstr "Nalagam …"
 
 #: tlpkg/installer/install-tl-gui.tcl:264
+#, fuzzy
 msgid "Really abort?"
-msgstr ""
+msgstr "Res želite prekiniti?"
 
 #: tlpkg/installer/install-tl-gui.tcl:336
 msgid "Cannot be created or cannot be written to"
-msgstr ""
+msgstr "Ni mogoče ustvariti mape oz. pisati vanjo"
 
 #: tlpkg/installer/install-tl-gui.tcl:348
 msgid "Directory name..."
-msgstr ""
+msgstr "Ime direktorija …"
 
 #: tlpkg/installer/install-tl-gui.tcl:355
 msgid "Change name (slashes not allowed)"
-msgstr ""
+msgstr "Spremeni ime (brez poševnic)"
 
 #: tlpkg/installer/install-tl-gui.tcl:365
 msgid "No slashes allowed"
-msgstr ""
+msgstr "Poševnice niso dovoljene"
 
 #: tlpkg/installer/install-tl-gui.tcl:386
 msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
 msgstr ""
+"Uporaba letnice je toplo priporočena.\n"
+"Ste prepričani, da jo želite odstraniti?"
 
 #: tlpkg/installer/install-tl-gui.tcl:395
 msgid "Add year"
-msgstr ""
+msgstr "Dodaj letnico"
 
 #: tlpkg/installer/install-tl-gui.tcl:399
 #: tlpkg/installer/install-tl-gui.tcl:474
 msgid "Remove year"
-msgstr ""
+msgstr "Odstrani letnico"
 
 #: tlpkg/installer/install-tl-gui.tcl:441
 #: tlpkg/installer/install-tl-gui.tcl:1208
 #: tlpkg/installer/install-tl-gui.tcl:1216
 msgid "Installation root"
-msgstr ""
+msgstr "Korenska mapa za namestitev"
 
 #: tlpkg/installer/install-tl-gui.tcl:469
 #: tlpkg/installer/install-tl-gui.tcl:1105 tlpkg/tltcl/tltcl.tcl:421
+#, fuzzy
 msgid "Browse..."
-msgstr ""
+msgstr "Brskaj …"
 
 #: tlpkg/installer/install-tl-gui.tcl:482
+#, fuzzy
 msgid "Localized directory names will be replaced by their real names"
-msgstr ""
+msgstr "Prevedena imena direktorijev bodo zamenjana s pravimi imeni"
 
 #: tlpkg/installer/install-tl-gui.tcl:562
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
-msgstr ""
+msgstr "'~' je sinonim za %s, kot npr. %s"
 
 #: tlpkg/installer/install-tl-gui.tcl:716
 msgid "Cannot deselect own platform"
-msgstr ""
+msgstr "Trenutne platforme ni moč odstraniti"
 
 #: tlpkg/installer/install-tl-gui.tcl:751
 #: tlpkg/installer/install-tl-gui.tcl:1109
 msgid "Binaries"
-msgstr ""
+msgstr "Programi"
 
 #: tlpkg/installer/install-tl-gui.tcl:806
 msgid "Schemes"
-msgstr ""
+msgstr "Sheme"
 
 #: tlpkg/installer/install-tl-gui.tcl:899
 msgid "Collections"
-msgstr ""
+msgstr "Zbirke"
 
 #: tlpkg/installer/install-tl-gui.tcl:921
 msgid "Select"
-msgstr ""
+msgstr "Izberi"
 
 #: tlpkg/installer/install-tl-gui.tcl:937
 msgid "Languages"
-msgstr ""
+msgstr "Jeziki"
 
 #: tlpkg/installer/install-tl-gui.tcl:939
 msgid "Other collections"
-msgstr ""
+msgstr "Ostale zbirke"
 
 #: tlpkg/installer/install-tl-gui.tcl:1062
 msgid "Warning. Not all configured directories are writable!"
-msgstr ""
+msgstr "Opozorilo: V nekatere od map ni moč pisati!"
 
 #: tlpkg/installer/install-tl-gui.tcl:1082
 msgid "Symlinks"
-msgstr ""
+msgstr "Simbolne povezave"
 
 #: tlpkg/installer/install-tl-gui.tcl:1110
 msgid "Man pages"
-msgstr ""
+msgstr "Pomoč 'man'"
 
 #: tlpkg/installer/install-tl-gui.tcl:1111
 msgid "Info pages"
-msgstr ""
+msgstr "Pomoč 'info'"
 
 #: tlpkg/installer/install-tl-gui.tcl:1164
 #, tcl-format
 msgid "TeX Live %s Installer"
-msgstr ""
+msgstr "Namestitev za TeX Live %s"
 
 #: tlpkg/installer/install-tl-gui.tcl:1182
 msgid "Advanced"
-msgstr ""
+msgstr "Napredno"
 
 #: tlpkg/installer/install-tl-gui.tcl:1211
 msgid "Directories"
-msgstr ""
+msgstr "Mape"
 
 #: tlpkg/installer/install-tl-gui.tcl:1230
+#, fuzzy
 msgid "Main tree"
-msgstr ""
+msgstr "Glavna mapa"
 
 #: tlpkg/installer/install-tl-gui.tcl:1253
 msgid "Local additions"
-msgstr ""
+msgstr "Lokalni dodatki (za vse uporabnike računalnika)"
 
 #: tlpkg/installer/install-tl-gui.tcl:1262
 msgid "Per-user additions"
-msgstr ""
+msgstr "Lokalni dodatki (za posamezne uporabnike)"
 
 #: tlpkg/installer/install-tl-gui.tcl:1289
 msgid "More ..."
-msgstr ""
+msgstr "Več …"
 
 #: tlpkg/installer/install-tl-gui.tcl:1298
 msgid ""
@@ -1679,240 +1704,258 @@ msgid ""
 "May reset TEXMFLOCAL\n"
 "and TEXMFHOME"
 msgstr ""
+"Prenosljiva namestitev:\n"
+"lahko ponastavi TEXMFLOCAL\n"
+"in TEXMFHOME"
 
 #: tlpkg/installer/install-tl-gui.tcl:1312
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1283
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2048
 msgid "Platforms"
-msgstr ""
+msgstr "Platforme"
 
 #: tlpkg/installer/install-tl-gui.tcl:1318
 msgid "Current platform:"
-msgstr ""
+msgstr "Trenutna platforma:"
 
 #: tlpkg/installer/install-tl-gui.tcl:1325
 msgid "N. of additional platform(s):"
-msgstr ""
+msgstr "Št. dodatnih platform:"
 
 #: tlpkg/installer/install-tl-gui.tcl:1338
+#, fuzzy
 msgid "Selections"
-msgstr ""
+msgstr "Izbire"
 
 #: tlpkg/installer/install-tl-gui.tcl:1343
 msgid "Scheme:"
-msgstr ""
+msgstr "Sheme:"
 
 #: tlpkg/installer/install-tl-gui.tcl:1352
 msgid "N. of collections:"
-msgstr ""
+msgstr "Št. zbirk:"
 
 #: tlpkg/installer/install-tl-gui.tcl:1355
 msgid "Customize"
-msgstr ""
+msgstr "Prilagodi"
 
 #: tlpkg/installer/install-tl-gui.tcl:1364
 msgid "Disk space required (in MB):"
-msgstr ""
+msgstr "Potreben prostor na disku (v MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1442
+#, fuzzy
 msgid "Adjust searchpath"
-msgstr ""
+msgstr "Prilagodi pot iskanja"
 
 #: tlpkg/installer/install-tl-gui.tcl:1451
+#, fuzzy
 msgid "Desktop integration"
-msgstr ""
+msgstr "Integracija z namizjem"
 
 #: tlpkg/installer/install-tl-gui.tcl:1463
 msgid "File associations"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1502
+#, fuzzy
 msgid "Create symlinks in standard directories"
-msgstr ""
+msgstr "Ustvari simbolne povezave v standardnih mapah"
 
 #: tlpkg/installer/install-tl-gui.tcl:1508
 msgid "Specify directories"
-msgstr ""
+msgstr "Določi mape"
 
 #: tlpkg/installer/install-tl-gui.tcl:1573
 msgid "Custom scheme"
-msgstr ""
+msgstr "Shema po meri"
 
 #: tlpkg/installer/install-tl-gui.tcl:1828
 #, tcl-format
 msgid "Loading from %s"
-msgstr ""
+msgstr "Nalagam podatke iz %s"
 
 #: tlpkg/tltcl/tltcl.tcl:502
+#, fuzzy
 msgid "Select or type"
-msgstr ""
+msgstr "Izberi ali napiši"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:255
 #: texmf-dist/scripts/tlshell/tlshell.tcl:308
 #: texmf-dist/scripts/tlshell/tlshell.tcl:430
 #: texmf-dist/scripts/tlshell/tlshell.tcl:466
+#, fuzzy
 msgid "Running"
-msgstr ""
+msgstr "V teku"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:264
 #: texmf-dist/scripts/tlshell/tlshell.tcl:450
+#, fuzzy
 msgid "Idle"
-msgstr ""
+msgstr "Brez dela"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:555
 msgid "Needs updating"
-msgstr ""
+msgstr "Posodobitev na voljo"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:557
 msgid "Up to date"
-msgstr ""
+msgstr "Posodobljeno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:559
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2097
+#, fuzzy
 msgid "Unknown"
-msgstr ""
+msgstr "Neznano"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:723
 msgid "A configured repository is unavailable."
-msgstr ""
+msgstr "Izbrani repozitorij ni na voljo."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:746
 msgid "Loaded"
-msgstr ""
+msgstr "Naloženo"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:844
+#, fuzzy
 msgid "Output"
-msgstr ""
+msgstr "Izhod"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:845
 msgid "Other"
-msgstr ""
+msgstr "Napake"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:974
-#, tcl-format
+#, fuzzy, tcl-format
 msgid "%s not a repository"
-msgstr ""
+msgstr "%s ni (veljaven) repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1116
 msgid "Main Repository"
-msgstr ""
+msgstr "Glavni repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1127
 msgid "Current:"
-msgstr ""
+msgstr "Trenutni:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1133
+#, fuzzy
 msgid "New"
-msgstr ""
+msgstr "Nov"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1141
 msgid "Any CTAN mirror"
-msgstr ""
+msgstr "Katerikoli zrcalni strežnik za CTAN"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1151
 msgid "Specific mirror..."
-msgstr ""
+msgstr "Specifičen zrcalni strežnik …"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1171
 msgid "Local directory..."
-msgstr ""
+msgstr "Naloži direktorij …"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1176
 msgid "tlcontrib additional repository"
-msgstr ""
+msgstr "dodaten repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1192
+#, fuzzy
 msgid "tlcontrib repository is included"
-msgstr ""
+msgstr "dodaten repozitorij je vključen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1193
 msgid "Remove tlcontrib repository"
-msgstr ""
+msgstr "Odstrani dodaten repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1195
+#, fuzzy
 msgid "tlcontrib repository is not included"
-msgstr ""
+msgstr "dodaten repozitorij ni vključen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1196
 msgid "Add tlcontrib repository"
-msgstr ""
+msgstr "Dodaj dodaten repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1201
 msgid "Save and Load"
-msgstr ""
+msgstr "Shrani in naloži"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1207
+#, fuzzy
 msgid "Abort"
-msgstr ""
+msgstr "Prekini"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1227
 #, tcl-format
 msgid "Cannot remove own platform %s"
-msgstr ""
+msgstr "Ni mogoče odstraniti lastne platforme %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1291
+#, fuzzy
 msgid "Apply and close"
-msgstr ""
+msgstr "Uporabi in zapri"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1311
 msgid "platform"
-msgstr ""
+msgstr "platforma"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1375
 #, tcl-format
 msgid "Restore %s to revision %s?"
-msgstr ""
+msgstr "Naj obnovim paket %s na revizijo %s?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1398
 msgid "No backups configured"
-msgstr ""
+msgstr "Varnestno kopiranje ni nastavljeno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1408
 msgid "No backup directory defined"
-msgstr ""
+msgstr "Mapa za varnostne kopije ni določena"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1413
 #, tcl-format
 msgid "Backup directory %s does not exist"
-msgstr ""
+msgstr "Mapa z varnostnimi kopijami %s ne obstaja"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1436
 #, tcl-format
 msgid "No packages in backup directory %s"
-msgstr ""
+msgstr "V mapi za varnostne kopije (%s) ni nobenega paketa"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1446
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2176
 msgid "Restore from backup"
-msgstr ""
+msgstr "Obnovi iz varnostnih kopij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1462
 msgid "Package"
-msgstr ""
+msgstr "Paket"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1463
 msgid "Revision"
-msgstr ""
+msgstr "Revizija"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1504
 msgid "Restore all"
-msgstr ""
+msgstr "Obnovi vse"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1523
 msgid "Close this shell and run in an administrative command-prompt:"
-msgstr ""
+msgstr "Zapri to ukazno lupino in poženi kot administrator v ukazni vrstici:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1525
 msgid "Close this shell and run in a command-prompt:"
-msgstr ""
+msgstr "Zapri to ukazno lupino in poženi v ukazni vrstici:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1534
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1566
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1606
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1656
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1731
+#, fuzzy
 msgid "Nothing to do!"
-msgstr ""
+msgstr "Pripravljen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1621
 #, tcl-format
@@ -1921,11 +1964,14 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Nameščeni bodo tudi potrebni paketi\n"
+"\n"
+"%s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1628
 #, tcl-format
 msgid "Already installed: %s"
-msgstr ""
+msgstr "Že nameščen: %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1669
 #, tcl-format
@@ -1934,257 +1980,268 @@ msgid ""
 "\n"
 "%s?"
 msgstr ""
+"Naj posodobim tudi potrebne pakete\n"
+"\n"
+"%s?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1684
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Posodobljeni bodo nujno potrebni paketi %s. Nadaljujem?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1696
 #, tcl-format
 msgid "Skipped because not installed: %s"
-msgstr ""
+msgstr "Preskočeno, paket ni nameščen: %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1699
 #, tcl-format
 msgid "Skipped because already up to date: %s"
-msgstr ""
+msgstr "Preskočeno, nameščena je zadnja verzija: %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1735
-#, tcl-format
+#, fuzzy, tcl-format
 msgid ""
 "Also remove dependencies\n"
 "\n"
 "%s?"
 msgstr ""
+"Odstranim tudi odvisne pakete\n"
+"\n"
+"%s?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1750
-#, tcl-format
+#, fuzzy, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Nekateri odvisni paketi (%s) bodo vseeno odstranjeni. Nadaljujem?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1827
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1892
 msgid "Cannot set default GUI language"
-msgstr ""
+msgstr "Ni mogoče nastaviti privzetega jezika grafičnega vmesnika"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1972
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1994
 msgid "File"
-msgstr ""
+msgstr "Datoteka"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1996
 msgid "Load default repository"
-msgstr ""
+msgstr "Naloži privzet repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1998
 msgid "Exit"
-msgstr ""
+msgstr "Izhod"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2007
 msgid "Regenerate filename database"
-msgstr ""
+msgstr "Posodobi bazo imen datotek"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2008
 msgid "Regenerating filename database..."
-msgstr ""
+msgstr "Posodabljam bazo imen datotek …"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2009
 msgid "Regenerate formats"
-msgstr ""
+msgstr "Posodobi formate"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2010
 msgid "Rebuilding formats..."
-msgstr ""
+msgstr "Posodabljam formate …"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2011
 msgid "Regenerate fontmaps"
-msgstr ""
+msgstr "Posodobi mapiranje pisav"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2012
 msgid "Rebuilding fontmap files..."
-msgstr ""
+msgstr "Posodabljam mapiranje pisav …"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2020
 msgid "Repositories"
-msgstr ""
+msgstr "Repozitoriji"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2033
 msgid "GUI language (restarts tlshell)"
-msgstr ""
+msgstr "Jezik grafičnega vmesnika (ponovno zažene tlshell)"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2056
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr ""
+"Grafični vmesnik za TeX Live Manager\n"
+"Spisan v jeziku Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2057
 msgid "tlmgr help"
-msgstr ""
+msgstr "tlmgr pomoč"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2074
 msgid "Restart self"
-msgstr ""
+msgstr "Ponovno zaženi"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2076
 msgid "Restart tlmgr"
-msgstr ""
+msgstr "Ponovno zaženi tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2079
 msgid "Show logs"
-msgstr ""
+msgstr "Prikaži dnevnik (log)"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2088
 msgid "Default repositories"
-msgstr ""
+msgstr "Privzeti repozitoriji"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2092
+#, fuzzy
 msgid "Not loaded"
-msgstr ""
+msgstr "Ni naložen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2095
 msgid "TL Manager up to date?"
-msgstr ""
+msgstr "Je TL Manager posodobljen?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2100
 msgid "Last tlmgr command:"
-msgstr ""
+msgstr "Zadnji klic tlmgr-ja:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2112
-#, tcl-format
+#, fuzzy, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "Korenski imenik v %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2120
 msgid "Package list"
-msgstr ""
+msgstr "Seznam paketov"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2130
 msgid "Installed"
-msgstr ""
+msgstr "Nameščene"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2134
+#, fuzzy
 msgid "Updatable"
-msgstr ""
+msgstr "Na voljo posodobitev"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2142
+#, fuzzy
 msgid "Detail >> Global"
-msgstr ""
+msgstr "Zelo podrobno >> manj podrobno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2145
 msgid "Collections and schemes"
-msgstr ""
+msgstr "Zbirke in sheme"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2147
 msgid "Only schemes"
-msgstr ""
+msgstr "Samo sheme"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2155
 msgid "Mark all"
-msgstr ""
+msgstr "Izberi vse"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2157
+#, fuzzy
 msgid "Mark none"
-msgstr ""
+msgstr "Odznači vse"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2163
 msgid "Install marked"
-msgstr ""
+msgstr "Namesti izbrane"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2167
 msgid "Update marked"
-msgstr ""
+msgstr "Posodobi izbrane"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2171
 msgid "Remove marked"
-msgstr ""
+msgstr "Odstrani izbrane"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2181
 msgid "Update tlmgr"
-msgstr ""
+msgstr "Posodobil tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2184
 msgid "Update all"
-msgstr ""
+msgstr "Posodobi vse"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2191
 msgid "Search"
-msgstr ""
+msgstr "Išči"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2194
 msgid "By name"
-msgstr ""
+msgstr "Po imenu"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2196
 msgid "By name and description"
-msgstr ""
+msgstr "Po imenu in opisu"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2208
 msgid "Name"
-msgstr ""
+msgstr "Ime"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2211
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2309
-#, tcl-format
+#, fuzzy, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"V mapo %s nimate pravice pisati.\n"
+"  Ste prepričani, da želite nadaljevati?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2322
 msgid "Multi-user"
-msgstr ""
+msgstr "Za več uporabnikov"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2322
 msgid "Single-user"
-msgstr ""
+msgstr "Za enega uporabnika"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
-msgstr "osnovna namestitev (plain TeX in LaTeX)"
+msgstr "Osnovna namestitev (plain TeX in LaTeX)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
-#, fuzzy
 msgid "ConTeXt scheme"
-msgstr "ConTeXt"
+msgstr "Namestitev ConTeXt-a"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "full scheme (everything)"
-msgstr "polna namestitev"
+msgstr "Polna namestitev"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
 msgid "GUST TeX Live scheme"
-msgstr "poljski GUST TeX Live"
+msgstr "Poljski GUST TeX Live"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
-#, fuzzy
 msgid "infrastructure-only scheme (no TeX at all)"
-msgstr "samo infrastruktura (brez TeX-a)"
+msgstr "Samo infrastruktura (brez TeX-a)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
 msgid "medium scheme (small + more packages and languages)"
-msgstr "srednje velika namestitev (majhna nam. z dodatnimi paketi in jeziki)"
+msgstr "Srednje velika namestitev (majhna nam. z dodatnimi paketi in jeziki)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
 msgid "minimal scheme (plain only)"
-msgstr "najmanjša namestitev (samo plain TeX)"
+msgstr "Minimalna namestitev (samo plain TeX)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
 msgid "small scheme (basic + xetex, metapost, a few languages)"
 msgstr ""
-"majhna namestitev (osnovna orodja, XeTeX, metapost, podpora za nekaj jezikov)"
+"Majhna namestitev (osnovna orodja, XeTeX, metapost, podpora za nekaj jezikov)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
-#, fuzzy
 msgid "teTeX scheme (more than medium, but nowhere near full)"
-msgstr "podobna teTeX-u (med srednje veliko in polno)"
+msgstr "Shema, podobna teTeX-u (med srednje veliko in polno)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
 msgid "Essential programs and files"
@@ -2304,7 +2361,7 @@ msgstr "Dodatni paketi za LaTeX"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
 msgid "LaTeX recommended packages"
-msgstr "Priporočljivi paketi za LaTeX"
+msgstr "Priporočeni paketi za LaTeX"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
 msgid "LuaTeX packages"
@@ -2312,7 +2369,7 @@ msgstr "Paketi za LuaTeX"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "Mathematics, natural sciences, computer science packages"
-msgstr ""
+msgstr "Paketi za matematiko, naravoslovje in računalništvo"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "MetaPost and Metafont packages"
@@ -2327,8 +2384,9 @@ msgid "Graphics, pictures, diagrams"
 msgstr "Slike in diagrami"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:45
+#, fuzzy
 msgid "Plain (La)TeX packages"
-msgstr ""
+msgstr "Paketi za plain (La)TeX"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
 msgid "PSTricks"
@@ -2340,7 +2398,7 @@ msgstr "Slogi za založnike, dizertacije ipd."
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:48
 msgid "TeXworks editor; TL includes only the Windows binary"
-msgstr "Urejevalnik TeXworks; TL vsebuje samo program za Windows"
+msgstr "Urejevalnik TeXworks (za Windows)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
 msgid "Windows-only support programs"
