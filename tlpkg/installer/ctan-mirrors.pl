@@ -1,10 +1,6 @@
 $mirrors = {
   'Africa' => {
-    'Algeria' => {
-      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
-    },
     'South Africa' => {
-      'http://ctan.mirror.ac.za/' => 1,
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1
@@ -13,6 +9,7 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
+      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
@@ -24,9 +21,9 @@ $mirrors = {
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
+      'http://ctan.asis.ai/' => 1,
       'http://ctan.um.ac.ir/' => 1,
-      'http://ctan.yazd.ac.ir/' => 1,
-      'http://repo.iut.ac.ir/tex-archive/' => 1
+      'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
       'ftp://ftp.kddilabs.jp/CTAN/' => 1,
@@ -38,7 +35,6 @@ $mirrors = {
       'http://ftp.harukasan.org/CTAN/' => 1,
       'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'http://ftp.ktug.org/tex-archive/' => 1,
-      'http://ftp.neowiz.com/CTAN/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1
     },
     'Philippines' => {
@@ -47,9 +43,6 @@ $mirrors = {
     'Taiwan' => {
       'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
       'http://ftp.yzu.edu.tw/CTAN/' => 1
-    },
-    'Thailand' => {
-      'http://mirror.kku.ac.th/CTAN/' => 1
     }
   },
   'Europe' => {
@@ -96,6 +89,7 @@ $mirrors = {
     },
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
+      'http://ctan.triasinformatica.nl/' => 1,
       'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'http://mirror.koddos.net/CTAN/' => 1
     },
@@ -173,9 +167,6 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'http://linorg.usp.br/CTAN/' => 1
-    },
-    'Chile' => {
-      'http://ftp.inf.utfsm.cl/pub/tex-archive/' => 1
     }
   }
 };
