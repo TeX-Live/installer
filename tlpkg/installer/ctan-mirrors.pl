@@ -1,8 +1,10 @@
 $mirrors = {
   'Africa' => {
+    'Algeria' => {
+      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
+    },
     'South Africa' => {
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
-      'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1
     }
   },
