@@ -28,7 +28,6 @@ $mirrors = {
       'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
-      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
@@ -36,8 +35,7 @@ $mirrors = {
     'Korea' => {
       'http://ftp.harukasan.org/CTAN/' => 1,
       'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
-      'http://ftp.ktug.org/tex-archive/' => 1,
-      'http://mirror.navercorp.com/CTAN/' => 1
+      'http://ftp.ktug.org/tex-archive/' => 1
     },
     'Philippines' => {
       'http://mirror.pregi.net/tex-archive/' => 1
@@ -105,7 +103,6 @@ $mirrors = {
     },
     'Portugal' => {
       'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
-      'ftp://ftp.ist.utl.pt/pub/ctan/' => 1,
       'http://mirrors.up.pt/pub/CTAN/' => 1
     },
     'Romania' => {
@@ -140,6 +137,7 @@ $mirrors = {
       'http://ctan.forsale.plus/' => 1,
       'http://ctan.math.ca/tex-archive/' => 1,
       'http://ctan.mirror.colo-serv.net/' => 1,
+      'http://ctan.mirror.rafal.ca/' => 1,
       'http://mirror.its.dal.ca/ctan/' => 1,
       'http://muug.ca/mirror/ctan/' => 1
     },
