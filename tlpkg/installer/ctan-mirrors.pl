@@ -73,7 +73,6 @@ $mirrors = {
     },
     'Germany' => {
       'ftp://ftp.fu-berlin.de/tex/CTAN/' => 1,
-      'ftp://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/' => 1,
       'ftp://ftp.tu-chemnitz.de/pub/tex/' => 1,
       'http://ctan.mirror.norbert-ruehl.de/' => 1,
       'http://ctan.space-pro.be/tex-archive/' => 1,
