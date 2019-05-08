@@ -20,7 +20,8 @@ $mirrors = {
       'http://mirrors.ustc.edu.cn/CTAN/' => 1
     },
     'India' => {
-      'http://ctan.imsc.res.in/' => 1
+      'http://ctan.imsc.res.in/' => 1,
+      'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
       'http://ctan.asis.ai/' => 1,
@@ -36,7 +37,8 @@ $mirrors = {
     'Korea' => {
       'http://ftp.harukasan.org/CTAN/' => 1,
       'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
-      'http://ftp.ktug.org/tex-archive/' => 1
+      'http://ftp.ktug.org/tex-archive/' => 1,
+      'http://mirror.navercorp.com/CTAN/' => 1
     },
     'Philippines' => {
       'http://mirror.pregi.net/tex-archive/' => 1
@@ -73,6 +75,7 @@ $mirrors = {
     },
     'Germany' => {
       'ftp://ftp.fu-berlin.de/tex/CTAN/' => 1,
+      'ftp://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/' => 1,
       'ftp://ftp.tu-chemnitz.de/pub/tex/' => 1,
       'http://ctan.mirror.norbert-ruehl.de/' => 1,
       'http://ctan.space-pro.be/tex-archive/' => 1,
