@@ -38,43 +38,65 @@ BEGIN {
 if (($^O !~ /^MSWin/i) &&
       # this wrapper is only for unix, since windows has its own wrapper
       ($#ARGV >= 0 || ($^O eq 'darwin')) &&
-      # tcl parameter may still come, or tcl is default
+        # tcl parameter may still come, or tcl is default
       ($#ARGV < 0 || $ARGV[0] ne '-from_ext_gui')
-      # this run is not invoked by tcl
+        # this run is not invoked by tcl
     ) {
-  my $want_tcl = ($^O eq 'darwin');
+
+  # make syntax uniform: --a => -a, a=b => 'a b'
+  my @tmp_args = ();
+  my $p;
   my $i=-1;
-  my @new_args = ();
   while ($i<$#ARGV) {
-    # build argument array @new_args for install-tl-gui.tcl.
-    # quit scanning and building @new_args once tcl is ruled out.
-    my $p = $ARGV[++$i];
-    if ($p =~ /^-?-gui=(.*$)/) {
-      if ($1 eq 'tcl') {
-        $want_tcl = 1;
-      } else {
-        last; # other gui
-      }
-    } elsif ($p =~ /^-?-gui/ && $p !~ /^-?-gui-lang/) {
+    $p = $ARGV[++$i];
+    $p =~ s/^--/-/;
+    if ($p =~ /^(.*)=(.*)$/) {
+      push (@tmp_args, $1, $2);
+    } else {
+      push (@tmp_args, $p);
+    }
+  }
+
+  # build argument array @new_args for install-tl-gui.tcl.
+  # '-gui' or '-gui tcl' will not be copied to @new_args.
+  # quit scanning and building @new_args once tcl is ruled out.
+  my $want_tcl = ($^O eq 'darwin');
+  my $asked4tcl = 0;
+  my @new_args = ();
+  $i = -1;
+  while ($i < $#tmp_args) {
+    $p = $tmp_args[++$i];
+    if ($p eq '-gui') {
       # look ahead at next parameter
-      if ($i == $#ARGV) {
-        $want_tcl = 1; # default gui
-        last;
-      } elsif ($ARGV[$i+1] eq 'tcl') {
-        $i++;
+      if ($i == $#tmp_args || $tmp_args[$i+1] =~ /^-/) {
+        $want_tcl = 1; # default value for -gui
+        $asked4tcl = 1;
+      } elsif ($tmp_args[$i+1] eq 'tcl') {
         $want_tcl = 1;
-      } elsif ($ARGV[$i+1] eq 'expert' || $ARGV[$i+1] eq 'perltk' ||
-                 $ARGV[$i+1] eq 'wizard' || $ARGV[$i+1] eq 'text') {
+        $asked4tcl = 1;
+        $i++;
+      } else { # other value for -gui
         $want_tcl = 0;
         last;
-      } else {
-        # next parameter relates to something else, so default gui is wanted
-        $want_tcl = 1;
       }
-    } elsif ($p =~ /^-?-no-gui/) {
-      $want_tcl = 0;
-      last;
     } else {
+      my $forbid = 0;
+      for my $q (qw/in-place profile help/) {
+        if ($p eq "-$q") {
+          # default text mode
+          $want_tcl = 0 unless $asked4tcl;
+          last;
+        }
+      }
+      for my $q (qw/print-platform version no-gui/) {
+        if ($p eq "-$q") {
+          # enforce text mode
+          $want_tcl = 0;
+          $forbid = 1;
+          last;
+        }
+      }
+      last if $forbid;
       # not gui-related, continue collecting @new_args
       push (@new_args, $p);
     }

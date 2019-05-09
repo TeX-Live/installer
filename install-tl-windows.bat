@@ -29,7 +29,8 @@ for /f "usebackq tokens=2 delims='" %%a in (`perl -V:version 2^>NUL`) do (
 rem set instroot before %0 gets overwritten during argument processing
 set instroot=%~dp0
 
-set notcl=no
+set asked4gui=no
+set forbid=no
 set tcl=yes
 set args=
 goto rebuildargs
@@ -45,35 +46,42 @@ rem code block for gui argument
 :dogui
 if x == x%1 (
 set tcl=yes
+set asked4gui=yes
 shift
 goto rebuildargs
 )
 if text == %1 (
 set tcl=no
+set forbid=yes
 set args=%args% -no-gui
 shift
 goto rebuildargs
 ) else if wizard == %1 (
 set tcl=yes
+set asked4gui=yes
 shift
 goto rebuildargs
 ) else if perltk == %1 (
 set tcl=yes
+set asked4gui=yes
 shift
 goto rebuildargs
 ) else if expert == %1 (
 set tcl=yes
+set asked4gui=yes
 shift
 goto rebuildargs
 ) else if tcl == %1 (
 set tcl=yes
+set asked4gui=yes
 shift
 goto rebuildargs
 ) else (
 set tcl=yes
+set asked4gui=yes
 goto rebuildargs
 )
-rem last case: -gui without parameter, do not shift
+rem last case was -gui without parameter to shift
 
 rem loop for argument scanning
 :rebuildargs
@@ -82,30 +90,51 @@ set p=
 set q=
 if x == x%0 goto nomoreargs
 set p=%0
+
 rem flip backslashes, if any
 set p=%p:\=/%
-rem replace -- with - but test with quotes replaced with something else
+
+rem replace '--' with '-' but replace quotes in %p
+rem with something else for comparing
 set q=%p:"=x%
 if not "%q:~,2%" == "--" goto nominmin
 set p=%p:~1%
 :nominmin
-if -print-platform == %p% set tcl=no
-if -version == %p% set tcl=no
+
+rem countermand gui parameter for short output.
+rem assume text mode for help and for profile install,
+rem unless gui was explicitly requested.
+if -print-platform == %p% (
+set tcl=no
+set forbid=yes
+)
+if -version == %p% (
+set tcl=no
+set forbid=yes
+)
 if -no-gui == %p% (
-set notcl=yes
-set args=%args% -no-gui
-goto rebuildargs
+set tcl=no
+set forbid=yes
+)
+if -profile == %p% (
+if no == %asked4gui% (
+set tcl=no
+)
+)
+if -help == %p%  (
+if no == %asked4gui% (
+set tcl=no
+)
 )
 if -gui == %p% goto dogui
 
-rem not a gui argument: copy to args string
+rem -no-gui or not a gui argument: copy to args string
 rem a spurious initial blank is harmless.
 set args=%args% %p%
 
 goto rebuildargs
 :nomoreargs
-
-if yes == %notcl% set tcl=no
+if %forbid% == yes set tcl=no
 
 rem Check for tex directories on path and remove them.
 rem Need to remove any double quotes from path
@@ -158,9 +187,9 @@ rem echo "%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-t
 rem pause
 "%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
 ) else (
-rem echo perl "%instroot%install-tl" %args%
-rem pause
-perl "%instroot%install-tl" %args%
+echo perl "%instroot%install-tl" %args%
+pause
+rem perl "%instroot%install-tl" %args%
 )
 
 rem The nsis installer will need this:
