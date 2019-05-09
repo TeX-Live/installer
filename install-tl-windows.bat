@@ -187,9 +187,9 @@ rem echo "%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-t
 rem pause
 "%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
 ) else (
-echo perl "%instroot%install-tl" %args%
-pause
-rem perl "%instroot%install-tl" %args%
+rem echo perl "%instroot%install-tl" %args%
+rem pause
+perl "%instroot%install-tl" %args%
 )
 
 rem The nsis installer will need this:
