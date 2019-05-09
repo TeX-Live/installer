@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tex Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-04-06 01:38+0200\n"
+"POT-Creation-Date: 2019-05-10 01:38+0200\n"
 "PO-Revision-Date: 2019-04-02 15:06+0200\n"
 "Last-Translator: Marco Pallante <marco.pallante@gmail.com>\n"
 "Language-Team: <>\n"
@@ -1449,12 +1449,12 @@ msgstr ""
 "sei sicuro?"
 
 #: tlpkg/installer/install-tl-gui.tcl:151
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2592
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2614
 msgid "Welcome to TeX Live!"
 msgstr "Benvenuto in TeX Live!"
 
 #: tlpkg/installer/install-tl-gui.tcl:154
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2595
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2617
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1471,7 +1471,7 @@ msgstr ""
 "usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:158
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2605
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2627
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
