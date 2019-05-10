@@ -1,4 +1,5 @@
 $Id$
+(Public domain.)
 
 How to update TeX Live distribution signing key
 ===============================================
@@ -44,6 +45,3 @@ svn/git commit
          --recv-key $KEYID
 
 # or import from texlive.asc
-
-
-
