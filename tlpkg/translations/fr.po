@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-05-10 01:38+0200\n"
-"PO-Revision-Date: 2019-04-04 09:04+0100\n"
+"PO-Revision-Date: 2019-05-12 10:49+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -251,7 +251,7 @@ msgstr ""
 "Les versions de TeX Live de l'installation locale\n"
 "et du dépôt de packages ne sont pas compatibles :\n"
 "installée : %s\n"
-"    dépôt : %s"
+"    dépôt : %s."
 
 #: tlpkg/installer/install-menu-wizard.pl:423
 #: tlpkg/installer/install-menu-wizard.pl:587
@@ -500,7 +500,7 @@ msgstr ""
 "Les versions de TeX Live de l'installation locale\n"
 "et du dépôt de packages ne sont pas compatibles :\n"
 "installée : %s\n"
-"    dépôt : %s\n"
+"    dépôt : %s.\n"
 "Veuillez choisir un autre miroir."
 
 #: tlpkg/installer/install-menu-perltk.pl:306
@@ -730,7 +730,7 @@ msgid ""
 "Directories have been reinitialized"
 msgstr ""
 "Option 'portable' modifiée :\n"
-"Les chemins d'installation ont été réinitialisés."
+"les chemins d'installation ont été réinitialisés."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:169
 msgid "Loading local TeX Live database"
@@ -1058,7 +1058,7 @@ msgstr "Version distante :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:714
 msgid "Remote Catalogue version:"
-msgstr "Version du catalogue distante :"
+msgstr "Version du catalogue distant :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:719
 msgid "Keywords:"
@@ -1083,8 +1083,7 @@ msgstr "Collection : "
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:749
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
 msgstr ""
-"Attention : la version d'après le catalogue peut être un peu en retard, "
-"voire totalement fausse."
+"Les versions du catalogue peuvent être en retard ou simplement erronées."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:787
 msgid "Depends:"
@@ -1210,7 +1209,7 @@ msgstr "Papier par défaut pour %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
-msgstr "Langue pour l'interface graphique :"
+msgstr "Langue de l'interface graphique :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1415
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1420
@@ -1220,7 +1219,7 @@ msgstr "Valeur par défaut du système"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1419
 msgid "Default language for GUI:"
-msgstr "Langue par défaut pour l'interface graphique :"
+msgstr "Langue par défaut de l'interface graphique :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1434
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1463
@@ -1475,11 +1474,11 @@ msgstr ""
 "Voir %s/index.html pour des liens vers la documentation.\n"
 "Le site web de TeX Live (http://tug.org/texlive/) propose toutes les mises à "
 "jour et les correctifs. TeX Live est un projet commun des "
-"groupesd'utilisateurs de TeX à travers le monde ; pensez à lui apporter "
-"votre \"soutien en rejoignant le groupe qui vous convient le mieux. La liste "
-"des \"groupes est disponible sur le web à l'adresse http://tug.org/"
-"usergroups.html ; la page du groupe francophone est http://www.gutenberg.eu."
-"org/."
+"groupes d'utilisateurs de TeX à travers le monde ; pensez à lui apporter "
+"votre soutien en rejoignant le groupe qui vous convient le mieux. La liste "
+"des groupes est disponible sur le web à l'adresse"
+" http://tug.org/usergroups.html ;"
+"la page du groupe francophone est http://www.gutenberg.eu.org/."
 
 #: tlpkg/installer/install-tl-gui.tcl:158
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2627
@@ -1644,7 +1643,7 @@ msgid ""
 "and TEXMFHOME"
 msgstr ""
 "Configuration portable :\n"
-"Peut réinitialiser TEXMFLOCAL\n"
+"peut réinitialiser TEXMFLOCAL\n"
 "et TEXMFHOME"
 
 #: tlpkg/installer/install-tl-gui.tcl:1312
@@ -1659,7 +1658,7 @@ msgstr "Plate-forme en cours :"
 
 #: tlpkg/installer/install-tl-gui.tcl:1325
 msgid "N. of additional platform(s):"
-msgstr "Nombre de plates-formes additionnelles"
+msgstr "Nombre de plates-formes additionnelles :"
 
 #: tlpkg/installer/install-tl-gui.tcl:1338
 msgid "Selections"
@@ -1868,10 +1867,12 @@ msgstr "Tout restaurer"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1523
 msgid "Close this shell and run in an administrative command-prompt:"
 msgstr ""
+"Fermer ce terminal et lancer une invite de commande avec droits"
+" administrateurs :"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1525
 msgid "Close this shell and run in a command-prompt:"
-msgstr ""
+msgstr "Fermer ce terminal et lancer une interface en ligne de commande :"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1534
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1566
@@ -2030,7 +2031,7 @@ msgstr "TL manager (tlmgr) à jour ?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2100
 msgid "Last tlmgr command:"
-msgstr "Dernière commande tlmgr:"
+msgstr "Dernière commande tlmgr :"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2112
 #, tcl-format
@@ -2120,11 +2121,11 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2322
 msgid "Multi-user"
-msgstr ""
+msgstr "Utilisateurs multiples"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2322
 msgid "Single-user"
-msgstr ""
+msgstr "Utilisateur unique"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
