@@ -79,6 +79,7 @@ C<TeXLive::TLPDB> -- A database of TeX Live Packages
   $tlpdb->is_virtual;
   $tlpdb->virtual_add_tlpdb($tlpdb, $tag);
   $tlpdb->virtual_remove_tlpdb($tag);
+  $tlpdb->virtual_get_tags();
   $tlpdb->virtual_get_tlpdb($tag);
   $tlpdb->virtual_get_package($pkg, $tag);
   $tlpdb->candidates($pkg);
@@ -2559,6 +2560,11 @@ sub make_virtual {
     $self->{'virtual'} = 1;
   }
   return 1;
+}
+
+sub virtual_get_tags {
+  my $self = shift;
+  return keys %{$self->{'tlpdbs'}};
 }
 
 sub virtual_get_tlpdb {

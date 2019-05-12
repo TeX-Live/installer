@@ -4545,6 +4545,21 @@ sub action_repository {
     $localtlpdb->save;
     return ($F_OK);
   }
+  if ($what eq "status") {
+    if (!defined($remotetlpdb)) {
+      init_tlmedia_or_die();
+    }
+    if (!$remotetlpdb->is_virtual) {
+      print "main: ", $remotetlpdb->location, ", verification status: ", $remotetlpdb->is_verified, "\n";
+      return ($F_OK);
+    } else {
+      for my $t ($remotetlpdb->virtual_get_tags()) {
+        my $tlpdb = $remotetlpdb->virtual_get_tlpdb($t);
+        print "$t: ", $tlpdb->location, ", verification status: ", $tlpdb->is_verified, "\n";
+      }
+      return($F_OK);
+    }
+  }
   # we are still here, unknown command to repository
   tlwarn("$prg: unknown subaction for tlmgr repository: $what\n");
   return ($F_ERROR);
