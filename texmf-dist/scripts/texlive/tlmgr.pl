@@ -4550,12 +4550,18 @@ sub action_repository {
       init_tlmedia_or_die();
     }
     if (!$remotetlpdb->is_virtual) {
-      print "main: ", $remotetlpdb->location, ", verification status: ", $remotetlpdb->is_verified, "\n";
+      my $verstat = $remotetlpdb->verification_status;
+      print "main ", $remotetlpdb->location, " ", 
+        ($::machinereadable ? "$verstat " : ""),
+        $VerificationStatusDescription{$verstat}, "\n";
       return ($F_OK);
     } else {
       for my $t ($remotetlpdb->virtual_get_tags()) {
         my $tlpdb = $remotetlpdb->virtual_get_tlpdb($t);
-        print "$t: ", $tlpdb->location, ", verification status: ", $tlpdb->is_verified, "\n";
+        my $verstat = $tlpdb->verification_status;
+        print "$t ", $tlpdb->location, " ",
+          ($::machinereadable ? "$verstat " : ""),
+          $VerificationStatusDescription{$verstat}, "\n";
       }
       return($F_OK);
     }
