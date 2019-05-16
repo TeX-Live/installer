@@ -8627,6 +8627,8 @@ yourself if you are using this feature and want stale symlinks removed.
 
 =item B<repository set I<path>[#I<tag>] [I<path>[#I<tag>] ...]>
 
+=item B<repository status>
+
 This action manages the list of repositories.  See L<MULTIPLE
 REPOSITORIES> below for detailed explanations.
 
@@ -8641,8 +8643,17 @@ package the available platforms (if any) are listed, too.
 The third form (C<add>) adds a repository
 (optionally attaching a tag) to the list of repositories.  The forth
 form (C<remove>) removes a repository, either by full path/url, or by
-tag.  The last form (C<set>) sets the list of repositories to the items
-given on the command line, not keeping previous settings
+tag.  The fifth form (C<set>) sets the list of repositories to the items
+given on the command line, not keeping previous settings.
+
+The last form (C<status>) reports the verification status of the
+loaded repositories in the following format: One repository per line with
+4 fields separated with a single space: The tag (which can be the same 
+as the URL), the URL, the verification code (a number), and the
+verbal description of the verification status (last field extending to
+the end of line). This format is valid under machine readable output,
+while in normal output the third field (numeric verification status)
+is not present.
 
 In all cases, one of the repositories must be tagged as C<main>;
 otherwise, all operations will fail!
