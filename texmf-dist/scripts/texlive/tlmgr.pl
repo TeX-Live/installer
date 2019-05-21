@@ -8619,7 +8619,7 @@ yourself if you are using this feature and want stale symlinks removed.
 
 =item B<repository list>
 
-=item B<repository list I<path|url|tag>
+=item B<repository list I<path|url|tag>>
 
 =item B<repository add I<path> [I<tag>]>
 
