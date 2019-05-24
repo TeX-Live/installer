@@ -5493,13 +5493,14 @@ sub check_runfiles {
   # check if duplicates are different files.
   foreach my $f (@duplicates) {
     # assume tex4ht, xdy, afm stuff is ok, and don't worry about
-    # Changes, README et al.  Other per-format versions.
+    # Changes, README et al.  Other per-format versions, etc.
     next if $f =~ /\.(afm|cfg|dll|exe|4hf|htf|pm|xdy)$/;
     next if $f
       =~ /^((czech|slovak)\.sty
             |Changes
             |Makefile
             |README.*
+            |a_.*\.enc
             |cid2code\.txt
             |etex\.src
             |fithesis.*
@@ -5519,6 +5520,10 @@ sub check_runfiles {
             |texutil\.rb
             |tlmgrgui\.pl
            )$/x;
+    # For the a_.* line above: source*pro has .enc files which differ
+    # only in comments, hence the otftotfm-hashed name is the same.
+    # Seems like it could happen more or at random with other fonts too.
+    # Just have to accept ...
     #
     my @copies = grep (/\/$f$/, @runtime_files);
     # map files can be duplicated between (but not within) formats.
