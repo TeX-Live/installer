@@ -29,7 +29,6 @@ $mirrors = {
       'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
-      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
