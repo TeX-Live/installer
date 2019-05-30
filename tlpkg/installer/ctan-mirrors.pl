@@ -40,6 +40,9 @@ $mirrors = {
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1
     },
+    'Philippines' => {
+      'http://mirror.pregi.net/tex-archive/' => 1
+    },
     'Taiwan' => {
       'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
       'http://ftp.yzu.edu.tw/CTAN/' => 1
