@@ -11,8 +11,6 @@ $mirrors = {
   },
   'Asia' => {
     'China' => {
-      'http://mirror.lzu.edu.cn/CTAN/' => 1,
-      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.huaweicloud.com/repository/toolkit/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
