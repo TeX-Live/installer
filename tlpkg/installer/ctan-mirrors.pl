@@ -24,7 +24,6 @@ $mirrors = {
     },
     'Iran' => {
       'http://ctan.asis.ai/' => 1,
-      'http://ctan.um.ac.ir/' => 1,
       'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
