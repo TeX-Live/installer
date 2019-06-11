@@ -1,8 +1,5 @@
 $mirrors = {
   'Africa' => {
-    'Algeria' => {
-      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
-    },
     'South Africa' => {
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
@@ -49,9 +46,6 @@ $mirrors = {
     'Austria' => {
       'http://mirror.easyname.at/ctan/' => 1
     },
-    'Belarus' => {
-      'http://mirror.datacenter.by/pub/mirrors/CTAN/' => 1
-    },
     'Czech Republic' => {
       'http://ftp.cvut.cz/tex-archive/' => 1
     },
@@ -93,11 +87,7 @@ $mirrors = {
       'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'http://mirror.koddos.net/CTAN/' => 1
     },
-    'Norway' => {
-      'http://ctan.uib.no/' => 1
-    },
     'Poland' => {
-      'ftp://ftp.gust.org.pl/TeX/' => 1,
       'ftp://sunsite.icm.edu.pl/pub/CTAN/' => 1,
       'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
@@ -122,9 +112,6 @@ $mirrors = {
     'Spain' => {
       'http://osl.ugr.es/CTAN/' => 1
     },
-    'Sweden' => {
-      'http://ftp.acc.umu.se/mirror/CTAN/' => 1
-    },
     'Switzerland' => {
       'http://www.pirbot.com/mirrors/ctan/' => 1
     },
@@ -140,9 +127,6 @@ $mirrors = {
       'http://ctan.mirror.rafal.ca/' => 1,
       'http://mirror.its.dal.ca/ctan/' => 1,
       'http://muug.ca/mirror/ctan/' => 1
-    },
-    'Costa Rica' => {
-      'http://mirrors.ucr.ac.cr/CTAN/' => 1
     },
     'USA' => {
       'http://ctan.math.illinois.edu/' => 1,
