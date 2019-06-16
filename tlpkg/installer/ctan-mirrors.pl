@@ -1,10 +1,6 @@
 $mirrors = {
   'Africa' => {
-    'Algeria' => {
-      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
-    },
     'South Africa' => {
-      'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1
     }
@@ -19,7 +15,6 @@ $mirrors = {
       'http://mirrors.ustc.edu.cn/CTAN/' => 1
     },
     'India' => {
-      'http://ctan.imsc.res.in/' => 1,
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
@@ -58,9 +53,6 @@ $mirrors = {
     'Denmark' => {
       'http://mirrors.dotsrc.org/ctan/' => 1
     },
-    'Finland' => {
-      'ftp://ftp.funet.fi/pub/TeX/CTAN/' => 1
-    },
     'France' => {
       'http://ctan.crest.fr/tex-archive/' => 1,
       'http://ctan.mines-albi.fr/' => 1,
@@ -90,15 +82,9 @@ $mirrors = {
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
       'http://ctan.triasinformatica.nl/' => 1,
-      'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'http://mirror.koddos.net/CTAN/' => 1
     },
-    'Norway' => {
-      'http://ctan.uib.no/' => 1
-    },
     'Poland' => {
-      'ftp://ftp.gust.org.pl/TeX/' => 1,
-      'ftp://sunsite.icm.edu.pl/pub/CTAN/' => 1,
       'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
     'Portugal' => {
@@ -122,9 +108,6 @@ $mirrors = {
     'Spain' => {
       'http://osl.ugr.es/CTAN/' => 1
     },
-    'Sweden' => {
-      'http://ftp.acc.umu.se/mirror/CTAN/' => 1
-    },
     'Switzerland' => {
       'http://www.pirbot.com/mirrors/ctan/' => 1
     },
@@ -141,9 +124,6 @@ $mirrors = {
       'http://mirror.its.dal.ca/ctan/' => 1,
       'http://muug.ca/mirror/ctan/' => 1
     },
-    'Costa Rica' => {
-      'http://mirrors.ucr.ac.cr/CTAN/' => 1
-    },
     'USA' => {
       'http://ctan.math.illinois.edu/' => 1,
       'http://ctan.math.washington.edu/tex-archive/' => 1,
@@ -151,7 +131,6 @@ $mirrors = {
       'http://mirror.las.iastate.edu/tex-archive/' => 1,
       'http://mirror.utexas.edu/ctan/' => 1,
       'http://mirrors.concertpass.com/tex-archive/' => 1,
-      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'http://mirrors.rit.edu/CTAN/' => 1
     }
   },
@@ -161,11 +140,6 @@ $mirrors = {
     },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
-    }
-  },
-  'South America' => {
-    'Brazil' => {
-      'http://linorg.usp.br/CTAN/' => 1
     }
   }
 };
