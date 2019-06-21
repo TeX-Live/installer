@@ -23,7 +23,8 @@ $mirrors = {
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
-      'http://ctan.asis.ai/' => 1
+      'http://ctan.asis.ai/' => 1,
+      'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
       'ftp://ftp.kddilabs.jp/CTAN/' => 1,
