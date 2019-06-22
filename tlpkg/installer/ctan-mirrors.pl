@@ -40,9 +40,6 @@ $mirrors = {
     },
     'Philippines' => {
       'http://mirror.pregi.net/tex-archive/' => 1
-    },
-    'Taiwan' => {
-      'http://ftp.yzu.edu.tw/CTAN/' => 1
     }
   },
   'Europe' => {
@@ -110,8 +107,7 @@ $mirrors = {
     },
     'Russia' => {
       'http://ctan.altspu.ru/' => 1,
-      'http://mirror.macomnet.net/pub/CTAN/' => 1,
-      'http://mirrors.mi.ras.ru/CTAN/' => 1
+      'http://mirror.macomnet.net/pub/CTAN/' => 1
     },
     'Serbia' => {
       'http://ctan.mirror.ftn.uns.ac.rs/' => 1
