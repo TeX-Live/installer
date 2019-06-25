@@ -134,7 +134,6 @@ $mirrors = {
   },
   'North America' => {
     'Canada' => {
-      'http://ctan.forsale.plus/' => 1,
       'http://ctan.math.ca/tex-archive/' => 1,
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
