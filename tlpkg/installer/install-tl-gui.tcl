@@ -63,6 +63,35 @@ if {$::tcl_platform(platform) eq "windows"} {
 set ::advanced 0
 set ::alltrees 0
 
+proc kill_perl {} {
+  if $::perlpid {
+    catch {
+      if {$::tcl_platform(platform) eq "unix"} {
+        exec -ignorestderr kill $::perlpid
+      } else {
+        exec -ignorestderr taskkill /pid $::perlpid /t /f
+      }
+    }
+  }
+}
+
+proc err_exit {{mess ""}} {
+  if {$mess eq ""} {set mess "Error"}
+  append mess "\n" [get_stacktrace]
+  tk_messageBox -icon error -message $mess
+  # kill perl process, just in case
+  if $::perlpid {
+    catch {
+      if {$::tcl_platform(platform) eq "unix"} {
+        exec -ignorestderr kill $::perlpid
+      } else {
+        exec -ignorestderr taskkill "/pid" $::perlpid
+      }
+    }
+  }
+  exit
+} ; # err_exit
+
 # warning about non-empty target tree
 set ::td_warned 0
 
@@ -101,19 +130,19 @@ proc show_time {s} {
 # write to a logfile which is shared with the backend.
 # both parties open, append and close every time.
 
-#if {$::tcl_platform(os) eq "Darwin"} {
-#  set ::dblfile "$::env(TMPDIR)/dblog"
-#} elseif {$::tcl_platform(platform) eq "unix"} {
-#  set ::dblfile "/tmp/dblog"
-#} else {
-#  set ::dblfile "$::env(TEMP)/dblog.txt"
-#}
-#proc dblog {s} {
-#  set db [open $::dblfile a]
-#  set t [get_stacktrace]
-#  puts $db "TCL: $s\n$t"
-#  close $db
-#}
+if {$::tcl_platform(os) eq "Darwin"} {
+  set ::dblfile "$::env(TMPDIR)/dblog"
+} elseif {$::tcl_platform(platform) eq "unix"} {
+  set ::dblfile "/tmp/dblog"
+} else {
+  set ::dblfile "$::env(TEMP)/dblog.txt"
+}
+proc dblog {s} {
+  set db [open $::dblfile a]
+  set t [get_stacktrace]
+  puts $db "TCL: $s\n$t"
+  close $db
+}
 
 proc maybe_print_welcome {} {
   # if the last non-empty line was "All done", then installation is completed.
@@ -124,7 +153,7 @@ proc maybe_print_welcome {} {
   for {set i [.log.tx count -lines 1.0 end]} {$i > 0} {incr i -1} {
     set l  [.log.tx get ${i}.0 ${i}.end]
     if {$l ne ""} {
-      puts $l
+      #puts $l
       if {[string range $l 0 11] eq "Installed on"} {
         set all_done 1
       }
@@ -195,13 +224,30 @@ This should not have happened!"
   return $l
 }; # read_line_no_eof
 
+# non-blocking i/o: callback for "readable" while the splash screen is up
+# and the back end tries to contact the repository
+proc read_line_loading {} {
+  set l "" ; # will contain the line to be read
+  if {([catch {chan gets $::inst l} len] || [chan eof $::inst])} {
+    catch {chan close $::inst}
+    # note. the normal way to terminate is terminating the GUI shell.
+    # This closes stdin of the child
+  } elseif {$len >= 0} {
+    if {$l eq "endload"} {
+      chan configure $::inst -blocking 1
+      chan event $::inst readable {}
+      set ::loaded 1
+    }
+  }
+}; # read_line_loading
+
 # non-blocking i/o: callback for "readable" during stage 3, installation
 # ::out_log should no longer be needed
 proc read_line_cb {} {
   set l "" ; # will contain the line to be read
   if {([catch {chan gets $::inst l} len] || [chan eof $::inst])} {
     catch {chan close $::inst}
-    # note. the right way to terminate is terminating the GUI shell.
+    # note. the normal way to terminate is terminating the GUI shell.
     # This closes stdin of the child
     .close state !disabled
     if [winfo exists .abort] {.abort state disabled}
@@ -215,13 +261,48 @@ proc read_line_cb {} {
   }
 }; # read_line_cb
 
+proc maybe_abort {} {
+  set ans [tk_messageBox -message [__ "Really abort?"] -type yesno \
+               -default no]
+  if {$ans eq "no"} {
+    return
+  }
+  catch {chan close $::inst}
+  kill_perl
+  exit
+}
+
+# restart installer with chosen repository
+proc select_mir {m} {
+  # edit original command line by removing any repository parameter
+  # and adding a repository parameter $m
+  set i $::argc
+  while {$i > 0} {
+    incr i -1
+    set p [lindex $::argv $i]
+    if {$p eq "-repository"} {
+      set ::argv [lreplace $::argv $i [expr {$i+1}] ""]
+    }
+  }
+  # compose command line string from $::argv
+  set i -1
+  lappend ::argv "-repository" $m
+  set cmd [linsert $::argv 0 [info nameofexecutable] [info script] "--"]
+
+  # terminate back end
+  catch {chan close $::inst}
+  kill_perl
+
+  # restart install-tl with edited command-line
+  exec {*}$cmd &
+  exit
+} ; # select_mir
+
 ##############################################################
 
 ##### special-purpose uses of main window: splash, log #####
 
 proc make_splash {} {
-
-  # wm overrideredirect . true
 
   # picture and logo
   catch {
@@ -235,9 +316,19 @@ proc make_splash {} {
   # wallpaper
   pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
+  # buttons: abort button, mirrors dropdown menu
+  pack [ttk::frame .splfb] -in .bg -side bottom -fill x
+  ppack [ttk::button .spl_a -text [__ "Abort"] -command maybe_abort] \
+      -side right -in .splfb
+  ppack [mirror_menu .spl_o select_mir] -side right -in .splfb
+
+  # some text
   ppack [ttk::label .text -text [__ "TeX Live Installer"] \
              -font bigfont] -in .bg
-  ppack [ttk::label .loading -text [__ "Loading..."]] -in .bg
+  ppack [ttk::label .loading -text [__ "Trying to load %s.
+
+If this takes too long, press Abort and choose another repository." \
+                                        $::prelocation]] -in .bg
 
   wm attributes . -topmost
   update
@@ -249,7 +340,7 @@ proc make_splash {} {
 proc show_log {{do_abort 0}} {
   wm withdraw .
   foreach c [winfo children .] {
-    destroy $c
+    catch {destroy $c}
   }
 
   # wallpaper
@@ -260,16 +351,7 @@ proc show_log {{do_abort 0}} {
   ttk::button .close -text [__ "Close"] -command exit
   ppack .close -in .bottom -side right
   if $do_abort {
-    ttk::button .abort -text [__ "Cancel"]  -command {
-      set ans [tk_messageBox -message [__ "Really abort?"] -type yesno \
-                   -default no]
-      if {$ans eq "no"} return
-      catch {chan close $::inst}
-      if {$::tcl_platform(platform) eq "windows"} {
-        catch {exec  taskkill /pid $::perlpid /t /f}
-      }
-      exit
-    }
+    ttk::button .abort -text [__ "Abort"]  -command maybe_abort
     ppack .abort -in .bottom -side right
   }
   bind . <Escape> {
@@ -1133,8 +1215,8 @@ if {$::tcl_platform(platform) ne "windows"} {
     wm protocol .edsyms  WM_DELETE_WINDOW {.edsyms.cancel invoke}
     wm resizable .edsyms 1 0
     place_dlg .edsyms .
-  }
-}
+  } ; # edit_symlinks
+} ; # $::tcl_platform(platform) ne "windows"
 
 #############################################################
 
@@ -1149,12 +1231,12 @@ if {$::tcl_platform(platform) ne "windows"} {
 
 proc run_menu {} {
   if [info exists ::env(dbgui)] {
-    puts "\ndbgui: run_menu: advanced is now $::advanced"
-    puts "dbgui: run_menu: alltrees is now $::alltrees"
+    #puts "\ndbgui: run_menu: advanced is now $::advanced"
+    #puts "dbgui: run_menu: alltrees is now $::alltrees"
   }
   wm withdraw .
   foreach c [winfo children .] {
-    destroy $c
+    catch {destroy $c}
   }
 
   # wallpaper
@@ -1181,13 +1263,14 @@ proc run_menu {} {
   if {!$::advanced} {
     ppack [ttk::button .adv -text [__ "Advanced"] -command {
       set ::menu_ans "advanced"
-      if [info exists ::env(dbgui)] {puts "dbgui: requested advanced"}
+      #if [info exists ::env(dbgui)] {puts "dbgui: requested advanced"}
     }] -in .final -side left
   }
   pack [ttk::separator .seph1 -orient horizontal] \
       -in .bg -side bottom -pady 3 -fill x
 
   # directories, selections
+  # advanced and basic have different frame setups
   if $::advanced {
     pack [ttk::frame .left] -in .bg -side left -fill both -expand 1
     set curf .left
@@ -1196,8 +1279,6 @@ proc run_menu {} {
     set curf .main
   }
 
-  # labelframes do not look quite right on macos
-
   # directory section
   pack [ttk::frame .dirf] -in $curf -fill x
   grid columnconfigure .dirf 1 -weight 1
@@ -1205,6 +1286,8 @@ proc run_menu {} {
 
   if $::advanced {
     incr rw
+    # labelframes do not look quite right on macos,
+    # instead, separate label widget for title
     pgrid [ttk::label .dirftitle -text [__ "Installation root"] \
                -font hfont] \
         -in .dirf -row $rw -column 0 -columnspan 3 -sticky w
@@ -1288,7 +1371,7 @@ proc run_menu {} {
     if {!$::alltrees} {
       ttk::button .tmoreb -text [__ "More ..."] -command {
         set ::menu_ans "alltrees"
-        if [info exists ::env(dbgui)] {puts "dbgui: requested alltrees"}
+        #if [info exists ::env(dbgui)] {puts "dbgui: requested alltrees"}
       }
       pgrid .tmoreb -in .dirf -row $rw -column 2 -sticky ne
     }
@@ -1363,7 +1446,7 @@ proc run_menu {} {
   incr rw
   ttk::label .lsize -text [__ "Disk space required (in MB):"]
   ttk::label .size_req -textvariable ::vars(total_size)
-  pgrid .lsize -in $curf -row $rw -column 0 -sticky e
+  pgrid .lsize -in $curf -row $rw -column 0 -sticky w
   pgrid .size_req -in $curf -row $rw -column 1 -sticky w
 
   ########################################################
@@ -1536,10 +1619,10 @@ proc run_menu {} {
   if {[is_nonempty $::vars(TEXDIR)] && ! $::td_warned} {
     td_warn $::vars(TEXDIR)
   }
-  if [info exists ::env(dbgui)] {puts "dbgui: unsetting menu_ans"}
+  #if [info exists ::env(dbgui)] {puts "dbgui: unsetting menu_ans"}
   unset -nocomplain ::menu_ans
   vwait ::menu_ans
-  if [info exists ::env(dbgui)] {puts "dbgui0: menu_ans is $::menu_ans"}
+  #if [info exists ::env(dbgui)] {puts "dbgui0: menu_ans is $::menu_ans"}
   return $::menu_ans
 }; # run_menu
 
@@ -1733,42 +1816,44 @@ proc main_prog {} {
   wm title . [__ "TeX Live Installer"]
   wm protocol . WM_DELETE_WINDOW whataboutclose
 
-  # check for profile argument whether to put up a splash screen
+  if {[file exists $::dblfile]} {file delete $::dblfile}
+
+  # handle some command-line arguments.
+  # the argument list should already be normalized: '--' => '-', "=" => ' '
   set i 0
   set do_splash 1
+  set ::prelocation "..."
   while {$i < $::argc} {
     set p [lindex $::argv $i]
     incr i
-    if {[string range $p 0 7] eq "-profile" || \
-            [string range $p 0 8] eq "--profile"} {
+    if {$p eq "-profile"} {
+      # check for profile argument: no splash screen if present
       set do_splash 0
-      break
+      incr i
+    } elseif {$p in [list "-location" "-url" "-repository" "-repos" "-repo"]} {
+      # check for repository argument: bail out if obviously invalid
+      if {$i<$::argc} {
+        set p [lindex $::argv $i]
+        if {$p ne "ctan" && ! [possible_repository $p]} {
+          tk_messageBox -message [__ "%s not a local or remote repository" $p] \
+              -title [__ "Error"] -type ok -icon error
+          exit
+        }
+        set ::prelocation $p
+      }
+      incr i
     }
   }
   unset i
+
   if $do_splash make_splash
   unset do_splash
 
   # start install-tl-[tcl] via a pipe.
-  # the command must be a string, not a list.
-  # therefore, arguments with spaces must be quoted.
-  # although we build the command at first as a list,
-  # it will be joined into a string at a second step
-  set cmd [list ${::perlbin} "${::instroot}/install-tl" \
-               "-from_ext_gui" {*}$::argv]
-  set i 0
-  while {$i<[llength $cmd]} {
-    set c [lindex $cmd $i]
-    if {[string first " " $c] >= 0} {
-      lset cmd $i "\"$c\""
-    }
-    incr i
-  }
-  unset i
-  # tk_messageBox -message [join $cmd " "] -title "debugging"
+  set cmd [list "|${::perlbin}" "${::instroot}/install-tl" \
+               "-from_ext_gui" {*}$::argv 2>@1]
   show_time "opening pipe"
-  if [catch {open "|[join $cmd " "] 2>@1" r+} ::inst] {
-    # "2>@1" ok under Windows >= XP
+  if [catch {open $cmd r+} ::inst] {
     err_exit "Error starting Perl backend"
   }
   show_time "opened pipe"
@@ -1777,40 +1862,69 @@ proc main_prog {} {
   # for windows < 10: make sure the main window is still on top
   wm attributes . -topmost
 
-  # do not start event-driven, non-blocking io
-  # until the actual installation starts
   chan configure $::inst -buffering line -blocking 1
 
   # possible input from perl until the menu starts:
   # - question about prior canceled installation
-  # - location (=repository)
+  # - location (actual repository)
   # - menu data, help, version, print-platform
   set ::did_gui 0
   set answer ""
-  while 1 {
+  unset -nocomplain ::loaded
+  while 1 { ; # initial perl output
     set ll [read_line]
-    if {[lindex $ll 0] < 0} break
+    if {[lindex $ll 0] < 0} {
+      break
+    }
     set l [lindex $ll 1]
     # There may be occasion for a dialog
     if {$l eq "mess_yesno"} {
       answer_to_perl
-    } elseif {$l eq "menudata"} {
-      # we do want a menu, so we expect menu data,
-      # which may take a while
+    } elseif [string match "location: ?*" $l] {
+      # this one comes straight from install-tl, rather than
+      # from install-tl-extl.pl
+      # installer about to contact repository, which may
+      # fail and cause an indefinite delay
+      chan configure $::inst -blocking 0
+      chan event $::inst readable read_line_loading
+      if [winfo exists .loading] {
+        .loading configure -text [__ "Trying to load %s.
+
+If this takes too long, press Abort and choose another repository." \
+                                      [string range $l 10 end]]
+        update
+      }
+      break
+    }
+  }
+  # waiting till the repository has been loaded
+  vwait ::loaded
+  unset ::loaded
+  #puts stderr "done loading"
+  # resume reading from back end in blocking mode
+  while 1 {
+    set ll [read_line]
+    if {[lindex $ll 0] < 0} {
+      break
+    }
+    set l [lindex $ll 1]
+    if {$l eq "menudata"} {
+      # so we do want a menu and expect menu data,
+      # parsing which may take a while
       read_menu_data
       show_time "read menu data from perl"
       set ::advanced 0
       set ::alltrees 0
       set answer [run_menu]
-      if [info exists ::env(dbgui)] {puts "dbgui1: menu_ans is $::menu_ans"}
+      #if [info exists ::env(dbgui)] {puts "dbgui1: menu_ans is $::menu_ans"}
       if {$answer eq "advanced"} {
         # this could only happen if $::advanced was 0
         set ::advanced 1
-        if [info exists ::env(dbgui)] {puts "dbgui: Setting advanced to 1"}
+        #if [info exists ::env(dbgui)] {puts "dbgui: Setting advanced to 1"}
         set answer [run_menu]
         if {$answer eq "alltrees"} {
           set ::alltrees 1
-          if [info exists ::env(dbgui)] {puts "dbgui: Setting alltrees to 1"}
+          #if [info exists ::env(dbgui)] {puts "dbgui: Setting alltrees to 1"}
           set answer [run_menu]
         }
       }
@@ -1821,13 +1935,6 @@ proc main_prog {} {
       set ::out_log {}
       set answer "startinst"
       break
-    } elseif [string match "location: ?*" $l] {
-      # this one comes straight from install-tl, rather than
-      # from install-tl-extl.pl
-      if [winfo exists .loading] {
-        .loading configure -text [__ "Loading from %s" [string range $l 10 end]]
-        update
-      }
     } else {
       lappend ::out_log $l
     }

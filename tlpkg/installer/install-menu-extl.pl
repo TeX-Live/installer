@@ -61,9 +61,11 @@ $::deskintdesc[0] = "None";
 $::deskintdesc[1] = "Menu shortcuts";
 $::deskintdesc[2] = "Launcher";
 
+do_remote_init();
+print STDOUT "endload\n\n";
+
 # %vars hash should eventually include each binary, collection and scheme
 # as individual schalars.
-do_remote_init();
 # the above sub adds all platforms and collections to %vars
 # but maybe not schemes so we add these now:
 
