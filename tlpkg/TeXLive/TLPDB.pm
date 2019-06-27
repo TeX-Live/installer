@@ -2816,6 +2816,21 @@ sub check_evaluate_pinning {
   # the default main:* is always considered to be matched
   $mainpin->{'hit'} = 1;
   push @pins, $mainpin;
+  # # sort pins so that we first check specific lines without occurrences of
+  # # special characters, and then those with special characters.
+  # # The definitions are based on glob style rules, saved in $pp->{'glob'}
+  # # so we simply check whether there is * or ? in the string
+  # @pins = sort {
+  #   my $ag = $a->{'glob'};
+  #   my $bg = $b->{'glob'};
+  #   my $cAs = () = $ag =~ /\*/g; # number of * in glob of $a
+  #   my $cBs = () = $bg =~ /\*/g; # number of * in glob of $b
+  #   my $cAq = () = $ag =~ /\?/g; # number of ? in glob of $a
+  #   my $cBq = () = $bg =~ /\?/g; # number of ? in glob of $b
+  #   my $aVal = 2 * $cAs + $cAq;
+  #   my $bVal = 2 * $cBs + $cBq;
+  #   $aVal <=> $bVal
+  # } @pins;
   for my $pkg (keys %pkgs) {
     PINS: for my $pp (@pins) {
       my $pre = $pp->{'re'};
@@ -2829,8 +2844,16 @@ sub check_evaluate_pinning {
     }
   }
   # check that all pinning lines where hit
+  # If a repository has a catch-all pin
+  #   foo:*
+  # then we do not warn about any other pin (foo:abcde) not being hit.
+  my %catchall;
+  for my $p (@pins) {
+    $catchall{$p->{'repo'}} = 1 if ($p->{'glob'} eq "*");
+  }
   for my $p (@pins) {
     next if defined($p->{'hit'});
+    next if defined($catchall{$p->{'repo'}});
     tlwarn("tlmgr (TLPDB): pinning warning: the package pattern ",
            $p->{'glob'}, " on the line:\n  ", $p->{'line'},
            "\n  does not match any package\n");
