@@ -79,8 +79,7 @@ $mirrors = {
       'http://ctan.space-pro.be/tex-archive/' => 1,
       'http://ftp.fau.de/ctan/' => 1,
       'http://mirror.informatik.hs-fulda.de/tex-archive/' => 1,
-      'http://packages.oth-regensburg.de/ctan/' => 1,
-      'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1
+      'http://packages.oth-regensburg.de/ctan/' => 1
     },
     'Greece' => {
       'http://ftp.cc.uoc.gr/mirrors/CTAN/' => 1
