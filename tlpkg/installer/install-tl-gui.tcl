@@ -130,13 +130,17 @@ proc show_time {s} {
 # write to a logfile which is shared with the backend.
 # both parties open, append and close every time.
 
-if {$::tcl_platform(os) eq "Darwin"} {
-  set ::dblfile "$::env(TMPDIR)/dblog"
-} elseif {$::tcl_platform(platform) eq "unix"} {
-  set ::dblfile "/tmp/dblog"
-} else {
-  set ::dblfile "$::env(TEMP)/dblog.txt"
+set dblogdir "/tmp"
+if [info exists ::env(TMPDIR)] {
+  set dblogdir $::env(TMPDIR)
+} elseif [info exists ::env(TMP)] {
+  set dblogdir $::env(TMP)
+} elseif [info exists ::env(TEMP)] {
+  set dblogdir $::env(TEMP)
 }
+set ::dblfile [file join $dblogdir "dblog"]
+unset dblogdir
+
 proc dblog {s} {
   set db [open $::dblfile a]
   set t [get_stacktrace]
@@ -1856,6 +1860,7 @@ proc main_prog {} {
   if [catch {open $cmd r+} ::inst] {
     err_exit "Error starting Perl backend"
   }
+
   show_time "opened pipe"
   set ::perlpid [pid $::inst]
 
