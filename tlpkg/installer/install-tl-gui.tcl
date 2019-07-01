@@ -56,7 +56,8 @@ set ::out_log {}; # list of strings
 
 set ::perlbin "perl"
 if {$::tcl_platform(platform) eq "windows"} {
-  set ::perlbin "${::instroot}/tlpkg/tlperl/bin/perl.exe"
+  # the batch wrapper should have put perl.exe on the searchpath
+  set ::perlbin "perl.exe"
 }
 
 # menu modes
@@ -331,7 +332,7 @@ proc make_splash {} {
              -font bigfont] -in .bg
   ppack [ttk::label .loading -text [__ "Trying to load %s.
 
-If this takes too long, press Abort and choose another repository." \
+If this takes too long, press Abort or choose another repository." \
                                         $::prelocation]] -in .bg
 
   wm attributes . -topmost
