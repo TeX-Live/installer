@@ -31,6 +31,21 @@ BEGIN {
   unshift (@INC, "$::installerdir/tlpkg");
 }
 
+# debugging communication with external gui: use shared logfile
+
+our $dblfile = "/tmp/dblog";
+$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O =~ /^MSWin/i);
+$dblfile = $ENV{'TMPDIR'} . "/dblog" if ($^O eq 'darwin'
+                                         && exists $ENV{'TMPDIR'});
+sub dblog {
+  my $s = shift;
+  open(my $dbf, ">>", $dblfile);
+  print $dbf "PERL: $s\n";
+  close $dbf;
+}
+
+dblog(join("\n", @ARGV));
+
 # On unix, this run of install-tl may do duty as a wrapper for
 # install-tl-gui.tcl, which in its turn will start an actual run of install-tl.
 # Skip this wrapper block if we can easily rule out a tcl gui:
@@ -169,19 +184,6 @@ use strict;
 
 # global list of warnings
 @::WARNLINES = ();
-
-# debugging communication with external gui: use shared logfile
-
-our $dblfile = "/tmp/dblog";
-$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O =~ /^MSWin/i);
-$dblfile = $ENV{'TMPDIR'} . "/dblog" if ($^O eq 'darwin'
-                                         && exists $ENV{'TMPDIR'});
-sub dblog {
-  my $s = shift;
-  open(my $dbf, ">>", $dblfile);
-  print $dbf "PERL: $s\n";
-  close $dbf;
-}
 
 # we play around with the environment, place to keep original
 my %origenv = ();
@@ -703,7 +705,7 @@ if ($opt_profile eq "") {
   }
   read_profile($opt_profile);
   if ($from_ext_gui) {
-    print STDOUT "endload\n\n";
+    #print STDOUT "endload\n\n";
     print STDOUT "startinst\n";
   }
 }
