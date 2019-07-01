@@ -44,7 +44,6 @@ sub dblog {
   close $dbf;
 }
 
-dblog(join("\n", @ARGV));
 
 # On unix, this run of install-tl may do duty as a wrapper for
 # install-tl-gui.tcl, which in its turn will start an actual run of install-tl.
@@ -705,7 +704,6 @@ if ($opt_profile eq "") {
   }
   read_profile($opt_profile);
   if ($from_ext_gui) {
-    #print STDOUT "endload\n\n";
     print STDOUT "startinst\n";
   }
 }
