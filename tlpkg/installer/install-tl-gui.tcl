@@ -98,7 +98,7 @@ set ::td_warned 0
 
 proc is_nonempty {td} {
   if {! [file exists $td]} {return 0}
-  return [expr {[llength [glob -directory $td *]] > 0}]
+  return [expr {[llength [glob -nocomplain -directory $td *]] > 0}]
 }
 
 proc td_warn {td} {
