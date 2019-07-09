@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-07-02 01:58+0200\n"
+"POT-Creation-Date: 2019-07-09 01:53+0200\n"
 "PO-Revision-Date: 2019-03-26 09:17+0800\n"
 "Last-Translator: Vladimir Lomov <irk.translator@yandex.ru>\n"
 "Language-Team: Russian <tldoc@tug.org>\n"
@@ -52,7 +52,7 @@ msgstr "Процесс установки"
 #: tlpkg/installer/install-tl-gui.tcl:848
 #: tlpkg/installer/install-tl-gui.tcl:917
 #: tlpkg/installer/install-tl-gui.tcl:996
-#: tlpkg/installer/install-tl-gui.tcl:1214 tlpkg/tltcl/tltcl.tcl:571
+#: tlpkg/installer/install-tl-gui.tcl:1214 tlpkg/tltcl/tltcl.tcl:572
 #: texmf-dist/scripts/tlshell/tlshell.tcl:164
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1224
 msgid "Cancel"
@@ -338,7 +338,7 @@ msgstr ""
 #: tlpkg/installer/install-menu-perltk.pl:1239
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:700
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1109
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:360
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:361
 #: texmf-dist/scripts/tlshell/tlshell.tcl:158
 msgid "Yes"
 msgstr "Да"
@@ -356,7 +356,7 @@ msgstr "Да"
 #: tlpkg/installer/install-menu-perltk.pl:1252
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:700
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1109
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:362
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:363
 #: texmf-dist/scripts/tlshell/tlshell.tcl:160
 msgid "No"
 msgstr "Нет"
@@ -481,7 +481,7 @@ msgstr "Выберите другое зеркало."
 #: tlpkg/installer/install-tl-gui.tcl:845
 #: tlpkg/installer/install-tl-gui.tcl:900
 #: tlpkg/installer/install-tl-gui.tcl:993
-#: tlpkg/installer/install-tl-gui.tcl:1212 tlpkg/tltcl/tltcl.tcl:569
+#: tlpkg/installer/install-tl-gui.tcl:1212 tlpkg/tltcl/tltcl.tcl:570
 #: texmf-dist/scripts/tlshell/tlshell.tcl:154
 msgid "Ok"
 msgstr "Ок"
@@ -1547,7 +1547,7 @@ msgid "Installation root"
 msgstr "Корневой каталог установки"
 
 #: tlpkg/installer/install-tl-gui.tcl:556
-#: tlpkg/installer/install-tl-gui.tcl:1192 tlpkg/tltcl/tltcl.tcl:561
+#: tlpkg/installer/install-tl-gui.tcl:1192 tlpkg/tltcl/tltcl.tcl:562
 msgid "Browse..."
 msgstr "Обзор..."
 
@@ -1729,7 +1729,7 @@ msgstr "Определённое зеркало..."
 msgid "No mirror list available"
 msgstr ""
 
-#: tlpkg/tltcl/tltcl.tcl:642
+#: tlpkg/tltcl/tltcl.tcl:643
 msgid "Select or type"
 msgstr "Выберите или введите"
 
