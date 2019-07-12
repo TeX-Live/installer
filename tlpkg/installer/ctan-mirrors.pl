@@ -65,6 +65,7 @@ $mirrors = {
     'France' => {
       'http://ctan.crest.fr/tex-archive/' => 1,
       'http://ctan.mines-albi.fr/' => 1,
+      'http://ctan.tetaneutral.net/' => 1,
       'http://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'http://mirror.ibcp.fr/pub/CTAN/' => 1,
       'http://mirrors.ircam.fr/pub/CTAN/' => 1,
@@ -138,7 +139,8 @@ $mirrors = {
       'http://ctan.math.ca/tex-archive/' => 1,
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
-      'http://mirror.its.dal.ca/ctan/' => 1
+      'http://mirror.its.dal.ca/ctan/' => 1,
+      'http://muug.ca/mirror/ctan/' => 1
     },
     'Costa Rica' => {
       'http://mirrors.ucr.ac.cr/CTAN/' => 1
