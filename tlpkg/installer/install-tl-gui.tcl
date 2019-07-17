@@ -44,7 +44,7 @@ catch {rename send {}}
 set ::instroot [file normalize [info script]]
 set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
 
-# declarations and procs shared with tlshell.tcl
+# declarations, initializations and procs shared with tlshell.tcl
 source [file join $::instroot "tlpkg" "tltcl" "tltcl.tcl"]
 
 ### initialize some globals ###
@@ -68,7 +68,7 @@ proc kill_perl {} {
   if $::perlpid {
     catch {
       if {$::tcl_platform(platform) eq "unix"} {
-        exec -ignorestderr kill $::perlpid
+        exec -ignorestderr kill $::perlpid >& /dev/null
       } else {
         exec -ignorestderr taskkill /pid $::perlpid /t /f
       }
@@ -81,15 +81,7 @@ proc err_exit {{mess ""}} {
   append mess "\n" [get_stacktrace]
   tk_messageBox -icon error -message $mess
   # kill perl process, just in case
-  if $::perlpid {
-    catch {
-      if {$::tcl_platform(platform) eq "unix"} {
-        exec -ignorestderr kill $::perlpid
-      } else {
-        exec -ignorestderr taskkill "/pid" $::perlpid
-      }
-    }
-  }
+  kill_perl
   exit
 } ; # err_exit
 
@@ -158,7 +150,6 @@ proc maybe_print_welcome {} {
   for {set i [.log.tx count -lines 1.0 end]} {$i > 0} {incr i -1} {
     set l  [.log.tx get ${i}.0 ${i}.end]
     if {$l ne ""} {
-      #puts $l
       if {[string range $l 0 11] eq "Installed on"} {
         set all_done 1
       }
@@ -280,7 +271,7 @@ proc maybe_abort {} {
 # restart installer with chosen repository
 proc select_mir {m} {
   # edit original command line by removing any repository parameter
-  # and adding a repository parameter $m
+  # and adding a repository parameter $m. same for language
   set i $::argc
   while {$i > 0} {
     incr i -1
@@ -288,10 +279,14 @@ proc select_mir {m} {
     if {$p eq "-repository"} {
       set ::argv [lreplace $::argv $i [expr {$i+1}] ""]
     }
+    if {$p eq "-lang" || $p eq "-gui-lang"} {
+      set ::argv [lreplace $::argv $i [expr {$i+1}] ""]
+    }
   }
   # compose command line string from $::argv
   set i -1
   lappend ::argv "-repository" $m
+  lappend ::argv "-lang" $::lang
   set cmd [linsert $::argv 0 [info nameofexecutable] [info script] "--"]
 
   # terminate back end
@@ -441,7 +436,8 @@ proc edit_name {} {
   # widgets
   ttk::label .tled.l -text [__ "Change name (slashes not allowed)"]
   pack .tled.l -in .tled.bg -padx 5 -pady 5
-  ttk::entry .tled.e -width 20 -state normal
+  ttk::entry .tled.e -width 20
+  .tled.e state !disabled
   pack .tled.e -in .tled.bg -pady 5
   .tled.e insert 0 [.tltd.name_l cget -text]
 
