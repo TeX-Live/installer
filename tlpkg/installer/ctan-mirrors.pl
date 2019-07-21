@@ -19,7 +19,6 @@ $mirrors = {
       'http://mirrors.ustc.edu.cn/CTAN/' => 1
     },
     'India' => {
-      'http://ctan.imsc.res.in/' => 1,
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
@@ -139,7 +138,8 @@ $mirrors = {
       'http://ctan.math.ca/tex-archive/' => 1,
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
-      'http://mirror.its.dal.ca/ctan/' => 1
+      'http://mirror.its.dal.ca/ctan/' => 1,
+      'http://muug.ca/mirror/ctan/' => 1
     },
     'Costa Rica' => {
       'http://mirrors.ucr.ac.cr/CTAN/' => 1
@@ -148,7 +148,6 @@ $mirrors = {
       'http://ctan.math.illinois.edu/' => 1,
       'http://ctan.math.washington.edu/tex-archive/' => 1,
       'http://ctan.mirrors.hoobly.com/' => 1,
-      'http://mirror.las.iastate.edu/tex-archive/' => 1,
       'http://mirror.utexas.edu/ctan/' => 1,
       'http://mirrors.concertpass.com/tex-archive/' => 1,
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
