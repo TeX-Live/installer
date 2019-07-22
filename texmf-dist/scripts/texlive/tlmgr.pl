@@ -4798,7 +4798,8 @@ sub action_platform {
                            dviout.win32 wintools.win32/;
   if ($^O =~ /^MSWin/i) {
     warn("action `platform' not supported on Windows\n");
-    return ($F_WARNING);
+    # return an error here so that we don't go into post-actions
+    return ($F_ERROR);
   }
   if ($opts{"usermode"}) {
     tlwarn("$prg: action `platform' not supported in usermode\n");
