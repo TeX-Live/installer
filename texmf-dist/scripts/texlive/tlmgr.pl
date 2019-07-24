@@ -6878,7 +6878,7 @@ sub setup_one_remotetlpdb {
   # - if that does not work assume we are offline or target not reachable,
   #   so warn the user and use saved, but note that installation will
   #   not work
-  info("$prg: Start loading tlpdb from $location\n");
+  info("start load $location\n") if ($::machinereadable);
 
   my $local_copy_tlpdb_used = 0;
   if ($location =~ m;^(https?|ftp)://;) {
@@ -6961,11 +6961,11 @@ END_NO_INTERNET
     }
   }
   if (!defined($remotetlpdb)) {
-    info("$prg: Failed loading tlpdb from $location\n");
+    info("fail load $location\n") if ($::machinereadable);
     return(undef, $loadmediasrcerror . $location);
   }
   if ($opts{"require-verification"} && !$remotetlpdb->is_verified) {
-    info("$prg: Failed loading tlpdb from $location\n");
+    info("fail load $location\n") if ($::machinereadable);
     tldie("Remote TeX Live database ($location) is not verified, exiting.\n");
   }
 
@@ -6985,7 +6985,7 @@ END_NO_INTERNET
   my $texlive_minrelease = $remotetlpdb->config_minrelease;
   my $rroot = $remotetlpdb->root;
   if (!defined($texlive_release)) {
-    info("$prg: Failed loading tlpdb from $location\n");
+    info("fail load $location\n") if ($::machinereadable);
     return(undef, "The installation repository ($rroot) does not specify a "
           . "release year for which it was prepared, goodbye.");
   }
@@ -6993,7 +6993,7 @@ END_NO_INTERNET
   my $texlive_release_year = $texlive_release;
   $texlive_release_year =~ s/^(....).*$/$1/;
   if ($texlive_release_year !~ m/^[1-9][0-9][0-9][0-9]$/) {
-    info("$prg: Failed loading tlpdb from $location\n");
+    info("fail load $location\n") if ($::machinereadable);
     return(undef, "The installation repository ($rroot) does not specify a "
           . "valid release year, goodbye: $texlive_release");
   }
@@ -7003,14 +7003,14 @@ END_NO_INTERNET
     my $texlive_minrelease_year = $texlive_minrelease;
     $texlive_minrelease_year =~ s/^(....).*$/$1/;
     if ($texlive_minrelease_year !~ m/^[1-9][0-9][0-9][0-9]$/) {
-      info("$prg: Failed loading tlpdb from $location\n");
+      info("fail load $location\n") if ($::machinereadable);
       return(undef, "The installation repository ($rroot) does not specify a "
             . "valid minimal release year, goodbye: $texlive_minrelease");
     }
     # ok, all numeric and fine, check for range
     if ($TeXLive::TLConfig::ReleaseYear < $texlive_minrelease_year
         || $TeXLive::TLConfig::ReleaseYear > $texlive_release_year) {
-      info("$prg: Failed loading tlpdb from $location\n");
+      info("fail load $location\n") if ($::machinereadable);
       return (undef, "The TeX Live versions supported by the repository
 $rroot
   ($texlive_minrelease_year--$texlive_release_year)
@@ -7022,7 +7022,7 @@ do not include the version of the local installation
     # of the main remote repository, then
     # warn that one needs to call update-tlmgr-latest.sh --update
     if ($is_main && $TeXLive::TLConfig::ReleaseYear < $texlive_release_year) {
-      info("$prg: Failed loading tlpdb from $location\n");
+      info("fail load $location\n") if ($::machinereadable);
       return (undef, "Local TeX Live ($TeXLive::TLConfig::ReleaseYear)"
               . " is older than remote repository ($texlive_release_year).\n"
               . "Cross release updates are only supported with\n"
@@ -7032,7 +7032,7 @@ do not include the version of the local installation
   } else {
     # $texlive_minrelease not defined, so only one year is valid
     if ($texlive_release_year != $TeXLive::TLConfig::ReleaseYear) {
-      info("$prg: Failed loading tlpdb from $location\n");
+      info("fail load $location\n") if ($::machinereadable);
       return(undef, "The TeX Live versions of the local installation
 and the repository are not compatible:
       local: $TeXLive::TLConfig::ReleaseYear
@@ -7075,7 +7075,7 @@ FROZEN
     }
   }
 
-  info("$prg: Finished loading tlpdb from $location\n");
+  info("finish load $location\n") if ($::machinereadable);
   return($remotetlpdb);
 }
 
