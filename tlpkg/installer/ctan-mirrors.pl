@@ -33,8 +33,6 @@ $mirrors = {
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
     },
     'Korea' => {
-      'http://ftp.harukasan.org/CTAN/' => 1,
-      'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1
     },
@@ -48,7 +46,8 @@ $mirrors = {
   },
   'Europe' => {
     'Austria' => {
-      'http://mirror.easyname.at/ctan/' => 1
+      'http://mirror.easyname.at/ctan/' => 1,
+      'http://mirror.kumi.systems/ctan/' => 1
     },
     'Belarus' => {
       'http://mirror.datacenter.by/pub/mirrors/CTAN/' => 1
@@ -103,6 +102,7 @@ $mirrors = {
       'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
     'Portugal' => {
+      'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
       'http://mirrors.up.pt/pub/CTAN/' => 1
     },
     'Romania' => {
