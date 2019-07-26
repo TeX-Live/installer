@@ -5458,14 +5458,15 @@ sub check_files {
 sub check_runfiles {
   my $Master = $localtlpdb->root;
 
-  # build a list of all runtime files associated to 'normal' packages
-  (my $non_normal = `ls "$Master/bin"`) =~ s/\n/\$|/g; # binaries
-  $non_normal .= '^0+texlive|^bin-|^collection-|^scheme-|^texlive-|^texworks';
-  $non_normal .= '|^pgf$';  # has lots of intentionally duplicated .lua
+  # build a list of all runtime files associated with normal packages.
+  (my $omit_pkgs = `ls "$Master/bin"`) =~ s/\n/\$|/g; # binaries
+  $omit_pkgs .= '^0+texlive|^bin-|^collection-|^scheme-|^texlive-|^texworks';
+  $omit_pkgs .= '|^pgf$';           # intentionally duplicated .lua
+  $omit_pkgs .= '|^latex-.*-dev$';  # intentionally duplicated base latex
   my @runtime_files = ();
   #
   foreach my $tlpn ($localtlpdb->list_packages) {
-    next if ($tlpn =~ /$non_normal/);
+    next if $tlpn =~ /$omit_pkgs/;
     #
     my $tlp = $localtlpdb->get_package($tlpn);
     my @files = $tlp->runfiles;
