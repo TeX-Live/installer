@@ -64,6 +64,9 @@ if {$::tcl_platform(platform) eq "windows"} {
 set ::advanced 0
 set ::alltrees 0
 
+# interactively select repository
+set ::select_repo 0
+
 proc kill_perl {} {
   if $::perlpid {
     catch {
@@ -268,25 +271,54 @@ proc maybe_abort {} {
   exit
 }
 
-# restart installer with chosen repository
-proc select_mir {m} {
+# modify parameter list for either restarting gui installer
+# or for starting back end
+
+proc replace_lang_parameter {} {
+  # edit original command line by removing any language parameter
+  # and adding a repository parameter $m. same for language
+  set i [llength $::argv]
+  while {$i > 0} {
+    incr i -1
+    set p [lindex $::argv $i]
+    if {$p eq "-lang" || $p eq "-gui-lang"} {
+      set j [expr {$i+1}]
+      if {$j < [llength $::argv]} {
+        set ::argv [lreplace $::argv $i $j]
+      } else {
+        set ::argv [lreplace $::argv $i]
+      }
+      set ::argv [lreplace $::argv $i [expr {$i+1}]]
+    }
+  }
+  lappend ::argv "-lang" $::lang
+}
+
+proc replace_repo_parameter {m} {
   # edit original command line by removing any repository parameter
   # and adding a repository parameter $m. same for language
   set i $::argc
   while {$i > 0} {
     incr i -1
     set p [lindex $::argv $i]
-    if {$p eq "-repository"} {
-      set ::argv [lreplace $::argv $i [expr {$i+1}] ""]
-    }
-    if {$p eq "-lang" || $p eq "-gui-lang"} {
-      set ::argv [lreplace $::argv $i [expr {$i+1}] ""]
+    if {$p in [list "-location" "-url" "-repository" "-repos" "-repo"]} {
+      set j [expr {$i+1}]
+      if {$j < [llength $::argv]} {
+        set ::argv [lreplace $::argv $i $j]
+      } else {
+        set ::argv [lreplace $::argv $i]
+      }
     }
   }
-  # compose command line string from $::argv
-  set i -1
   lappend ::argv "-repository" $m
-  lappend ::argv "-lang" $::lang
+}
+
+# restart installer with chosen repository
+proc restart_with_mir {m} {
+  # edit original command line by removing any repository parameter
+  # and adding a repository parameter $m. same for language
+  replace_repo_parameter $m
+  replace_lang_parameter
   set cmd [linsert $::argv 0 [info nameofexecutable] [info script] "--"]
 
   # terminate back end
@@ -296,39 +328,93 @@ proc select_mir {m} {
   # restart install-tl with edited command-line
   exec {*}$cmd &
   exit
-} ; # select_mir
+} ; # restart_with_mir
+
+proc continue_with_mir {m} {
+  replace_repo_parameter $m
+  set ::mir_selected 1 ; # this will cause select_mirror to finish up
+}
+
+# add $::instroot as local repository if applicable
+proc mirror_menu_plus {wnd cmd} {
+  set have_local 0
+  if [file isdirectory [file join $::instroot "archive"]] {
+    set have_local 1
+  } elseif [file readable \
+                [file join $::instroot "texmf-dist" "web2c" "texmf.cnf"]] {
+    set have_local 1
+  }
+  mirror_menu $wnd $cmd
+  if {[winfo class $wnd] ne "TMenubutton"} {
+    error_exit "No mirror list found"
+  } else {
+    if $have_local {
+      $wnd.m insert 0 command -label "$::instroot ([__ "Local repository"])" \
+          -command "$cmd $::instroot"
+    }
+  }
+  return $wnd
+}
 
 ##############################################################
 
-##### special-purpose uses of main window: splash, log #####
+##### special-purpose uses of main window: select_mirror, splash, log #####
 
-proc make_splash {} {
+proc pre_splash {} {
+  # build splash window minus buttons
+  wm withdraw .
 
   # picture and logo
   catch {
     image create photo tlimage -file \
         [file join $::instroot "tlpkg" "installer" "texlion.gif"]
-    pack [frame .white -background white] -fill x -expand 1
+    pack [frame .white -background white] -side top -fill x -expand 1
     label .image -image tlimage -background white
     pack .image -in .white
   }
 
-  # wallpaper
+  # wallpaper for remaining widgets
   pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
   # buttons: abort button, mirrors dropdown menu
   pack [ttk::frame .splfb] -in .bg -side bottom -fill x
+}
+
+proc select_mirror {} {
+
+  # buttons: abort button, mirrors dropdown menu, continue
+  ppack [mirror_menu_plus .splfb.slmir_m continue_with_mir] \
+      -side right
+  ppack [ttk::button .splfb.slmir_a -text [__ "Abort"] -command maybe_abort] \
+      -side right
+
+  wm attributes . -topmost
+  update
+  wm state . normal
+  raise .
+  vwait ::mir_selected
+} ; # select_mirror
+
+proc make_splash {} {
+
+  foreach c [winfo children .splfb] {
+    catch {destroy $c}
+  }
+  update
+
   ppack [ttk::button .spl_a -text [__ "Abort"] -command maybe_abort] \
       -side right -in .splfb
-  ppack [mirror_menu .spl_o select_mir] -side right -in .splfb
+  ppack [mirror_menu_plus .spl_o restart_with_mir] -side right -in .splfb
 
   # some text
   ppack [ttk::label .text -text [__ "TeX Live Installer"] \
              -font bigfont] -in .bg
-  ppack [ttk::label .loading -text [__ "Trying to load %s.
+  if {! $::select_repo} {
+    ppack [ttk::label .loading -text [__ "Trying to load %s.
 
 If this takes too long, press Abort or choose another repository." \
-                                        $::prelocation]] -in .bg
+                                          $::prelocation]] -in .bg
+  }
 
   wm attributes . -topmost
   update
@@ -1824,31 +1910,54 @@ proc main_prog {} {
   set i 0
   set do_splash 1
   set ::prelocation "..."
-  while {$i < $::argc} {
+  set ::mir_selected 1 ; # i.e. default or set by parameter
+  set i [llength $::argv]
+  while {$i > 0} {
+    incr i -1
     set p [lindex $::argv $i]
-    incr i
     if {$p eq "-profile"} {
       # check for profile argument: no splash screen if present
       set do_splash 0
-      incr i
     } elseif {$p in [list "-location" "-url" "-repository" "-repos" "-repo"]} {
       # check for repository argument: bail out if obviously invalid
-      if {$i<$::argc} {
-        set p [lindex $::argv $i]
+      set j [expr {$i+1}]
+      if {$j<[llength $::argv]} {
+        set p [lindex $::argv $j]
+        unset j
         if {$p ne "ctan" && ! [possible_repository $p]} {
           tk_messageBox -message [__ "%s not a local or remote repository" $p] \
               -title [__ "Error"] -type ok -icon error
           exit
         }
         set ::prelocation $p
+      } else {
+        tk_messageBox -message [__ "%s requires an argument" $p] \
+            -title [__ "Error"] -type ok -icon error
+        exit
       }
-      incr i
+    } elseif {$p eq "-select-repository"} {
+      # in this case, we start with selecting a repository
+      # from a mirror list and modify ::argv to take the selection
+      # into account before contacting the perl back end.
+      unset -nocomplain ::mir_selected
+      # remove this argument
+      set ::argv [lreplace $::argv $i $i]
     }
   }
   unset i
 
+  if {$do_splash || ! [info exists ::mir_selected]} pre_splash
+
+  if {! [info exists ::mir_selected]} {
+    select_mirror
+  }
+
   if $do_splash make_splash
   unset do_splash
+
+  if {! [info exist ::mir_selected]} {
+    vwait ::mir_selected
+  }
 
   # start install-tl-[tcl] via a pipe.
   set cmd [list "|${::perlbin}" "${::instroot}/install-tl" \
@@ -1892,7 +2001,7 @@ proc main_prog {} {
       if [winfo exists .loading] {
         .loading configure -text [__ "Trying to load %s.
 
-If this takes too long, press Abort and choose another repository." \
+If this takes too long, press Abort or choose another repository." \
                                       [string range $l 10 end]]
         update
       }
