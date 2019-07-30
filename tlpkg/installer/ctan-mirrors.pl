@@ -112,6 +112,7 @@ $mirrors = {
     },
     'Russia' => {
       'http://ctan.altspu.ru/' => 1,
+      'http://mirror.macomnet.net/pub/CTAN/' => 1,
       'http://mirrors.mi.ras.ru/CTAN/' => 1
     },
     'Serbia' => {
