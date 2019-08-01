@@ -60,6 +60,9 @@ $mirrors = {
     'Denmark' => {
       'http://mirrors.dotsrc.org/ctan/' => 1
     },
+    'Finland' => {
+      'ftp://ftp.funet.fi/pub/TeX/CTAN/' => 1
+    },
     'France' => {
       'http://ctan.crest.fr/tex-archive/' => 1,
       'http://ctan.mines-albi.fr/' => 1,
@@ -160,11 +163,6 @@ $mirrors = {
     },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
-    }
-  },
-  'South America' => {
-    'Brazil' => {
-      'http://linorg.usp.br/CTAN/' => 1
     }
   }
 };
