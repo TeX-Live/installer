@@ -5500,6 +5500,7 @@ sub check_runfiles {
     next if $f
       =~ /^((czech|slovak)\.sty
             |Changes
+            |LICENSE.*
             |Makefile
             |README.*
             |a_.*\.enc
