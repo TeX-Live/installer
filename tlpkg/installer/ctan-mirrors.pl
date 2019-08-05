@@ -163,10 +163,5 @@ $mirrors = {
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
     }
-  },
-  'South America' => {
-    'Brazil' => {
-      'http://linorg.usp.br/CTAN/' => 1
-    }
   }
 };
