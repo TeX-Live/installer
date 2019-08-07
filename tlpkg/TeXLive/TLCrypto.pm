@@ -472,9 +472,11 @@ cryptographic signature verification of
   $file
 against
   $signature_url
-failed. Output was
+failed. Output was:
 $out
-Please report to texlive\@tug.org
+Please try from a different mirror and/or wait a few minutes
+and try again; usually this is because of transient updates.
+If problems persist, feel free to report to texlive\@tug.org.
 GPGERROR
       }
     } else {
