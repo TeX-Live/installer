@@ -355,8 +355,9 @@ sub from_file {
         # do nothing
       } else {
         unlink($tlpdbfile);
-        tldie(  "$0: TLPDB::from_file could not download $path;\n"
-              . "$0: maybe the repository setting should be changed.\n");
+        tldie(  "$0: TLPDB::from_file could not initialize from: $path\n"
+              . "$0: Maybe the repository setting should be changed.\n"
+              . "$0: More info: https://tug.org/texlive/acquire.html\n");
       }
     }
     # if we are still here, then either the xz version was downloaded

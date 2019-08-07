@@ -775,7 +775,8 @@ sub only_load_remote {
   $location = $selected_location if defined($selected_location);
   $location || ($location = "$::installerdir");
   if ($location =~ m!^(ctan$|(https?|ftp)://)!i) {
-    $location =~ s,/(tlpkg|archive)?/*$,,;  # remove any trailing tlpkg or /
+    # remove any trailing tlpkg[/texlive.tlpdb] or /
+    $location =~ s,/(tlpkg(/texlive\.tlpdb)?|archive)?/*$,,;
     if ($location =~ m/^ctan$/i) {
       $location = TeXLive::TLUtils::give_ctan_mirror();
     } elsif ($location =~ m/^$TeXLiveServerURL/) {
