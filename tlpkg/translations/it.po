@@ -1596,7 +1596,7 @@ msgstr "Lingue"
 
 #: tlpkg/installer/install-tl-gui.tcl:1108
 msgid "Other collections"
-msgstr "Altre coollezioni"
+msgstr "Altre collezioni"
 
 #: tlpkg/installer/install-tl-gui.tcl:1231
 msgid "Warning. Not all configured directories are writable!"
