@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-08-08 01:53+0200\n"
-"PO-Revision-Date: 2019-03-25 15:43+0900\n"
+"PO-Revision-Date: 2019-08-28 12:20+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
@@ -1485,7 +1485,7 @@ msgstr "本当に中止しますか？"
 
 #: tlpkg/installer/install-tl-gui.tcl:352
 msgid "Local repository"
-msgstr ""
+msgstr "ローカルリポジトリ"
 
 #: tlpkg/installer/install-tl-gui.tcl:388
 #: tlpkg/installer/install-tl-gui.tcl:405
@@ -1507,6 +1507,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"%s をロードしています．\n"
+"\n"
+"処理に時間がかかり過ぎる場合は「中止」を押すか別のリポジトリを選択してくださ"
+"い．"
 
 #: tlpkg/installer/install-tl-gui.tcl:504
 msgid "Cannot be created or cannot be written to"
@@ -1706,18 +1710,18 @@ msgstr "ススタムスキーム"
 #: tlpkg/installer/install-tl-gui.tcl:1928
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s はローカルリポジトリでもリモートリポジトリでもありません"
 
 #: tlpkg/installer/install-tl-gui.tcl:1929
 #: tlpkg/installer/install-tl-gui.tcl:1935
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2027
 msgid "Error"
-msgstr ""
+msgstr "エラー"
 
 #: tlpkg/installer/install-tl-gui.tcl:1934
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s には引数が必要です"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1725,7 +1729,7 @@ msgstr "特定のミラーを選択…"
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "利用可能なミラーリストがありません"
 
 #: tlpkg/tltcl/tltcl.tcl:643
 msgid "Select or type"
@@ -1759,11 +1763,13 @@ msgstr "不明"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:761
 msgid "Loading"
-msgstr ""
+msgstr "ロード中"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:771
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
+"処理に時間がかかり過ぎる場合は「中止」を押すか別のリポジトリを選択してくださ"
+"い．"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:773
 #, tcl-format
@@ -1772,6 +1778,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort and choose another repository."
 msgstr ""
+"%s をロードしています．\n"
+"\n"
+"処理に時間がかかり過ぎる場合は「中止」を押すか別のリポジトリを選択してくださ"
+"い．"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:778
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2026
@@ -1798,11 +1808,11 @@ msgstr "%s はリポジトリではありません"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1080
 msgid "No repositories"
-msgstr ""
+msgstr "リポジトリがありません"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1085
 msgid "Multiple repositories"
-msgstr ""
+msgstr "複数のリポジトリ"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1088
 msgid "Not loaded"
@@ -1810,7 +1820,7 @@ msgstr "未読み込み"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1116
 msgid "Actual repository"
-msgstr ""
+msgstr "実際のリポジトリ"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1200
 msgid "Main Repository"
@@ -1890,7 +1900,7 @@ msgstr "バックアップディレクトリ %s が存在しません"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1501
 #, tcl-format
 msgid "No packages in backup directory %s"
-msgstr "バックアップディレクトリにパッケージがありません"
+msgstr "バックアップディレクトリ %s にパッケージがありません"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1511
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2258
@@ -1911,11 +1921,11 @@ msgstr "すべて復元"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1588
 msgid "Close this shell and run in an administrative command-prompt:"
-msgstr ""
+msgstr "このシェルを閉じて，管理者権限のコマンドプロンプトで実行してください："
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1590
 msgid "Close this shell and run in a command-prompt:"
-msgstr ""
+msgstr "このシェルを閉じて，コマンドプロンプトで実行してください："
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1599
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1631
@@ -1997,6 +2007,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s はローカルリポジトリでもリモートリポジトリでもありません．\n"
+"有効なリポジトリを設定してください"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2046
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2072
@@ -2005,7 +2017,7 @@ msgstr "ファイル"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2074
 msgid "Load repository"
-msgstr ""
+msgstr "リポジトリを読み込む"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2076
 msgid "Exit"
@@ -2072,7 +2084,7 @@ msgstr "tlmgr コマンド："
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2188
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "ルートは %s です"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2196
 msgid "Package list"
@@ -2152,14 +2164,16 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"%s は書き込み不能です．多くの処理が完了できない可能性があります．  それでも続"
+"行しますか？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2404
 msgid "Multi-user"
-msgstr ""
+msgstr "マルチユーザ"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2404
 msgid "Single-user"
-msgstr ""
+msgstr "シングルユーザ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
