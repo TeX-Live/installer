@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-08-08 01:53+0200\n"
-"PO-Revision-Date: 2019-04-05 22:13+0200\n"
+"PO-Revision-Date: 2019-08-30 13:52+0200\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: nl\n"
@@ -1487,7 +1487,7 @@ msgstr "Zeker weten?"
 
 #: tlpkg/installer/install-tl-gui.tcl:352
 msgid "Local repository"
-msgstr ""
+msgstr "Lokale installatie-bron"
 
 #: tlpkg/installer/install-tl-gui.tcl:388
 #: tlpkg/installer/install-tl-gui.tcl:405
@@ -1509,6 +1509,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Poging om te laden vanuit %s.\n"
+"\n"
+"Als het te lang duurt, klik dan op Afbreken of kies een andere installatie-"
+"bron."
 
 #: tlpkg/installer/install-tl-gui.tcl:504
 msgid "Cannot be created or cannot be written to"
@@ -1708,18 +1712,18 @@ msgstr "Eigen schema"
 #: tlpkg/installer/install-tl-gui.tcl:1928
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s is niet een lokale of online installatie-bron"
 
 #: tlpkg/installer/install-tl-gui.tcl:1929
 #: tlpkg/installer/install-tl-gui.tcl:1935
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2027
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 #: tlpkg/installer/install-tl-gui.tcl:1934
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s vereist een argument"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1727,7 +1731,7 @@ msgstr "Specifieke CTAN mirror..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "Geen lijst van mirrors beschikbaar"
 
 #: tlpkg/tltcl/tltcl.tcl:643
 msgid "Select or type"
@@ -1761,11 +1765,13 @@ msgstr "Onbekend"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:761
 msgid "Loading"
-msgstr ""
+msgstr "Ann het laden"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:771
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
+"Als het te lang duurt, klik dan op Afbreken en kies een andere installatie-"
+"bron"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:773
 #, tcl-format
@@ -1774,6 +1780,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort and choose another repository."
 msgstr ""
+"Poging om te laden vanuit %s.\n"
+"\n"
+"Als het te lang duurt, klik dan op Afbreken en kies een andere installatie-"
+"bron."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:778
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2026
@@ -1800,11 +1810,11 @@ msgstr "%s is geen installatie-bron"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1080
 msgid "No repositories"
-msgstr ""
+msgstr "Geen installatie-bron"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1085
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Meerdere installatie-bronnen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1088
 msgid "Not loaded"
@@ -1812,7 +1822,7 @@ msgstr "Niet geladen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1116
 msgid "Actual repository"
-msgstr ""
+msgstr "Feitelijk gebruikte installatie-bron"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1200
 msgid "Main Repository"
@@ -2000,6 +2010,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s is niet een lokale of online installatie-bron.\n"
+"Configureer a.u.b een geldige installatie-bron"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2046
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2072
@@ -2008,7 +2020,7 @@ msgstr "Archief"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2074
 msgid "Load repository"
-msgstr ""
+msgstr "Laad installatie-bron"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2076
 msgid "Exit"
