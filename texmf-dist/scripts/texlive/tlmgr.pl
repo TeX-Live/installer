@@ -5340,6 +5340,8 @@ sub action_check {
     $ret |= check_executes();
     print "Running check runfiles:\n";
     $ret |= check_runfiles();
+    print "Running check texmfdb paths\n";
+    $ret |= check_texmfdbs();
   } elsif ($what =~ m/^files/i) {
     my $tltree = init_tltree($svn);
     $ret |= check_files($tltree);
@@ -5352,6 +5354,8 @@ sub action_check {
     $ret |= check_runfiles();
   } elsif ($what =~ m/^executes/i) {
     $ret |= check_executes();
+  } elsif ($what =~ m/^texmfdbs/i) {
+    $ret |= check_texmfdbs();
   } else {
     print "No idea how to check that: $what\n";
   }
@@ -5842,6 +5846,49 @@ sub check_depends {
   return $ret;
 }
 
+sub check_texmfdbs {
+
+#!/usr/bin/perl
+  my $texmfdbs = `kpsewhich -var-value TEXMFDBS`;
+  my @tfmdbs = glob $texmfdbs;
+  my $tfms = `kpsewhich -var-value TEXMF`;
+  my @tfms = glob $tfms;
+  my %tfmdbs;
+  my $ret = 0;
+
+  print "Checking TEXMFDBS\n";
+  for my $p (@tfmdbs) {
+    print "-> $p\n";
+    if ($p !~ m/^!!/) {
+      printf "Warn: entry $p in TEXMFDBS does not have leading !!\n";
+      $ret++;
+    }
+    $p =~ s/^!!//;
+    $tfmdbs{$p} = 1;
+    if (! -r "$p/ls-R") {
+      printf "Warn: entry $p does not have an associated ls-R\n";
+      $ret++;
+    }
+  }
+
+  print "Checking TEXMF\n";
+  for my $p (@tfms) {
+    print "-> $p\n";
+    my $pnobang = $p;
+    $pnobang =~ s/^!!//;
+    if (! $tfmdbs{$pnobang}) {
+      if ($p =~ m/^!!/) {
+        printf "Warn: tree $p in TEXMF is not in TEXMFDBS but has !!\n";
+        $ret++;
+      }
+      if (-r "$pnobang/ls-R") {
+        printf "Warn: tree $p in TEXMF is not in TEXMFDBS but has ls-R file\n";
+        $ret++;
+      }
+    }
+  }
+  return($ret);
+}
 
 #  POSTACTION
 # 
