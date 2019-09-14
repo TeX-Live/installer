@@ -15,8 +15,7 @@ $mirrors = {
       'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
-      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
-      'http://mirrors.ustc.edu.cn/CTAN/' => 1
+      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
     },
     'India' => {
       'http://ctan.imsc.res.in/' => 1,
@@ -34,7 +33,6 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.harukasan.org/CTAN/' => 1,
-      'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1
     },
@@ -142,9 +140,6 @@ $mirrors = {
       'http://ctan.mirror.rafal.ca/' => 1,
       'http://mirror.its.dal.ca/ctan/' => 1,
       'http://muug.ca/mirror/ctan/' => 1
-    },
-    'Costa Rica' => {
-      'http://mirrors.ucr.ac.cr/CTAN/' => 1
     },
     'USA' => {
       'http://ctan.math.illinois.edu/' => 1,
