@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLConfig.pm - module exporting configuration values
-# Copyright 2007-2018 Norbert Preining
+# Copyright 2007-2019 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -114,10 +114,10 @@ if ($^O =~ /^MSWin/i) {
 our @AcceptedFallbackDownloaders = qw/curl wget/;
 our %FallbackDownloaderProgram = ( 'wget' => 'wget', 'curl' => 'curl');
 our %FallbackDownloaderArgs = (
-  'curl' => ['--user-agent', 'texlive/curl', '--retry', '10', '--retry-delay', '5',
+  'curl' => ['--user-agent', 'texlive/curl', '--retry', '4', '--retry-delay', '5',
              '--fail', '--location',
              '--connect-timeout', "$NetworkTimeout", '--silent', '--output'],
-  'wget' => ['--user-agent=texlive/wget', '--tries=10',
+  'wget' => ['--user-agent=texlive/wget', '--tries=4',
              "--timeout=$NetworkTimeout", '-q', '-O'],
 );
 # the way we package things on the web
