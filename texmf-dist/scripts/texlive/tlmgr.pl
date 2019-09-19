@@ -6948,14 +6948,14 @@ sub setup_one_remotetlpdb {
         = TeXLive::TLCrypto::verify_checksum($loc_copy_of_remote_tlpdb, $path);
       if ($ret == $VS_CONNECTION_ERROR) {
         info(<<END_NO_INTERNET);
-No connection to the internet.
 Unable to download the checksum of the remote TeX Live database,
-but found a local copy so using that.
+but found a local copy, so using that.
 
-You may want to try specifying an explicit or different CTAN mirror;
+You may want to try specifying an explicit or different CTAN mirror,
+or maybe you need to specify proxy information if you're behind a firewall;
 see the information and examples for the -repository option at
 https://tug.org/texlive/doc/install-tl.html
-(or in the output of install-tl --help).
+(and in the output of install-tl --help).
 
 END_NO_INTERNET
         # above text duplicated in install-tl
