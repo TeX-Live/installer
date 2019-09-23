@@ -148,7 +148,9 @@ sub tlchecksum {
   if (!$::checksum_method) {
     setup_checksum_method();
   }
-  tldie("no checksum method available\n") if (!$::checksum_method);
+  tldie("TLCRYPTO::tlchecksum: no checksum method available\n")
+    if (!$::checksum_method);
+
   if (-r $file) {
     my ($out, $ret);
     if ($::checksum_method eq "openssl") {
@@ -167,10 +169,10 @@ sub tlchecksum {
       close(FILE);
       $ret = 0;
     } else {
-      tldie("unknown checksum program: $::checksum_method\n");
+      tldie("TLCRYPTO::tlchecksum: unknown checksum program: $::checksum_method\n");
     }
     if ($ret != 0) {
-      tlwarn("tlchecksum: cannot compute checksum: $file\n");
+      tlwarn("TLCRYPTO::tlchecksum: cannot compute checksum: $file\n");
       return "";
     }
     ddebug("tlchecksum: out = $out\n");
@@ -186,12 +188,13 @@ sub tlchecksum {
     }
     debug("tlchecksum($file): ===$cs===\n");
     if (length($cs) != 128) {
-      tlwarn("unexpected output from $::checksum_method: $out\n");
+      tlwarn("TLCRYPTO::tlchecksum: unexpected output from $::checksum_method:"
+             . " $out\n");
       return "";
     }
     return $cs;
   } else {
-    tlwarn("tlchecksum: given file not readable: $file\n");
+    tlwarn("TLCRYPTO::tlchecksum: given file not readable: $file\n");
     return "";
   }
 }
