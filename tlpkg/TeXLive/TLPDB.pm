@@ -290,6 +290,10 @@ sub from_file {
     }
     if ($params{'media'}) {
       $media = $params{'media'};
+    } elsif (! -d $rootpath) {
+      # no point in going on if we don't even have a directory.
+      tlwarn("TLPDB: not a directory, not loading: $rootpath\n");
+      return 0;
     } elsif (-d "$rootpath/texmf-dist/web2c") {
       $media = 'local_uncompressed';
     } elsif (-d "$rootpath/texmf/web2c") { # older
@@ -300,7 +304,7 @@ sub from_file {
       $media = 'local_compressed';
     } else {
       # we cannot find the right type, return zero, hope people notice
-      tlwarn("Cannot determine type of tlpdb from $rootpath!\n");
+      tlwarn("TLPDB: Cannot determine type of tlpdb from $rootpath!\n");
       return 0;
     }
   }
