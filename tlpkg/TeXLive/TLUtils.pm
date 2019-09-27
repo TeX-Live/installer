@@ -1143,8 +1143,10 @@ sub copy {
   }
 
   if (-l "$infile") {
-    symlink (readlink $infile, "$destdir/$filename")
-    || die "symlink(readlink $infile, $destdir/$filename) failed: $!";
+    # the link target might be relative, so we need to start from
+    # the directory of $infile for the link
+    symlink (Cwd::abs_path(dirname($infile)) . "/" . readlink($infile), "$destdir/$filename")
+    || die "symlink(dirname($infile) . \"/\" . readlink($infile), $destdir/$filename) failed: $!";
   } else {
     if (! open (IN, $infile)) {
       warn "open($infile) failed, not copying: $!";
