@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-08-08 01:53+0200\n"
+"POT-Creation-Date: 2019-10-05 01:54+0200\n"
 "PO-Revision-Date: 2018-04-04 23:06+0300\n"
 "Last-Translator: Nikola Lečić <nikola.lecic@anthesphoria.net>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -51,7 +51,7 @@ msgstr "Процес инсталације"
 #: tlpkg/installer/install-tl-gui.tcl:930
 #: tlpkg/installer/install-tl-gui.tcl:999
 #: tlpkg/installer/install-tl-gui.tcl:1078
-#: tlpkg/installer/install-tl-gui.tcl:1296 tlpkg/tltcl/tltcl.tcl:572
+#: tlpkg/installer/install-tl-gui.tcl:1296 tlpkg/tltcl/tltcl.tcl:576
 #: texmf-dist/scripts/tlshell/tlshell.tcl:164
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1270
 msgid "Cancel"
@@ -480,7 +480,7 @@ msgstr "Изаберите друго огледало (mirror)."
 #: tlpkg/installer/install-tl-gui.tcl:927
 #: tlpkg/installer/install-tl-gui.tcl:982
 #: tlpkg/installer/install-tl-gui.tcl:1075
-#: tlpkg/installer/install-tl-gui.tcl:1294 tlpkg/tltcl/tltcl.tcl:570
+#: tlpkg/installer/install-tl-gui.tcl:1294 tlpkg/tltcl/tltcl.tcl:574
 #: texmf-dist/scripts/tlshell/tlshell.tcl:154
 msgid "Ok"
 msgstr "У реду"
@@ -1550,7 +1550,7 @@ msgid "Installation root"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:638
-#: tlpkg/installer/install-tl-gui.tcl:1274 tlpkg/tltcl/tltcl.tcl:562
+#: tlpkg/installer/install-tl-gui.tcl:1274 tlpkg/tltcl/tltcl.tcl:566
 msgid "Browse..."
 msgstr ""
 
@@ -1726,7 +1726,7 @@ msgstr ""
 msgid "No mirror list available"
 msgstr ""
 
-#: tlpkg/tltcl/tltcl.tcl:643
+#: tlpkg/tltcl/tltcl.tcl:647
 msgid "Select or type"
 msgstr ""
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-08-08 01:53+0200\n"
+"POT-Creation-Date: 2019-10-05 01:54+0200\n"
 "PO-Revision-Date: 2019-08-30 13:52+0200\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -46,7 +46,7 @@ msgstr "Installatie-proces"
 #: tlpkg/installer/install-tl-gui.tcl:930
 #: tlpkg/installer/install-tl-gui.tcl:999
 #: tlpkg/installer/install-tl-gui.tcl:1078
-#: tlpkg/installer/install-tl-gui.tcl:1296 tlpkg/tltcl/tltcl.tcl:572
+#: tlpkg/installer/install-tl-gui.tcl:1296 tlpkg/tltcl/tltcl.tcl:576
 #: texmf-dist/scripts/tlshell/tlshell.tcl:164
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1270
 msgid "Cancel"
@@ -475,7 +475,7 @@ msgstr "Kies een andere mirror."
 #: tlpkg/installer/install-tl-gui.tcl:927
 #: tlpkg/installer/install-tl-gui.tcl:982
 #: tlpkg/installer/install-tl-gui.tcl:1075
-#: tlpkg/installer/install-tl-gui.tcl:1294 tlpkg/tltcl/tltcl.tcl:570
+#: tlpkg/installer/install-tl-gui.tcl:1294 tlpkg/tltcl/tltcl.tcl:574
 #: texmf-dist/scripts/tlshell/tlshell.tcl:154
 msgid "Ok"
 msgstr "Ok"
@@ -1554,7 +1554,7 @@ msgid "Installation root"
 msgstr "Hoofd TeX-folder"
 
 #: tlpkg/installer/install-tl-gui.tcl:638
-#: tlpkg/installer/install-tl-gui.tcl:1274 tlpkg/tltcl/tltcl.tcl:562
+#: tlpkg/installer/install-tl-gui.tcl:1274 tlpkg/tltcl/tltcl.tcl:566
 msgid "Browse..."
 msgstr "Bladeren..."
 
@@ -1733,7 +1733,7 @@ msgstr "Specifieke CTAN mirror..."
 msgid "No mirror list available"
 msgstr "Geen lijst van mirrors beschikbaar"
 
-#: tlpkg/tltcl/tltcl.tcl:643
+#: tlpkg/tltcl/tltcl.tcl:647
 msgid "Select or type"
 msgstr "Kies of type"
 
