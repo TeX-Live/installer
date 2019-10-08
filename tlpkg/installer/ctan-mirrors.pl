@@ -62,7 +62,6 @@ $mirrors = {
       'ftp://ftp.funet.fi/pub/TeX/CTAN/' => 1
     },
     'France' => {
-      'http://ctan.crest.fr/tex-archive/' => 1,
       'http://ctan.mines-albi.fr/' => 1,
       'http://ctan.tetaneutral.net/' => 1,
       'http://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
