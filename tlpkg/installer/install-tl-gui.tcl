@@ -539,11 +539,12 @@ proc edit_name {} {
     }
   }
   ppack .tled.ok_b -in .tled.buttons -side right -padx 5 -pady 5
-  ttk::button .tled.q_b -text [__ "Cancel"] -command {end_dlg "" .tled}
-  ppack .tled.q_b -in .tled.buttons -side right -padx 5 -pady 5
-  bind .tled <Escape> {.tled.q_b invoke}
+  ttk::button .tled.cancel_b -text [__ "Cancel"] -command {end_dlg "" .tled}
+  ppack .tled.cancel_b -in .tled.buttons -side right -padx 5 -pady 5
+  bind .tled <Escape> {.tled.cancel_b invoke}
 
-  wm protocol .tled WM_DELETE_WINDOW {.tled.q_b invoke}
+  wm protocol .tled WM_DELETE_WINDOW \
+      {cancel_or_destroy .tled.cancel_b .tled}
   wm resizable .tled 0 0
   place_dlg .tled .tltd
 } ; # edit_name
@@ -703,7 +704,8 @@ proc texdir_setup {} {
   bind .tltd <Return> commit_root
   bind .tltd <Escape> {destroy .tltd}
 
-  wm protocol .tltd  WM_DELETE_WINDOW {.tltd.cancel_b invoke}
+  wm protocol .tltd  WM_DELETE_WINDOW \
+      {cancel_or_destroy .tltd.cancel_b .tltd}
   wm resizable .tltd 1 0
   place_dlg .tltd
 } ; # texdir_setup
@@ -744,11 +746,12 @@ proc edit_dir {d} {
   ppack .td.cancel -in .td.f -side right
   bind .td <Escape> {.td.cancel invoke}
 
-  wm protocol .td WM_DELETE_WINDOW {.td.cancel invoke}
+  wm protocol .td WM_DELETE_WINDOW \
+      {cancel_or_destroy .td.cancel .td}
   wm resizable .td 1 0
   place_dlg .td .
   tkwait window .td
-  if {$::dialog_ans ne ""} {
+  if {[info exists ::dialog_ans] && $::dialog_ans ne ""} {
     set ::vars($d) [forward_slashify $::dialog_ans]
     if $::vars(instopt_portable) {
       if {$d eq "TEXMFLOCAL"} {set ::vars(TEXMFHOME) $::vars($d)}
@@ -961,7 +964,8 @@ proc select_binaries {} {
   bind .tlbin.lst <ButtonRelease-1> \
       {toggle_bin [.tlbin.lst identify item %x %y]}
 
-  wm protocol .tlbin WM_DELETE_WINDOW {.tlbin.cancel invoke}
+  wm protocol .tlbin WM_DELETE_WINDOW \
+      {cancel_or_destroy .tlbin.cancel .tlbin}
   wm resizable .tlbin 1 1
   place_dlg .tlbin .
 }; # select_binaries
@@ -1017,7 +1021,8 @@ proc select_scheme {} {
   # we already made sure that $::vars(selected_scheme) has a valid value
   .tlschm.lst selection set [list $::vars(selected_scheme)]
 
-  wm protocol .tlschm WM_DELETE_WINDOW {tlschm.cancel invoke}
+  wm protocol .tlschm WM_DELETE_WINDOW \
+      {cancel_or_destroy tlschm.cancel .tlschm}
   wm resizable .tlschm 1 0
   place_dlg .tlschm .
 }; # select_scheme
@@ -1138,7 +1143,8 @@ proc select_collections {} {
         [list [mark_sym $::vars($c)] [__ $::coll_descs($c)]]
   }
 
-  wm protocol .tlcoll WM_DELETE_WINDOW {.tlcoll.cancel invoke}
+  wm protocol .tlcoll WM_DELETE_WINDOW \
+      {cancel_or_destroy .tlcoll.cancel .tlcoll}
   wm resizable .tlcoll 1 1
   place_dlg .tlcoll .
 }; # select_collections
@@ -1299,7 +1305,8 @@ if {$::tcl_platform(platform) ne "windows"} {
 
     check_sym_entries
 
-    wm protocol .edsyms  WM_DELETE_WINDOW {.edsyms.cancel invoke}
+    wm protocol .edsyms  WM_DELETE_WINDOW \
+        {cancel_or_destroy .edsyms.cancel .edsyms}
     wm resizable .edsyms 1 0
     place_dlg .edsyms .
   } ; # edit_symlinks
