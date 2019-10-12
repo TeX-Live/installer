@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-10-05 01:54+0200\n"
+"POT-Creation-Date: 2019-10-12 01:54+0200\n"
 "PO-Revision-Date: 2019-08-28 12:20+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -45,14 +45,14 @@ msgstr "インストール処理"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2506
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2587
 #: tlpkg/installer/install-tl-gui.tcl:542
-#: tlpkg/installer/install-tl-gui.tcl:659
-#: tlpkg/installer/install-tl-gui.tcl:743
-#: tlpkg/installer/install-tl-gui.tcl:930
-#: tlpkg/installer/install-tl-gui.tcl:999
-#: tlpkg/installer/install-tl-gui.tcl:1078
-#: tlpkg/installer/install-tl-gui.tcl:1296 tlpkg/tltcl/tltcl.tcl:576
+#: tlpkg/installer/install-tl-gui.tcl:660
+#: tlpkg/installer/install-tl-gui.tcl:745
+#: tlpkg/installer/install-tl-gui.tcl:933
+#: tlpkg/installer/install-tl-gui.tcl:1003
+#: tlpkg/installer/install-tl-gui.tcl:1083
+#: tlpkg/installer/install-tl-gui.tcl:1302 tlpkg/tltcl/tltcl.tcl:588
 #: texmf-dist/scripts/tlshell/tlshell.tcl:164
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1270
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1274
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -66,7 +66,7 @@ msgstr "終了"
 
 #: tlpkg/installer/install-menu-wizard.pl:41
 #: tlpkg/installer/install-menu-perltk.pl:445
-#: tlpkg/installer/install-tl-gui.tcl:1563
+#: tlpkg/installer/install-tl-gui.tcl:1570
 msgid "Default paper size"
 msgstr "デフォルト用紙サイズ"
 
@@ -95,7 +95,7 @@ msgstr "すべてのユーザ用にインストール"
 
 #: tlpkg/installer/install-menu-wizard.pl:46
 #: tlpkg/installer/install-menu-perltk.pl:569
-#: tlpkg/installer/install-tl-gui.tcl:1655
+#: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "Install TeXworks front end"
 msgstr "TeXworks をインストール"
 
@@ -110,8 +110,8 @@ msgstr "TeX Live %s のインストール"
 #: tlpkg/installer/install-menu-perltk.pl:630
 #: tlpkg/installer/install-menu-perltk.pl:676
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:544
-#: tlpkg/installer/install-tl-gui.tcl:1346
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2149
+#: tlpkg/installer/install-tl-gui.tcl:1353
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2154
 msgid "Quit"
 msgstr "終了"
 
@@ -276,16 +276,16 @@ msgstr "インストール先のフォルダ："
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2433
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2438
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2443
-#: tlpkg/installer/install-tl-gui.tcl:641
-#: tlpkg/installer/install-tl-gui.tcl:1394
-#: tlpkg/installer/install-tl-gui.tcl:1410
-#: tlpkg/installer/install-tl-gui.tcl:1418
-#: tlpkg/installer/install-tl-gui.tcl:1428
-#: tlpkg/installer/install-tl-gui.tcl:1437
-#: tlpkg/installer/install-tl-gui.tcl:1445
+#: tlpkg/installer/install-tl-gui.tcl:642
+#: tlpkg/installer/install-tl-gui.tcl:1401
+#: tlpkg/installer/install-tl-gui.tcl:1417
+#: tlpkg/installer/install-tl-gui.tcl:1425
+#: tlpkg/installer/install-tl-gui.tcl:1435
+#: tlpkg/installer/install-tl-gui.tcl:1444
 #: tlpkg/installer/install-tl-gui.tcl:1452
-#: tlpkg/installer/install-tl-gui.tcl:1498
-#: tlpkg/installer/install-tl-gui.tcl:1517
+#: tlpkg/installer/install-tl-gui.tcl:1459
+#: tlpkg/installer/install-tl-gui.tcl:1505
+#: tlpkg/installer/install-tl-gui.tcl:1524
 msgid "Change"
 msgstr "変更"
 
@@ -359,32 +359,32 @@ msgstr "いいえ"
 
 #: tlpkg/installer/install-menu-wizard.pl:604
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:456
-#: tlpkg/installer/install-tl-gui.tcl:1344
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1896
+#: tlpkg/installer/install-tl-gui.tcl:1351
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1901
 msgid "Install"
 msgstr "インストール"
 
 #: tlpkg/installer/install-menu-perltk.pl:48
 #: tlpkg/installer/install-menu-perltk.pl:1251
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:143
-#: tlpkg/installer/install-tl-gui.tcl:859
-#: tlpkg/installer/install-tl-gui.tcl:1094
-#: tlpkg/installer/install-tl-gui.tcl:1631
+#: tlpkg/installer/install-tl-gui.tcl:862
+#: tlpkg/installer/install-tl-gui.tcl:1099
+#: tlpkg/installer/install-tl-gui.tcl:1638
 msgid "None"
 msgstr "なし"
 
 #: tlpkg/installer/install-menu-perltk.pl:49
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:144
-#: tlpkg/installer/install-tl-gui.tcl:1631
+#: tlpkg/installer/install-tl-gui.tcl:1638
 msgid "Only new"
 msgstr "新規のみ"
 
 #: tlpkg/installer/install-menu-perltk.pl:50
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:145
-#: tlpkg/installer/install-tl-gui.tcl:1091
-#: tlpkg/installer/install-tl-gui.tcl:1631
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2208
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2225
+#: tlpkg/installer/install-tl-gui.tcl:1096
+#: tlpkg/installer/install-tl-gui.tcl:1638
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2213
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2230
 msgid "All"
 msgstr "すべて"
 
@@ -398,17 +398,17 @@ msgid "letter"
 msgstr "レター"
 
 #: tlpkg/installer/install-menu-perltk.pl:55
-#: tlpkg/installer/install-tl-gui.tcl:1619
+#: tlpkg/installer/install-tl-gui.tcl:1626
 msgid "No shortcuts"
 msgstr "ショートカットなし"
 
 #: tlpkg/installer/install-menu-perltk.pl:56
-#: tlpkg/installer/install-tl-gui.tcl:1619
+#: tlpkg/installer/install-tl-gui.tcl:1626
 msgid "TeX Live menu"
 msgstr "TeX Live メニュー"
 
 #: tlpkg/installer/install-menu-perltk.pl:57
-#: tlpkg/installer/install-tl-gui.tcl:1619
+#: tlpkg/installer/install-tl-gui.tcl:1626
 msgid "Launcher entry"
 msgstr "ランチャ項目"
 
@@ -429,7 +429,7 @@ msgstr "読み込み"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2270
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2332
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2669
-#: tlpkg/installer/install-tl-gui.tcl:556
+#: tlpkg/installer/install-tl-gui.tcl:557
 msgid "Warning"
 msgstr "警告"
 
@@ -472,12 +472,12 @@ msgstr "別のミラーを選択してください．"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2504
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2669
 #: tlpkg/installer/install-tl-gui.tcl:532
-#: tlpkg/installer/install-tl-gui.tcl:657
-#: tlpkg/installer/install-tl-gui.tcl:741
-#: tlpkg/installer/install-tl-gui.tcl:927
-#: tlpkg/installer/install-tl-gui.tcl:982
-#: tlpkg/installer/install-tl-gui.tcl:1075
-#: tlpkg/installer/install-tl-gui.tcl:1294 tlpkg/tltcl/tltcl.tcl:574
+#: tlpkg/installer/install-tl-gui.tcl:658
+#: tlpkg/installer/install-tl-gui.tcl:743
+#: tlpkg/installer/install-tl-gui.tcl:930
+#: tlpkg/installer/install-tl-gui.tcl:986
+#: tlpkg/installer/install-tl-gui.tcl:1080
+#: tlpkg/installer/install-tl-gui.tcl:1300 tlpkg/tltcl/tltcl.tcl:586
 #: texmf-dist/scripts/tlshell/tlshell.tcl:154
 msgid "Ok"
 msgstr "OK"
@@ -544,7 +544,7 @@ msgstr "ポータブル設定"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1181
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1231
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1240
-#: tlpkg/installer/install-tl-gui.tcl:1471
+#: tlpkg/installer/install-tl-gui.tcl:1478
 msgid "Toggle"
 msgstr "切替"
 
@@ -570,30 +570,30 @@ msgstr "TEXMFHOME（ユーザ用ファイルをおくディレクトリ）"
 
 #: tlpkg/installer/install-menu-perltk.pl:440
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:513
-#: tlpkg/installer/install-tl-gui.tcl:1554
-#: texmf-dist/scripts/tlshell/tlshell.tcl:778
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2026
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2090
+#: tlpkg/installer/install-tl-gui.tcl:1561
+#: texmf-dist/scripts/tlshell/tlshell.tcl:780
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2031
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2095
 msgid "Options"
 msgstr "オプション"
 
 #: tlpkg/installer/install-menu-perltk.pl:458
-#: tlpkg/installer/install-tl-gui.tcl:1574
+#: tlpkg/installer/install-tl-gui.tcl:1581
 msgid "Allow execution of restricted list of programs via \\write18"
 msgstr "\\write18 を用いて制限リストにあるプログラムの実行を許可"
 
 #: tlpkg/installer/install-menu-perltk.pl:473
-#: tlpkg/installer/install-tl-gui.tcl:1581
+#: tlpkg/installer/install-tl-gui.tcl:1588
 msgid "Create all format files"
 msgstr "フォーマットファイルをすべて生成"
 
 #: tlpkg/installer/install-menu-perltk.pl:485
-#: tlpkg/installer/install-tl-gui.tcl:1589
+#: tlpkg/installer/install-tl-gui.tcl:1596
 msgid "Install font/macro doc tree"
 msgstr "font/macro のドキュメントツリーをインストール"
 
 #: tlpkg/installer/install-menu-perltk.pl:498
-#: tlpkg/installer/install-tl-gui.tcl:1599
+#: tlpkg/installer/install-tl-gui.tcl:1606
 msgid "Install font/macro source tree"
 msgstr "font/macro のソースツリーをインストール"
 
@@ -603,7 +603,7 @@ msgid "Create symlinks in system directories"
 msgstr "システムディレクトリにシンボリックリンクを作成する"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
-#: tlpkg/installer/install-tl-gui.tcl:1692
+#: tlpkg/installer/install-tl-gui.tcl:1699
 msgid "After install, set CTAN as source for package updates"
 msgstr "インストール後に CTAN をパッケージのアップデート元に設定"
 
@@ -611,7 +611,7 @@ msgstr "インストール後に CTAN をパッケージのアップデート元
 #: tlpkg/installer/install-menu-perltk.pl:609
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:650
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:652
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2128
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2133
 msgid "About"
 msgstr "このプログラムについて"
 
@@ -753,7 +753,7 @@ msgstr ""
 "ほとんどのボタンは利用できなくなります．"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:293
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1083
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1087
 msgid "Repository"
 msgstr "リポジトリ"
 
@@ -788,7 +788,7 @@ msgid "Display configuration"
 msgstr "表示設定"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:321
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2205
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2210
 msgid "Status"
 msgstr "状態"
 
@@ -866,12 +866,12 @@ msgid "Package name"
 msgstr "パッケージ名"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:417
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2291
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2296
 msgid "Local rev. (ver.)"
 msgstr "ローカルのリビジョン"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:418
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2292
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2297
 msgid "Remote rev. (ver.)"
 msgstr "リモートのリビジョン"
 
@@ -888,13 +888,13 @@ msgid "Reinstall previously removed packages"
 msgstr "以前アンインストールしたパッケージを再インストール"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:451
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1901
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1906
 msgid "Update"
 msgstr "アップデート"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:460
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2014
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1906
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1911
 msgid "Remove"
 msgstr "アンインストール"
 
@@ -903,13 +903,13 @@ msgid "Backup"
 msgstr "バックアップ"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:515
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2078
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2083
 msgid "Actions"
 msgstr "アクション"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:519
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2694
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2126
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2131
 msgid "Help"
 msgstr "ヘルプ"
 
@@ -934,7 +934,7 @@ msgid "General ..."
 msgstr "一般…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:552
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2099
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2104
 msgid "Paper ..."
 msgstr "用紙…"
 
@@ -1171,7 +1171,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "ショートカットをデスクトップに作成"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1236
-#: tlpkg/installer/install-tl-gui.tcl:1644
+#: tlpkg/installer/install-tl-gui.tcl:1651
 msgid "Install for all users"
 msgstr "すべてのユーザ向けにインストールする"
 
@@ -1351,10 +1351,10 @@ msgstr "すべてのパッケージを最新バージョンに戻す"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2417
 #: tlpkg/installer/install-tl-gui.tcl:437
-#: texmf-dist/scripts/tlshell/tlshell.tcl:793
-#: texmf-dist/scripts/tlshell/tlshell.tcl:916
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1359
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1571
+#: texmf-dist/scripts/tlshell/tlshell.tcl:795
+#: texmf-dist/scripts/tlshell/tlshell.tcl:919
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1364
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1576
 msgid "Close"
 msgstr "閉じる"
 
@@ -1490,17 +1490,17 @@ msgstr "ローカルリポジトリ"
 #: tlpkg/installer/install-tl-gui.tcl:388
 #: tlpkg/installer/install-tl-gui.tcl:405
 #: tlpkg/installer/install-tl-gui.tcl:440
-#: texmf-dist/scripts/tlshell/tlshell.tcl:797
+#: texmf-dist/scripts/tlshell/tlshell.tcl:799
 msgid "Abort"
 msgstr "中止"
 
 #: tlpkg/installer/install-tl-gui.tcl:410
-#: tlpkg/installer/install-tl-gui.tcl:1903
+#: tlpkg/installer/install-tl-gui.tcl:1910
 msgid "TeX Live Installer"
 msgstr "TeX Live インストーラ"
 
 #: tlpkg/installer/install-tl-gui.tcl:413
-#: tlpkg/installer/install-tl-gui.tcl:2002
+#: tlpkg/installer/install-tl-gui.tcl:2009
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1528,7 +1528,7 @@ msgstr "名前を変更（スラッシュを含めることはできません）
 msgid "No slashes allowed"
 msgstr "スラッシュを含めることはできません"
 
-#: tlpkg/installer/install-tl-gui.tcl:555
+#: tlpkg/installer/install-tl-gui.tcl:556
 msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
@@ -1536,110 +1536,110 @@ msgstr ""
 "TeX Live のリリース年を含めることを強く推奨します！\n"
 "本当に続行しますか？"
 
-#: tlpkg/installer/install-tl-gui.tcl:564
+#: tlpkg/installer/install-tl-gui.tcl:565
 msgid "Add year"
 msgstr "年を追加"
 
-#: tlpkg/installer/install-tl-gui.tcl:568
-#: tlpkg/installer/install-tl-gui.tcl:643
+#: tlpkg/installer/install-tl-gui.tcl:569
+#: tlpkg/installer/install-tl-gui.tcl:644
 msgid "Remove year"
 msgstr "年を除去"
 
-#: tlpkg/installer/install-tl-gui.tcl:610
-#: tlpkg/installer/install-tl-gui.tcl:1378
-#: tlpkg/installer/install-tl-gui.tcl:1386
+#: tlpkg/installer/install-tl-gui.tcl:611
+#: tlpkg/installer/install-tl-gui.tcl:1385
+#: tlpkg/installer/install-tl-gui.tcl:1393
 msgid "Installation root"
 msgstr "インストール先"
 
-#: tlpkg/installer/install-tl-gui.tcl:638
-#: tlpkg/installer/install-tl-gui.tcl:1274 tlpkg/tltcl/tltcl.tcl:566
+#: tlpkg/installer/install-tl-gui.tcl:639
+#: tlpkg/installer/install-tl-gui.tcl:1280 tlpkg/tltcl/tltcl.tcl:578
 msgid "Browse..."
 msgstr "開く…"
 
-#: tlpkg/installer/install-tl-gui.tcl:651
+#: tlpkg/installer/install-tl-gui.tcl:652
 msgid "Localized directory names will be replaced by their real names"
 msgstr "ローカライズされたディレクトリ名は実体名に置き換えられます"
 
-#: tlpkg/installer/install-tl-gui.tcl:731
+#: tlpkg/installer/install-tl-gui.tcl:733
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
 msgstr "'~' は %s と等価です．例：%s"
 
-#: tlpkg/installer/install-tl-gui.tcl:885
+#: tlpkg/installer/install-tl-gui.tcl:888
 msgid "Cannot deselect own platform"
 msgstr "現在のプラットフォームの選択を外すことはできません"
 
-#: tlpkg/installer/install-tl-gui.tcl:920
-#: tlpkg/installer/install-tl-gui.tcl:1278
+#: tlpkg/installer/install-tl-gui.tcl:923
+#: tlpkg/installer/install-tl-gui.tcl:1284
 msgid "Binaries"
 msgstr "バイナリ"
 
-#: tlpkg/installer/install-tl-gui.tcl:975
+#: tlpkg/installer/install-tl-gui.tcl:979
 msgid "Schemes"
 msgstr "スキーム"
 
-#: tlpkg/installer/install-tl-gui.tcl:1068
+#: tlpkg/installer/install-tl-gui.tcl:1073
 msgid "Collections"
 msgstr "コレクション"
 
-#: tlpkg/installer/install-tl-gui.tcl:1090
+#: tlpkg/installer/install-tl-gui.tcl:1095
 msgid "Select"
 msgstr "選択"
 
-#: tlpkg/installer/install-tl-gui.tcl:1106
+#: tlpkg/installer/install-tl-gui.tcl:1111
 msgid "Languages"
 msgstr "言語"
 
-#: tlpkg/installer/install-tl-gui.tcl:1108
+#: tlpkg/installer/install-tl-gui.tcl:1113
 msgid "Other collections"
 msgstr "ほかのコレクション"
 
-#: tlpkg/installer/install-tl-gui.tcl:1231
+#: tlpkg/installer/install-tl-gui.tcl:1237
 msgid "Warning. Not all configured directories are writable!"
 msgstr "警告．指定したディレクトリの一部が書き込み不能です！"
 
-#: tlpkg/installer/install-tl-gui.tcl:1251
+#: tlpkg/installer/install-tl-gui.tcl:1257
 msgid "Symlinks"
 msgstr "シンボリックリンク"
 
-#: tlpkg/installer/install-tl-gui.tcl:1279
+#: tlpkg/installer/install-tl-gui.tcl:1285
 msgid "Man pages"
 msgstr "man ページ"
 
-#: tlpkg/installer/install-tl-gui.tcl:1280
+#: tlpkg/installer/install-tl-gui.tcl:1286
 msgid "Info pages"
 msgstr "info ページ"
 
-#: tlpkg/installer/install-tl-gui.tcl:1333
+#: tlpkg/installer/install-tl-gui.tcl:1340
 #, tcl-format
 msgid "TeX Live %s Installer"
 msgstr "TeX Live %s インストーラ"
 
-#: tlpkg/installer/install-tl-gui.tcl:1351
+#: tlpkg/installer/install-tl-gui.tcl:1358
 msgid "Advanced"
 msgstr "高度な設定"
 
-#: tlpkg/installer/install-tl-gui.tcl:1381
+#: tlpkg/installer/install-tl-gui.tcl:1388
 msgid "Directories"
 msgstr "ディレクトリ"
 
-#: tlpkg/installer/install-tl-gui.tcl:1400
+#: tlpkg/installer/install-tl-gui.tcl:1407
 msgid "Main tree"
 msgstr "メインツリー"
 
-#: tlpkg/installer/install-tl-gui.tcl:1423
+#: tlpkg/installer/install-tl-gui.tcl:1430
 msgid "Local additions"
 msgstr "ローカルに追加"
 
-#: tlpkg/installer/install-tl-gui.tcl:1432
+#: tlpkg/installer/install-tl-gui.tcl:1439
 msgid "Per-user additions"
 msgstr "ユーザごとに追加"
 
-#: tlpkg/installer/install-tl-gui.tcl:1459
+#: tlpkg/installer/install-tl-gui.tcl:1466
 msgid "More ..."
 msgstr "さらに表示…"
 
-#: tlpkg/installer/install-tl-gui.tcl:1468
+#: tlpkg/installer/install-tl-gui.tcl:1475
 msgid ""
 "Portable setup:\n"
 "May reset TEXMFLOCAL\n"
@@ -1649,76 +1649,76 @@ msgstr ""
 "TEXMFLOCAL と TEXMFHOME は\n"
 "リセットされます"
 
-#: tlpkg/installer/install-tl-gui.tcl:1482
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1346
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2123
+#: tlpkg/installer/install-tl-gui.tcl:1489
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1351
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2128
 msgid "Platforms"
 msgstr "プラットフォーム"
 
-#: tlpkg/installer/install-tl-gui.tcl:1488
+#: tlpkg/installer/install-tl-gui.tcl:1495
 msgid "Current platform:"
 msgstr "現在のプラットフォーム："
 
-#: tlpkg/installer/install-tl-gui.tcl:1495
+#: tlpkg/installer/install-tl-gui.tcl:1502
 msgid "N. of additional platform(s):"
 msgstr "追加プラットフォームの数："
 
-#: tlpkg/installer/install-tl-gui.tcl:1508
+#: tlpkg/installer/install-tl-gui.tcl:1515
 msgid "Selections"
 msgstr "選択したもの"
 
-#: tlpkg/installer/install-tl-gui.tcl:1513
+#: tlpkg/installer/install-tl-gui.tcl:1520
 msgid "Scheme:"
 msgstr "スキーム："
 
-#: tlpkg/installer/install-tl-gui.tcl:1522
+#: tlpkg/installer/install-tl-gui.tcl:1529
 msgid "N. of collections:"
 msgstr "追加コレクションの数："
 
-#: tlpkg/installer/install-tl-gui.tcl:1525
+#: tlpkg/installer/install-tl-gui.tcl:1532
 msgid "Customize"
 msgstr "カスタマイズ"
 
-#: tlpkg/installer/install-tl-gui.tcl:1534
+#: tlpkg/installer/install-tl-gui.tcl:1541
 msgid "Disk space required (in MB):"
 msgstr "必要なディスク容量 (MB):"
 
-#: tlpkg/installer/install-tl-gui.tcl:1612
+#: tlpkg/installer/install-tl-gui.tcl:1619
 msgid "Adjust searchpath"
 msgstr "検索パスを調整"
 
-#: tlpkg/installer/install-tl-gui.tcl:1621
+#: tlpkg/installer/install-tl-gui.tcl:1628
 msgid "Desktop integration"
 msgstr "スタートメニューにショートカットを作成"
 
-#: tlpkg/installer/install-tl-gui.tcl:1633
+#: tlpkg/installer/install-tl-gui.tcl:1640
 msgid "File associations"
 msgstr "ファイルの関連付けを変更"
 
-#: tlpkg/installer/install-tl-gui.tcl:1672
+#: tlpkg/installer/install-tl-gui.tcl:1679
 msgid "Create symlinks in standard directories"
 msgstr "シンボリックリンクを標準ディレクトリに作成"
 
-#: tlpkg/installer/install-tl-gui.tcl:1678
+#: tlpkg/installer/install-tl-gui.tcl:1685
 msgid "Specify directories"
 msgstr "ディレクトリを指定"
 
-#: tlpkg/installer/install-tl-gui.tcl:1743
+#: tlpkg/installer/install-tl-gui.tcl:1750
 msgid "Custom scheme"
 msgstr "ススタムスキーム"
 
-#: tlpkg/installer/install-tl-gui.tcl:1928
+#: tlpkg/installer/install-tl-gui.tcl:1935
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr "%s はローカルリポジトリでもリモートリポジトリでもありません"
 
-#: tlpkg/installer/install-tl-gui.tcl:1929
-#: tlpkg/installer/install-tl-gui.tcl:1935
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2027
+#: tlpkg/installer/install-tl-gui.tcl:1936
+#: tlpkg/installer/install-tl-gui.tcl:1942
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2032
 msgid "Error"
 msgstr "エラー"
 
-#: tlpkg/installer/install-tl-gui.tcl:1934
+#: tlpkg/installer/install-tl-gui.tcl:1941
 #, tcl-format
 msgid "%s requires an argument"
 msgstr "%s には引数が必要です"
@@ -1731,47 +1731,47 @@ msgstr "特定のミラーを選択…"
 msgid "No mirror list available"
 msgstr "利用可能なミラーリストがありません"
 
-#: tlpkg/tltcl/tltcl.tcl:647
+#: tlpkg/tltcl/tltcl.tcl:661
 msgid "Select or type"
 msgstr "選択または入力"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:63
-#: texmf-dist/scripts/tlshell/tlshell.tcl:272
-#: texmf-dist/scripts/tlshell/tlshell.tcl:462
+#: texmf-dist/scripts/tlshell/tlshell.tcl:274
+#: texmf-dist/scripts/tlshell/tlshell.tcl:464
 msgid "Idle"
 msgstr "待機中"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:257
-#: texmf-dist/scripts/tlshell/tlshell.tcl:317
-#: texmf-dist/scripts/tlshell/tlshell.tcl:442
-#: texmf-dist/scripts/tlshell/tlshell.tcl:478
+#: texmf-dist/scripts/tlshell/tlshell.tcl:259
+#: texmf-dist/scripts/tlshell/tlshell.tcl:319
+#: texmf-dist/scripts/tlshell/tlshell.tcl:444
+#: texmf-dist/scripts/tlshell/tlshell.tcl:480
 msgid "Running"
 msgstr "実行中"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:577
+#: texmf-dist/scripts/tlshell/tlshell.tcl:579
 msgid "Needs updating"
 msgstr "アップデートが必要です"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:579
+#: texmf-dist/scripts/tlshell/tlshell.tcl:581
 msgid "Up to date"
 msgstr "最新の状態です"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:581
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2172
+#: texmf-dist/scripts/tlshell/tlshell.tcl:583
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2177
 msgid "Unknown"
 msgstr "不明"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:761
+#: texmf-dist/scripts/tlshell/tlshell.tcl:763
 msgid "Loading"
 msgstr "ロード中"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:771
+#: texmf-dist/scripts/tlshell/tlshell.tcl:773
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
 "処理に時間がかかり過ぎる場合は「中止」を押すか別のリポジトリを選択してくださ"
 "い．"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:773
+#: texmf-dist/scripts/tlshell/tlshell.tcl:775
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1783,159 +1783,159 @@ msgstr ""
 "処理に時間がかかり過ぎる場合は「中止」を押すか別のリポジトリを選択してくださ"
 "い．"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:778
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2026
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2095
+#: texmf-dist/scripts/tlshell/tlshell.tcl:780
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2031
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2100
 msgid "Repositories"
 msgstr "リポジトリ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:841
+#: texmf-dist/scripts/tlshell/tlshell.tcl:844
 msgid "A configured repository is unavailable."
 msgstr "設定されたリポジトリの1つが利用不能です．"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:970
+#: texmf-dist/scripts/tlshell/tlshell.tcl:974
 msgid "Output"
 msgstr "出力"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:971
+#: texmf-dist/scripts/tlshell/tlshell.tcl:975
 msgid "Other"
 msgstr "その他"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:997
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1001
 #, tcl-format
 msgid "%s not a repository"
 msgstr "%s はリポジトリではありません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1080
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1084
 msgid "No repositories"
 msgstr "リポジトリがありません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1085
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1089
 msgid "Multiple repositories"
 msgstr "複数のリポジトリ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1088
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1092
 msgid "Not loaded"
 msgstr "未読み込み"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1116
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1120
 msgid "Actual repository"
 msgstr "実際のリポジトリ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1200
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1204
 msgid "Main Repository"
 msgstr "メインリポジトリ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1211
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1215
 msgid "Current:"
 msgstr "現在："
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1217
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1221
 msgid "New"
 msgstr "新規："
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1227
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1231
 msgid "Any CTAN mirror"
 msgstr "ミラーを自動選択"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1237
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1241
 msgid "Local directory..."
 msgstr "ローカルディレクトリ…"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1242
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1246
 msgid "tlcontrib additional repository"
 msgstr "追加リポジトリ (tlcontrib)"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1258
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1262
 msgid "tlcontrib repository is included"
 msgstr "tlcontrib リポジトリを含みます"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1259
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1263
 msgid "Remove tlcontrib repository"
 msgstr "tlcontrib リポジトリを削除"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1261
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1265
 msgid "tlcontrib repository is not included"
 msgstr "tlcontrib リポジトリは含まれていません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1262
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1266
 msgid "Add tlcontrib repository"
 msgstr "tlcontrib リポジトリを追加する"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1267
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1271
 msgid "Save and Load"
 msgstr "保存して読み込み"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1290
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1295
 #, tcl-format
 msgid "Cannot remove own platform %s"
 msgstr "現在のプラットフォーム (%s) を削除することはできません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1354
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1359
 msgid "Apply and close"
 msgstr "適用して閉じる"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1376
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1381
 msgid "platform"
 msgstr "プラットフォーム"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1440
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1445
 #, tcl-format
 msgid "Restore %s to revision %s?"
 msgstr "%s パッケージをリビジョン %s へ復元しますか？"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1463
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1468
 msgid "No backups configured"
 msgstr "バックアップが設定されていません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1473
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1478
 msgid "No backup directory defined"
 msgstr "バックアップディレクトリが指定されていません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1478
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1483
 #, tcl-format
 msgid "Backup directory %s does not exist"
 msgstr "バックアップディレクトリ %s が存在しません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1501
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1506
 #, tcl-format
 msgid "No packages in backup directory %s"
 msgstr "バックアップディレクトリ %s にパッケージがありません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1511
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2258
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1516
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2263
 msgid "Restore from backup"
 msgstr "バックアップから復元"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1527
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1532
 msgid "Package"
 msgstr "パッケージ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1528
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1533
 msgid "Revision"
 msgstr "リビジョン"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1569
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1574
 msgid "Restore all"
 msgstr "すべて復元"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1588
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1593
 msgid "Close this shell and run in an administrative command-prompt:"
 msgstr "このシェルを閉じて，管理者権限のコマンドプロンプトで実行してください："
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1590
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1595
 msgid "Close this shell and run in a command-prompt:"
 msgstr "このシェルを閉じて，コマンドプロンプトで実行してください："
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1599
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1631
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1671
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1721
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1796
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1604
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1636
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1676
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1726
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1801
 msgid "Nothing to do!"
 msgstr "何もすることがありません！"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1686
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1691
 #, tcl-format
 msgid ""
 "Also installing dependencies\n"
@@ -1946,12 +1946,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1693
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1698
 #, tcl-format
 msgid "Already installed: %s"
 msgstr "%s はインストール済み"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1734
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1739
 #, tcl-format
 msgid ""
 "Also updating dependencies\n"
@@ -1962,22 +1962,22 @@ msgstr ""
 "\n"
 "%s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1749
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1754
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
 msgstr "依存パッケージ %s をアップデートします．続行しますか？"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1761
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1766
 #, tcl-format
 msgid "Skipped because not installed: %s"
 msgstr "%s は未インストールなのでスキップします"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1764
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1769
 #, tcl-format
 msgid "Skipped because already up to date: %s"
 msgstr "%s は既に最新版なのでスキップします"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1800
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1805
 #, tcl-format
 msgid ""
 "Also remove dependencies\n"
@@ -1988,20 +1988,20 @@ msgstr ""
 "\n"
 "%s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1815
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1820
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
 msgstr "依存パッケージ %s をアンインストールします．続行しますか？"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1892
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1897
 msgid "Info"
 msgstr "情報"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1957
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1962
 msgid "Cannot set default GUI language"
 msgstr "デフォルト GUI 言語を設定できません"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2024
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2029
 #, tcl-format
 msgid ""
 "%s is not a local or remote repository.\n"
@@ -2010,155 +2010,155 @@ msgstr ""
 "%s はローカルリポジトリでもリモートリポジトリでもありません．\n"
 "有効なリポジトリを設定してください"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2046
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2072
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2051
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2077
 msgid "File"
 msgstr "ファイル"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2074
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2079
 msgid "Load repository"
 msgstr "リポジトリを読み込む"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2076
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2081
 msgid "Exit"
 msgstr "終了"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2082
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2087
 msgid "Regenerate filename database"
 msgstr "ファイル名データベースを再生成"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2083
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2088
 msgid "Regenerating filename database..."
 msgstr "ファイル名データベースを再生成中……"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2084
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2089
 msgid "Regenerate formats"
 msgstr "フォーマットを再生成"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2085
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2090
 msgid "Rebuilding formats..."
 msgstr "フォーマットを再生成中……"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2086
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2091
 msgid "Regenerate fontmaps"
 msgstr "フォントマップを再生成"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2087
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2092
 msgid "Rebuilding fontmap files..."
 msgstr "フォントマップを再生成中……"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2108
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2113
 msgid "GUI language (restarts tlshell)"
 msgstr "GUI 言語（tlshell が再起動します）"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2131
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2136
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr "GUI 版 TeX Live マネージャTcl/Tk 実装"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2132
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2137
 msgid "tlmgr help"
 msgstr "tlmgr ヘルプ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2151
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2156
 msgid "Restart self"
 msgstr "tlshell を再起動"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2153
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2158
 msgid "Restart tlmgr"
 msgstr "tlmgr を再起動"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2156
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2161
 msgid "Show logs"
 msgstr "ログを表示"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2170
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2175
 msgid "TL Manager up to date?"
 msgstr "tlmgr は最新版？"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2175
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2180
 msgid "Last tlmgr command:"
 msgstr "tlmgr コマンド："
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2188
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2193
 #, tcl-format
 msgid "Root at %s"
 msgstr "ルートは %s です"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2196
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2201
 msgid "Package list"
 msgstr "パッケージリスト"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2206
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2211
 msgid "Installed"
 msgstr "インストール済み"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2213
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2218
 msgid "Updatable"
 msgstr "アップデート可能"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2224
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2229
 msgid "Detail >> Global"
 msgstr "カテゴリ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2227
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2232
 msgid "Collections and schemes"
 msgstr "コレクションとスキーム"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2229
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2234
 msgid "Only schemes"
 msgstr "スキームのみ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2237
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2242
 msgid "Mark all"
 msgstr "すべて選択"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2239
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2244
 msgid "Mark none"
 msgstr "すべて選択解除"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2245
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2250
 msgid "Install marked"
 msgstr "選択項目をインストール"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2249
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2254
 msgid "Update marked"
 msgstr "選択項目をアップデート"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2253
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2258
 msgid "Remove marked"
 msgstr "選択項目をアンインストール"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2263
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2268
 msgid "Update tlmgr"
 msgstr "tlmgr をアップデート"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2266
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2271
 msgid "Update all"
 msgstr "すべてアップデート"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2273
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2278
 msgid "Search"
 msgstr "検索"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2276
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2281
 msgid "By name"
 msgstr "名称でソート"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2278
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2283
 msgid "By name and description"
 msgstr "名称と説明でソート"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2290
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2295
 msgid "Name"
 msgstr "名称"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2293
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2298
 msgid "Description"
 msgstr "説明"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2391
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2396
 #, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"
@@ -2167,11 +2167,11 @@ msgstr ""
 "%s は書き込み不能です．多くの処理が完了できない可能性があります．  それでも続"
 "行しますか？"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2404
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2409
 msgid "Multi-user"
 msgstr "マルチユーザ"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2404
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2409
 msgid "Single-user"
 msgstr "シングルユーザ"
 
