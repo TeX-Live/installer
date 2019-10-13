@@ -22,6 +22,7 @@ $mirrors = {
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
     'Iran' => {
+      'http://ctan.asis.ai/' => 1,
       'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
@@ -140,9 +141,6 @@ $mirrors = {
       'http://ctan.mirror.rafal.ca/' => 1,
       'http://mirror.its.dal.ca/ctan/' => 1,
       'http://muug.ca/mirror/ctan/' => 1
-    },
-    'Costa Rica' => {
-      'http://mirrors.ucr.ac.cr/CTAN/' => 1
     },
     'USA' => {
       'http://ctan.math.illinois.edu/' => 1,
