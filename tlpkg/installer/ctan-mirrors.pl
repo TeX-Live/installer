@@ -128,9 +128,6 @@ $mirrors = {
     },
     'Switzerland' => {
       'http://www.pirbot.com/mirrors/ctan/' => 1
-    },
-    'UK' => {
-      'http://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1
     }
   },
   'North America' => {
