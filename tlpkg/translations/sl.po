@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2019-10-12 01:54+0200\n"
+"POT-Creation-Date: 2019-10-16 02:05+0200\n"
 "PO-Revision-Date: 2019-04-08 23:05+0200\n"
 "Last-Translator: Mojca Miklavec <mojca.miklavec.lists@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -113,7 +113,7 @@ msgstr "Namestitev TeX Live %s"
 #: tlpkg/installer/install-menu-perltk.pl:676
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:544
 #: tlpkg/installer/install-tl-gui.tcl:1353
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2154
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2155
 msgid "Quit"
 msgstr "Izhod"
 
@@ -394,8 +394,8 @@ msgstr "Samo nove"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:145
 #: tlpkg/installer/install-tl-gui.tcl:1096
 #: tlpkg/installer/install-tl-gui.tcl:1638
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2213
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2230
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2214
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2231
 msgid "All"
 msgstr "Vse"
 
@@ -623,7 +623,7 @@ msgstr "Po namestitvi nastavi CTAN za vir posodobitev paketov"
 #: tlpkg/installer/install-menu-perltk.pl:609
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:650
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:652
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2133
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2134
 msgid "About"
 msgstr "O programu"
 
@@ -807,7 +807,7 @@ msgid "Display configuration"
 msgstr "Kriteriji za prikaz paketov"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:321
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2210
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2211
 msgid "Status"
 msgstr "Status"
 
@@ -893,12 +893,12 @@ msgid "Package name"
 msgstr "Ime paketa"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:417
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2296
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2297
 msgid "Local rev. (ver.)"
 msgstr "Lokalna rev. (ver.)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:418
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2297
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2298
 msgid "Remote rev. (ver.)"
 msgstr "Oddaljena rev. (ver.)"
 
@@ -939,7 +939,7 @@ msgstr "Akcije"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:519
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2694
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2131
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2132
 msgid "Help"
 msgstr "Pomoč"
 
@@ -1720,7 +1720,7 @@ msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1489
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1351
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2128
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2129
 msgid "Platforms"
 msgstr "Platforme"
 
@@ -1833,7 +1833,7 @@ msgid "Up to date"
 msgstr "Posodobljeno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:583
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2177
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2178
 #, fuzzy
 msgid "Unknown"
 msgstr "Neznano"
@@ -1980,7 +1980,7 @@ msgid "No packages in backup directory %s"
 msgstr "V mapi za varnostne kopije (%s) ni nobenega paketa"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1516
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2263
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2264
 msgid "Restore from backup"
 msgstr "Obnovi iz varnostnih kopij"
 
@@ -2123,11 +2123,11 @@ msgstr "Posodobi mapiranje pisav"
 msgid "Rebuilding fontmap files..."
 msgstr "Posodabljam mapiranje pisav …"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2113
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2114
 msgid "GUI language (restarts tlshell)"
 msgstr "Jezik grafičnega vmesnika (ponovno zažene tlshell)"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2136
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2137
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
@@ -2135,111 +2135,111 @@ msgstr ""
 "Grafični vmesnik za TeX Live Manager\n"
 "Spisan v jeziku Tcl/Tk"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2137
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2138
 msgid "tlmgr help"
 msgstr "tlmgr pomoč"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2156
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2157
 msgid "Restart self"
 msgstr "Ponovno zaženi"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2158
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2159
 msgid "Restart tlmgr"
 msgstr "Ponovno zaženi tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2161
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2162
 msgid "Show logs"
 msgstr "Prikaži dnevnik (log)"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2175
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2176
 msgid "TL Manager up to date?"
 msgstr "Je TL Manager posodobljen?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2180
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2181
 msgid "Last tlmgr command:"
 msgstr "Zadnji klic tlmgr-ja:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2193
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2194
 #, fuzzy, tcl-format
 msgid "Root at %s"
 msgstr "Korenski imenik v %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2201
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2202
 msgid "Package list"
 msgstr "Seznam paketov"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2211
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2212
 msgid "Installed"
 msgstr "Nameščene"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2218
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2219
 #, fuzzy
 msgid "Updatable"
 msgstr "Na voljo posodobitev"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2229
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2230
 #, fuzzy
 msgid "Detail >> Global"
 msgstr "Zelo podrobno >> manj podrobno"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2232
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2233
 msgid "Collections and schemes"
 msgstr "Zbirke in sheme"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2234
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2235
 msgid "Only schemes"
 msgstr "Samo sheme"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2242
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2243
 msgid "Mark all"
 msgstr "Izberi vse"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2244
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2245
 #, fuzzy
 msgid "Mark none"
 msgstr "Odznači vse"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2250
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2251
 msgid "Install marked"
 msgstr "Namesti izbrane"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2254
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2255
 msgid "Update marked"
 msgstr "Posodobi izbrane"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2258
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2259
 msgid "Remove marked"
 msgstr "Odstrani izbrane"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2268
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2269
 msgid "Update tlmgr"
 msgstr "Posodobil tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2271
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2272
 msgid "Update all"
 msgstr "Posodobi vse"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2278
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2279
 msgid "Search"
 msgstr "Išči"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2281
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2282
 msgid "By name"
 msgstr "Po imenu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2283
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2284
 msgid "By name and description"
 msgstr "Po imenu in opisu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2295
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2296
 msgid "Name"
 msgstr "Ime"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2298
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2299
 msgid "Description"
 msgstr "Opis"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2396
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2397
 #, fuzzy, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"
@@ -2248,11 +2248,11 @@ msgstr ""
 "V mapo %s nimate pravice pisati.\n"
 "  Ste prepričani, da želite nadaljevati?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2409
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2410
 msgid "Multi-user"
 msgstr "Za več uporabnikov"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2409
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2410
 msgid "Single-user"
 msgstr "Za enega uporabnika"
 
