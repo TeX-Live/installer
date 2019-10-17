@@ -2125,13 +2125,22 @@ sub read_profile {
 
 sub do_install_packages {
   # let's install the critical packages first, since they are the most
-  # likely to fail, and nothing is usable without them.
-  my @what = @TeXLive::TLConfig::CriticalPackagesList;
-  foreach my $package (sort keys %install) {
-    if ($install{$package} == 1
-        && $package !~ m/$CriticalPackagesRegexp/) {
-      push (@what, $package)
-    }
+  # likely to fail (so let's fail early), and nothing is usable without them.
+  my @what = ();
+  foreach my $package (sort {
+      if ($a =~ /$CriticalPackagesRegexp/) {
+        if ($b =~ /$CriticalPackagesRegexp/) {
+          return $a cmp $b; # both critical
+        } else {
+          return -1; # critical before non-critical
+        }
+      } elsif ($b =~ /$CriticalPackagesRegexp/) {
+        return 1; # critical before non-critical 
+      } else {
+        return $a cmp $b;
+      }
+    } keys %install) {
+    push (@what, $package) if ($install{$package} == 1);
   }
   # temporary unset the localtlpdb options responsible for
   # running all kind of postactions, since install_packages
