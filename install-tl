@@ -180,6 +180,8 @@ use strict;
 
 # global list of lines that get logged (see TLUtils.pm::_logit).
 @::LOGLINES = ();
+# if --version, --help, etc., this just gets thrown away, which is ok.
+&log ("TeX Live installer invocation: $0", map { " $_" } @ARGV, "\n");
 
 # global list of warnings
 @::WARNLINES = ();
