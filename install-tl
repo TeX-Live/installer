@@ -452,12 +452,12 @@ if (defined($::opt_lang)) {
 }
 
 if ($opt_profile) { # for now, not allowed if in_place
-  if (-r $opt_profile) {
+  if (-r $opt_profile && -f $opt_profile) {
     info("Automated TeX Live installation using profile: $opt_profile\n");
   } else {
     $opt_profile = "";
     info(
-      "Profile $opt_profile not readable, continuing in interactive mode.\n");
+"Profile $opt_profile not readable or not a file, continuing in interactive mode.\n");
   }
 }
 
@@ -2150,19 +2150,23 @@ sub do_install_packages {
   $localtlpdb->option ("file_assocs", "0");
   $localtlpdb->option ("post_code", "0");
   if (!install_packages($tlpdb,$media,$localtlpdb,\@what,
-                        $vars{'tlpdbopt_install_srcfiles'},$vars{'tlpdbopt_install_docfiles'})) {
+                        $vars{'tlpdbopt_install_srcfiles'},
+                        $vars{'tlpdbopt_install_docfiles'})) {
     my $profile_name = "installation.profile";
     create_profile($profile_name);
     tlwarn("Installation failed.\n");
     tlwarn("Rerunning the installer will try to restart the installation.\n");
-    tlwarn("Or you can restart by running the installer with:\n");
-    my $repostr = ($opt_location ? " --repository $location" : "");
-    if (win32()) {
-      tlwarn("  install-tl-windows.bat$repostr --profile $profile_name [EXTRA-ARGS]\n"
-        ."or\n"
-        ."  install-tl-advanced.bat$repostr --profile $profile_name [EXTRA-ARGS]\n");
-    } else {
-      tlwarn("  install-tl$repostr --profile $profile_name [EXTRA-ARGS]\n");
+    if (-r $profile_name) {
+      # only suggest rerunning with the profile if it exists.
+      tlwarn("Or you can restart by running the installer with:\n");
+      my $repostr = ($opt_location ? " --repository $location" : "");
+      if (win32()) {
+        tlwarn("  install-tl-windows.bat$repostr --profile $profile_name [EXTRA-ARGS]\n"
+          ."or\n"
+          ."  install-tl-advanced.bat$repostr --profile $profile_name [EXTRA-ARGS]\n");
+      } else {
+        tlwarn("  install-tl$repostr --profile $profile_name [EXTRA-ARGS]\n");
+      }
     }
     flushlog();
     exit(1);
