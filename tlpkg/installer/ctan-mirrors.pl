@@ -43,6 +43,7 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.harukasan.org/CTAN/' => 1,
+      'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1
     },
@@ -125,6 +126,9 @@ $mirrors = {
       'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
       'http://mirrors.up.pt/pub/CTAN/' => 1,
       'https://ftp.eq.uc.pt/software/TeX/' => 1
+    },
+    'Romania' => {
+      'http://mirrors.nxthost.com/ctan/' => 1
     },
     'Russia' => {
       'http://ctan.altspu.ru/' => 1,
