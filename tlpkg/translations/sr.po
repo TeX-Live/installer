@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-10-19 01:56+0200\n"
-"PO-Revision-Date: 2019-10-22 16:01+0300\n"
+"PO-Revision-Date: 2019-10-23 02:13+0300\n"
 "Last-Translator: Nikola Lečić <nikola.lecic@anthesphoria.net>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: sr\n"
@@ -374,13 +374,13 @@ msgstr "Инсталирај"
 #: tlpkg/installer/install-tl-gui.tcl:1099
 #: tlpkg/installer/install-tl-gui.tcl:1638
 msgid "None"
-msgstr "Ништа"
+msgstr "ниједан"
 
 #: tlpkg/installer/install-menu-perltk.pl:49
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:144
 #: tlpkg/installer/install-tl-gui.tcl:1638
 msgid "Only new"
-msgstr "Само нови"
+msgstr "само нови"
 
 #: tlpkg/installer/install-menu-perltk.pl:50
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:145
@@ -389,7 +389,7 @@ msgstr "Само нови"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2214
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2231
 msgid "All"
-msgstr "Све"
+msgstr "све"
 
 #: tlpkg/installer/install-menu-perltk.pl:52
 msgid "A4"
@@ -608,7 +608,7 @@ msgstr "Направи симболичке линкове у системски
 #: tlpkg/installer/install-menu-perltk.pl:585
 #: tlpkg/installer/install-tl-gui.tcl:1699
 msgid "After install, set CTAN as source for package updates"
-msgstr "После инсталације укажите CTAN као извор за надоградње пакета. "
+msgstr "После инсталације подеси CTAN као извор за надоградње пакета"
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -1546,7 +1546,7 @@ msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
 msgstr ""
-"Овај део издања TL је важан!\n"
+"Овај део путање TL је важан!\n"
 "Да ли сте сигурни?"
 
 #: tlpkg/installer/install-tl-gui.tcl:565
@@ -1567,7 +1567,7 @@ msgstr "Корен инсталације"
 #: tlpkg/installer/install-tl-gui.tcl:639
 #: tlpkg/installer/install-tl-gui.tcl:1280 tlpkg/tltcl/tltcl.tcl:578
 msgid "Browse..."
-msgstr "Изаберите..."
+msgstr "Изабрати директоријум..."
 
 #: tlpkg/installer/install-tl-gui.tcl:652
 msgid "Localized directory names will be replaced by their real names"
@@ -1597,7 +1597,7 @@ msgstr "Колекције"
 
 #: tlpkg/installer/install-tl-gui.tcl:1095
 msgid "Select"
-msgstr "Изаберите"
+msgstr "Изабери"
 
 #: tlpkg/installer/install-tl-gui.tcl:1111
 msgid "Languages"
@@ -1650,7 +1650,7 @@ msgstr "Додаци корисника"
 
 #: tlpkg/installer/install-tl-gui.tcl:1466
 msgid "More ..."
-msgstr "Више ..."
+msgstr "Више опција..."
 
 #: tlpkg/installer/install-tl-gui.tcl:1475
 msgid ""
@@ -1659,8 +1659,8 @@ msgid ""
 "and TEXMFHOME"
 msgstr ""
 "Преносива инсталација:\n"
-"могуће ће ресетовање TEXMFLOCAL\n"
-"и TEXMFHOME"
+"(могуће је ресетовање\n"
+"TEXMFLOCAL и TEXMFHOME)"
 
 #: tlpkg/installer/install-tl-gui.tcl:1489
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1351
@@ -1694,7 +1694,7 @@ msgstr "Подешавања"
 
 #: tlpkg/installer/install-tl-gui.tcl:1541
 msgid "Disk space required (in MB):"
-msgstr "Неопходно место на диску (у MB):"
+msgstr "Неопходно место на диску (MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1619
 msgid "Adjust searchpath"
