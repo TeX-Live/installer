@@ -1102,18 +1102,25 @@ sub rmtree {
 
 =item C<copy("-f", $file, $destfile)>
 
+=item C<copy("-L", $file, $destfile)>
+
 Copy file C<$file> to directory C<$target_dir>, or to the C<$destfile>
-in the second case.  No external programs are involved.  Since we need
-C<sysopen()>, the Perl module C<Fcntl.pm> is required.  The time stamps
-are preserved and symlinks are created on Unix systems.  On Windows,
-C<(-l $file)> will never return 'C<true>' and so symlinks will be
-(uselessly) copied as regular files.
+if the first argument is C<"-f">. No external programs are involved.
+Since we need C<sysopen()>, the Perl module C<Fcntl.pm> is required. The
+time stamps are preserved and symlinks are created on Unix systems. On
+Windows, C<(-l $file)> will never return 'C<true>' and so symlinks will
+be (uselessly) copied as regular files.
+
+If the argument is C<"-L"> and C<$file> is a symlink, the link is
+dereferenced before the copying is done. (If both C<"-f"> and C<"-L">
+are desired, they must be given in that order, although the current code
+has no need to do this.)
 
 C<copy> invokes C<mkdirhier> if target directories do not exist.  Files
 have mode C<0777> if they are executable and C<0666> otherwise, with
 the set bits in I<umask> cleared in each case.
 
-C<$file> can begin with a file:/ prefix.
+C<$file> can begin with a C<file:/> prefix.
 
 If C<$file> is not readable, we return without copying anything.  (This
 can happen when the database and files are not in perfect sync.)  On the
@@ -1125,8 +1132,13 @@ that is a fatal error.
 sub copy {
   my $infile = shift;
   my $filemode = 0;
+  my $dereference = 0;
   if ($infile eq "-f") { # second argument is a file
     $filemode = 1;
+    $infile = shift;
+  }
+  if ($infile eq "-L") {
+    $dereference = 1;
     $infile = shift;
   }
   my $destdir=shift;
@@ -1157,6 +1169,18 @@ sub copy {
   if (! -d $destdir) {
     my ($ret,$err) = mkdirhier ($destdir);
     die "mkdirhier($destdir) failed: $err\n" if ! $ret;
+  }
+
+  # if we should dereference, change $infile to refer to the link target.
+  if (-l $infile && $dereference) {
+    my $linktarget = readlink($infile);
+    # The symlink target should always be relative, and we need to
+    # prepend the directory containing the link in that case.
+    # (Although it should never happen, if the symlink target happens
+    # to already be absolute, do not prepend.)
+    if ($linktarget !~ m,^/,) {
+      $infile = Cwd::abs_path(dirname($infile)) . "/$linktarget";
+    }
   }
 
   if (-l $infile) {
@@ -2265,8 +2289,8 @@ sub unpack {
     }
   } else {
     # we are installing from local compressed files
-    # copy it to temp
-    TeXLive::TLUtils::copy($what, $tempdir);
+    # copy it to temp with dereferencing of link target
+    TeXLive::TLUtils::copy("-L", $what, $tempdir);
 
     check_file_and_remove($containerfile, $checksum, $size);
     if (! -r $containerfile) {
