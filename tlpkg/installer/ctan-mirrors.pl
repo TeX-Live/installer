@@ -1,5 +1,8 @@
 $mirrors = {
   'Africa' => {
+    'Algeria' => {
+      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
+    },
     'Morocco' => {
       'https://mirror.marwan.ma/ctan/' => 1
     },
@@ -15,7 +18,8 @@ $mirrors = {
       'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
-      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
+      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
+      'http://mirrors.ustc.edu.cn/CTAN/' => 1
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1
