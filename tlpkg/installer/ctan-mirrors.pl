@@ -1,8 +1,5 @@
 $mirrors = {
   'Africa' => {
-    'Algeria' => {
-      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
-    },
     'Morocco' => {
       'https://mirror.marwan.ma/ctan/' => 1
     },
@@ -33,6 +30,7 @@ $mirrors = {
       'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
+      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
@@ -108,7 +106,6 @@ $mirrors = {
     },
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
-      'http://ctan.triasinformatica.nl/' => 1,
       'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'http://mirror.koddos.net/CTAN/' => 1
     },
