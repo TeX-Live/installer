@@ -18,8 +18,7 @@ $mirrors = {
       'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
-      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
-      'http://mirrors.ustc.edu.cn/CTAN/' => 1
+      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
     },
     'India' => {
       'http://ctan.imsc.res.in/' => 1,
@@ -144,9 +143,6 @@ $mirrors = {
     },
     'Sweden' => {
       'http://ftp.acc.umu.se/mirror/CTAN/' => 1
-    },
-    'Switzerland' => {
-      'http://www.pirbot.com/mirrors/ctan/' => 1
     },
     'UK' => {
       'http://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1
