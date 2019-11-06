@@ -4758,6 +4758,8 @@ sub action_option {
               return ($F_ERROR);
             }
           }
+          my $local_location = $localtlpdb->location;
+          info("$prg: updating $local_location\n");
           $localtlpdb->save;
           # now also save the TLPOBJ of 00texlive.installation
           my $tlpo = $localtlpdb->get_package("00texlive.installation");
