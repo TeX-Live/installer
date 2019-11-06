@@ -1456,7 +1456,7 @@ sub action_path {
         } elsif ($opts{"w32mode"} eq "admin") {
           $winadminmode = 1;
         } else {
-          tlwarn("$prg: Unknown --w32admin mode: $opts{w32mode}, should be 'admin' or 'user'\n");
+          tlwarn("$prg: unknown --w32admin mode: $opts{w32mode}, should be 'admin' or 'user'\n");
           return ($F_ERROR);
         }
       } else {
@@ -1467,7 +1467,7 @@ sub action_path {
           tlwarn("$prg: You don't have the privileges to work in --w32mode admin\n");
           return ($F_ERROR);
         } else {
-          tlwarn("$prg: Unknown --w32admin mode: $opts{w32mode}, should be 'admin' or 'user'\n");
+          tlwarn("$prg: unknown --w32admin mode: $opts{w32mode}, should be 'admin' or 'user'\n");
           return ($F_ERROR);
         }
       }
@@ -1827,7 +1827,7 @@ sub restore_one_package {
     }
   }
   if (!$restore_file) {
-    tlwarn("$prg: Cannot find restore file $bd/${pkg}.r${rev}.tar.*, no action taken\n");
+    tlwarn("$prg: cannot find restore file $bd/${pkg}.r${rev}.tar.*, no action taken\n");
     return ($F_ERROR);
   }
   $localtlpdb->remove_package($pkg);
@@ -1841,7 +1841,7 @@ sub restore_one_package {
   TeXLive::TLUtils::announce_execute_actions("enable",
                                       $localtlpdb->get_package($pkg));
   $localtlpdb->save;
-  # TODO_ERROCHECKING we should check the return values of the
+  # TODO_ERRORCHECKING we should check the return values of the
   # various calls above
   return ($F_OK);
 }
@@ -1864,7 +1864,7 @@ sub setup_backup_directory {
         debug ("Automatic backups activated, keeping $autobackup backups.\n");
         $opts{"backup"} = 1;
       } else {
-        tlwarn ("$prg: Option autobackup can only be an integer >= -1.\n");
+        tlwarn ("$prg: Option autobackup value can only be an integer >= -1.\n");
         tlwarn ("$prg: Disabling auto backups.\n");
         $localtlpdb->option("autobackup", 0);
         $autobackup = 0;
@@ -1910,7 +1910,7 @@ sub check_backupdir_selection {
     init_local_db(1);
     $opts{"backupdir"} = norm_tlpdb_path($localtlpdb->option("backupdir"));
     if (!$opts{"backupdir"}) {
-      return (0, "$prg: No way to determine backupdir.\n");
+      return (0, "$prg: cannot determine backupdir.\n");
     }
     # we are still here, there is something set in tlpdb
     my $ob = abs_path($opts{"backupdir"});
@@ -2284,7 +2284,7 @@ sub write_w32_updater {
     # create backup; make_container expects file name in a format: some-name.r[0-9]+
     my ($size, undef, $fullname) = $localtlp->make_container("tar", $root, $temp, "__BACKUP_$pkg.r$oldrev");
     if ($size <= 0) {
-      tlwarn("$prg: Creation of backup container of $pkg failed.\n");
+      tlwarn("$prg: creation of backup container failed for: $pkg\n");
       return 1; # backup failed? abort
     }
     my $decompressor = $::progs{$DefaultCompressorFormat};
@@ -2299,13 +2299,13 @@ sub write_w32_updater {
       }
       # now we should have the file present
       if (!-r $dlcontainer) {
-        tlwarn("$prg: Couldn't get $pkg_part.tar.$compressorextension, that is bad\n");
+        tlwarn("$prg: couldn't get $pkg_part.tar.$compressorextension, that is bad\n");
         return 1; # abort
       }
       # unpack xz archive
       my $sysret = system("$decompressor @decompressorArgs < \"$dlcontainer\" > \"$temp/$pkg_part.tar\"");
       if ($sysret) {
-        tlwarn("$prg: Couldn't unpack $pkg_part.tar.$compressorextension\n");
+        tlwarn("$prg: couldn't unpack $pkg_part.tar.$compressorextension\n");
         return 1; # unpack failed? abort
       }
       unlink($dlcontainer); # we don't need that archive anymore
@@ -2409,7 +2409,7 @@ EOF
     copy("$root/tlpkg/installer/tar.exe", "$temp");
     # make sure copied tar is working
     if (system("\"$temp/tar.exe\" --version >nul")) {
-      tlwarn("$prg: Could not copy tar.exe, that is bad.\n");
+      tlwarn("$prg: could not copy tar.exe, that is bad.\n");
       return 1; # abort
     }
     open UPDATER, ">$temp/updater-w32" or die "Cannot create updater script: $!";
@@ -2560,7 +2560,7 @@ sub auto_remove_install_force_packages {
 #   if foo is of type Package|Documentation it will update only foo
 #     and the respective .ARCH dependencies
 #   if foo is of type Collection|Scheme it will update itself AND
-#     will check all depending packs of type NOT(COllection|Scheme)
+#     will check all depending packs of type NOT(Collection|Scheme)
 #     for necessary updates
 #
 # tlmgr update --no-depends foo
@@ -3245,8 +3245,8 @@ sub action_update {
                                       "__BACKUP_${pkg}.r" . $tlp->revision,
                                       $tlp->relocated);
         if ($s <= 0) {
-          tlwarn("\n$prg: Creation of backup container of $pkg failed.\n");
-          tlwarn("$prg: Continuing to update other packages, please retry...\n");
+          tlwarn("\n$prg: creation of backup container failed for: $pkg\n");
+          tlwarn("$prg: continuing to update other packages, please retry...\n");
           $ret |= $F_WARNING;
           # we should try to update other packages at least
           next;
@@ -3460,7 +3460,7 @@ sub action_update {
           }
           if ($bad_file) {
             tlwarn("$prg: The file $k has disappeared from the critical" .
-                   "package $pkg but is still present in @found_pkgs\n");
+                   " package $pkg but is still present in @found_pkgs\n");
             $ret |= $F_WARNING;
           } else {
             push @infra_files_to_be_removed, $k;
@@ -3943,7 +3943,7 @@ sub show_one_package_csv {
       my $totalsize = $srcsize + $docsize + $runsize + $binsize;
       push @out, $totalsize;
     } else {
-      tlwarn("$prg: unkown data field $d\n");
+      tlwarn("$prg: unknown data field $d\n");
       return($F_WARNING);
     }
   }
@@ -4056,7 +4056,7 @@ sub show_one_package_detail {
       if (defined($tag)) {
         # we already searched for the package in a specific tag, don't retry
         # all candidates!
-        tlwarn("$prg: Cannot find package $pkg in repository $tag\n");
+        tlwarn("$prg: cannot find package $pkg in repository $tag\n");
         return($F_WARNING);
       }
       my @cand = $remotetlpdb->candidates($pkg);
@@ -4066,7 +4066,7 @@ sub show_one_package_detail {
         # subsidiary repository, but not installable
         # because it is not pinned
         # we will list it but warn about this fact
-        # useless test, @cand will always be defined becuase $remotetlpdb is virtual
+        # useless test, @cand will always be defined because $remotetlpdb is virtual
         my $first = shift @cand;
         if (defined($first)) {
           tlwarn("$prg: strange, we have a first candidate but no tlp: $pkg\n");
@@ -4754,7 +4754,7 @@ sub action_option {
                 $localtlpdb->option($opt, $n);
               }
             } else {
-              tlwarn ("$prg: Unknown type of option $opt: $TLPDBOptions{$opt}->[0]\n");
+              tlwarn ("$prg: unknown type of option $opt: $TLPDBOptions{$opt}->[0]\n");
               return ($F_ERROR);
             }
           }
@@ -5317,10 +5317,10 @@ sub init_tltree {
   my $Master = $localtlpdb->root;
   my $tltree = TeXLive::TLTREE->new ("svnroot" => $Master);
   if ($svn) {
-    debug("Initializine TLTREE from svn\n");
+    debug("Initializing TLTREE from svn\n");
     $tltree->init_from_svn;
   } else {
-    debug("Initializine TLTREE from find\n");
+    debug("Initializing TLTREE from find\n");
     $tltree->init_from_files;
   }
   return($tltree);
@@ -5894,7 +5894,7 @@ sub check_texmfdbs {
 
 #  POSTACTION
 # 
-# explictly run the various post actions, e.g.,
+# explicitly run the various post actions, e.g.,
 # on a client system or overriding global settings.
 # 
 # tlmgr postaction [--w32mode=user|admin] [--fileassocmode=1|2] [--all]
@@ -5929,7 +5929,7 @@ sub action_postaction {
         chomp($ENV{"TEXMFSYSVAR"} = `kpsewhich -var-value TEXMFVAR`);
       } elsif ($opts{"w32mode"} eq "admin") {
         if (!TeXLive::TLWinGoo::admin()) {
-          tlwarn("$prg: You don't have the permissions for --w32mode=admin\n");
+          tlwarn("$prg: you don't have the permissions for --w32mode=admin\n");
           return;
         }
       } else {
@@ -6618,8 +6618,8 @@ sub action_shell {
 #
 # set global $location variable.
 #
-# argument $should_i_die specifies what is requried
-# to suceed during initialization.
+# argument $should_i_die specifies what is required
+# to succeed during initialization.
 #
 # undef or false: TLPDB needs to be found and initialized, but
 #                 support programs need not be found
@@ -7217,14 +7217,14 @@ sub load_options_from_config {
       } elsif ($val eq "1") {
         $config{"gui-expertmode"} = 1;
       } else {
-        tlwarn("$prg: $fn: Unknown value for gui-expertmode: $val\n");
+        tlwarn("$prg: $fn: unknown value for gui-expertmode: $val\n");
       }
 
     } elsif ($key eq "persistent-downloads") {
       if (($val eq "0") || ($val eq "1")) {
         $config{'persistent-downloads'} = $val;
       } else {
-        tlwarn("$prg: $fn: Unknown value for persistent-downloads: $val\n");
+        tlwarn("$prg: $fn: unknown value for persistent-downloads: $val\n");
       }
 
     } elsif ($key eq "update-exclude") {
@@ -7240,7 +7240,7 @@ sub load_options_from_config {
       } elsif ($val eq "1") {
         $config{"auto-remove"} = 1;
       } else {
-        tlwarn("$prg: $fn: Unknown value for auto-remove: $val\n");
+        tlwarn("$prg: $fn: unknown value for auto-remove: $val\n");
       }
 
     } elsif ($key eq "require-verification") {
@@ -7249,7 +7249,7 @@ sub load_options_from_config {
       } elsif ($val eq "1") {
         $config{"require-verification"} = 1;
       } else {
-        tlwarn("$prg: $fn: Unknown value for require-verification: $val\n");
+        tlwarn("$prg: $fn: unknown value for require-verification: $val\n");
       }
 
     } elsif ($key eq "verify-downloads") {
@@ -7258,14 +7258,14 @@ sub load_options_from_config {
       } elsif ($val eq "1") {
         $config{"verify-downloads"} = 1;
       } else {
-        tlwarn("$prg: $fn: Unknown value for verify-downloads: $val\n");
+        tlwarn("$prg: $fn: unknown value for verify-downloads: $val\n");
       }
 
     } elsif ($key eq "verify-repo") {
       if ($val =~ m/$allowed_verify_args_regex/) {
         $config{"verify-repo"} = $val;
       } else {
-        tlwarn("$prg: $fn: Unknown value for verify-repo: $val\n");
+        tlwarn("$prg: $fn: unknown value for verify-repo: $val\n");
       }
 
     } elsif ($key eq "no-checksums") {
@@ -7274,7 +7274,7 @@ sub load_options_from_config {
       } elsif ($val eq "0") {
         $config{"no-checksums"} = 0;
       } else {
-        tlwarn("$prg: $fn: Unknown value for no-checksums: $val\n");
+        tlwarn("$prg: $fn: unknown value for no-checksums: $val\n");
       }
 
     } elsif ($sysmode) {
@@ -7283,10 +7283,10 @@ sub load_options_from_config {
         my @acts = split(/,/, $val);
         $config{'allowed-actions'} = \@acts;
       } else {
-        tlwarn("$prg: $fn: Unknown tlmgr configuration variable: $key\n");
+        tlwarn("$prg: $fn: unknown tlmgr configuration variable: $key\n");
       }
     } else {
-      tlwarn("$prg: $fn: Unknown tlmgr configuration variable: $key\n");
+      tlwarn("$prg: $fn: unknown tlmgr configuration variable: $key\n");
     }
   }
 }
@@ -7325,8 +7325,8 @@ sub convert_crypto_options {
   if ((defined($verify_downloads) || defined($require_verification)) &&
       defined($verify_repo)) {
     # we cannot have all three, warn and bail out
-    tldie("$prg: The options verify-downloads and require-verification have\n"
-        . "$prg: been superseded by verify-repo, please use only the latter!\n");
+    tldie("$prg: options verify-downloads and require-verification have\n"
+        . "$prg: been superseded by verify-repo; please use only the latter!\n");
   }
   # return immediately if verify_repo is already set
   return($verify_repo) if (defined($verify_repo));
@@ -7339,7 +7339,7 @@ sub convert_crypto_options {
         $ret = "all";
       } else {
         # either nothing passed or --no-require-verification (default)
-        # use explit setting to main
+        # use explicit setting to main
         $ret = "main";
       }
     } else {
@@ -8707,7 +8707,7 @@ and the respective tags if set. If a path, url, or tag is given after
 the C<list> keyword, it is interpreted as the source from which to
 initialize a TL database and lists the contained packages. This can also
 be an otherwise-unused repository, either local or remote. If the option
-C<--with-platforms> is spcified in addition, for each package the
+C<--with-platforms> is specified in addition, for each package the
 available platforms (if any) are also listed.
 
 The form C<repository add> adds a repository (optionally attaching a
