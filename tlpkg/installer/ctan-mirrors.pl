@@ -17,6 +17,7 @@ $mirrors = {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
       'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.geekpie.club/CTAN/' => 1,
+      'http://mirrors.hit.edu.cn/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'http://mirrors.ustc.edu.cn/CTAN/' => 1
@@ -32,6 +33,7 @@ $mirrors = {
       'https://mirror.unpad.ac.id/ctan/' => 1
     },
     'Iran' => {
+      'http://ctan.asis.ai/' => 1,
       'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
