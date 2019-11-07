@@ -8925,9 +8925,9 @@ must be specified.  Options:
 
 =item B<--all>
 
-Update all installed packages except for C<tlmgr> itself.  Thus, if
-updates to C<tlmgr> itself are present, this will simply give an error,
-unless also the option C<--force> or C<--self> is given.  (See below.)
+Update all installed packages except for C<tlmgr> itself. If updates to
+C<tlmgr> itself are present, this gives an error, unless also the option
+C<--force> or C<--self> is given. (See below.)
 
 In addition to updating the installed packages, during the update of a
 collection the local installation is (by default) synchronized to the
@@ -8944,13 +8944,20 @@ Analogously, if a package has been added to a collection on the server
 that is also installed locally, it will be added to the local
 installation.  This is called ``auto-install'' and is announced as such
 when using the option C<--list>.  This auto-installation can be
-suppressed using the option C<--no-auto-install>.
+suppressed using the option C<--no-auto-install> (also not recommended).
 
 An exception to the collection dependency checks (including the
 auto-installation of packages just mentioned) are those that have been
 ``forcibly removed'' by you, that is, you called C<tlmgr remove --force>
 on them.  (See the C<remove> action documentation.)  To reinstall any
 such forcibly removed packages use C<--reinstall-forcibly-removed>.
+
+To reiterate: automatic removals and additions are entirely determined
+by comparison of collections. Thus, if you manually install an
+individual package C<foo> which is later removed from the server,
+C<tlmgr> will not notice and will not remove it locally. (It has to be
+this way, without major rearchitecture work, because the tlpdb does not
+record the repository from which packages come from.)
 
 If you want to exclude some packages from the current update run (e.g.,
 due to a slow link), see the C<--exclude> option below.
@@ -9015,12 +9022,12 @@ the key C<update-exclude>.
 
 =item B<--no-auto-remove> [I<pkg>...]
 
-By default, C<tlmgr> tries to remove packages which have disappeared on
-the server, as described above under C<--all>.  This option prevents
-such removals, either for all packages (with C<--all>), or for just the
-given I<pkg> names.  This can lead to an inconsistent TeX installation,
-since packages are not infrequently renamed or replaced by their
-authors.  Therefore this is not recommend.
+By default, C<tlmgr> tries to remove packages in an existing collection
+which have disappeared on the server, as described above under C<--all>.
+This option prevents such removals, either for all packages (with
+C<--all>), or for just the given I<pkg> names. This can lead to an
+inconsistent TeX installation, since packages are not infrequently
+renamed or replaced by their authors. Therefore this is not recommended.
 
 =item B<--no-auto-install> [I<pkg>...]
 
@@ -9040,6 +9047,9 @@ is equivalent to
 
   tlmgr update --all
   tlmgr remove --force foobar
+
+Again, since packages are sometimes renamed or replaced, using this
+option is not ecommended.
 
 =item B<--reinstall-forcibly-removed>
 
