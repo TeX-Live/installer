@@ -1130,6 +1130,7 @@ that is a fatal error.
 =cut
 
 sub copy {
+  ddebug("TLUtils::copy(", join (",", @_), "\n");
   my $infile = shift;
   my $filemode = 0;
   my $dereference = 0;
