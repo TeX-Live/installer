@@ -55,7 +55,6 @@ $mirrors = {
       'https://download.nus.edu.sg/mirror/ctan/' => 1
     },
     'Taiwan' => {
-      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
       'http://ftp.yzu.edu.tw/CTAN/' => 1
     }
   },
@@ -125,8 +124,7 @@ $mirrors = {
     },
     'Portugal' => {
       'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
-      'http://mirrors.up.pt/pub/CTAN/' => 1,
-      'https://ftp.eq.uc.pt/software/TeX/' => 1
+      'http://mirrors.up.pt/pub/CTAN/' => 1
     },
     'Romania' => {
       'http://mirrors.nxthost.com/ctan/' => 1
