@@ -1825,17 +1825,24 @@ sub not_virtual_install_package {
         }
       }
       if (!$container) {
-        tlwarn("TLPDB: cannot find package $pkg.tar.$CompressorExtRegexp in $root/$Archive\n");
+        tlwarn("TLPDB: cannot find package $pkg.tar.$CompressorExtRegexp"
+               . " in $root/$Archive\n");
         return(0);
       }
     } elsif (&media eq 'NET') {
-      $container = "$root/$Archive/$pkg.tar." . $Compressors{$DefaultCompressorFormat}{'extension'};
+      $container = "$root/$Archive/$pkg.tar."
+                   . $Compressors{$DefaultCompressorFormat}{'extension'};
     }
-    debug("TLPDB::not_virtual_install_package: trying to install $container\n");
-    $self->_install_data ($container, $reloc, \@installfiles, $totlpdb, $tlpobj->containersize, $tlpobj->containerchecksum)
+    my $container_str = ref $container eq "ARRAY"
+                        ? "[" . join (" ", @$container) . "]" : $container;
+    ddebug("TLPDB::not_virtual_install_package: installing container: ",
+          $container_str, "\n");
+    $self->_install_data($container, $reloc, \@installfiles, $totlpdb,
+                         $tlpobj->containersize, $tlpobj->containerchecksum)
       || return(0);
-    # if we are installing from local_compressed or NET we have to fetch the respective
-    # source and doc packages $pkg.source and $pkg.doc and install them, too
+    # if we are installing from local_compressed or NET we have to fetch
+    # respective source and doc packages $pkg.source and $pkg.doc and
+    # install them, too
     if (($media eq 'NET') || ($media eq 'local_compressed')) {
       # we install split containers under the following conditions:
       # - the container were split generated
@@ -1851,13 +1858,15 @@ sub not_virtual_install_package {
       if ($container_src_split && $opt_src && $tlpobj->srcfiles) {
         my $srccontainer = $container;
         $srccontainer =~ s/\.tar\.$CompressorExtRegexp$/.source.tar.$1/;
-        $self->_install_data ($srccontainer, $reloc, \@installfiles, $totlpdb, $tlpobj->srccontainersize, $tlpobj->srccontainerchecksum)
+        $self->_install_data($srccontainer, $reloc, \@installfiles, $totlpdb,
+                      $tlpobj->srccontainersize, $tlpobj->srccontainerchecksum)
           || return(0);
       }
       if ($container_doc_split && $real_opt_doc && $tlpobj->docfiles) {
         my $doccontainer = $container;
         $doccontainer =~ s/\.tar\.$CompressorExtRegexp$/.doc.tar.$1/;
-        $self->_install_data ($doccontainer, $reloc, \@installfiles, $totlpdb, $tlpobj->doccontainersize, $tlpobj->doccontainerchecksum)
+        $self->_install_data($doccontainer, $reloc, \@installfiles,
+            $totlpdb, $tlpobj->doccontainersize, $tlpobj->doccontainerchecksum)
           || return(0);
       }
       #
