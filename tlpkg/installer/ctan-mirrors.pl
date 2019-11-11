@@ -55,7 +55,6 @@ $mirrors = {
       'https://download.nus.edu.sg/mirror/ctan/' => 1
     },
     'Taiwan' => {
-      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
       'http://ftp.yzu.edu.tw/CTAN/' => 1
     }
   },
