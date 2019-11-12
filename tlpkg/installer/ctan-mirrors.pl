@@ -124,6 +124,7 @@ $mirrors = {
       'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
     'Portugal' => {
+      'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
       'http://mirrors.up.pt/pub/CTAN/' => 1,
       'https://ftp.eq.uc.pt/software/TeX/' => 1
     },
