@@ -119,7 +119,8 @@ $mirrors = {
     },
     'Poland' => {
       'ftp://ftp.gust.org.pl/TeX/' => 1,
-      'ftp://sunsite.icm.edu.pl/pub/CTAN/' => 1
+      'ftp://sunsite.icm.edu.pl/pub/CTAN/' => 1,
+      'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
     'Portugal' => {
       'ftp://ftp.di.uminho.pt/pub/ctan/' => 1,
