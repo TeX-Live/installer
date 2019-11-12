@@ -5676,10 +5676,11 @@ sub check_executes {
     my $engine = $r{"engine"};
     my $name = $r{"name"};
     my $mode = $r{"mode"};
-    # special case for cont-en ...
+    # just never mind about these.
     next if ($name eq "cont-en");
+    next if ($name eq "lualatex-dev");
     # we check that the name exist in bin/$arch
-    if ($engine =~ /^(lua(jit|hb)tex|mfluajit)$/) {
+    if (",$TeXLive::TLConfig::PartialEngineSupport," =~ /,$engine,/) {
       # luajittex is special since it is not available on all architectures
       #   due to inherent reasons (machine code);
       # luahbtex is special until we build it everywhere for TL'20.
