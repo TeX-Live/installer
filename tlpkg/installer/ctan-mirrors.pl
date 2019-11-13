@@ -19,7 +19,8 @@ $mirrors = {
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.hit.edu.cn/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
-      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
+      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
+      'http://mirrors.ustc.edu.cn/CTAN/' => 1
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1
@@ -79,6 +80,7 @@ $mirrors = {
       'http://ctan.crest.fr/tex-archive/' => 1,
       'http://ctan.mines-albi.fr/' => 1,
       'http://ctan.tetaneutral.net/' => 1,
+      'http://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'http://mirror.ibcp.fr/pub/CTAN/' => 1,
       'http://mirrors.ircam.fr/pub/CTAN/' => 1,
       'http://mirrors.standaloneinstaller.com/ctan/' => 1,
