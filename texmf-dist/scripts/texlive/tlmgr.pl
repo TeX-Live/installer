@@ -5686,7 +5686,7 @@ sub check_executes {
       # luahbtex is special until we build it everywhere for TL'20.
       # 
       # We do not want to have error messages here, so we do the following:
-      # * if tlpkg/tlpsrc/luatex.tlpsrc is available, then load it
+      # * if tlpkg/tlpsrc/luajittex.tlpsrc is available, then load it
       #   and filter away those archs that are excluded with f/!...
       # * similarly for the other partial-support engines; too much
       #   trouble to reverse-map to package names, so just hardwire;
@@ -5694,7 +5694,7 @@ sub check_executes {
       #   the development tree) we just ignore it completely.
       my $pkg;
       if ($engine eq "luajittex") {
-        $pkg = "luatex";
+        $pkg = "luajittex";
       } elsif ($engine eq "luahbtex") {
         $pkg = "latex-bin-dev";
       } elsif ($engine eq "mfluajit") {
