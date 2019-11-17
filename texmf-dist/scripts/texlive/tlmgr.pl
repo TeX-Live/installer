@@ -9076,7 +9076,7 @@ is equivalent to
   tlmgr remove --force foobar
 
 Again, since packages are sometimes renamed or replaced, using this
-option is not ecommended.
+option is not recommended.
 
 =item B<--reinstall-forcibly-removed>
 
