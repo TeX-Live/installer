@@ -5696,7 +5696,7 @@ sub check_executes {
       if ($engine eq "luajittex") {
         $pkg = "luajittex";
       } elsif ($engine eq "luahbtex") {
-        $pkg = "latex-bin-dev";
+        $pkg = "luahbtex";
       } elsif ($engine eq "mfluajit") {
         $pkg = "mflua";
       } else {
