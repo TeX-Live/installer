@@ -4502,8 +4502,8 @@ our $jsonmode = "";
 =item C<True()>
 =item C<False()>
 
-these two function must be used to get proper JSON C<true> and C<false> 
-in the output independent of the backend used.
+These two crazy functions must be used to get proper JSON C<true> and
+C<false> in the output independent of the backend used.
 
 =cut
 
