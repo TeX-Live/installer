@@ -15,10 +15,10 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
-      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
       'http://mirrors.hit.edu.cn/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
-      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
+      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
+      'http://mirrors.ustc.edu.cn/CTAN/' => 1
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1
@@ -180,6 +180,11 @@ $mirrors = {
     },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
+    }
+  },
+  'South America' => {
+    'Brazil' => {
+      'http://linorg.usp.br/CTAN/' => 1
     }
   }
 };
