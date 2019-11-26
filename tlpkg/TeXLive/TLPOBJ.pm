@@ -559,7 +559,12 @@ sub common_texmf_tree {
 
 
 sub make_container {
-  my ($self,$type,$instroot,$destdir,$containername,$relative) = @_;
+  my ($self, $type, $instroot, %other) = @_;
+  my $destdir = ($other{'destdir'} || undef);
+  my $containername = ($other{'containername'} || undef);
+  my $relative = ($other{'relative'} || undef);
+  my $user = ($other{'user'} || undef);
+  my $copy_instead_of_link = ($other{'copy_instead_of_link'} || undef);
   if (!($type eq 'tar' ||
         TeXLive::TLUtils::member($type, @{$::progs{'working_compressors'}}))) {
     tlwarn "$0: TLPOBJ supports @{$::progs{'working_compressors'}} and tar containers, not $type\n";
@@ -627,7 +632,11 @@ sub make_container {
   $selfcopy->writeout(\*TMP);
   close(TMP);
   push(@files, "$tlpobjdir/$self->{'name'}.tlpobj");
-  $tarname = "$containername.tar";
+  # Switch to versioned containers
+  # $tarname = "$containername.tar";
+  $tarname = "$containername.r" . $self->revision . ".tar";
+  my $unversionedtar;
+  $unversionedtar = "$containername.tar" if (! $user);
 
   # start the fun
   my $tar = $::progs{'tar'};
@@ -649,7 +658,9 @@ sub make_container {
   # overflow standard tar format and result in special things being
   # done.  We don't want the GNU-specific special things.
   #
-  my $is_user_container = ( $containername =~ /\.r[0-9]/ );
+  # We use versioned containers throughout, user mode is determined by
+  # argument.
+  my $is_user_container = $user;
   my @attrs
     = $is_user_container
       ? ()
@@ -701,7 +712,7 @@ sub make_container {
       # A complication, as always.  collapse_dirs returns absolute paths.
       # We want to change them back to relative so that the backup tar
       # has the same structure.
-      # in relative mode we have to remove the texmf-dist prefix, too
+      # In relative mode we have to remove the texmf-dist prefix, too.
       s,^$instroot/,, foreach @files_to_backup;
       if ($relative) {
         s,^$RelocTree/,, foreach @files_to_backup;
@@ -712,6 +723,7 @@ sub make_container {
 
   # Run tar. Unlink both here in case the container is also plain tar.
   unlink("$destdir/$tarname");
+  unlink("$destdir/$unversionedtar") if (! $user);
   unlink("$destdir/$containername");
   xsystem(@cmdline);
 
@@ -743,6 +755,19 @@ sub make_container {
       # most strange cases.
       unlink("$destdir/$tarname")
         if ((-r "$destdir/$tarname") && (-r "$destdir/$containername"));
+      # in case of system containers also create the links to the 
+      # versioned containers
+      if (! $user) {
+        my $linkname = "$destdir/$unversionedtar.$compressorextension";
+        unlink($linkname) if (-r $linkname);
+        if ($copy_instead_of_link) {
+          TeXLive::TLUtils::copy("-f", "$destdir/$containername", $linkname)
+        } else {
+          if (!symlink($containername, $linkname)) {
+            tlwarn("$0: Couldn't generate link $linkname -> $containername?\n");
+          }
+        }
+      }
     } else {
       tlwarn("$0: Couldn't find $destdir/$tarname to run $compressor\n");
       return (0, 0, "");
@@ -1663,13 +1688,13 @@ if all files of the package are from the same texmf tree, this tree
 is returned, otherwise an undefined value. That is also a check
 whether a package is relocatable.
 
-=item C<make_container($type,$instroot[, $destdir[, $containername[, $relative]]])>
+=item C<make_container($type,$instroot, [ destdir => $destdir, containername => $containername, relative => 0|1, user => 0|1 ])>
 
 creates a container file of the all files in the C<TLPOBJ>
 in C<$destdir> (if not defined then C<< TLPOBJ->containerdir >> is used).
 
 The C<$type> variable specifies the type of container to be used.
-Currently only C<zip> or C<xz> are allowed, and are generating
+Currently only C<zip> or C<xz> are allowed, and generate
 zip files and tar.xz files, respectively.
 
 The file name of the created container file is C<$containername.extension>,
@@ -1683,7 +1708,7 @@ C<TLPOBJ> file in C<tlpkg/tlpobj/$name.tlpobj>.
 The argument C<$instroot> specifies the root of the installation from
 which the files should be taken.
 
-If the argument C<$relative> is present and true (perlish true) AND the
+If the argument C<$relative> is passed and true (perlish true) AND the
 packages does not span multiple texmf trees (i.e., all the first path
 components of all files are the same) then a relative packages is created,
 i.e., the first path component is stripped. In this case the tlpobj file
@@ -1691,6 +1716,9 @@ is placed into the root of the installation.
 
 This is used to distribute packages which can be installed in any arbitrary
 texmf tree (of other distributions, too).
+
+If user is present and true, no extra arguments for container generation are
+passed to tar (to make sure that user tar doesn't break).
 
 Return values are the size, the checksum, and the full name of the container.
 
