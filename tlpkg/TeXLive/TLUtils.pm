@@ -2183,7 +2183,7 @@ sub check_file_and_remove {
     if ($tlchecksum ne $checksum) {
       tlwarn("TLUtils::check_file: checksums differ for $xzfile:\n");
       tlwarn("TLUtils::check_file:   tlchecksum=$tlchecksum, arg=$checksum\n");
-      (undef,$check_file_tmpdir) = File::Temp::tempdir("tlcheckfileXXXXXXXX");
+      $check_file_tmpdir = File::Temp::tempdir("tlcheckfileXXXXXXXX");
       tlwarn("TLUtils::check_file:   removing $xzfile, "
              . "but saving copy in $check_file_tmpdir\n");
       copy($xzfile, $check_file_tmpdir);
