@@ -3,9 +3,6 @@ $mirrors = {
     'Algeria' => {
       'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
     },
-    'Morocco' => {
-      'https://mirror.marwan.ma/ctan/' => 1
-    },
     'South Africa' => {
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
@@ -47,9 +44,6 @@ $mirrors = {
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1,
       'http://mirror.yongbok.net/ctan/' => 1
-    },
-    'Philippines' => {
-      'http://mirror.pregi.net/tex-archive/' => 1
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1
@@ -132,7 +126,6 @@ $mirrors = {
       'http://mirrors.nxthost.com/ctan/' => 1
     },
     'Russia' => {
-      'http://ctan.altspu.ru/' => 1,
       'http://mirror.macomnet.net/pub/CTAN/' => 1,
       'http://mirrors.mi.ras.ru/CTAN/' => 1
     },
