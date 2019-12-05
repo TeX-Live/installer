@@ -1,10 +1,10 @@
 # $Id$
 # TeXLive::TeXCatalogue - module for accessing the TeX Catalogue
-# Copyright 2007-2018 Norbert Preining
+# Copyright 2007-2019 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 # 
-# Loads of code taken from the catalogue checking script of Robin Fairbairns.
+# Loads of code adapted from the catalogue checking script of Robin Fairbairns.
 
 use XML::Parser;
 use XML::XPath;
@@ -14,15 +14,27 @@ use Text::Unidecode;
 package TeXLive::TeXCatalogue::Entry;
 
 my $svnrev = '$Revision$';
-my $_modulerevision;
-if ($svnrev =~ m/: ([0-9]+) /) {
-  $_modulerevision = $1;
-} else {
-  $_modulerevision = "unknown";
-}
-sub module_revision {
-  return $_modulerevision;
-}
+my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
+sub module_revision { return $_modulerevision; }
+
+=pod
+
+=head1 NAME
+
+TeXLive::TeXCatalogue - accessing the TeX Catalogue for TeX Live
+
+=head1 SYNOPSIS
+
+missing
+
+=head1 DESCRIPTION
+
+The L<TeXLive::TeXCatalogue> module provides access to the data stored
+in the TeX Catalogue.
+
+DOCUMENTATION MISSING, SORRY!!!
+
+=cut
 
 my $_parser = XML::Parser->new(
   ErrorContext => 2,
@@ -106,16 +118,16 @@ sub initialize {
   }
   # parse the contact entries
   foreach my $node ($parser->find('/entry/contact')->get_nodelist) {
-    my $contacttype = $parser->find('./@type',$node);
-    my $contacthref = $parser->find('./@href',$node);
+    my $contacttype = $parser->findvalue('./@type',$node);
+    my $contacthref = $parser->findvalue('./@href',$node);
     if ($contacttype && $contacthref) {
       $self->{'contact'}{$contacttype} = $contacthref;
     }
   }
   # parse the keyval/topic entries
   foreach my $node ($parser->find('/entry/keyval')->get_nodelist) {
-    my $k = $parser->find('./@key',$node);
-    my $v = $parser->find('./@value',$node);
+    my $k = $parser->findvalue('./@key',$node);
+    my $v = $parser->findvalue('./@value',$node);
     # for now we only support evaluating the 'topic' key
     if ("$k" eq 'topic') {
       push @{$self->{'topic'}}, "$v";
@@ -309,20 +321,11 @@ sub entries {
 __END__
 
 
-=head1 NAME
+=head1 SEE ALSO
 
-TeXLive::TeXCatalogue - Accessing the TeX Catalogue
-
-=head1 SYNOPSIS
-
-missing
-
-=head1 DESCRIPTION
-
-The L<TeXLive::TeXCatalogue> module provides access to the data stored
-in the TeX Catalogue.
-
-DOCUMENTATION MISSING, SORRY!!!
+The other modules in C<Master/tlpkg/TeXLive/> (L<TeXLive::TLConfig> and
+the rest), and the scripts in C<Master/tlpg/bin/> (especially
+C<tl-update-tlpdb>), the documentation in C<Master/tlpkg/doc/>, etc.
 
 =head1 AUTHORS AND COPYRIGHT
 

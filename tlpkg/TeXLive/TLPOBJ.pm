@@ -263,7 +263,7 @@ sub _recompute_size {
           $nrivblocks += int($s/$TeXLive::TLConfig::BlockSize);
           $nrivblocks++ if (($s%$TeXLive::TLConfig::BlockSize) > 0);
         } else {
-          printf STDERR "size for $f not defined, strange ...\n";
+        tlwarn("$0: (TLPOBJ::_recompute_size) size of $type $f undefined?!\n");
         }
       }
     }
@@ -458,8 +458,8 @@ sub as_json {
     my %newd;
     $newd{'file'} = $f;
     if (defined($dfd->{$f})) {
-      # TODO should we check that there are actually only "details"
-      # and "language" as key?
+      # "details" and "language" keys now, but more could be added any time.
+      # (Such new keys would have to be added in update_from_catalogue.)
       for my $k (keys %{$dfd->{$f}}) {
         $newd{$k} = $dfd->{$f}->{$k};
       }
@@ -509,7 +509,7 @@ sub replace_reloc_prefix {
   }
   $self->docfiledata(%newdata);
   # if there are bin files they have definitely NOT the
-  # texmf-dist prefix, so we cannot cancel it anyway
+  # texmf-dist prefix, so no reloc to replace
 }
 
 sub cancel_common_texmf_tree {
@@ -855,7 +855,7 @@ sub update_from_catalogue {
       $foo =~ s/^.Date: //;
       # trying to extract the interesting part of a subversion date
       # keyword expansion here, e.g.,
-      # $Date$
+      # <dollar>Date: 2007-08-15 19:43:35 +0100 (Wed, 27 Nov 2019) <dollar>
       # ->2007-08-15 19:43:35 +0100
       $foo =~ s/ \(.*\)( *\$ *)$//;  # maybe nothing after parens
       $self->cataloguedata->{'date'} = $foo;
@@ -1497,26 +1497,38 @@ files describing a self-contained package.
 
 =head1 FILE SPECIFICATION
 
-Please see L<TeXLive::TLPSRC> documentation for the specification. The
-only differences are that the various C<*pattern> keys are invalid, and
-instead there are the respective C<*files> keys described below. Furthermore
-some more I<keys> is allowed: C<revision> which specifies the maximum of
-all last changed revision of files contained in the package, anything
-starting with C<catalogue-> specifying information coming from the
-TeX Catalogue, and C<relocated> taking either 0 or 1 indicating that
-this packages has been relocated, i.e., in the containers the 
-initial C<texmf-dist> directory has been stripped off.
+See L<TeXLive::TLPSRC> documentation for the general syntax and
+specification. The differences are:
 
-All these keys have in common that they are followed by a list of files
-I<indented> by one space. They differ only in the first line itself
-(described below).
+=over 4
+
+=item The various C<*pattern> keys are invalid.
+
+=item Instead, there are respective C<*files> keys described below.
+All the C<*files> keys are followed by a list of files in the given
+category, one per line, each line I<indented> by one space.
+
+=item Several new keys beginning with C<catalogue-> specify information
+automatically taken from the TeX Catalogue.
+
+=item A new key C<revision> is defined (automatically computed),
+which specifies the maximum of all the last-changed revisions of files
+contained in the package, plus possible other changes. By default,
+Catalogue-only changes do not change the revision.
+
+=item A new key C<relocated>, either 0 or 1, which indicates that this
+packages has been relocated, i.e., in the containers the initial
+C<texmf-dist> directory has been stripped off and replaced with static
+string C<RELOC>.
+
+=back
 
 =over 4
 
 =item C<srcfiles>, C<runfiles>, C<binfiles>, C<docfiles>
-each of these items contains addition the sum of sizes of the
-single files (in number of C<TeXLive::TLConfig::BlockSize> blocks, which
-is currently 4k).
+each of these items contains addition the sum of sizes of the single
+files (in number of C<TeXLive::TLConfig::BlockSize> blocks,currently
+4k).
 
   srcfiles size=NNNNNN
   runfiles size=NNNNNN
@@ -1528,25 +1540,26 @@ above:
 
   docfiles size=NNNNNN
 
-But the lines listing the files are allowed to have additional tags:
+But the lines listing the files are allowed to have additional tags,
+which come from the TeX Catalogue.
 
   /------- excerpt from achemso.tlpobj
   |...
-  |docfiles size=1702468
-  | texmf-dist/doc/latex/aeguill/README details="Package Readme"
+  |docfiles size=220
   | texmf-dist/doc/latex/achemso/achemso.pdf details="Package documentation" language="en"
   |...
 
-Currently only the tags C<details> and C<language> are allowed. These
+Currently only the tags C<details> and C<language> are supported. These
 additional information can be accessed via the C<docfiledata> function
 returning a hash with the respective files (including path) as key.
 
 =item C<binfiles>
 
-Since C<binfiles> are different for the different architectures one
-C<tlpobj> file can contain C<binfiles> lines for different
-architectures. The architecture is specified on the C<binfiles> using
-the C<arch=>I<XXX> tag. Thus, C<binfiles> lines look like
+Since C<binfiles> can be different for different architectures, a single
+C<tlpobj> file can, and typically does, contain C<binfiles> lines for
+all available architectures. The architecture is specified on the
+C<binfiles> using the C<arch=>I<XXX> tag. Thus, C<binfiles> lines look
+like
 
   binfiles arch=XXXX size=NNNNN
 
@@ -1557,28 +1570,26 @@ with C<|> characters inserted to show the indentation:
 
   |name dvipsk
   |category TLCore
-  |revision 4427
-  |docfiles size=959434
+  |revision 52851
+  |docfiles size=285
   | texmf-dist/doc/dvips/dvips.html
   | ...
-  |runfiles size=1702468
+  |runfiles size=93
   | texmf-dist/dvips/base/color.pro
   | ...
   | texmf-dist/scripts/pkfix/pkfix.pl
-  |binfiles arch=i386-solaris size=329700
+  |binfiles arch=i386-solaris size=87
   | bin/i386-solaris/afm2tfm
   | bin/i386-solaris/dvips
-  | bin/i386-solaris/pkfix
-  |binfiles arch=win32 size=161280
+  |binfiles arch=win32 size=51
   | bin/win32/afm2tfm.exe
   | bin/win32/dvips.exe
-  | bin/win32/pkfix.exe
   |...
 
 =head1 PACKAGE VARIABLES
 
-TeXLive::TLPOBJ has one package wide variable which is C<containerdir> where
-generated container files are saved (if not otherwise specified.
+TeXLive::TLPOBJ has one package-wide variable, C<containerdir>, which is
+where generated container files are saved (if not otherwise specified).
 
   TeXLive::TLPOBJ->containerdir("path/to/container/dir");
 
@@ -1638,7 +1649,7 @@ activated for that install medium.
 
 =head1 OTHER FUNCTIONS
 
-The following functions can be called for an C<TLPOBJ> object:
+The following functions can be called for a C<TLPOBJ> object:
 
 =over 4
 
@@ -1844,10 +1855,9 @@ lines for language.dat.lua that can be generated from the tlpobj.
 
 =head1 SEE ALSO
 
-The modules L<TeXLive::TLConfig>, L<TeXLive::TLCrypto>,
-L<TeXLive::TLUtils>, L<TeXLive::TLPSRC>, L<TeXLive::TLPDB>,
-L<TeXLive::TLTREE>, L<TeXLive::TeXCatalogue>, etc., and the
-documentation in the repository: C<Master/tlpkg/doc/>.
+The other modules in C<Master/tlpkg/TeXLive/> (L<TeXLive::TLConfig> and
+the rest), and the scripts in C<Master/tlpg/bin/> (especially
+C<tl-update-tlpdb>), the documentation in C<Master/tlpkg/doc/>, etc.
 
 =head1 AUTHORS AND COPYRIGHT
 
