@@ -30,6 +30,7 @@ BEGIN {
     %Compressors
     $InfraLocation
     $DatabaseName
+    $DatabaseLocation
     $PackageBackupDir 
     $BlockSize
     $Archive
@@ -82,10 +83,12 @@ our $DefaultCategory = "Package";
 # relative to a root (e.g., the Master/, or the installation path)
 our $InfraLocation = "tlpkg";
 our $DatabaseName = "texlive.tlpdb";
+our $DatabaseLocation = "$InfraLocation/$DatabaseName";
 
 # location of backups in default autobackup setting (under tlpkg)
 our $PackageBackupDir = "$InfraLocation/backups";
 
+# for computing disk usage; this is most common.
 our $BlockSize = 4096;
 
 # timeout for network connections (wget, LWP) in seconds
@@ -311,6 +314,16 @@ The default category used when creating new packages.
 The subdirectory with various infrastructure files (C<texlive.tlpdb>,
 tlpobj files, ...) relative to the root of the installation; currently
 C<tlpkg>.
+
+=item C<$TeXLive::TLConfig::DatabaseName>
+
+The name of our so-called database file: C<texlive.tlpdb>. It's just a
+plain text file, not any kind of relational or other database.
+
+=item C<$TeXLive::TLConfig::DatabaseLocation>
+
+Concatenation of C<InfraLocation> "/" C<DatabaseName>, i.e.,
+C<tlpkg/texlive.tlpdb>.
 
 =item C<$TeXLive::TLConfig::BlockSize>
 

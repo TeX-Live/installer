@@ -91,7 +91,7 @@ C<TeXLive::TLPDB> -- A database of TeX Live Packages
 =cut
 
 use TeXLive::TLConfig qw($CategoriesRegexp $DefaultCategory $InfraLocation
-      $DatabaseName $MetaCategoriesRegexp $Archive
+      $DatabaseName $DatabaseLocation $MetaCategoriesRegexp $Archive
       $DefaultCompressorFormat %Compressors $CompressorExtRegexp
       %TLPDBOptions %TLPDBSettings $ChecksumExtension
       $RelocPrefix $RelocTree);
@@ -148,7 +148,7 @@ sub new {
   } 
   if (defined($self->{'root'})) {
     my $nr_packages_read
-      = $self->from_file("$self->{'root'}/$InfraLocation/$DatabaseName",
+      = $self->from_file("$self->{'root'}/$DatabaseLocation",
         'verify' => $verify);
     if ($nr_packages_read == 0) {
       # that is bad, we didn't read anything, so return undef.
@@ -1205,7 +1205,7 @@ sub location {
     tlwarn("TLPDB: cannot get location of a virtual tlpdb\n");
     return 0;
   }
-  return "$self->{'root'}/$InfraLocation/$DatabaseName";
+  return "$self->{'root'}/$DatabaseLocation";
 }
 
 =pod
