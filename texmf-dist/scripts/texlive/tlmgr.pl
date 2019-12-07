@@ -1096,7 +1096,6 @@ sub backup_and_remove_package {
   if ($opts{"backup"}) {
     $tlp->make_container($::progs{'compressor'}, $localtlpdb->root,
                          destdir => $opts{"backupdir"}, 
-                         containername => "${pkg}.r" . $tlp->revision,
                          relative => $tlp->relocated,
                          user => 1);
     if ($autobackup) {
@@ -2168,7 +2167,6 @@ sub action_backup {
       if (!$opts{"dry-run"}) {
         $tlp->make_container($::progs{'compressor'}, $localtlpdb->root,
                              destdir => $opts{"backupdir"},
-                             containername => "${pkg}.r" . $tlp->revision,
                              user => 1);
       }
     }
@@ -2288,7 +2286,7 @@ sub write_w32_updater {
     #   some-name.r[0-9]+
     my ($size, undef, $fullname) = $localtlp->make_container("tar", $root,
                                      destdir => $temp,
-                                     containername => "__BACKUP_$pkg.r$oldrev",
+                                     containername => "__BACKUP_$pkg",
                                      user => 1);
     if ($size <= 0) {
       tlwarn("$prg: creation of backup container failed for: $pkg\n");
@@ -3210,7 +3208,6 @@ sub action_update {
         my $compressorextension = $Compressors{$::progs{'compressor'}}{'extension'};
         $tlp->make_container($::progs{'compressor'}, $root,
                              destdir => $opts{"backupdir"},
-                             containername => "${pkg}.r" . $tlp->revision,
                              relative => $tlp->relocated,
                              user => 1);
         $unwind_package =
@@ -3252,7 +3249,7 @@ sub action_update {
         my $tlp = $localtlpdb->get_package($pkg);
         my ($s, undef, $fullname) = $tlp->make_container("tar", $root,
                          destdir => $temp,
-                         containername => "__BACKUP_${pkg}.r" . $tlp->revision,
+                         containername => "__BACKUP_${pkg}",
                          relative => $tlp->relocated,
                          user => 1);
         if ($s <= 0) {
