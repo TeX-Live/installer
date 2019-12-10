@@ -1350,7 +1350,8 @@ sub do_path_adjustments {
   my $ret = 0;
   info ("running path adjustment actions\n");
   if (win32()) {
-    TeXLive::TLUtils::w32_add_to_path($vars{'TEXDIR'}.'/bin/win32',
+    my $subpath = win32() ? "win32" : "win64";
+    TeXLive::TLUtils::w32_add_to_path($vars{'TEXDIR'} . $subpath,
       $vars{'tlpdbopt_w32_multi_user'});
     broadcast_env();
   } else {
@@ -1693,6 +1694,11 @@ sub calc_depends {
     $install{"tlgs.win32"} = 1;
     $install{"tlpsv.win32"} = 1;
   }
+  if (grep(/^win64$/,@archs)) {
+    $install{"tlperl.win64"} = 1;
+    $install{"tlgs.win64"} = 1;
+    $install{"tlpsv.win64"} = 1;
+  }
 
   # loop over all the packages until it is getting stable
   my $changed = 1;
@@ -1719,10 +1725,13 @@ sub calc_depends {
           foreach $a (@archs) {
             $install{"$foo.$a"} = 1 if defined($tlpdb->get_package("$foo.$a"));
           }
-        } elsif ($p_dep =~ m/^(.*)\.win32$/) {
+        } elsif ($p_dep =~ m/^(.*)\.win(32|64)$/) {
           # a win32 package should *only* be installed if we are installing
           # the win32 arch
           if (grep(/^win32$/,@archs)) {
+            $install{$p_dep} = 1;
+          }
+          if (grep(/^win64$/,@archs)) {
             $install{$p_dep} = 1;
           }
         } else {
@@ -1881,7 +1890,7 @@ sub initialize_collections {
       ++$vars{'n_collections_selected'};
     }
   }
-  if ($vars{"binary_win32"}) {
+  if ($vars{"binary_win32"} || $vars{"binary_win64"}) {
     $vars{"collection-wintools"} = 1;
     ++$vars{'n_collections_selected'};
   }
@@ -2436,7 +2445,7 @@ sub select_scheme {
   # set to 1 only those which are required by the scheme
   # since now scheme asks for collection-wintools we set its vars value
   # to 1 in case we are installing win32 binaries
-  if ($vars{"binary_win32"}) {
+  if ($vars{"binary_win32"} || $vars{"binary_win64"}) {
     $vars{"collection-wintools"} = 1;
     ++$vars{'n_collections_selected'};
   }

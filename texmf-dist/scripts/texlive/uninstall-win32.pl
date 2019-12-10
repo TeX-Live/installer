@@ -55,7 +55,8 @@ sub doit {
   `rmdir /s /q "$menupath\\$TeXLive::TLConfig::WindowsMainMenuName" 2>nul`;
 
   # remove bindir from PATH settings
-  TeXLive::TLUtils::w32_remove_from_path("$Master/bin/win32", 
+  TeXLive::TLUtils::w32_remove_from_path(
+    TeXLive::TLUtils::win32_32 ? "$Master/bin/win32" : "$Master/bin/win64", 
     $localtlpdb->option("w32_multi_user"));
 
   # unsetenv_reg("TEXBINDIR");

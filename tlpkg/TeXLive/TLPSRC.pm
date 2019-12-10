@@ -129,7 +129,7 @@ sub from_file {
     # - normal texlive specific packages: ^texlive.*\..*$
     # - configuration texlive specific packages: ^00texlive.*\..*$
     if ($line =~ /^name\s/) {
-      $line =~ /^name\s+([-\w]+(\.win32)?|(00)?texlive\..*)$/;
+      $line =~ /^name\s+([-\w]+(\.win(32|64))?|(00)?texlive\..*)$/;
       $foundnametag 
         && die "$srcfile:$lineno: second name directive not allowed: $line"
                . "(have $name)\n";
@@ -423,13 +423,16 @@ sub make_tlpobj {
     if ($finalp =~ m! bin/win32/!) {
       @todoarchs = qw/win32/;
     }
+    if ($finalp =~ m! bin/win64/!) {
+      @todoarchs = qw/win64/;
+    }
     # now @todoarchs contains only those archs for which we want
     # to match the pattern
     foreach my $arch (@todoarchs) {
       # get only those files matching the pattern
       my @archfiles = $tltree->get_matching_files('bin',$finalp, $pkgname, $arch);
       if (!@archfiles) {
-        if (($arch ne "win32") || defined($::tlpsrc_pattern_warn_win)) {
+        if ((($arch ne "win32") && ($arch ne "win64")) || defined($::tlpsrc_pattern_warn_win)) {
           tlwarn("$self->{name} ($arch): no hit on binpattern $finalp\n");
         }
       }
@@ -466,7 +469,7 @@ sub make_tlpobj {
       # get only those files matching the pattern
       my @archfiles = $tltree->get_matching_files('bin', $finalp, $pkgname, $arch);
       if (!@archfiles) {
-        if (($arch ne "win32") || defined($::tlpsrc_pattern_warn_win)) {
+        if ((($arch ne "win32") && ($arch ne "win64")) || defined($::tlpsrc_pattern_warn_win)) {
           tlwarn("$self->{name} ($arch): no hit on negative binpattern $finalp\n")
             unless $::tlpsrc_pattern_no_warn_negative;
             # see comments in libexec/place script.

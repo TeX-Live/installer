@@ -54,7 +54,11 @@ BEGIN {
     $Master =~ s!\\!/!g;
     $Master =~ s![^/]*$!../../..!
       unless ($Master =~ s!/texmf-dist/scripts/texlive/tlmgr\.pl$!!i);
-    $bindir = "$Master/bin/win32";
+    if (win32_32()) {
+      $bindir = "$Master/bin/win32";
+    } else {
+      $bindir = "$Master/bin/win64";
+    }
     $kpsewhichname = "kpsewhich.exe";
     # path already set by wrapper batchfile
   } else {
@@ -105,7 +109,7 @@ use TeXLive::TLWinGoo;
 use TeXLive::TLDownload;
 use TeXLive::TLConfFile;
 use TeXLive::TLCrypto;
-TeXLive::TLUtils->import(qw(member info give_ctan_mirror win32 dirname
+TeXLive::TLUtils->import(qw(member info give_ctan_mirror win32 win32_32 dirname
                             mkdirhier copy debug tlcmp repository_to_array));
 use TeXLive::TLPaper;
 
@@ -814,7 +818,8 @@ sub do_cmd_and_check {
   if ($opts{"dry-run"}) {
     $ret = $F_OK;
     $out = "";
-  } elsif (win32() && (! -r "$Master/bin/win32/luatex.dll")) {
+  } elsif ((win32_32() && (! -r "$Master/bin/win32/luatex.dll")) ||
+           (win32_64() && (! -r "$Master/bin/win64/luatex.dll"))) {
     # deal with the case where only scheme-infrastructure is installed
     # on Windows, thus no luatex.dll is available and the wrapper cannot be started
     tlwarn("Cannot run wrapper due to missing luatex.dll\n");
@@ -1477,7 +1482,7 @@ sub action_path {
   if ($what =~ m/^add$/i) {
     if (win32()) {
       $ret |= TeXLive::TLUtils::w32_add_to_path(
-        $localtlpdb->root . "/bin/win32",
+        $localtlpdb->root . win32_32() ? "/bin/win32" : "/bin/win64",
         $winadminmode);
       $ret |= TeXLive::TLWinGoo::broadcast_env();
     } else {
@@ -1490,7 +1495,7 @@ sub action_path {
   } elsif ($what =~ m/^remove$/i) {
     if (win32()) {
       $ret |= TeXLive::TLUtils::w32_remove_from_path(
-        $localtlpdb->root . "/bin/win32",
+        $localtlpdb->root . win32_32() ? "/bin/win32" : "/bin/win64",
         $winadminmode);
       $ret |= TeXLive::TLWinGoo::broadcast_env();
     } else {
@@ -4808,6 +4813,9 @@ sub action_platform {
   my @extra_w32_packs = qw/tlperl.win32 tlgs.win32 tlpsv.win32
                            collection-wintools
                            dviout.win32 wintools.win32/;
+  my @extra_w64_packs = qw/tlperl.win64 tlgs.win64 tlpsv.win64
+                           collection-wintools
+                           dviout.win64 wintools.win64/;
   if ($^O =~ /^MSWin/i) {
     warn("action `platform' not supported on Windows\n");
     # return an error here so that we don't go into post-actions
@@ -4879,14 +4887,19 @@ sub action_platform {
         }
       }
     }
+    my @extrapacks;
     if (TeXLive::TLUtils::member('win32', @todoarchs)) {
-      # install the necessary w32 stuff
-      for my $p (@extra_w32_packs) {
-        info("install: $p\n");
-        if (!$opts{'dry-run'}) {
-          if (! $remotetlpdb->install_package($p, $localtlpdb)) {
-            $ret |= $F_ERROR;
-          }
+      push @extrapacks, @extra_w32_packs;
+    }
+    if (TeXLive::TLUtils::member('win64', @todoarchs)) {
+      push @extrapacks, @extra_w64_packs;
+    }
+    # install the necessary w32 stuff
+    for my $p (@extrapacks) {
+      info("install: $p\n");
+      if (!$opts{'dry-run'}) {
+        if (! $remotetlpdb->install_package($p, $localtlpdb)) {
+          $ret |= $F_ERROR;
         }
       }
     }
@@ -4939,6 +4952,12 @@ sub action_platform {
     }
     if (TeXLive::TLUtils::member('win32', @todoarchs)) {
       for my $p (@extra_w32_packs) {
+        info("remove: $p\n");
+        $localtlpdb->remove_package($p) if (!$opts{"dry-run"});
+      }
+    }
+    if (TeXLive::TLUtils::member('win64', @todoarchs)) {
+      for my $p (@extra_w64_packs) {
         info("remove: $p\n");
         $localtlpdb->remove_package($p) if (!$opts{"dry-run"});
       }
@@ -5320,7 +5339,7 @@ sub init_tltree {
 
   # if we are on W32, die (no find).  
   my $arch = $localtlpdb->platform();
-  if ($arch eq "win32") {
+  if (($arch eq "win32") || ($arch eq "win64")) {
     tldie("$prg: sorry, cannot check this on Windows.\n");
   }
 
@@ -5837,7 +5856,7 @@ sub check_depends {
     # For each package, check that it is a dependency of some collection.
     if (! exists $coll_deps{$pkg}) {
       # Except that schemes and our ugly Windows packages are ok.
-      push (@no_dep, $pkg) unless $pkg =~/^scheme-|\.win32$/;
+      push (@no_dep, $pkg) unless $pkg =~/^scheme-|\.win(32|64)$/;
     }
 
     # For each dependency, check that we have a package.
