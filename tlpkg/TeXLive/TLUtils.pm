@@ -25,8 +25,6 @@ C<TeXLive::TLUtils> - utilities used in TeX Live infrastructure
   TeXLive::TLUtils::platform();
   TeXLive::TLUtils::platform_name($canonical_host);
   TeXLive::TLUtils::platform_desc($platform);
-  TeXLive::TLUtils::win32_32();
-  TeXLive::TLUtils::win32_64();
   TeXLive::TLUtils::win32();
   TeXLive::TLUtils::unix();
 
@@ -219,7 +217,7 @@ BEGIN {
   );
   @EXPORT = qw(setup_programs download_file process_logging_options
                tldie tlwarn info log debug ddebug dddebug debug_hash
-               win32 win32_32 win32_64 xchdir xsystem run_cmd system_pipe sort_archs);
+               win32 xchdir xsystem run_cmd system_pipe sort_archs);
 }
 
 use Cwd;
@@ -253,7 +251,6 @@ sub platform {
   unless (defined $::_platform_) {
     if ($^O =~ /^MSWin/i) {
       $::_platform_ = "win32";
-      # TODO make sure we check how to detect win64!!!
     } else {
       my $config_guess = "$::installerdir/tlpkg/installer/config.guess";
 
@@ -412,8 +409,7 @@ sub platform_desc {
     'sparc-linux'      => 'GNU/Linux on Sparc',
     'sparc-solaris'    => 'Solaris on Sparc',
     'universal-darwin' => 'MacOSX universal binaries',
-    'win32'            => 'Windows 32bit',
-    'win64'            => 'Windows 64bit',
+    'win32'            => 'Windows',
     'x86_64-cygwin'    => 'Cygwin on x86_64',
     'x86_64-darwin'       => 'MacOSX current (10.12-) on x86_64',
     'x86_64-darwinlegacy' => 'MacOSX legacy (10.6-) on x86_64',
@@ -435,44 +431,9 @@ sub platform_desc {
 }
 
 
-=item C<win32_32>
-
-Return C<1> if platform is Windows32 and C<0> otherwise.  The test is
-currently based on the value of Perl's C<$^O> variable.
-
-=cut
-
-sub win32_32 {
-  if ($^O =~ /^MSWin/i) {
-    # TODO check 32bit
-    return 1;
-  } else {
-    return 0;
-  }
-  # the following needs config.guess, which is quite bad ...
-  # return (&platform eq "win32")? 1:0;
-}
-=item C<win32_64>
-
-Return C<1> if platform is Windows64 and C<0> otherwise.  The test is
-currently based on the value of Perl's C<$^O> variable.
-
-=cut
-
-sub win32_64 {
-  if ($^O =~ /^MSWin/i) {
-    # TODO check 64bit
-    return 1;
-  } else {
-    return 0;
-  }
-  # the following needs config.guess, which is quite bad ...
-  # return (&platform eq "win32")? 1:0;
-}
-
 =item C<win32>
 
-Return C<1> if platform is Windows32 or 64 and C<0> otherwise.  The test is
+Return C<1> if platform is Windows and C<0> otherwise.  The test is
 currently based on the value of Perl's C<$^O> variable.
 
 =cut
@@ -488,9 +449,6 @@ sub win32 {
 }
 
 
-
-
-
 =item C<unix>
 
 Return C<1> if platform is UNIX and C<0> otherwise.
@@ -498,7 +456,7 @@ Return C<1> if platform is UNIX and C<0> otherwise.
 =cut
 
 sub unix {
-  return (&platform eq "win32" || &platform eq "win64" )? 0:1;
+  return (&platform eq "win32")? 0:1;
 }
 
 

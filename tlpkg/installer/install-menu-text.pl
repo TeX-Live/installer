@@ -327,7 +327,7 @@ sub binary_menu {
       print "Unknown command: $answer\n\n";
     }
   }
-  if ($vars{"binary_win32"} || $vars{"binary_win64"}) {
+  if ($vars{"binary_win32"}) {
     $vars{"collection-wintools"} = 1;
   } else {
     $vars{"collection-wintools"} = 0;
@@ -375,7 +375,7 @@ sub scheme_menu {
 
   select_scheme($vars{'selected_scheme'});
 
-  if ($vars{"binary_win32"} || $vars{"binary_win64"}) {
+  if ($vars{"binary_win32"}) {
     $vars{"collection-wintools"} = 1;
   } else {
     $vars{"collection-wintools"} = 0;

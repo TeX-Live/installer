@@ -1197,7 +1197,6 @@ sub create_uninstaller {
   my $td = $td_fw;
   $td =~ s!/!\\!g;
 
-  # TODO win64 support!!!
   my $tdmain = `"$td\\bin\\win32\\kpsewhich" -var-value=TEXMFMAIN`;
   $tdmain =~ s!/!\\!g;
   chomp $tdmain;

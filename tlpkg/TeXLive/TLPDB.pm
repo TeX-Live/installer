@@ -918,12 +918,6 @@ sub expand_dependencies {
           if (grep(/^win32$/,@archs)) {
             $install{$p_dep} = 0;
           }
-        } elsif ($p_dep =~ m/^(.*)\.win64$/) {
-          # a win32 package should *only* be installed if we are installing
-          # the win64 arch
-          if (grep(/^win64$/,@archs)) {
-            $install{$p_dep} = 0;
-          }
         } else {
           $install{$p_dep} = 0 unless $only_arch;
         }

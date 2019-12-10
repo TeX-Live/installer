@@ -1160,7 +1160,7 @@ sub callback_select_collection {
 }
 
 sub callback_select_systems() {
-  if ($vars{"binary_win32"} || $vars{"binary_win64"}) {
+  if ($vars{"binary_win32"}) {
     $vars{"collection-wintools"} = 1;
   } else {
     $vars{"collection-wintools"} = 0;

@@ -110,8 +110,7 @@ our @CriticalPackagesList = qw/texlive.infra/;
 our $CriticalPackagesRegexp = '^(texlive\.infra)';
 if ($^O =~ /^MSWin/i) {
   push (@CriticalPackagesList, "tlperl.win32");
-  push (@CriticalPackagesList, "tlperl.win64");
-  $CriticalPackagesRegexp = '^(texlive\.infra|tlperl\.win(32|64)$)';
+  $CriticalPackagesRegexp = '^(texlive\.infra|tlperl\.win32$)';
 }
 
 #
@@ -346,7 +345,7 @@ C<systems/texlive/tlnet/>.
 =item C<@TeXLive::TLConfig::CriticalPackagesRegexp>
 
 A list of all those packages which we do not update regularly since they
-are too central, currently texlive.infra and (for Windows) tlperl.win(32|64).
+are too central, currently texlive.infra and (for Windows) tlperl.win32.
 
 =item C<$TeXLive::TLConfig::RelocTree>
 
