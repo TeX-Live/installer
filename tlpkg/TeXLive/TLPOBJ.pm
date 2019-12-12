@@ -370,6 +370,7 @@ sub writeout {
   }
   # writeout all the catalogue keys
   foreach my $k (sort keys %{$self->cataloguedata}) {
+    next if $k eq "date";
     print $fd "catalogue-$k ", $self->cataloguedata->{$k}, "\n";
   }
 }
@@ -845,20 +846,9 @@ sub update_from_catalogue {
   $tlcname = lc($tlcname);
   if (defined($tlc->entries->{$tlcname})) {
     my $entry = $tlc->entries->{$tlcname};
-    # Record the id of the catalogue entry if it's found due to 
-    # quest4texlive.
+    # Record the id of the catalogue entry if it's found.
     if ($entry->entry->{'id'} ne $tlcname) {
       $self->catalogue($entry->entry->{'id'});
-    }
-    if (defined($entry->entry->{'date'})) {
-      my $foo = $entry->entry->{'date'};
-      $foo =~ s/^.Date: //;
-      # trying to extract the interesting part of a subversion date
-      # keyword expansion here, e.g.,
-      # <dollar>Date: 2007-08-15 19:43:35 +0100 (Wed, 27 Nov 2019) <dollar>
-      # ->2007-08-15 19:43:35 +0100
-      $foo =~ s/ \(.*\)( *\$ *)$//;  # maybe nothing after parens
-      $self->cataloguedata->{'date'} = $foo;
     }
     if (defined($entry->license)) {
       $self->cataloguedata->{'license'} = $entry->license;
