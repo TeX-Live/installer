@@ -3612,15 +3612,20 @@ sub sort_uniq {
 
 =item C<push_uniq(\@list, @new_items)>
 
-The C<push_uniq> function pushes the last argument @ITEMS to the $LIST
-referenced by the first argument, if they are not already in the list.
+The C<push_uniq> function pushes each element in the last argument
+@ITEMS to the $LIST referenced by the first argument, if it is not
+already in the list.
 
 =cut
 
 sub push_uniq {
   my ($l, @new_items) = @_;
   for my $e (@new_items) {
-    if (! &member($e, @$l)) {
+   # turns out this is one of the most-used functions when updating the
+   # tlpdb, with hundreds of thousands of calls. So let's write it out
+   # to eliminate the sub overhead.
+   #if (! &member($e, @$l)) {
+    if (! scalar grep($_ eq $e, @$l)) {
       push (@$l, $e);
     }
   }
