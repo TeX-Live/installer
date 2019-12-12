@@ -29,9 +29,6 @@ $mirrors = {
       'http://ctan.imsc.res.in/' => 1,
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
-    'Indonesia' => {
-      'https://mirror.unpad.ac.id/ctan/' => 1
-    },
     'Iran' => {
       'http://ctan.asis.ai/' => 1,
       'http://ctan.yazd.ac.ir/' => 1
@@ -173,6 +170,9 @@ $mirrors = {
     }
   },
   'Oceania' => {
+    'Australia' => {
+      'http://mirror.aarnet.edu.au/pub/CTAN/' => 1
+    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
     }
