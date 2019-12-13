@@ -5344,16 +5344,11 @@ sub action_check {
   my $ret = 0;
   if ($what =~ m/^all/i) {
     my $tltree = init_tltree($svn);
-    print "Running check files:\n";
-    $ret |= check_files($tltree);
-    print "Running check depends:\n";
-    $ret |= check_depends();
-    print "Running check executes:\n";
-    $ret |= check_executes();
-    print "Running check runfiles:\n";
-    $ret |= check_runfiles();
-    print "Running check texmfdb paths\n";
-    $ret |= check_texmfdbs();
+    print "Running check files:\n";        $ret |= check_files($tltree);
+    print "Running check depends:\n";      $ret |= check_depends();
+    print "Running check executes:\n";     $ret |= check_executes();
+    print "Running check runfiles:\n";     $ret |= check_runfiles();
+    print "Running check texmfdb paths\n"; $ret |= check_texmfdbs();
   } elsif ($what =~ m/^files/i) {
     my $tltree = init_tltree($svn);
     $ret |= check_files($tltree);
@@ -5542,8 +5537,25 @@ sub check_runfiles {
     # For the a_.* line above: source*pro has .enc files which differ
     # only in comments, hence the otftotfm-hashed name is the same.
     # Seems like it could happen more or at random with other fonts too.
-    # Just have to accept ...
-    #
+    # Most font packagers nowadays insert a prefix to avoid this,
+    # but older ones are not getting changed.
+
+    # the files here were supposedly being dealt with in the next
+    # release of their respective packages, but the releases are not
+    # forthcoming, so just ignore them. They apparently make no
+    # practical difference (maybe because of kpse's optimization of
+    # preferring same-directory results). Latest report:
+    # https://tug.org/pipermail/tex-live/2019-December/044530.html
+    next if $f
+      =~ /^( afoot\.sty
+            |gamma\.mf
+            |lexer\.lua
+            |ligature\.mf
+            |md-utrma\.pfb
+            |ot1\.cmap
+            |t1\.cmap
+           )$/x;
+
     my @copies = grep (/\/$f$/, @runtime_files);
     # map files can be duplicated between (but not within) formats.
     if ($f =~ /\.map$/) {
