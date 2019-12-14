@@ -29,11 +29,15 @@ $mirrors = {
       'http://ctan.imsc.res.in/' => 1,
       'http://mirror.iopb.res.in/tex-archive/' => 1
     },
+    'Indonesia' => {
+      'https://mirror.unpad.ac.id/ctan/' => 1
+    },
     'Iran' => {
       'http://ctan.asis.ai/' => 1,
       'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
+      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1
@@ -171,6 +175,11 @@ $mirrors = {
   'Oceania' => {
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
+    }
+  },
+  'South America' => {
+    'Brazil' => {
+      'http://linorg.usp.br/CTAN/' => 1
     }
   }
 };
