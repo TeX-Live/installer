@@ -4628,10 +4628,13 @@ sub action_option {
       return($ret);
     }
     for my $o (sort keys %{$localtlpdb->options}) {
+      # ignore generate_update which is no longer used or needed.
+      next if ($o eq "generate_updmap");
       # ignore some things which are w32 specific
       next if ($o eq "desktop_integration" && !win32());
       next if ($o eq "file_assocs" && !win32());
       next if ($o eq "w32_multi_user" && !win32());
+      #
       if (win32()) {
         next if ($o =~ m/^sys_/);
       }
