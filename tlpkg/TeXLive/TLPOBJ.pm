@@ -796,7 +796,7 @@ sub make_container {
   rmdir($InfraLocation) if $removetlpkgdir;
   xchdir($cwd);
 
-  debug(" done $containername, size $size, $checksum\n");
+  debug(" done $containername, size $size, csum $checksum\n");
   return ($size, $checksum, "$destdir/$containername");
 }
 
@@ -1517,8 +1517,7 @@ string C<RELOC>.
 
 =item C<srcfiles>, C<runfiles>, C<binfiles>, C<docfiles>
 each of these items contains addition the sum of sizes of the single
-files (in number of C<TeXLive::TLConfig::BlockSize> blocks,currently
-4k).
+files (in units of C<TeXLive::TLConfig::BlockSize> blocks, currently 4k).
 
   srcfiles size=NNNNNN
   runfiles size=NNNNNN
@@ -1531,7 +1530,7 @@ above:
   docfiles size=NNNNNN
 
 But the lines listing the files are allowed to have additional tags,
-which come from the TeX Catalogue.
+(which in practice come from the TeX Catalogue)
 
   /------- excerpt from achemso.tlpobj
   |...
@@ -1846,7 +1845,7 @@ lines for language.dat.lua that can be generated from the tlpobj.
 =head1 SEE ALSO
 
 The other modules in C<Master/tlpkg/TeXLive/> (L<TeXLive::TLConfig> and
-the rest), and the scripts in C<Master/tlpg/bin/> (especially
+the rest), and the scripts in C<Master/tlpkg/bin/> (especially
 C<tl-update-tlpdb>), the documentation in C<Master/tlpkg/doc/>, etc.
 
 =head1 AUTHORS AND COPYRIGHT

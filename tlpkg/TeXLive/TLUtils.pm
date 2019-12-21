@@ -831,7 +831,7 @@ sub dir_creatable {
 
 Tests whether its argument is writable by trying to write to
 it. This function is necessary because the built-in C<-w> test just
-looks at mode and uid/guid, which on Windows always returns true and
+looks at mode and uid/gid, which on Windows always returns true and
 even on Unix is not always good enough for directories mounted from
 a fileserver.
 
@@ -1318,6 +1318,7 @@ sub collapse_dirs {
 
       my $item = "$d/$dirent";  # prepend directory for comparison
       if (! exists $seen{$item}) {
+        ddebug("   no collapse of $d because of: $dirent\n");
         $ok_to_collapse = 0;
         last;  # no need to keep looking after the first.
       }
@@ -3662,38 +3663,67 @@ sub merge_into {
 
 =item C<texdir_check($texdir)>
 
-Test whether installation with TEXDIR set to $texdir would succeed due to
-writing permissions.
+Test whether installation with TEXDIR set to $texdir should be ok, e.g.,
+would be a creatable directory. Return 1 if ok, 0 if not.
 
 Writable or not, we will not allow installation to the root
 directory (Unix) or the root of a drive (Windows).
 
+We also do not allow paths containing various special characters, and
+print a message about this if second argument WARN is true. (We only
+want to do this for the regular text installer, since spewing output in
+a GUI program wouldn't be good; the generic message will have to do for
+them.)
+
 =cut
 
 sub texdir_check {
-  my $texdir = shift;
-  return 0 unless defined $texdir;
+  my ($orig_texdir,$warn) = @_;
+  return 0 unless defined $orig_texdir;
+
   # convert to absolute, for safer parsing.
+  # also replaces backslashes with slashes on w32.
   # The return value may still contain symlinks,
   # but no unnecessary terminating '/'.
-  $texdir = tl_abs_path($texdir);
+  my $texdir = tl_abs_path($orig_texdir);
   return 0 unless defined $texdir;
-  # also reject the root of a drive,
+
+  # reject the root of a drive,
   # assuming that only the canonical form of the root ends with /
   return 0 if $texdir =~ m!/$!;
-  # win32: for now, reject the root of a samba share
-  return 0 if win32() && $texdir =~ m!^//[^/]+/[^/]+$!;
-  my $texdirparent;
-  my $texdirpparent;
 
+  # Unfortunately we have lots of special characters.
+  # On Windows, backslashes are normal but will already have been changed
+  # to slashes by tl_abs_path. And we should only check for : on Unix.
+  my $colon = win32() ? "" : ":";
+  if ($texdir =~ /[,$colon;\\{}\$]/) {
+    if ($warn) {
+      print "     !! TEXDIR value has problematic characters: $orig_texdir\n";
+      print "     !! (such as comma, colon, semicolon, backslash, braces\n";
+      print "     !!  and dollar sign; sorry)\n";
+    }
+    # although we could check each character individually and give a
+    # specific error, it seems plausibly useful to report all the chars
+    # that cause problems, regardless of which was there. Simpler too.
+    return 0;
+  }
+  # w32: for now, reject the root of a samba share
+  return 0 if win32() && $texdir =~ m!^//[^/]+/[^/]+$!;
+
+  # if texdir already exists, make sure we can write into it.
   return dir_writable($texdir) if (-d $texdir);
-  ($texdirparent = $texdir) =~ s!/[^/]*$!!;
+
+  # if texdir doesn't exist, make sure we can write the parent.
+  (my $texdirparent = $texdir) =~ s!/[^/]*$!!;
   #print STDERR "Checking $texdirparent".'[/]'."\n";
-  return  dir_creatable($texdirparent) if -d dir_slash($texdirparent);
-  # try another level up the tree
-  ($texdirpparent = $texdirparent) =~ s!/[^/]*$!!;
+  return dir_creatable($texdirparent) if -d dir_slash($texdirparent);
+  
+  # ditto for the next level up the tree
+  (my $texdirpparent = $texdirparent) =~ s!/[^/]*$!!;
   #print STDERR "Checking $texdirpparent".'[/]'."\n";
   return dir_creatable($texdirpparent) if -d dir_slash($texdirpparent);
+  
+  # doesn't look plausible.
   return 0;
 }
 
@@ -4663,12 +4693,8 @@ sub array_to_json {
   my $ret = "[" . join(",", map { encode_json(\$_) } @$hr) . "]";
   return($ret);
 }
-
-
-
 =back
 =cut
-
 1;
 __END__
 

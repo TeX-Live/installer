@@ -324,7 +324,7 @@ __END__
 =head1 SEE ALSO
 
 The other modules in C<Master/tlpkg/TeXLive/> (L<TeXLive::TLConfig> and
-the rest), and the scripts in C<Master/tlpg/bin/> (especially
+the rest), and the scripts in C<Master/tlpkg/bin/> (especially
 C<tl-update-tlpdb>), the documentation in C<Master/tlpkg/doc/>, etc.
 
 =head1 AUTHORS AND COPYRIGHT

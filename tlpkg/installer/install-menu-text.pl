@@ -503,7 +503,7 @@ sub directories_menu
       );
 
   menu_head "Directories customization:";
-  if (!TeXLive::TLUtils::texdir_check($vars{'TEXDIR'})) {
+  if (!TeXLive::TLUtils::texdir_check($vars{'TEXDIR'}, 1)) {
     print "!! The default location as given below is forbidden or
 !! can't be written to.
 !! Either change the destination directory using <1> or create it
@@ -1068,7 +1068,7 @@ EOF
    TEXDIR (the main TeX directory):
 EOF
 
-  if (TeXLive::TLUtils::texdir_check($vars{'TEXDIR'})) {
+  if (TeXLive::TLUtils::texdir_check($vars{'TEXDIR'}, 1)) {
     print "     $vars{'TEXDIR'}\n";
   } else {
     print "     !! default location: $vars{'TEXDIR'}\n";
