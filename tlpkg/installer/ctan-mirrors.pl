@@ -53,6 +53,9 @@ $mirrors = {
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1
+    },
+    'Taiwan' => {
+      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1
     }
   },
   'Europe' => {
