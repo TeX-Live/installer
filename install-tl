@@ -666,7 +666,7 @@ if ($opt_profile eq "") {
 
   # before we start the installation we check for the existence of
   # a previous installation, and in case we ship inform the UI
-  {
+  if (!exists $ENV{"TEXLIVE_INSTALL_NO_WELCOME"}) {
     my $tlmgrwhich = which("tlmgr");
     if ($tlmgrwhich) {
       my $dn = dirname($tlmgrwhich);
@@ -3142,6 +3142,11 @@ variables.
 =item C<TEXLIVE_INSTALL_NO_CONTEXT_CACHE>
 
 Omit creating the ConTeXt cache.  This is useful for redistributors.
+
+=item C<TEXLIVE_INSTALL_NO_IMPORT>
+
+Omit check for installing on top of a previous installation and then
+asking about importing previous settings.
 
 =item C<TEXLIVE_INSTALL_NO_WELCOME>
 
