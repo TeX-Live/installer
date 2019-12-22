@@ -7738,18 +7738,23 @@ trailing C</tlpkg> and/or C</archive> components are ignored.
 
 =item B<--gui> [I<action>]
 
-C<tlmgr> has a graphical interface as well as the command line
-interface.  You can give this option, C<--gui>, together with an action
-to be brought directly into the respective screen of the GUI.  For
-example, running
+Two notable GUI front-ends for C<tlmgr>, C<tlshell> and C<tlcockpit>,
+are started up as separate programs; see their own documentation.
+
+C<tlmgr> itself has a graphical interface as well as the command line
+interface. You can give the option to invoke it, C<--gui>, together with
+an action to be brought directly into the respective screen of the GUI.
+For example, running
 
   tlmgr --gui update
 
 starts you directly at the update screen.  If no action is given, the
-GUI will be started at the main screen.
+GUI will be started at the main screen.  See L<GUI FOR TLMGR>.
 
-Note that the new GUIs, tlshell and tlcockpit, are started up as
-separate programs.
+However, the native GUI requires Perl/TK, which is no longer included in
+TeX Live's Perl distribution for Windows. You may find C<tlshell> or
+C<tlcockpit> easier to work with. 
+
 
 =for comment Keep language list in sync with install-tl.
 
@@ -7758,14 +7763,15 @@ separate programs.
 By default, the GUI tries to deduce your language from the environment
 (on Windows via the registry, on Unix via C<LC_MESSAGES>). If that fails
 you can select a different language by giving this option with a
-language code (based on ISO 639-1).  Currently supported (but not
-necessarily completely translated) are: English (en, default), Czech
-(cs), German (de), French (fr), Italian (it), Japanese (ja), Dutch (nl),
-Polish (pl), Brazilian Portuguese (pt_BR), Russian (ru), Slovak (sk),
-Slovenian (sl), Serbian (sr), Ukrainian (uk), Vietnamese (vi),
-simplified Chinese (zh_CN), and traditional Chinese (zh_TW).
+language code (based on ISO 639-1). Currently supported (but not
+necessarily completely translated) are: S<English (en, default)>,
+S<Czech (cs)>, S<German (de)>, S<French (fr)>, S<Italian (it)>,
+S<Japanese (ja)>, S<Dutch (nl)>, S<Polish (pl)>, S<Brazilian Portuguese
+(pt_BR)>, S<Russian (ru)>, S<Slovak (sk)>, S<Slovenian (sl)>, S<Serbian
+(sr)>, S<Ukrainian (uk)>, S<Vietnamese (vi)>, S<simplified Chinese
+(zh_CN)>, and S<traditional Chinese (zh_TW)>.
 
-Tlshell shares its message catalog with tlmgr.
+tlshell shares its message catalog with tlmgr.
 
 =item B<--debug-translation>
 
@@ -8481,7 +8487,7 @@ instead of only the current user.  All three options are on by default.
 
 =item B<paper [a4|letter]>
 
-=item B<S<[xdvi|pdftex|dvips|dvipdfmx|context|psutils] paper [I<papersize>|--list]>>
+=item B<<[xdvi|pdftex|dvips|dvipdfmx|context|psutils] paper [I<papersize>|--list]>>
 
 =item B<paper --json>
 
@@ -9478,7 +9484,7 @@ from a given repository:
   $ tlmgr pinning remove tlcontrib classico # remove just classico
   $ tlmgr pinning remove tlcontrib --all    # take nothing from tlcontrib
 
-A summary of the C<tlmgr pinning> actions is given above.
+A summary of C<tlmgr pinning> actions is given above.
 
 =head1 GUI FOR TLMGR
 
