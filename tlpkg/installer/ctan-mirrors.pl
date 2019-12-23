@@ -174,6 +174,9 @@ $mirrors = {
     }
   },
   'Oceania' => {
+    'Australia' => {
+      'http://mirror.aarnet.edu.au/pub/CTAN/' => 1
+    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
     }
