@@ -1335,21 +1335,25 @@ sub collapse_dirs {
 
 =item C<removed_dirs(@files)>
 
-returns all the directories from which all content will be removed
+Returns all the directories from which all content will be removed.
 
+Here is the idea:
+
+=over 4
+
+=item create a hashes by_dir listing all files that should be removed
+   by directory, i.e., key = dir, value is list of files
+
+=item for each of the dirs (keys of by_dir and ordered deepest first)
+   check that all actually contained files are removed
+   and all the contained dirs are in the removal list. If this is the
+   case put that directory into the removal list
+
+=item return this removal list
+
+=back
 =cut
 
-# return all the directories from which all content will be removed
-#
-# idea:
-# - create a hashes by_dir listing all files that should be removed
-#   by directory, i.e., key = dir, value is list of files
-# - for each of the dirs (keys of by_dir and ordered deepest first)
-#   check that all actually contained files are removed
-#   and all the contained dirs are in the removal list. If this is the
-#   case put that directory into the removal list
-# - return this removal list
-#
 sub removed_dirs {
   my (@files) = @_;
   my %removed_dirs;

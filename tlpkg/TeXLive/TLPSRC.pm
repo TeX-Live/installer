@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPSRC.pm - module for handling tlpsrc files
-# Copyright 2007-2018 Norbert Preining
+# Copyright 2007-2019 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -15,6 +15,35 @@ use TeXLive::TLTREE;
 my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
+
+=pod
+
+=head1 NAME
+
+C<TeXLive::TLPSRC> -- TeX Live Package Source module
+
+=head1 SYNOPSIS
+
+  use TeXLive::TLPSRC;
+
+  my $tlpsrc = TeXLive::TLPSRC->new(name => "foobar");
+  $tlpsrc->from_file("/some/tlpsrc/package.tlpsrc");
+  $tlpsrc->from_file("package");
+  $tlpsrc->writeout;
+  $tlpsrc->writeout(\*FILEHANDLE);
+
+=head1 DESCRIPTION
+
+The C<TeXLive::TLPSRC> module handles TeX Live Package Source
+(C<.tlpsrc>) files, which contain all (and only) the information which
+cannot be automatically derived from other sources, notably the TeX Live
+directory tree and the TeX Catalogue.  In other words, C<.tlpsrc> files
+are hand-maintained.
+
+Often they are empty, when all information can be derived from the
+package name, which is (by default) the base name of the C<.tlpsrc> file.
+
+=cut
 
 my $_tmp; # sorry
 my %autopatterns;  # computed once internally
@@ -114,10 +143,12 @@ sub from_file {
       # check that no variables remain unexpanded, or rather, for any
       # remaining $ (which we don't otherwise allow in tlpsrc files, so
       # should never occur) ... except for ${ARCH} which we specially
-      # expand in TLTREE.pm. (Sigh: we distribute one file dvi$pdf.bat,
+      # expand in TLTREE.pm, and ${global_*} which need to be defined in
+      # 00texlive.autopatterns.tlpsrc. (We distribute one file dvi$pdf.bat,
       # but fortunately it is matched by a directory.)
       # 
       (my $testline = $line) =~ s,\$\{ARCH\},,g;
+      $testline =~ s,\$\{global_[^}]*\},,g;
       $testline =~ /\$/
         && die "$srcfile:$lineno: variable undefined or syntax error: $line\n";
       #debug: warn "new line $line, from $origline\n" if $origline ne $line;
@@ -193,6 +224,7 @@ sub from_file {
     }
   }
   $self->_srcfile($srcfile);
+  $self->_tlpvars(\%tlpvars);
   if ($name =~ m/^[[:space:]]*$/) {
     die "Cannot deduce name from file argument and name tag not found";
   }
@@ -267,7 +299,20 @@ sub writeout {
 sub make_tlpobj {
   my ($self,$tltree,$autopattern_root) = @_;
   my %allpatterns = &find_default_patterns($autopattern_root);
+  my %global_tlpvars = %{$allpatterns{'tlpvars'}};
   my $category_patterns = $allpatterns{$self->category};
+
+  # tlpsrc tlpvars are already applied during tlpsrc read in time
+  # now apply the global tlpvars from 00texlive.autopatterns.tlpsrc
+  # update the execute and depend strings
+  my @exes = $self->executes;
+  my @deps = $self->depends;
+  for my $key (keys %global_tlpvars) {
+    s/\$\{\Q$key\E\}/$global_tlpvars{$key}/g for @deps;
+    s/\$\{\Q$key\E\}/$global_tlpvars{$key}/g for @exes;
+  }
+  $self->depends(@deps);
+  $self->executes(@exes);
 
   my $tlp = TeXLive::TLPOBJ->new;
   $tlp->name($self->name);
@@ -503,12 +548,22 @@ sub _do_normal_pattern {
 }
 
 
-# get the default patterns for all categories from an external file,
-# return hash with keys being the categories (Package, Collection, etc.)
+# =item C<find_default_patterns($tlroot)>
+# 
+# Get the default patterns for all categories from an external file.
+# 
+# Return hash with keys being the categories (Package, Collection, etc.)
 # and values being refs to another hash.  The subhash's keys are the
 # file types (run bin doc ...) with values being refs to an array of
 # patterns for that type.
 # 
+# The returned hash has an additional key C<tlpvars> for global tlpsrc
+# variables, which can be used in any C<.tlpsrc> files. The names of these
+# variables all start with C<global_>.
+# 
+# =cut 
+# (all doc at bottom, let's not rewrite now.)
+
 sub find_default_patterns {
   my ($tlroot) = @_;
   # %autopatterns is global.
@@ -560,6 +615,18 @@ sub find_default_patterns {
     }
   }
   
+  # check defined variables to ensure their names start with "global_".
+  my %gvars = %{$tlsrc->_tlpvars};
+  for my $v (keys %gvars) {
+    if ($v !~ /^global_[-_a-zA-Z0-9]+$/) {
+      tlwarn("$apfile: variable does not start with global_: $v\n")
+        unless $v eq "PKGNAME";
+        # the auto-defined PKGNAME is not expected to be global.
+      delete $gvars{$v};
+    }
+  } # we'll usually unnecessarily create a second hash, but so what.
+  $autopatterns{'tlpvars'} = \%gvars;
+
   return %autopatterns;
 }
 
@@ -570,6 +637,11 @@ sub _srcfile {
   my $self = shift;
   if (@_) { $self->{'_srcfile'} = shift }
   return $self->{'_srcfile'};
+}
+sub _tlpvars {
+  my $self = shift;
+  if (@_) { $self->{'_tlpvars'} = shift; }
+  return $self->{'_tlpvars'};
 }
 sub name {
   my $self = shift;
@@ -652,37 +724,15 @@ sub postactions {
 __END__
 
 
-=head1 NAME
-
-C<TeXLive::TLPSRC> -- TeX Live Package Source module
-
-=head1 SYNOPSIS
-
-  use TeXLive::TLPSRC;
-
-  my $tlpsrc = TeXLive::TLPSRC->new(name => "foobar");
-  $tlpsrc->from_file("/some/tlpsrc/package.tlpsrc");
-  $tlpsrc->from_file("package");
-  $tlpsrc->writeout;
-  $tlpsrc->writeout(\*FILEHANDLE);
-
-=head1 DESCRIPTION
-
-The C<TeXLive::TLPSRC> module handles TeX Live Package Source
-(C<.tlpsrc>) files, which contain all (and only) the information which
-cannot be automatically derived from other sources, notably the TeX Live
-directory tree and the TeX Catalogue.  In other words, C<.tlpsrc> files
-are hand-maintained.
-
 =head1 FILE SPECIFICATION
 
 A C<tlpsrc> file consists of lines of the form:
 
 I<key> I<value>
 
-where I<key> can be C<name>, C<category>, C<shortdesc>, C<longdesc>,
-C<catalogue>, C<runpattern>, C<srcpattern>, C<docpattern>, C<binpattern>,
-C<execute>, C<postaction>, or C<depend>.
+where I<key> can be one of: C<name> C<category> C<catalogue>
+C<shortdesc> C<longdesc> C<depend> C<execute> C<postaction> C<tlpsetvar>
+C<runpattern> C<srcpattern> C<docpattern> C<binpattern>.
 
 Continuation lines are supported via a trailing backslash.  That is, if
 the C<.tlpsrc> file contains two physical lines like this:
@@ -697,18 +747,18 @@ Comment lines begin with a # and continue to the end of the line.
 
 Blank lines are ignored.
 
-The meaning of the I<key>s:
+The I<key>s are described in the following sections.
 
-=over 4
-
-=item C<name>
+=head2 C<name>
 
 identifies the package; C<value> must consist only of C<[-_a-zA-Z0-9]>,
-i.e., with what Perl considers a C<\w>. 
+i.e., with what Perl considers a C<\w>. It is optional; if not
+specified, the name of the C<.tlpsrc> file will be used (with the
+C<.tlpsrc> removed).
 
 There are three exceptions to this rule:
 
-=over 8
+=over 4
 
 =item B<name.ARCH>
 
@@ -717,6 +767,15 @@ uses.  First, packages are split (automatically) into containers for the
 different architectures to make possible installations including only
 the necessary binaries.  Second, one can add 'one-arch-only' packages,
 often used to deal with Windows peculiarities.
+
+=item B<texlive>I<some.thing>
+
+(notice the dot in the package name) These packages are core TeX Live
+packages. They are treated as usual packages in almost all respects, but
+have that extra dot to be sure they will never clash with any package
+that can possibly appear on CTAN. The only such package currently is
+C<texlive.infra>, which contains L<tlmgr> and other basic infrastructure
+functionality.
 
 =item B<00texlive>I<something>
 
@@ -769,56 +828,52 @@ used *except* to build the installer archives, so it's ok.
 
 =back
 
-=item B<texlive>I<some.thing>
-
-(notice the dot in the package name) These packages are central TeX Live
-internal packages and are treated as usual packages in (more or less)
-all respects, but have that extra dot to be sure they will never clash
-with any package that can possibly appear on CTAN.  The only such
-package currently is C<texlive.infra>, which contains L<tlmgr> and other
-basic infrastructure functionality.
-
 =back
 
-=item C<category>
+=head2 C<category>
 
 identifies the category into which this package belongs. This determines
-the default patterns applied.  Possible categories are defined in
+the default patterns applied. Possible categories are defined in
 C<TeXLive::TLConfig>, currently C<Collection>, C<Scheme>, C<TLCore>,
-C<Package>, C<ConTeXt>.  Most packages will fall into the C<Package>
-category.
+C<Package>, C<ConTeXt>. Most packages fall into the C<Package> category,
+and this is the default if not specified.
 
-=item C<catalogue>
+=head2 C<catalogue>
 
 identifies the name under which this package can be found in the TeX
-Catalogue.
+Catalogue. If not specified, the package name is used.
 
-=item C<shortdesc>
+=head2 C<shortdesc>
 
-gives a one line description of the package. Subsequent entries will
-overwrite the former ones. In TeX Live primarily used for collections and
-schemes.
+gives a one line description of the package. Later lines overwrite
+earlier, so there's no use in giving it more than once. If not
+specified, the default is taken from the TeX Catalogue, which suffices
+for almost all normal packages. Thus, in TeX Live, primarily used for
+collections and schemes.
 
-=item C<longdesc>
+=head2 C<longdesc>
 
-gives a long description of the package. Susequent entries are
-concatenated into a long text. In TeX Live only used for collections and
-schemes.
+gives a long description of the package. Later lines are appended to
+earlier ones. As with C<shortdesc>, if not specified, the default is
+taken from the TeX Catalogue, which suffices for almost all normal
+packages.
 
-=item C<depend>
+=head2 C<depend>
 
-gives the list of dependencies, which are just other package names.
+specifies the list of dependencies, which are just other package names.
 All the C<depend> lines contribute to the dependencies of the package.
-Examples:
+For example, C<latex.tlpsrc> contains (among others):
   
-  depend cm
-  depend plain
-  depend collection-basic
+  depend latexconfig
+  depend latex-fonts
+  depend pdftex
 
-=item C<execute>
+to ensure these packages are installed if the C<latex> package is.
 
-gives a free form entry of install time jobs to be executed. Currently
-the following possible values are understood by the installers:
+=head2 C<execute>
+
+specifies an install-time action to be executed. The following actions
+are supported:
 
 =over 4
 
@@ -858,23 +913,22 @@ C<options> which gives the additional options for the C<fmtutil.cnf> file.
 
 =back
 
-=item C<postaction>
+=head2 C<postaction>
 
-gives a free from entry of post install and removal actions to be
+specifies a post-install or post-removal action to be
 executed. The difference to the C<execute> statement is that 
 C<postaction> is concerned with system integration, i.e., adjusting
 things outside the installation directory, while C<execute> touches
 only things within the installation.
 
-Currently the following C<postaction>s are understood:
+The following actions are supported:
 
 =over 4
 
 =item C<postaction shortcut name=I<name> type=menu|desktop icon=I<path> cmd=I<cmd> args=I<args> hide=0|1>
 
 On W32 creates a shortcut either in the main TeX Live menu or on the
-desktop. Please see the documentation of TeXLive::TLWinGoo for details
-on the parameters.
+desktop. See the documentation of L<TeXLive::TLWinGoo> for details.
 
 =item C<postaction filetype name=I<name> cmd=I<cmd>>
 
@@ -895,18 +949,43 @@ instead of the one given via C<file>.
 
 =back
 
-=item C<tlpsetvar> I<var> I<val>
+=head2 C<tlpsetvar> I<var> I<val>
 
-sets variable I<var> to I<val>, for use within the current C<.tlpsrc>
-only.  Order matters.  The variable can be expanded with
-C<${>I<var>C<}> (after it is defined).  Characters allowed in the I<var>
-name are C<-_a-zA-Z0-9>.
+sets variable I<var> to I<val>. Order matters: the variable can be
+expanded with C<${>I<var>C<}>, only after it is defined. Characters
+allowed in the I<var> name are C<-_a-zA-Z0-9>.
 
-=item C<(src|run|doc|bin)pattern> I<pattern>
+For example, the Xindy program is not supported on all platforms, so we
+define a variable:
 
-adds a pattern (next section) to the respective list of patterns.
+  tlpsetvar no_xindy_platforms i386-solaris,x86_64-linuxmusl,x86_64-solaris
 
-=back
+that can then by used in each C<binpattern> needed:
+
+  binpattern f/!${no_xindy_platforms} bin/${ARCH}/texindy
+  binpattern f/!${no_xindy_platforms} bin/${ARCH}/tex2xindy
+  ...
+
+(The C<binpattern> details are below; here, just notice the variable
+definition and expansion.)
+
+Ordinarily, variables can be used only within the C<.tlpsrc> file where
+they are defined. There is one exception: global tlpsrc variables can be
+defined in the C<00texlive.autopatterns.tlpsrc> file (mentioned below);
+their names must start with C<global_>, and can only be used in
+C<depend> and C<execute> directives, or another C<tlpsetvar>. For
+example, our C<autopatterns.tlpsrc> defines:
+
+  tlpsetvar global_latex_deps babel,cm,hyphen-base,latex-fonts
+
+And then any other C<.tlpsrc> files can use it as
+C<${global_latex_deps}>; in this case, C<latex-bin.tlpsrc>,
+C<latex-bin-dev.tlpsrc>, C<platex.tlpsrc>, and others (in C<execute
+AddFormat> directives).
+
+=head2 C<(src|run|doc|bin)pattern> I<pattern>
+
+adds I<pattern> (next section) to the respective list of patterns.
 
 =head1 PATTERNS
 
@@ -930,11 +1009,23 @@ first.
 
 includes all files which match C<path> where B<only> the last component
 of C<path> can contain the usual glob characters C<*> and C<?> (but no
-others!).
+others!). The special string C<ignore> for I<path> means to ignore this
+pattern (used to eliminate the auto-pattern matching).
 
 =item C<d> I<path>
 
 includes all the files in and below the directory specified as C<path>.
+
+=item C<r> I<regexp>
+
+includes all files matching the regexp C</^regexp$/>.
+
+=item C<a> I<name1> [<name2> ...]
+
+includes auto-generated patterns for each I<nameN> as if the package
+itself would be named I<nameN>. That is useful if a package (such as
+C<venturisadf>) contains top-level directories named after different
+fonts.
 
 =item C<t> I<word1 ... wordN wordL>
 
@@ -944,7 +1035,9 @@ includes all the files in and below all directories of the form
 
 i.e., all the first words but the last form the prefix of the path, then
 there can be an arbitrary number of subdirectories, followed by C<wordL>
-as the final directory.  A real life example from C<omega.tlpsrc>:
+as the final directory. This is primarily used in
+C<00texlive.autopatterns.tlpsrc> in a custom way, but here is the one
+real life example from a standard package, C<omega.tlpsrc>:
 
   runpattern t texmf-dist fonts omega
 
@@ -955,23 +1048,11 @@ intervening subdirectories, e.g.:
   texmf-dist/fonts/tfm/public/omega
   texmf-dist/fonts/type1/public/omega
 
-=item C<r> I<regexp>
-
-includes all files matching the regexp C</^regexp$/>
-
-=item C<a> I<name1> [<name2> ...]
-
-includes auto generated patterns for each I<nameN> as if the package 
-itself would be named I<nameN>. That is useful if a package (like venturisadf)
-contains toplevel directories named after different fonts.
-
 =back
 
 =head2 Special patterns
 
-=over 4
-
-=item PREFIX
+=head3 Prefix characters: C<+> and C<!>
 
 If the C<PREFIX> contains the symbol C<!> the meaning of the pattern is
 reversed, i.e., files matching this pattern are removed from the list of
@@ -986,17 +1067,19 @@ C<graphics.tlpsrc> contains this line:
 
   docpattern +!d texmf-dist/doc/latex/tufte-latex/graphics
 
-so that this subdirectory of the C<tufte-latex> package that happens to
-be named `graphics' is not mistakenly included in the C<graphics>
+so that the subdirectory of the C<tufte-latex> package that happens to
+be named "graphics" is not mistakenly included in the C<graphics>
 package.
 
-=item Auto-generated patterns
+=head2 Auto-generated patterns (C<00texlive.autopatterns>)
 
-If a given pattern section is empty or B<all> the provided patterns have
-the prefix C<+> (e.g., C<+f ...>), then the following patterns, listed
-by type are I<automatically> added at expansion time. Note that this list
-is not definitive, but is taken from the patterns of tlpsrc files
-named C<00texlive.autopatterns.>I<Category>C<.tlpsrc>.
+If a given pattern section is empty or I<all> the provided patterns have
+the prefix C<+> (e.g., C<+f ...>), then patterns such as the following,
+listed by type, are I<automatically> added at expansion time. The list
+here contains examples, rather than being definitive; the added patterns
+are actually taken from C<00texlive.autopatterns.tlpsrc>. (That file
+also defines any global tlpsrc variables, as described above under
+L</tlpsetvar>).
 
 =over 4
 
@@ -1004,11 +1087,11 @@ named C<00texlive.autopatterns.>I<Category>C<.tlpsrc>.
 
 For category C<Package>:
 
-  t texmf-dist topdir $name
+  t texmf-dist I<topdir> %NAME%
 
-where C<topdir> is one of: C<bibtex>, C<context>, C<dvips>, C<fonts>,
-C<makeindex>, C<metafont>, C<metapost>, C<mft>, C<omega>, C<scripts>,
-C<tex>, C<vtex>.
+where C<%NAME%> means the current package name, and I<topdir> is one of:
+C<bibtex> C<context> C<dvips> C<fonts> C<makeindex> C<metafont>
+C<metapost> C<mft> C<omega> C<scripts> C<tex>.
 
 For category C<ConTeXt>:
 
@@ -1020,32 +1103,36 @@ For category C<ConTeXt>:
 C<context-> is removed. E.g., if the package is called C<context-foobar>
 the replacement in the above rules will be C<foobar>.)
 
-For other categories B<no> patterns are automatically added to the 
+For other categories I<no> patterns are automatically added to the 
 list of C<runpattern>s.
 
 =item C<docpattern>
 
+for category C<TLCore>:
+
+  t texmf-dist doc %NAME%
+  f texmf-dist/doc/man/man1/%NAME%.*
+
 for category C<Package>:
 
-  t texmf-dist doc $name
+  t texmf-dist doc %NAME%
+  f texmf-dist/doc/man/man1/%NAME%.*
 
 for category C<ConTeXt>:
 
   d texmf-dist/doc/context/third/%context-:NAME%
 
-(see above for the C<NAME> construct)
-  
 =item C<srcpattern>
 
 for category C<Package>:
 
-  t texmf-dist source $name
+  t texmf-dist source %NAME%
 
 for category C<ConTeXt>:
 
   d texmf-dist/source/context/third/%context-:NAME%
 
-(see above for the C<NAME> construct)
+(see above for the C<$NAME%> construct)
 
 =item C<binpattern>
 
@@ -1053,10 +1140,10 @@ No C<binpattern>s are ever automatically added.
 
 =back
 
-=item Special treatment of binpatterns
+=head3 Special treatment of binpatterns
 
 The binpatterns have to deal with all the different architectures. To
-ease the writing of patterns, we have the following:
+ease the writing of patterns, we have the following features:
 
 =over 4
 
@@ -1109,9 +1196,6 @@ with a ! and these architectures will not be tested. Example:
 will be matched against all architectures I<except> arch1 and arch2.
 
 =back
-
-=back
-
 
 =head1 MEMBER ACCESS FUNCTIONS
 
@@ -1167,21 +1251,20 @@ filehandle if given:
 
 creates a C<TLPOBJ> object from a C<TLPSRC> object and a C<TLTREE> object.
 This function does the necessary work to expand the manual data and
-enrich it which the actual content from C<$tltree> to a C<TLPOBJ> object.
+enrich it with the content from C<$tltree> to a C<TLPOBJ> object.
 
 =back
 
 =head1 SEE ALSO
 
-The modules L<TeXLive::TLConfig>, L<TeXLive::TLUtils>, L<TeXLive::TLPOBJ>, 
-L<TeXLive::TLPDB>, L<TeXLive::TLTREE>.
-
-The programs L<tlpsrc2tlpdb> and L<tlpsrc2tlpobj>.
+The other modules in C<Master/tlpkg/TeXLive/> (L<TeXLive::TLConfig> and
+the rest), and the scripts in C<Master/tlpkg/bin/> (especially
+C<tl-update-tlpdb>), the documentation in C<Master/tlpkg/doc/>, etc.
 
 =head1 AUTHORS AND COPYRIGHT
 
 This script and its documentation were written for the TeX Live
-distribution (L<http://tug.org/texlive>) and both are licensed under the
+distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
 =cut
