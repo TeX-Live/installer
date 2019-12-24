@@ -3294,6 +3294,8 @@ sub parse_AddFormat_line {
 
 Logging and debugging messages.
 
+=over 4
+
 =item C<logit($out,$level,@rest)>
 
 Internal routine to write message to both C<$out> (references to
