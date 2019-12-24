@@ -89,6 +89,7 @@ C<TeXLive::TLUtils> - utilities used in TeX Live infrastructure
   TeXLive::TLUtils::log($str1, ...);     # only to log file
   TeXLive::TLUtils::tlwarn($str1, ...);  # warn on stderr and log
   TeXLive::TLUtils::tldie($str1, ...);   # tlwarn and die
+  TeXLive::TLUtils::debug_hash_str($label, HASH); # stringified HASH
   TeXLive::TLUtils::debug_hash($label, HASH);   # warn stringified HASH
   TeXLive::TLUtils::backtrace();                # return call stack as string
   TeXLive::TLUtils::process_logging_options($texdir); # handle -q -v* -logfile
@@ -216,7 +217,8 @@ BEGIN {
     &SshURIRegex
   );
   @EXPORT = qw(setup_programs download_file process_logging_options
-               tldie tlwarn info log debug ddebug dddebug debug_hash
+               tldie tlwarn info log debug ddebug dddebug debug
+               debug_hash_str debug_hash
                win32 xchdir xsystem run_cmd system_pipe sort_archs);
 }
 
@@ -2563,10 +2565,10 @@ sub setup_one {
 sub setup_system_one {
   my ($p, $arg) = @_;
   my $nulldev = nulldev();
-  debug("trying to set up system $p, arg $arg\n");
+  ddebug("trying to set up system $p, arg $arg\n");
   my $ret = system("$p $arg >$nulldev 2>&1");
   if ($ret == 0) {
-    debug("program $p found in the path\n");
+    debug("program $p found in path\n");
     $::progs{$p} = $p;
     return(1);
   } else {
@@ -3469,14 +3471,19 @@ sub tldie {
   }
 }
 
-=item C<debug_hash ($label, HASH)>
+=item C<debug_hash_str($label, HASH)>
 
-Write LABEL followed by HASH elements, all on one line, to stderr.
-If HASH is a reference, it is followed.
+Return LABEL followed by HASH elements, followed by a newline, as a
+single string. If HASH is a reference, it is followed (but no recursive
+derefencing).
+
+=item C<debug_hash($label, HASH)>
+
+Write the result of C<debug_hash_str> to stderr.
 
 =cut
 
-sub debug_hash {
+sub debug_hash_str {
   my ($label) = shift;
   my (%hash) = (ref $_[0] && $_[0] =~ /.*HASH.*/) ? %{$_[0]} : @_;
 
@@ -3492,7 +3499,11 @@ sub debug_hash {
   $str .= join (",", @items);
   $str .= "}";
 
-  warn "$str\n";
+  return "$str\n";
+}
+
+sub debug_hash {
+  warn &debug_hash_str(@_);
 }
 
 =item C<backtrace()>
