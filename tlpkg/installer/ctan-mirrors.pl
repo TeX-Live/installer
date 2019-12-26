@@ -130,6 +130,7 @@ $mirrors = {
       'http://mirrors.nxthost.com/ctan/' => 1
     },
     'Russia' => {
+      'http://ctan.altspu.ru/' => 1,
       'http://mirror.macomnet.net/pub/CTAN/' => 1,
       'http://mirrors.mi.ras.ru/CTAN/' => 1
     },
@@ -173,9 +174,6 @@ $mirrors = {
     }
   },
   'Oceania' => {
-    'Australia' => {
-      'http://mirror.aarnet.edu.au/pub/CTAN/' => 1
-    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
     }
