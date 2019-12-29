@@ -19,8 +19,7 @@ $mirrors = {
       'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.hit.edu.cn/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
-      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
-      'http://mirrors.ustc.edu.cn/CTAN/' => 1
+      'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1
@@ -55,7 +54,6 @@ $mirrors = {
       'https://download.nus.edu.sg/mirror/ctan/' => 1
     },
     'Taiwan' => {
-      'ftp://ftp.ccu.edu.tw/pub/tex/' => 1,
       'http://ftp.yzu.edu.tw/CTAN/' => 1
     }
   },
