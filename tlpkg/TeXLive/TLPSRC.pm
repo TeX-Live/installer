@@ -143,12 +143,12 @@ sub from_file {
       # check that no variables remain unexpanded, or rather, for any
       # remaining $ (which we don't otherwise allow in tlpsrc files, so
       # should never occur) ... except for ${ARCH} which we specially
-      # expand in TLTREE.pm, and ${global_*} which need to be defined in
-      # 00texlive.autopatterns.tlpsrc. (We distribute one file dvi$pdf.bat,
-      # but fortunately it is matched by a directory.)
+      # expand in TLTREE.pm, and ${global_*} (and ${wndws}) which need to
+      # be defined in 00texlive.autopatterns.tlpsrc. (We distribute one
+      # file dvi$pdf.bat, but fortunately it is matched by a directory.)
       # 
       (my $testline = $line) =~ s,\$\{ARCH\},,g;
-      $testline =~ s,\$\{global_[^}]*\},,g;
+      $testline =~ s,\$\{(global_[^}]*|wndws)\},,g;
       $testline =~ /\$/
         && die "$srcfile:$lineno: variable undefined or syntax error: $line\n";
       #debug: warn "new line $line, from $origline\n" if $origline ne $line;
@@ -363,6 +363,11 @@ sub make_tlpobj {
     @autoaddpat = ();
     $usedefault = 1;
     foreach my $p (@{$self->{${pattype} . 'patterns'}}) {
+      # Expansion of ${global_...} variables from autopatterns.
+      for my $key (keys %global_tlpvars) {
+        $p =~ s/\$\{\Q$key\E\}/$global_tlpvars{$key}/g;
+      }
+      
       if ($p =~ m/^a\s+(.*)\s*$/) {
         # format 
         #   a toplevel1 toplevel2 toplevel3 ...
@@ -559,7 +564,7 @@ sub _do_normal_pattern {
 # 
 # The returned hash has an additional key C<tlpvars> for global tlpsrc
 # variables, which can be used in any C<.tlpsrc> files. The names of these
-# variables all start with C<global_>.
+# variables all start with C<global_>, except for super-special ${wndws}.
 # 
 # =cut 
 # (all doc at bottom, let's not rewrite now.)
@@ -618,7 +623,7 @@ sub find_default_patterns {
   # check defined variables to ensure their names start with "global_".
   my %gvars = %{$tlsrc->_tlpvars};
   for my $v (keys %gvars) {
-    if ($v !~ /^global_[-_a-zA-Z0-9]+$/) {
+    if ($v !~ /^(global_[-_a-zA-Z0-9]+|wndws)$/) {
       tlwarn("$apfile: variable does not start with global_: $v\n")
         unless $v eq "PKGNAME";
         # the auto-defined PKGNAME is not expected to be global.
@@ -972,9 +977,10 @@ definition and expansion.)
 Ordinarily, variables can be used only within the C<.tlpsrc> file where
 they are defined. There is one exception: global tlpsrc variables can be
 defined in the C<00texlive.autopatterns.tlpsrc> file (mentioned below);
-their names must start with C<global_>, and can only be used in
-C<depend> and C<execute> directives, or another C<tlpsetvar>. For
-example, our C<autopatterns.tlpsrc> defines:
+their names must start with C<global_> (plus super-special C<wndws>),
+and can only be used in C<depend>, C<execute>, and C<...pattern>
+directives, another C<tlpsetvar>. For example, our
+C<autopatterns.tlpsrc> defines:
 
   tlpsetvar global_latex_deps babel,cm,hyphen-base,latex-fonts
 
