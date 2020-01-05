@@ -1,8 +1,5 @@
 $mirrors = {
   'Africa' => {
-    'Algeria' => {
-      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1
-    },
     'Morocco' => {
       'https://mirror.marwan.ma/ctan/' => 1
     },
@@ -176,6 +173,9 @@ $mirrors = {
     }
   },
   'Oceania' => {
+    'Australia' => {
+      'http://mirror.aarnet.edu.au/pub/CTAN/' => 1
+    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1
     }
