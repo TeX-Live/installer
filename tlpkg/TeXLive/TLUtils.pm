@@ -1520,6 +1520,7 @@ sub install_packages {
     $totalsize += $tlpsizes{$p};
   }
   my $starttime = time();
+  my @packs_again; # packages that we failed to download and should retry later
   foreach my $package (@packs) {
     my $tlpobj = $tlpobjs{$package};
     my $reloc = $tlpobj->relocated;
@@ -1532,7 +1533,21 @@ sub install_packages {
     foreach my $h (@::install_packages_hook) {
       &$h($n,$totalnr);
     }
-    # return false if something went wrong
+    # push $package to @packs_again if download failed
+    if (!$fromtlpdb->install_package($package, $totlpdb)) {
+      tlwarn("TLUtils::install_packages: Failed to install $package\n"
+             ."Will be retried later.\n");
+      push @packs_again, $package;
+    } else {
+      $donesize += $tlpsizes{$package};
+    }
+  }
+  # try to download packages in @packs_again again
+  foreach my $package (@packs_again) {
+    my $infostr = sprintf("Retrying to install: $package [%dk]",
+                     int($tlpsizes{$package}/1024) + 1);
+    info("$infostr\n");
+    # return false if download failed again
     if (!$fromtlpdb->install_package($package, $totlpdb)) {
       return 0;
     }
