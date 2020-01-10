@@ -132,6 +132,7 @@ $mirrors = {
     },
     'Russia' => {
       'http://ctan.altspu.ru/' => 1,
+      'http://mirror.macomnet.net/pub/CTAN/' => 1,
       'http://mirrors.mi.ras.ru/CTAN/' => 1
     },
     'Slovenia' => {
@@ -153,8 +154,7 @@ $mirrors = {
       'http://ctan.math.ca/tex-archive/' => 1,
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
-      'http://mirror.its.dal.ca/ctan/' => 1,
-      'http://muug.ca/mirror/ctan/' => 1
+      'http://mirror.its.dal.ca/ctan/' => 1
     },
     'Costa Rica' => {
       'http://mirrors.ucr.ac.cr/CTAN/' => 1
