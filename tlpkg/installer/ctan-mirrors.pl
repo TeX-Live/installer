@@ -50,9 +50,6 @@ $mirrors = {
     'Philippines' => {
       'http://mirror.pregi.net/tex-archive/' => 1
     },
-    'Singapore' => {
-      'https://download.nus.edu.sg/mirror/ctan/' => 1
-    },
     'Taiwan' => {
       'http://ftp.yzu.edu.tw/CTAN/' => 1
     }
