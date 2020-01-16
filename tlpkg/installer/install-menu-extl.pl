@@ -1,6 +1,11 @@
 #!/usr/bin/env perl
 # install-menu-extl.pl
 
+# Copyright 2018, 2019 Siep Kroonenberg
+
+# This file is licensed under the GNU General Public License version 2
+# or any later version.
+
 # tell the frontend about all configurable options and terminate
 # this output with an agreed-upon termination string.  the frontend
 # will get the required package database information from the back

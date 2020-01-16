@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPSRC.pm - module for handling tlpsrc files
-# Copyright 2007-2019 Norbert Preining
+# Copyright 2007-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
