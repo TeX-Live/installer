@@ -1705,7 +1705,7 @@ msgstr "ディレクトリを指定"
 
 #: tlpkg/installer/install-tl-gui.tcl:1750
 msgid "Custom scheme"
-msgstr "ススタムスキーム"
+msgstr "カスタムスキーム"
 
 #: tlpkg/installer/install-tl-gui.tcl:1935
 #, tcl-format
