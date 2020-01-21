@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2019-10-19 01:56+0200\n"
-"PO-Revision-Date: 2019-03-08 13:16-0300\n"
+"PO-Revision-Date: 2020-01-20 10:03-0300\n"
 "Last-Translator: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
-"Language-Team: Paulo Roberto Massa Cereda <cereda@users.sf.net>\n"
+"Language-Team: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: tlpkg/installer/tracked-install.pl:27
 msgid "Installation process"
@@ -1384,7 +1384,7 @@ msgstr "Editar diretório"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2492
 #, perl-format
 msgid "New value for %s:"
-msgstr ""
+msgstr "Novo valor para %s:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2495
 msgid "Choose Directory"
@@ -1442,6 +1442,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "may cause trouble!"
 msgstr ""
+"O diretório de destino %s não está vazio;\n"
+"isto pode causar problemas!"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -1449,6 +1451,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "are you sure?"
 msgstr ""
+"O diretório de destino %s não está vazio;\n"
+"você tem certeza?"
 
 #: tlpkg/installer/install-tl-gui.tcl:179
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2636
@@ -1492,7 +1496,7 @@ msgstr "Deseja realmente abortar?"
 
 #: tlpkg/installer/install-tl-gui.tcl:352
 msgid "Local repository"
-msgstr ""
+msgstr "Repositório local"
 
 #: tlpkg/installer/install-tl-gui.tcl:388
 #: tlpkg/installer/install-tl-gui.tcl:405
@@ -1514,6 +1518,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Tentando carregar %s.\n"
+"\n"
+"Se o carregamento demorar muito, pressione Abortar ou escolha outro "
+"repositório."
 
 #: tlpkg/installer/install-tl-gui.tcl:504
 msgid "Cannot be created or cannot be written to"
@@ -1629,7 +1637,7 @@ msgstr "Diretórios"
 
 #: tlpkg/installer/install-tl-gui.tcl:1407
 msgid "Main tree"
-msgstr ""
+msgstr "Árvore principal"
 
 #: tlpkg/installer/install-tl-gui.tcl:1430
 msgid "Local additions"
@@ -1641,7 +1649,7 @@ msgstr "Adições por usuário"
 
 #: tlpkg/installer/install-tl-gui.tcl:1466
 msgid "More ..."
-msgstr ""
+msgstr "Mais ..."
 
 #: tlpkg/installer/install-tl-gui.tcl:1475
 msgid ""
@@ -1701,7 +1709,7 @@ msgstr "Associações de arquivos"
 
 #: tlpkg/installer/install-tl-gui.tcl:1679
 msgid "Create symlinks in standard directories"
-msgstr ""
+msgstr "Criar links simbólicos nos diretórios convencionais"
 
 #: tlpkg/installer/install-tl-gui.tcl:1685
 msgid "Specify directories"
@@ -1714,18 +1722,18 @@ msgstr "Esquema personalizado"
 #: tlpkg/installer/install-tl-gui.tcl:1935
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s não é um repositório local ou remoto"
 
 #: tlpkg/installer/install-tl-gui.tcl:1936
 #: tlpkg/installer/install-tl-gui.tcl:1942
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2032
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #: tlpkg/installer/install-tl-gui.tcl:1941
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s requer um argumento"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1733,7 +1741,7 @@ msgstr "Especificar espelho..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "A lista de espelhos não está disponível"
 
 #: tlpkg/tltcl/tltcl.tcl:661
 msgid "Select or type"
@@ -1767,11 +1775,13 @@ msgstr "Desconhecido"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:763
 msgid "Loading"
-msgstr ""
+msgstr "Carregando"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:773
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
+"Se o carregamento demorar muito, pressione Abortar e escolha outro "
+"repositório."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:775
 #, tcl-format
@@ -1780,6 +1790,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort and choose another repository."
 msgstr ""
+"Tentando carregar %s.\n"
+"\n"
+"Se o carregamento demorar muito, pressione Abortar e escolha outro "
+"repositório."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:780
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2031
@@ -1797,7 +1811,7 @@ msgstr "Saída"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:975
 msgid "Other"
-msgstr ""
+msgstr "Outro"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1001
 #, tcl-format
@@ -1806,11 +1820,11 @@ msgstr "%s não é um repositório"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1084
 msgid "No repositories"
-msgstr ""
+msgstr "Sem repositórios"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1089
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Múltiplos repositórios"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1092
 msgid "Not loaded"
@@ -1818,7 +1832,7 @@ msgstr "Não carregado"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1120
 msgid "Actual repository"
-msgstr ""
+msgstr "Repositório corrente"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1204
 msgid "Main Repository"
@@ -1920,10 +1934,11 @@ msgstr "Restaurar tudo"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1593
 msgid "Close this shell and run in an administrative command-prompt:"
 msgstr ""
+"Feche este shell e execute em um terminal de comando em modo administrador:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1595
 msgid "Close this shell and run in a command-prompt:"
-msgstr ""
+msgstr "Feche este shell e execute em um terminal de comando:"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1604
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1636
@@ -1963,7 +1978,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1754
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Atualizando algumas dependências %s de qualquer forma. Continuar?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1766
 #, tcl-format
@@ -1989,7 +2004,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1820
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "Removendo algumas dependências %s de qualquer forma. Continuar?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1897
 msgid "Info"
@@ -2005,6 +2020,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s não é um repositório local ou remoto.\n"
+"Por favor, configure um repositório válido."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2051
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2077
@@ -2013,7 +2030,7 @@ msgstr "Arquivo"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2079
 msgid "Load repository"
-msgstr ""
+msgstr "Carregar repositório"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2081
 msgid "Exit"
@@ -2052,6 +2069,8 @@ msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr ""
+"Interface GUI para o gerenciador TeX Live\n"
+"Implementada em Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2138
 msgid "tlmgr help"
@@ -2080,7 +2099,7 @@ msgstr "Último comando tlmgr:"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2194
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "Raiz em %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2202
 msgid "Package list"
@@ -2160,14 +2179,17 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"%s não possui permissão de escrita. Você provavelmente não conseguirá fazer "
+"muita coisa.\n"
+"Você tem certeza que quer continuar?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2410
 msgid "Multi-user"
-msgstr ""
+msgstr "Multiusuário"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2410
 msgid "Single-user"
-msgstr ""
+msgstr "Usuário único"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
