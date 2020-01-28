@@ -2359,11 +2359,12 @@ sub write_w32_updater {
   >con echo DO NOT CLOSE THIS WINDOW!
   >con echo TeX Live infrastructure update in progress ...
   >con echo Detailed command logging to $upd_log
-  chdir /d "%~dp0.."
+  pushd "%~dp0.."
   if not errorlevel 1 goto :update
   >con echo Could not change working directory to "%~dp0.."
   >con echo Aborting infrastructure update, no changes have been made.
   >con $gui_pause 
+  popd
   exit /b 1
     
 :update
