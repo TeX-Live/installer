@@ -2380,6 +2380,7 @@ sub write_w32_updater {
   >con echo Infrastructure update finished successfully.
   >con echo $post_update_msg
   >con $gui_pause 
+  popd
   exit /b 0
 
 :rollback
@@ -2396,6 +2397,7 @@ sub write_w32_updater {
   >con echo self restore: @rst_info
   >con echo Infrastructure update failed. Previous version has been restored.
   >con $gui_pause 
+  popd
   exit /b 1
 
 :panic
@@ -2406,6 +2408,7 @@ sub write_w32_updater {
   >con echo To repair your TeX Live installation download and run:
   >con echo $TeXLive::TLConfig::TeXLiveURL/update-tlmgr-latest.exe
   >con $gui_pause 
+  popd
   exit /b 666
 EOF
 
