@@ -922,6 +922,11 @@ sub expand_dependencies {
           $install{$p_dep} = 0 unless $only_arch;
         }
       }
+      for my $fmtdefs ($pkg->format_definitions) {
+        for my $fmttrigger (@{$fmtdefs->{'fmttriggers'}}) {
+          $install{$fmttrigger} = 1;
+        }
+      }
     }
 
     # check for newly selected packages
