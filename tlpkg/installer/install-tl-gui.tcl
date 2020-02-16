@@ -1,6 +1,6 @@
 #!/usr/bin/env wish
 
-# Copyright 2018, 2019 Siep Kroonenberg
+# Copyright 2018-2020 Siep Kroonenberg
 
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -1177,6 +1177,7 @@ if {$::tcl_platform(platform) ne "windows"} {
   ### symlinks into standard directories ###
 
   # 'file writable' is only a check of unix permissions
+  # use proc dir_writable instead
   proc dest_ok {d} {
     if {$d eq ""} {return 0}
     set its 1
@@ -1184,7 +1185,7 @@ if {$::tcl_platform(platform) ne "windows"} {
     if [file exists $d] {
       if {! [file isdirectory $d]} {
         return 0
-      } elseif {! [file writable $d]} {
+      } elseif {! [dir_writable $d]} {
         return 0
       } else {
         return 1
