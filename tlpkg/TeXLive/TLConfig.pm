@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLConfig.pm - module exporting configuration values
-# Copyright 2007-2019 Norbert Preining
+# Copyright 2007-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -190,7 +190,7 @@ our %TLPDBOptions = (
       "Directory for backups" ],
   "create_formats" =>
     [ "b", 1, "formats",  
-      "Create formats on installation" ],
+      "Generate formats at installation or update" ],
   "desktop_integration" =>
     [ "b", 1, "desktop_integration",
       "Create Start menu shortcuts (w32)" ],

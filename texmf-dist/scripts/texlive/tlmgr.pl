@@ -4657,7 +4657,7 @@ sub action_option {
         $ret |= $F_WARNING;
       }
     }
-  } elsif ($what =~ m/^showall$/i) {
+  } elsif ($what =~ m/^(showall|help)$/i) {
     if ($opts{'json'}) {
       my $json = $localtlpdb->options_as_json();
       print("$json\n");
@@ -8417,7 +8417,7 @@ Synonym for L</info>.
 
 =item B<option [--json] [show]>
 
-=item B<option [--json] showall>
+=item B<option [--json] showall|help>
 
 =item B<option I<key> [I<value>]>
 
@@ -8428,7 +8428,8 @@ saved in the TLPDB with a short description and the C<key> used for
 changing it in parentheses.
 
 The second form, C<showall>, is similar, but also shows options which
-can be defined but are not currently set to any value.
+can be defined but are not currently set to any value (C<help> is a
+synonym).
 
 Both C<show...> forms take an option C<--json>, which dumps the option
 information in JSON format.  In this case, both forms dump the same
@@ -8443,7 +8444,7 @@ Possible values for I<key> are (run C<tlmgr option showall> for
 the definitive list):
 
  repository (default package repository),
- formats    (create formats at installation time),
+ formats    (generate formats at installation or update time),
  postcode   (run postinst code blobs)
  docfiles   (install documentation files),
  srcfiles   (install source files),
@@ -8468,7 +8469,8 @@ be used as a synonym for C<repository>.)
 
 If C<formats> is set (this is the default), then formats are regenerated
 when either the engine or the format files have changed.  Disable this
-only when you know how and want to regenerate formats yourself.
+only when you know how and want to regenerate formats yourself whenever
+needed (which is often, in practice).
 
 The C<postcode> option controls execution of per-package
 postinstallation action code.  It is set by default, and again disabling
@@ -9918,7 +9920,7 @@ user installations.
 
 =item C<TEXLIVE_COMPRESSOR>
 
-This option allows selecting a different compressor program for
+This variable allows selecting a different compressor program for
 backups and intermediate rollback containers. The order of selection is:
 
 =over 8
@@ -10008,7 +10010,6 @@ Exception: on Windows, the C<tar.exe> shipped with TL is always used,
 regardless of any setting.
 
 =back
-
 
 =head1 AUTHORS AND COPYRIGHT
 
