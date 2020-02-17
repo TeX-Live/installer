@@ -7006,12 +7006,13 @@ sub setup_one_remotetlpdb {
       ddebug("loc copy found!\n");
       # we found the tlpdb matching the current location
       # check for the remote hash
-      my $path = "$location/$InfraLocation/$DatabaseName.$TeXLive::TLConfig::ChecksumExtension";
+      my $path = "$location/$InfraLocation/$DatabaseName";
       ddebug("remote path of digest = $path\n");
-
-      my ($ret,$msg)
-        = TeXLive::TLCrypto::verify_checksum($loc_copy_of_remote_tlpdb, $path);
-      if ($ret == $VS_CONNECTION_ERROR) {
+      my ($verified, $status)
+        = TeXLive::TLCrypto::verify_checksum_and_check_return($loc_copy_of_remote_tlpdb, $path,
+            $is_main, 1); # the 1 means local copy mode!
+      # deal with those cases that need special treatment
+      if ($status == $VS_CONNECTION_ERROR) {
         info(<<END_NO_INTERNET);
 Unable to download the checksum of the remote TeX Live database,
 but found a local copy, so using that.
@@ -7027,46 +7028,17 @@ END_NO_INTERNET
         $remotetlpdb = TeXLive::TLPDB->new(root => $location,
           tlpdbfile => $loc_copy_of_remote_tlpdb);
         $local_copy_tlpdb_used = 1;
-      } elsif ($ret == $VS_UNSIGNED) {
-        # we require the main database to be signed, but allow for
-        # subsidiary to be unsigned
-        if ($is_main) {
-          tldie("$prg: main database at $location is not signed: $msg\n");
-        }
-        # the remote database has not be signed, warn
-        debug("$prg: remote database is not signed, continuing anyway!\n");
-      } elsif ($ret == $VS_GPG_UNAVAILABLE) {
-        # no gpg available
-        debug("$prg: no gpg available for verification, continuing anyway!\n");
-      } elsif ($ret == $VS_PUBKEY_MISSING) {
-        # pubkey missing
-        debug("$prg: $msg, continuing anyway!\n");
-      } elsif ($ret == $VS_CHECKSUM_ERROR) {
-        # no problem, checksum is wrong, we need to get new tlpdb
-      } elsif ($ret == $VS_SIGNATURE_ERROR) {
-        # umpf, signature error
-        # TODO should we die here? Probably yes because one of 
-        # checksum file or signature file has changed!
-        tldie("$prg: verification of checksum for $location failed: $msg\n");
-      } elsif ($ret == $VS_EXPKEYSIG) {
-        # do nothing, try to get new tlpdb and hope sig is better?
-        tlwarn("Verification problem of the TL database at $location:\n");
-        tlwarn("--> $VerificationStatusDescription{$ret}\n");
-        # debug("$prg: good signature bug gpg key expired, continuing anyway!\n");
-      } elsif ($ret == $VS_REVKEYSIG) {
-        # do nothing, try to get new tlpdb and hope sig is better?
-        tlwarn("Verification problem of the TL database at $location:\n");
-        tlwarn("--> $VerificationStatusDescription{$ret}\n");
-        #debug("$prg: good signature but from revoked gpg key, continuing anyway!\n");
-      } elsif ($ret == $VS_VERIFIED) {
+      } elsif ($status == $VS_VERIFIED || $status == $VS_EXPKEYSIG || $status == $VS_REVKEYSIG) {
         $remotetlpdb = TeXLive::TLPDB->new(root => $location,
           tlpdbfile => $loc_copy_of_remote_tlpdb);
         $local_copy_tlpdb_used = 1;
-        # we did verify this tlpdb, make sure that is recorded
-        $remotetlpdb->is_verified(1);
-      } else {
-        tldie("$prg: unexpected return value from verify_checksum: $ret\n");
+        # if verification was successful, make sure that is recorded
+        $remotetlpdb->verification_status($status);
+        $remotetlpdb->is_verified($verified);
       }
+      # nothing to do in the else case
+      # we tldie already in the verify_checksum_and_check_return
+      # for all other cases
     }
   }
   if (!$local_copy_tlpdb_used) {

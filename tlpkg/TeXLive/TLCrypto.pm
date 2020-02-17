@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLCrypto.pm - handle checksums and signatures.
-# Copyright 2016-2019 Norbert Preining
+# Copyright 2016-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -34,6 +34,7 @@ C<TeXLive::TLCrypto> -- checksums and cryptographic signatures
 
   TeXLive::TLCrypto::tlchecksum($path);
   TeXLive::TLCrypto::verify_checksum($file, $url);
+  TeXLive::TLCrypto::verify_checksum_and_check_return($file, $url);
 
 =head2 Signatures
 
@@ -52,6 +53,7 @@ BEGIN {
     &tlchecksum
     &tl_short_digest
     &verify_checksum
+    &verify_checksum_and_check_return
     &setup_gpg
     &verify_signature
     %VerificationStatusDescription
@@ -222,6 +224,63 @@ Return short digest (MD5) of C<$str>.
 =cut
 
 sub tl_short_digest { return (Digest::MD5::md5_hex(shift)); }
+
+# emacs-page
+=pod
+
+=item C<< verify_checksum_and_check_return($file, $tlpdburl [, $is_main, $localcopymode ]) >>
+
+Calls C<<verify_checksum>> and checks the various return values
+for critical errors, and dies if necessary.
+
+If C<$is_main> is given and true, an unsigned tlpdb is considered
+fatal. If C<$localcopymode> is given and true, do not die for 
+checksum and connection errors, thus allowing for re-downloading
+of a copy.
+
+=cut
+
+sub verify_checksum_and_check_return {
+  my ($file, $path, $is_main, $localcopymode) = @_;
+  my ($r, $m) = verify_checksum($file, "$path.$ChecksumExtension");
+  if ($r == $VS_CHECKSUM_ERROR) {
+    if (!$localcopymode) {
+      tldie("$0: checksum error when downloading $file from $path: $m\n");
+    }
+  } elsif ($r == $VS_SIGNATURE_ERROR) {
+    tldie("$0: signature verification error of $file from $path: $m\n");
+  } elsif ($r == $VS_CONNECTION_ERROR) {
+    if ($localcopymode) {
+      return(0, $r);
+    } else {
+      tldie("$0: cannot download: $m\n");
+    }
+  } elsif ($r == $VS_UNSIGNED) {
+    if ($is_main) {
+      tldie("$0: main database at $path is not signed: $m\n");
+    }
+    debug("$0: remote database checksum is not signed, continuing anyway: $m\n");
+    return(0, $r);
+  } elsif ($r == $VS_EXPKEYSIG) {
+    debug("$0: good signature bug gpg key expired, continuing anyway!\n");
+    return(0, $r);
+  } elsif ($r == $VS_REVKEYSIG) {
+    debug("$0: good signature but from revoked gpg key, continuing anyway!\n");
+    return(0, $r);
+  } elsif ($r == $VS_GPG_UNAVAILABLE) {
+    debug("$0: TLPDB: no gpg available, continuing anyway!\n");
+    return(0, $r);
+  } elsif ($r == $VS_PUBKEY_MISSING) {
+    debug("$0: TLPDB: pubkey missing, continuing anyway!\n");
+    return(0, $r);
+  } elsif ($r == $VS_VERIFIED) {
+    return(1, $r);
+  } else {
+    tldie("$0: unexpected return value from verify_checksum: $r\n");
+  }
+}
+
+
 
 # emacs-page
 =pod

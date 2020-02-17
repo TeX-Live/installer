@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
-# Copyright 2007-2019 Norbert Preining
+# Copyright 2007-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -370,57 +370,16 @@ sub from_file {
     #
     # before we open and proceed, verify the downloaded file
     if ($params{'verify'} && $media ne 'local_uncompressed') {
-      my ($r, $m) = TeXLive::TLCrypto::verify_checksum($tlpdbfile, "$path.$ChecksumExtension");
-      if ($r == $VS_CHECKSUM_ERROR) {
-        tldie("$0: checksum error when downloading $tlpdbfile from $path: $m\n");
-      } elsif ($r == $VS_SIGNATURE_ERROR) {
-        tldie("$0: signature verification error of $tlpdbfile from $path: $m\n");
-      } elsif ($r == $VS_CONNECTION_ERROR) {
-        tldie("$0: cannot download: $m\n");
-      } elsif ($r == $VS_UNSIGNED) {
-        debug("$0: remote database checksum is not signed, continuing anyway: $m\n");
-        $self->verification_status($r);
-      } elsif ($r == $VS_GPG_UNAVAILABLE) {
-        debug("$0: TLPDB: no gpg available, continuing anyway!\n");
-        $self->verification_status($r);
-      } elsif ($r == $VS_PUBKEY_MISSING) {
-        debug("$0: TLPDB: pubkey missing, continuing anyway!\n");
-        $self->verification_status($r);
-      } elsif ($r == $VS_VERIFIED) {
-        $is_verified = 1;
-        $self->verification_status($r);
-      } else {
-        tldie("$0: unexpected return value from verify_checksum: $r\n");
-      }
+      my ($verified, $status) = TeXLive::TLCrypto::verify_checksum_and_check_return($tlpdbfile, $path);
+      $is_verified = $verified;
+      $self->verification_status($status);
     }
     open($retfh, "<$tlpdbfile") || die "$0: open($tlpdbfile) failed: $!";
   } else {
     if ($params{'verify'} && $media ne 'local_uncompressed') {
-      my ($r, $m) = TeXLive::TLCrypto::verify_checksum($path, "$path.$ChecksumExtension");
-      if ($r == $VS_CHECKSUM_ERROR) {
-        tldie("$0: checksum error when downloading $path from $path: $m\n");
-      } elsif ($r == $VS_SIGNATURE_ERROR) {
-        tldie("$0: signature verification error of $path from $path: $m\n");
-      } elsif ($r == $VS_CONNECTION_ERROR) {
-        tldie("$0: cannot download: $m\n");
-      } elsif ($r == $VS_UNSIGNED) {
-        debug("$0: remote database checksum is not signed, continuing anyway!\n");
-        $self->verification_status($r);
-      } elsif ($r == $VS_GPG_UNAVAILABLE) {
-        debug("$0: TLPDB: no gpg available, continuing anyway!\n");
-        $self->verification_status($r);
-      } elsif ($r == $VS_PUBKEY_MISSING) {
-        debug("$0: TLPDB: pubkey missing, continuing anyway!\n");
-        $self->verification_status($r);
-      } elsif ($r == $VS_EXPKEYSIG) {
-        debug("$0: TLPDB: signature verified, but key expired, continuing anyway!\n");
-        $self->verification_status($r);
-      } elsif ($r == $VS_VERIFIED) {
-        $is_verified = 1;
-        $self->verification_status($r);
-      } else {
-        tldie("$0: unexpected return value from verify_checksum: $r\n");
-      }
+      my ($verified, $status) = TeXLive::TLCrypto::verify_checksum_and_check_return($path, $path);
+      $is_verified = $verified;
+      $self->verification_status($status);
     }
     open(TMP, "<$path") || die "$0: open($path) failed: $!";
     $retfh = \*TMP;
