@@ -6900,8 +6900,10 @@ END_NO_CHECKSUMS
   }
   # from here on only in non-machine-readable mode and not silent
   info("$prg: package repositories\n");
+  my $show_verification_page_link = 0;
   my $verstat = "";
   if (!$remotetlpdb->virtual_get_tlpdb('main')->is_verified) {
+    $show_verification_page_link = 1;
     $verstat = ": ";
     $verstat .= $VerificationStatusDescription{$remotetlpdb->virtual_get_tlpdb('main')->verification_status};
   }
@@ -6912,13 +6914,21 @@ END_NO_CHECKSUMS
     if ($t ne 'main') {
       $verstat = "";
       if (!$remotetlpdb->virtual_get_tlpdb($t)->is_verified) {
+        my $tlpdb_ver_stat = $remotetlpdb->virtual_get_tlpdb($t)->verification_status;
         $verstat = ": ";
-        $verstat .= $VerificationStatusDescription{$remotetlpdb->virtual_get_tlpdb($t)->verification_status};
+        $verstat .= $VerificationStatusDescription{$tlpdb_ver_stat};
+        # if the db is not verified *but* was signed, give the page link info
+        if ($tlpdb_ver_stat != $VS_UNSIGNED) {
+          $show_verification_page_link = 1;
+        }
       }
       info("\t$t = " . $repos{$t} . " (" .
         ($remotetlpdb->virtual_get_tlpdb($t)->is_verified ? "" : "not ") .
         "verified$verstat)\n");
     }
+  }
+  if ($show_verification_page_link) {
+    info("For more about verification, see https://texlive.info/verification.html.\n");
   }
   return 1;
 }
