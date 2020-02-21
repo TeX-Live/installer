@@ -247,6 +247,7 @@ sub verify_checksum_and_check_return {
     if (!$localcopymode) {
       tldie("$0: checksum error when downloading $file from $path: $m\n");
     }
+    return(0, $r);
   } elsif ($r == $VS_SIGNATURE_ERROR) {
     tldie("$0: signature verification error of $file from $path: $m\n");
   } elsif ($r == $VS_CONNECTION_ERROR) {
@@ -278,6 +279,8 @@ sub verify_checksum_and_check_return {
   } else {
     tldie("$0: unexpected return value from verify_checksum: $r\n");
   }
+  # we should never come here, but just to be sure
+  return(0, $r);
 }
 
 
