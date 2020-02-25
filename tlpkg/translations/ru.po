@@ -1,14 +1,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Vladimir <lomov.vl@gmail.com>, 2009, 2010, 2011.
-# Vladimir Lomov <irk.translator@yandex.ru>, 2011-2019.
+# Vladimir Lomov <irk.translator@yandex.ru>, 2011-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2020-02-16 19:07+0100\n"
-"PO-Revision-Date: 2019-03-26 09:17+0800\n"
+"PO-Revision-Date: 2020-02-24 12:40+0800\n"
 "Last-Translator: Vladimir Lomov <irk.translator@yandex.ru>\n"
 "Language-Team: Russian <tldoc@tug.org>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 3.32.0\n"
+"X-Generator: Poedit 2.3\n"
 
 #: tlpkg/installer/tracked-install.pl:27
 msgid "Installation process"
@@ -399,7 +399,7 @@ msgstr "А4"
 #: tlpkg/installer/install-menu-perltk.pl:53
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1358
 msgid "letter"
-msgstr "Letter"
+msgstr "letter"
 
 #: tlpkg/installer/install-menu-perltk.pl:55
 #: tlpkg/installer/install-tl-gui.tcl:1627
@@ -768,7 +768,7 @@ msgstr "Загруженный:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:294
 msgid "none"
-msgstr "Нет"
+msgstr "нет"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:297
 msgid "Load default"
@@ -1469,7 +1469,7 @@ msgstr ""
 "обновления и исправления. TeX Live — это совместный продукт групп "
 "пользователей TeX'а по всему миру; поддержите проект, присоединившись к "
 "подходящей вам группе. Список групп доступен на странице https://tug.org/"
-"usergroups.html"
+"usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:186
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2649
@@ -1491,7 +1491,7 @@ msgstr "Действительно прервать?"
 
 #: tlpkg/installer/install-tl-gui.tcl:352
 msgid "Local repository"
-msgstr ""
+msgstr "Локальный репозиторий"
 
 #: tlpkg/installer/install-tl-gui.tcl:388
 #: tlpkg/installer/install-tl-gui.tcl:405
@@ -1513,6 +1513,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Пытаемся загрузить %s.\n"
+"\n"
+"Если это занимает много времени, нажмите Отмена и выберите другой "
+"репозиторий."
 
 #: tlpkg/installer/install-tl-gui.tcl:504
 msgid "Cannot be created or cannot be written to"
@@ -1659,7 +1663,7 @@ msgstr "Платформы"
 
 #: tlpkg/installer/install-tl-gui.tcl:1496
 msgid "Current platform:"
-msgstr "Текущая платформа"
+msgstr "Текущая платформа:"
 
 #: tlpkg/installer/install-tl-gui.tcl:1503
 msgid "N. of additional platform(s):"
@@ -1712,18 +1716,18 @@ msgstr "Собственная схема"
 #: tlpkg/installer/install-tl-gui.tcl:1936
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s не является ни локальным, ни удалённым репозиторием"
 
 #: tlpkg/installer/install-tl-gui.tcl:1937
 #: tlpkg/installer/install-tl-gui.tcl:1943
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2030
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: tlpkg/installer/install-tl-gui.tcl:1942
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "для %s требуется аргумент"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1731,7 +1735,7 @@ msgstr "Определённое зеркало..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "Нет списка зеркал"
 
 #: tlpkg/tltcl/tltcl.tcl:683
 msgid "Select or type"
@@ -1765,11 +1769,13 @@ msgstr "Неизвестно"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:764
 msgid "Loading"
-msgstr ""
+msgstr "Загрузка"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:770
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
+"Если загрузка занимает много времени, нажмите Отмена и выберите другой "
+"репозиторий"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:771
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2029
@@ -1779,7 +1785,7 @@ msgstr "Репозитории"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:809
 msgid "Done loading"
-msgstr ""
+msgstr "Загрузка завершена"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:833
 msgid "A configured repository is unavailable."
@@ -1800,11 +1806,11 @@ msgstr "%s не является репозиторием"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1070
 msgid "No repositories"
-msgstr ""
+msgstr "Нет репозиториев"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1075
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Несколько репозиториев"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1078
 msgid "Not loaded"
@@ -1812,7 +1818,7 @@ msgstr "Не загружено"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1106
 msgid "Actual repository"
-msgstr ""
+msgstr "Фактический репозиторий"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1191
 msgid "Main Repository"
@@ -1991,6 +1997,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s не является ни локальным, ни удалённым репозиторием.\n"
+"Выберите правильный репозиторий"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2049
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2075
@@ -1999,7 +2007,7 @@ msgstr "Файл"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2077
 msgid "Load repository"
-msgstr ""
+msgstr "Загрузить репозиторий"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2079
 msgid "Exit"
@@ -2068,7 +2076,7 @@ msgstr "Последняя команда tlmgr:"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2192
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "Корневой каталог в %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2200
 msgid "Package list"
@@ -2148,14 +2156,16 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"%s не доступен на запись. Возможно у вас нет достаточных прав.\n"
+"  Вы уверены, что хотите продолжить?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2408
 msgid "Multi-user"
-msgstr ""
+msgstr "Для всех пользователей"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2408
 msgid "Single-user"
-msgstr ""
+msgstr "Для одного пользователя"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
