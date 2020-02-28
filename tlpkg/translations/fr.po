@@ -223,8 +223,7 @@ msgstr "Miroirs"
 #: tlpkg/installer/install-menu-wizard.pl:379
 msgid "Please wait while the repository database is loaded."
 msgstr ""
-"Veuillez patienter pendant le chargement de la base de données des dépôts de "
-"packages."
+"Veuillez patienter pendant le chargement de la base de données des dépôts de packages."
 
 #: tlpkg/installer/install-menu-wizard.pl:380
 msgid "This will take some time!"
@@ -611,7 +610,6 @@ msgstr "Créer les liens symboliques dans les répertoires-système"
 #: tlpkg/installer/install-menu-perltk.pl:585
 #: tlpkg/installer/install-tl-gui.tcl:1700
 msgid "After install, set CTAN as source for package updates"
-msgstr ""
 "Après l'installation, la source des mises à jour des packages sera CTAN "
 
 #: tlpkg/installer/install-menu-perltk.pl:607
@@ -1084,7 +1082,6 @@ msgstr "Collection : "
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:749
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
-msgstr ""
 "Les versions du catalogue peuvent être en retard ou simplement erronées."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:787
@@ -1332,7 +1329,6 @@ msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2281
 msgid "(Further updates will be available after tlmgr has been updated.)"
-msgstr ""
 "(Les mises à jour supplémentaires seront disponibles après que le TeX Live "
 "Manager aura lui-même été mis à jour.)"
 
@@ -1502,7 +1498,7 @@ msgstr "Vraiment annuler ?"
 
 #: tlpkg/installer/install-tl-gui.tcl:352
 msgid "Local repository"
-msgstr ""
+msgstr "Dépôt local"
 
 #: tlpkg/installer/install-tl-gui.tcl:388
 #: tlpkg/installer/install-tl-gui.tcl:405
@@ -1524,6 +1520,9 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Essaie de charger %s.\n"
+"\n"
+"Si c'est trop long, cliquez sur « Annuler » ou choisissez un autre dépôt."
 
 #: tlpkg/installer/install-tl-gui.tcl:504
 msgid "Cannot be created or cannot be written to"
@@ -1609,9 +1608,7 @@ msgstr "Autres collections"
 
 #: tlpkg/installer/install-tl-gui.tcl:1238
 msgid "Warning. Not all configured directories are writable!"
-msgstr ""
-"Attention ! Vous n'avez pas de droit en écriture sur certains des "
-"répertoires configurés."
+"Attention ! Vous n'avez pas de droit en écriture sur certains des répertoires configurés."
 
 #: tlpkg/installer/install-tl-gui.tcl:1258
 msgid "Symlinks"
@@ -1725,7 +1722,7 @@ msgstr "Schéma personnalisé"
 #: tlpkg/installer/install-tl-gui.tcl:1936
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s n'est pas un dépôt local ou distant"
 
 #: tlpkg/installer/install-tl-gui.tcl:1937
 #: tlpkg/installer/install-tl-gui.tcl:1943
@@ -1736,7 +1733,7 @@ msgstr "Erreur"
 #: tlpkg/installer/install-tl-gui.tcl:1942
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s requiert un argument"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1744,7 +1741,7 @@ msgstr "Miroir spécifique..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "Aucune liste de miroirs disponible"
 
 #: tlpkg/tltcl/tltcl.tcl:683
 msgid "Select or type"
@@ -1778,11 +1775,11 @@ msgstr "Inconnu"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:764
 msgid "Loading"
-msgstr ""
+msgstr "Chargement"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:770
 msgid "If loading takes too long, press Abort and choose another repository."
-msgstr ""
+msgstr "Si c'est trop long, cliquez sur « Annuler » et choisissez un autre dépôt."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:771
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2029
@@ -1792,7 +1789,7 @@ msgstr "Dépôts"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:809
 msgid "Done loading"
-msgstr ""
+msgstr "Chargement terminé"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:833
 msgid "A configured repository is unavailable."
@@ -1813,11 +1810,11 @@ msgstr "%s n'est pas un dépôt"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1070
 msgid "No repositories"
-msgstr ""
+msgstr "Pas de dépôt"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1075
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Dépôts multiples"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1078
 msgid "Not loaded"
@@ -1825,7 +1822,7 @@ msgstr "Non chargé"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1106
 msgid "Actual repository"
-msgstr ""
+msgstr "Dépôt effectif"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1191
 msgid "Main Repository"
@@ -2004,6 +2001,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s n'est pas un dépôt local ou distant.\n"
+"Veuillez configurer un dépôt valide"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2049
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2075
@@ -2012,7 +2011,7 @@ msgstr "Fichier"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2077
 msgid "Load repository"
-msgstr ""
+msgstr "Chargement le dépôt"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2079
 msgid "Exit"
@@ -2334,7 +2333,6 @@ msgstr "Packages LuaTeX"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "Mathematics, natural sciences, computer science packages"
-msgstr ""
 "Packages pour les mathématiques, les sciences naturelles et l'informatique"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
