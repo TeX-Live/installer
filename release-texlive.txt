@@ -1,4 +1,4 @@
-TeX Live (http://tug.org/texlive) version 2019
+TeX Live (https://tug.org/texlive) version 2020
 
 This file is public domain.  It is read by install-tl --version,
 tlmgr --version, and texconfig conf, and a final line appended with
