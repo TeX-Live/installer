@@ -3419,9 +3419,11 @@ strings.  The message will be omitted unless C<-v -v -v> was specified.
 If the log file (see L<process_logging_options>) is defined, it also
 writes there.
 
-This third level debugging message reports messages about processing
-each line of any tlpdb files read, in addition to the first and second
-levels.
+In addition to the first and second levels, this third level debugging
+message reports messages about processing each line of any tlpdb files
+read, and messages about files tested or matched against tlpsrc
+patterns. This output is extremely voluminous, so unless you're
+debugging those parts of the code, it just gets in the way.
 
 =cut
 

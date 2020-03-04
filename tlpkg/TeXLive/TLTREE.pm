@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLTREE.pm - work with the tree of all files
-# Copyright 2007-2018 Norbert Preining
+# Copyright 2007-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -385,9 +385,9 @@ sub _get_files_matching_glob_pattern
 
   my @candfiles = @{$self->{'_filesofdir'}{$dirpart}};
   for my $f (@candfiles) {
-    ddebug("matching $f in $dirpart via glob $globline\n");
+    dddebug("matching $f in $dirpart via glob $globline\n");
     if ($f =~ /^$basepart$/) {
-      ddebug("hit: globline=$globline, $dirpart/$f\n");
+      dddebug("hit: globline=$globline, $dirpart/$f\n");
       if ("$dirpart" eq ".") {
         push @returnfiles, "$f";
       } else {
