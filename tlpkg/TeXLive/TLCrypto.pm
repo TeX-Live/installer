@@ -595,9 +595,12 @@ sub gpg_verify_signature {
     debug("verification succeeded, output:\n$out\n");
     return ($VS_VERIFIED, $out);
   } else {
-    if (grep(/^\[GNUPG:\] NO_PUBKEY (.*)/, @status_lines)) {
-      debug("missing pubkey $1\n");
-      return ($VS_PUBKEY_MISSING, "missing pubkey $1");
+    my @nopb = grep(/^\[GNUPG:\] NO_PUBKEY /, @status_lines);
+    if (@nopb) {
+      my $mpk = $nopb[-1];
+      $mpk =~ s/^\[GNUPG:\] NO_PUBKEY //;
+      debug("missing pubkey $mpk\n");
+      return ($VS_PUBKEY_MISSING, "missing pubkey $mpk");
     }
     # we could do more checks on what is the actual problem here!
     return ($VS_SIGNATURE_ERROR, $out);
