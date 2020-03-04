@@ -184,7 +184,10 @@ sub from_file {
       $shortdesc = "";
 
     } elsif ($line =~ /^longdesc$/) {
-      $longdesc .= "\n";
+      # We need to use a space here instead of a newline so that strings
+      # read from *.tlpsrc and tlpdb come out the same; see $shortdesc
+      # and $longdesc assignments below.
+      $longdesc .= " ";
 
     } elsif ($line =~ /^longdesc\s+(.*)$/) {
       $longdesc .= "$1 ";
@@ -228,6 +231,16 @@ sub from_file {
   if ($name =~ m/^[[:space:]]*$/) {
     die "Cannot deduce name from file argument and name tag not found";
   }
+  #
+  # We should probably call TeXCatalogue::beautify(), but trailing
+  # whitespace seems to be the only thing that comes up in practice. We
+  # want the parsing from .tlpsrc to result in exactly the same string,
+  # including spaces, as parsing from texlive.tlpdb. Otherwise
+  # tl-update-tlpdb's tlpdb_catalogue_compare will think the strings
+  # are always different.
+  $shortdesc =~ s/\s+$//g;
+  $longdesc =~ s/\s+$//g;
+  #
   $self->name($name);
   $self->category($category);
   $self->catalogue($catalogue) if $catalogue;
