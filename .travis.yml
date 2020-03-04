@@ -7,10 +7,12 @@ os:
 before_script:
   - echo -e "selected_scheme scheme-infraonly\nTEXDIR /usr/local/texlive\noption_doc 0\noption_src 0" > texlive.profile
 
-# for pretest use the following
+# for pretest use
 # - sudo ./install-tl -no-gui -profile=texlive.profile --repository http://www.math.utah.edu/pub/tlpretest/
+# for normal operation use
+# - sudo ./install-tl -no-gui -profile=texlive.profile
 
 script:
-  - sudo ./install-tl -no-gui -profile=texlive.profile
+  - sudo ./install-tl -no-gui -profile=texlive.profile --repository http://www.math.utah.edu/pub/tlpretest/
   - PATH=$PATH:/usr/local/texlive/bin/x86_64-$(if [ $TRAVIS_OS_NAME == 'osx' ]; then echo darwin; else echo linux; fi)
   - tlmgr --version
