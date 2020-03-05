@@ -2790,30 +2790,41 @@ sub download_file {
   }
 }
 
+
 sub _download_file_lwp {
   my ($url, $dest) = @_;
-  if (defined($::tldownload_server) && $::tldownload_server->enabled) {
-    debug("persistent connection set up, trying to get $url (for $dest)\n");
-    my $ret = $::tldownload_server->get_file($url, $dest);
-    if ($ret) {
-      ddebug("downloading file via persistent connection succeeded\n");
-      return $ret;
-    } else {
-      debug("TLUtils::download_file: persistent connection ok,"
-             . " but download failed: $url\n");
-      debug("TLUtils::download_file: retrying with wget.\n");
+  if (!defined($::tldownload_server)) {
+    ddebug("::tldownload_server not defined\n");
+    return(0);
+  }
+  if (!$::tldownload_server->enabled) {
+    # try to reinitialize a disabled connection
+    # disabling happens after 6 failed download trials
+    # we just re-initialize the connection
+    if (!setup_persistent_downloads()) {
+      # setup failed, give up
+      debug("reinitialization of LWP download failed\n");
+      return(0);
     }
+    # we don't need to check for ->enabled, because
+    # setup_persistent_downloads calls TLDownload->new()
+    # which, if it succeeds, automatically set enabled to 1
+  }
+  # we are still here, so try to download
+  debug("persistent connection set up, trying to get $url (for $dest)\n");
+  my $ret = $::tldownload_server->get_file($url, $dest);
+  if ($ret) {
+    ddebug("downloading file via persistent connection succeeded\n");
+    return $ret;
   } else {
-    if (!defined($::tldownload_server)) {
-      ddebug("::tldownload_server not defined\n");
-    } else {
-      ddebug("::tldownload_server->enabled is not set\n");
-    }
-    debug("persistent connection not set up\n");
+    debug("TLUtils::download_file: persistent connection ok,"
+           . " but download failed: $url\n");
+    debug("TLUtils::download_file: retrying with other downloaders.\n");
   }
   # if we are still here, download with LWP didn't succeed.
   return(0);
 }
+
 
 sub _download_file_program {
   my ($url, $dest, $type) = @_;
