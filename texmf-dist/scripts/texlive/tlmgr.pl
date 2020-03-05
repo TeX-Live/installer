@@ -5529,6 +5529,7 @@ sub check_runfiles {
             |README.*
             |a_.*\.enc
             |cid2code\.txt
+            |context\.json
             |etex\.src
             |fithesis.*
             |u?kinsoku\.tex
@@ -5716,7 +5717,6 @@ sub check_executes {
     if (",$TeXLive::TLConfig::PartialEngineSupport," =~ /,$engine,/) {
       # luajit[hb]tex is special since it is not available on all architectures
       #   due to inherent reasons (machine code);
-      # luahbtex is special until we build it everywhere for TL'20.
       # 
       # We do not want to have error messages here, so we do the following:
       # * if tlpkg/tlpsrc/luajittex.tlpsrc is available, then load it
@@ -5728,8 +5728,6 @@ sub check_executes {
       my $pkg;
       if ($engine =~ /luajit(hb)?tex/) {
         $pkg = "luajittex";
-      } elsif ($engine eq "luahbtex") {
-        $pkg = "luahbtex";
       } elsif ($engine eq "mfluajit") {
         $pkg = "mflua";
       } else {
