@@ -7081,6 +7081,11 @@ END_NO_INTERNET
   # If it should work for 2009 and 2010, please use
   #   minrelease/2009-foobar
   #   release/2010-foobar
+  # One exception: if there *is* an extension like -foobar (-gpg, ..)
+  # we allow the local release to be smaller than the max,
+  # so that additional repos can do
+  #   release/3000-foobar
+  # and be usable with all future releases, too.
   my $texlive_release = $remotetlpdb->config_release;
   my $texlive_minrelease = $remotetlpdb->config_minrelease;
   my $rroot = $remotetlpdb->root;
@@ -7121,13 +7126,18 @@ do not include the version of the local installation
     # if the release of the installed TL is less than the release
     # of the main remote repository, then
     # warn that one needs to call update-tlmgr-latest.sh --update
+    # We do this only if there is no extension like 2100-gpg etc
     if ($is_main && $TeXLive::TLConfig::ReleaseYear < $texlive_release_year) {
-      info("fail load $location\n") if ($::machinereadable);
-      return (undef, "Local TeX Live ($TeXLive::TLConfig::ReleaseYear)"
-              . " is older than remote repository ($texlive_release_year).\n"
-              . "Cross release updates are only supported with\n"
-              . "  update-tlmgr-latest(.sh/.exe) --update\n"
-              . "See https://tug.org/texlive/upgrade.html for details.")
+      if (length($texlive_release) > 4) {
+        debug("Accepting a newer release as remote due to presence of release extension!\n");
+      } else {
+        info("fail load $location\n") if ($::machinereadable);
+        return (undef, "Local TeX Live ($TeXLive::TLConfig::ReleaseYear)"
+                . " is older than remote repository ($texlive_release_year).\n"
+                . "Cross release updates are only supported with\n"
+                . "  update-tlmgr-latest(.sh/.exe) --update\n"
+                . "See https://tug.org/texlive/upgrade.html for details.")
+      }
     }
   } else {
     # $texlive_minrelease not defined, so only one year is valid
