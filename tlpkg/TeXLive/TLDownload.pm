@@ -20,8 +20,6 @@ sub module_revision {
   return $_modulerevision;
 }
 
-my $MAX_ERRORCOUNT = 5;
-
 # since Net::HTTP and Net::FTP are shipped by the same packages
 # we only test for Net::HTTP, if that fails, let us know ;-)
 our $net_lib_avail = 0;
@@ -41,6 +39,18 @@ sub new
 {
   my $class = shift;
   my $self = {};
+  $self->{'initcount'} = 0;
+  bless $self, $class;
+  $self->reinit();
+  return $self;
+}
+
+
+
+
+sub reinit
+{
+  my $self = shift;
   my $ua = LWP::UserAgent->new(
     agent => "texlive/lwp",
     # use LWP::ConnCache, and keep 1 connection open
@@ -51,13 +61,8 @@ sub new
   $self->{'ua'} = $ua;
   $self->{'enabled'} = 1;
   $self->{'errorcount'} = 0;
-  bless $self, $class;
-  return $self;
+  $self->{'initcout'} += 1;
 }
-
-
-
-
 sub enabled
 {
   my $self = shift;
@@ -79,6 +84,11 @@ sub disable
 {
   my $self = shift;
   $self->{'enabled'} = 0;
+}
+sub initcount
+{
+  my $self = shift;
+  return $self->{'initcount'};
 }
 sub errorcount
 {
@@ -110,7 +120,7 @@ sub get_file {
   my ($self,$url,$out,$size) = @_;
   #
   # automatically disable if error count is getting too big
-  if ($self->errorcount > $MAX_ERRORCOUNT) {
+  if ($self->errorcount > $TeXLive::TLConfig::MaxLWPErrors) {
     $self->disable;
   }
   # return if disabled

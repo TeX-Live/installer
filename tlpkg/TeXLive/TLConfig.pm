@@ -46,6 +46,8 @@ BEGIN {
     %TLPDBSettings
     %TLPDBConfigs
     $NetworkTimeout
+    $MaxLWPErrors
+    $MaxLWPReinitCount
     $PartialEngineSupport
     $F_OK $F_WARNING $F_ERROR $F_NOPOSTACTION
     $ChecksumLength
@@ -93,6 +95,10 @@ our $BlockSize = 4096;
 
 # timeout for network connections (wget, LWP) in seconds
 our $NetworkTimeout = 30;
+# number of errors during an LWP session until it is marked as disabled
+our $MaxLWPErrors = 5;
+# max number of times we reenable LWP after it was disabled
+our $MaxLWPReinitCount = 10;
 
 our $Archive = "archive";
 our $TeXLiveServerURL = "http://mirror.ctan.org";

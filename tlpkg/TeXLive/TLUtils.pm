@@ -3853,7 +3853,16 @@ false.
 sub setup_persistent_downloads {
   if ($TeXLive::TLDownload::net_lib_avail) {
     ddebug("setup_persistent_downloads has net_lib_avail set\n");
-    $::tldownload_server = TeXLive::TLDownload->new;
+    if ($::tldownload_server) {
+      if ($::tldownload_server->initcount() > $TeXLive::TLConfig::MaxLWPReinitCount) {
+        debug("stop retrying to initialize LWP after 10 failures\n");
+        return 0;
+      } else {
+        $::tldownload_server->reinit();
+      }
+    } else {
+      $::tldownload_server = TeXLive::TLDownload->new;
+    }
     if (!defined($::tldownload_server)) {
       ddebug("TLUtils:setup_persistent_downloads: failed to get ::tldownload_server\n");
     } else {
