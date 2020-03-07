@@ -15,7 +15,7 @@ use LWP::Protocol ();
 use Scalar::Util qw(blessed);
 use Try::Tiny qw(try catch);
 
-our $VERSION = '6.37';
+our $VERSION = '6.43';
 
 sub new
 {
@@ -420,8 +420,11 @@ sub request {
                         "Unsupported authentication scheme '$scheme'");
                 next CHALLENGE;
             }
-            return $class->authenticate($self, $proxy, $challenge, $response,
+            my $re = $class->authenticate($self, $proxy, $challenge, $response,
                 $request, $arg, $size);
+
+            next CHALLENGE if $re->code == HTTP::Status::RC_UNAUTHORIZED;
+            return $re;
         }
         return $response;
     }
@@ -489,6 +492,21 @@ sub head {
     return $self->request( HTTP::Request::Common::HEAD( @parameters ), @suff );
 }
 
+sub patch {
+    require HTTP::Request::Common;
+    my($self, @parameters) = @_;
+    my @suff = $self->_process_colonic_headers(\@parameters, (ref($parameters[1]) ? 2 : 1));
+
+    # this work-around is in place as HTTP::Request::Common
+    # did not implement a patch convenience method until
+    # version 6.12. Once we can bump the prereq to at least
+    # that version, we can use ::PATCH instead of this hack
+    my $req = HTTP::Request::Common::PUT(@parameters);
+    $req->method('PATCH');
+
+    $self->_maybe_copy_default_content_type($req, @parameters);
+    return $self->request($req, @suff);
+}
 
 sub put {
     require HTTP::Request::Common;
@@ -966,6 +984,8 @@ sub mirror
 {
     my($self, $url, $file) = @_;
 
+    die "Local file name is missing" unless defined $file && length $file;
+
     my $request = HTTP::Request->new('GET', $url);
 
     # If the file exists, add a cache-related header
@@ -979,10 +999,10 @@ sub mirror
 
     my $response = $self->request($request, $tmpfile);
     if ( $response->header('X-Died') ) {
-	die $response->header('X-Died');
+        die $response->header('X-Died');
     }
 
-    # Only fetching a fresh copy of the would be considered success.
+    # Only fetching a fresh copy of the file would be considered success.
     # If the file was not modified, "304" would returned, which
     # is considered by HTTP::Status to be a "redirect", /not/ "success"
     if ( $response->is_success ) {
@@ -1017,7 +1037,7 @@ sub mirror
     }
     # The local copy is fresh enough, so just delete the temp file
     else {
-	unlink($tmpfile);
+        unlink($tmpfile);
     }
     return $response;
 }
@@ -1133,22 +1153,48 @@ LWP::UserAgent - Web user agent class
 
 =head1 SYNOPSIS
 
- use strict;
- use warnings;
- use LWP::UserAgent ();
+    use strict;
+    use warnings;
 
- my $ua = LWP::UserAgent->new;
- $ua->timeout(10);
- $ua->env_proxy;
+    use LWP::UserAgent ();
 
- my $response = $ua->get('http://search.cpan.org/');
+    my $ua = LWP::UserAgent->new(timeout => 10);
+    $ua->env_proxy;
 
- if ($response->is_success) {
-     print $response->decoded_content;  # or whatever
- }
- else {
-     die $response->status_line;
- }
+    my $response = $ua->get('http://example.com');
+
+    if ($response->is_success) {
+        print $response->decoded_content;
+    }
+    else {
+        die $response->status_line;
+    }
+
+Extra layers of security (note the C<cookie_jar> and C<protocols_allowed>):
+
+    use strict;
+    use warnings;
+
+    use HTTP::CookieJar::LWP ();
+    use LWP::UserAgent       ();
+
+    my $jar = HTTP::CookieJar::LWP->new;
+    my $ua  = LWP::UserAgent->new(
+        cookie_jar        => $jar,
+        protocols_allowed => ['http', 'https'],
+        timeout           => 10,
+    );
+
+    $ua->env_proxy;
+
+    my $response = $ua->get('http://example.com');
+
+    if ($response->is_success) {
+        print $response->decoded_content;
+    }
+    else {
+        die $response->status_line;
+    }
 
 =head1 DESCRIPTION
 
@@ -1221,7 +1267,7 @@ is passed in with a true value, then proxy settings are read from environment
 variables (see L<LWP::UserAgent/env_proxy>). If C<env_proxy> isn't provided, the
 C<PERL_LWP_ENV_PROXY> environment variable controls if
 L<LWP::UserAgent/env_proxy> is called during initialization.  If the
-C<keep_alive> option is passed in, then a C<LWP::ConnCache> is set up (see
+C<keep_alive> option value is defined and non-zero, then an C<LWP::ConnCache> is set up (see
 L<LWP::UserAgent/conn_cache>).  The C<keep_alive> value is passed on as the
 C<total_capacity> for the connection cache.
 
@@ -1276,7 +1322,16 @@ the cookie jar object must implement the C<extract_cookies($response)> and
 C<add_cookie_header($request)> methods.  These methods will then be
 invoked by the user agent as requests are sent and responses are
 received.  Normally this will be a L<HTTP::Cookies> object or some
-subclass.
+subclass.  You are, however, encouraged to use L<HTTP::CookieJar::LWP>
+instead.  See L</"BEST PRACTICES"> for more information.
+
+    use HTTP::CookieJar::LWP ();
+
+    my $jar = HTTP::CookieJar::LWP->new;
+    my $ua = LWP::UserAgent->new( cookie_jar => $jar );
+
+    # or after object creation
+    $ua->cookie_jar( $cookie_jar );
 
 The default is to have no cookie jar, i.e. never automatically add
 C<Cookie> headers to the requests.
@@ -1592,34 +1647,27 @@ the active handlers:
 Add handler to be invoked in the given processing phase.  For how to
 specify C<%matchspec> see L<HTTP::Config/"Matching">.
 
-The possible values C<$phase> and the corresponding callback signatures are:
+The possible values C<$phase> and the corresponding callback signatures are as
+follows.  Note that the handlers are documented in the order in which they will
+be run, which is:
+
+    request_preprepare
+    request_prepare
+    request_send
+    response_header
+    response_data
+    response_done
+    response_redirect
 
 =over
 
-=item response_data => sub { my($response, $ua, $handler, $data) = @_; ... }
+=item request_preprepare => sub { my($request, $ua, $handler) = @_; ... }
 
-This handler is called for each chunk of data received for the
-response.  The handler might croak to abort the request.
-
-This handler needs to return a TRUE value to be called again for
-subsequent chunks for the same request.
-
-=item response_done => sub { my($response, $ua, $handler) = @_; ... }
-
-The handler is called after the response has been fully received, but
-before any redirect handling is attempted.  The handler can be used to
-extract information or modify the response.
-
-=item response_header => sub { my($response, $ua, $handler) = @_; ... }
-
-This handler is called right after the response headers have been
-received, but before any content data.  The handler might set up
-handlers for data and might croak to abort the request.
-
-The handler might set the C<< $response->{default_add_content} >> value to
-control if any received data should be added to the response object
-directly.  This will initially be false if the C<< $ua->request() >> method
-was called with a C<$content_file> or C<$content_cb argument>; otherwise true.
+The handler is called before the C<request_prepare> and other standard
+initialization of the request.  This can be used to set up headers
+and attributes that the C<request_prepare> handler depends on.  Proxy
+initialization should take place here; but in general don't register
+handlers for this phase.
 
 =item request_prepare => sub { my($request, $ua, $handler) = @_; ... }
 
@@ -1634,14 +1682,6 @@ The return value from the callback is ignored.  If an exception is
 raised it will abort the request and make the request method return a
 "400 Bad request" response.
 
-=item request_preprepare => sub { my($request, $ua, $handler) = @_; ... }
-
-The handler is called before the C<request_prepare> and other standard
-initialization of the request.  This can be used to set up headers
-and attributes that the C<request_prepare> handler depends on.  Proxy
-initialization should take place here; but in general don't register
-handlers for this phase.
-
 =item request_send => sub { my($request, $ua, $handler) = @_; ... }
 
 This handler gets a chance of handling requests before they're sent to the
@@ -1650,6 +1690,31 @@ wishes to terminate the processing; otherwise it should return nothing.
 
 The C<response_header> and C<response_data> handlers will not be
 invoked for this response, but the C<response_done> will be.
+
+=item response_header => sub { my($response, $ua, $handler) = @_; ... }
+
+This handler is called right after the response headers have been
+received, but before any content data.  The handler might set up
+handlers for data and might croak to abort the request.
+
+The handler might set the C<< $response->{default_add_content} >> value to
+control if any received data should be added to the response object
+directly.  This will initially be false if the C<< $ua->request() >> method
+was called with a C<$content_file> or C<$content_cb argument>; otherwise true.
+
+=item response_data => sub { my($response, $ua, $handler, $data) = @_; ... }
+
+This handler is called for each chunk of data received for the
+response.  The handler might croak to abort the request.
+
+This handler needs to return a TRUE value to be called again for
+subsequent chunks for the same request.
+
+=item response_done => sub { my($response, $ua, $handler) = @_; ... }
+
+The handler is called after the response has been fully received, but
+before any redirect handling is attempted.  The handler can be used to
+extract information or modify the response.
 
 =item response_redirect => sub { my($response, $ua, $handler) = @_; ... }
 
@@ -1687,7 +1752,7 @@ the given processing phase.
 
     $ua->remove_handler( undef, %matchspec );
     $ua->remove_handler( $phase, %matchspec );
-    $ua->remove_handlers(); # REMOVE ALL HANDLERS IN ALL PHASES
+    $ua->remove_handler(); # REMOVE ALL HANDLERS IN ALL PHASES
 
 Remove handlers that match the given C<%matchspec>.  If C<$phase> is not
 provided, remove handlers from all phases.
@@ -1751,9 +1816,9 @@ Fields names that start with ":" are special.  These will not
 initialize headers of the request but will determine how the response
 content is treated.  The following special field names are recognized:
 
-    :content_file   => $filename
-    :content_cb     => \&callback
-    :read_size_hint => $bytes
+    ':content_file'   => $filename
+    ':content_cb'     => \&callback
+    ':read_size_hint' => $bytes
 
 If a $filename is provided with the C<:content_file> option, then the
 response content will be saved here instead of in the response
@@ -1826,6 +1891,33 @@ will be downloaded again.  The modification time of the file will be
 forced to match that of the server.
 
 The return value is an L<HTTP::Response> object.
+
+=head2 patch
+    # Any version of HTTP::Message works with this form:
+    my $res = $ua->patch( $url, $field_name => $value, Content => $content );
+
+    # Using hash or array references requires HTTP::Message >= 6.12
+    use HTTP::Request 6.12;
+    my $res = $ua->patch( $url, \%form );
+    my $res = $ua->patch( $url, \@form );
+    my $res = $ua->patch( $url, \%form, $field_name => $value, ... );
+    my $res = $ua->patch( $url, $field_name => $value, Content => \%form );
+    my $res = $ua->patch( $url, $field_name => $value, Content => \@form );
+
+This method will dispatch a C<PATCH> request on the given URL, with
+C<%form> or C<@form> providing the key/value pairs for the fill-in form
+content. Additional headers and content options are the same as for
+the L<LWP::UserAgent/get> method.
+
+CAVEAT:
+
+This method can only accept content that is in key-value pairs when using
+L<HTTP::Request::Common> prior to version C<6.12>. Any use of hash or array
+references will result in an error prior to version C<6.12>.
+
+This method will use the C<PATCH> function from L<HTTP::Request::Common>
+to build the request.  See L<HTTP::Request::Common> for a details on
+how to pass form content and other advanced features.
 
 =head2 post
 
@@ -1987,6 +2079,47 @@ The base implementation will return false unless the method
 is in the object's C<requests_redirectable> list,
 false if the proposed redirection is to a C<file://...>
 URL, and true otherwise.
+
+=head1 BEST PRACTICES
+
+The default settings can get you up and running quickly, but there are settings
+you can change in order to make your life easier.
+
+=head2 Handling Cookies
+
+You are encouraged to install L<Mozilla::PublicSuffix> and use
+L<HTTP::CookieJar::LWP> as your cookie jar.  L<HTTP::CookieJar::LWP> provides a
+better security model matching that of current Web browsers when
+L<Mozilla::PublicSuffix> is installed.
+
+    use HTTP::CookieJar::LWP ();
+
+    my $jar = HTTP::CookieJar::LWP->new;
+    my $ua = LWP::UserAgent->new( cookie_jar => $jar );
+
+See L</"cookie_jar"> for more information.
+
+=head2 Managing Protocols
+
+C<protocols_allowed> gives you the ability to whitelist the protocols you're
+willing to allow.
+
+    my $ua = LWP::UserAgent->new(
+        protocols_allowed => [ 'http', 'https' ]
+    );
+
+This will prevent you from inadvertently following URLs like
+C<file:///etc/passwd>.  See L</"protocols_allowed">.
+
+C<protocols_forbidden> gives you the ability to blacklist the protocols you're
+unwilling to allow.
+
+    my $ua = LWP::UserAgent->new(
+        protocols_forbidden => [ 'file', 'mailto', 'ssh', ]
+    );
+
+This can also prevent you from inadvertently following URLs like
+C<file:///etc/passwd>.  See L</protocols_forbidden>.
 
 =head1 SEE ALSO
 

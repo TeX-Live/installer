@@ -2,7 +2,7 @@ package Test::Needs;
 use strict;
 use warnings;
 no warnings 'once';
-our $VERSION = '0.002005';
+our $VERSION = '0.002006';
 $VERSION =~ tr/_//d;
 
 BEGIN {
@@ -13,6 +13,8 @@ BEGIN {
     = "$]" < 5.009
     ? sub(){1} : sub(){0};
 }
+
+our @EXPORT = qw(test_needs);
 
 sub _try_require {
   local %^H
@@ -35,70 +37,54 @@ sub _try_require {
   !0;
 }
 
+sub _croak {
+  my $message = join '', @_;
+  my $i = 1;
+  while (my ($p, $f, $l) = caller($i++)) {
+    next
+      if $p->isa(__PACKAGE__);
+    die "$message at $f line $l.\n";
+  }
+  die $message;
+}
+
+sub _try_version {
+  my ($module, $version) = @_;
+  local $@;
+  !!eval { $module->VERSION($version); 1 };
+}
+
+sub _numify_version {
+  for ($_[0]) {
+    return
+        !$_ ? 0
+      : /^[0-9]+\.[0-9]+$/ ? sprintf('%.6f', $_)
+      : /^v?([0-9]+(?:\.[0-9]+)+)$/
+        ? sprintf('%d.%03d%03d', ((split /\./, $1), 0, 0)[0..2])
+      : /^(\x05)(.*)$/s
+        ? sprintf('%d.%03d%03d', map ord, $1, split //, $2)
+      : _croak qq{version "$_" does not look like a number};
+  }
+}
+
 sub _find_missing {
   my @bad = map {
     my ($module, $version) = @$_;
-    if ($module eq 'perl') {
-      $version
-        = !$version ? 0
-        : $version =~ /^[0-9]+\.[0-9]+$/ ? sprintf('%.6f', $version)
-        : $version =~ /^v?([0-9]+(?:\.[0-9]+)+)$/ ? do {
-          my @p = split /\./, $1;
-          push @p, 0
-            until @p >= 3;
-          sprintf '%d.%03d%03d', @p;
-        }
-        : $version =~ /^\x05..?$/s ? do {
-          my @p = map ord, split //, $version;
-          push @p, 0
-            until @p >= 3;
-          sprintf '%d.%03d%03d', @p;
-        }
-        : do {
-          use warnings FATAL => 'numeric';
-          no warnings 'void';
-          eval { 0 + $version; 1 } ? $version
-            : die sprintf qq{version "%s" for perl does not look like a number at %s line %s.\n},
-              $version, (caller( 1 + ($Test::Builder::Level||0) ))[1,2];
-        };
-      if ("$]" < $version) {
-        sprintf "perl %s (have %.6f)", $version, $];
-      }
-      else {
-        ();
-      }
+    $module eq 'perl' ? do {
+      $version = _numify_version($version);
+      "$]" < $version ? (sprintf "perl %s (have %.6f)", $version, $]) : ()
     }
-    elsif ($module =~ /^\d|[^\w:]|:::|[^:]:[^:]|^:|:$/) {
-      die sprintf qq{"%s" does not look like a module name at %s line %s.\n},
-        $module, (caller( 1 + ($Test::Builder::Level||0) ))[1,2];
-      die
-    }
-    elsif (_try_require($module)) {
-      local $@;
-      if (defined $version && !eval { $module->VERSION($version); 1 }) {
-        "$module $version (have ".$module->VERSION.')';
-      }
-      else {
-        ();
-      }
-    }
-    else {
-      $version ? "$module $version" : $module;
-    }
+    : $module =~ /^\d|[^\w:]|:::|[^:]:[^:]|^:|:$/
+      ? _croak sprintf qq{"%s" does not look like a module name}, $module
+    : _try_require($module) ? (
+      defined $version && !_try_version($module, $version)
+        ? "$module $version (have ".(defined $module->VERSION ? $module->VERSION : 'undef').')'
+        : ()
+    )
+    : $version ? "$module $version"
+    : $module;
   }
-  map {
-    if (ref eq 'HASH') {
-      my $arg = $_;
-      map [ $_ => $arg->{$_} ], sort keys %$arg;
-    }
-    elsif (ref eq 'ARRAY') {
-      my $arg = $_;
-      map [ @{$arg}[$_*2,$_*2+1] ], 0 .. int($#$arg / 2);
-    }
-    else {
-      [ $_ => undef ];
-    }
-  } @_;
+  _pairs(@_);
   @bad ? "Need " . join(', ', @bad) : undef;
 }
 
@@ -110,18 +96,40 @@ sub import {
     test_needs(@_);
   }
   no strict 'refs';
-  *{"${target}::test_needs"} = \&test_needs;
+  *{"${target}::$_"} = \&{"${class}::$_"}
+    for @{"${class}::EXPORT"};
 }
 
 sub test_needs {
   my $missing = _find_missing(@_);
   local $Test::Builder::Level = ($Test::Builder::Level||0) + 1;
-  _fail_or_skip($missing, $ENV{RELEASE_TESTING})
-    if $missing;
+  if ($missing) {
+    if ($ENV{RELEASE_TESTING}) {
+      _fail("$missing due to RELEASE_TESTING");
+    }
+    else {
+      _skip($missing);
+    }
+  }
+
 }
 
 sub _skip { _fail_or_skip($_[0], 0) }
 sub _fail { _fail_or_skip($_[0], 1) }
+
+sub _pairs {
+  map +(
+    ref eq 'HASH' ? do {
+      my $arg = $_;
+      map [ $_ => $arg->{$_} ], sort keys %$arg;
+    }
+    : ref eq 'ARRAY' ? do {
+      my $arg = $_;
+      map [ @{$arg}[$_*2,$_*2+1] ], 0 .. int($#$arg / 2);
+    }
+    : [ $_ ]
+  ), @_;
+}
 
 sub _fail_or_skip {
   my ($message, $fail) = @_;
@@ -193,17 +201,20 @@ sub _fail_or_skip {
 
 my $terminate_event;
 sub _t2_terminate_event () {
+  return $terminate_event
+    if $terminate_event;
   local $@;
-  $terminate_event ||= eval q{
-    $INC{'Test/Needs/Event/Terminate.pm'} = $INC{'Test/Needs.pm'};
+  my $file = __FILE__;
+  $terminate_event = eval <<"END_CODE" or die "$@";
     package # hide
       Test::Needs::Event::Terminate;
     use Test2::Event ();
-    our @ISA = qw(Test2::Event);
+    our \@ISA = qw(Test2::Event);
     sub no_display { 1 }
     sub terminate { 0 }
+    \$INC{'Test/Needs/Event/Terminate.pm'} = \$file;
     __PACKAGE__;
-  } or die "$@";
+END_CODE
 }
 
 1;
@@ -292,9 +303,19 @@ and broken modules.
 Part of the L<Test2> ecosystem.  Only supports running as a C<use> command to
 skip an entire plan.
 
+=item L<Test2::Require::Perl>
+
+Part of the L<Test2> ecosystem.  Only supports running as a C<use> command to
+skip an entire plan.  Checks perl versions.
+
+=item L<Test::If>
+
+Acts as a C<use> statement.  Only supports running as a C<use> command to skip
+an entire plan.  Can skip based on subref results.
+
 =back
 
-=head1 AUTHOR
+=head1 AUTHORS
 
 haarg - Graham Knop (cpan:HAARG) <haarg@haarg.org>
 
@@ -302,12 +323,10 @@ haarg - Graham Knop (cpan:HAARG) <haarg@haarg.org>
 
 None so far.
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2016 the Test::Needs L</AUTHOR> and L</CONTRIBUTORS>
+Copyright (c) 2016 the Test::Needs L</AUTHORS> and L</CONTRIBUTORS>
 as listed above.
-
-=head1 LICENSE
 
 This library is free software and may be distributed under the same terms
 as perl itself. See L<http://dev.perl.org/licenses/>.

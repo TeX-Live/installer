@@ -232,14 +232,14 @@ sub from_file {
     die "Cannot deduce name from file argument and name tag not found";
   }
   #
-  # We should probably call TeXCatalogue::beautify(), but trailing
-  # whitespace seems to be the only thing that comes up in practice. We
-  # want the parsing from .tlpsrc to result in exactly the same string,
-  # including spaces, as parsing from texlive.tlpdb. Otherwise
-  # tl-update-tlpdb's tlpdb_catalogue_compare will think the strings
-  # are always different.
-  $shortdesc =~ s/\s+$//g;
-  $longdesc =~ s/\s+$//g;
+  # We should call TeXCatalogue::beautify(), but let's be lazy since not
+  # everything comes up in practice. We want the parsing from .tlpsrc to
+  # result in exactly the same string, including spaces, as parsing from
+  # texlive.tlpdb. Otherwise tl-update-tlpdb's tlpdb_catalogue_compare
+  # will think the strings are always different.
+  $shortdesc =~ s/\s+$//g;  # rm trailing whitespace (shortdesc)
+  $longdesc =~ s/\s+$//g;   # rm trailing whitespace (longdesc)
+  $longdesc =~ s/\s\s+/ /g; # collapse multiple whitespace characters to one
   #
   $self->name($name);
   $self->category($category);

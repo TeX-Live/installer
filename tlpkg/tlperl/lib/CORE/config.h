@@ -9,7 +9,7 @@
 
 /* Package name      : perl5
  * Source directory  : 
- * Configuration time: Sat Mar  9 10:49:00 2019
+ * Configuration time: Wed Mar  4 17:19:06 2020
  * Configured by     : siepo
  * Target system     : 
  */
@@ -32,7 +32,7 @@
  *	This symbol, if defined, indicates that the cbrt() (cube root)
  *	function is available.
  */
-/*#define HAS_CBRT	/ **/
+#define HAS_CBRT	/**/
 
 /* HAS_CHOWN:
  *	This symbol, if defined, indicates that the chown routine is
@@ -403,12 +403,6 @@
  *	to a line-buffered mode.
  */
 /*#define HAS_SETLINEBUF		/ **/
-
-/* HAS_SETLOCALE:
- *	This symbol, if defined, indicates that the setlocale routine is
- *	available to handle locale-specific ctype implementations.
- */
-#define HAS_SETLOCALE	/**/
 
 /* HAS_SETPGID:
  *	This symbol, if defined, indicates that the setpgid(pid, gpid)
@@ -1235,7 +1229,7 @@
  *	This symbol contains the ~name expanded version of ARCHLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define ARCHLIB "c:\\tlperl\\lib"		/**/
+#define ARCHLIB "d:\\tlperl\\lib"		/**/
 /*#define ARCHLIB_EXP ""	/ **/
 
 /* BIN:
@@ -1250,8 +1244,8 @@
  *	This symbol, if defined, indicates that we'd like to relocate entries
  *	in @INC at run time based on the location of the perl binary.
  */
-#define BIN "c:\\tlperl\\bin"	/**/
-#define BIN_EXP "c:\\tlperl\\bin"	/**/
+#define BIN "d:\\tlperl\\bin"	/**/
+#define BIN_EXP "d:\\tlperl\\bin"	/**/
 #define PERL_RELOCATABLE_INC "undef"		/**/
 
 /* PERL_INC_VERSION_LIST:
@@ -1289,7 +1283,7 @@
  *	This symbol contains the ~name expanded version of PRIVLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define PRIVLIB "c:\\tlperl\\lib"		/**/
+#define PRIVLIB "d:\\tlperl\\lib"		/**/
 #define PRIVLIB_EXP (PerlEnv_lib_path(PERL_VERSION_STRING, NULL))	/**/
 
 /* SITEARCH:
@@ -1307,7 +1301,7 @@
  *	This symbol contains the ~name expanded version of SITEARCH, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define SITEARCH "c:\\tlperl\\site\\lib"		/**/
+#define SITEARCH "d:\\tlperl\\site\\lib"		/**/
 /*#define SITEARCH_EXP ""	/ **/
 
 /* SITELIB:
@@ -1330,7 +1324,7 @@
  *	removed.  The elements in inc_version_list (inc_version_list.U) can
  *	be tacked onto this variable to generate a list of directories to search.
  */
-#define SITELIB "c:\\tlperl\\site\\lib"		/**/
+#define SITELIB "d:\\tlperl\\site\\lib"		/**/
 #define SITELIB_EXP (PerlEnv_sitelib_path(PERL_VERSION_STRING, NULL))	/**/
 #define SITELIB_STEM ""		/**/
 
@@ -1375,7 +1369,7 @@
  *	feature tests from Configure are generally more reliable.
  */
 #define OSNAME "MSWin32"		/**/
-#define OSVERS "6.1.7601"		/**/
+#define OSVERS "10.0.18363.418"		/**/
 
 /* CAT2:
  *	This macro concatenates 2 tokens together.
@@ -1478,17 +1472,6 @@
  *	included to use this routine.
  */
 /*#define HAS_BACKTRACE	/ **/
-
-/* HASCONST:
- *	This symbol, if defined, indicates that this C compiler knows about
- *	the const type. There is no need to actually test for that symbol
- *	within your programs. The mere use of the "const" keyword will
- *	trigger the necessary tests.
- */
-#define HASCONST	/**/
-#ifndef HASCONST
-#define const
-#endif
 
 /* HAS_CSH:
  *	This symbol, if defined, indicates that the C-shell exists.
@@ -1772,7 +1755,7 @@
  *	This symbol, if defined, indicates that the long double is
  *	the 128-bit VAX format H.
  */
-/*#define  HAS_LDEXPL		/ **/
+#define  HAS_LDEXPL		/**/
 #define HAS_LONG_DOUBLE		/**/
 #ifdef HAS_LONG_DOUBLE
 #define LONG_DOUBLESIZE 12		/**/
@@ -2289,7 +2272,7 @@
  *	This symbol, if defined, indicates that the acosh routine is
  *	available to do the inverse hyperbolic cosine function.
  */
-/*#define HAS_ACOSH		/ **/
+#define HAS_ACOSH		/**/
 
 /* HAS_AINTL:
  *	This symbol, if defined, indicates that the aintl routine is
@@ -2301,13 +2284,13 @@
  *	This symbol, if defined, indicates that the asinh routine is
  *	available to do the inverse hyperbolic sine function.
  */
-/*#define HAS_ASINH		/ **/
+#define HAS_ASINH		/**/
 
 /* HAS_ATANH:
  *	This symbol, if defined, indicates that the atanh routine is
  *	available to do the inverse hyperbolic tangent function.
  */
-/*#define HAS_ATANH		/ **/
+#define HAS_ATANH		/**/
 
 /* HAS_BUILTIN_CHOOSE_EXPR:
  *	Can we handle GCC builtin for compile-time ternary-like expressions
@@ -2374,13 +2357,13 @@
  *	This symbol, if defined, indicates that the copysign routine is
  *	available to do the copysign function.
  */
-/*#define HAS_COPYSIGN		/ **/
+#define HAS_COPYSIGN		/**/
 
 /* HAS_COPYSIGNL:
  *	This symbol, if defined, indicates that the copysignl routine is
  *	available.  If aintl is also present we can emulate modfl.
  */
-/*#define HAS_COPYSIGNL		/ **/
+#define HAS_COPYSIGNL		/**/
 
 /* USE_CPLUSPLUS:
  *	This symbol, if defined, indicates that a C++ compiler was
@@ -2426,7 +2409,7 @@
  *	This symbol, if defined, indicates that the erf routine is
  *	available to do the error function.
  */
-/*#define HAS_ERF		/ **/
+#define HAS_ERF		/**/
 
 /* HAS_ERFC:
  *	This symbol, if defined, indicates that the erfc routine is
@@ -2438,13 +2421,13 @@
  *	This symbol, if defined, indicates that the exp2 routine is
  *	available to do the 2**x function.
  */
-/*#define HAS_EXP2		/ **/
+#define HAS_EXP2		/**/
 
 /* HAS_EXPM1:
  *	This symbol, if defined, indicates that the expm1 routine is
  *	available to do the exp(x) - 1 when x is near 1 function.
  */
-/*#define HAS_EXPM1		/ **/
+#define HAS_EXPM1		/**/
 
 /* HAS_FAST_STDIO:
  *	This symbol, if defined, indicates that the "fast stdio"
@@ -2489,7 +2472,7 @@
  *	This symbol, if defined, indicates that the finite routine is
  *	available to check whether a double is finite (non-infinity non-NaN).
  */
-/*#define HAS_FINITE		/ **/
+#define HAS_FINITE		/**/
 
 /* HAS_FINITEL:
  *	This symbol, if defined, indicates that the finitel routine is
@@ -2516,13 +2499,13 @@
  *	This symbol, if defined, indicates that the fmax routine is
  *	available to do the maximum function.
  */
-/*#define HAS_FMAX		/ **/
+#define HAS_FMAX		/**/
 
 /* HAS_FMIN:
  *	This symbol, if defined, indicates that the fmin routine is
  *	available to do the minimum function.
  */
-/*#define HAS_FMIN		/ **/
+#define HAS_FMIN		/**/
 
 /* HAS_FP_CLASS:
  *	This symbol, if defined, indicates that the fp_class routine is
@@ -2627,7 +2610,7 @@
  *	available to break a long double floating-point number into
  *	a normalized fraction and an integral power of 2.
  */
-/*#define HAS_FREXPL		/ **/
+#define HAS_FREXPL		/**/
 
 /* HAS_STRUCT_FS_DATA:
  *	This symbol, if defined, indicates that the struct fs_data
@@ -2764,19 +2747,19 @@
  *	This symbol, if defined, indicates that the hypot routine is
  *	available to do the hypotenuse function.
  */
-/*#define HAS_HYPOT		/ **/
+#define HAS_HYPOT		/**/
 
 /* HAS_ILOGB:
  *	This symbol, if defined, indicates that the ilogb routine is
  *	available to get integer exponent of a floating-point value.
  */
-/*#define HAS_ILOGB		/ **/
+#define HAS_ILOGB		/**/
 
 /* HAS_ILOGBL:
  *	This symbol, if defined, indicates that the ilogbl routine is
  *	available.  If scalbnl is also present we can emulate frexpl.
  */
-/*#define HAS_ILOGBL		/ **/
+#define HAS_ILOGBL		/**/
 
 /* HAS_INETNTOP:
  *	This symbol, if defined, indicates that the inet_ntop() function
@@ -2820,7 +2803,7 @@
  *	This symbol, if defined, indicates that the isinf routine is
  *	available to check whether a double is an infinity.
  */
-/*#define HAS_ISINF		/ **/
+#define HAS_ISINF		/**/
 
 /* HAS_ISINFL:
  *	This symbol, if defined, indicates that the isinfl routine is
@@ -2832,7 +2815,7 @@
  *	This symbol, if defined, indicates that the isless routine is
  *	available to do the isless function.
  */
-/*#define HAS_ISLESS		/ **/
+#define HAS_ISLESS		/**/
 
 /* HAS_ISNAN:
  *	This symbol, if defined, indicates that the isnan routine is
@@ -2844,13 +2827,13 @@
  *	This symbol, if defined, indicates that the isnanl routine is
  *	available to check whether a long double is a NaN.
  */
-/*#define HAS_ISNANL		/ **/
+#define HAS_ISNANL		/**/
 
 /* HAS_ISNORMAL:
  *	This symbol, if defined, indicates that the isnormal routine is
  *	available to check whether a double is normal (non-zero normalized).
  */
-/*#define HAS_ISNORMAL		/ **/
+#define HAS_ISNORMAL		/**/
 
 /* HAS_J0:
  *	This symbol, if defined, indicates to the C program that the
@@ -2862,7 +2845,7 @@
  *	j0l() function is available for Bessel functions of the first
  *	kind of the order zero, for long doubles.
  */
-/*#define	HAS_J0		/ **/
+#define	HAS_J0		/**/
 /*#define	HAS_J0L		/ **/
 
 /* HAS_LC_MONETARY_2008:
@@ -2884,7 +2867,7 @@
  *	available to do the log gamma function.  See also HAS_TGAMMA and
  *	HAS_LGAMMA_R.
  */
-/*#define HAS_LGAMMA		/ **/
+#define HAS_LGAMMA		/**/
 
 /* HAS_LGAMMA_R:
  *	This symbol, if defined, indicates that the lgamma_r routine is
@@ -2904,72 +2887,72 @@
  *	available to return the long long value closest to a double
  *	(according to the current rounding mode).
  */
-/*#define HAS_LLRINT		/ **/
+#define HAS_LLRINT		/**/
 
 /* HAS_LLRINTL:
  *	This symbol, if defined, indicates that the llrintl routine is
  *	available to return the long long value closest to a long double
  *	(according to the current rounding mode).
  */
-/*#define HAS_LLRINTL		/ **/
+#define HAS_LLRINTL		/**/
 
 /* HAS_LLROUND:
  *	This symbol, if defined, indicates that the llround routine is
  *	available to return the nearest long long value.
  */
-/*#define HAS_LLROUND		/ **/
+#define HAS_LLROUND		/**/
 
 /* HAS_LLROUNDL:
  *	This symbol, if defined, indicates that the llroundl routine is
  *	available to return the nearest long long value away from zero of
  *	the long double argument value.
  */
-/*#define HAS_LLROUNDL		/ **/
+#define HAS_LLROUNDL		/**/
 
 /* HAS_LOG1P:
  *	This symbol, if defined, indicates that the log1p routine is
  *	available to do the logarithm of 1 plus argument function.
  */
-/*#define HAS_LOG1P		/ **/
+#define HAS_LOG1P		/**/
 
 /* HAS_LOG2:
  *	This symbol, if defined, indicates that the log2 routine is
  *	available to do the log2 function.
  */
-/*#define HAS_LOG2		/ **/
+#define HAS_LOG2		/**/
 
 /* HAS_LOGB:
  *	This symbol, if defined, indicates that the logb routine is
  *	available to do the logb function.
  */
-/*#define HAS_LOGB		/ **/
+#define HAS_LOGB		/**/
 
 /* HAS_LRINT:
  *	This symbol, if defined, indicates that the lrint routine is
  *	available to return the integral value closest to a double
  *	(according to the current rounding mode).
  */
-/*#define HAS_LRINT		/ **/
+#define HAS_LRINT		/**/
 
 /* HAS_LRINTL:
  *	This symbol, if defined, indicates that the lrintl routine is
  *	available to return the integral value closest to a long double
  *	(according to the current rounding mode).
  */
-/*#define HAS_LRINTL		/ **/
+#define HAS_LRINTL		/**/
 
 /* HAS_LROUND:
  *	This symbol, if defined, indicates that the lround routine is
  *	available to return the nearest integral value.
  */
-/*#define HAS_LROUND		/ **/
+#define HAS_LROUND		/**/
 
 /* HAS_LROUNDL:
  *	This symbol, if defined, indicates that the lroundl routine is
  *	available to return the nearest integral value away from zero of
  *	the long double argument value.
  */
-/*#define HAS_LROUNDL		/ **/
+#define HAS_LROUNDL		/**/
 
 /* HAS_MADVISE:
  *	This symbol, if defined, indicates that the madvise system call is
@@ -2993,6 +2976,9 @@
  *	This symbol, if defined, indicates that the memmem routine is
  *	available to return a pointer to the start of the first occurance
  *	of a substring in a memory area (or NULL if not found).
+ *	In glibc, memmem is a GNU extension.  The function is visible in
+ *	libc, but the prototype is only visible if _GNU_SOURCE is #defined.
+ *	Thus we only define this if both the prototype and symbol are found.
  */
 /*#define HAS_MEMMEM		/ **/
 
@@ -3033,8 +3019,8 @@
  *	a prototype for the modfl() function.  Otherwise, it is up
  *	to the program to supply one.
  */
-/*#define HAS_MODFL		/ **/
-/*#define HAS_MODFL_PROTO		/ **/
+#define HAS_MODFL		/**/
+#define HAS_MODFL_PROTO		/**/
 
 /* HAS_MPROTECT:
  *	This symbol, if defined, indicates that the mprotect system call is
@@ -3052,7 +3038,7 @@
  *	This symbol, if defined, indicates that the nan routine is
  *	available to generate NaN.
  */
-/*#define HAS_NAN		/ **/
+#define HAS_NAN		/**/
 
 /* HAS_NANOSLEEP:
  *	This symbol, if defined, indicates that the nanosleep
@@ -3065,7 +3051,7 @@
  *	available to return the integral value closest to (according to
  *	the current rounding mode) to x.
  */
-/*#define HAS_NEARBYINT		/ **/
+#define HAS_NEARBYINT		/**/
 
 /* HAS_NEWLOCALE:
  *	This symbol, if defined, indicates that the newlocale routine is
@@ -3104,14 +3090,14 @@
  *	available to return the next machine representable double from
  *	x in direction y.
  */
-/*#define HAS_NEXTAFTER		/ **/
+#define HAS_NEXTAFTER		/**/
 
 /* HAS_NEXTTOWARD:
  *	This symbol, if defined, indicates that the nexttoward routine is
  *	available to return the next machine representable long double from
  *	x in direction y.
  */
-/*#define HAS_NEXTTOWARD		/ **/
+#define HAS_NEXTTOWARD		/**/
 
 /* HAS_NL_LANGINFO:
  *	This symbol, if defined, indicates that the nl_langinfo routine is
@@ -3187,26 +3173,26 @@
  *	This symbol, if defined, indicates that the remainder routine is
  *	available to return the floating-point remainder.
  */
-/*#define HAS_REMAINDER		/ **/
+#define HAS_REMAINDER		/**/
 
 /* HAS_REMQUO:
  *	This symbol, if defined, indicates that the remquo routine is
  *	available to return the remainder and part of quotient.
  */
-/*#define HAS_REMQUO		/ **/
+#define HAS_REMQUO		/**/
 
 /* HAS_RINT:
  *	This symbol, if defined, indicates that the rint routine is
  *	available to return the nearest integral value to x as double
  *	using the current rounding mode.
  */
-/*#define HAS_RINT		/ **/
+#define HAS_RINT		/**/
 
 /* HAS_ROUND:
  *	This symbol, if defined, indicates that the round routine is
  *	available to round to nearest integer, away from zero.
  */
-/*#define HAS_ROUND		/ **/
+#define HAS_ROUND		/**/
 
 /* HAS_SBRK_PROTO:
  *	This symbol, if defined, indicates that the system provides
@@ -3222,13 +3208,13 @@
  *	available to multiply floating-point number by integral power
  *	of radix.
  */
-/*#define HAS_SCALBN		/ **/
+#define HAS_SCALBN		/**/
 
 /* HAS_SCALBNL:
  *	This symbol, if defined, indicates that the scalbnl routine is
  *	available.  If ilogbl is also present we can emulate frexpl.
  */
-/*#define HAS_SCALBNL		/ **/
+#define HAS_SCALBNL		/**/
 
 /* HAS_SENDMSG:
  *	This symbol, if defined, indicates that the sendmsg routine is
@@ -3241,6 +3227,17 @@
  *	available to set interval timers.
  */
 /*#define HAS_SETITIMER		/ **/
+
+/* HAS_SETLOCALE:
+ *	This symbol, if defined, indicates that the setlocale routine is
+ *	available to handle locale-specific ctype implementations.
+ */
+/* SETLOCALE_ACCEPTS_ANY_LOCALE_NAME:
+ *	This symbol, if defined, indicates that the setlocale routine is
+ *	available and it accepts any input locale name as valid.
+ */
+#define HAS_SETLOCALE	/**/
+/*#define SETLOCALE_ACCEPTS_ANY_LOCALE_NAME	/ **/
 
 /* HAS_SETPROCTITLE:
  *	This symbol, if defined, indicates that the setproctitle routine is
@@ -3256,7 +3253,7 @@
  *	in perl.  Users should call Perl_signbit(), which will be #defined to
  *	the system's signbit() function or macro if this symbol is defined.
  */
-/*#define HAS_SIGNBIT		/ **/
+#define HAS_SIGNBIT		/**/
 
 /* HAS_SIGPROCMASK:
  *	This symbol, if defined, indicates that the sigprocmask
@@ -3308,7 +3305,7 @@
  *	This symbol, if defined, indicates that the sqrtl routine is
  *	available to do long double square roots.
  */
-/*#define HAS_SQRTL		/ **/
+#define HAS_SQRTL		/**/
 
 /* HAS_SETRESGID_PROTO:
  *	This symbol, if defined, indicates that the system provides
@@ -3431,7 +3428,7 @@
  *	This symbol, if defined, indicates that the tgamma routine is
  *	available to do the gamma function. See also HAS_LGAMMA.
  */
-/*#define HAS_TGAMMA		/ **/
+#define HAS_TGAMMA		/**/
 
 /* HAS_CTIME64:
  *	This symbol, if defined, indicates that the ctime64 () routine is
@@ -3470,17 +3467,29 @@
  */
 /*#define HAS_TIMEGM		/ **/
 
+/* HAS_TOWLOWER:
+ *	This symbol, if defined, indicates that the towlower () routine is
+ *	available to do case conversion.
+ */
+/*#define HAS_TOWLOWER		/ **/
+
+/* HAS_TOWUPPER:
+ *	This symbol, if defined, indicates that the towupper () routine is
+ *	available to do case conversion.
+ */
+/*#define HAS_TOWUPPER		/ **/
+
 /* HAS_TRUNC:
  *	This symbol, if defined, indicates that the trunc routine is
  *	available to round doubles towards zero.
  */
-/*#define HAS_TRUNC		/ **/
+#define HAS_TRUNC		/**/
 
 /* HAS_TRUNCL:
  *	This symbol, if defined, indicates that the truncl routine is
  *	available. If copysignl is also present we can emulate modfl.
  */
-/*#define HAS_TRUNCL		/ **/
+#define HAS_TRUNCL		/**/
 
 /* U32_ALIGNMENT_REQUIRED:
  *	This symbol, if defined, indicates that you must access
@@ -3771,6 +3780,11 @@
  *	is available for inclusion
  */
 /*#define   I_WCHAR	/ **/
+
+/* I_WCTYPE:
+ *	This symbol, if defined, indicates that <wctype.h> exists.
+ */
+/*#define	I_WCTYPE		/ **/
 
 /* DOUBLEINFBYTES:
  *	This symbol, if defined, is a comma-separated list of

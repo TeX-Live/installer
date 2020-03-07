@@ -140,7 +140,8 @@ sub beautify {
   $txt =~ s/\n/ /g;  # make one line
   $txt =~ s/^\s+//g; # rm leading whitespace
   $txt =~ s/\s+$//g; # rm trailing whitespace
-  $txt =~ s/\s\s+/ /g; # multiple spaces to one
+  $txt =~ s/\s\s+/ /g; # collapse multiple whitespace characters to one
+  $txt =~ s/\t/ /g;    # tabs to spaces
   # transliterate to ascii: it allows the final tlpdb to be pure ascii,
   # avoiding problems since we don't control the user's terminal encoding
   return Text::Unidecode::unidecode($txt);

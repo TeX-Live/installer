@@ -3,14 +3,14 @@
 
 # for a description of the variables, please have a look at the
 # Glossary file, as written in the Porting folder, or use the url:
-# http://perl5.git.perl.org/perl.git/blob/HEAD:/Porting/Glossary
+# https://github.com/Perl/perl5/blob/blead/Porting/Glossary
 
 package Config;
 use strict;
 use warnings;
 our ( %Config, $VERSION );
 
-$VERSION = "5.028001";
+$VERSION = "5.030001";
 
 # Skip @Config::EXPORT because it only contains %Config, which we special
 # case below as it's not a function. @Config::EXPORT won't change in the
@@ -56,11 +56,11 @@ sub import {
     return;
 }
 
-die "$0: Perl lib version (5.28.1) doesn't match executable '$^X' version ($])"
+die "$0: Perl lib version (5.30.1) doesn't match executable '$^X' version ($])"
     unless $^V;
 
-$^V eq 5.28.1
-    or die sprintf "%s: Perl lib version (5.28.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
+$^V eq 5.30.1
+    or die sprintf "%s: Perl lib version (5.30.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
 
 
 sub FETCH {
@@ -85,7 +85,7 @@ sub AUTOLOAD {
 my $rootdir = __FILE__;
 $rootdir =~ s![\\/][^\\/]*[\\/][^\\/]*$!!;
 $rootdir =~ s!/!\\!g;
-my $mingdir = "X:\\wprogs\\mingw6432\\mingw32";
+my $mingdir = "D:\\mingw2020";
 
 # tie returns the object, so the value returned to require will be true.
 tie %Config, 'Config', {
@@ -103,7 +103,7 @@ tie %Config, 'Config', {
     ldlibpthname => '',
     libpth => "$mingdir\\lib",
     osname => 'MSWin32',
-    osvers => '6.1.7601',
+    osvers => '10.0.18363.418',
     path_sep => ';',
     privlibexp => "$rootdir\\lib",
     scriptdir => "$rootdir\\bin",
@@ -112,5 +112,5 @@ tie %Config, 'Config', {
     so => 'dll',
     useithreads => 'define',
     usevendorprefix => undef,
-    version => '5.28.1',
+    version => '5.30.1',
 };

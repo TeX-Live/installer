@@ -34,7 +34,7 @@ named variable exists.
 
 For a description of the variables, please have a look at the
 Glossary file, as written in the Porting folder, or use the url:
-http://perl5.git.perl.org/perl.git/blob/HEAD:/Porting/Glossary
+https://github.com/Perl/perl5/blob/blead/Porting/Glossary
 
 =over 4
 
@@ -1100,14 +1100,6 @@ From F<d_cmsghdr_s.U>:
 
 This variable conditionally defines the C<HAS_STRUCT_CMSGHDR> symbol,
 which indicates that the struct cmsghdr is supported.
-
-=item C<d_const>
-
-From F<d_const.U>:
-
-This variable conditionally defines the C<HASCONST> symbol, which
-indicates to the C program that this C compiler knows about the
-const type.
 
 =item C<d_copysign>
 
@@ -2371,6 +2363,13 @@ From F<i_grp.U>:
 
 This variable conditionally defines C<GRPASSWD>, which indicates
 that struct group in <grp.h> contains gr_passwd.
+
+=item C<d_has_C_UTF8>
+
+From F<d_setlocale.U>:
+
+This variable is set to either C<true> or C<false> depending on
+whether the compilation system supports the F<C.UTF>-8 locale.
 
 =item C<d_hasmntopt>
 
@@ -3894,6 +3893,13 @@ From F<d_setlocale.U>:
 This variable conditionally defines C<HAS_SETLOCALE> if setlocale() is
 available to handle locale-specific ctype implementations.
 
+=item C<d_setlocale_accepts_any_locale_name>
+
+From F<d_setlocale.U>:
+
+This variable conditionally defines C<SETLOCALE_ACCEPTS_ANY_LOCALE_NAME>
+if setlocale() accepts any locale name.
+
 =item C<d_setlocale_r>
 
 From F<d_setlocale_r.U>:
@@ -4475,6 +4481,13 @@ This variable conditionally defines the C<HAS_STRTOD> symbol, which
 indicates to the C program that the strtod() routine is available
 to provide better numeric string conversion than atof().
 
+=item C<d_strtod_l>
+
+From F<d_strtod_l.U>:
+
+This variable conditionally defines the C<HAS_STRTOD_L> symbol, which
+indicates to the C program that the strtod_l() routine is available.
+
 =item C<d_strtol>
 
 From F<d_strtol.U>:
@@ -4692,6 +4705,20 @@ From F<d_tmpnam_r.U>:
 This variable conditionally defines the C<HAS_TMPNAM_R> symbol,
 which indicates to the C program that the tmpnam_r()
 routine is available.
+
+=item C<d_towlower>
+
+From F<d_towlower.U>:
+
+This variable conditionally defines the C<HAS_TOWLOWER> symbol, which
+indicates to the C program that the towlower() routine is available.
+
+=item C<d_towupper>
+
+From F<d_towupper.U>:
+
+This variable conditionally defines the C<HAS_TOWUPPER> symbol, which
+indicates to the C program that the towupper() routine is available.
 
 =item C<d_trunc>
 
@@ -6430,6 +6457,13 @@ From F<i_wchar.U>:
 
 This variable conditionally defines the C<I_WCHAR> symbol,
 that indicates whether a C program may include <wchar.h>.
+
+=item C<i_wctype>
+
+From F<i_wctype.U>:
+
+This variable conditionally defines the C<I_WCTYPE> symbol,
+that indicates whether a C program may include <wctype.h>.
 
 =item C<i_xlocale>
 
@@ -9275,6 +9309,15 @@ From F<usekernprocpathname.U>:
 This variable, indicates that we can use sysctl with
 C<KERN_PROC_PATHNAME> to get a full path for the executable, and hence
 convert $^X to an absolute path.
+
+=item C<uselanginfo>
+
+From F<Extensions.U>:
+
+This variable holds either C<true> or C<false> to indicate
+whether the I18N::Langinfo extension should be used.  The sole
+use for this currently is to allow an easy mechanism for users to skip
+this extension from the Configure command line.
 
 =item C<uselargefiles>
 
