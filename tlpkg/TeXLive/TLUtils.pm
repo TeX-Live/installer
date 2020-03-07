@@ -274,16 +274,16 @@ sub platform {
 
 =item C<platform_name($canonical_host)>
 
-Convert a canonical host names as returned by C<config.guess> into
-TeX Live platform names.
+Convert ORIG_PLATFORM, a canonical host name as returned by
+C<config.guess>, into a TeX Live platform name.
 
 CPU type is determined by a regexp, and any C</^i.86/> name is replaced
 by C<i386>.
 
-For OS we need a list because what's returned is not likely to match our
-historical names, e.g., C<config.guess> returns C<linux-gnu> but we need
-C<linux>.  This list might/should contain OSs which are not currently
-supported.
+For the OS value we need a list because what's returned is not likely to
+match our historical names, e.g., C<config.guess> returns C<linux-gnu>
+but we need C<linux>. This list contains old OSs which are not currently
+supported, just in case.
 
 If a particular platform is not found in this list we use the regexp
 C</.*-(.*$)/> as a last resort and hope it provides something useful.
@@ -291,12 +291,15 @@ C</.*-(.*$)/> as a last resort and hope it provides something useful.
 =cut
 
 sub platform_name {
-  my ($guessed_platform) = @_;
+  my ($orig_platform) = @_;
+  my $guessed_platform = $orig_platform;
 
+  # try to parse out some bsd variants that use amd64.
   $guessed_platform =~ s/^x86_64-(.*-k?)(free|net)bsd/amd64-$1$2bsd/;
   my $CPU; # CPU type as reported by config.guess.
   my $OS;  # O/S type as reported by config.guess.
   ($CPU = $guessed_platform) =~ s/(.*?)-.*/$1/;
+
   $CPU =~ s/^alpha(.*)/alpha/;   # alphaev whatever
   $CPU =~ s/mips64el/mipsel/;    # don't distinguish mips64 and 32 el
   $CPU =~ s/powerpc64/powerpc/;  # don't distinguish ppc64
@@ -308,7 +311,7 @@ sub platform_name {
     $CPU = $guessed_platform =~ /hf$/ ? "armhf" : "armel";
   }
 
-  my @OSs = qw(aix cygwin darwin freebsd hpux irix
+  my @OSs = qw(aix cygwin darwin dragonfly freebsd hpux irix
                kfreebsd linux netbsd openbsd solaris);
   for my $os (@OSs) {
     # Match word boundary at the beginning of the os name so that
@@ -317,7 +320,12 @@ sub platform_name {
     #   solaris2 is matched.
     $OS = $os if $guessed_platform =~ /\b$os/;
   }
-
+  
+  if (! $OS) {
+    warn "$0: could not guess OS from config.guess string: $orig_platform";
+    $OS = "unknownOS";
+  }
+  
   if ($OS eq "linux") {
     # deal with the special case of musl based distributions
     # config.guess returns
@@ -346,7 +354,7 @@ sub platform_name {
     if ($os_major != 10) {
       warn "$0: only MacOSX is supported, not $OS $os_major.$os_minor "
            . " (from sw_vers -productVersion: $sw_vers)\n";
-      return "unknown-unknown";
+      return "unknownmac-unknownmac";
     }
     if ($os_minor >= $mactex_darwin) {
       ; # current version, default is ok (x86_64-darwin).
@@ -415,6 +423,7 @@ sub platform_desc {
     'x86_64-cygwin'    => 'Cygwin on x86_64',
     'x86_64-darwin'       => 'MacOSX current (10.13-) on x86_64',
     'x86_64-darwinlegacy' => 'MacOSX legacy (10.6-) on x86_64',
+    'x86_64-dragonfly' => 'DragonFlyBSD on x86_64',
     'x86_64-linux'     => 'GNU/Linux on x86_64',
     'x86_64-linuxmusl' => 'GNU/Linux on x86_64 with musl',
     'x86_64-solaris'   => 'Solaris on x86_64',

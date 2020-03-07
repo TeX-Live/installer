@@ -2207,7 +2207,9 @@ sub save_options_into_tlpdb {
     push @archs, "custom";
   }
   if (! @archs) {
-    tldie("$0: No binary platform specified/available, quitting.\n");
+    tldie("$0: Quitting, no binary platform specified/available.\n"
+         ."$0: See https://tug.org/texlive/custom-bin.html for\n"
+         ."$0: information on other precompiled binary sets.\n");
   }
   # only if we forced the platform we do save this option into the tlpdb
   if (defined($opt_force_arch)) {
