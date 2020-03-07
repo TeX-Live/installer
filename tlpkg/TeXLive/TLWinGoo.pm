@@ -140,7 +140,6 @@ BEGIN {
     $Registry->Delimiter('/');
     $Registry->ArrayValues(0);
     $Registry->FixSzNulls(1);
-    require Win32::OLE::NLS;
     require Win32::Shortcut;
     Win32::Shortcut->import( qw( SW_SHOWNORMAL SW_SHOWMINNOACTIVE ) );
     require Time::HiRes;
@@ -164,18 +163,20 @@ my $is_win = ($^O =~ /^MSWin/i);
 
 # Win32: import some wrappers for API functions
 # failed to get Win32::API::More to work with raw API functions;
-# for now, use a tiny dll with perl-friendly wrappers
 
 # import failures return a null result;
 # call imported functions only if true/non-null
 
 my $SendMessage = 0;
 my $update_fu = 0;
+my $getlang = 0;
 if ($is_win) {
   $SendMessage = new Win32::API('user32', 'SendMessageTimeout', 'LLPPLLP', 'L');
   debug ("Import failure SendMessage\n") unless $SendMessage;
   $update_fu = new Win32::API('shell32', 'SHChangeNotify', 'LIPP', 'V');
   debug ("Import failure assoc_notify\n") unless $update_fu;
+  $getlang = Win32::API::More->new('kernel32', 'long GetUserDefaultLangID()');
+  debug ("Import failure GetUserDefaultLangID\n") unless $getlang;
 }
 
 =pod
@@ -306,7 +307,8 @@ Two-letter country code representing the locale of the current user
 =cut
 
 sub reg_country {
-  my $value = Win32::OLE::NLS::GetUserDefaultLangID();
+  my $value = 0;
+  if ($getlang) {$value = $getlang->Call();}
   return unless $value;
   $value = sprintf ("%04x", $value);
   my $lmkey = $Registry -> Open("HKEY_CLASSES_ROOT/MIME/Database/Rfc1766/",
