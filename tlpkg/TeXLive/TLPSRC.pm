@@ -240,6 +240,8 @@ sub from_file {
   $shortdesc =~ s/\s+$//g;  # rm trailing whitespace (shortdesc)
   $longdesc =~ s/\s+$//g;   # rm trailing whitespace (longdesc)
   $longdesc =~ s/\s\s+/ /g; # collapse multiple whitespace characters to one
+  # see comments in beautify.
+  $longdesc =~ s,http://grants.nih.gov/,grants.nih.gov/,g;
   #
   $self->name($name);
   $self->category($category);

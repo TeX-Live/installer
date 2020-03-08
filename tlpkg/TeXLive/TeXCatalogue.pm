@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TeXCatalogue - module for accessing the TeX Catalogue
-# Copyright 2007-2019 Norbert Preining
+# Copyright 2007-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 # 
@@ -137,14 +137,28 @@ sub initialize {
 
 sub beautify {
   my ($txt) = @_;
+  # transliterate to ascii: it allows the final tlpdb to be pure ascii,
+  # avoiding problems since we don't control the user's terminal encoding
+  # Do first in case spaces are output by the transliteration.
+  $txt = Text::Unidecode::unidecode($txt);
+  #
   $txt =~ s/\n/ /g;  # make one line
   $txt =~ s/^\s+//g; # rm leading whitespace
   $txt =~ s/\s+$//g; # rm trailing whitespace
   $txt =~ s/\s\s+/ /g; # collapse multiple whitespace characters to one
   $txt =~ s/\t/ /g;    # tabs to spaces
-  # transliterate to ascii: it allows the final tlpdb to be pure ascii,
-  # avoiding problems since we don't control the user's terminal encoding
-  return Text::Unidecode::unidecode($txt);
+  
+  # one last bit of horribleness: there is one url in the descriptions
+  # which is longer than our multilineformat format (in TLPOBJ). The
+  # result is that it is forcibly broken. Apparently there is no way in
+  # Perl to override that. This makes it impossible to get identical
+  # longdesc results. Turns out that removing the "http://" prefix
+  # shortens it enough to fit, so do that. The better solution would be
+  # to use Text::Wrap or some other text-filling code, but going for
+  # quick and dirty here.
+  $txt =~ s,http://grants.nih.gov/,grants.nih.gov/,g;
+
+  return $txt;
 }
 
 sub name {
