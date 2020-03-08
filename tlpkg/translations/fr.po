@@ -610,7 +610,7 @@ msgstr "Créer les liens symboliques dans les répertoires-système"
 #: tlpkg/installer/install-menu-perltk.pl:585
 #: tlpkg/installer/install-tl-gui.tcl:1700
 msgid "After install, set CTAN as source for package updates"
-"Après l'installation, la source des mises à jour des packages sera CTAN "
+msgstr "Après l'installation, la source des mises à jour des packages sera CTAN "
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -1082,7 +1082,7 @@ msgstr "Collection : "
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:749
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
-"Les versions du catalogue peuvent être en retard ou simplement erronées."
+msgstr "Les versions du catalogue peuvent être en retard ou simplement erronées."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:787
 msgid "Depends:"
@@ -1329,7 +1329,7 @@ msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2281
 msgid "(Further updates will be available after tlmgr has been updated.)"
-"(Les mises à jour supplémentaires seront disponibles après que le TeX Live "
+msgstr "(Les mises à jour supplémentaires seront disponibles après que le TeX Live "
 "Manager aura lui-même été mis à jour.)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2283
@@ -1608,7 +1608,7 @@ msgstr "Autres collections"
 
 #: tlpkg/installer/install-tl-gui.tcl:1238
 msgid "Warning. Not all configured directories are writable!"
-"Attention ! Vous n'avez pas de droit en écriture sur certains des répertoires configurés."
+msgstr "Attention ! Vous n'avez pas de droit en écriture sur certains des répertoires configurés."
 
 #: tlpkg/installer/install-tl-gui.tcl:1258
 msgid "Symlinks"
@@ -2333,7 +2333,7 @@ msgstr "Packages LuaTeX"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "Mathematics, natural sciences, computer science packages"
-"Packages pour les mathématiques, les sciences naturelles et l'informatique"
+msgstr "Packages pour les mathématiques, les sciences naturelles et l'informatique"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "MetaPost and Metafont packages"
