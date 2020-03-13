@@ -5197,9 +5197,12 @@ sub uninstall_texlive {
     return ($F_ERROR);
   }
   return if !check_on_writable();
+
+  init_local_db(0);
   my $force = defined($opts{"force"}) ? $opts{"force"} : 0;
   if (!$force) {
-    print("If you answer yes here the whole TeX Live installation will be removed!\n");
+    print("If you answer yes here the whole TeX Live installation here,\n",
+          "under ", $localtlpdb->root, ", will be removed!\n");
     print "Remove TeX Live (y/N): ";
     my $yesno = <STDIN>;
     if ($yesno !~ m/^y(es)?$/i) {
@@ -5208,13 +5211,12 @@ sub uninstall_texlive {
     }
   }
   print ("Ok, removing the whole installation:\n");
-  init_local_db();
   TeXLive::TLUtils::remove_symlinks($localtlpdb->root,
     $localtlpdb->platform(),
     $localtlpdb->option("sys_bin"),
     $localtlpdb->option("sys_man"),
     $localtlpdb->option("sys_info"));
-  # now do remove the rest
+  # now remove the rest
   system("rm", "-rf", "$Master/texmf-dist");
   system("rm", "-rf", "$Master/texmf-doc");
   system("rm", "-rf", "$Master/texmf-var");
@@ -5222,15 +5224,17 @@ sub uninstall_texlive {
   system("rm", "-rf", "$Master/bin");
   system("rm", "-rf", "$Master/readme-html.dir");
   system("rm", "-rf", "$Master/readme-txt.dir");
-  for my $f (qw/doc.html index.html LICENSE.CTAN LICENSE.TL README
-                README.usergroups release-texlive.txt texmf.cnf/) {
+  for my $f (qw/doc.html index.html install-tl 
+                LICENSE.CTAN LICENSE.TL README README.usergroups
+                release-texlive.txt texmf.cnf texmfcnf.lua/) {
     system("rm", "-f", "$Master/$f");
   }
   if (-d "$Master/temp") {
     system("rmdir", "--ignore-fail-on-non-empty", "$Master/temp");
   }
   unlink("$Master/install-tl.log");
-  # should we do that????
+  # if they want removal, give them removal. Hopefully they know how to
+  # regenerate any changed config files.
   system("rm", "-rf", "$Master/texmf-config");
   system("rmdir", "--ignore-fail-on-non-empty", "$Master");
 }
@@ -6687,9 +6691,6 @@ sub action_shell {
 # 1             : TLPDB initialized and support programs must work
 # 2             : not even TLPDB needs to be found
 # if we cannot read tlpdb, die if arg SHOULD_I_DIE is true.
-#
-# if an argument is given and is true init_local_db will die if
-# setting up of programs failed.
 #
 sub init_local_db {
   my ($should_i_die) = @_;
