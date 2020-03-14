@@ -1418,16 +1418,13 @@ sub maybe_make_ro {
   # S-1-5-11     Authenticated users
   # S-1-5-32-545 Users
   # S-1-5-32-544 administrators
-  # S-1-3-0      creator owner
+  # S-1-3-0      creator owner (does not work right)
   # S-1-3-1      creator group
-
-  # useful explanations at http://timbolton.net/2010/06/23/
-  #   /icacls-changing-permissions-on-files-and-folders
 
   # /reset is necessary for removing non-standard existing permissions
   my $cmd = 'cmd /c "icacls . /reset && icacls . /inheritance:r'.
-    ' /grant:r *S-1-5-32-544:(OI)(CI)F /grant *S-1-3-0:(OI)(CI)F'.
-    ' /grant *S-1-5-11:(OI)(CI)RX"';
+    ' /grant:r *S-1-5-32-544:(OI)(CI)F'.
+    ' /grant:r *S-1-5-11:(OI)(CI)RX /grant:r *S-1-5-32-545:(OI)(CI)RX /T"';
   log "Making read-only\n".`$cmd`."\n";
 
   # go back to original directory
