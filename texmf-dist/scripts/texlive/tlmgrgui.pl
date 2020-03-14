@@ -631,7 +631,7 @@ sub setup_menu_system {
                                 -command => sub { 
                                   my $b = shift;
                                   if ($b eq __("Ok")) {
-                                    system("tlmgr", "uninstall", "--force");
+                                    system("tlmgr", "remove", "--all", "--force");
                                     $mw->Dialog(-text => __("Complete removal finished"), -buttons => [ __("Ok") ])->Show;
                                     $mw->destroy; 
                                     exit(0); 
