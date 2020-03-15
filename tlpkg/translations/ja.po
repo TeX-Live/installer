@@ -1,13 +1,13 @@
-# Copyright 2010-2019 TeX Live Team
+# Copyright 2010-2020 TeX Live Team
 # This file is distributed under the same license as the TeX Live package.
 # Koji Yokota <yokota33@gmail.com>, 2010, 2011, 2012, 2014, 2015.
-# Takuto Asakura <tkt.asakura@gmail.com>, 2019.
+# Takuto Asakura <tkt.asakura@gmail.com>, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2020-03-07 01:09+0100\n"
-"PO-Revision-Date: 2019-08-28 12:20+0900\n"
+"PO-Revision-Date: 2020-03-14 05:48+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
@@ -1779,7 +1779,7 @@ msgstr "リポジトリ"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:809
 msgid "Done loading"
-msgstr ""
+msgstr "読み込み完了"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:833
 msgid "A configured repository is unavailable."
@@ -2360,20 +2360,3 @@ msgstr "Windows 専用プログラム"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX とパッケージ"
-
-#~ msgid ""
-#~ "Trying to load %s.\n"
-#~ "\n"
-#~ "If this takes too long, press Abort and choose another repository."
-#~ msgstr ""
-#~ "%s をロードしています．\n"
-#~ "\n"
-#~ "処理に時間がかかり過ぎる場合は「中止」を押すか別のリポジトリを選択してくだ"
-#~ "さい．"
-
-#~ msgid "Close this shell and run in an administrative command-prompt:"
-#~ msgstr ""
-#~ "このシェルを閉じて，管理者権限のコマンドプロンプトで実行してください："
-
-#~ msgid "Close this shell and run in a command-prompt:"
-#~ msgstr "このシェルを閉じて，コマンドプロンプトで実行してください："
