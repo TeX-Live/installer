@@ -81,7 +81,17 @@ sub initialize {
   $self->{'name'} = $parser->findvalue("/entry/name")->value();
   $self->{'caption'} = beautify($parser->findvalue("/entry/caption")->value());
   $self->{'description'} = beautify($parser->findvalue("/entry/description")->value());
-  $self->{'license'} = $parser->findvalue('/entry/license/@type')->value();
+  # there can be multiple entries of licenses, collected them all
+  # into one string
+  my $licset = $parser->find('/entry/license');
+  my @liclist;
+  foreach my $node ($licset->get_nodelist) {
+    my $lictype = $parser->find('./@type',$node);
+    push @liclist, "$lictype";
+  }
+  $self->{'license'} = join(' ', @liclist);
+  # was before
+  # $self->{'license'} = $parser->findvalue('/entry/license/@type')->value();
   $self->{'version'} = Text::Unidecode::unidecode(
                           $parser->findvalue('/entry/version/@number')->value());
   $self->{'ctan'} = $parser->findvalue('/entry/ctan/@path')->value();
