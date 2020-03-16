@@ -2833,7 +2833,8 @@ sub action_update {
           " collection, not auto-installing it!\n");
         next;
       } else {
-        tlwarn("\n$prg: $pkg mentioned, but neither new nor forcibly removed\n");
+        tlwarn("\n$prg: $pkg mentioned, but neither new nor forcibly removed");
+        tlwarn("\n$prg: perhaps try tlmgr search or tlmgr info.\n");
         next;
       }
       # install new packages
