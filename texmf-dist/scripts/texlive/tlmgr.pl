@@ -3517,7 +3517,7 @@ sub action_update {
   }
 
   # infra update and tlmgr restart on w32 is done by the updater batch script
-  if (win32() && !$opts{"list"} && @critical) {
+  if (win32() && $opts{'self'} && !$opts{"list"} && @critical) {
     info("$prg: Preparing TeX Live infrastructure update...\n");
     for my $f (@infra_files_to_be_removed) {
       debug("file scheduled for removal $f\n");
