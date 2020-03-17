@@ -134,6 +134,10 @@ set args=%args% %p%
 
 goto rebuildargs
 :nomoreargs
+
+set wish="%instroot%tlpkg\tltcl\tclkit.exe"
+if not exist "%wish%" set wish="%instroot%tlpkg\tltcl\bin\wish.exe"
+if not exist "%wish%" set tcl=no
 if %forbid% == yes set tcl=no
 
 rem Check for tex directories on path and remove them.
@@ -183,9 +187,9 @@ set errlev=0
 
 rem Start installer
 if %tcl% == yes (
-rem echo "%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
+rem echo "%wish%" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
 rem pause
-"%instroot%tlpkg\tltcl\tclkit.exe" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
+"%wish%" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
 ) else (
 rem echo perl "%instroot%install-tl" %args%
 rem pause
