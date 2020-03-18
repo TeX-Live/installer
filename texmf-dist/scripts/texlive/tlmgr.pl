@@ -813,6 +813,7 @@ sub do_cmd_and_check {
   # tlmgr front ends (MacOSX's TeX Live Utility) can read it
   # and show it to the user before the possibly long delay.
   info("running $cmd ...\n");
+  logpackage("running $cmd");
   my ($out, $ret);
   if ($opts{"dry-run"}) {
     $ret = $F_OK;
@@ -828,11 +829,13 @@ sub do_cmd_and_check {
   }
   if ($ret == $F_OK) {
     info("done running $cmd.\n");
+    logpackage("success, output: $out");
     ddebug("--output of $cmd:\n$out\n--end of output of $cmd.");
     return ($F_OK);
   } else {
     info("\n");
     tlwarn("$prg: $cmd failed (status $ret), output:\n$out\n");
+    logpackage("error, status: $ret, output: $out");
     return ($F_ERROR);
   }
 }
