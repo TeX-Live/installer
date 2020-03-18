@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2020-03-17 01:55+0100\n"
-"PO-Revision-Date: 2019-08-30 13:52+0200\n"
+"PO-Revision-Date: 2020-03-18 12:05+0100\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: nl\n"
@@ -1781,7 +1781,7 @@ msgstr "Installatie-bronnen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:810
 msgid "Done loading"
-msgstr ""
+msgstr "Klaar met laden"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:834
 msgid "A configured repository is unavailable."
