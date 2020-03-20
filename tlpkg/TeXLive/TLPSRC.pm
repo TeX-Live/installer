@@ -961,8 +961,8 @@ On W32 declares files with the extenstion I<.ext> of file type I<name>.
 =item C<postaction script file=I<file> [filew32=I<filew32>]>
 
 This postaction executes the given I<file> with two arguments, the first
-being the root of the installation, the second being either the string
-C<install> or C<remove>.
+being either the string C<install> or C<remove>, the second being the
+root of the installation.
 
 If the C<filew32> argument is given this script is run on Windows systems
 instead of the one given via C<file>.
