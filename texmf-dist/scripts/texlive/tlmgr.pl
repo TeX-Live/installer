@@ -649,6 +649,8 @@ for the full story.\n";
     debug("Cannot open package log file for appending: $packagelogfile\n");
     debug("Will not log package installation/removal/update for this run\n");
     $packagelogfile = "";
+  } else {
+    debug("appending to package log file: $packagelogfile\n");
   }
 
   $loadmediasrcerror = "Cannot load TeX Live database from ";
@@ -827,15 +829,22 @@ sub do_cmd_and_check {
   } else {
     ($out, $ret) = TeXLive::TLUtils::run_cmd("$cmd 2>&1");
   }
+  # Although it is quite verbose to report all the output from every
+  # fmtutil (especially) run, it's the only way to know what's normal
+  # when something fails. Prefix each line to make them easy to see
+  # (and filter out/in).
+  (my $prefixed_out = $out) =~ s/^/(cmd)/gm;
+  $prefixed_out =~ s/\n+$//; # trailing newlines don't seem interesting
+  my $outmsg = "output:\n$prefixed_out\n--end of output of $cmd.\n";
   if ($ret == $F_OK) {
     info("done running $cmd.\n");
-    logpackage("success, output: $out");
-    ddebug("--output of $cmd:\n$out\n--end of output of $cmd.");
+    logpackage("success, $outmsg");
+    ddebug("$cmd $outmsg");
     return ($F_OK);
   } else {
     info("\n");
     tlwarn("$prg: $cmd failed (status $ret), output:\n$out\n");
-    logpackage("error, status: $ret, output: $out");
+    logpackage("error, status: $ret, $outmsg");
     return ($F_ERROR);
   }
 }
