@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2020-03-17 01:55+0100\n"
-"PO-Revision-Date: 2019-03-26 06:10+0100\n"
+"PO-Revision-Date: 2020-03-22 06:40+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -1488,7 +1488,7 @@ msgstr "Wirklich abbrechen?"
 
 #: tlpkg/installer/install-tl-gui.tcl:352
 msgid "Local repository"
-msgstr ""
+msgstr "Lokales Repository"
 
 #: tlpkg/installer/install-tl-gui.tcl:388
 #: tlpkg/installer/install-tl-gui.tcl:405
@@ -1510,6 +1510,8 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Versuche, %s zu laden. Sollte dies zu lange dauern, wählen Sie ein anderes "
+"Repository oder brechen Sie ab."
 
 #: tlpkg/installer/install-tl-gui.tcl:504
 msgid "Cannot be created or cannot be written to"
@@ -1710,18 +1712,18 @@ msgstr "Angepasstes Schema"
 #: tlpkg/installer/install-tl-gui.tcl:1936
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s ist kein lokales oder remote Repository."
 
 #: tlpkg/installer/install-tl-gui.tcl:1937
 #: tlpkg/installer/install-tl-gui.tcl:1943
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2020
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 #: tlpkg/installer/install-tl-gui.tcl:1942
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s erfordert ein Argument"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1729,7 +1731,7 @@ msgstr "Spezifischer CTAN-Mirror..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "Liste der Spiegelserver nicht verfügbar."
 
 #: tlpkg/tltcl/tltcl.tcl:687
 msgid "Select or type"
@@ -1763,11 +1765,13 @@ msgstr "Unbekannt"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:765
 msgid "Loading"
-msgstr ""
+msgstr "Lade"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:771
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
+"Sollte das Laden zu lange dauern, brechen Sie ab und wöhlen Sie ein anderes "
+"Repository."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:772
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2019
@@ -1777,7 +1781,7 @@ msgstr "Repositories"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:810
 msgid "Done loading"
-msgstr ""
+msgstr "Fertig mit dem Laden"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:834
 msgid "A configured repository is unavailable."
@@ -1798,11 +1802,11 @@ msgstr "%s ist kein Repository"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1071
 msgid "No repositories"
-msgstr ""
+msgstr "Keine Repositories"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1076
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Multiple Repositories"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1079
 msgid "Not loaded"
@@ -1810,7 +1814,7 @@ msgstr "Nicht geladen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1107
 msgid "Actual repository"
-msgstr ""
+msgstr "Tatsächliches Repository"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1192
 msgid "Main Repository"
@@ -1989,6 +1993,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s ist kein lokales oder remote Repository.\n"
+"Bitte wählen Sie ein valides Repository."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2039
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2065
@@ -1997,7 +2003,7 @@ msgstr "Datei"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2067
 msgid "Load repository"
-msgstr ""
+msgstr "Lade das Repository"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2069
 msgid "Exit"
@@ -2066,7 +2072,7 @@ msgstr "Letzter tlmgr Befehl:"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2189
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "Wurzel bei %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2197
 msgid "Package list"
@@ -2146,14 +2152,16 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"Pfad %s ist nicht beschreibbar, geht halt nicht.\n"
+"Wollen Sie wirklich weitermachen?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2405
 msgid "Multi-user"
-msgstr ""
+msgstr "Multi-User"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2405
 msgid "Single-user"
-msgstr ""
+msgstr "Single-User"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
