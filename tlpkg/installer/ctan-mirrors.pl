@@ -16,6 +16,7 @@ $mirrors = {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
       'http://mirrors.cqu.edu.cn/CTAN/' => 1,
+      'http://mirrors.geekpie.club/CTAN/' => 1,
       'http://mirrors.hit.edu.cn/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -33,6 +34,7 @@ $mirrors = {
     },
     'Iran' => {
       'http://ctan.asis.ai/' => 1,
+      'http://ctan.um.ac.ir/' => 1,
       'http://ctan.yazd.ac.ir/' => 1
     },
     'Japan' => {
@@ -43,6 +45,7 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.harukasan.org/CTAN/' => 1,
+      'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1,
       'http://mirror.yongbok.net/ctan/' => 1
@@ -80,10 +83,9 @@ $mirrors = {
       'http://ctan.mines-albi.fr/' => 1,
       'http://ctan.tetaneutral.net/' => 1,
       'http://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
+      'http://mirror.ibcp.fr/pub/CTAN/' => 1,
       'http://mirrors.ircam.fr/pub/CTAN/' => 1,
       'http://mirrors.standaloneinstaller.com/ctan/' => 1,
-      'https://ctan.mc1.root.project-creative.net/' => 1,
-      'https://ctan.mc2.root.project-creative.net/' => 1,
       'https://mirrors.chevalier.io/CTAN/' => 1
     },
     'Germany' => {
@@ -98,6 +100,7 @@ $mirrors = {
       'http://packages.oth-regensburg.de/ctan/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
       'https://ctan.kako-dev.de/' => 1,
+      'https://ctan.mc1.root.project-creative.net/' => 1,
       'https://ctan.net/' => 1
     },
     'Greece' => {
@@ -111,7 +114,6 @@ $mirrors = {
     },
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
-      'http://ctan.triasinformatica.nl/' => 1,
       'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'http://mirror.koddos.net/CTAN/' => 1
     },
@@ -153,15 +155,12 @@ $mirrors = {
   },
   'North America' => {
     'Canada' => {
-      'http://ctan.forsale.plus/' => 1,
       'http://ctan.math.ca/tex-archive/' => 1,
       'http://ctan.mirror.colo-serv.net/' => 1,
+      'http://ctan.mirror.globo.tech/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
       'http://mirror.its.dal.ca/ctan/' => 1,
       'http://muug.ca/mirror/ctan/' => 1
-    },
-    'Costa Rica' => {
-      'http://mirrors.ucr.ac.cr/CTAN/' => 1
     },
     'USA' => {
       'http://ctan.math.illinois.edu/' => 1,
