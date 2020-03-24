@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2020-03-17 01:55+0100\n"
-"PO-Revision-Date: 2019-03-28 03:38+0700\n"
+"PO-Revision-Date: 2020-03-24 22:04+0100\n"
 "Last-Translator: Anh K. Huỳnh <kyanh@viettug.org>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: vi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.3\n"
 
 #: tlpkg/installer/tracked-install.pl:27
 msgid "Installation process"
@@ -182,7 +182,7 @@ msgstr "Kho cài đặt từ chế độ dòng lệnh"
 #: tlpkg/installer/install-menu-wizard.pl:235
 #: tlpkg/installer/install-menu-perltk.pl:235
 msgid "LOCAL REPOSITORIES"
-msgstr "KHO CÀI ĐẶT  TRÊN MÁY"
+msgstr "KHO CÀI ĐẶT TRÊN MÁY"
 
 #: tlpkg/installer/install-menu-wizard.pl:239
 #: tlpkg/installer/install-menu-perltk.pl:239
@@ -1489,7 +1489,7 @@ msgstr "Bạn thật sự muốn bỏ ngang?"
 
 #: tlpkg/installer/install-tl-gui.tcl:352
 msgid "Local repository"
-msgstr ""
+msgstr "Nạp kho"
 
 #: tlpkg/installer/install-tl-gui.tcl:388
 #: tlpkg/installer/install-tl-gui.tcl:405
@@ -1511,6 +1511,9 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Đang thử nạp %s.\n"
+"\n"
+"Nếu việc này quá lâu, hãy bỏ và chọn kho khác."
 
 #: tlpkg/installer/install-tl-gui.tcl:504
 msgid "Cannot be created or cannot be written to"
@@ -1712,18 +1715,18 @@ msgstr "Chọn mẫu"
 #: tlpkg/installer/install-tl-gui.tcl:1936
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s không phải kho ở dưới máy hay trên mạng"
 
 #: tlpkg/installer/install-tl-gui.tcl:1937
 #: tlpkg/installer/install-tl-gui.tcl:1943
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2020
 msgid "Error"
-msgstr ""
+msgstr "Lỗi"
 
 #: tlpkg/installer/install-tl-gui.tcl:1942
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s thiếu một tham số"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1731,7 +1734,7 @@ msgstr "Chọn kho đệm..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "Không thấy danh sách mirror nào"
 
 #: tlpkg/tltcl/tltcl.tcl:687
 msgid "Select or type"
@@ -1765,11 +1768,11 @@ msgstr "Không biết"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:765
 msgid "Loading"
-msgstr ""
+msgstr "Đang nạp"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:771
 msgid "If loading takes too long, press Abort and choose another repository."
-msgstr ""
+msgstr "Nếu việc tải quá lâu, hãy chọn bỏ (Abort) và chọn kho khác."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:772
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2019
@@ -1779,7 +1782,7 @@ msgstr "Các kho cài đặt"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:810
 msgid "Done loading"
-msgstr ""
+msgstr "Đã nạp xong"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:834
 msgid "A configured repository is unavailable."
@@ -1800,11 +1803,11 @@ msgstr "%s không phải là kho cài đặt"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1071
 msgid "No repositories"
-msgstr ""
+msgstr "Không có kho nào"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1076
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Nhiều kho"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1079
 msgid "Not loaded"
@@ -1812,7 +1815,7 @@ msgstr "Chưa được nạp"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1107
 msgid "Actual repository"
-msgstr ""
+msgstr "Kho thực tế"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1192
 msgid "Main Repository"
@@ -1991,6 +1994,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s không phải kho dưới máy hay trên mạng.\n"
+"Vui lòng chọn kho phù hợp"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2039
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2065
@@ -1999,7 +2004,7 @@ msgstr "Tập tin"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2067
 msgid "Load repository"
-msgstr ""
+msgstr "Nạp kho"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2069
 msgid "Exit"
@@ -2049,7 +2054,7 @@ msgstr "Tự khởi động lại"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2147
 msgid "Restart tlmgr"
-msgstr ""
+msgstr "Khởi động lại tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2150
 msgid "Show logs"
@@ -2066,7 +2071,7 @@ msgstr "Lệnh tlmgr cuối cùng:"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2189
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "Gốc ở %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2197
 msgid "Package list"
@@ -2146,14 +2151,16 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"Không ghi vào %s được. Khó có thể làm thêm được gì.\n"
+"Bạn thật sự muốn tiếp tục?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2405
 msgid "Multi-user"
-msgstr ""
+msgstr "Nhiều người dùng"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2405
 msgid "Single-user"
-msgstr ""
+msgstr "Một người dùng"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
