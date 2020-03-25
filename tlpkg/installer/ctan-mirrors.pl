@@ -53,6 +53,9 @@ $mirrors = {
     'Philippines' => {
       'http://mirror.pregi.net/tex-archive/' => 1
     },
+    'Singapore' => {
+      'https://download.nus.edu.sg/mirror/ctan/' => 1
+    },
     'Taiwan' => {
       'http://ftp.yzu.edu.tw/CTAN/' => 1
     }
@@ -94,7 +97,6 @@ $mirrors = {
       'http://ctan.space-pro.be/tex-archive/' => 1,
       'http://ftp.fau.de/ctan/' => 1,
       'http://mirror.informatik.hs-fulda.de/tex-archive/' => 1,
-      'http://packages.oth-regensburg.de/ctan/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
       'https://ctan.kako-dev.de/' => 1,
       'https://ctan.mc1.root.project-creative.net/' => 1,
@@ -123,7 +125,8 @@ $mirrors = {
       'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1
     },
     'Portugal' => {
-      'http://mirrors.up.pt/pub/CTAN/' => 1
+      'http://mirrors.up.pt/pub/CTAN/' => 1,
+      'https://ftp.eq.uc.pt/software/TeX/' => 1
     },
     'Romania' => {
       'http://mirrors.nxthost.com/ctan/' => 1
