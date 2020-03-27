@@ -166,6 +166,7 @@ $mirrors = {
     },
     'USA' => {
       'http://ctan.math.illinois.edu/' => 1,
+      'http://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'http://ctan.math.washington.edu/tex-archive/' => 1,
       'http://ctan.mirrors.hoobly.com/' => 1,
       'http://mirror.las.iastate.edu/tex-archive/' => 1,
@@ -186,6 +187,9 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'http://linorg.usp.br/CTAN/' => 1
+    },
+    'Chile' => {
+      'http://ctan.dcc.uchile.cl/' => 1
     }
   }
 };
