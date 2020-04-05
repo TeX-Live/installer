@@ -1205,7 +1205,15 @@ operations might be disturbed.\n\n";
   }
 
   # now work through the options if specified at all
-
+  my $env_paper = $ENV{"TEXLIVE_INSTALL_PAPER"};
+  if ($env_paper eq "letter") {
+    $vars{'instopt_letter'} = 1;
+  } elsif ($env_paper eq "a4") {
+    ; # do nothing
+  } elsif ($env_paper) {
+    tlwarn("$0: TEXLIVE_INSTALL_PAPER value must be letter or a4, not: "
+           . "$env_paper (ignoring)\n");
+  }
   # letter instead of a4
   if ($vars{'instopt_letter'}) {
     # set paper size, but do not execute any post actions, which in this
@@ -3154,6 +3162,11 @@ asking about importing previous settings.
 
 Omit printing the welcome message after successful installation, e.g.,
 when testing.
+
+=item C<TEXLIVE_INSTALL_PAPER>
+
+Set the default paper size for all relevant programs; must be either
+C<letter> or C<a4>. The default is C<a4>.
 
 =item C<TEXLIVE_INSTALL_PREFIX>
 

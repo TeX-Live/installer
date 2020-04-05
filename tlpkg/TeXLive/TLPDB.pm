@@ -1779,7 +1779,13 @@ sub not_virtual_install_package {
       $container = \@installfiles;
     } elsif ($media eq 'local_compressed') {
       for my $ext (map { $Compressors{$_}{'extension'} } keys %Compressors) {
-        if (-r "$root/$Archive/$pkg.tar.$ext") {
+        # request versioned containers when local (i.e., ISO image),
+        # since the unversioned symlinks cannot be dereferenced
+        # on Windows.
+        my $rev = $tlpobj->revision;
+        if (-r "$root/$Archive/$pkg.$rev.tar.$ext") {
+          $container = "$root/$Archive/$pkg.$rev.tar.$ext";
+        } elsif (-r "$root/$Archive/$pkg.tar.$ext") {
           $container = "$root/$Archive/$pkg.tar.$ext";
         }
       }
@@ -1789,6 +1795,8 @@ sub not_virtual_install_package {
         return(0);
       }
     } elsif (&media eq 'NET') {
+      # Since the NET server cannot be a Windows machine,
+      # ok to request the unversioned file.
       $container = "$root/$Archive/$pkg.tar."
                    . $Compressors{$DefaultCompressorFormat}{'extension'};
     }
