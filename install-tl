@@ -1206,9 +1206,9 @@ operations might be disturbed.\n\n";
 
   # now work through the options if specified at all
   my $env_paper = $ENV{"TEXLIVE_INSTALL_PAPER"};
-  if ($env_paper eq "letter") {
+  if (defined $env_paper && $env_paper eq "letter") {
     $vars{'instopt_letter'} = 1;
-  } elsif ($env_paper eq "a4") {
+  } elsif (defined $env_paper && $env_paper eq "a4") {
     ; # do nothing
   } elsif ($env_paper) {
     tlwarn("$0: TEXLIVE_INSTALL_PAPER value must be letter or a4, not: "

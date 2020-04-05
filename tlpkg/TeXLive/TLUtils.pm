@@ -545,7 +545,7 @@ and thus honors various env variables like  C<TMPDIR>, C<TMP>, and C<TEMP>.
 
 sub initialize_global_tmpdir {
   $::tl_tmpdir = File::Temp::tempdir(CLEANUP => 1);
-  ddebug("tl_tempdir: creating global tempdir $::tl_tmpdir\n");
+  ddebug("initialize_global_tmpdir: creating global tempdir $::tl_tmpdir\n");
   return ($::tl_tmpdir);
 }
 
@@ -558,8 +558,11 @@ is terminated.
 
 sub tl_tmpdir {
   initialize_global_tmpdir() if (!defined($::tl_tmpdir));
-  my $tmp = File::Temp::tempdir(DIR => $::tl_tmpdir, CLEANUP => 1);
-  ddebug("tl_tempdir: creating tempdir $tmp\n");
+  # fails on Windows?
+  #my $tmp = File::Temp::tempdir(DIR => $::tl_tmpdir, CLEANUP => 1);
+  # hopefully:
+  my $tmp = File::Temp::tempdir("$::tl_tmpdir/XXXXXXXXX", CLEANUP => 1);
+  ddebug("tl_tmpdir: creating tempdir $tmp\n");
   return ($tmp);
 }
 
