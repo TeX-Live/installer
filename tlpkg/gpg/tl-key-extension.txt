@@ -11,16 +11,17 @@ shut down networking service
 cp gpg directory from USB stick to computer
 
 
-export GNUPGHOME=.....
+export GNUPGHOME=...<COPY OF USBSTICK gpg directory>
 export KEYID=0xC78B82D8C79512F79CC0D7C80D5E5D9106BAB6BC
 gpg --edit-key $KEYID
 > key 2
 	# selects the expiring key, check!
 > expire
-> 1y
+> 16m
 	# choose something after the release of the next TL
 > save
 
+# export public key for import into svn and TUG account
 gpg -a --export $KEYID > texlive.asc
 
 # update USB drive with new stuff, remove from home,
@@ -32,16 +33,14 @@ gpg --send-keys $KEYID
 
 
 # update TeX Live repository
-export GNUPGHOME=/path/to/Master/tlpkg/gpg
+export GNUPGHOME=/path/to/texlive-svn/Master/tlpkg/gpg
 # use gpg version 1 here!!!
-gpg1 --import texlive.rsa
+gpg1 --import texlive.asc
 
 svn/git commit
 
 
-# on the TUG server
-       gpg --homedir ~texlive/etc \
-         --keyserver hkp://pool.sks-keyservers.net \
-         --recv-key $KEYID
+# on the TUG server (needs the exported public key in
+# texlive.asc, see above how to export it)
+gpg --homedir ~texlive/.gnupg --import texlive.asc
 
-# or import from texlive.asc
