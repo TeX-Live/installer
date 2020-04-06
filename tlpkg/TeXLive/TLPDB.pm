@@ -1775,6 +1775,7 @@ sub not_virtual_install_package {
       }
     }
     my $media = $self->media;
+    my $container_is_versioned = 0;
     if ($media eq 'local_uncompressed') {
       $container = \@installfiles;
     } elsif ($media eq 'local_compressed') {
@@ -1783,9 +1784,11 @@ sub not_virtual_install_package {
         # since the unversioned symlinks cannot be dereferenced
         # on Windows.
         my $rev = $tlpobj->revision;
-        if (-r "$root/$Archive/$pkg.$rev.tar.$ext") {
-          $container = "$root/$Archive/$pkg.$rev.tar.$ext";
+        if (-r "$root/$Archive/$pkg.r$rev.tar.$ext") {
+          $container_is_versioned = 1;
+          $container = "$root/$Archive/$pkg.r$rev.tar.$ext";
         } elsif (-r "$root/$Archive/$pkg.tar.$ext") {
+          $container_is_versioned = 0;
           $container = "$root/$Archive/$pkg.tar.$ext";
         }
       }
@@ -1799,6 +1802,7 @@ sub not_virtual_install_package {
       # ok to request the unversioned file.
       $container = "$root/$Archive/$pkg.tar."
                    . $Compressors{$DefaultCompressorFormat}{'extension'};
+      $container_is_versioned = 0;
     }
     my $container_str = ref $container eq "ARRAY"
                         ? "[" . join (" ", @$container) . "]" : $container;
@@ -1824,14 +1828,22 @@ sub not_virtual_install_package {
       # - there are actually src/doc files present
       if ($container_src_split && $opt_src && $tlpobj->srcfiles) {
         my $srccontainer = $container;
-        $srccontainer =~ s/\.tar\.$CompressorExtRegexp$/.source.tar.$1/;
+        if ($container_is_versioned) {
+          $srccontainer =~ s/\.(r[0-9]*)\.tar\.$CompressorExtRegexp$/.source.$1.tar.$2/;
+        } else {
+          $srccontainer =~ s/\.tar\.$CompressorExtRegexp$/.source.tar.$1/;
+        }
         $self->_install_data($srccontainer, $reloc, \@installfiles, $totlpdb,
                       $tlpobj->srccontainersize, $tlpobj->srccontainerchecksum)
           || return(0);
       }
       if ($container_doc_split && $real_opt_doc && $tlpobj->docfiles) {
         my $doccontainer = $container;
-        $doccontainer =~ s/\.tar\.$CompressorExtRegexp$/.doc.tar.$1/;
+        if ($container_is_versioned) {
+          $doccontainer =~ s/\.(r[0-9]*)\.tar\.$CompressorExtRegexp$/.doc.$1.tar.$2/;
+        } else {
+          $doccontainer =~ s/\.tar\.$CompressorExtRegexp$/.doc.tar.$1/;
+        }
         $self->_install_data($doccontainer, $reloc, \@installfiles,
             $totlpdb, $tlpobj->doccontainersize, $tlpobj->doccontainerchecksum)
           || return(0);
