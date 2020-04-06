@@ -558,10 +558,7 @@ is terminated.
 
 sub tl_tmpdir {
   initialize_global_tmpdir() if (!defined($::tl_tmpdir));
-  # fails on Windows?
-  #my $tmp = File::Temp::tempdir(DIR => $::tl_tmpdir, CLEANUP => 1);
-  # hopefully:
-  my $tmp = File::Temp::tempdir("$::tl_tmpdir/XXXXXXXXX", CLEANUP => 1);
+  my $tmp = File::Temp::tempdir(DIR => $::tl_tmpdir, CLEANUP => 1);
   ddebug("tl_tmpdir: creating tempdir $tmp\n");
   return ($tmp);
 }
@@ -2217,7 +2214,10 @@ sub check_file_and_remove {
     if ($tlchecksum ne $checksum) {
       tlwarn("TLUtils::check_file: checksums differ for $xzfile:\n");
       tlwarn("TLUtils::check_file:   tlchecksum=$tlchecksum, arg=$checksum\n");
-      $check_file_tmpdir = File::Temp::tempdir("tlcheckfileXXXXXXXX");
+      # on Windows passing a pattern creates the tmpdir in PWD
+      # which means that it will be tried to be created on the DVD
+      # $check_file_tmpdir = File::Temp::tempdir("tlcheckfileXXXXXXXX");
+      $check_file_tmpdir = File::Temp::tempdir();
       tlwarn("TLUtils::check_file:   removing $xzfile, "
              . "but saving copy in $check_file_tmpdir\n");
       copy($xzfile, $check_file_tmpdir);
