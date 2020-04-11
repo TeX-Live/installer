@@ -6625,8 +6625,16 @@ sub action_shell {
         init_local_db();
         print "OK\n";
       } elsif ($what eq "remote") {
-        init_tlmedia_or_die();
-        print "OK\n";
+        my ($ret, $err) = init_tlmedia();
+        if ($ret) {
+          print("OK\n");
+        } else {
+          if ($::machinereadable) {
+            # replace \n with \\n to get single line
+            $err =~ s/\n/\\n/g;
+          }
+          print("ERROR $err\n");
+        }
       } else {
         print "ERROR can only load 'local' or 'remote', not $what\n";
       }
