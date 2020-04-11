@@ -7,7 +7,7 @@ before_build:
 # - echo | install-tl-windows.bat -v -no-gui -profile=texlive.profile --repository http://www.math.utah.edu/pub/tlpretest/
 
 build_script:
-  - echo | install-tl-windows.bat -v -no-gui -profile=texlive.profile --repository http://www.math.utah.edu/pub/tlpretest/
+  - echo | install-tl-windows.bat -v -no-gui -profile=texlive.profile
   - set PATH=%PATH%;C:\texlive\bin\win32
 
 test_script:
