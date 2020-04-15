@@ -290,17 +290,17 @@ sub writeout {
     write $fd;  # use that multilineformat
   }
   if (defined($self->{'depends'})) {
-    foreach (@{$self->{'depends'}}) {
+    foreach (sort @{$self->{'depends'}}) {
       print $fd "depend $_\n";
     }
   }
   if (defined($self->{'executes'})) {
-    foreach (@{$self->{'executes'}}) {
+    foreach (sort @{$self->{'executes'}}) {
       print $fd "execute $_\n";
     }
   }
   if (defined($self->{'postactions'})) {
-    foreach (@{$self->{'postactions'}}) {
+    foreach (sort @{$self->{'postactions'}}) {
       print $fd "postaction $_\n";
     }
   }
@@ -381,17 +381,17 @@ sub writeout_simple {
   print $fd "name ", $self->name, "\n";
   print $fd "category ", $self->category, "\n";
   if (defined($self->{'depends'})) {
-    foreach (@{$self->{'depends'}}) {
+    foreach (sort @{$self->{'depends'}}) {
       print $fd "depend $_\n";
     }
   }
   if (defined($self->{'executes'})) {
-    foreach (@{$self->{'executes'}}) {
+    foreach (sort @{$self->{'executes'}}) {
       print $fd "execute $_\n";
     }
   }
   if (defined($self->{'postactions'})) {
-    foreach (@{$self->{'postactions'}}) {
+    foreach (sort @{$self->{'postactions'}}) {
       print $fd "postaction $_\n";
     }
   }
