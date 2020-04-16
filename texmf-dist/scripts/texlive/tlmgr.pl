@@ -7358,6 +7358,9 @@ sub load_options_from_config {
         tlwarn("$prg: $fn: unknown value for no-checksums: $val\n");
       }
 
+    } elsif ($key eq "tkfontscale") {
+      $config{'tkfontscale'} = $val;
+
     } elsif ($sysmode) {
       # keys here are only allowed in sys mode
       if ($key eq "allowed-actions") {
@@ -9270,6 +9273,9 @@ command-line option.
 
 =item C<require-verification>, value 0 or 1 (default 0), same as
 command-line option.
+
+=item C<tkfontscale>, value any float.
+Controls the scaling of fonts in the Tk based frontends.
 
 =item C<update-exclude>, value: comma-separated list of packages
 (no space allowed). Same as the command line option C<--exclude>
