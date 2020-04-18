@@ -282,11 +282,10 @@ by C<i386>.
 
 For the OS value we need a list because what's returned is not likely to
 match our historical names, e.g., C<config.guess> returns C<linux-gnu>
-but we need C<linux>. This list contains old OSs which are not currently
+but we need C<linux>. This list contains old OSs which are no longer
 supported, just in case.
 
-If a particular platform is not found in this list we use the regexp
-C</.*-(.*$)/> as a last resort and hope it provides something useful.
+If the environment variable TEXLIVE_OS_NAME is set, it is used as-is.
 
 =cut
 
@@ -295,6 +294,8 @@ sub platform_name {
   my $guessed_platform = $orig_platform;
 
   # try to parse out some bsd variants that use amd64.
+  # We throw away everything after the "bsd" to elide version numbers,
+  # as in amd64-unknown-midnightbsd1.2.
   $guessed_platform =~ s/^x86_64-(.*-k?)(free|net)bsd/amd64-$1$2bsd/;
   my $CPU; # CPU type as reported by config.guess.
   my $OS;  # O/S type as reported by config.guess.
@@ -311,16 +312,20 @@ sub platform_name {
     $CPU = $guessed_platform =~ /hf$/ ? "armhf" : "armel";
   }
 
-  my @OSs = qw(aix cygwin darwin dragonfly freebsd hpux irix
-               kfreebsd linux netbsd openbsd solaris);
-  for my $os (@OSs) {
-    # Match word boundary at the beginning of the os name so that
-    #   freebsd and kfreebsd are distinguished.
-    # Do not match word boundary at the end of the os so that
-    #   solaris2 is matched.
-    $OS = $os if $guessed_platform =~ /\b$os/;
-  }
-  
+  if ($ENV{"TEXLIVE_OS_NAME"}) {
+    $OS = $ENV{"TEXLIVE_OS_NAME"};
+  } else {
+    my @OSs = qw(aix cygwin darwin dragonfly freebsd hpux irix
+                 kfreebsd linux midnightbsd netbsd openbsd solaris);
+    for my $os (@OSs) {
+      # Match word boundary at the beginning of the os name so that
+      #   freebsd and kfreebsd are distinguished.
+      # Do not match word boundary at the end of the os so that
+      #   solaris2 is matched.
+      $OS = $os if $guessed_platform =~ /\b$os/;
+    }
+  }  
+
   if (! $OS) {
     warn "$0: could not guess OS from config.guess string: $orig_platform";
     $OS = "unknownOS";
@@ -398,6 +403,7 @@ sub platform_desc {
     'alpha-linux'      => 'GNU/Linux on DEC Alpha',
     'amd64-freebsd'    => 'FreeBSD on x86_64',
     'amd64-kfreebsd'   => 'GNU/kFreeBSD on x86_64',
+    'amd64-midnightbsd'=> 'MidnightBSD on x86_64',
     'amd64-netbsd'     => 'NetBSD on x86_64',
     'armel-linux'      => 'GNU/Linux on ARM',
     'armhf-linux'      => 'GNU/Linux on ARMv6/RPi',
