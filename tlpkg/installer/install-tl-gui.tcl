@@ -45,7 +45,12 @@ set ::instroot [file normalize [info script]]
 set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
 
 # declarations, initializations and procs shared with tlshell.tcl
+set ::invoker [file tail [info script]]
+if [string match -nocase ".tcl" [string range $::invoker end-3 end]] {
+  set ::invoker [string range $::invoker 0 end-4]
+}
 source [file join $::instroot "tlpkg" "tltcl" "tltcl.tcl"]
+unset ::invoker
 
 ### initialize some globals ###
 
@@ -408,7 +413,7 @@ proc make_splash {} {
 
   # some text
   ppack [ttk::label .text -text [__ "TeX Live Installer"] \
-             -font bigfont] -in .bg
+             -font hfont] -in .bg
   if {! $::select_repo} {
     ppack [ttk::label .loading -text [__ "Trying to load %s.
 
@@ -934,13 +939,6 @@ proc select_binaries {} {
   ppack .tlbin.cancel -in .tlbin.buts -side right
   bind .tlbin <Escape> {.tlbin.cancel invoke}
 
-  #set max_width 0
-  #foreach b [array names ::bin_descs] {
-  #  set bl [font measure TkTextFont [__ $::bin_descs($b)]]
-  #  if {$bl > $max_width} {set max_width $bl}
-  #}
-  #incr max_width 10
-
   # treeview for binaries, with checkbox column and vertical scrollbar
   pack [ttk::frame .tlbin.binsf] -in .tlbin.bg -expand 1 -fill both
 
@@ -1005,12 +1003,6 @@ proc select_scheme {} {
   bind .tlschm <Escape> {.tlschm.cancel invoke}
 
   # schemes list
-  #set max_width 0
-  #foreach s $::schemes_order {
-  #  set sl [font measure TkTextFont [__ $::scheme_descs($s)]]
-  #  if {$sl > $max_width} {set max_width $sl}
-  #}
-  #incr max_width 10
   ttk::treeview .tlschm.lst -columns {desc} -show {} -selectmode browse \
       -height [llength $::schemes_order]
   .tlschm.lst column "desc" -stretch 1; # -minwidth $max_width
@@ -1315,6 +1307,23 @@ if {$::tcl_platform(platform) ne "windows"} {
 
 #############################################################
 
+proc set_language {l} {
+  set ::lang $l
+  load_translations
+  run_menu
+}
+
+proc set_fontscale {s} {
+  set ::tkfontscale $s
+  redo_fonts
+  run_menu
+}
+
+# menus: disable tearoff feature
+option add *Menu.tearOff 0
+
+#############################################################
+
 # the main menu interface will at certain events send the current values of
 # the ::vars array to install-tl[-tcl], which will send back an updated version
 # of this array.
@@ -1323,6 +1332,17 @@ if {$::tcl_platform(platform) ne "windows"} {
 # idea: follow submenu organization of text installer
 # for 3-way options, create an extra level of children
 # instead of wizard install, supppress some options
+
+## default_bg color, only used for menus under ::plain_unix
+if [catch {ttk::style lookup TFrame -background} ::default_bg] {
+  set ::default_bg white
+}
+
+proc abort_menu {} {
+  set ::out_log {}
+  set ::menu_ans "no_inst"
+  # i.e. anything but advanced, alltrees or startinst
+}
 
 proc run_menu {} {
   if [info exists ::env(dbgui)] {
@@ -1334,7 +1354,56 @@ proc run_menu {} {
     catch {destroy $c}
   }
 
-  # wallpaper
+  if $::plain_unix {
+    # plain_unix: avoid a possible RenderBadPicture error on quitting
+    # when there is a menu.
+    # 'send' bypasses the bug by changing the shutdown sequence.
+    # 'tk appname <something>' restores 'send'.
+    bind . <Destroy> {
+      catch {tk appname appname}
+    }
+  }
+
+  # menu, for language selection and font scaling
+  menu .mn
+  . configure -menu .mn
+  if $::plain_unix {
+    .mn configure -borderwidth 1
+    .mn configure -background $::default_bg
+  }
+  menu .mn.file
+  .mn add cascade -label [__ "File"] -menu .mn.file
+  .mn.file add command -command abort_menu -label [__ "Abort"]
+
+  menu .mn.gui
+  .mn add cascade -label [__ "GUI"] -menu .mn.gui
+
+
+  if {[llength $::langs] > 1} {
+    menu .mn.gui.lang
+    .mn.gui add cascade -label [__ "Language"] -menu .mn.gui.lang
+    foreach l [lsort $::langs] {
+      if {$l eq $::lang} {
+        set mlabel "$l *"
+      } else {
+        set mlabel $l
+      }
+      .mn.gui.lang add command -label $mlabel -command "set_language $l"
+    }
+  }
+
+  menu .mn.gui.fscale
+  .mn.gui add cascade -label [__ "Font scaling"] -menu .mn.gui.fscale
+  foreach s {0.5 0.7 1 1.25 1.5 2 3 4 6 8} {
+    if {$s eq $::tkfontscale} {
+      set mlabel "$s *"
+    } else {
+      set mlabel $s
+    }
+    .mn.gui.fscale add command -label $mlabel -command "set_fontscale $s"
+  }
+
+  # wallpaper, for a uniform background
   pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
   # title
