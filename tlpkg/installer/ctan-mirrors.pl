@@ -79,7 +79,6 @@ $mirrors = {
       'http://ctan.mines-albi.fr/' => 1,
       'http://ctan.tetaneutral.net/' => 1,
       'http://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
-      'http://mirror.ibcp.fr/pub/CTAN/' => 1,
       'http://mirrors.ircam.fr/pub/CTAN/' => 1,
       'http://mirrors.standaloneinstaller.com/ctan/' => 1,
       'https://mirrors.chevalier.io/CTAN/' => 1,
@@ -116,6 +115,9 @@ $mirrors = {
       'http://ctan.cs.uu.nl/' => 1,
       'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'http://mirror.koddos.net/CTAN/' => 1,
+    },
+    'Norway' => {
+      'http://ctan.uib.no/' => 1,
     },
     'Poland' => {
       'ftp://ftp.gust.org.pl/TeX/' => 1,
@@ -154,8 +156,6 @@ $mirrors = {
       'http://ctan.math.ca/tex-archive/' => 1,
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.globo.tech/' => 1,
-      'http://ctan.mirror.rafal.ca/' => 1,
-      'http://mirror.its.dal.ca/ctan/' => 1,
       'http://muug.ca/mirror/ctan/' => 1,
     },
     'USA' => {
@@ -167,6 +167,7 @@ $mirrors = {
       'http://mirror.utexas.edu/ctan/' => 1,
       'http://mirrors.concertpass.com/tex-archive/' => 1,
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
+      'http://mirrors.rit.edu/CTAN/' => 1,
     },
   },
   'Oceania' => {
