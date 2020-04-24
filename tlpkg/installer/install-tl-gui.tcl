@@ -1319,6 +1319,11 @@ proc set_fontscale {s} {
   run_menu
 }
 
+proc zoom {n} {
+  if {$n <= 0} {set n 1}
+  set_fontscale [expr {$n*$::tkfontscale}]
+}
+
 # menus: disable tearoff feature
 option add *Menu.tearOff 0
 
@@ -1394,13 +1399,22 @@ proc run_menu {} {
 
   menu .mn.gui.fscale
   .mn.gui add cascade -label [__ "Font scaling"] -menu .mn.gui.fscale
-  foreach s {0.5 0.7 1 1.25 1.5 2 3 4 6 8} {
-    if {$s eq $::tkfontscale} {
-      set mlabel "$s *"
-    } else {
-      set mlabel $s
-    }
-    .mn.gui.fscale add command -label $mlabel -command "set_fontscale $s"
+  foreach s {0.6 0.8 1 1.2 1.6 2 2.5 3 3.8 5 6 7.5 9} {
+    .mn.gui.fscale add command -label $s -command "set_fontscale $s"
+  }
+
+  # browser-style keyboard shortcuts for scaling
+  bind . <Control-KeyRelease-minus> {zoom 0.8}
+  bind . <Control-KeyRelease-equal> {zoom 1.25}
+  bind . <Control-Shift-KeyRelease-equal> {zoom 1.25}
+  bind . <Control-KeyRelease-plus> {zoom 1.25}
+  bind . <Control-KeyRelease-0> {set_fontscale 1}
+  if {$::tcl_platform(os) eq "Darwin"} {
+    bind . <Command-KeyRelease-minus> {zoom 0.8}
+    bind . <Command-KeyRelease-equal> {zoom 1.25}
+    bind . <Command-Shift-KeyRelease-equal> {zoom 1.25}
+    bind . <Command-KeyRelease-plus> {zoom 1.25}
+    bind . <Command-KeyRelease-0> {set_fontscale 1}
   }
 
   # wallpaper, for a uniform background
@@ -2128,6 +2142,20 @@ If this takes too long, press Abort or choose another repository." \
     }
   }
   if {$answer eq "startinst"} {
+  # disable browser-style keyboard shortcuts for scaling
+    bind . <Control-KeyRelease-minus> {}
+    bind . <Control-KeyRelease-equal> {}
+    bind . <Control-Shift-KeyRelease-equal> {}
+    bind . <Control-KeyRelease-plus> {}
+    bind . <Control-KeyRelease-0> {}
+    if {$::tcl_platform(os) eq "Darwin"} {
+      bind . <Command-KeyRelease-minus> {}
+      bind . <Command-KeyRelease-equal> {}
+      bind . <Command-Shift-KeyRelease-equal> {}
+      bind . <Command-KeyRelease-plus> {}
+      bind . <Command-KeyRelease-0> {}
+    }
+
     run_installer
     # invokes show_log which first destroys previous children
   } else {
