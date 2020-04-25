@@ -61,7 +61,7 @@ sub reinit
   $self->{'ua'} = $ua;
   $self->{'enabled'} = 1;
   $self->{'errorcount'} = 0;
-  $self->{'initcout'} += 1;
+  $self->{'initcount'} += 1;
 }
 sub enabled
 {
