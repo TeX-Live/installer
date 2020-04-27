@@ -393,7 +393,6 @@ proc select_mirror {} {
   ppack [ttk::button .splfb.slmir_a -text [__ "Abort"] -command maybe_abort] \
       -side right
 
-  wm attributes . -topmost
   update
   wm state . normal
   raise .
@@ -421,7 +420,6 @@ If this takes too long, press Abort or choose another repository." \
                                           $::prelocation]] -in .bg
   }
 
-  wm attributes . -topmost
   update
   wm state . normal
   raise .
@@ -466,7 +464,6 @@ proc show_log {{do_abort 0}} {
 
   wm resizable . 1 1
   wm overrideredirect . 0
-  wm attributes . -topmost
   update
   wm state . normal
   raise .
@@ -1399,6 +1396,8 @@ proc run_menu {} {
 
   menu .mn.gui.fscale
   .mn.gui add cascade -label [__ "Font scaling"] -menu .mn.gui.fscale
+  .mn.gui.fscale add command -label \
+    "Current: [format {%.2f} $::tkfontscale]"
   foreach s {0.6 0.8 1 1.2 1.6 2 2.5 3 3.8 5 6 7.5 9} {
     .mn.gui.fscale add command -label $s -command "set_fontscale $s"
   }
@@ -1789,7 +1788,6 @@ proc run_menu {} {
   if $::advanced {port_dis_or_activate 0}
   show_stats
   wm overrideredirect . 0
-  wm attributes . -topmost
   wm resizable . 0 0
   update
   wm state . normal
@@ -2062,7 +2060,7 @@ proc main_prog {} {
   set ::perlpid [pid $::inst]
 
   # for windows < 10: make sure the main window is still on top
-  wm attributes . -topmost
+  raise .
 
   chan configure $::inst -buffering line -blocking 1
 
