@@ -1792,6 +1792,7 @@ proc run_menu {} {
   update
   wm state . normal
   raise .
+  if {$::tcl_platform(platform) eq "windows"} {wm deiconify .}
   if {[is_nonempty $::vars(TEXDIR)] && ! $::td_warned} {
     td_warn $::vars(TEXDIR)
   }
@@ -1971,6 +1972,7 @@ proc run_installer {} {
   # switch to non-blocking i/o
   chan configure $::inst -buffering line -blocking 0
   chan event $::inst readable read_line_cb
+  if {$::tcl_platform(platform) eq "windows"} {wm deiconify .}
 }; # run_installer
 
 proc whataboutclose {} {
