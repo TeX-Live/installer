@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tex Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-04-28 01:55+0200\n"
+"POT-Creation-Date: 2020-04-29 01:58+0200\n"
 "PO-Revision-Date: 2020-03-24 08:19+0100\n"
 "Last-Translator: Marco Pallante\n"
 "Language-Team: <>\n"
@@ -1504,12 +1504,12 @@ msgid "Abort"
 msgstr "Interrompi"
 
 #: tlpkg/installer/install-tl-gui.tcl:414
-#: tlpkg/installer/install-tl-gui.tcl:1992
+#: tlpkg/installer/install-tl-gui.tcl:1994
 msgid "TeX Live Installer"
 msgstr "Installazione di TeX Live"
 
 #: tlpkg/installer/install-tl-gui.tcl:417
-#: tlpkg/installer/install-tl-gui.tcl:2091
+#: tlpkg/installer/install-tl-gui.tcl:2093
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1726,22 +1726,22 @@ msgstr "Crea i collegamenti simbolici nelle cartelle di sistema"
 msgid "Specify directories"
 msgstr "Specifica le cartelle"
 
-#: tlpkg/installer/install-tl-gui.tcl:1832
+#: tlpkg/installer/install-tl-gui.tcl:1833
 msgid "Custom scheme"
 msgstr "Schema personalizzato"
 
-#: tlpkg/installer/install-tl-gui.tcl:2017
+#: tlpkg/installer/install-tl-gui.tcl:2019
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:2018
-#: tlpkg/installer/install-tl-gui.tcl:2024
+#: tlpkg/installer/install-tl-gui.tcl:2020
+#: tlpkg/installer/install-tl-gui.tcl:2026
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2090
 msgid "Error"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:2023
+#: tlpkg/installer/install-tl-gui.tcl:2025
 #, tcl-format
 msgid "%s requires an argument"
 msgstr ""
@@ -2170,7 +2170,7 @@ msgstr ""
 msgid "Single-user"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2499
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2500
 #, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-04-28 01:55+0200\n"
+"POT-Creation-Date: 2020-04-29 01:58+0200\n"
 "PO-Revision-Date: 2020-01-20 10:03-0300\n"
 "Last-Translator: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
 "Language-Team: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
@@ -1507,12 +1507,12 @@ msgid "Abort"
 msgstr "Abortar"
 
 #: tlpkg/installer/install-tl-gui.tcl:414
-#: tlpkg/installer/install-tl-gui.tcl:1992
+#: tlpkg/installer/install-tl-gui.tcl:1994
 msgid "TeX Live Installer"
 msgstr "Instalador TeX Live"
 
 #: tlpkg/installer/install-tl-gui.tcl:417
-#: tlpkg/installer/install-tl-gui.tcl:2091
+#: tlpkg/installer/install-tl-gui.tcl:2093
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1734,22 +1734,22 @@ msgstr "Criar links simbólicos nos diretórios convencionais"
 msgid "Specify directories"
 msgstr "Especificar diretórios"
 
-#: tlpkg/installer/install-tl-gui.tcl:1832
+#: tlpkg/installer/install-tl-gui.tcl:1833
 msgid "Custom scheme"
 msgstr "Esquema personalizado"
 
-#: tlpkg/installer/install-tl-gui.tcl:2017
+#: tlpkg/installer/install-tl-gui.tcl:2019
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr "%s não é um repositório local ou remoto"
 
-#: tlpkg/installer/install-tl-gui.tcl:2018
-#: tlpkg/installer/install-tl-gui.tcl:2024
+#: tlpkg/installer/install-tl-gui.tcl:2020
+#: tlpkg/installer/install-tl-gui.tcl:2026
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2090
 msgid "Error"
 msgstr "Erro"
 
-#: tlpkg/installer/install-tl-gui.tcl:2023
+#: tlpkg/installer/install-tl-gui.tcl:2025
 #, tcl-format
 msgid "%s requires an argument"
 msgstr "%s requer um argumento"
@@ -2182,7 +2182,7 @@ msgstr "Multiusuário"
 msgid "Single-user"
 msgstr "Usuário único"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2499
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2500
 #, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"

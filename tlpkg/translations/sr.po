@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-04-28 01:55+0200\n"
+"POT-Creation-Date: 2020-04-29 01:58+0200\n"
 "PO-Revision-Date: 2019-10-23 02:13+0300\n"
 "Last-Translator: Nikola Lečić <nikola.lecic@anthesphoria.net>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1509,12 +1509,12 @@ msgid "Abort"
 msgstr "Прекинути"
 
 #: tlpkg/installer/install-tl-gui.tcl:414
-#: tlpkg/installer/install-tl-gui.tcl:1992
+#: tlpkg/installer/install-tl-gui.tcl:1994
 msgid "TeX Live Installer"
 msgstr "TeX Live инсталер"
 
 #: tlpkg/installer/install-tl-gui.tcl:417
-#: tlpkg/installer/install-tl-gui.tcl:2091
+#: tlpkg/installer/install-tl-gui.tcl:2093
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1735,22 +1735,22 @@ msgstr "Направи симболичке линкове у стандардн
 msgid "Specify directories"
 msgstr "Подешавање директоријума"
 
-#: tlpkg/installer/install-tl-gui.tcl:1832
+#: tlpkg/installer/install-tl-gui.tcl:1833
 msgid "Custom scheme"
 msgstr "Сопствена шема"
 
-#: tlpkg/installer/install-tl-gui.tcl:2017
+#: tlpkg/installer/install-tl-gui.tcl:2019
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr "%s није ни локални и удаљени репозиторијум"
 
-#: tlpkg/installer/install-tl-gui.tcl:2018
-#: tlpkg/installer/install-tl-gui.tcl:2024
+#: tlpkg/installer/install-tl-gui.tcl:2020
+#: tlpkg/installer/install-tl-gui.tcl:2026
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2090
 msgid "Error"
 msgstr "Грешка"
 
-#: tlpkg/installer/install-tl-gui.tcl:2023
+#: tlpkg/installer/install-tl-gui.tcl:2025
 #, tcl-format
 msgid "%s requires an argument"
 msgstr "Уз %s је потребан аргумент"
@@ -2183,7 +2183,7 @@ msgstr "Више корисника"
 msgid "Single-user"
 msgstr "Један корисник"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2499
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2500
 #, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"
