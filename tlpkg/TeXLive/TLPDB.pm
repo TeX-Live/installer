@@ -1975,7 +1975,7 @@ sub _install_data {
     debug("tlpdb:_install_data: what=$what, target=$target, size=$ww, checksum=$ss, tmpdir=$tempdir\n");
     my ($ret, $pkg) = TeXLive::TLUtils::unpack($what, $target, 'size' => $whatsize, 'checksum' => $whatcheck, 'tmpdir' => $tempdir);
     if (!$ret) {
-      tlwarn("TLPDB::_install_package: $pkg\n");
+      tlwarn("TLPDB::_install_data: $pkg for $what\n"); # $pkg is error msg
       return(0);
     }
     # remove the $pkg.tlpobj, we recreate it anyway again
@@ -1983,7 +1983,7 @@ sub _install_data {
       if (-r "$target/tlpkg/tlpobj/$pkg.tlpobj");
     return(1);
   } else {
-    tlwarn("TLPDB::_install_package: don't know how to install $what\n");
+    tlwarn("TLPDB::_install_data: don't know how to install $what\n");
     return(0);
   }
 }

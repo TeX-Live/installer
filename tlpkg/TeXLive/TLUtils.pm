@@ -2201,9 +2201,11 @@ for newly-downloaded files; see the calls in the C<unpack> routine
 
 sub check_file_and_remove {
   my ($xzfile, $checksum, $checksize) = @_;
-  debug("check_file $xzfile, $checksum, $checksize\n");
+  my $fn_name = (caller(0))[3];
+  debug("$fn_name $xzfile, $checksum, $checksize\n");
+
   if (!$checksum && !$checksize) {
-    tlwarn("TLUtils::check_file: neither checksum nor checksize " .
+    tlwarn("$fn_name: neither checksum nor checksize " .
            "available for $xzfile, cannot check integrity"); 
     return;
   }
@@ -2218,19 +2220,20 @@ sub check_file_and_remove {
   if ($checksum && ($checksum ne "-1") && $::checksum_method) {
     my $tlchecksum = TeXLive::TLCrypto::tlchecksum($xzfile);
     if ($tlchecksum ne $checksum) {
-      tlwarn("TLUtils::check_file: checksums differ for $xzfile:\n");
-      tlwarn("TLUtils::check_file:   tlchecksum=$tlchecksum, arg=$checksum\n");
+      tlwarn("$fn_name: checksums differ for $xzfile:\n");
+      tlwarn("$fn_name:   tlchecksum=$tlchecksum, arg=$checksum\n");
+      tlwarn("$fn_name: backtrace:\n" . backtrace());
       # on Windows passing a pattern creates the tmpdir in PWD
       # which means that it will be tried to be created on the DVD
       # $check_file_tmpdir = File::Temp::tempdir("tlcheckfileXXXXXXXX");
       $check_file_tmpdir = File::Temp::tempdir();
-      tlwarn("TLUtils::check_file:   removing $xzfile, "
+      tlwarn("$fn_name:   removing $xzfile, "
              . "but saving copy in $check_file_tmpdir\n");
       copy($xzfile, $check_file_tmpdir);
       unlink($xzfile);
       return;
     } else {
-      debug("TLUtils::check_file: checksums for $xzfile agree\n");
+      debug("$fn_name: checksums for $xzfile agree\n");
       # if we have checked the checksum, we don't need to check the size, too
       return;
     }
@@ -2238,13 +2241,13 @@ sub check_file_and_remove {
   if ($checksize && ($checksize ne "-1")) {
     my $filesize = (stat $xzfile)[7];
     if ($filesize != $checksize) {
-      tlwarn("TLUtils::check_file: removing $xzfile, sizes differ:\n");
-      tlwarn("TLUtils::check_file:   tlfilesize=$filesize, arg=$checksize\n");
+      tlwarn("$fn_name: removing $xzfile, sizes differ:\n");
+      tlwarn("$fn_name:   tlfilesize=$filesize, arg=$checksize\n");
       if (!defined($check_file_tmpdir)) {
         # the tmpdir should always be undefined, since we shouldn't get
         # here if the checksums failed, but test anyway.
         $check_file_tmpdir = File::Temp::tempdir("tlcheckfileXXXXXXXX");
-        tlwarn("TLUtils::check_file:  saving copy in $check_file_tmpdir\n");
+        tlwarn("$fn_name:  saving copy in $check_file_tmpdir\n");
         copy($xzfile, $check_file_tmpdir);
       }
       unlink($xzfile);

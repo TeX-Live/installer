@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLDownload.pm - module for abstracting the download modes
-# Copyright 2009-2016 Norbert Preining
+# Copyright 2009-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 

@@ -2168,12 +2168,13 @@ sub do_install_packages {
       # only suggest rerunning with the profile if it exists.
       tlwarn("Or you can restart by running the installer with:\n");
       my $repostr = ($opt_location ? " --repository $location" : "");
+      my $args = "--profile $profile_name [YOUR-EXTRA-ARGS]";
       if (win32()) {
-        tlwarn("  install-tl-windows.bat$repostr --profile $profile_name [EXTRA-ARGS]\n"
-          ."or\n"
-          ."  install-tl-advanced.bat$repostr --profile $profile_name [EXTRA-ARGS]\n");
+        tlwarn("  install-tl-windows.bat$repostr $args\n"
+              ."or\n"
+              ."  install-tl-advanced.bat$repostr $args\n");
       } else {
-        tlwarn("  install-tl$repostr --profile $profile_name [EXTRA-ARGS]\n");
+        tlwarn("  install-tl$repostr $args\n");
       }
     }
     flushlog();
