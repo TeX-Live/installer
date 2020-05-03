@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2010\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-04-29 01:58+0200\n"
+"POT-Creation-Date: 2020-05-03 19:24+0200\n"
 "PO-Revision-Date: 2019-03-23 09:02+0200\n"
 "Last-Translator: Andriy Bandura <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <andriykopanytsia@gmail.com>\n"
@@ -1448,12 +1448,12 @@ msgid ""
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:184
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2646
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2647
 msgid "Welcome to TeX Live!"
 msgstr "Ласкаво просимо до TeX Live!"
 
 #: tlpkg/installer/install-tl-gui.tcl:187
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2649
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2650
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1469,7 +1469,7 @@ msgstr ""
 "вас. Список груп доступний на веб-сторінці https://tug.org/usergroups.html."
 
 #: tlpkg/installer/install-tl-gui.tcl:191
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2659
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2660
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
