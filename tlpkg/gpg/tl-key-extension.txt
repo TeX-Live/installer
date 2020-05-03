@@ -4,12 +4,11 @@ $Id$
 How to update TeX Live distribution signing key
 ===============================================
 
-this should be done every year during the pretest.
+This must be done every year! It's not optional.
 
 shut down networking service
 
 cp gpg directory from USB stick to computer
-
 
 export GNUPGHOME=...<COPY OF USBSTICK gpg directory>
 export KEYID=0xC78B82D8C79512F79CC0D7C80D5E5D9106BAB6BC
@@ -44,3 +43,7 @@ svn/git commit
 # texlive.asc, see above how to export it)
 gpg --homedir ~texlive/.gnupg --import texlive.asc
 
+
+More info: 
+. we use tlpkg/bin/tl-sign-file to sign texlive.tlpdb.
+. gpg --verify --verbose foo.asc for info on signature of file.
