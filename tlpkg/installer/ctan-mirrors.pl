@@ -38,6 +38,7 @@ $mirrors = {
     },
     'Japan' => {
       'ftp://ftp.kddilabs.jp/CTAN/' => 1,
+      'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
     },
@@ -96,6 +97,7 @@ $mirrors = {
       'http://ctan.space-pro.be/tex-archive/' => 1,
       'http://ftp.fau.de/ctan/' => 1,
       'http://ftp.gwdg.de/pub/ctan/' => 1,
+      'http://mirror.informatik.hs-fulda.de/tex-archive/' => 1,
       'http://mirror.physik-pool.tu-berlin.de/pub/CTAN/' => 1,
       'http://packages.oth-regensburg.de/ctan/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
