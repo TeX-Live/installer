@@ -199,8 +199,9 @@ sub _initialize_lines {
       next if ($1 eq "D"); # ignore files which are removed
       next if -d $entry && ! -l $entry; # keep symlinks to dirs (bin/*/man),
                                         # ignore normal dirs.
-      # collect architectures, assuming nothing is in bin/ but arch subdirs.
-      if ($entry =~ m,^bin/([^/]*)/,) {
+      # collect architectures; bin/ has arch subdirs plus the plain man
+      # special case.
+      if ($entry =~ m,^bin/([^/]*)/, && $entry ne "bin/man") {
         $archs{$1} = 1;
       }
       $self->{'_allfiles'}{$entry}{'lastchangedrev'} = $lastchanged;
