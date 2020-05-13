@@ -319,7 +319,7 @@ if ((defined $ARGV[0]) && $ARGV[0] eq "-from_ext_gui") {
 # continue with the installation
 # note, we are in the directory from which the aborted installation was run.
 my %profiledata;
-if (-r "installation.profile") {
+if (-r "installation.profile" && !exists $ENV{"TEXLIVE_INSTALL_NO_RESUME"}) {
   if ($from_ext_gui) { # prepare for dialog interaction
     print "mess_yesno\n";
   }
@@ -386,7 +386,7 @@ if ($opt_help) {
     @noperldoc = ("-noperldoc", "1");
   }
 
-  # Tweak less stuff same as tlmgr, though.
+  # Tweak less invocation same as tlmgr, though.
   # less can break control characters and thus the output of pod2usage
   # is broken.  We add/set LESS=-R in the environment and unset
   # LESSPIPE and LESSOPEN to try to help.
@@ -3154,7 +3154,7 @@ variables.
 
 Omit creating the ConTeXt cache.  This is useful for redistributors.
 
-=item C<TEXLIVE_INSTALL_NO_IMPORT>
+=item C<TEXLIVE_INSTALL_NO_RESUME>
 
 Omit check for installing on top of a previous installation and then
 asking about importing previous settings.

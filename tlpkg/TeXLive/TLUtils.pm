@@ -551,7 +551,7 @@ and thus honors various env variables like  C<TMPDIR>, C<TMP>, and C<TEMP>.
 
 sub initialize_global_tmpdir {
   $::tl_tmpdir = File::Temp::tempdir(CLEANUP => 1);
-  ddebug("initialize_global_tmpdir: creating global tempdir $::tl_tmpdir\n");
+  ddebug("TLUtils::initialize_global_tmpdir: creating global tempdir $::tl_tmpdir\n");
   return ($::tl_tmpdir);
 }
 
@@ -565,7 +565,7 @@ is terminated.
 sub tl_tmpdir {
   initialize_global_tmpdir() if (!defined($::tl_tmpdir));
   my $tmp = File::Temp::tempdir(DIR => $::tl_tmpdir, CLEANUP => 1);
-  ddebug("tl_tmpdir: creating tempdir $tmp\n");
+  ddebug("TLUtils::tl_tmpdir: creating tempdir $tmp\n");
   return ($tmp);
 }
 
@@ -580,7 +580,7 @@ Arguments are passed on to C<File::Temp::tempfile>.
 sub tl_tmpfile {
   initialize_global_tmpdir() if (!defined($::tl_tmpdir));
   my ($fh, $fn) = File::Temp::tempfile(@_, DIR => $::tl_tmpdir, UNLINK => 1);
-  ddebug("tl_tempfile: creating tempfile $fn\n");
+  ddebug("TLUtils::tl_tempfile: creating tempfile $fn\n");
   return ($fh, $fn);
 }
 
@@ -1510,6 +1510,10 @@ sub install_packages {
   my $totalsize = 0;
   my $donesize = 0;
   my %tlpsizes;
+  debug("TLUtils::install_packages: fromtlpdb.root=$root, media=$media,"
+        . " totlpdb.root=" . $totlpdb->root
+        . " what=$what ($totalnr), opt_src=$opt_src, opt_doc=$opt_doc\n");
+
   foreach my $p (@packs) {
     $tlpobjs{$p} = $fromtlpdb->get_package($p);
     if (!defined($tlpobjs{$p})) {
@@ -1549,10 +1553,17 @@ sub install_packages {
       &$h($n,$totalnr);
     }
     # push $package to @packs_again if download failed
+    # (and not installing from disk).
     if (!$fromtlpdb->install_package($package, $totlpdb)) {
-      tlwarn("TLUtils::install_packages: Failed to install $package\n"
-             ."Will be retried later.\n");
-      push @packs_again, $package;
+      tlwarn("TLUtils::install_packages: Failed to install $package\n");
+      if ($media eq "NET") {
+        tlwarn("                           $package will be retried later.\n");
+        push @packs_again, $package;
+      } else {
+        # return false as soon as one package failed, since we won't
+        # be trying again.
+        return 0;
+      }
     } else {
       $donesize += $tlpsizes{$package};
     }
@@ -1988,7 +1999,7 @@ sub add_link_dir_dir {
     return 0;
   }
   if (-w $to) {
-    debug ("linking files from $from to $to\n");
+    debug ("TLUtils::add_link_dir_dir: linking from $from to $to\n");
     chomp (@files = `ls "$from"`);
     my $ret = 1;
     for my $f (@files) {

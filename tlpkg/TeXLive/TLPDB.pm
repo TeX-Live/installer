@@ -1972,7 +1972,7 @@ sub _install_data {
     }
     my $ww = ($whatsize || "<unset>");
     my $ss = ($whatcheck || "<unset>");
-    debug("tlpdb:_install_data: what=$what, target=$target, size=$ww, checksum=$ss, tmpdir=$tempdir\n");
+    debug("TLPDB::_install_data: what=$what, target=$target, size=$ww, checksum=$ss, tmpdir=$tempdir\n");
     my ($ret, $pkg) = TeXLive::TLUtils::unpack($what, $target, 'size' => $whatsize, 'checksum' => $whatcheck, 'tmpdir' => $tempdir);
     if (!$ret) {
       tlwarn("TLPDB::_install_data: $pkg for $what\n"); # $pkg is error msg
