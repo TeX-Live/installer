@@ -12,3 +12,4 @@ build_script:
 
 test_script:
   - tlmgr --version
+  - tlmgr install luatex
