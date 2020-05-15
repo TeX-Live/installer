@@ -43,7 +43,17 @@ svn/git commit
 # texlive.asc, see above how to export it)
 gpg --homedir ~texlive/.gnupg --import texlive.asc
 
+# can view that .asc with:
+gpg --show-keyring texlive.asc
+
+# update web-accessible public key, keeping old files but updating symlink:
+cp texlive.asc ~www/texlive/files/texlive`date +%Y`.asc
+ln -s texlive`date +%Y`.asc ~www/texlive/files/texlive.asc
 
 More info: 
-. we use tlpkg/bin/tl-sign-file to sign texlive.tlpdb.
-. gpg --verify --verbose foo.asc for info on signature of file.
+. we use tlpkg/bin/tl-sign-file to sign texlive.tlpdb.sha512.
+. gpg --verify --verbose foo.asc for info on signature file.
+. but exit status is zero even with expired keys; to check,
+  use --status-file and inspect:
+gpg --verify --verbose --status-file=/tmp/st foo.asc
+. see tl-sign-file or TLCrypto.pm for full implementation.
