@@ -45,6 +45,7 @@ $mirrors = {
     'Korea' => {
       'http://ftp.harukasan.org/CTAN/' => 1,
       'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
+      'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.navercorp.com/CTAN/' => 1,
       'http://mirror.yongbok.net/ctan/' => 1,
     },
