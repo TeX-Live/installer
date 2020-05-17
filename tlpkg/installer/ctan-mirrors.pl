@@ -1,5 +1,8 @@
 $mirrors = {
   'Africa' => {
+    'Algeria' => {
+      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1,
+    },
     'Morocco' => {
       'https://mirror.marwan.ma/ctan/' => 1,
     },
@@ -13,7 +16,6 @@ $mirrors = {
     'China' => {
       'http://mirror.lzu.edu.cn/CTAN/' => 1,
       'http://mirrors.cqu.edu.cn/CTAN/' => 1,
-      'http://mirrors.hit.edu.cn/CTAN/' => 1,
       'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'http://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'http://mirrors.ustc.edu.cn/CTAN/' => 1,
@@ -105,6 +107,9 @@ $mirrors = {
     'Hungary' => {
       'https://mirror.szerverem.hu/ctan/' => 1,
     },
+    'Italy' => {
+      'http://ctan.mirror.garr.it/mirrors/CTAN/' => 1,
+    },
     'Netherlands' => {
       'http://ctan.cs.uu.nl/' => 1,
       'http://ftp.snt.utwente.nl/pub/software/tex/' => 1,
@@ -116,6 +121,7 @@ $mirrors = {
     'Poland' => {
       'ftp://ftp.gust.org.pl/TeX/' => 1,
       'ftp://sunsite.icm.edu.pl/pub/CTAN/' => 1,
+      'http://piotrkosoft.net/pub/mirrors/CTAN/' => 1,
     },
     'Portugal' => {
       'http://mirrors.up.pt/pub/CTAN/' => 1,
