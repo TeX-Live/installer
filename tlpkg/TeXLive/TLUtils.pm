@@ -2035,13 +2035,13 @@ sub add_link_dir_dir {
 sub remove_link_dir_dir {
   my ($from, $to) = @_;
   if ((-d "$to") && (-w "$to")) {
-    debug("removing links from $from to $to\n");
+    debug("TLUtils::remove_link_dir_dir: removing links from $from to $to\n");
     chomp (@files = `ls "$from"`);
     my $ret = 1;
     foreach my $f (@files) {
       next if (! -r "$to/$f");
       if ($f eq "man") {
-        debug("not considering man in $to, it should not be from us!\n");
+        debug("TLUtils::remove_link_dir_dir: not considering man in $to, it should not be from us!\n");
         next;
       }
       if ((-l "$to/$f") &&
@@ -2049,7 +2049,7 @@ sub remove_link_dir_dir {
         $ret = 0 unless unlink("$to/$f");
       } else {
         $ret = 0;
-        tlwarn ("not removing $to/$f, not a link or wrong destination!\n");
+        tlwarn ("TLUtils::remove_link_dir_dir: not removing $to/$f, not a link or wrong destination!\n");
       }
     }
     # try to remove the destination directory, it might be empty and
@@ -2057,7 +2057,7 @@ sub remove_link_dir_dir {
     # `rmdir "$to" 2>/dev/null`;
     return $ret;
   } else {
-    tlwarn ("destination $to not writable, no removal of links done!\n");
+    tlwarn ("TLUtils::remove_link_dir_dir: destination $to not writable, no removal of links done!\n");
     return 0;
   }
 }
@@ -2087,7 +2087,7 @@ sub add_remove_symlinks {
 
   # man
   my $top_man_dir = "$Master/texmf-dist/doc/man";
-  debug("$mode symlinks for man pages to $sys_man from $top_man_dir\n");
+  debug("TLUtils::add_remove_symlinks: $mode symlinks for man pages to $sys_man from $top_man_dir\n");
   if (! -d $top_man_dir) {
     ; # better to be silent?
     #info("skipping add of man symlinks, no source directory $top_man_dir\n");
@@ -2117,7 +2117,7 @@ sub add_remove_symlinks {
         }
         #`rmdir "$sys_man" 2>/dev/null` if ($mode eq "remove");
       } else {
-        tlwarn("man symlink destination ($sys_man) not writable, "
+        tlwarn("TLUtils::add_remove_symlinks: man symlink destination ($sys_man) not writable, "
           . "cannot $mode symlinks.\n");
         $errors++;
       }
@@ -2126,7 +2126,7 @@ sub add_remove_symlinks {
   
   # we collected errors in $errors, so return the negation of it
   if ($errors) {
-    info("$mode of symlinks had $errors error(s), see messages above.\n");
+    info("TLUtils::add_remove_symlinks: $mode of symlinks had $errors error(s), see messages above.\n");
     return $F_ERROR;
   } else {
     return $F_OK;

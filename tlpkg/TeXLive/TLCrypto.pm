@@ -260,7 +260,7 @@ sub verify_checksum_and_check_return {
     if ($is_main) {
       tldie("$0: main database at $path is not signed: $m\n");
     }
-    debug("$0: remote database checksum is not signed, continuing anyway: $m\n");
+    debug("$0: remote database checksum is not signed, continuing anyway\n");
     return(0, $r);
   } elsif ($r == $VS_EXPKEYSIG) {
     debug("$0: good signature bug gpg key expired, continuing anyway!\n");
