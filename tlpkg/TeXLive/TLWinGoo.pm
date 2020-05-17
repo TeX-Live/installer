@@ -1424,7 +1424,7 @@ sub maybe_make_ro {
   # /reset is necessary for removing non-standard existing permissions
   my $cmd = 'cmd /c "icacls . /reset && icacls . /inheritance:r'.
     ' /grant:r *S-1-5-32-544:(OI)(CI)F'.
-    ' /grant:r *S-1-5-11:(OI)(CI)RX /grant:r *S-1-5-32-545:(OI)(CI)RX /T"';
+    ' /grant:r *S-1-5-11:(OI)(CI)RX /grant:r *S-1-5-32-545:(OI)(CI)RX"';
   log "Making read-only\n".`$cmd`."\n";
 
   # go back to original directory
