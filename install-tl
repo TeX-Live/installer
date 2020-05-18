@@ -946,11 +946,12 @@ sub do_installation {
   $vars{'TEXDIR'} =~ s!/$!!;
   # do the actual installation
   make_var_skeleton "$vars{'TEXMFSYSVAR'}";
+  my $oldlocal = -d $vars{'TEXMFLOCAL'};
   make_local_skeleton "$vars{'TEXMFLOCAL'}";
   mkdirhier "$vars{'TEXMFSYSCONFIG'}";
   if (win32()) {
     TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXMFSYSVAR'});
-    TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXMFLOCAL'});
+    TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXMFLOCAL'}) unless $oldlocal;
     TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXMFSYSCONFIG'});
   }
 
