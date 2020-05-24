@@ -1789,7 +1789,7 @@ msgstr "Lade"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:848
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
-"Sollte das Laden zu lange dauern, brechen Sie ab und wöhlen Sie ein anderes "
+"Sollte das Laden zu lange dauern, brechen Sie ab und wählen Sie ein anderes "
 "Repository."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:849
