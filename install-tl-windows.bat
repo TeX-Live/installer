@@ -16,11 +16,11 @@ if %ver_str:~,2% == 4. goto tooold
 if %ver_str:~,2% == 5. goto tooold
 if %ver_str:~,3% == 6.0 (
   echo WARNING: Windows 7 is the earliest supported version.
-  echo TeX Live 2018 has not been tested on Windows Vista.
+  echo TeX Live 2020 has not been tested on Windows Vista.
   pause
 )
 
-rem version of external perl, if any
+rem version of external perl, if any. used by install-tl.
 set extperl=0
 for /f "usebackq tokens=2 delims='" %%a in (`perl -V:version 2^>NUL`) do (
   set extperl=%%a
@@ -42,12 +42,18 @@ rem '-parameter=value' becomes '-parameter value': two arguments
 rem we test for value == parameter rather than the other way around
 rem to avoid some weird parsing errors
 
-rem code block for gui argument
+rem code block for gui argument: look at next argument
 :dogui
 if x == x%1 (
 set tcl=yes
 set asked4gui=yes
-shift
+goto nomoreargs
+)
+set q=%1
+if "-" == "%q:~,1%" (
+rem %1 is no value for -gui but another parameter
+set tcl=yes
+set asked4gui=yes
 goto rebuildargs
 )
 if text == %1 (
@@ -77,9 +83,9 @@ set asked4gui=yes
 shift
 goto rebuildargs
 ) else (
-set tcl=yes
-set asked4gui=yes
-goto rebuildargs
+echo Illegal value %1 for -gui
+set errlev=1
+goto eoff
 )
 rem last case was -gui without parameter to shift
 
@@ -101,9 +107,8 @@ if not "%q:~,2%" == "--" goto nominmin
 set p=%p:~1%
 :nominmin
 
-rem countermand gui parameter for short output.
-rem assume text mode for help and for profile install,
-rem unless gui was explicitly requested.
+rem countermand gui parameter for short output, help and profile install.
+rem even if gui was explicitly requested.
 if -print-platform == %p% (
 set tcl=no
 set forbid=yes
@@ -117,14 +122,12 @@ set tcl=no
 set forbid=yes
 )
 if -profile == %p% (
-if no == %asked4gui% (
 set tcl=no
-)
+set forbid=yes
 )
 if -help == %p%  (
-if no == %asked4gui% (
 set tcl=no
-)
+set forbid=yes
 )
 if -gui == %p% goto dogui
 

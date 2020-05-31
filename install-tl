@@ -76,6 +76,7 @@ if (($^O !~ /^MSWin/i) &&
   # quit scanning and building @new_args once tcl is ruled out.
   my $want_tcl = ($^O eq 'darwin');
   my $asked4tcl = 0;
+  my $forbid = 0;
   my @new_args = ();
   $i = -1;
   while ($i < $#tmp_args) {
@@ -83,28 +84,29 @@ if (($^O !~ /^MSWin/i) &&
     if ($p eq '-gui') {
       # look ahead at next parameter
       if ($i == $#tmp_args || $tmp_args[$i+1] =~ /^-/) {
-        $want_tcl = 1; # default value for -gui
-        $asked4tcl = 1;
-      } elsif ($tmp_args[$i+1] eq 'tcl') {
+        # just -gui, without value
         $want_tcl = 1;
         $asked4tcl = 1;
-        $i++;
-      } else { # other value for -gui
+      } elsif ($tmp_args[$i+1] eq 'text') {
         $want_tcl = 0;
+        $forbid = 1;
         last;
-      }
-    } else {
-      my $forbid = 0;
-      for my $q (qw/in-place profile help/) {
-        if ($p eq "-$q") {
-          # default text mode
-          $want_tcl = 0 unless $asked4tcl;
-          last;
+      } else {
+        # check all allowed values for -gui
+        my $q = $tmp_args[$i+1];
+        if ($q eq 'tcl' || $q eq 'perltk' ||
+            $q eq 'wizard' || $q eq 'expert') {
+          $want_tcl = 1;
+          $asked4tcl = 1;
+          $i++;
+        } else {
+          die "$0: illegal value $q for parameter -gui.\n";
         }
       }
-      for my $q (qw/print-platform version no-gui/) {
+    } else {
+      for my $q (qw/in-place profile help print-platform version no-gui/) {
         if ($p eq "-$q") {
-          # enforce text mode
+          # ignore gui mode
           $want_tcl = 0;
           $forbid = 1;
           last;
@@ -119,7 +121,7 @@ if (($^O !~ /^MSWin/i) &&
   if ($want_tcl) {
     unshift (@new_args, "--");
     unshift (@new_args, "$::installerdir/tlpkg/installer/install-tl-gui.tcl");
-    my @wishes = qw /wish wish8.6 wish8.5 tclkit/;
+    my @wishes = qw /wish wish8.7 wish8.6 wish8.5 tclkit/;
     unshift @wishes, $ENV{'WISH'} if (defined $ENV{'WISH'});
     foreach my $w (@wishes) {
       if (!exec($w, @new_args)) {
@@ -365,15 +367,6 @@ GetOptions(
            "version"                     => \$opt_version,
            "warn-checksums!"             => \$opt_warn_checksums,
            "help|?"                      => \$opt_help) or pod2usage(2);
-
-if ($opt_gui eq "expert") {
-  $opt_gui = "perltk";
-}
-if ($opt_gui eq "" || $opt_gui eq "tcl") {
-  # tried and failed tcl, try perltk instead
-  $opt_gui = "perltk";
-  warn "Setting opt_gui to perltk instead";
-}
 if ($from_ext_gui) {
   $opt_gui = "extl";
 }
@@ -438,12 +431,7 @@ die "$0: Options init-from-profile and in-place are incompatible.\n"
   if ($opt_in_place && $opt_init_from_profile);
 
 if ($#ARGV >= 0) {
-  # we still have arguments left, should only be gui, otherwise die
-  if ($ARGV[0] =~ m/^gui$/i) {
-    $opt_gui = "perltk";
-  } else {
-    die "$0: Extra arguments `@ARGV'; try --help if you need it.\n";
-  }
+  die "$0: Extra arguments `@ARGV'; try --help if you need it.\n";
 }
 
 
@@ -451,7 +439,7 @@ if (defined($::opt_lang)) {
   $::lang = $::opt_lang;
 }
 
-if ($opt_profile) { # for now, not allowed if in_place
+if ($opt_profile) { # not allowed if in_place
   if (-r $opt_profile && -f $opt_profile) {
     info("Automated TeX Live installation using profile: $opt_profile\n");
   } else {
@@ -518,47 +506,6 @@ END_NO_CHECKSUMS
 
 
 # continuing with normal install
-
-# check as soon as possible for GUI functionality to give people a chance
-# to interrupt.
-# not needed for extl, because in this case install-tl is invoked by external gui
-if (($opt_gui ne "extl") && ($opt_gui ne "text") && !$opt_no_gui && ($opt_profile eq "")) {
-  # try to load Tk.pm, but don't die if it doesn't work
-  eval { require Tk; };
-  if ($@) {
-    # that didn't work out, so warn the user and continue with text mode
-    tlwarn("Cannot load Tk, maybe something is missing and\n");
-    tlwarn("maybe https://tug.org/texlive/distro.html#perltk can help.\n");
-    tlwarn("Error message from loading Tk:\n");
-    tlwarn("  $@\n");
-    tlwarn("Continuing in text mode...\n");
-    $opt_gui = "text";
-  }
-  eval { my $foo = Tk::MainWindow->new; $foo->destroy; };
-  if ($@) {
-    tlwarn("perl/Tk unusable, cannot create main window.\n");
-    if (platform() eq "universal-darwin") {
-      tlwarn("That could be because X11 is not installed or started.\n");
-    }
-    tlwarn("Error message from creating MainWindow:\n");
-    tlwarn("  $@\n");
-    tlwarn("Continuing in text mode...\n");
-    $opt_gui = "text";
-  } else {
-    # try to set up fonts if $opt_gui is given
-    if ($opt_font) {
-      my @a;
-      push @a, "--font", $opt_font;
-      Tk::CmdLine::SetArguments(@a);
-    }
-  }
-  if ($opt_gui eq "text") {
-    # we switched from GUI to non-GUI mode, tell the user and wait a bit
-    tlwarn("\nSwitching to text mode installer, if you want to cancel, do it now.\n");
-    tlwarn("Waiting for 3 seconds\n");
-    sleep(3);
-  }
-}
 
 if (defined($opt_force_arch)) {
   tlwarn("Overriding platform to $opt_force_arch\n");
@@ -705,9 +652,6 @@ if ($opt_profile eq "") {
     die ("Exiting installation.\n");
   }
   read_profile($opt_profile);
-  if ($from_ext_gui) {
-    print STDOUT "startinst\n";
-  }
 }
 
 my $varsdump = "";
@@ -2764,38 +2708,19 @@ following modules are supported:
 The text mode user interface (default on Unix systems).  Same as the
 C<-no-gui> option.
 
-=item C<tcl>
+=item C<tcl> (or "perltk" or "wizard" or "expert" or nothing)
 
 The Tcl/Tk user interface (default on Macs and Windows).  It starts
 with a small number of configuration options, roughly equivalent
-to what the wizard option below offers, but a button C<Advanced>
-takes you to a screen with roughly the same options as the C<perltk>
-interface.
-
-=item C<wizard>
-
-The wizard mode user interface, asking only minimal questions before
-installing all of TeX Live.
-
-=item C<expert>
-
-A generic name for, currently, C<perltk>; it may select a different GUI
-in the future.
-
-=item C<perltk>
-
-The expert GUI installer, providing access to more options.
+to what the former wizard option offers, but a button C<Advanced>
+takes you to a screen with roughly the same options as the former
+C<perltk> interface.
 
 =back
 
-The C<perltk> and C<wizard> modules require the Perl/Tk module
-(L<https://tug.org/texlive/distro.html#perltk>). if Perl/Tk is not
-available, installation continues in text mode, except on Windows,
-where all gui options except C<text> are diverted to the default
-C<tcl> GUI.
-
-The C<tcl> GUI requires Tcl/Tk. This is standard on Macs and is often
-already installed on GNU/Linux. For Windows, TeX Live provides a Tcl/Tk
+The default GUI requires Tcl/Tk. This is standard on Macs (although
+it is considered deprecated since Catalina) and is often already
+installed on GNU/Linux. For Windows, TeX Live provides a Tcl/Tk
 runtime.
 
 =item B<-no-gui>
@@ -2806,10 +2731,8 @@ Use the text mode installer (default except on Windows and Macs).
 
 =item B<-lang> I<llcode>
 
-By default, the GUI tries to deduce your language from the
-environment. The Tcl GUI uses the language detection built into
-Tcl/Tk; the Perl/Tk GUIs use the C<LC_MESSAGES> environment
-variable. If that fails you can select a different language by
+By default, the Tcl GUI uses the language detection built into
+Tcl/Tk. If that fails you can select a different language by
 giving this option with a language code (based on ISO 639-1).
 Currently supported (but not necessarily completely translated) are:
 English (en, default), Czech (cs), German (de), French (fr), Italian
@@ -2839,8 +2762,8 @@ will be adjusted accordingly.
 =item B<-select-repository>
 
 This option allows you to choose a particular mirror from the current
-list of active CTAN mirrors. This option is supported in the C<text>,
-C<wizard> and C<perltk> installer modes, and will also offer to install
+list of active CTAN mirrors. This option is supported in the C<text>
+and C<gui> installer modes, and will also offer to install
 from local media if available, or from a repository specified on the
 command line. It's useful when the (default) automatic redirection does
 not choose a good host for you.
@@ -2870,9 +2793,10 @@ building TeX Live, see L<https://tug.org/texlive/build.html>.
 
 =item B<-debug-translation>
 
-In the Perl/Tk GUI modes, this option reports any missing, or more
-likely untranslated, messages to standard error. Helpful for
-translators to see what remains to be done.
+In the former Perl/Tk GUI modes, this option reported any missing,
+or more likely untranslated, messages to standard error. Not yet
+implemented for the Tcl interface. Helpful for translators to see
+what remains to be done.
 
 =item B<-force-platform> I<platform>
 

@@ -37,14 +37,15 @@ catch {rename send {}}
 
 # This file should be in $::instroot/tlpkg/installer.
 # On non-windows platforms, install-tl functions as a wrapper
-# for this file if it encounters a parameter '-gui tcl'.
+# for this file if it encounters a parameter '-gui' (but not -gui text).
 # This allows automatic inclusion of a '--' parameter to separate
 # tcl parameters from script parameters.
 
 set ::instroot [file normalize [info script]]
 set ::instroot [file dirname [file dirname [file dirname $::instroot]]]
 
-# declarations, initializations and procs shared with tlshell.tcl
+# declarations, initializations and procs shared with tlshell.tcl.
+# tltcl may want to know whether or not it was invoked by tlshell:
 set ::invoker [file tail [info script]]
 if [string match -nocase ".tcl" [string range $::invoker end-3 end]] {
   set ::invoker [string range $::invoker 0 end-4]
@@ -69,7 +70,7 @@ if {$::tcl_platform(platform) eq "windows"} {
 set ::advanced 0
 set ::alltrees 0
 
-# interactively select repository
+# interactively select repository; default false
 set ::select_repo 0
 
 proc kill_perl {} {
@@ -381,7 +382,7 @@ proc pre_splash {} {
   # wallpaper for remaining widgets
   pack [ttk::frame .bg -padding 3] -fill both -expand 1
 
-  # buttons: abort button, mirrors dropdown menu
+  # frame for buttons (abort button, mirrors dropdown menu)
   pack [ttk::frame .splfb] -in .bg -side bottom -fill x
 }
 
@@ -1331,10 +1332,6 @@ option add *Menu.tearOff 0
 # of this array.
 # We still use blocking i/o: frontend and backend wait for each other.
 
-# idea: follow submenu organization of text installer
-# for 3-way options, create an extra level of children
-# instead of wizard install, supppress some options
-
 ## default_bg color, only used for menus under ::plain_unix
 if [catch {ttk::style lookup TFrame -background} ::default_bg] {
   set ::default_bg white
@@ -1963,15 +1960,14 @@ proc run_installer {} {
   set ::out_log {}
   show_log 1; # 1: with abort button
   .close state disabled
-  if $::did_gui {
-    chan puts $::inst "startinst"
-    write_vars
-  }
+  chan puts $::inst "startinst"
+  write_vars
   # the backend was already running and needs no further encouragement
 
   # switch to non-blocking i/o
   chan configure $::inst -buffering line -blocking 0
   chan event $::inst readable read_line_cb
+  raise .
   if {$::tcl_platform(platform) eq "windows"} {wm deiconify .}
 }; # run_installer
 
@@ -1998,33 +1994,24 @@ proc main_prog {} {
 
   # handle some command-line arguments.
   # the argument list should already be normalized: '--' => '-', "=" => ' '
-  set i 0
-  set do_splash 1
   set ::prelocation "..."
   set ::mir_selected 1 ; # i.e. default or set by parameter
-  set i [llength $::argv]
+  set l [llength $::argv]
+  set i $l
   while {$i > 0} {
+    set iplus $i
     incr i -1
     set p [lindex $::argv $i]
-    if {$p eq "-profile"} {
-      # check for profile argument: no splash screen if present
-      set do_splash 0
-    } elseif {$p in [list "-location" "-url" "-repository" "-repos" "-repo"]} {
+    if {$p in [list "-location" "-url" "-repository" "-repos" "-repo"]} {
       # check for repository argument: bail out if obviously invalid
-      set j [expr {$i+1}]
-      if {$j<[llength $::argv]} {
-        set p [lindex $::argv $j]
-        unset j
+      if {$iplus<$l} {
+        set p [lindex $::argv $iplus]
         if {$p ne "ctan" && ! [possible_repository $p]} {
-          tk_messageBox -message [__ "%s not a local or remote repository" $p] \
-              -title [__ "Error"] -type ok -icon error
-          exit
+          err_exit [__ "%s not a local or remote repository" $p]
         }
         set ::prelocation $p
       } else {
-        tk_messageBox -message [__ "%s requires an argument" $p] \
-            -title [__ "Error"] -type ok -icon error
-        exit
+        err_exit [__ "%s requires an argument" $p]
       }
     } elseif {$p eq "-select-repository"} {
       # in this case, we start with selecting a repository
@@ -2037,23 +2024,15 @@ proc main_prog {} {
   }
   unset i
 
-  if {$do_splash || ! [info exists ::mir_selected]} pre_splash
-
   if {! [info exists ::mir_selected]} {
+    pre_splash
     select_mirror
-  }
-
-  if $do_splash make_splash
-  unset do_splash
-
-  if {! [info exist ::mir_selected]} {
-    vwait ::mir_selected
   }
 
   # start install-tl-[tcl] via a pipe.
   set cmd [list "|${::perlbin}" "${::instroot}/install-tl" \
                "-from_ext_gui" {*}$::argv 2>@1]
-  show_time "opening pipe"
+  #show_time "opening pipe"
   if [catch {open $cmd r+} ::inst] {
     err_exit "Error starting Perl backend"
   }
@@ -2069,8 +2048,7 @@ proc main_prog {} {
   # possible input from perl until the menu starts:
   # - question about prior canceled installation
   # - location (actual repository)
-  # - menu data, help, version, print-platform
-  set ::did_gui 0
+  # - menu data
   set answer ""
   unset -nocomplain ::loaded
   while 1 { ; # initial perl output
@@ -2102,7 +2080,6 @@ If this takes too long, press Abort or choose another repository." \
   # waiting till the repository has been loaded
   vwait ::loaded
   unset ::loaded
-  #puts stderr "done loading"
   # resume reading from back end in blocking mode
   while 1 {
     set ll [read_line]
@@ -2130,7 +2107,6 @@ If this takes too long, press Abort or choose another repository." \
           set answer [run_menu]
         }
       }
-      set ::did_gui 1
       break
     } elseif {$l eq "startinst"} {
       # use an existing profile:
