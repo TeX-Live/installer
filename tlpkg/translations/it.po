@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tex Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-05-18 23:28+0200\n"
+"POT-Creation-Date: 2020-05-31 23:31+0200\n"
 "PO-Revision-Date: 2020-03-24 08:19+0100\n"
 "Last-Translator: Marco Pallante\n"
 "Language-Team: <>\n"
@@ -39,13 +39,13 @@ msgstr "Installazione"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2469
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2506
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2587
-#: tlpkg/installer/install-tl-gui.tcl:544
-#: tlpkg/installer/install-tl-gui.tcl:662
-#: tlpkg/installer/install-tl-gui.tcl:747
-#: tlpkg/installer/install-tl-gui.tcl:935
-#: tlpkg/installer/install-tl-gui.tcl:998
-#: tlpkg/installer/install-tl-gui.tcl:1072
-#: tlpkg/installer/install-tl-gui.tcl:1292 tlpkg/tltcl/tltcl.tcl:675
+#: tlpkg/installer/install-tl-gui.tcl:545
+#: tlpkg/installer/install-tl-gui.tcl:663
+#: tlpkg/installer/install-tl-gui.tcl:748
+#: tlpkg/installer/install-tl-gui.tcl:936
+#: tlpkg/installer/install-tl-gui.tcl:999
+#: tlpkg/installer/install-tl-gui.tcl:1073
+#: tlpkg/installer/install-tl-gui.tcl:1293 tlpkg/tltcl/tltcl.tcl:674
 #: texmf-dist/scripts/tlshell/tlshell.tcl:232
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1342
 msgid "Cancel"
@@ -61,7 +61,7 @@ msgstr "Fine"
 
 #: tlpkg/installer/install-menu-wizard.pl:41
 #: tlpkg/installer/install-menu-perltk.pl:445
-#: tlpkg/installer/install-tl-gui.tcl:1653
+#: tlpkg/installer/install-tl-gui.tcl:1650
 msgid "Default paper size"
 msgstr "Formato pagina predefinito"
 
@@ -90,7 +90,7 @@ msgstr "Installazione per tutti gli utenti"
 
 #: tlpkg/installer/install-menu-wizard.pl:46
 #: tlpkg/installer/install-menu-perltk.pl:569
-#: tlpkg/installer/install-tl-gui.tcl:1745
+#: tlpkg/installer/install-tl-gui.tcl:1742
 msgid "Install TeXworks front end"
 msgstr "Installa il programma TeXworks"
 
@@ -105,7 +105,7 @@ msgstr "Installazione di TeX Live %s"
 #: tlpkg/installer/install-menu-perltk.pl:630
 #: tlpkg/installer/install-menu-perltk.pl:676
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:544
-#: tlpkg/installer/install-tl-gui.tcl:1436
+#: tlpkg/installer/install-tl-gui.tcl:1433
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2234
 msgid "Quit"
 msgstr "Esci"
@@ -273,16 +273,16 @@ msgstr "Percorso di destinazione:"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2433
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2438
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2443
-#: tlpkg/installer/install-tl-gui.tcl:644
-#: tlpkg/installer/install-tl-gui.tcl:1484
-#: tlpkg/installer/install-tl-gui.tcl:1500
-#: tlpkg/installer/install-tl-gui.tcl:1508
-#: tlpkg/installer/install-tl-gui.tcl:1518
-#: tlpkg/installer/install-tl-gui.tcl:1527
-#: tlpkg/installer/install-tl-gui.tcl:1535
-#: tlpkg/installer/install-tl-gui.tcl:1542
-#: tlpkg/installer/install-tl-gui.tcl:1588
-#: tlpkg/installer/install-tl-gui.tcl:1607
+#: tlpkg/installer/install-tl-gui.tcl:645
+#: tlpkg/installer/install-tl-gui.tcl:1481
+#: tlpkg/installer/install-tl-gui.tcl:1497
+#: tlpkg/installer/install-tl-gui.tcl:1505
+#: tlpkg/installer/install-tl-gui.tcl:1515
+#: tlpkg/installer/install-tl-gui.tcl:1524
+#: tlpkg/installer/install-tl-gui.tcl:1532
+#: tlpkg/installer/install-tl-gui.tcl:1539
+#: tlpkg/installer/install-tl-gui.tcl:1585
+#: tlpkg/installer/install-tl-gui.tcl:1604
 msgid "Change"
 msgstr "Cambia"
 
@@ -332,7 +332,7 @@ msgstr ""
 #: tlpkg/installer/install-menu-perltk.pl:1239
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:700
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1109
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:361
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:360
 #: texmf-dist/scripts/tlshell/tlshell.tcl:226
 msgid "Yes"
 msgstr "Sì"
@@ -350,14 +350,14 @@ msgstr "Sì"
 #: tlpkg/installer/install-menu-perltk.pl:1252
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:700
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1109
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:363
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1730 tlpkg/tltcl/tltcl.tcl:362
 #: texmf-dist/scripts/tlshell/tlshell.tcl:228
 msgid "No"
 msgstr "No"
 
 #: tlpkg/installer/install-menu-wizard.pl:604
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:456
-#: tlpkg/installer/install-tl-gui.tcl:1434
+#: tlpkg/installer/install-tl-gui.tcl:1431
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1969
 msgid "Install"
 msgstr "Installa"
@@ -365,22 +365,22 @@ msgstr "Installa"
 #: tlpkg/installer/install-menu-perltk.pl:48
 #: tlpkg/installer/install-menu-perltk.pl:1251
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:143
-#: tlpkg/installer/install-tl-gui.tcl:864
-#: tlpkg/installer/install-tl-gui.tcl:1088
-#: tlpkg/installer/install-tl-gui.tcl:1721
+#: tlpkg/installer/install-tl-gui.tcl:865
+#: tlpkg/installer/install-tl-gui.tcl:1089
+#: tlpkg/installer/install-tl-gui.tcl:1718
 msgid "None"
 msgstr "Nessuno"
 
 #: tlpkg/installer/install-menu-perltk.pl:49
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:144
-#: tlpkg/installer/install-tl-gui.tcl:1721
+#: tlpkg/installer/install-tl-gui.tcl:1718
 msgid "Only new"
 msgstr "Solo nuovi"
 
 #: tlpkg/installer/install-menu-perltk.pl:50
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:145
-#: tlpkg/installer/install-tl-gui.tcl:1085
-#: tlpkg/installer/install-tl-gui.tcl:1721
+#: tlpkg/installer/install-tl-gui.tcl:1086
+#: tlpkg/installer/install-tl-gui.tcl:1718
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2300
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2317
 msgid "All"
@@ -396,17 +396,17 @@ msgid "letter"
 msgstr "lettera USA"
 
 #: tlpkg/installer/install-menu-perltk.pl:55
-#: tlpkg/installer/install-tl-gui.tcl:1709
+#: tlpkg/installer/install-tl-gui.tcl:1706
 msgid "No shortcuts"
 msgstr "Nessuna scorciatoia"
 
 #: tlpkg/installer/install-menu-perltk.pl:56
-#: tlpkg/installer/install-tl-gui.tcl:1709
+#: tlpkg/installer/install-tl-gui.tcl:1706
 msgid "TeX Live menu"
 msgstr "Menu di TeX Live"
 
 #: tlpkg/installer/install-menu-perltk.pl:57
-#: tlpkg/installer/install-tl-gui.tcl:1709
+#: tlpkg/installer/install-tl-gui.tcl:1706
 msgid "Launcher entry"
 msgstr "Voce di avvio"
 
@@ -427,7 +427,7 @@ msgstr "Carica"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2270
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2332
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2669
-#: tlpkg/installer/install-tl-gui.tcl:559
+#: tlpkg/installer/install-tl-gui.tcl:560
 msgid "Warning"
 msgstr "Attenzione"
 
@@ -469,13 +469,13 @@ msgstr "Scegli un mirror differente."
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2466
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2504
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2669
-#: tlpkg/installer/install-tl-gui.tcl:534
-#: tlpkg/installer/install-tl-gui.tcl:660
-#: tlpkg/installer/install-tl-gui.tcl:745
-#: tlpkg/installer/install-tl-gui.tcl:932
-#: tlpkg/installer/install-tl-gui.tcl:981
-#: tlpkg/installer/install-tl-gui.tcl:1069
-#: tlpkg/installer/install-tl-gui.tcl:1290 tlpkg/tltcl/tltcl.tcl:673
+#: tlpkg/installer/install-tl-gui.tcl:535
+#: tlpkg/installer/install-tl-gui.tcl:661
+#: tlpkg/installer/install-tl-gui.tcl:746
+#: tlpkg/installer/install-tl-gui.tcl:933
+#: tlpkg/installer/install-tl-gui.tcl:982
+#: tlpkg/installer/install-tl-gui.tcl:1070
+#: tlpkg/installer/install-tl-gui.tcl:1291 tlpkg/tltcl/tltcl.tcl:672
 #: texmf-dist/scripts/tlshell/tlshell.tcl:222
 msgid "Ok"
 msgstr "Ok"
@@ -542,7 +542,7 @@ msgstr "Allestimento portabile"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1181
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1231
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1240
-#: tlpkg/installer/install-tl-gui.tcl:1561
+#: tlpkg/installer/install-tl-gui.tcl:1558
 msgid "Toggle"
 msgstr "Inverti"
 
@@ -568,7 +568,7 @@ msgstr "TEXMFHOME (cartella dei file specifici per ciascun utente)"
 
 #: tlpkg/installer/install-menu-perltk.pl:440
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:513
-#: tlpkg/installer/install-tl-gui.tcl:1644
+#: tlpkg/installer/install-tl-gui.tcl:1641
 #: texmf-dist/scripts/tlshell/tlshell.tcl:849
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2089
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2150
@@ -576,23 +576,23 @@ msgid "Options"
 msgstr "Opzioni"
 
 #: tlpkg/installer/install-menu-perltk.pl:458
-#: tlpkg/installer/install-tl-gui.tcl:1664
+#: tlpkg/installer/install-tl-gui.tcl:1661
 msgid "Allow execution of restricted list of programs via \\write18"
 msgstr ""
 "Consenti l'esecuzione di una ristretta lista di programmi tramite \\write18"
 
 #: tlpkg/installer/install-menu-perltk.pl:473
-#: tlpkg/installer/install-tl-gui.tcl:1671
+#: tlpkg/installer/install-tl-gui.tcl:1668
 msgid "Create all format files"
 msgstr "Crea tutti i file di formato"
 
 #: tlpkg/installer/install-menu-perltk.pl:485
-#: tlpkg/installer/install-tl-gui.tcl:1679
+#: tlpkg/installer/install-tl-gui.tcl:1676
 msgid "Install font/macro doc tree"
 msgstr "Installa la documentazione per font e macro"
 
 #: tlpkg/installer/install-menu-perltk.pl:498
-#: tlpkg/installer/install-tl-gui.tcl:1689
+#: tlpkg/installer/install-tl-gui.tcl:1686
 msgid "Install font/macro source tree"
 msgstr "Installa i sorgenti per font e macro"
 
@@ -602,7 +602,7 @@ msgid "Create symlinks in system directories"
 msgstr "Crea i collegamenti simbolici nelle cartelle di sistema"
 
 #: tlpkg/installer/install-menu-perltk.pl:585
-#: tlpkg/installer/install-tl-gui.tcl:1782
+#: tlpkg/installer/install-tl-gui.tcl:1779
 msgid "After install, set CTAN as source for package updates"
 msgstr ""
 "Dopo l’installazione, imposta CTAN come sorgente per gli aggiornamenti dei "
@@ -1176,7 +1176,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "Crea collegamenti sul desktop"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1236
-#: tlpkg/installer/install-tl-gui.tcl:1734
+#: tlpkg/installer/install-tl-gui.tcl:1731
 msgid "Install for all users"
 msgstr "Installazione per tutti gli utenti"
 
@@ -1358,7 +1358,7 @@ msgid "Restore all packages to latest version"
 msgstr "Ripristina tutti i pacchetti all'ultima versione"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2417
-#: tlpkg/installer/install-tl-gui.tcl:440
+#: tlpkg/installer/install-tl-gui.tcl:441
 #: texmf-dist/scripts/tlshell/tlshell.tcl:861
 #: texmf-dist/scripts/tlshell/tlshell.tcl:983
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1432
@@ -1433,7 +1433,7 @@ msgstr ""
 "L'esecuzione di %s è fallita.\n"
 "Consulta la finestra di registro per i dettagli."
 
-#: tlpkg/installer/install-tl-gui.tcl:106
+#: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
 msgid ""
 "Target directory %s non-empty;\n"
@@ -1442,7 +1442,7 @@ msgstr ""
 "La cartella di destinazione %s non è vuota;\n"
 "potrebbero esserci dei problemi!"
 
-#: tlpkg/installer/install-tl-gui.tcl:112
+#: tlpkg/installer/install-tl-gui.tcl:113
 #, tcl-format
 msgid ""
 "Target directory %s non-empty;\n"
@@ -1451,13 +1451,13 @@ msgstr ""
 "La cartella di destinazione %s non è vuota;\n"
 "sei sicuro?"
 
-#: tlpkg/installer/install-tl-gui.tcl:184
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2648
+#: tlpkg/installer/install-tl-gui.tcl:185
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2592
 msgid "Welcome to TeX Live!"
 msgstr "Benvenuto in TeX Live!"
 
-#: tlpkg/installer/install-tl-gui.tcl:187
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2651
+#: tlpkg/installer/install-tl-gui.tcl:188
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2595
 #, tcl-format, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1473,8 +1473,8 @@ msgstr ""
 "voi. La lista dei gruppi è disponibile sul web all’indirizzo https://tug.org/"
 "usergroups.html."
 
-#: tlpkg/installer/install-tl-gui.tcl:191
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2661
+#: tlpkg/installer/install-tl-gui.tcl:192
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2605
 #, tcl-format, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1487,29 +1487,29 @@ msgstr ""
 "E soprattutto, aggiungi %s/bin/%s\n"
 "alla tua variabile d'ambiente PATH per la sessione attuale e quelle future."
 
-#: tlpkg/installer/install-tl-gui.tcl:269
+#: tlpkg/installer/install-tl-gui.tcl:270
 msgid "Really abort?"
 msgstr "Vuoi davvero abbandonare?"
 
-#: tlpkg/installer/install-tl-gui.tcl:357
+#: tlpkg/installer/install-tl-gui.tcl:358
 msgid "Local repository"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:393
-#: tlpkg/installer/install-tl-gui.tcl:409
-#: tlpkg/installer/install-tl-gui.tcl:443
-#: tlpkg/installer/install-tl-gui.tcl:1378
+#: tlpkg/installer/install-tl-gui.tcl:394
+#: tlpkg/installer/install-tl-gui.tcl:410
+#: tlpkg/installer/install-tl-gui.tcl:444
+#: tlpkg/installer/install-tl-gui.tcl:1375
 #: texmf-dist/scripts/tlshell/tlshell.tcl:864
 msgid "Abort"
 msgstr "Interrompi"
 
-#: tlpkg/installer/install-tl-gui.tcl:414
-#: tlpkg/installer/install-tl-gui.tcl:1994
+#: tlpkg/installer/install-tl-gui.tcl:415
+#: tlpkg/installer/install-tl-gui.tcl:1990
 msgid "TeX Live Installer"
 msgstr "Installazione di TeX Live"
 
-#: tlpkg/installer/install-tl-gui.tcl:417
-#: tlpkg/installer/install-tl-gui.tcl:2093
+#: tlpkg/installer/install-tl-gui.tcl:418
+#: tlpkg/installer/install-tl-gui.tcl:2071
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1517,23 +1517,23 @@ msgid ""
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:506
+#: tlpkg/installer/install-tl-gui.tcl:507
 msgid "Cannot be created or cannot be written to"
 msgstr "Non può essere creato o scritto"
 
-#: tlpkg/installer/install-tl-gui.tcl:518
+#: tlpkg/installer/install-tl-gui.tcl:519
 msgid "Directory name..."
 msgstr "Nome della cartella…"
 
-#: tlpkg/installer/install-tl-gui.tcl:525
+#: tlpkg/installer/install-tl-gui.tcl:526
 msgid "Change name (slashes not allowed)"
 msgstr "Cambia il nome (carattere \"/\" non consentito)"
 
-#: tlpkg/installer/install-tl-gui.tcl:536
+#: tlpkg/installer/install-tl-gui.tcl:537
 msgid "No slashes allowed"
 msgstr "Nessun carattere \"/\" consentito"
 
-#: tlpkg/installer/install-tl-gui.tcl:558
+#: tlpkg/installer/install-tl-gui.tcl:559
 msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
@@ -1541,128 +1541,128 @@ msgstr ""
 "Le componenti del rilascio di TL sono altamente raccomandate!\n"
 "Sei sicuro?"
 
-#: tlpkg/installer/install-tl-gui.tcl:567
+#: tlpkg/installer/install-tl-gui.tcl:568
 msgid "Add year"
 msgstr "Aggiungi l’anno"
 
-#: tlpkg/installer/install-tl-gui.tcl:571
-#: tlpkg/installer/install-tl-gui.tcl:646
+#: tlpkg/installer/install-tl-gui.tcl:572
+#: tlpkg/installer/install-tl-gui.tcl:647
 msgid "Remove year"
 msgstr "Rimuovi l’anno"
 
-#: tlpkg/installer/install-tl-gui.tcl:613
-#: tlpkg/installer/install-tl-gui.tcl:1468
-#: tlpkg/installer/install-tl-gui.tcl:1476
+#: tlpkg/installer/install-tl-gui.tcl:614
+#: tlpkg/installer/install-tl-gui.tcl:1465
+#: tlpkg/installer/install-tl-gui.tcl:1473
 msgid "Installation root"
 msgstr "Posizione dell’installazione"
 
-#: tlpkg/installer/install-tl-gui.tcl:641
-#: tlpkg/installer/install-tl-gui.tcl:1270 tlpkg/tltcl/tltcl.tcl:665
+#: tlpkg/installer/install-tl-gui.tcl:642
+#: tlpkg/installer/install-tl-gui.tcl:1271 tlpkg/tltcl/tltcl.tcl:664
 msgid "Browse..."
 msgstr "Sfoglia…"
 
-#: tlpkg/installer/install-tl-gui.tcl:654
+#: tlpkg/installer/install-tl-gui.tcl:655
 msgid "Localized directory names will be replaced by their real names"
 msgstr "I nomi tradotti delle cartelle saranno sostituiti dai loro nomi reali"
 
-#: tlpkg/installer/install-tl-gui.tcl:735
+#: tlpkg/installer/install-tl-gui.tcl:736
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
 msgstr "'~' equivale a %s, per esempio %s"
 
-#: tlpkg/installer/install-tl-gui.tcl:890
+#: tlpkg/installer/install-tl-gui.tcl:891
 msgid "Cannot deselect own platform"
 msgstr "Non puoi disabilitare la tua stessa piattaforma"
 
-#: tlpkg/installer/install-tl-gui.tcl:925
-#: tlpkg/installer/install-tl-gui.tcl:1274
+#: tlpkg/installer/install-tl-gui.tcl:926
+#: tlpkg/installer/install-tl-gui.tcl:1275
 msgid "Binaries"
 msgstr "Eseguibili"
 
-#: tlpkg/installer/install-tl-gui.tcl:974
+#: tlpkg/installer/install-tl-gui.tcl:975
 msgid "Schemes"
 msgstr "Schemi"
 
-#: tlpkg/installer/install-tl-gui.tcl:1062
+#: tlpkg/installer/install-tl-gui.tcl:1063
 msgid "Collections"
 msgstr "Collezioni"
 
-#: tlpkg/installer/install-tl-gui.tcl:1084
+#: tlpkg/installer/install-tl-gui.tcl:1085
 msgid "Select"
 msgstr "Seleziona"
 
-#: tlpkg/installer/install-tl-gui.tcl:1100
+#: tlpkg/installer/install-tl-gui.tcl:1101
 msgid "Languages"
 msgstr "Lingue"
 
-#: tlpkg/installer/install-tl-gui.tcl:1102
+#: tlpkg/installer/install-tl-gui.tcl:1103
 msgid "Other collections"
 msgstr "Altre coollezioni"
 
-#: tlpkg/installer/install-tl-gui.tcl:1227
+#: tlpkg/installer/install-tl-gui.tcl:1228
 msgid "Warning. Not all configured directories are writable!"
 msgstr "Attenzione. Non è possibile scrivere in tutte le cartelle configurate!"
 
-#: tlpkg/installer/install-tl-gui.tcl:1247
+#: tlpkg/installer/install-tl-gui.tcl:1248
 msgid "Symlinks"
 msgstr "Collegamenti simbolici"
 
-#: tlpkg/installer/install-tl-gui.tcl:1275
+#: tlpkg/installer/install-tl-gui.tcl:1276
 msgid "Man pages"
 msgstr "Pagine di manuale"
 
-#: tlpkg/installer/install-tl-gui.tcl:1276
+#: tlpkg/installer/install-tl-gui.tcl:1277
 msgid "Info pages"
 msgstr "Pagine Info"
 
-#: tlpkg/installer/install-tl-gui.tcl:1377
+#: tlpkg/installer/install-tl-gui.tcl:1374
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2106
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2132
 msgid "File"
 msgstr "File"
 
-#: tlpkg/installer/install-tl-gui.tcl:1381
+#: tlpkg/installer/install-tl-gui.tcl:1378
 msgid "GUI"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1386
+#: tlpkg/installer/install-tl-gui.tcl:1383
 msgid "Language"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1398
+#: tlpkg/installer/install-tl-gui.tcl:1395
 msgid "Font scaling"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1423
+#: tlpkg/installer/install-tl-gui.tcl:1420
 #, tcl-format
 msgid "TeX Live %s Installer"
 msgstr "Installazione di TeX Live %s"
 
-#: tlpkg/installer/install-tl-gui.tcl:1441
+#: tlpkg/installer/install-tl-gui.tcl:1438
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: tlpkg/installer/install-tl-gui.tcl:1471
+#: tlpkg/installer/install-tl-gui.tcl:1468
 msgid "Directories"
 msgstr "Cartelle"
 
-#: tlpkg/installer/install-tl-gui.tcl:1490
+#: tlpkg/installer/install-tl-gui.tcl:1487
 msgid "Main tree"
 msgstr "Albero principale"
 
-#: tlpkg/installer/install-tl-gui.tcl:1513
+#: tlpkg/installer/install-tl-gui.tcl:1510
 msgid "Local additions"
 msgstr "Aggiunte locali"
 
-#: tlpkg/installer/install-tl-gui.tcl:1522
+#: tlpkg/installer/install-tl-gui.tcl:1519
 msgid "Per-user additions"
 msgstr "Aggiunte per utente"
 
-#: tlpkg/installer/install-tl-gui.tcl:1549
+#: tlpkg/installer/install-tl-gui.tcl:1546
 msgid "More ..."
 msgstr "Altro …"
 
-#: tlpkg/installer/install-tl-gui.tcl:1558
+#: tlpkg/installer/install-tl-gui.tcl:1555
 msgid ""
 "Portable setup:\n"
 "May reset TEXMFLOCAL\n"
@@ -1672,76 +1672,70 @@ msgstr ""
 "Puoi reimpostare TEXMFLOCAL\n"
 "e TEXMFHOME"
 
-#: tlpkg/installer/install-tl-gui.tcl:1572
+#: tlpkg/installer/install-tl-gui.tcl:1569
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1419
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2211
 msgid "Platforms"
 msgstr "Piattaforme"
 
-#: tlpkg/installer/install-tl-gui.tcl:1578
+#: tlpkg/installer/install-tl-gui.tcl:1575
 msgid "Current platform:"
 msgstr "Piattaforma attuale:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1585
+#: tlpkg/installer/install-tl-gui.tcl:1582
 msgid "N. of additional platform(s):"
 msgstr "N. di piattaforme aggiuntive:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1598
+#: tlpkg/installer/install-tl-gui.tcl:1595
 msgid "Selections"
 msgstr "Selezioni"
 
-#: tlpkg/installer/install-tl-gui.tcl:1603
+#: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Scheme:"
 msgstr "Schema:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1612
+#: tlpkg/installer/install-tl-gui.tcl:1609
 msgid "N. of collections:"
 msgstr "N. di collezioni:"
 
-#: tlpkg/installer/install-tl-gui.tcl:1615
+#: tlpkg/installer/install-tl-gui.tcl:1612
 msgid "Customize"
 msgstr "Personalizza"
 
-#: tlpkg/installer/install-tl-gui.tcl:1624
+#: tlpkg/installer/install-tl-gui.tcl:1621
 msgid "Disk space required (in MB):"
 msgstr "Spazio richiesto su disco (in MB):"
 
-#: tlpkg/installer/install-tl-gui.tcl:1702
+#: tlpkg/installer/install-tl-gui.tcl:1699
 msgid "Adjust searchpath"
 msgstr "Regola il percorso di ricerca"
 
-#: tlpkg/installer/install-tl-gui.tcl:1711
+#: tlpkg/installer/install-tl-gui.tcl:1708
 msgid "Desktop integration"
 msgstr "Integrazione con il desktop"
 
-#: tlpkg/installer/install-tl-gui.tcl:1723
+#: tlpkg/installer/install-tl-gui.tcl:1720
 msgid "File associations"
 msgstr "Associazioni dei file"
 
-#: tlpkg/installer/install-tl-gui.tcl:1762
+#: tlpkg/installer/install-tl-gui.tcl:1759
 msgid "Create symlinks in standard directories"
 msgstr "Crea i collegamenti simbolici nelle cartelle di sistema"
 
-#: tlpkg/installer/install-tl-gui.tcl:1768
+#: tlpkg/installer/install-tl-gui.tcl:1765
 msgid "Specify directories"
 msgstr "Specifica le cartelle"
 
-#: tlpkg/installer/install-tl-gui.tcl:1833
+#: tlpkg/installer/install-tl-gui.tcl:1830
 msgid "Custom scheme"
 msgstr "Schema personalizzato"
 
-#: tlpkg/installer/install-tl-gui.tcl:2019
+#: tlpkg/installer/install-tl-gui.tcl:2010
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:2020
-#: tlpkg/installer/install-tl-gui.tcl:2026
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2090
-msgid "Error"
-msgstr ""
-
-#: tlpkg/installer/install-tl-gui.tcl:2025
+#: tlpkg/installer/install-tl-gui.tcl:2014
 #, tcl-format
 msgid "%s requires an argument"
 msgstr ""
@@ -1754,7 +1748,7 @@ msgstr "Mirror specifico..."
 msgid "No mirror list available"
 msgstr ""
 
-#: tlpkg/tltcl/tltcl.tcl:748
+#: tlpkg/tltcl/tltcl.tcl:747
 msgid "Select or type"
 msgstr "Seleziona o digita"
 
@@ -2015,6 +2009,10 @@ msgstr ""
 msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
+msgstr ""
+
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2090
+msgid "Error"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2134
