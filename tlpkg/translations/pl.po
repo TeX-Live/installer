@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2020\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-05-31 23:31+0200\n"
+"POT-Creation-Date: 2020-06-09 01:54+0200\n"
 "PO-Revision-Date: 2020-03-15 17:09+0100\n"
 "Last-Translator: Zofia Walczak <pelagia48@gmail.com>\n"
 "Language-Team: \n"
@@ -1764,7 +1764,7 @@ msgstr "Uruchomiony"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:379
 #: texmf-dist/scripts/tlshell/tlshell.tcl:540
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2420
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2436
 msgid "Idle"
 msgstr "Bezczynny"
 
@@ -2165,15 +2165,15 @@ msgstr "Nazwa"
 msgid "Description"
 msgstr "Opis"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2425
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "Multi-user"
 msgstr "Wielu użytkowników"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2425
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "Single-user"
 msgstr "Jeden użytkownik"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2500
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2504
 #, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-05-31 23:31+0200\n"
+"POT-Creation-Date: 2020-06-09 01:54+0200\n"
 "PO-Revision-Date: 2019-04-08 23:05+0200\n"
 "Last-Translator: Mojca Miklavec <mojca.miklavec.lists@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1832,7 +1832,7 @@ msgstr "V teku"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:379
 #: texmf-dist/scripts/tlshell/tlshell.tcl:540
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2420
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2436
 #, fuzzy
 msgid "Idle"
 msgstr "Brez dela"
@@ -2243,15 +2243,15 @@ msgstr "Ime"
 msgid "Description"
 msgstr "Opis"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2425
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "Multi-user"
 msgstr "Za več uporabnikov"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2425
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "Single-user"
 msgstr "Za enega uporabnika"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2500
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2504
 #, fuzzy, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"

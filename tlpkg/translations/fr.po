@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-05-31 23:31+0200\n"
+"POT-Creation-Date: 2020-06-09 01:54+0200\n"
 "PO-Revision-Date: 2019-05-12 10:49+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -1775,7 +1775,7 @@ msgstr "En cours d'exécution"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:379
 #: texmf-dist/scripts/tlshell/tlshell.tcl:540
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2420
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2436
 msgid "Idle"
 msgstr "Inactif"
 
@@ -2177,15 +2177,15 @@ msgstr "Nom"
 msgid "Description"
 msgstr "Description"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2425
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "Multi-user"
 msgstr "Utilisateurs multiples"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2425
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "Single-user"
 msgstr "Utilisateur unique"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2500
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2504
 #, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"
