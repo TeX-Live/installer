@@ -1331,13 +1331,14 @@ sub do_texmf_cnf {
   my $yyyy = $TeXLive::TLConfig::ReleaseYear;
 
   # we have to find TEXMFLOCAL TEXMFSYSVAR and TEXMFHOME
+  # at this point, a final slash of $vars{TEXDIR} itself has already
+  # been removed.
   foreach my $line (@texmfcnflines) {
     if ($line =~ m/^TEXMFLOCAL\b/) { # don't find TEXMFLOCALEDIR
       # by default TEXMFLOCAL = TEXDIR/../texmf-local, if this is the case
       # we don't have to write a new setting.
-      my $deftmlocal = dirname($vars{'TEXDIR'});
-      $deftmlocal .= "/texmf-local";
-      if ("$vars{'TEXMFLOCAL'}" ne "$deftmlocal") {
+      my $deftmflocal = Cwd::abs_path($vars{'TEXDIR'}.'/../texmf-local');
+      if (Cwd::abs_path($vars{TEXMFLOCAL}) ne "$deftmflocal") {
         push @changedtmf, "TEXMFLOCAL = $vars{'TEXMFLOCAL'}\n";
       }
     } elsif ($line =~ m/^TEXMFSYSVAR/) {
@@ -1348,15 +1349,15 @@ sub do_texmf_cnf {
       if ("$vars{'TEXMFSYSCONFIG'}" ne "$vars{'TEXDIR'}/texmf-config") {
         push @changedtmf, "TEXMFSYSCONFIG = $vars{'TEXMFSYSCONFIG'}\n";
       }
-    } elsif ($line =~ m/^TEXMFVAR/) {
+    } elsif ($line =~ m/^TEXMFVAR/ && !$vars{'instopt_portable'}) {
       if ($vars{"TEXMFVAR"} ne "~/.texlive$yyyy/texmf-var") {
         push @changedtmf, "TEXMFVAR = $vars{'TEXMFVAR'}\n";
       }
-    } elsif ($line =~ m/^TEXMFCONFIG/) {
+    } elsif ($line =~ m/^TEXMFCONFIG/ && !$vars{'instopt_portable'}) {
       if ("$vars{'TEXMFCONFIG'}" ne "~/.texlive$yyyy/texmf-config") {
         push @changedtmf, "TEXMFCONFIG = $vars{'TEXMFCONFIG'}\n";
       }
-    } elsif ($line =~ m/^TEXMFHOME/) {
+    } elsif ($line =~ m/^TEXMFHOME/ && !$vars{'instopt_portable'}) {
       if ("$vars{'TEXMFHOME'}" ne "~/texmf") {
         push @changedtmf, "TEXMFHOME = $vars{'TEXMFHOME'}\n";
       }
@@ -1391,6 +1392,11 @@ EOF
     # avoid absolute paths for TEXDIR, use $SELFAUTOPARENT instead
     s/^(TEXMF\w+\s*=\s*)\Q$vars{'TEXDIR'}\E/$1\$SELFAUTOPARENT/;
     print TMF;
+  }
+  if ($vars{'instopt_portable'}) {
+    print TMF "TEXMFHOME = \$TEXMFLOCAL\n";
+    print TMF "TEXMFVAR = \$TEXMFSYSVAR\n";
+    print TMF "TEXMFCONFIG = \$TEXMFSYSCONFIG\n";
   }
   #
   # save the setting of shell_escape to the generated system texmf.cnf

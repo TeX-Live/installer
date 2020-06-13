@@ -600,7 +600,11 @@ proc commit_root {} {
   }
   commit_canonical_local
 
-  if {$::vars(instopt_portable)} reset_personal_dirs
+  if {$::vars(instopt_portable)} {
+    set ::vars(TEXMFHOME) $::vars(TEXMFLOCAL)
+    set ::vars(TEXMFVAR) $::vars(TEXMFSYSVAR)
+    set ::vars(TEXMFCONFIG) $::vars(TEXMFSYSCONFIG)
+  }
   destroy .tltd
 }
 
