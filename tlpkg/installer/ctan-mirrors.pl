@@ -57,9 +57,6 @@ $mirrors = {
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
-    'Taiwan' => {
-      'http://ftp.yzu.edu.tw/CTAN/' => 1,
-    },
   },
   'Europe' => {
     'Austria' => {
@@ -176,7 +173,6 @@ $mirrors = {
       'http://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'http://ctan.math.washington.edu/tex-archive/' => 1,
       'http://ctan.mirrors.hoobly.com/' => 1,
-      'http://mirror.las.iastate.edu/tex-archive/' => 1,
       'http://mirror.utexas.edu/ctan/' => 1,
       'http://mirrors.concertpass.com/tex-archive/' => 1,
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
@@ -192,6 +188,9 @@ $mirrors = {
     },
   },
   'South America' => {
+    'Brazil' => {
+      'http://linorg.usp.br/CTAN/' => 1,
+    },
     'Chile' => {
       'http://ctan.dcc.uchile.cl/' => 1,
     },
