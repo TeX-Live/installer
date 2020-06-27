@@ -156,6 +156,9 @@ $mirrors = {
     'Sweden' => {
       'http://ftp.acc.umu.se/mirror/CTAN/' => 1,
     },
+    'United Kingdom' => {
+      'http://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
+    },
   },
   'North America' => {
     'Canada' => {
@@ -190,9 +193,6 @@ $mirrors = {
     },
   },
   'South America' => {
-    'Brazil' => {
-      'http://linorg.usp.br/CTAN/' => 1,
-    },
     'Chile' => {
       'http://ctan.dcc.uchile.cl/' => 1,
     },
