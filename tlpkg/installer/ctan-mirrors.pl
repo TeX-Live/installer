@@ -34,6 +34,7 @@ $mirrors = {
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
+      'http://ctan.asis.ai/' => 1,
       'http://ctan.um.ac.ir/' => 1,
       'http://ctan.yazd.ac.ir/' => 1,
     },
@@ -137,6 +138,7 @@ $mirrors = {
     'Russia' => {
       'http://ctan.altspu.ru/' => 1,
       'http://mirror.macomnet.net/pub/CTAN/' => 1,
+      'http://mirrors.mi.ras.ru/CTAN/' => 1,
     },
     'Serbia' => {
       'http://ctan.mirror.ftn.uns.ac.rs/' => 1,
@@ -175,7 +177,6 @@ $mirrors = {
       'http://mirror.las.iastate.edu/tex-archive/' => 1,
       'http://mirror.utexas.edu/ctan/' => 1,
       'http://mirrors.concertpass.com/tex-archive/' => 1,
-      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'http://mirrors.rit.edu/CTAN/' => 1,
     },
   },
