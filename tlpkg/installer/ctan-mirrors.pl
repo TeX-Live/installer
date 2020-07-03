@@ -13,15 +13,12 @@ $mirrors = {
   },
   'Asia' => {
     'China' => {
-      'http://mirror.lzu.edu.cn/CTAN/' => 1,
-      'http://mirrors.cqu.edu.cn/CTAN/' => 1,
-      'http://mirrors.hit.edu.cn/CTAN/' => 1,
-      'http://mirrors.nju.edu.cn/CTAN/' => 1,
-      'http://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
-      'http://mirrors.ustc.edu.cn/CTAN/' => 1,
       'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
+      'https://mirrors.hit.edu.cn/CTAN/' => 1,
+      'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
+      'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
@@ -39,7 +36,6 @@ $mirrors = {
       'http://ctan.yazd.ac.ir/' => 1,
     },
     'Japan' => {
-      'ftp://ftp.kddilabs.jp/CTAN/' => 1,
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'http://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
@@ -75,7 +71,6 @@ $mirrors = {
       'http://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
-      'ftp://ftp.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
@@ -90,8 +85,6 @@ $mirrors = {
     },
     'Germany' => {
       'ftp://ftp.fu-berlin.de/tex/CTAN/' => 1,
-      'ftp://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/' => 1,
-      'ftp://ftp.tu-chemnitz.de/pub/tex/' => 1,
       'http://ctan.ebinger.cc/tex-archive/' => 1,
       'http://ctan.mirror.norbert-ruehl.de/' => 1,
       'http://ctan.space-pro.be/tex-archive/' => 1,
@@ -177,6 +170,7 @@ $mirrors = {
       'http://mirror.las.iastate.edu/tex-archive/' => 1,
       'http://mirror.utexas.edu/ctan/' => 1,
       'http://mirrors.concertpass.com/tex-archive/' => 1,
+      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'http://mirrors.rit.edu/CTAN/' => 1,
     },
   },
@@ -190,7 +184,7 @@ $mirrors = {
   },
   'South America' => {
     'Chile' => {
-      'http://ctan.dcc.uchile.cl/' => 1,
+      'https://ctan.dcc.uchile.cl/' => 1,
     },
   },
 };
