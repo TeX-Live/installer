@@ -401,11 +401,12 @@ proc select_mirror {} {
 } ; # select_mirror
 
 proc make_splash {} {
+  wm withdraw .
 
+  # we want this if select_mirror has run:
   foreach c [winfo children .splfb] {
     catch {destroy $c}
   }
-  update
 
   ppack [ttk::button .spl_a -text [__ "Abort"] -command maybe_abort] \
       -side right -in .splfb
@@ -2028,10 +2029,12 @@ proc main_prog {} {
   }
   unset i
 
+  pre_splash
   if {! [info exists ::mir_selected]} {
-    pre_splash
     select_mirror
+    # waits for ::mir_selected
   }
+  make_splash
 
   # start install-tl-[tcl] via a pipe.
   set cmd [list "|${::perlbin}" "${::instroot}/install-tl" \
