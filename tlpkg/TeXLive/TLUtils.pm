@@ -341,10 +341,9 @@ sub platform_name {
   
   if ($OS eq "darwin") {
     # We have two versions of Mac binary sets.
-    # 10.10/Yosemite and newer (Yosemite specially left over):
-    #   -> x86_64-darwin [MacTeX]
-    # 10.6/Snow Leopard through 10.10/Yosemite:
-    #   -> x86_64-darwinlegacy if 64-bit
+    # 10.x and newer -> x86_64-darwin [MacTeX]
+    # 10.6/Snow Leopard through 10.x -> x86_64-darwinlegacy, if 64-bit
+    # x changes every year. In 2020 (Big Sur) Apple started with 11.x.
     #
     # (BTW, uname -r numbers are larger by 4 than the Mac minor version.
     # We don't use uname numbers here.)
@@ -356,13 +355,16 @@ sub platform_name {
     # returns "10.x" values), and sysctl (processor hardware).
     chomp (my $sw_vers = `sw_vers -productVersion`);
     my ($os_major,$os_minor) = split (/\./, $sw_vers);
-    if ($os_major != 10) {
+    if ($os_major < 10) {
       warn "$0: only MacOSX is supported, not $OS $os_major.$os_minor "
            . " (from sw_vers -productVersion: $sw_vers)\n";
       return "unknownmac-unknownmac";
     }
-    if ($os_minor >= $mactex_darwin) {
-      ; # current version, default is ok (x86_64-darwin).
+    if ($os_major >= 11) {
+      $CPU = "x86_64";
+      $OS = "darwin";
+    } elsif ($os_minor >= $mactex_darwin) {
+      ; # sufficiently new 10.x, default is ok (x86_64-darwin).
     } elsif ($os_minor >= 6 && $os_minor < $mactex_darwin) {
       # in between, x86 hardware only.  On 10.6 only, must check if 64-bit,
       # since if later than that, always 64-bit.
