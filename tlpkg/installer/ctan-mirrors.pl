@@ -77,6 +77,7 @@ $mirrors = {
       'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
+      'https://ftp.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
@@ -96,6 +97,7 @@ $mirrors = {
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
       'https://ctan.kako-dev.de/' => 1,
       'https://ctan.mc1.root.project-creative.net/' => 1,
+      'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
       'https://ctan.space-pro.be/tex-archive/' => 1,
       'https://ftp.agdsn.de/pub/mirrors/latex/dante/' => 1,
@@ -110,6 +112,9 @@ $mirrors = {
     'Greece' => {
       'http://ftp.ntua.gr/mirror/ctan/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
+    },
+    'Hungary' => {
+      'https://mirror.szerverem.hu/ctan/' => 1,
     },
     'Italy' => {
       'https://ctan.mirror.garr.it/mirrors/CTAN/' => 1,
@@ -146,6 +151,7 @@ $mirrors = {
     },
     'Spain' => {
       'https://ctan.javinator9889.com/' => 1,
+      'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
