@@ -23,6 +23,7 @@ $mirrors = {
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
+      'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
@@ -167,7 +168,6 @@ $mirrors = {
       'http://ctan.mirror.globo.tech/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
       'https://ctan.math.ca/tex-archive/' => 1,
-      'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {
