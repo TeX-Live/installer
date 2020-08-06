@@ -62,7 +62,7 @@ our %paper = (
   },
   "pdftex"   => {
     sub => \&paper_pdftex,
-    default_component => "tex/generic/config",
+    default_component => "tex/generic/tex-ini-files",
     default_file      => "pdftexconfig.tex",
     pkg => "pdftex",
   },
