@@ -2736,14 +2736,13 @@ sub action_update {
   } else {
     @todo = @ARGV;
   }
+  if ($opts{"self"} && !@critical) {
+    info("$prg: no self-updates for tlmgr available\n");
+  }
   # don't do anything if we have been invoked in a strange way
-  if (!@todo) {
-    if ($opts{"self"}) {
-      info("$prg: no self-updates for tlmgr available.\n");
-    } else {
-      tlwarn("$prg update: please specify a list of packages, --all, or --self.\n");
-      return ($F_ERROR);
-    }
+  if (!@todo && !$opts{"self"}) {
+    tlwarn("$prg update: please specify a list of packages, --all, or --self.\n");
+    return ($F_ERROR);
   }
 
   if (!($opts{"self"} && @critical) || ($opts{"self"} && $opts{"list"})) {
@@ -3585,7 +3584,9 @@ sub action_update {
   # if a real update from default disk location didn't find anything,
   # warn if nothing is updated.  Unless they said --self, in which case
   # we've already reported it.
-  if (!(@new || @updated) && ! $opts{"self"}) {
+  # But if --self --all was given, and *no* update available for
+  # critical packages, then we should report it, too!
+  if (!(@new || @updated) && ( !$opts{"self"} || @todo )) {
     if (!$::machinereadable) {
       info("$prg: no updates available\n");
       if ($remotetlpdb->media ne "NET"
