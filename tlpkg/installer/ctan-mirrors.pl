@@ -84,7 +84,6 @@ $mirrors = {
       'http://ctan.mines-albi.fr/' => 1,
       'http://mirrors.standaloneinstaller.com/ctan/' => 1,
       'https://ctan.crest.fr/tex-archive/' => 1,
-      'https://ctan.gutenberg.eu.org/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
