@@ -9,6 +9,7 @@ $mirrors = {
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1,
+      'https://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
     },
   },
   'Asia' => {
