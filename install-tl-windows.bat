@@ -138,8 +138,10 @@ set args=%args% %p%
 goto rebuildargs
 :nomoreargs
 
-set wish="%instroot%tlpkg\tltcl\tclkit.exe"
-if not exist "%wish%" set wish="%instroot%tlpkg\tltcl\bin\wish.exe"
+rem set preserves quotes, and its argument is the remainder of the line
+rem so do not here quote paths with spaces in it
+set wish=%instroot%tlpkg\tltcl\tclkit.exe
+if not exist "%wish%" set wish=%instroot%tlpkg\tltcl\bin\wish.exe
 if not exist "%wish%" set tcl=no
 if %forbid% == yes set tcl=no
 
