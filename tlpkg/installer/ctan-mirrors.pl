@@ -9,7 +9,6 @@ $mirrors = {
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1,
-      'https://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
     },
   },
   'Asia' => {
@@ -47,11 +46,14 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
+      'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.kakao.com/CTAN/' => 1,
-      'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
+    },
+    'Philippines' => {
+      'https://mirror.pregi.net/tex-archive/' => 1,
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
@@ -69,9 +71,6 @@ $mirrors = {
       'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
     },
-    'Denmark' => {
-      'https://mirrors.dotsrc.org/ctan/' => 1,
-    },
     'Finland' => {
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
@@ -82,6 +81,7 @@ $mirrors = {
       'https://ctan.gutenberg.eu.org/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
+      'https://mirror.ibcp.fr/pub/CTAN/' => 1,
       'https://mirrors.chevalier.io/CTAN/' => 1,
       'https://mirrors.ircam.fr/pub/CTAN/' => 1,
     },
@@ -118,6 +118,7 @@ $mirrors = {
       'http://ctan.cs.uu.nl/' => 1,
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
+      'https://mirror.lyrahosting.com/CTAN/' => 1,
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
