@@ -54,9 +54,6 @@ $mirrors = {
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
-    'Philippines' => {
-      'https://mirror.pregi.net/tex-archive/' => 1,
-    },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
@@ -157,9 +154,6 @@ $mirrors = {
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
-    },
-    'United Kingdom' => {
-      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
     },
   },
   'North America' => {
