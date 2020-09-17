@@ -16,7 +16,6 @@ $mirrors = {
     'China' => {
       'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
-      'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
@@ -52,9 +51,6 @@ $mirrors = {
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
-    },
-    'Philippines' => {
-      'https://mirror.pregi.net/tex-archive/' => 1,
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
@@ -174,6 +170,7 @@ $mirrors = {
       'http://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'http://ctan.math.washington.edu/tex-archive/' => 1,
       'http://ctan.mirrors.hoobly.com/' => 1,
+      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirrors.concertpass.com/tex-archive/' => 1,
@@ -181,9 +178,6 @@ $mirrors = {
     },
   },
   'Oceania' => {
-    'Australia' => {
-      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
-    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1,
     },
