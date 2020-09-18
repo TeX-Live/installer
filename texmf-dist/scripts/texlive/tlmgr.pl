@@ -3958,7 +3958,7 @@ sub show_one_package_csv {
     } elsif ($d eq "installed") {
       push @out, $is_installed;
     } elsif ($d eq "relocatable") {
-      push @out, ($tlp->relocatable ? 1 : 0);
+      push @out, ($tlp->relocated ? 1 : 0);
     } elsif ($d eq "cat-version") {
       push @out, ($tlp->cataloguedata->{'version'} || "");
     } elsif ($d eq "cat-date") {
