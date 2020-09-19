@@ -8,7 +8,6 @@ $mirrors = {
     },
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
-      'http://mirror.ufs.ac.za/ctan/' => 1,
       'https://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
     },
   },
@@ -16,6 +15,7 @@ $mirrors = {
     'China' => {
       'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
+      'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
@@ -51,6 +51,9 @@ $mirrors = {
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
+    },
+    'Philippines' => {
+      'https://mirror.pregi.net/tex-archive/' => 1,
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
@@ -153,6 +156,9 @@ $mirrors = {
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
     },
+    'United Kingdom' => {
+      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
+    },
   },
   'North America' => {
     'Canada' => {
@@ -178,6 +184,9 @@ $mirrors = {
     },
   },
   'Oceania' => {
+    'Australia' => {
+      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
+    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1,
     },
