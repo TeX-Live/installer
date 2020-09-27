@@ -1603,7 +1603,7 @@ sub action_info {
     my $load_remote = 0;
     for my $d (@datafields) {
       $load_remote = 1 if ($d eq "remoterev");
-      if ($d !~ m/^(name|category|localrev|remoterev|shortdesc|longdesc|size|installed|relocatable|depends|cat-version|cat-date|cat-license|cat-contact-.*)$/) {
+      if ($d !~ m/^(name|category|localrev|remoterev|shortdesc|longdesc|size|installed|relocatable|depends|[lr]?cat-version|[lr]?cat-date|[lr]?cat-license|[lr]?cat-contact-.*)$/) {
         tlwarn("unknown data field: $d\n");
         return($F_ERROR);
       }
@@ -3911,6 +3911,7 @@ sub show_one_package_json {
                           installed => ($is_installed ? TeXLive::TLUtils::True() : TeXLive::TLUtils::False()),
                           lrev      => ($is_installed ? $loctlp->revision : 0),
                           rrev      => ($is_available ? $remtlp->revision : 0),
+                          rcataloguedata => ($is_available ? $remtlp->cataloguedata : {}),
                           revision  => undef);
   print $str;
   return($F_OK);
@@ -3961,12 +3962,28 @@ sub show_one_package_csv {
       push @out, ($tlp->relocated ? 1 : 0);
     } elsif ($d eq "cat-version") {
       push @out, ($tlp->cataloguedata->{'version'} || "");
+    } elsif ($d eq "lcat-version") {
+      push @out, ($is_installed ? ($loctlp->cataloguedata->{'version'} || "") : "");
+    } elsif ($d eq "rcat-version") {
+      push @out, ($is_available ? ($remtlp->cataloguedata->{'version'} || "") : "");
     } elsif ($d eq "cat-date") {
       push @out, ($tlp->cataloguedata->{'date'} || "");
+    } elsif ($d eq "lcat-date") {
+      push @out, ($is_installed ? ($loctlp->cataloguedata->{'date'} || "") : "");
+    } elsif ($d eq "rcat-date") {
+      push @out, ($is_available ? ($remtlp->cataloguedata->{'date'} || "") : "");
     } elsif ($d eq "cat-license") {
       push @out, ($tlp->cataloguedata->{'license'} || "");
+    } elsif ($d eq "lcat-license") {
+      push @out, ($is_installed ? ($loctlp->cataloguedata->{'license'} || "") : "");
+    } elsif ($d eq "rcat-license") {
+      push @out, ($is_available ? ($remtlp->cataloguedata->{'license'} || "") : "");
     } elsif ($d =~ m/^cat-(contact-.*)$/) {
       push @out, ($tlp->cataloguedata->{$1} || "");
+    } elsif ($d =~ m/^lcat-(contact-.*)$/) {
+      push @out, ($is_installed ? ($loctlp->cataloguedata->{$1} || "") : "");
+    } elsif ($d =~ m/^rcat-(contact-.*)$/) {
+      push @out, ($is_available ? ($remtlp->cataloguedata->{$1} || "") : "");
     } elsif ($d eq "localrev") {
       push @out, ($is_installed ? $loctlp->revision : 0);
     } elsif ($d eq "remoterev") {
