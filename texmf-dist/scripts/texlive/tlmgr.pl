@@ -8349,10 +8349,15 @@ C<--only-installed> and C<--only-remote> cannot both be specified.
 If the option C<--data> is given, its argument must be a comma separated
 list of field names from: C<name>, C<category>, C<localrev>, C<remoterev>,
 C<shortdesc>, C<longdesc>, C<installed>, C<size>, C<relocatable>, C<depends>,
-C<cat-version>, C<cat-date>, or C<cat-license>. In this case the requested
-packages' information is listed in CSV format one package per line, and the
-column information is given by the C<itemN>. The C<depends> column contains
-the name of all dependencies separated by C<:>.
+C<cat-version>, C<cat-date>, or C<cat-license>, and various C<cat-contact-*>
+fields. For the C<cat-> fields, there are two more variants with prefix C<l>
+and C<r>, that is C<lcat-version> and C<rcat-version> etc, which indicate
+the local and remote information, respectively. The variants without C<l> and
+C<r> show the most current one, that is normally the remote one.
+
+The requested packages' information is listed in CSV format one package per
+line, and the column information is given by the C<itemN>. The C<depends>
+column contains the name of all dependencies separated by C<:>.
 
 =item B<--json>
 
