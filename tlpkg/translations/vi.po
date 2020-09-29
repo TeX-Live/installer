@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2020-07-05 01:53+0200\n"
+"POT-Creation-Date: 2020-09-29 01:53+0200\n"
 "PO-Revision-Date: 2020-03-24 22:04+0100\n"
 "Last-Translator: Anh K. Huỳnh <kyanh@viettug.org>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -51,7 +51,7 @@ msgstr "Tiến trình cài đặt"
 #: tlpkg/installer/install-tl-gui.tcl:1078
 #: tlpkg/installer/install-tl-gui.tcl:1298 tlpkg/tltcl/tltcl.tcl:674
 #: texmf-dist/scripts/tlshell/tlshell.tcl:232
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1342
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1347
 msgid "Cancel"
 msgstr "Bỏ qua"
 
@@ -110,7 +110,7 @@ msgstr "Cài đặt TeX Live %s"
 #: tlpkg/installer/install-menu-perltk.pl:676
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:544
 #: tlpkg/installer/install-tl-gui.tcl:1438
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2234
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2239
 msgid "Quit"
 msgstr "Thoát"
 
@@ -362,7 +362,7 @@ msgstr "Không"
 #: tlpkg/installer/install-menu-wizard.pl:604
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:456
 #: tlpkg/installer/install-tl-gui.tcl:1436
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1969
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1974
 msgid "Install"
 msgstr "Cài đặt"
 
@@ -385,8 +385,8 @@ msgstr "Chỉ cái mới"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:145
 #: tlpkg/installer/install-tl-gui.tcl:1091
 #: tlpkg/installer/install-tl-gui.tcl:1723
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2300
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2317
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2305
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2322
 msgid "All"
 msgstr "Tất cả"
 
@@ -573,8 +573,8 @@ msgstr "TEXMFHOME (thư mục người dùng chứa các gói bổ sung)"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:513
 #: tlpkg/installer/install-tl-gui.tcl:1646
 #: texmf-dist/scripts/tlshell/tlshell.tcl:849
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2089
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2150
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2094
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2155
 msgid "Options"
 msgstr "Tùy chọn"
 
@@ -612,7 +612,7 @@ msgstr "Sau khi cài xong, đặt CTAN làm nguồn để cập nhật các gói
 #: tlpkg/installer/install-menu-perltk.pl:609
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:650
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:652
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2216
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2221
 msgid "About"
 msgstr "Giới thiệu"
 
@@ -756,7 +756,7 @@ msgstr ""
 "Hầu hết các tùy chọn sẽ bị vô hiệu."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:293
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1154
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1159
 msgid "Repository"
 msgstr "Kho cài đặt"
 
@@ -791,7 +791,7 @@ msgid "Display configuration"
 msgstr "Cấu hình thể hiện"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:321
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2297
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2302
 msgid "Status"
 msgstr "Trạng thái"
 
@@ -869,12 +869,12 @@ msgid "Package name"
 msgstr "Tên gói"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:417
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2383
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2388
 msgid "Local rev. (ver.)"
 msgstr "Phiên bản đang có"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:418
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2384
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2389
 msgid "Remote rev. (ver.)"
 msgstr "Phiên bản trên mạng"
 
@@ -891,13 +891,13 @@ msgid "Reinstall previously removed packages"
 msgstr "Cài lại các gói đã gỡ ra trước đây"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:451
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1974
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1979
 msgid "Update"
 msgstr "Cập nhật"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:460
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2014
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1979
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1984
 msgid "Remove"
 msgstr "Gỡ bỏ"
 
@@ -906,13 +906,13 @@ msgid "Backup"
 msgstr "Sao lưu"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:515
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2138
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2143
 msgid "Actions"
 msgstr "Hành động"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:519
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2694
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2214
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2219
 msgid "Help"
 msgstr "Giúp đỡ"
 
@@ -937,7 +937,7 @@ msgid "General ..."
 msgstr "Tổng quan ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:552
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2159
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2164
 msgid "Paper ..."
 msgstr "Kiểu giấy ..."
 
@@ -1358,9 +1358,9 @@ msgstr "Ép các gói về phiên bản mới nhất"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2417
 #: tlpkg/installer/install-tl-gui.tcl:442
 #: texmf-dist/scripts/tlshell/tlshell.tcl:861
-#: texmf-dist/scripts/tlshell/tlshell.tcl:983
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1432
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1644
+#: texmf-dist/scripts/tlshell/tlshell.tcl:988
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1437
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1649
 msgid "Close"
 msgstr "Đóng"
 
@@ -1617,8 +1617,8 @@ msgid "Info pages"
 msgstr "Tài liệu info"
 
 #: tlpkg/installer/install-tl-gui.tcl:1379
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2106
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2132
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2111
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2137
 msgid "File"
 msgstr "Tập tin"
 
@@ -1674,8 +1674,8 @@ msgstr ""
 "và TEXMFHOME"
 
 #: tlpkg/installer/install-tl-gui.tcl:1574
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1419
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2211
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1424
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2216
 msgid "Platforms"
 msgstr "Kiến trúc"
 
@@ -1762,7 +1762,7 @@ msgstr "Đang chạy"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:379
 #: texmf-dist/scripts/tlshell/tlshell.tcl:540
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2436
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2441
 msgid "Idle"
 msgstr "Đang treo"
 
@@ -1775,7 +1775,7 @@ msgid "Up to date"
 msgstr "Mới nhất"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:650
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2264
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2269
 msgid "Unknown"
 msgstr "Không biết"
 
@@ -1788,8 +1788,8 @@ msgid "If loading takes too long, press Abort and choose another repository."
 msgstr "Nếu việc tải quá lâu, hãy chọn bỏ (Abort) và chọn kho khác."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:849
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2089
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2155
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2094
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2160
 msgid "Repositories"
 msgstr "Các kho cài đặt"
 
@@ -1797,145 +1797,145 @@ msgstr "Các kho cài đặt"
 msgid "Done loading"
 msgstr "Đã nạp xong"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:911
+#: texmf-dist/scripts/tlshell/tlshell.tcl:913
 msgid "A configured repository is unavailable."
 msgstr "Kho cài đặt đã chọn không còn thích hợp."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1038
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1043
 msgid "Output"
 msgstr "Nội dung thu được"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1039
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1044
 msgid "Other"
 msgstr "Khác"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1065
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1070
 #, tcl-format
 msgid "%s not a repository"
 msgstr "%s không phải là kho cài đặt"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1151
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1156
 msgid "No repositories"
 msgstr "Không có kho nào"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1156
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1161
 msgid "Multiple repositories"
 msgstr "Nhiều kho"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1159
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1164
 msgid "Not loaded"
 msgstr "Chưa được nạp"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1187
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1192
 msgid "Actual repository"
 msgstr "Kho thực tế"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1272
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1277
 msgid "Main Repository"
 msgstr "Kho cài đặt chính"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1283
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1288
 msgid "Current:"
 msgstr "Hiện tại:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1289
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1294
 msgid "New"
 msgstr "Mới"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1299
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1304
 msgid "Any CTAN mirror"
 msgstr "Bất kỳ kho CTAN nào"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1309
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1314
 msgid "Local directory..."
 msgstr "Thư mục trên máy..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1314
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1319
 msgid "tlcontrib additional repository"
 msgstr "kho cài đặt bổ sung tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1330
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1335
 msgid "tlcontrib repository is included"
 msgstr "bao gồm cài đặt tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1331
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1336
 msgid "Remove tlcontrib repository"
 msgstr "Bỏ kho cài đặt tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1333
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1338
 msgid "tlcontrib repository is not included"
 msgstr "không gồm kho cài đặt tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1334
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1339
 msgid "Add tlcontrib repository"
 msgstr "Thêm kho cài đặt tlcontrib"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1339
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1344
 msgid "Save and Load"
 msgstr "Lưu và nạp"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1363
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1368
 #, tcl-format
 msgid "Cannot remove own platform %s"
 msgstr "Không thể bỏ chọn kiến trúc %s của máy đang chạy"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1427
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1432
 msgid "Apply and close"
 msgstr "Áp dụng và  kết thúc"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1449
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1454
 msgid "platform"
 msgstr "kiến trúc"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1513
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1518
 #, tcl-format
 msgid "Restore %s to revision %s?"
 msgstr "Khôi phục %s về phiên bản %s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1536
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1541
 msgid "No backups configured"
 msgstr "Không có cấu hình sao lưu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1546
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1551
 msgid "No backup directory defined"
 msgstr "Không có cấu hình thư mục để sao lưu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1551
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1556
 #, tcl-format
 msgid "Backup directory %s does not exist"
 msgstr "Thư mục %s để sao lưu không tồn tại trên máy"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1574
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1579
 #, tcl-format
 msgid "No packages in backup directory %s"
 msgstr "Không có gói nào trong thư mục sao lưu %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1584
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2350
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1589
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2355
 msgid "Restore from backup"
 msgstr "Khôi phục từ bộ sao lưu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1600
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1605
 msgid "Package"
 msgstr "Gói"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1601
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1606
 msgid "Revision"
 msgstr "Phiên bản"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1642
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1647
 msgid "Restore all"
 msgstr "Khôi phục tất cả"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1672
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1704
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1744
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1794
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1869
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1677
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1709
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1749
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1799
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1874
 msgid "Nothing to do!"
 msgstr "Chẳng phải làm gì!"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1759
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1764
 #, tcl-format
 msgid ""
 "Also installing dependencies\n"
@@ -1946,12 +1946,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1766
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1771
 #, tcl-format
 msgid "Already installed: %s"
 msgstr "Gói đã được cài đặt: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1807
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1812
 #, tcl-format
 msgid ""
 "Also updating dependencies\n"
@@ -1962,22 +1962,22 @@ msgstr ""
 "\n"
 "%s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1822
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1827
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
 msgstr "Một số gói phụ thuộc vẫn phải được cập nhật: %s. Tiếp tục?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1834
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1839
 #, tcl-format
 msgid "Skipped because not installed: %s"
 msgstr "Bỏ qua vì không được cài đặt: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1837
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1842
 #, tcl-format
 msgid "Skipped because already up to date: %s"
 msgstr "Bỏ qua vì gói đã ở phiên bản mới nhất: %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1873
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1878
 #, tcl-format
 msgid ""
 "Also remove dependencies\n"
@@ -1988,22 +1988,22 @@ msgstr ""
 "\n"
 "%s?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1888
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1893
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
 msgstr "Gói phụ thuộc bị ép phải gỡ bỏ: %s. Tiếp tục?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:1965
+#: texmf-dist/scripts/tlshell/tlshell.tcl:1970
 msgid "Info"
 msgstr "Thông tin"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2055
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2060
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr "Giao diện đồ họa viết bằng Tcl/Tk cho chương trình quản lý TeX Live"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2087
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2092
 #, tcl-format
 msgid ""
 "%s is not a local or remote repository.\n"
@@ -2012,164 +2012,164 @@ msgstr ""
 "%s không phải kho dưới máy hay trên mạng.\n"
 "Vui lòng chọn kho phù hợp"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2090
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2095
 msgid "Error"
 msgstr "Lỗi"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2134
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2139
 msgid "Load repository"
 msgstr "Nạp kho"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2136
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2141
 msgid "Exit"
 msgstr "Thoát"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2142
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2147
 msgid "Regenerate filename database"
 msgstr "Phát sinh lại dữ liệu tập tin"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2143
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2148
 msgid "Regenerating filename database..."
 msgstr "Đang phát sinh lại dữ liệu tập tin..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2144
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2149
 msgid "Regenerate formats"
 msgstr "Phát sinh các định dạng"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2145
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2150
 msgid "Rebuilding formats..."
 msgstr "Đang phát sinh lại các định dạng..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2146
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2151
 msgid "Regenerate fontmaps"
 msgstr "Phát sinh lại ánh xạ font"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2147
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2152
 msgid "Rebuilding fontmap files..."
 msgstr "Đang phát sinh lại các ánh xạ font..."
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2169
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2174
 msgid "GUI language"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2184
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2189
 msgid "GUI font scaling"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2188
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2193
 msgid "Current"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2217
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2222
 msgid "tlmgr help"
 msgstr "trang giúp đỡ tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2236
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2241
 msgid "Restart self"
 msgstr "Tự khởi động lại"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2238
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2243
 msgid "Restart tlmgr"
 msgstr "Khởi động lại tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2241
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2246
 msgid "Show logs"
 msgstr "Hiển thị nội dung xuất ra từ chương trình"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2262
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2267
 msgid "TL Manager up to date?"
 msgstr "Liệu chương trình quản lý TeX Live đã mới nhất?"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2267
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2272
 msgid "Last tlmgr command:"
 msgstr "Lệnh tlmgr cuối cùng:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2280
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2285
 #, tcl-format
 msgid "Root at %s"
 msgstr "Gốc ở %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2288
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2293
 msgid "Package list"
 msgstr "Danh sách gói"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2298
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2303
 msgid "Installed"
 msgstr "Đã cài đặt"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2305
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2310
 msgid "Updatable"
 msgstr "Có thể cập nhật"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2316
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2321
 msgid "Detail >> Global"
 msgstr "Chi tiết >> Toàn cục"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2319
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2324
 msgid "Collections and schemes"
 msgstr "Nhóm và kiểu cài đặt"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2321
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2326
 msgid "Only schemes"
 msgstr "Chỉ các kiểu mẫu"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2329
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2334
 msgid "Mark all"
 msgstr "Đánh dấu tất cả"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2331
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2336
 msgid "Mark none"
 msgstr "Bỏ chọn tất cả"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2337
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2342
 msgid "Install marked"
 msgstr "Cài đặt phần đã chọn"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2341
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2346
 msgid "Update marked"
 msgstr "Cập nhật phần đã chọn"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2345
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2350
 msgid "Remove marked"
 msgstr "Gỡ bỏ phần đã chọn"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2355
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2360
 msgid "Update tlmgr"
 msgstr "Cập nhật tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2358
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2363
 msgid "Update all"
 msgstr "Cập nhật tất cả"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2365
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2370
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2368
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2373
 msgid "By name"
 msgstr "Theo tên"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2370
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2375
 msgid "By name and description"
 msgstr "Theo tên và mô tả"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2382
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2387
 msgid "Name"
 msgstr "Tên"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2385
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2390
 msgid "Description"
 msgstr "Mô tả"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2419
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2424
 msgid "Multi-user"
 msgstr "Nhiều người dùng"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2419
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2424
 msgid "Single-user"
 msgstr "Một người dùng"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2504
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2509
 #, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"
