@@ -19,11 +19,17 @@ use TeXLive::TLPOBJ;
 use TeXLive::TLConfig;
 use TeXLive::TLUtils;
 
-my $askfile = $0;
-$askfile =~ s!^(.*)([\\/])([^\\/]*)$!$1$2!;
-$askfile .= "uninstq.vbs";
-my $ans = system("wscript", $askfile);
-# 0 means yes
+my $ans;
+
+if (@ARGV) {
+  $ans = 0;
+} else {
+  my $askfile = $0;
+  $askfile =~ s!^(.*)([\\/])([^\\/]*)$!$1$2!;
+  $askfile .= "uninstq.vbs";
+  $ans = system("wscript", $askfile);
+  # 0 means yes
+}
 if ($ans) {
   exit(1);
 } else {

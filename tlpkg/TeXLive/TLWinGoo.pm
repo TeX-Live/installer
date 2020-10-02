@@ -1235,7 +1235,8 @@ set PERL_ROOT=
 set PERL_SIGNALS=
 set PERL_UNICODE=
 
-perl.exe \"$tdmain\\scripts\\texlive\\uninstall-win32.pl\"
+perl.exe \"$tdmain\\scripts\\texlive\\uninstall-win32.pl\" \%1
+
 if errorlevel 1 goto :eof
 rem test for taskkill and try to stop exit tray menu
 taskkill /? >nul 2>&1
