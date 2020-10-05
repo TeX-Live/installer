@@ -1507,7 +1507,9 @@ sub action_path {
       $ret |= TeXLive::TLUtils::w32_add_to_path(
         $localtlpdb->root . "/bin/win32",
         $winadminmode);
-      $ret |= TeXLive::TLWinGoo::broadcast_env();
+      # ignore this return value, since broadcase_env might return
+      # nothing in case of errors, and there is no way around it.
+      # $ret |= TeXLive::TLWinGoo::broadcast_env();
     } else {
       $ret |= TeXLive::TLUtils::add_symlinks($localtlpdb->root,
         $localtlpdb->platform(),
@@ -1520,7 +1522,9 @@ sub action_path {
       $ret |= TeXLive::TLUtils::w32_remove_from_path(
         $localtlpdb->root . "/bin/win32",
         $winadminmode);
-      $ret |= TeXLive::TLWinGoo::broadcast_env();
+      # ignore this return value, since broadcase_env might return
+      # nothing in case of errors, and there is no way around it.
+      # $ret |= TeXLive::TLWinGoo::broadcast_env();
     } else {
       # remove symlinks
       $ret |= TeXLive::TLUtils::remove_symlinks($localtlpdb->root,
