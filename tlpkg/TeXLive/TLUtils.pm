@@ -4170,6 +4170,7 @@ Compare the two passed L<TLPOBJ> objects.  Returns a hash:
   $ret{'revision'}  = "revA:revB" # if revisions differ
   $ret{'removed'}   = \[ list of files removed from A to B ]
   $ret{'added'}     = \[ list of files added from A to B ]
+  $ret{'fmttriggers'} = 1 if the fmttriggers have changed
 
 =cut
 
@@ -4199,6 +4200,51 @@ sub compare_tlpobjs {
   my @add = sort keys %added;
   $ret{'removed'} = \@rem if @rem;
   $ret{'added'} = \@add if @add;
+
+  # changed dependencies should not trigger a change without a
+  # change in revision, so for now (until we find a reason why
+  # we need to) we don't check.
+  # OTOH, execute statements like
+  #   execute AddFormat name=aleph engine=aleph options=*aleph.ini fmttriggers=cm,hyphen-base,knuth-lib,plain
+  # might change due to changes in the fmttriggers variables.
+  # Again, name/engine/options are only defined in the package's
+  # tlpsrc file, so changes here will trigger revision changes,
+  # but fmttriggers are defined outside the tlpsrc and thus do
+  # not trigger an automatic revision change. Check for that!
+  # No need to record actual changes, just record that it has changed.
+  my %triggersA;
+  my %triggersB;
+  # we sort executes after format/engine like fmtutil does, since this
+  # should be unique
+  for my $e ($tlpA->executes) {
+    if ($e =~ m/AddFormat\s+(.*)\s*/) {
+      my %r = parse_AddFormat_line("$1");
+      if (defined($r{"error"})) {
+        die "$r{'error'} when comparing packages $tlpA->name execute $e";
+      }
+      for my $t (@{$r{'fmttriggers'}}) {
+        $triggersA{"$r{'name'}:$r{'engine'}:$t"} = 1;
+      }
+    }
+  }
+  for my $e ($tlpB->executes) {
+    if ($e =~ m/AddFormat\s+(.*)\s*/) {
+      my %r = parse_AddFormat_line("$1");
+      if (defined($r{"error"})) {
+        die "$r{'error'} when comparing packages $tlpB->name execute $e";
+      }
+      for my $t (@{$r{'fmttriggers'}}) {
+        $triggersB{"$r{'name'}:$r{'engine'}:$t"} = 1;
+      }
+    }
+  }
+  for my $t (keys %triggersA) {
+    delete($triggersA{$t});
+    delete($triggersB{$t});
+  }
+  if (keys(%triggersA) || keys(%triggersB)) {
+    $ret{'fmttrigger'} = 1;
+  }
 
   return %ret;
 }
