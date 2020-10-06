@@ -1872,6 +1872,7 @@ sub restore_one_package {
   $localtlpdb->add_tlpobj($tlpobj);
   TeXLive::TLUtils::announce_execute_actions("enable",
                                       $localtlpdb->get_package($pkg));
+  check_announce_format_triggers($pkg);
   $localtlpdb->save;
   # TODO_ERRORCHECKING we should check the return values of the
   # various calls above
