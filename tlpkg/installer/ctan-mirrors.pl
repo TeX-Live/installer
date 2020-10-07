@@ -52,9 +52,6 @@ $mirrors = {
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
-    'Philippines' => {
-      'https://mirror.pregi.net/tex-archive/' => 1,
-    },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
@@ -196,6 +193,9 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'http://linorg.usp.br/CTAN/' => 1,
+    },
+    'Chile' => {
+      'https://ctan.dcc.uchile.cl/' => 1,
     },
   },
 };
