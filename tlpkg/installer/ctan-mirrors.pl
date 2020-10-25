@@ -1,11 +1,13 @@
 $mirrors = {
   'Africa' => {
+    'Algeria' => {
+      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1,
+    },
     'Morocco' => {
       'https://mirror.marwan.ma/ctan/' => 1,
     },
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
-      'http://mirror.ufs.ac.za/ctan/' => 1,
       'https://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
     },
   },
@@ -18,6 +20,7 @@ $mirrors = {
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
+      'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
     'Hong Kong' => {
@@ -132,6 +135,7 @@ $mirrors = {
       'https://mirrors.nxthost.com/ctan/' => 1,
     },
     'Russia' => {
+      'http://ctan.altspu.ru/' => 1,
       'http://mirror.macomnet.net/pub/CTAN/' => 1,
       'http://mirrors.mi.ras.ru/CTAN/' => 1,
       'https://mirror.truenetwork.ru/CTAN/' => 1,
@@ -171,6 +175,7 @@ $mirrors = {
       'http://ctan.math.washington.edu/tex-archive/' => 1,
       'http://ctan.mirrors.hoobly.com/' => 1,
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
+      'https://ctan.math.illinois.edu/' => 1,
       'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirrors.concertpass.com/tex-archive/' => 1,
       'https://mirrors.rit.edu/CTAN/' => 1,
