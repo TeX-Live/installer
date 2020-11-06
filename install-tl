@@ -1363,7 +1363,7 @@ sub do_texmf_cnf {
       }
     } elsif ($line =~ m/^OSFONTDIR/) {
       if (win32()) {
-        push @changedtmf, "OSFONTDIR = \$SystemRoot/fonts//\n";
+        push @changedtmf, "OSFONTDIR = \$SystemRoot/fonts//;\$LOCALAPPDATA/Microsoft/Windows/Fonts//\n";
       }
     }
   }
