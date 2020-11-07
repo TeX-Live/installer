@@ -1,8 +1,5 @@
 $mirrors = {
   'Africa' => {
-    'Algeria' => {
-      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1,
-    },
     'Morocco' => {
       'https://mirror.marwan.ma/ctan/' => 1,
     },
@@ -17,8 +14,8 @@ $mirrors = {
       'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
-      'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
+      'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
@@ -44,12 +41,16 @@ $mirrors = {
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
     },
     'Korea' => {
+      'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.kakao.com/CTAN/' => 1,
       'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
+    },
+    'Philippines' => {
+      'https://mirror.pregi.net/tex-archive/' => 1,
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
@@ -141,9 +142,6 @@ $mirrors = {
       'http://mirrors.mi.ras.ru/CTAN/' => 1,
       'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
-    'Serbia' => {
-      'http://ctan.mirror.ftn.uns.ac.rs/' => 1,
-    },
     'Slovenia' => {
       'http://ctan.ijs.si/tex-archive/' => 1,
     },
@@ -165,7 +163,6 @@ $mirrors = {
       'http://ctan.mirror.globo.tech/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
       'https://ctan.math.ca/tex-archive/' => 1,
-      'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {
@@ -183,9 +180,6 @@ $mirrors = {
     },
   },
   'Oceania' => {
-    'Australia' => {
-      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
-    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1,
     },
