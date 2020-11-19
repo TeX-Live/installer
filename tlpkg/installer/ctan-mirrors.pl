@@ -28,12 +28,13 @@ $mirrors = {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
     },
     'India' => {
-      'http://mirror.iopb.res.in/tex-archive/' => 1,
+      'http://ctan.imsc.res.in/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
+      'http://ctan.yazd.ac.ir/' => 1,
       'https://ctan.um.ac.ir/' => 1,
     },
     'Japan' => {
@@ -43,13 +44,15 @@ $mirrors = {
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
     },
     'Korea' => {
-      'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.kakao.com/CTAN/' => 1,
       'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
+    },
+    'Philippines' => {
+      'https://mirror.pregi.net/tex-archive/' => 1,
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
@@ -86,6 +89,7 @@ $mirrors = {
     },
     'Germany' => {
       'ftp://ftp.fu-berlin.de/tex/CTAN/' => 1,
+      'http://ctan.ebinger.cc/tex-archive/' => 1,
       'http://mirror.physik-pool.tu-berlin.de/pub/CTAN/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
       'https://ctan.kako-dev.de/' => 1,
@@ -143,6 +147,9 @@ $mirrors = {
     'Serbia' => {
       'http://ctan.mirror.ftn.uns.ac.rs/' => 1,
     },
+    'Slovenia' => {
+      'http://ctan.ijs.si/tex-archive/' => 1,
+    },
     'Spain' => {
       'https://ctan.javinator9889.com/' => 1,
       'https://osl.ugr.es/CTAN/' => 1,
@@ -160,6 +167,7 @@ $mirrors = {
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.globo.tech/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
+      'https://ctan.math.ca/tex-archive/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
@@ -172,6 +180,7 @@ $mirrors = {
       'http://ctan.mirrors.hoobly.com/' => 1,
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
+      'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirrors.concertpass.com/tex-archive/' => 1,
       'https://mirrors.rit.edu/CTAN/' => 1,
     },
