@@ -8352,26 +8352,35 @@ C<--only-installed> and C<--only-remote> cannot both be specified.
 =item B<--data C<item1,item2,...>>
 
 If the option C<--data> is given, its argument must be a comma separated
-list of field names from: C<name>, C<category>, C<localrev>, C<remoterev>,
-C<shortdesc>, C<longdesc>, C<installed>, C<size>, C<relocatable>, C<depends>,
-C<cat-version>, C<cat-date>, or C<cat-license>, and various C<cat-contact-*>
-fields. For the C<cat-> fields, there are two more variants with prefix C<l>
-and C<r>, that is C<lcat-version> and C<rcat-version> etc, which indicate
-the local and remote information, respectively. The variants without C<l> and
-C<r> show the most current one, that is normally the remote one.
+list of field names from: C<name>, C<category>, C<localrev>,
+C<remoterev>, C<shortdesc>, C<longdesc>, C<installed>, C<size>,
+C<relocatable>, C<depends>, C<cat-version>, C<cat-date>, C<cat-license>,
+plus various C<cat-contact-*> fields (see below).
 
-The requested packages' information is listed in CSV format one package per
-line, and the column information is given by the C<itemN>. The C<depends>
-column contains the name of all dependencies separated by C<:>.
+The C<cat-*> fields all come from the TeX Catalogue
+(L<https://ctan.org/pkg/catalogue>). For each, there are two more
+variants with prefix C<l> and C<r>, e.g., C<lcat-version> and
+C<rcat-version>, which indicate the local and remote information,
+respectively. The variants without C<l> and C<r> show the most current
+one, which is normally the remote value.
+
+The requested packages' information is listed in CSV format, one package
+per line, and the column information is given by the C<itemN>. The
+C<depends> column contains the names of all the dependencies separated
+by C<:> characters.
+
+At this writing, the C<cat-contact-*> fields include: C<home>,
+C<repository>, C<support>, C<bugs>, C<announce>, C<development>. Each
+may be empty or a url value. A brief description is on the CTAN upload
+page for new packages: L<https://ctan.org/upload>.
 
 =item B<--json>
 
-In case C<--json> is specified, the output is a
-JSON encoded array where each array element is the JSON representation of
-a single C<TLPOBJ> but with additional information. For details see
-C<tlpkg/doc/JSON-formats.txt>, format definition: C<TLPOBJINFO>.
-If both C<--json> and C<--data> are given, C<--json> takes precedence.
-
+In case C<--json> is specified, the output is a JSON encoded array where
+each array element is the JSON representation of a single C<TLPOBJ> but
+with additional information. For details see
+C<tlpkg/doc/JSON-formats.txt>, format definition: C<TLPOBJINFO>. If both
+C<--json> and C<--data> are given, C<--json> takes precedence.
 
 =back
 
