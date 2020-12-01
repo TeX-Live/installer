@@ -40,6 +40,7 @@ $mirrors = {
     'Japan' => {
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
+      'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
     },
     'Korea' => {
@@ -152,6 +153,7 @@ $mirrors = {
     },
     'Spain' => {
       'https://ctan.javinator9889.com/' => 1,
+      'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
