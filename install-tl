@@ -119,6 +119,8 @@ if (($^O !~ /^MSWin/i) &&
   }
   # done scanning arguments
   if ($want_tcl) {
+    # Darwin: suppress deprecation warning
+    $ENV{'TK_SILENCE_DEPRECATION'} = 1 if $^O eq 'darwin';
     unshift (@new_args, "--");
     unshift (@new_args, "$::installerdir/tlpkg/installer/install-tl-gui.tcl");
     my @wishes = qw /wish wish8.7 wish8.6 wish8.5 tclkit/;
