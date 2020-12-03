@@ -159,9 +159,6 @@ $mirrors = {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
       'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
     },
-    'United Kingdom' => {
-      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
-    },
   },
   'North America' => {
     'Canada' => {
@@ -187,9 +184,6 @@ $mirrors = {
     },
   },
   'Oceania' => {
-    'Australia' => {
-      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
-    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1,
     },
