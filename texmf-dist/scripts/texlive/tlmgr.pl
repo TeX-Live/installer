@@ -9297,12 +9297,12 @@ If the package on the server is older than the package already installed
 (e.g., if the selected mirror is out of date), C<tlmgr> does not
 downgrade.  Also, packages for uninstalled platforms are not installed.
 
-C<tlmgr> saves a copy of the C<texlive.tlpdb> file used for an update
-with a suffix representing the repository url, as in
-C<tlpkg/texlive.tlpdb.>I<long-hash-string>.  These can be useful for
-fallback information, but if you don't like them accumulating (e.g.,
-C<mirror.ctan.org> resolves to many different hosts, each resulting in
-a possibly different hash), it's harmless to delete them.
+C<tlmgr> saves one copy of the main C<texlive.tlpdb> file used for an
+update with a suffix representing the repository url, as in
+C<tlpkg/texlive.tlpdb.main.>I<long-hash-string>. Thus, even when many
+mirrors are used, only one main C<tlpdb> backup is kept. For non-main
+repositories, which do not generally have (m)any mirrors, no pruning of
+backups is done.
 
 This action does not automatically add or remove new symlinks in system
 directories; you need to run C<tlmgr> L</path> yourself if you are using
