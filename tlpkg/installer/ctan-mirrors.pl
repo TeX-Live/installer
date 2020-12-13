@@ -30,9 +30,6 @@ $mirrors = {
     'India' => {
       'http://ctan.imsc.res.in/' => 1,
     },
-    'Indonesia' => {
-      'https://mirror.unpad.ac.id/ctan/' => 1,
-    },
     'Iran' => {
       'http://ctan.yazd.ac.ir/' => 1,
       'https://ctan.um.ac.ir/' => 1,
@@ -40,7 +37,6 @@ $mirrors = {
     'Japan' => {
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
-      'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
     },
     'Korea' => {
@@ -51,9 +47,6 @@ $mirrors = {
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
-    },
-    'Philippines' => {
-      'https://mirror.pregi.net/tex-archive/' => 1,
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
@@ -90,14 +83,13 @@ $mirrors = {
     },
     'Germany' => {
       'ftp://ftp.fu-berlin.de/tex/CTAN/' => 1,
-      'http://ctan.ebinger.cc/tex-archive/' => 1,
+      'http://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/' => 1,
       'http://mirror.physik-pool.tu-berlin.de/pub/CTAN/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
       'https://ctan.kako-dev.de/' => 1,
       'https://ctan.mc1.root.project-creative.net/' => 1,
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
-      'https://ctan.space-pro.be/tex-archive/' => 1,
       'https://ftp.agdsn.de/pub/mirrors/latex/dante/' => 1,
       'https://ftp.fau.de/ctan/' => 1,
       'https://ftp.gwdg.de/pub/ctan/' => 1,
@@ -123,9 +115,6 @@ $mirrors = {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
-    },
-    'Norway' => {
-      'https://ctan.uib.no/' => 1,
     },
     'Poland' => {
       'https://ftp.gust.org.pl/TeX/' => 1,
@@ -168,7 +157,6 @@ $mirrors = {
       'http://ctan.mirror.globo.tech/' => 1,
       'http://ctan.mirror.rafal.ca/' => 1,
       'https://ctan.math.ca/tex-archive/' => 1,
-      'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {
