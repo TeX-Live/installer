@@ -51,7 +51,7 @@ sub dblog {
 
 if (($^O !~ /^MSWin/i) &&
       # this wrapper is only for unix, since windows has its own wrapper
-      ($#ARGV >= 0 || ($^O eq 'darwin')) &&
+      ($#ARGV >= 0 || ($^O eq 'xdarwin')) &&
         # tcl parameter may still come, or tcl is default
       ($#ARGV < 0 || $ARGV[0] ne '-from_ext_gui')
         # this run is not invoked by tcl
@@ -74,7 +74,7 @@ if (($^O !~ /^MSWin/i) &&
   # build argument array @new_args for install-tl-gui.tcl.
   # '-gui' or '-gui tcl' will not be copied to @new_args.
   # quit scanning and building @new_args once tcl is ruled out.
-  my $want_tcl = ($^O eq 'darwin');
+  my $want_tcl = ($^O eq 'xdarwin');
   my $asked4tcl = 0;
   my $forbid = 0;
   my @new_args = ();
@@ -2713,12 +2713,12 @@ following modules are supported:
 
 =item C<text>
 
-The text mode user interface (default on Unix systems).  Same as the
-C<-no-gui> option.
+The text mode user interface (default on Unix systems, including Macs).
+Same as the C<-no-gui> option.
 
 =item C<tcl> (or "perltk" or "wizard" or "expert" or nothing)
 
-The Tcl/Tk user interface (default on Macs and Windows).  It starts
+The Tcl/Tk user interface (default on Windows).  It starts
 with a small number of configuration options, roughly equivalent
 to what the former wizard option offers, but a button C<Advanced>
 takes you to a screen with roughly the same options as the former
@@ -2726,10 +2726,10 @@ C<perltk> interface.
 
 =back
 
-The default GUI requires Tcl/Tk. This is standard on Macs (although
-it is considered deprecated since Catalina) and is often already
-installed on GNU/Linux. For Windows, TeX Live provides a Tcl/Tk
-runtime.
+The default GUI requires Tcl/Tk. This is standard on Macs (although it
+is considered deprecated since Catalina) and is often already installed
+on GNU/Linux, or can be easily installed through a distro package
+manager. For Windows, TeX Live provides a Tcl/Tk runtime.
 
 =item B<-no-gui>
 
