@@ -1496,7 +1496,7 @@ msgstr "Lokales Repository"
 #: tlpkg/installer/install-tl-gui.tcl:1380
 #: texmf-dist/scripts/tlshell/tlshell.tcl:864
 msgid "Abort"
-msgstr "Breche ab"
+msgstr "Abbrechen"
 
 #: tlpkg/installer/install-tl-gui.tcl:416
 #: tlpkg/installer/install-tl-gui.tcl:1995
