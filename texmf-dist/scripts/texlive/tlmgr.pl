@@ -872,7 +872,7 @@ sub do_cmd_and_check {
 sub handle_execute_actions {
   my $errors = 0;
 
-  my $sysmode = ($opts{"usermode"} ? "" : "-sys");
+  my $sysmode = ($opts{"usermode"} ? "-user" : "-sys");
   my $invoke_fmtutil = "fmtutil$sysmode $common_fmtutil_args";
 
   if ($::files_changed) {
