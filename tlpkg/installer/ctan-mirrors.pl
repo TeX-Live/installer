@@ -28,11 +28,15 @@ $mirrors = {
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
     },
+    'India' => {
+      'http://ctan.imsc.res.in/' => 1,
+    },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
       'http://ctan.yazd.ac.ir/' => 1,
+      'https://ctan.asis.ai/' => 1,
       'https://ctan.um.ac.ir/' => 1,
     },
     'Japan' => {
@@ -43,14 +47,12 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
+      'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.kakao.com/CTAN/' => 1,
       'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
-    },
-    'Philippines' => {
-      'https://mirror.pregi.net/tex-archive/' => 1,
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
@@ -84,6 +86,7 @@ $mirrors = {
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
       'https://mirrors.chevalier.io/CTAN/' => 1,
       'https://mirrors.ircam.fr/pub/CTAN/' => 1,
+      'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
       'ftp://ftp.fu-berlin.de/tex/CTAN/' => 1,
@@ -167,6 +170,7 @@ $mirrors = {
     'Canada' => {
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.globo.tech/' => 1,
+      'http://ctan.mirror.rafal.ca/' => 1,
       'https://ctan.math.ca/tex-archive/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
@@ -176,6 +180,7 @@ $mirrors = {
     },
     'USA' => {
       'http://ctan.math.utah.edu/ctan/tex-archive/' => 1,
+      'http://ctan.math.washington.edu/tex-archive/' => 1,
       'http://ctan.mirrors.hoobly.com/' => 1,
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
