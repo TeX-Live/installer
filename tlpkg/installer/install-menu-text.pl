@@ -96,7 +96,6 @@ sub other_options {
   my %opts=(
     '-' => 'deselect all',
     '+' => 'select all',
-    'H' => 'help',
     'R' => 'return to main menu',
     'P' => 'save installation profile to \'texlive.profile\' and exit',
     'Q' => 'quit'
@@ -253,14 +252,14 @@ sub run_menu_text {
     my $f = shift @args;
     if ($f =~ m/^-old-installation-found=(.*)$/) {
       my $dn = $1;
-      print "\nAn old installation of TeX Live has been found in $dn\n";
+      print "\nAn existing installation of TeX Live has been found in $dn\n";
       print "
-If you want the selection of schemes/collections and various options being
-taken over press `y', otherwise anything else.
+If you want its selection of schemes/collections and various options
+to be used, press `y', otherwise anything else.
 
 Import settings from previous TeX Live installation: (y/n): ";
       chomp(my $yn = <STDIN>);
-      if ($yn =~ m/^y$/i) {
+      if (defined $yn && $yn =~ m/^y$/i) {
         import_settings_from_old_tlpdb($dn);
       }
     }
@@ -710,6 +709,9 @@ sub html2text {
 }
 
 
+# dumping the html doc to stdout does not seem very helpful,
+# and did not work for years with no one noticing, so this
+# function is no longer used.
 sub help_menu {
   my %command=(
     'self' => \&help_menu,
@@ -1023,7 +1025,6 @@ sub main_menu {
   my %command = (
     'self' => \&main_menu,
     'D' => \&directories_menu,
-    'H' => \&help_menu,
     'I' => \&do_install,
     'O' => \&options_menu,
     'Q' => \&quit,
@@ -1042,6 +1043,7 @@ sub main_menu {
 
 ======>   Letters/digits in <angle brackets> indicate   <=======
 ======>   menu items for actions or customizations      <=======
+= help>   https://tug.org/texlive/doc/install-tl.html   <=======
 
  Detected platform: $this_platform
  $warn_nobin
@@ -1130,7 +1132,7 @@ EOF
     print "\n <V> set up for portable installation\n";
   }
 
-  other_options qw(I P H Q);
+  other_options qw(I P Q);
   my $answer = prompt 'Enter command';
 
   if (defined $command{"\u$answer"}) {
