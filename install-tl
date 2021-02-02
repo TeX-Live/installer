@@ -51,7 +51,7 @@ sub dblog {
 
 if (($^O !~ /^MSWin/i) &&
       # this wrapper is only for unix, since windows has its own wrapper
-      ($#ARGV >= 0 || ($^O eq 'xdarwin')) &&
+      ($#ARGV >= 0 || ($^O eq 'darwin')) &&
         # tcl parameter may still come, or tcl is default
       ($#ARGV < 0 || $ARGV[0] ne '-from_ext_gui')
         # this run is not invoked by tcl
@@ -74,7 +74,7 @@ if (($^O !~ /^MSWin/i) &&
   # build argument array @new_args for install-tl-gui.tcl.
   # '-gui' or '-gui tcl' will not be copied to @new_args.
   # quit scanning and building @new_args once tcl is ruled out.
-  my $want_tcl = ($^O eq 'xdarwin');
+  my $want_tcl = ($^O eq 'darwin');
   my $asked4tcl = 0;
   my $forbid = 0;
   my @new_args = ();
