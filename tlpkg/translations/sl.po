@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-01-25 01:54+0100\n"
-"PO-Revision-Date: 2019-04-08 23:05+0200\n"
+"PO-Revision-Date: 2021-02-07 21:14+0100\n"
 "Last-Translator: Mojca Miklavec <mojca.miklavec.lists@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: sl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Bookmarks: 77,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 # 1. zavihek
 #: tlpkg/installer/tracked-install.pl:27
@@ -1556,7 +1556,7 @@ msgstr "Res želite prekiniti?"
 
 #: tlpkg/installer/install-tl-gui.tcl:358
 msgid "Local repository"
-msgstr ""
+msgstr "Lokalni repozitorij"
 
 #: tlpkg/installer/install-tl-gui.tcl:394
 #: tlpkg/installer/install-tl-gui.tcl:411
@@ -1580,6 +1580,9 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Poskušam naložiti %s.\n"
+"\n"
+"Če traja predolgo, prekini proces ali izberi drug repozitorij."
 
 #: tlpkg/installer/install-tl-gui.tcl:508
 msgid "Cannot be created or cannot be written to"
@@ -1689,15 +1692,15 @@ msgstr "Datoteka"
 
 #: tlpkg/installer/install-tl-gui.tcl:1383
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #: tlpkg/installer/install-tl-gui.tcl:1388
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: tlpkg/installer/install-tl-gui.tcl:1400
 msgid "Font scaling"
-msgstr ""
+msgstr "Povečava pisave"
 
 #: tlpkg/installer/install-tl-gui.tcl:1425
 #, tcl-format
@@ -1786,8 +1789,9 @@ msgid "Desktop integration"
 msgstr "Integracija z namizjem"
 
 #: tlpkg/installer/install-tl-gui.tcl:1725
+#, fuzzy
 msgid "File associations"
-msgstr ""
+msgstr "Prireditve datotek"
 
 #: tlpkg/installer/install-tl-gui.tcl:1764
 #, fuzzy
@@ -1805,20 +1809,21 @@ msgstr "Shema po meri"
 #: tlpkg/installer/install-tl-gui.tcl:2015
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s ni lokalni ali oddaljeni repozitorij"
 
 #: tlpkg/installer/install-tl-gui.tcl:2019
-#, tcl-format
+#, fuzzy, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s potrebuje parameter"
 
 #: tlpkg/tltcl/tltcl.tcl:135
+#, fuzzy
 msgid "Specific mirror..."
-msgstr "Specifičen zrcalni strežnik …"
+msgstr "Izberi zrcalni strežnik …"
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "Seznam zrcalnih strežnikov ni na voljo"
 
 #: tlpkg/tltcl/tltcl.tcl:747
 #, fuzzy
@@ -1855,12 +1860,14 @@ msgid "Unknown"
 msgstr "Neznano"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:865
+#, fuzzy
 msgid "Loading"
-msgstr ""
+msgstr "Nalagam"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:871
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
+"Če nalaganje traja predolgo, prekini proces ali izberi drug repozitorij."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:872
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2305
@@ -1870,7 +1877,7 @@ msgstr "Repozitoriji"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:910
 msgid "Done loading"
-msgstr ""
+msgstr "Nalaganje končano"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:936
 msgid "A configured repository is unavailable."
@@ -1891,12 +1898,13 @@ msgid "%s not a repository"
 msgstr "%s ni (veljaven) repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1181
+#, fuzzy
 msgid "No repositories"
-msgstr ""
+msgstr "Ni repozitorijev"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1186
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Več repozitorijev"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1189
 #, fuzzy
@@ -1904,8 +1912,9 @@ msgid "Not loaded"
 msgstr "Ni naložen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1216
+#, fuzzy
 msgid "Actual repository"
-msgstr ""
+msgstr "Dejanski repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1301
 msgid "Main Repository"
@@ -1968,7 +1977,7 @@ msgstr "Uporabi in zapri"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1477
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1674
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "Spremenjeni vnosi so odebeljeni"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1490
 msgid "platform"
@@ -1977,15 +1986,16 @@ msgstr "platforma"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1609
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2306
 msgid "Error"
-msgstr ""
+msgstr "Napaka"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1609
+#, fuzzy
 msgid "No papersizes available"
-msgstr ""
+msgstr "Na voljo ni nobena velikost papirja"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1623
 msgid "Paper sizes"
-msgstr ""
+msgstr "Velikosti papirja"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1723
 #, tcl-format
@@ -2112,10 +2122,12 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s ni veljaven lokalen ali oddaljen repozitorij.\n"
+"Prosimo nastavite veljaven repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2350
 msgid "Load repository"
-msgstr ""
+msgstr "Naloži repozitorij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2352
 msgid "Exit"
@@ -2147,15 +2159,15 @@ msgstr "Posodabljam mapiranje pisav …"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2387
 msgid "GUI language"
-msgstr ""
+msgstr "Jezik grafičnega vmesnika"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2402
 msgid "GUI font scaling"
-msgstr ""
+msgstr "Povečava pisave za GUI"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2406
 msgid "Current"
-msgstr ""
+msgstr "Trenutno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2435
 msgid "tlmgr help"
@@ -2196,7 +2208,7 @@ msgstr "Nameščene"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2531
 msgid "Not installed"
-msgstr ""
+msgstr "Ni nameščen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2541
 #, fuzzy
@@ -2250,7 +2262,7 @@ msgstr "Posodobi vse"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2607
 msgid "Mark all displayed"
-msgstr ""
+msgstr "Označi vse prikazane"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2609
 #, fuzzy
@@ -2259,7 +2271,7 @@ msgstr "Odznači vse"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2612
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "Prikazani so samo paketi za nameščene platforme"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2622
 msgid "Name"
