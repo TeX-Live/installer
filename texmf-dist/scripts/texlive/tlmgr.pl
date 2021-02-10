@@ -93,6 +93,7 @@ BEGIN {
 }
 
 use Cwd qw/abs_path/;
+use File::Find;
 use File::Spec;
 use Pod::Usage;
 use Getopt::Long qw(:config no_autoabbrev permute);
@@ -5239,7 +5240,8 @@ Error message from creating MainWindow:
 
 
 #  UNINSTALL
-#
+# Return zero if successful, nonzero if failure.
+# 
 sub uninstall_texlive {
   if (win32()) {
     printf STDERR "Please use \"Add/Remove Programs\" from the Control Panel to removing TeX Live!\n";
@@ -5279,13 +5281,15 @@ sub uninstall_texlive {
     system("rm", "-f", "$Master/$f");
   }
   if (-d "$Master/temp") {
-    system("rmdir", "--ignore-fail-on-non-empty", "$Master/temp");
+    finddepth(sub { rmdir; }, "$Master/temp");
   }
   unlink("$Master/install-tl.log");
   # if they want removal, give them removal. Hopefully they know how to
   # regenerate any changed config files.
   system("rm", "-rf", "$Master/texmf-config");
-  system("rmdir", "--ignore-fail-on-non-empty", "$Master");
+  finddepth(sub { rmdir; }, "$Master");
+  
+  return -d "$Master";
 }
 
 
