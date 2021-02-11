@@ -1376,7 +1376,7 @@ proc run_menu {} {
 
   if {[llength $::langs] > 1} {
     menu .mn.lang
-    .mn add cascade -label [__ "Language"] -menu .mn.lang
+    .mn add cascade -label [__ "GUI language"] -menu .mn.lang
     foreach l [lsort $::langs] {
       if {$l eq $::lang} {
         set mlabel "$l *"
@@ -1390,7 +1390,7 @@ proc run_menu {} {
   menu .mn.fscale
   .mn add cascade -label [__ "Font scaling"] -menu .mn.fscale
   .mn.fscale add command -label \
-      [__ "Current" [format {: %.2f} $::tkfontscale]]
+      "[__ "Current:"] [format { %.2f} $::tkfontscale]"
   foreach s {0.6 0.8 1 1.2 1.6 2 2.5 3 3.8 5 6 7.5 9} {
     .mn.fscale add command -label $s -command "set_fontscale $s"
   }
