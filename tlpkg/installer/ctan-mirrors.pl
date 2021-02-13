@@ -49,6 +49,7 @@ $mirrors = {
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.kakao.com/CTAN/' => 1,
       'https://cran.asia/tex/' => 1,
+      'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
@@ -191,9 +192,6 @@ $mirrors = {
     },
   },
   'Oceania' => {
-    'Australia' => {
-      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
-    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1,
     },
