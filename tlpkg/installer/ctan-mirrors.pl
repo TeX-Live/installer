@@ -16,7 +16,6 @@ $mirrors = {
     'China' => {
       'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
-      'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.dgut.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
@@ -30,9 +29,6 @@ $mirrors = {
     },
     'India' => {
       'http://ctan.imsc.res.in/' => 1,
-    },
-    'Indonesia' => {
-      'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
       'http://ctan.yazd.ac.ir/' => 1,
@@ -49,7 +45,6 @@ $mirrors = {
       'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.kakao.com/CTAN/' => 1,
       'https://cran.asia/tex/' => 1,
-      'https://ftp.harukasan.org/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
@@ -192,6 +187,9 @@ $mirrors = {
     },
   },
   'Oceania' => {
+    'Australia' => {
+      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
+    },
     'New Zealand' => {
       'http://mirror.aut.ac.nz/CTAN/' => 1,
     },
