@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # $Id$
 #
-# Copyright 2008-2020 Norbert Preining
+# Copyright 2008-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 

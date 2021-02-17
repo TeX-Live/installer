@@ -2,7 +2,7 @@
 # $Id$
 # install-menu-txt.pl
 #
-# Copyright 2007-2020 Norbert Preining, Karl Berry
+# Copyright 2007-2021 Norbert Preining, Karl Berry
 # Copyright 2007-2008 Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
 # or any later version.

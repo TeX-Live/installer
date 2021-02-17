@@ -1,6 +1,6 @@
 #!/usr/bin/env wish
 
-# Copyright 2018-2020 Siep Kroonenberg
+# Copyright 2018-2021 Siep Kroonenberg
 
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
