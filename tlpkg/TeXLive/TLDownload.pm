@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLDownload.pm - module for abstracting the download modes
-# Copyright 2009-2020 Norbert Preining
+# Copyright 2009-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -48,23 +48,38 @@ sub new
 
 
 
-sub reinit
-{
+sub reinit {
   my $self = shift;
+  
+  # Irritatingly, as of around version 6.52, when env_proxy is set, LWP
+  # started unconditionally complaining if the environment contains
+  # differing case-insensitive like foo=1 and FOO=2. Even on systems
+  # that have case-sensitive environments, and even about variables that
+  # have nothing whatsoever to do with LWP (like foo).
+  # 
+  # So, only pass env_proxy=>1 when creating the UserAgent if there are
+  # in fact *_proxy variables (case-insensitive, just in case) set in
+  # the environment.
+  # 
+  my @env_proxy = ();
+  if (grep { /_proxy/i } keys %ENV ) {
+    @env_proxy = ("env_proxy", 1);
+  }
+  #
   my $ua = LWP::UserAgent->new(
     agent => "texlive/lwp",
     # use LWP::ConnCache, and keep 1 connection open
     keep_alive => 1,
-    env_proxy => 1,
     timeout => $TeXLive::TLConfig::NetworkTimeout,
+    @env_proxy,
   );
   $self->{'ua'} = $ua;
   $self->{'enabled'} = 1;
   $self->{'errorcount'} = 0;
   $self->{'initcount'} += 1;
 }
-sub enabled
-{
+
+sub enabled {
   my $self = shift;
   return $self->{'enabled'};
 }
