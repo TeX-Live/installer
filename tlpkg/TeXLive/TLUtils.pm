@@ -342,13 +342,13 @@ sub platform_name {
     # We have two versions of Mac binary sets.
     # 10.x and newer -> x86_64-darwin [MacTeX]
     # 10.6/Snow Leopard through 10.x -> x86_64-darwinlegacy, if 64-bit
-    # x changes every year. In 2020 (Big Sur) Apple started with 11.x.
+    # x changes every year. As of TL 2021 (Big Sur) Apple started with 11.x.
     #
     # (BTW, uname -r numbers are larger by 4 than the Mac minor version.
     # We don't use uname numbers here.)
     #
     # this changes each year, per above:
-    my $mactex_darwin = 13;  # lowest minor rev supported by x86_64-darwin.
+    my $mactex_darwin = 14;  # lowest minor rev supported by x86_64-darwin.
     #
     # Most robust approach is apparently to check sw_vers (os version,
     # returns "10.x" values), and sysctl (processor hardware).
@@ -359,7 +359,7 @@ sub platform_name {
            . " (from sw_vers -productVersion: $sw_vers)\n";
       return "unknownmac-unknownmac";
     }
-    if ($os_major >= 11) {
+    if ($os_major >= 11) { # have to refine after enough years
       $CPU = "x86_64";
       $OS = "darwin";
     } elsif ($os_minor >= $mactex_darwin) {
