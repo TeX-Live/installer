@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: s;\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: tlpkg/installer/tracked-install.pl:27
 msgid "Installation process"
@@ -228,7 +228,7 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-wizard.pl:380
 msgid "This will take some time!"
-msgstr "Ceci peut prendre du temps."
+msgstr "Ceci peut prendre du temps !"
 
 #: tlpkg/installer/install-menu-wizard.pl:387
 #: tlpkg/installer/install-menu-perltk.pl:277
@@ -613,7 +613,7 @@ msgstr "Créer les liens symboliques dans les répertoires-système"
 #: tlpkg/installer/install-tl-gui.tcl:1775
 msgid "After install, set CTAN as source for package updates"
 msgstr ""
-"Après l'installation, la source des mises à jour des packages sera CTAN "
+"Après l'installation, la source des mises à jour des packages sera CTAN"
 
 #: tlpkg/installer/install-menu-perltk.pl:607
 #: tlpkg/installer/install-menu-perltk.pl:609
@@ -732,7 +732,7 @@ msgid ""
 "Portable option changed;\n"
 "Directories have been reinitialized"
 msgstr ""
-"Option 'portable' modifiée :\n"
+"Option « portable » modifiée :\n"
 "les chemins d'installation ont été réinitialisés."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:169
@@ -778,7 +778,7 @@ msgstr "Aucun"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:297
 msgid "Load default"
-msgstr "Charger le dépôt par défaut :"
+msgstr "Charger le dépôt par défaut"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:305
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:528
@@ -1212,7 +1212,7 @@ msgstr "Papier par défaut pour %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1391
 msgid "GUI Language"
-msgstr "Langue de l'interface graphique :"
+msgstr "Langue de l'interface :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1415
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1420
@@ -1638,7 +1638,7 @@ msgstr "Langue de l'interface graphique"
 
 #: tlpkg/installer/install-tl-gui.tcl:1391
 msgid "Font scaling"
-msgstr ""
+msgstr "Taille de la police"
 
 #: tlpkg/installer/install-tl-gui.tcl:1393
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1312
@@ -1858,7 +1858,7 @@ msgstr "N'importe quel miroir CTAN"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1338
 msgid "Local directory..."
-msgstr "Répertoire local"
+msgstr "Répertoire local..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1343
 msgid "tlcontrib additional repository"
@@ -1897,7 +1897,7 @@ msgstr "Appliquer et fermer"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1477
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1674
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "Les entrées modifiées sont en gras"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1490
 msgid "platform"
@@ -1910,11 +1910,11 @@ msgstr "Erreur"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1609
 msgid "No papersizes available"
-msgstr ""
+msgstr "Aucun format de papier disponible"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1623
 msgid "Paper sizes"
-msgstr ""
+msgstr "Formats de papier"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1723
 #, tcl-format
@@ -2078,11 +2078,11 @@ msgstr "Régénération du mappage des polices"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2363
 msgid "Rebuilding fontmap files..."
-msgstr "Reconstruction du mappage des polices"
+msgstr "Reconstruction du mappage des polices..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2407
 msgid "GUI font scaling"
-msgstr ""
+msgstr "Taille de la police de l'interface"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2433
 msgid "tlmgr help"
@@ -2123,7 +2123,7 @@ msgstr "Installé"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2529
 msgid "Not installed"
-msgstr ""
+msgstr "Non installés"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2539
 msgid "Updatable"
@@ -2175,7 +2175,7 @@ msgstr "Tout mettre à jour"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2605
 msgid "Mark all displayed"
-msgstr ""
+msgstr "Marquer tout ce qui est affiché"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2607
 msgid "Mark none"
@@ -2183,7 +2183,7 @@ msgstr "Ne rien sélectionner"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2610
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "Seuls les packages pour les plates-formes installées sont affichés"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2620
 msgid "Name"
@@ -2244,7 +2244,7 @@ msgstr "Schéma petit (de base + xetex, metapost, quelques langues)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
 msgid "teTeX scheme (more than medium, but nowhere near full)"
-msgstr "Schéma teTeX (plus gros que moyen, mais encore loin de complet)"
+msgstr "Schéma teTeX (plus gros que moyen, mais encore loin d'être complet)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
 msgid "Essential programs and files"
