@@ -340,8 +340,8 @@ sub platform_name {
   
   if ($OS eq "darwin") {
     # We have two versions of Mac binary sets.
-    # 10.x and newer -> x86_64-darwin [MacTeX]
-    # 10.6/Snow Leopard through 10.x -> x86_64-darwinlegacy, if 64-bit
+    # 10.x and newer -> universal-darwin [MacTeX]
+    # 10.6/Snow Leopard through 10.x -> x86_64-darwinlegacy, if 64-bit.
     # x changes every year. As of TL 2021 (Big Sur) Apple started with 11.x.
     #
     # (BTW, uname -r numbers are larger by 4 than the Mac minor version.
@@ -359,12 +359,11 @@ sub platform_name {
            . " (from sw_vers -productVersion: $sw_vers)\n";
       return "unknownmac-unknownmac";
     }
-    if ($os_major >= 11) { # have to refine after enough years
-      $CPU = "x86_64";
+    # have to refine after all 10.x become "legacy".
+    if ($os_major >= 11 || $os_minor >= $mactex_darwin) {
+      $CPU = "universal";
       $OS = "darwin";
-    } elsif ($os_minor >= $mactex_darwin) {
-      ; # sufficiently new 10.x, default is ok (x86_64-darwin).
-    } elsif ($os_minor >= 6 && $os_minor < $mactex_darwin) {
+    } elsif ($os_major <= 10 && $os_minor >= 6 && $os_minor < $mactex_darwin) {
       # in between, x86 hardware only.  On 10.6 only, must check if 64-bit,
       # since if later than that, always 64-bit.
       my $is64 = $os_minor == 6
@@ -425,10 +424,9 @@ sub platform_desc {
     'powerpc-linux'    => 'GNU/Linux on PowerPC',
     'sparc-linux'      => 'GNU/Linux on Sparc',
     'sparc-solaris'    => 'Solaris on Sparc',
-    'universal-darwin' => 'MacOSX universal binaries',
+    'universal-darwin' => 'MacOSX current (10.13-) on ARM/x86_64',
     'win32'            => 'Windows',
     'x86_64-cygwin'    => 'Cygwin on x86_64',
-    'x86_64-darwin'       => 'MacOSX current (10.13-) on x86_64',
     'x86_64-darwinlegacy' => 'MacOSX legacy (10.6-) on x86_64',
     'x86_64-dragonfly' => 'DragonFlyBSD on x86_64',
     'x86_64-linux'     => 'GNU/Linux on x86_64',
