@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-02-12 01:54+0100\n"
-"PO-Revision-Date: 2020-03-22 06:40+0100\n"
+"PO-Revision-Date: 2021-02-26 12:51+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: tlpkg/installer/tracked-install.pl:27
 msgid "Installation process"
@@ -1618,11 +1618,11 @@ msgstr "Info pages"
 #: tlpkg/installer/install-tl-gui.tcl:1379
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2393
 msgid "GUI language"
-msgstr ""
+msgstr "GUI Sprache"
 
 #: tlpkg/installer/install-tl-gui.tcl:1391
 msgid "Font scaling"
-msgstr ""
+msgstr "Font-Skalierung"
 
 #: tlpkg/installer/install-tl-gui.tcl:1393
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1312
@@ -1731,7 +1731,7 @@ msgstr "Angepasstes Schema"
 #: tlpkg/installer/install-tl-gui.tcl:2004
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr "%s ist kein lokales oder remote Repository."
+msgstr "%s ist kein lokales oder remote Repository"
 
 #: tlpkg/installer/install-tl-gui.tcl:2008
 #, tcl-format
@@ -1744,7 +1744,7 @@ msgstr "Spezifischer CTAN-Mirror..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr "Liste der Spiegelserver nicht verfügbar."
+msgstr "Liste der Spiegelserver nicht verfügbar"
 
 #: tlpkg/tltcl/tltcl.tcl:744
 msgid "Select or type"
@@ -1882,7 +1882,7 @@ msgstr "Anwenden und Schließen"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1477
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1674
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "Veränderte Einträge sind fett markiert"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1490
 msgid "platform"
@@ -1895,11 +1895,11 @@ msgstr "Fehler"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1609
 msgid "No papersizes available"
-msgstr ""
+msgstr "Keine Papiergröße verfügbar"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1623
 msgid "Paper sizes"
-msgstr ""
+msgstr "Papiergrößen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1723
 #, tcl-format
@@ -2026,7 +2026,7 @@ msgid ""
 "Please configure a valid repository"
 msgstr ""
 "%s ist kein lokales oder remote Repository.\n"
-"Bitte wählen Sie ein valides Repository."
+"Bitte wählen Sie ein valides Repository"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2322
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2348
@@ -2067,7 +2067,7 @@ msgstr "Erzeuge Fontmap-Dateien..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2407
 msgid "GUI font scaling"
-msgstr ""
+msgstr "GUI Font Skalierung"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2433
 msgid "tlmgr help"
@@ -2108,7 +2108,7 @@ msgstr "Installiert"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2529
 msgid "Not installed"
-msgstr ""
+msgstr "Nicht installiert"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2539
 msgid "Updatable"
@@ -2160,7 +2160,7 @@ msgstr "Aktualisieren aller Pakete"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2605
 msgid "Mark all displayed"
-msgstr ""
+msgstr "Markiere alle angezeigten"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2607
 msgid "Mark none"
@@ -2168,7 +2168,7 @@ msgstr "Keine markieren"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2610
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "Nur Pakete für installierte Plattformen werden angezeigt"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2620
 msgid "Name"
