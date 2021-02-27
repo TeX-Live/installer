@@ -44,6 +44,11 @@ sub dblog {
   close $dbf;
 }
 
+sub dblogsub {
+  my $s = shift;
+  my @stck = (caller(1));
+  dblog "$stck[3] $s";
+}
 
 # On unix, this run of install-tl may do duty as a wrapper for
 # install-tl-gui.tcl, which in its turn will start an actual run of install-tl.
@@ -288,15 +293,10 @@ $::lang = "en";
 
 # use the fancy directory selector for TEXDIR
 # no longer used, although we still accept the parameter
-$::alternative_selector = 0;
+#$::alternative_selector = 0;
 
 # do not debug translations by default
 $::debug_translation = 0;
-
-# some strings to describe the different meanings of tlpdbopt_file_assoc
-$::fileassocdesc[0] = "None";
-$::fileassocdesc[1] = "Only new";
-$::fileassocdesc[2] = "All";
 
 # before we try to interact with the user, we need to know whether or not
 # install-tl was called from an external gui. This gui will start install-tl
@@ -315,8 +315,6 @@ if ((defined $ARGV[0]) && $ARGV[0] eq "-from_ext_gui") {
 
   # windows: suppress console windows when invoking other programs
   Win32::SetChildShowWindow(0) if win32();
-  # ___, defined in this file, replaces the GUI translating function
-  *__ = \&::___;
 }
 
 # if we find a file installation.profile we ask the user whether we should
@@ -346,13 +344,12 @@ GetOptions(
            "all-options"                 => \$::opt_all_options,
            "custom-bin=s"                => \$opt_custom_bin,
            "debug-translation"           => \$::debug_translation,
-           "fancyselector"               => \$::alternative_selector,
+           "fancyselector",
            "force-platform|force-arch=s" => \$opt_force_arch,
            "gui:s"                       => \$opt_gui,
            "in-place"                    => \$opt_in_place,
            "init-from-profile=s"         => \$opt_init_from_profile,
-           "lang=s"                      => \$::opt_lang,
-           "gui-lang=s"                  => \$::opt_lang,
+           "lang|gui-lang=s"             => \$::opt_lang,
            "location|url|repository|repos|repo=s" => \$opt_location,
            "no-cls",                    # $::opt_no_cls in install-menu-text-pl
            "no-gui"                      => \$opt_no_gui,
@@ -372,6 +369,8 @@ GetOptions(
 if ($from_ext_gui) {
   $opt_gui = "extl";
 }
+
+# informational invocations: help, version, platform
 
 if ($opt_help) {
   # theoretically we could make a subroutine with all the same
@@ -423,6 +422,20 @@ if ($opt_version) {
   exit 0;
 }
 
+if ($opt_print_arch) {
+  print platform()."\n";
+  exit 0;
+}
+
+# now load translations, if applicable
+if (defined($::opt_lang)) {
+  $::lang = $::opt_lang;
+}
+require("TeXLive/trans.pl");
+load_translations();
+
+# some option checks
+
 die "$0: Options custom-bin and in-place are incompatible.\n"
   if ($opt_in_place && $opt_custom_bin);
 
@@ -436,10 +449,6 @@ if ($#ARGV >= 0) {
   die "$0: Extra arguments `@ARGV'; try --help if you need it.\n";
 }
 
-
-if (defined($::opt_lang)) {
-  $::lang = $::opt_lang;
-}
 
 if ($opt_profile) { # not allowed if in_place
   if (-r $opt_profile && -f $opt_profile) {
@@ -455,6 +464,8 @@ if ($opt_nonadmin and win32()) {
   non_admin();
 }
 
+# done with options
+
 
 # the TLPDB instances we will use. $tlpdb is for the one from the installation
 # media, while $localtlpdb is for the new installation
@@ -469,12 +480,6 @@ our $media;
 our @media_available;
 
 TeXLive::TLUtils::initialize_global_tmpdir();
-
-# special uses of install-tl:
-if ($opt_print_arch) {
-  print platform()."\n";
-  exit 0;
-}
 
 if (TeXLive::TLCrypto::setup_checksum_method()) {
   # try to setup gpg:
@@ -649,7 +654,6 @@ if ($opt_profile eq "") {
     exit(3);
   }
 } else { # no interactive setting of options
-  *__ = \&::___;
   if (!do_remote_init()) {
     die ("Exiting installation.\n");
   }
@@ -673,14 +677,13 @@ info("Installing to: $vars{TEXDIR}\n");
 $::env_warns = "";
 create_welcome();
 my $status = 1;
-if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "" or
-      !(-r "$::installerdir/tlpkg/installer/tracked-install.pl")) {
+if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "") {
   $status = do_installation();
   if (@::WARNLINES) {
     foreach my $t (@::WARNLINES) { print STDERR $t; }
   }
   if ($::env_warns) { tlwarn($::env_warns); }
-  unless ($ENV{"TEXLIVE_INSTALL_NO_WELCOME"} or $opt_gui eq 'extl') {
+  unless ($ENV{"TEXLIVE_INSTALL_NO_WELCOME"}) {
     info(join("\n", @::welcome_arr));
   }
   do_cleanup(); # sets $::LOGFILENAME if not already defined
@@ -694,9 +697,6 @@ if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "" or
   }
   printf STDOUT "Installed on platform %s at %s\n",
       $vars{'this_platform'}, $vars{'TEXDIR'} if ($opt_gui eq 'extl');
-} else {
-  require("installer/tracked-install.pl");
-  $status = installer_tracker();
 }
 exit $status;
 
@@ -2601,48 +2601,6 @@ sub deselect_collections {
     $varref->{$_} = 0;
   }
 }
-
-# assign \&___ to *__ if __ is not otherwise defined
-sub ___ {
-  my $s = shift;
-  return wrapped (sprintf($s, @_));
-}
-
-sub wrapped {
-  my $t = shift;
-  my $toolong = '.{79}';
-  if ($t !~ $toolong) {
-    return $t;
-  } else {
-    my @lines = split /\n/, $t;
-    foreach my $l (@lines) {
-      if ($l !~ $toolong) {
-        next; # leave $l alone
-      }
-      my @words = split /\s+/, $l;
-      if (! @words) {
-        $l = "";
-        next;
-      } else {
-        my $indent = $l;
-        $indent =~ s/^(\s*).*$/$1/; # extract leading spaces
-        my @broken = ();
-        my $inx = 0;
-        while (@words) {
-          if (not ((defined $broken[$inx]) && ($broken[$inx] =~ /\S/))) {
-            $broken[$inx] = $indent . (shift @words);
-          } elsif (($broken[$inx] . " " . $words[0]) =~ $toolong) {
-            $inx++; # NO word consumed, still words remaining
-          } else {
-            $broken[$inx] = $broken[$inx] . " " . (shift @words);
-          } # $l =~ $toolong
-        } # while @words
-        $l = join "\n", @broken;
-      } # @words
-    } # foreach my $l
-    return join "\n", @lines;
-  } # $t =~ $toolong
-} # wrapped
 
 
   __END__

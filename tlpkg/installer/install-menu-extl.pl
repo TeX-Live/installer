@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # install-menu-extl.pl
 
-# Copyright 2018, 2019 Siep Kroonenberg
+# Copyright 2018-2021 Siep Kroonenberg
 
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -56,15 +56,6 @@ our $MENU_ABORT   = 1; # no cleanup afterwards
 our $MENU_QUIT    = 2;
 
 my $RETURN = $MENU_INSTALL;
-
-# @fileassocdesc also defined in install-tl
-$::fileassocdesc[0] = "None";
-$::fileassocdesc[1] = "Only new";
-$::fileassocdesc[2] = "All";
-
-$::deskintdesc[0] = "None";
-$::deskintdesc[1] = "Menu shortcuts";
-$::deskintdesc[2] = "Launcher";
 
 do_remote_init();
 print STDOUT "endload\n\n";
@@ -208,7 +199,7 @@ sub run_menu_extl {
     }
   }
 } # run_menu_extl
-
 $::run_menu = \&run_menu_extl;
+
 
 1;

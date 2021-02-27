@@ -126,13 +126,7 @@ my $match_filenames = 1;
 my $match_text = "";
 my $selection_value = 0;
 
-
-# prepare for loading of lang.pl which expects $::lang and $::opt_lang
-$::opt_lang = $config{"gui-lang"} if (defined($config{"gui-lang"}));
-$::opt_lang = $opts{"gui-lang"} if (defined($opts{"gui-lang"}));
-require("TeXLive/trans.pl");
-load_translations();
-
+# locale support moved to tlmgr.pl
 
 my @archsavail;
 my @archsinstalled;

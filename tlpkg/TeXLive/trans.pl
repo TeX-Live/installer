@@ -96,11 +96,11 @@ sub __ ($@) {
       }
       # $ret is already set initially
     }
+    $ret =~ s/\\n/\n/g;
+    $ret =~ s/\\"/"/g;
+    $ret =~ s/\\\\/\\/g;
   }
   # translate back $ret:
-  $ret =~ s/\\n/\n/g;
-  $ret =~ s/\\"/"/g;
-  $ret =~ s/\\\\/\\/g;
   return sprintf($ret, @_);
 }
 

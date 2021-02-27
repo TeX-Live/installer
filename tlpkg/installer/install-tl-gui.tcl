@@ -150,52 +150,7 @@ proc dblog {s} {
   close $db
 }
 
-proc maybe_print_welcome {} {
-  # if the last non-empty line was "All done", then installation is completed.
-  # otherwise, it was help output or an interrupted installation.
-  # we allow for spurious empty lines at the end of the backend output.
-
-  set all_done 0
-  for {set i [.log.tx count -lines 1.0 end]} {$i > 0} {incr i -1} {
-    set l  [.log.tx get ${i}.0 ${i}.end]
-    if {$l ne ""} {
-      if {[string range $l 0 11] eq "Installed on"} {
-        set all_done 1
-      }
-      break
-    }
-  }
-  if {!$all_done} return
-  # need TEXDIR and this_platform in case of profile install
-  if {! [info exists ::vars(this_platform)] || \
-          ! [info exists ::vars(TEXDIR)]} {
-    if [regexp {^Installed on platform (.*) at (.*)$} $l m p r] {
-      set ::vars(this_platform) $p
-      set ::vars(TEXDIR) $r
-    } else {
-      set ::vars(this_platform) "PLATFORM"
-      set ::vars(TEXDIR) "ROOT"
-    }
-  }
-
-  .log.tx configure -state normal
-  .log.tx tag configure center -justify center
-  .log.tx delete ${i}.0 end
-  .log.tx insert end "\n\n"
-  .log.tx insert end [__ "Welcome to TeX Live!"] center
-  .log.tx insert end "\n\n"
-  # tags appear to interfere with --/::msgcat::mc !?!
-  set s  [__ "See %s/index.html for links to documentation.\nThe TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html." $::vars(TEXDIR)]
-  .log.tx insert end $s center
-  if {$::tcl_platform(platform) ne "windows"} {
-    .log.tx insert end "\n\n"
-    set s [__ "Add %s/texmf-dist/doc/man to MANPATH.\nAdd %s/texmf-dist/doc/info to INFOPATH.\nMost importantly, add %s/bin/%s\nto your PATH for current and future sessions."  $::vars(TEXDIR) $::vars(TEXDIR) $::vars(TEXDIR) $::vars(this_platform)]
-    .log.tx insert end $s center
-  }
-  .log.tx insert end "\n"
-  .log.tx yview moveto 1
-  if {$::tcl_platform(os) ne "Darwin"} {.log.tx configure -state disabled}
-}
+# welcome message now provided by install-tl
 
 # regular read_line
 proc read_line {} {
@@ -256,7 +211,6 @@ proc read_line_cb {} {
     # This closes stdin of the child
     .close state !disabled
     if [winfo exists .abort] {.abort state disabled}
-    maybe_print_welcome
   } elseif {$len >= 0} {
     # regular output
     .log.tx configure -state normal

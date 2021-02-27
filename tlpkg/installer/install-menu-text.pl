@@ -33,14 +33,14 @@ my $ptoggle_alert = "\n".
     "   !! Portable option changed;\n" .
     "   !! Directories have been reinitialized!\n";
 
-# @fileassocdesc also defined in install-tl
-$::fileassocdesc[0] = "None";
-$::fileassocdesc[1] = "Only new";
-$::fileassocdesc[2] = "All";
+# some strings to describe the different meanings of tlpdbopt_file_assoc
+$::fileassocdesc[0] = __("None");
+$::fileassocdesc[1] = __("Only new");
+$::fileassocdesc[2] = __("All");
 
-$::deskintdesc[0] = "None";
-$::deskintdesc[1] = "Menu shortcuts";
-if (win32() && is_seven()) { $::deskintdesc[2] = "Launcher"; }
+$::deskintdesc[0] = __("None");
+$::deskintdesc[1] = __("Menu shortcuts");
+if (win32()) { $::deskintdesc[2] = __("Launcher"); }
 
 sub clear_screen {
   return 0 if ($::opt_no_cls);
@@ -51,9 +51,6 @@ sub string_to_list {
   my $string=shift;
   return split(//, $string);
 }
-
-# ___, defined in install-tl, replaces the GUI translating function
-*::__ = \&::___;
 
 sub button { # for main menu: 1 char
   my $val=shift;
