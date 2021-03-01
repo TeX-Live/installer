@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-03-01 01:23+0100\n"
-"PO-Revision-Date: 2019-05-12 10:49+0100\n"
+"PO-Revision-Date: 2021-03-01 12:11+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: s;\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -438,7 +438,7 @@ msgstr "Détails sur :"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:678
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2360
 msgid "Package:"
-msgstr "Package : "
+msgstr "Package :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:680
 msgid "Category:"
@@ -504,7 +504,7 @@ msgstr "Caractérisation secondaire :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:739
 msgid "Collection:"
-msgstr "Collection : "
+msgstr "Collection :"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:743
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
@@ -925,11 +925,11 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "Raccourcis du menu"
 
 #: tlpkg/installer/install-menu-text.pl:43
 msgid "Launcher"
-msgstr ""
+msgstr "Lanceur"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -1562,7 +1562,7 @@ msgstr "Régénération des formats"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2361
 msgid "Rebuilding formats..."
-msgstr "Reconstruction des formats"
+msgstr "Reconstruction des formats..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2362
 msgid "Regenerate fontmaps"
