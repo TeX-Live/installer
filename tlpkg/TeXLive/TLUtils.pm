@@ -1579,9 +1579,11 @@ sub install_packages {
     $donesize += $tlpsizes{$package};
   }
   my $totaltime = time() - $starttime;
-  my $totmin = int ($totaltime/60);
+  my $tothour = int ($totaltime/3600);
+  my $totmin = (int ($totaltime/60)) % 60;
   my $totsec = $totaltime % 60;
-  info(sprintf("Time used for installing the packages: %02d:%02d\n",
+  my $hrstr = ($tothour > 0 ? "$tothour:" : "");
+  info(sprintf("Time used for installing the packages: $hrstr%02d:%02d\n",
        $totmin, $totsec));
   $totlpdb->save;
   return 1;
