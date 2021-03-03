@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-03-01 01:23+0100\n"
-"PO-Revision-Date: 2020-01-20 10:03-0300\n"
+"PO-Revision-Date: 2021-03-03 06:45-0300\n"
 "Last-Translator: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
 "Language-Team: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -920,11 +920,11 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "Atalhos do menu"
 
 #: tlpkg/installer/install-menu-text.pl:43
 msgid "Launcher"
-msgstr ""
+msgstr "Lançador"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -1080,11 +1080,11 @@ msgstr "Páginas de informações"
 #: tlpkg/installer/install-tl-gui.tcl:1333
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2393
 msgid "GUI language"
-msgstr ""
+msgstr "Idioma da interface gráfica"
 
 #: tlpkg/installer/install-tl-gui.tcl:1345
 msgid "Font scaling"
-msgstr ""
+msgstr "Escala de fonte"
 
 #: tlpkg/installer/install-tl-gui.tcl:1347
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1312
@@ -1296,7 +1296,7 @@ msgstr "Repositórios"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:910
 msgid "Done loading"
-msgstr ""
+msgstr "Carregamento concluído"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:936
 msgid "A configured repository is unavailable."
@@ -1384,7 +1384,7 @@ msgstr "Aplicar e fechar"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1477
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1674
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "Entradas alteradas estão em negrito"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1490
 msgid "platform"
@@ -1397,11 +1397,11 @@ msgstr "Erro"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1609
 msgid "No papersizes available"
-msgstr ""
+msgstr "Tamanhos de papel indisponíveis"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1623
 msgid "Paper sizes"
-msgstr ""
+msgstr "Tamanhos de papel"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1723
 #, tcl-format
@@ -1569,7 +1569,7 @@ msgstr "Reconstruindo arquivos de mapas de fontes..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2407
 msgid "GUI font scaling"
-msgstr ""
+msgstr "Escala de fonte da interface gráfica"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2433
 msgid "tlmgr help"
@@ -1610,7 +1610,7 @@ msgstr "Instalado"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2529
 msgid "Not installed"
-msgstr ""
+msgstr "Não instalado"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2539
 msgid "Updatable"
@@ -1662,7 +1662,7 @@ msgstr "Atualizar tudo"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2605
 msgid "Mark all displayed"
-msgstr ""
+msgstr "Marcar todos os visualizados"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2607
 msgid "Mark none"
@@ -1670,7 +1670,7 @@ msgstr "Desmarcar todos"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2610
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "Apenas pacotes para as plataformas instaladas são visualizados"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2620
 msgid "Name"
