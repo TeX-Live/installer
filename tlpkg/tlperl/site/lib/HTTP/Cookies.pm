@@ -5,7 +5,7 @@ use HTTP::Date qw(str2time parse_date time2str);
 use HTTP::Headers::Util qw(_split_header_words join_header_words);
 
 our $EPOCH_OFFSET;
-our $VERSION = '6.08';
+our $VERSION = '6.10';
 
 # Legacy: because "use "HTTP::Cookies" used be the ONLY way
 #  to load the class HTTP::Cookies::Netscape.
@@ -262,6 +262,9 @@ sub extract_cookies
 			}
 		    }
 		}
+                elsif (!$first_param && lc($k) eq 'max-age') {
+                    $expires++;
+                }
                 elsif (!$first_param && lc($k) =~ /^(?:version|discard|ns-cookie)/) {
                     # ignore
                 }
@@ -679,7 +682,7 @@ HTTP::Cookies - HTTP cookie jars
 
 =head1 VERSION
 
-version 6.08
+version 6.10
 
 =head1 SYNOPSIS
 
@@ -885,7 +888,7 @@ Gisle Aas <gisle@activestate.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2002-2019 by Gisle Aas.
+This software is copyright (c) 2002 by Gisle Aas.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

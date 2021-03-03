@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::Fatal;
 # ABSTRACT: incredibly simple helpers for testing code with exceptions
-$Test::Fatal::VERSION = '0.014';
+$Test::Fatal::VERSION = '0.016';
 #pod =head1 SYNOPSIS
 #pod
 #pod   use Test::More;
@@ -35,6 +35,12 @@ $Test::Fatal::VERSION = '0.014';
 #pod with about the same amount of typing.
 #pod
 #pod It exports one routine by default: C<exception>.
+#pod
+#pod B<Achtung!>  C<exception> intentionally does not manipulate the call stack.
+#pod User-written test functions that use C<exception> must be careful to avoid
+#pod false positives if exceptions use stack traces that show arguments.  For a more
+#pod magical approach involving globally overriding C<caller>, see
+#pod L<Test::Exception>.
 #pod
 #pod =cut
 
@@ -87,6 +93,26 @@ our @EXPORT_OK = qw(exception success dies_ok lives_ok);
 #pod
 #pod   like( exception { ... }, qr/foo/, 'foo appears in the exception' );
 #pod
+#pod If you really want a test function that passes the test name, wrap the
+#pod arguments in an array reference to hide the literal text from a stack trace:
+#pod
+#pod   sub exception_like(&$) {
+#pod       my ($code, $args) = @_;
+#pod       my ($pattern, $name) = @$args;
+#pod       like( &exception($code), $pattern, $name );
+#pod   }
+#pod
+#pod   exception_like(sub { }, [ qr/foo/, 'foo appears in the exception' ] );
+#pod
+#pod To aid in avoiding the problem where the pattern is seen in the exception
+#pod because of the call stack, C<$Carp::MAxArgNums> is locally set to -1 when the
+#pod code block is called.  If you really don't want that, set it back to whatever
+#pod value you like at the beginning of the code block.  Obviously, this solution
+#pod doens't affect all possible ways that args of subroutines in the call stack
+#pod might taint the test.  The intention here is to prevent some false passes from
+#pod people who didn't read the documentation.  Your punishment for reading it is
+#pod that you must consider whether to do anything about this.
+#pod
 #pod B<Achtung>: One final bad idea:
 #pod
 #pod   isnt( exception { ... }, undef, "my code died!");
@@ -106,7 +132,9 @@ sub exception (&) {
   my $code = shift;
 
   return try {
-    my $incremented = $Test::Builder::Level - $REAL_CALCULATED_TBL;
+    my $incremented = defined $Test::Builder::Level
+                    ? $Test::Builder::Level - $REAL_CALCULATED_TBL
+                    : 0;
     local $Test::Builder::Level = $REAL_CALCULATED_TBL;
     if ($incremented) {
         # each call to exception adds 5 stack frames
@@ -126,6 +154,7 @@ sub exception (&) {
     }
 
     local $REAL_CALCULATED_TBL = $Test::Builder::Level;
+    local $Carp::MaxArgNums = -1;
     $code->();
     return undef;
   } catch {
@@ -194,7 +223,15 @@ sub dies_ok (&;$) {
   require Test::Builder;
   $Tester ||= Test::Builder->new;
 
-  my $ok = $Tester->ok( exception( \&$code ), $name );
+  my $tap_pos = $Tester->current_test;
+
+  my $exception = exception( \&$code );
+
+  $name ||= $tap_pos != $Tester->current_test
+        ? "...and code should throw an exception"
+        : "code should throw an exception";
+
+  my $ok = $Tester->ok( $exception, $name );
   $ok or $Tester->diag( "expected an exception but none was raised" );
   return $ok;
 }
@@ -206,7 +243,15 @@ sub lives_ok (&;$) {
   require Test::Builder;
   $Tester ||= Test::Builder->new;
 
-  my $ok = $Tester->ok( !exception( \&$code ), $name );
+  my $tap_pos = $Tester->current_test;
+
+  my $exception = exception( \&$code );
+
+  $name ||= $tap_pos != $Tester->current_test
+        ? "...and code should not throw an exception"
+        : "code should not throw an exception";
+
+  my $ok = $Tester->ok( ! $exception, $name );
   $ok or $Tester->diag( "expected return but an exception was raised" );
   return $ok;
 }
@@ -225,7 +270,7 @@ Test::Fatal - incredibly simple helpers for testing code with exceptions
 
 =head1 VERSION
 
-version 0.014
+version 0.016
 
 =head1 SYNOPSIS
 
@@ -259,6 +304,12 @@ less, but should allow greater flexibility in testing exception-throwing code
 with about the same amount of typing.
 
 It exports one routine by default: C<exception>.
+
+B<Achtung!>  C<exception> intentionally does not manipulate the call stack.
+User-written test functions that use C<exception> must be careful to avoid
+false positives if exceptions use stack traces that show arguments.  For a more
+magical approach involving globally overriding C<caller>, see
+L<Test::Exception>.
 
 =head1 FUNCTIONS
 
@@ -302,6 +353,26 @@ the test name, "foo appears in the exception" will itself be matched by the
 regex.  Instead, write this:
 
   like( exception { ... }, qr/foo/, 'foo appears in the exception' );
+
+If you really want a test function that passes the test name, wrap the
+arguments in an array reference to hide the literal text from a stack trace:
+
+  sub exception_like(&$) {
+      my ($code, $args) = @_;
+      my ($pattern, $name) = @$args;
+      like( &exception($code), $pattern, $name );
+  }
+
+  exception_like(sub { }, [ qr/foo/, 'foo appears in the exception' ] );
+
+To aid in avoiding the problem where the pattern is seen in the exception
+because of the call stack, C<$Carp::MAxArgNums> is locally set to -1 when the
+code block is called.  If you really don't want that, set it back to whatever
+value you like at the beginning of the code block.  Obviously, this solution
+doens't affect all possible ways that args of subroutines in the call stack
+might taint the test.  The intention here is to prevent some false passes from
+people who didn't read the documentation.  Your punishment for reading it is
+that you must consider whether to do anything about this.
 
 B<Achtung>: One final bad idea:
 
@@ -353,6 +424,34 @@ use Test::Fatal's C<exception> routine.
 =head1 AUTHOR
 
 Ricardo Signes <rjbs@cpan.org>
+
+=head1 CONTRIBUTORS
+
+=for stopwords David Golden Graham Knop Jesse Luehrs Joel Bernstein Karen Etheridge
+
+=over 4
+
+=item *
+
+David Golden <dagolden@cpan.org>
+
+=item *
+
+Graham Knop <haarg@haarg.org>
+
+=item *
+
+Jesse Luehrs <doy@tozt.net>
+
+=item *
+
+Joel Bernstein <joel@fysh.org>
+
+=item *
+
+Karen Etheridge <ether@cpan.org>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 

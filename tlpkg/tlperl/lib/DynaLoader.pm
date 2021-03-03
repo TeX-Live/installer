@@ -16,7 +16,7 @@ package DynaLoader;
 # Tim.Bunce@ig.co.uk, August 1994
 
 BEGIN {
-    $VERSION = '1.45';
+    $VERSION = '1.47_01';
 }
 
 use Config;
@@ -263,12 +263,15 @@ sub dl_findfile {
             foreach $name (@names) {
 		my($file) = "$dir$dirsep$name";
                 print STDERR " checking in $dir for $name\n" if $dl_debug;
-		$file = ($do_expand) ? dl_expandspec($file) : (-f $file && $file);
-		#$file = _check_file($file);
-		if ($file) {
+		if ($do_expand && ($file = dl_expandspec($file))) {
+                    push @found, $file;
+                    next arg; # no need to look any further
+		}
+		elsif (-f $file) {
                     push(@found, $file);
                     next arg; # no need to look any further
                 }
+		
             }
         }
     }

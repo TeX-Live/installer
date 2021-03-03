@@ -1,10 +1,10 @@
-=head2 Fri Mar  6 19:17:34 2020: C<Module> L<Math::Int64|Math::Int64>
+=head2 Wed Feb 24 16:43:19 2021: C<Module> L<Math::Int64|Math::Int64>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -20,13 +20,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:19:00 2020: C<Module> L<IO::String|IO::String>
+=head2 Wed Feb 24 16:46:27 2021: C<Module> L<IO::String|IO::String>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -42,13 +42,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:21:40 2020: C<Module> L<File::Which|File::Which>
+=head2 Wed Feb 24 16:47:00 2021: C<Module> L<File::Which|File::Which>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -64,13 +64,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:22:11 2020: C<Module> L<Digest::SHA1|Digest::SHA1>
+=head2 Wed Feb 24 16:48:02 2021: C<Module> L<Digest::SHA|Digest::SHA>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -78,21 +78,21 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 2.13>
+C<VERSION: 6.02>
 
 =item *
 
-C<EXE_FILES: >
+C<EXE_FILES: shasum>
 
 =back
 
-=head2 Fri Mar  6 19:32:37 2020: C<Module> L<Encode::compat|Encode::compat>
+=head2 Wed Feb 24 16:48:56 2021: C<Module> L<Encode::compat|Encode::compat>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -108,13 +108,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:33:05 2020: C<Module> L<Encode::Locale|Encode::Locale>
+=head2 Wed Feb 24 16:49:33 2021: C<Module> L<Encode::Locale|Encode::Locale>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -130,13 +130,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:33:59 2020: C<Module> L<Win32::API|Win32::API>
+=head2 Wed Feb 24 17:17:19 2021: C<Module> L<Win32::API|Win32::API>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -152,35 +152,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:37:09 2020: C<Module> L<Win32::Console|Win32::Console>
+=head2 Wed Feb 24 19:06:04 2021: C<Module> L<Win32API::Registry|Win32API::Registry>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
-
-=item *
-
-C<LINKTYPE: dynamic>
-
-=item *
-
-C<VERSION: 0.10>
-
-=item *
-
-C<EXE_FILES: >
-
-=back
-
-=head2 Fri Mar  6 19:38:22 2020: C<Module> L<Win32API::Registry|Win32API::Registry>
-
-=over 4
-
-=item *
-
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -196,13 +174,35 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:40:16 2020: C<Module> L<Win32::TieRegistry|Win32::TieRegistry>
+=head2 Wed Feb 24 19:06:57 2021: C<Module> L<Win32::Console|Win32::Console>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.10>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Wed Feb 24 19:07:51 2021: C<Module> L<Win32::TieRegistry|Win32::TieRegistry>
+
+=over 4
+
+=item *
+
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -218,13 +218,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:40:50 2020: C<Module> L<Win32::Shortcut|Win32::Shortcut>
+=head2 Wed Feb 24 19:08:15 2021: C<Module> L<Win32::Shortcut|Win32::Shortcut>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -240,13 +240,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:46:19 2020: C<Module> L<Socket|Socket>
+=head2 Wed Feb 24 19:09:06 2021: C<Module> L<Socket|Socket>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: E:\tlperl\site\lib>
 
 =item *
 
@@ -254,7 +254,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 2.029>
+C<VERSION: 2.031>
 
 =item *
 
@@ -262,13 +262,35 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:49:48 2020: C<Module> L<HTTP::Date|HTTP::Date>
+=head2 Thu Feb 25 15:15:57 2021: C<Module> L<Date::Parse|Date::Parse>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.33>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Thu Feb 25 15:20:18 2021: C<Module> L<HTTP::Date|HTTP::Date>
+
+=over 4
+
+=item *
+
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -284,13 +306,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:51:16 2020: C<Module> L<File::Listing|File::Listing>
+=head2 Thu Feb 25 15:26:12 2021: C<Module> L<File::Listing|File::Listing>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -298,7 +320,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.04>
+C<VERSION: 6.14>
 
 =item *
 
@@ -306,13 +328,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:51:43 2020: C<Module> L<IO::HTML|IO::HTML>
+=head2 Thu Feb 25 15:28:49 2021: C<Module> L<IO::HTML|IO::HTML>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -320,7 +342,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 1.001>
+C<VERSION: 1.004>
 
 =item *
 
@@ -328,13 +350,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:55:41 2020: C<Module> L<Try::Tiny|Try::Tiny>
+=head2 Thu Feb 25 15:29:33 2021: C<Module> L<Try::Tiny|Try::Tiny>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -350,13 +372,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:56:01 2020: C<Module> L<Test::Fatal|Test::Fatal>
+=head2 Thu Feb 25 15:30:15 2021: C<Module> L<Test::Fatal|Test::Fatal>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -364,7 +386,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 0.014>
+C<VERSION: 0.016>
 
 =item *
 
@@ -372,13 +394,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:56:45 2020: C<Module> L<Test::Needs|Test::Needs>
+=head2 Thu Feb 25 15:30:56 2021: C<Module> L<Test::Needs|Test::Needs>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -394,13 +416,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:57:13 2020: C<Module> L<LWP::MediaTypes|LWP::MediaTypes>
+=head2 Thu Feb 25 15:32:20 2021: C<Module> L<LWP::MediaTypes|LWP::MediaTypes>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -416,13 +438,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:57:44 2020: C<Module> L<URI|URI>
+=head2 Thu Feb 25 15:33:15 2021: C<Module> L<URI|URI>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -430,7 +452,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 1.76>
+C<VERSION: 5.07>
 
 =item *
 
@@ -438,13 +460,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:58:19 2020: C<Module> L<HTTP::Message|HTTP::Message>
+=head2 Thu Feb 25 15:47:46 2021: C<Module> L<HTTP::Message|HTTP::Message>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -452,7 +474,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.22>
+C<VERSION: 6.27>
 
 =item *
 
@@ -460,13 +482,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:58:53 2020: C<Module> L<HTML::Tagset|HTML::Tagset>
+=head2 Thu Feb 25 15:48:46 2021: C<Module> L<HTML::Tagset|HTML::Tagset>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -482,13 +504,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 19:59:37 2020: C<Module> L<HTML::Parser|HTML::Parser>
+=head2 Thu Feb 25 15:51:03 2021: C<Module> L<HTML::Parser|HTML::Parser>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -496,7 +518,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 3.72>
+C<VERSION: 3.75>
 
 =item *
 
@@ -504,13 +526,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 20:00:15 2020: C<Module> L<WWW::RobotRules|WWW::RobotRules>
+=head2 Thu Feb 25 15:51:38 2021: C<Module> L<WWW::RobotRules|WWW::RobotRules>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -526,13 +548,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 20:00:47 2020: C<Module> L<HTTP::Negotiate|HTTP::Negotiate>
+=head2 Thu Feb 25 15:53:39 2021: C<Module> L<HTTP::Negotiate|HTTP::Negotiate>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -548,13 +570,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 20:01:18 2020: C<Module> L<Net::HTTP|Net::HTTP>
+=head2 Thu Feb 25 15:54:10 2021: C<Module> L<Net::HTTP|Net::HTTP>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -562,7 +584,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.19>
+C<VERSION: 6.20>
 
 =item *
 
@@ -570,13 +592,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 20:01:43 2020: C<Module> L<Mozilla::CA|Mozilla::CA>
+=head2 Thu Feb 25 15:54:37 2021: C<Module> L<Mozilla::CA|Mozilla::CA>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -584,7 +606,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 20180117>
+C<VERSION: 20200520>
 
 =item *
 
@@ -592,13 +614,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 20:02:36 2020: C<Module> L<HTTP::Daemon|HTTP::Daemon>
+=head2 Thu Feb 25 15:55:28 2021: C<Module> L<HTTP::Daemon|HTTP::Daemon>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -606,7 +628,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.06>
+C<VERSION: 6.12>
 
 =item *
 
@@ -614,13 +636,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 20:18:11 2020: C<Module> L<HTTP::Cookies|HTTP::Cookies>
+=head2 Thu Feb 25 15:56:30 2021: C<Module> L<HTTP::Cookies|HTTP::Cookies>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -628,7 +650,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.08>
+C<VERSION: 6.10>
 
 =item *
 
@@ -636,13 +658,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 20:19:21 2020: C<Module> L<Test::RequiresInternet|Test::RequiresInternet>
+=head2 Thu Feb 25 15:57:08 2021: C<Module> L<Test::RequiresInternet|Test::RequiresInternet>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -658,13 +680,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Mar  6 20:20:54 2020: C<Module> L<libwww::perl|libwww::perl>
+=head2 Thu Feb 25 15:58:16 2021: C<Module> L<libwww::perl|libwww::perl>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -672,7 +694,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.43>
+C<VERSION: 6.52>
 
 =item *
 
@@ -680,13 +702,13 @@ C<EXE_FILES: bin/lwp-download bin/lwp-dump bin/lwp-mirror bin/lwp-request>
 
 =back
 
-=head2 Fri Mar  6 20:22:00 2020: C<Module> L<Cpanel::JSON::XS|Cpanel::JSON::XS>
+=head2 Thu Feb 25 15:59:30 2021: C<Module> L<Cpanel::JSON::XS|Cpanel::JSON::XS>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -694,7 +716,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 4.19>
+C<VERSION: 4.25>
 
 =item *
 
@@ -702,13 +724,13 @@ C<EXE_FILES: bin/cpanel_json_xs>
 
 =back
 
-=head2 Fri Mar  6 20:22:28 2020: C<Module> L<JSON::MaybeXS|JSON::MaybeXS>
+=head2 Thu Feb 25 16:00:08 2021: C<Module> L<JSON::MaybeXS|JSON::MaybeXS>
 
 =over 4
 
 =item *
 
-C<installed into: D:\tlperl\site\lib>
+C<installed into: e:\tlperl\site\lib>
 
 =item *
 
@@ -716,7 +738,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 1.004000>
+C<VERSION: 1.004003>
 
 =item *
 

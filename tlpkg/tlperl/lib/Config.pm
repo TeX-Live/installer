@@ -10,7 +10,7 @@ use strict;
 use warnings;
 our ( %Config, $VERSION );
 
-$VERSION = "5.030001";
+$VERSION = "5.032001";
 
 # Skip @Config::EXPORT because it only contains %Config, which we special
 # case below as it's not a function. @Config::EXPORT won't change in the
@@ -56,11 +56,11 @@ sub import {
     return;
 }
 
-die "$0: Perl lib version (5.30.1) doesn't match executable '$^X' version ($])"
+die "$0: Perl lib version (5.32.1) doesn't match executable '$^X' version ($])"
     unless $^V;
 
-$^V eq 5.30.1
-    or die sprintf "%s: Perl lib version (5.30.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
+$^V eq 5.32.1
+    or die sprintf "%s: Perl lib version (5.32.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
 
 
 sub FETCH {
@@ -85,7 +85,7 @@ sub AUTOLOAD {
 my $rootdir = __FILE__;
 $rootdir =~ s![\\/][^\\/]*[\\/][^\\/]*$!!;
 $rootdir =~ s!/!\\!g;
-my $mingdir = "D:\\mingw2020";
+my $mingdir = "E:\\wprogs\\mingw2021";
 
 # tie returns the object, so the value returned to require will be true.
 tie %Config, 'Config', {
@@ -103,7 +103,7 @@ tie %Config, 'Config', {
     ldlibpthname => '',
     libpth => "$mingdir\\lib",
     osname => 'MSWin32',
-    osvers => '10.0.18363.418',
+    osvers => '10.0.19042.804',
     path_sep => ';',
     privlibexp => "$rootdir\\lib",
     scriptdir => "$rootdir\\bin",
@@ -112,5 +112,5 @@ tie %Config, 'Config', {
     so => 'dll',
     useithreads => 'define',
     usevendorprefix => undef,
-    version => '5.30.1',
+    version => '5.32.1',
 };

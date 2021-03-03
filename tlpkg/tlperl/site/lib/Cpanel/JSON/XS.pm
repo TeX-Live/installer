@@ -1,5 +1,5 @@
 package Cpanel::JSON::XS;
-our $VERSION = '4.19';
+our $VERSION = '4.25';
 our $XS_VERSION = $VERSION;
 # $VERSION = eval $VERSION;
 
@@ -174,9 +174,11 @@ B<Changes to JSON::XS>
 
   - #72 parsing of illegal unicode or non-unicode characters.
 
-  - #96 locale-insensitive numeric conversion
+  - #96 locale-insensitive numeric conversion.
 
   - #154 numeric conversion fixed since 5.22, using the same strtold as perl5.
+
+  - #167 sort tied hashes with canonical.
 
 - public maintenance and bugtracker
 
@@ -265,19 +267,21 @@ Note that older decode_json versions in Cpanel::JSON::XS older than
 3.0116 and JSON::XS did not set allow_nonref but allowed them due to a
 bug in the decoder.
 
-If the new optional $allow_nonref argument is set and not false, the
-allow_nonref option will be set and the function will act is described
+If the new 2nd optional $allow_nonref argument is set and not false, the
+C<allow_nonref> option will be set and the function will act is described
 as in the relaxed RFC 7159 allowing all values such as objects,
 arrays, strings, numbers, "null", "true", and "false".
+See L</"OLD" VS. "NEW" JSON (RFC 4627 VS. RFC 7159)> below, why you don't
+want to do that.
 
-For the type argument see L<Cpanel::JSON::XS::Type>.
+For the 3rd optional type argument see L<Cpanel::JSON::XS::Type>.
 
 =item $is_boolean = Cpanel::JSON::XS::is_bool $scalar
 
-Returns true if the passed scalar represents either C<JSON::XS::true>
-or C<JSON::XS::false>, two constants that act like C<1> and C<0>,
+Returns true if the passed scalar represents either C<JSON::PP::true>
+or C<JSON::PP::false>, two constants that act like C<1> and C<0>,
 respectively and are used to represent JSON C<true> and C<false>
-values in Perl.
+values in Perl. (Also recognizes the booleans produced by L<JSON::XS>.)
 
 See MAPPING, below, for more information on how JSON values are mapped
 to Perl.
@@ -682,8 +686,10 @@ as key-value pairs have no inherent ordering in Perl.
 
 This setting has no effect when decoding JSON texts.
 
-This setting has currently no effect on tied hashes.
-
+This is now also done with tied hashes, contrary to L<JSON::XS>.
+But note that with most large tied hashes stored as tree it is advised to
+sort the iterator already and don't sort the hash output here. Most such
+iterators are already sorted, as such e.g. L<DB_File> with C<DB_BTREE>.
 
 =item $json = $json->sort_by (undef, 0, 1 or a block)
 
@@ -718,7 +724,7 @@ This setting has no effect when decoding JSON texts.
 If C<$enable> is true (or missing), then C<decode> will return
 Perl non-object boolean variables (1 and 0) for JSON booleans
 (C<true> and C<false>). If C<$enable> is false, then C<decode>
-will return C<Cpanel::JSON::XS::Boolean> objects for JSON booleans.
+will return C<JSON::PP::Boolean> objects for JSON booleans.
 
 
 =item $json = $json->allow_singlequote ([$enable])
@@ -889,7 +895,8 @@ object (C<convert_blessed> enabled and C<TO_JSON> method found) is being
 encoded. Has no effect on C<decode>.
 
 If C<$enable> is false (the default), then C<encode> will throw an
-exception when it encounters a blessed object.
+exception when it encounters a blessed object without C<convert_blessed>
+and a C<TO_JSON> method.
 
 This setting has no effect on C<decode>.
 
@@ -1066,7 +1073,7 @@ Note that nesting is implemented by recursion in C. The default value has
 been chosen to be as large as typical operating systems allow without
 crashing.
 
-See SECURITY CONSIDERATIONS, below, for more info on why this is useful.
+See L</SECURITY CONSIDERATIONS>, below, for more info on why this is useful.
 
 =item $json = $json->max_size ([$maximum_string_size])
 
@@ -1485,8 +1492,8 @@ up to but not including the least significant bit.
 When C<unblessed_bool> is set to true, then JSON C<true> becomes C<1> and
 JSON C<false> becomes C<0>.
 
-Otherwise these JSON atoms become C<Cpanel::JSON::XS::true> and
-C<Cpanel::JSON::XS::false>, respectively. They are C<JSON::PP::Boolean>
+Otherwise these JSON atoms become C<JSON::PP::true> and
+C<JSON::PP::false>, respectively. They are C<JSON::PP::Boolean>
 objects and are overloaded to act almost exactly like the numbers C<1>
 and C<0>. You can check whether a scalar is a JSON boolean by using
 the C<Cpanel::JSON::XS::is_bool> function.
@@ -2269,6 +2276,9 @@ future versions are safe.
 
 Cpanel::JSON::XS has proper ithreads support, unlike JSON::XS. If you
 encounter any bugs with thread support please report them.
+
+From Version 4.00 - 4.19 you couldn't encode true with threads::shared
+magic.
 
 =head1 BUGS
 

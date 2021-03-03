@@ -15,7 +15,7 @@ use LWP::Protocol ();
 use Scalar::Util qw(blessed);
 use Try::Tiny qw(try catch);
 
-our $VERSION = '6.43';
+our $VERSION = '6.52';
 
 sub new
 {
@@ -301,9 +301,11 @@ sub request {
     $response->previous($previous) if $previous;
 
     if ($response->redirects >= $self->{max_redirect}) {
-        $response->header("Client-Warning" =>
+        if ($response->header('Location')) {
+            $response->header("Client-Warning" =>
                 "Redirect loop detected (max_redirect = $self->{max_redirect})"
-        );
+            );
+        }
         return $response;
     }
 
@@ -316,7 +318,8 @@ sub request {
     if (   $code == HTTP::Status::RC_MOVED_PERMANENTLY
         or $code == HTTP::Status::RC_FOUND
         or $code == HTTP::Status::RC_SEE_OTHER
-        or $code == HTTP::Status::RC_TEMPORARY_REDIRECT)
+        or $code == HTTP::Status::RC_TEMPORARY_REDIRECT
+        or $code == HTTP::Status::RC_PERMANENT_REDIRECT)
     {
         my $referral = $request->clone;
 
@@ -731,7 +734,8 @@ sub ssl_opts {
 	return $old;
     }
 
-    return keys %{$self->{ssl_opts}};
+    my @opts= sort keys %{$self->{ssl_opts}};
+    return @opts;
 }
 
 sub parse_head {
@@ -781,7 +785,10 @@ sub cookie_jar {
 	}
 	$self->{cookie_jar} = $jar;
         $self->set_my_handler("request_prepare",
-            $jar ? sub { $jar->add_cookie_header($_[0]); } : undef,
+            $jar ? sub {
+                return if $_[0]->header("Cookie");
+                $jar->add_cookie_header($_[0]);
+            } : undef,
         );
         $self->set_my_handler("response_done",
             $jar ? sub { $jar->extract_cookies($_[0]); } : undef,
@@ -880,9 +887,8 @@ sub get_my_handler {
             $init->(\%spec);
         }
         elsif (ref($init) eq "HASH") {
-            while (my($k, $v) = each %$init) {
-                $spec{$k} = $v;
-            }
+            $spec{$_}= $init->{$_}
+                for keys %$init;
         }
         $spec{callback} ||= sub {};
         $spec{line} ||= join(":", (caller)[1,2]);
@@ -1092,15 +1098,28 @@ sub env_proxy {
     my ($self) = @_;
     require Encode;
     require Encode::Locale;
-    my($k,$v);
-    while(($k, $v) = each %ENV) {
-	if ($ENV{REQUEST_METHOD}) {
-	    # Need to be careful when called in the CGI environment, as
-	    # the HTTP_PROXY variable is under control of that other guy.
-	    next if $k =~ /^HTTP_/;
-	    $k = "HTTP_PROXY" if $k eq "CGI_HTTP_PROXY";
-	}
+    my $env_request_method= $ENV{REQUEST_METHOD};
+    my %seen;
+    foreach my $k (sort keys %ENV) {
+        my $real_key= $k;
+        my $v= $ENV{$k}
+            or next;
+        if ( $env_request_method ) {
+            # Need to be careful when called in the CGI environment, as
+            # the HTTP_PROXY variable is under control of that other guy.
+            next if $k =~ /^HTTP_/;
+            $k = "HTTP_PROXY" if $k eq "CGI_HTTP_PROXY";
+        }
 	$k = lc($k);
+        if (my $from_key= $seen{$k}) {
+            warn "Environment contains multiple differing definitions for '$k'.\n".
+                 "Using value from '$from_key' ($ENV{$from_key}) and ignoring '$real_key' ($v)"
+                if $v ne $ENV{$from_key};
+            next;
+        } else {
+            $seen{$k}= $real_key;
+        }
+
 	next unless $k =~ /^(.*)_proxy$/;
 	$k = $1;
 	if ($k eq 'no') {
@@ -1246,21 +1265,21 @@ The following options correspond to attribute methods described below:
    KEY                     DEFAULT
    -----------             --------------------
    agent                   "libwww-perl/#.###"
-   from                    undef
    conn_cache              undef
    cookie_jar              undef
    default_headers         HTTP::Headers->new
+   from                    undef
    local_address           undef
-   ssl_opts                { verify_hostname => 1 }
-   max_size                undef
    max_redirect            7
+   max_size                undef
+   no_proxy                []
    parse_head              1
    protocols_allowed       undef
    protocols_forbidden     undef
-   requests_redirectable   ['GET', 'HEAD']
-   timeout                 180
    proxy                   undef
-   no_proxy                []
+   requests_redirectable   ['GET', 'HEAD']
+   ssl_opts                { verify_hostname => 1 }
+   timeout                 180
 
 The following additional options are also accepted: If the C<env_proxy> option
 is passed in with a true value, then proxy settings are read from environment
@@ -1893,6 +1912,7 @@ forced to match that of the server.
 The return value is an L<HTTP::Response> object.
 
 =head2 patch
+
     # Any version of HTTP::Message works with this form:
     my $res = $ua->patch( $url, $field_name => $value, Content => $content );
 

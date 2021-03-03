@@ -1,16 +1,13 @@
-package HTTP::Daemon; # git description: v6.05-4-g31c6eaf
+package HTTP::Daemon; # git description: v6.11-4-g1c1c9bc
 
 # ABSTRACT: A simple http server class
 
 use strict;
 use warnings;
 
-our $VERSION = '6.06';
+our $VERSION = '6.12';
 
-use Socket qw(
-    AF_INET AF_INET6 INADDR_ANY IN6ADDR_ANY INADDR_LOOPBACK IN6ADDR_LOOPBACK
-    inet_ntop sockaddr_family
-);
+use Socket ();
 use IO::Socket::IP;
 our @ISA = qw(IO::Socket::IP);
 
@@ -48,48 +45,14 @@ sub accept {
 
 sub url {
     my $self = shift;
-    my $url  = $self->_default_scheme . "://";
-    my $addr = $self->sockaddr;
-    if (!$addr || $addr eq INADDR_ANY || $addr eq IN6ADDR_ANY) {
-        require Sys::Hostname;
-        $url .= lc Sys::Hostname::hostname();
-    }
-    elsif ($addr eq INADDR_LOOPBACK) {
-        $url .= inet_ntop(AF_INET, $addr);
-    }
-    elsif ($addr eq IN6ADDR_LOOPBACK) {
-        $url .= '[' . inet_ntop(AF_INET6, $addr) . ']';
-    }
-    else {
-        my $host = $self->sockhostname;
 
-        # sockhostname() seems to return a stringified IP address if not
-        # resolvable. Then quote it for a port separator and an IPv6 zone
-        # separator. But be paranoid for a case when it already contains
-        # a bracket.
-        if (defined $host and $host =~ /:/) {
-            if ($host =~ /[\[\]]/) {
-                $host = undef;
-            }
-            else {
-                $host =~ s/%/%25/g;
-                $host = '[' . $host . ']';
-            }
-        }
-        if (!defined $host) {
-            my $family = sockaddr_family($self->sockname);
-            if ($family && $family == AF_INET6) {
-                $host = '[' . inet_ntop(AF_INET6, $addr) . ']';
-            }
-            elsif ($family && $family == AF_INET) {
-                $host = inet_ntop(AF_INET, $addr);
-            }
-            else {
-                die "Unknown family";
-            }
-        }
-        $url .= $host;
-    }
+    my $host = $self->sockhost;
+    $host =~ s/%/%25/g;
+    $host = "127.0.0.1" if $host eq "0.0.0.0";
+    $host = "::1"       if $host eq "::";
+    $host = "[$host]"   if $self->sockdomain == Socket::AF_INET6;
+
+    my $url = $self->_default_scheme . "://" . $host;
     my $port = $self->sockport;
     $url .= ":$port" if $port != $self->_default_port;
     $url .= "/";
@@ -640,7 +603,7 @@ HTTP::Daemon - A simple http server class
 
 =head1 VERSION
 
-version 6.06
+version 6.12
 
 =head1 SYNOPSIS
 
@@ -651,13 +614,13 @@ version 6.06
   print "Please contact me at: <URL:", $d->url, ">\n";
   while (my $c = $d->accept) {
       while (my $r = $c->get_request) {
-	  if ($r->method eq 'GET' and $r->uri->path eq "/xyzzy") {
+      if ($r->method eq 'GET' and $r->uri->path eq "/xyzzy") {
               # remember, this is *not* recommended practice :-)
-	      $c->send_file_response("/etc/passwd");
-	  }
-	  else {
-	      $c->send_error(RC_FORBIDDEN)
-	  }
+          $c->send_file_response("/etc/passwd");
+      }
+      else {
+          $c->send_error(RC_FORBIDDEN)
+      }
       }
       $c->close;
       undef($c);
@@ -669,6 +632,10 @@ Instances of the C<HTTP::Daemon> class are HTTP/1.1 servers that
 listen on a socket for incoming requests. The C<HTTP::Daemon> is a
 subclass of C<IO::Socket::IP>, so you can perform socket operations
 directly on it too.
+
+Please note that C<HTTP::Daemon> used to be a subclass of C<IO::Socket::INET>.
+To support IPv6, it switched the parent class to C<IO::Socket::IP> at version 6.05.
+See L</IPv6 SUPPORT> for details.
 
 The accept() method will return when a connection from a client is
 available.  The returned value will be an C<HTTP::Daemon::ClientConn>
@@ -705,7 +672,7 @@ HTTP port will be constructed like this:
        );
 
 See L<IO::Socket::IP> for a description of other arguments that can
-be used configure the daemon during construction.
+be used to configure the daemon during construction.
 
 =item $c = $d->accept
 
@@ -713,7 +680,7 @@ be used configure the daemon during construction.
 
 =item ($c, $peer_addr) = $d->accept
 
-This method works the same the one provided by the base class, but it
+This method works the same as the one provided by the base class, but it
 returns an C<HTTP::Daemon::ClientConn> reference by default.  If a
 package name is provided as argument, then the returned object will be
 blessed into the given class.  It is probably a good idea to make that
@@ -724,7 +691,7 @@ and no connection is made within the given time.  The timeout() method
 is described in L<IO::Socket::IP>.
 
 In list context both the client object and the peer address will be
-returned; see the description of the accept method L<IO::Socket> for
+returned; see the description of the accept method of L<IO::Socket> for
 details.
 
 =item $d->url
@@ -743,8 +710,8 @@ replaced with the version number of this module.
 
 =back
 
-The C<HTTP::Daemon::ClientConn> is a C<IO::Socket::IP>
-subclass. Instances of this class are returned by the accept() method
+The C<HTTP::Daemon::ClientConn> is a subclass of C<IO::Socket::IP>.
+Instances of this class are returned by the accept() method
 of C<HTTP::Daemon>.  The following methods are provided:
 
 =over 4
@@ -756,7 +723,7 @@ of C<HTTP::Daemon>.  The following methods are provided:
 This method reads data from the client and turns it into an
 C<HTTP::Request> object which is returned.  It returns C<undef>
 if reading fails.  If it fails, then the C<HTTP::Daemon::ClientConn>
-object ($c) should be discarded, and you should not try call this
+object ($c) should be discarded, and you should not try to call this
 method again on it.  The $c->reason method might give you some
 information about why $c->get_request failed.
 
@@ -814,8 +781,8 @@ body must be generated for these requests.
 =item $c->force_last_request
 
 Make sure that $c->get_request will not try to read more requests off
-this connection.  If you generate a response that is not self
-delimiting, then you should signal this fact by calling this method.
+this connection.  If you generate a response that is not self-delimiting,
+then you should signal this fact by calling this method.
 
 This attribute is turned on automatically if the client announces
 protocol HTTP/1.0 or worse and does not include a "Connection:
@@ -862,16 +829,16 @@ Send one or more header lines.
 
 =item $c->send_response( $res )
 
-Write a C<HTTP::Response> object to the
+Write an C<HTTP::Response> object to the
 client as a response.  We try hard to make sure that the response is
-self delimiting so that the connection can stay persistent for further
+self-delimiting so that the connection can stay persistent for further
 request/response exchanges.
 
 The content attribute of the C<HTTP::Response> object can be a normal
 string or a subroutine reference.  If it is a subroutine, then
 whatever this callback routine returns is written back to the
 client as the response content.  The routine will be called until it
-return an undefined or empty value.  If the client is HTTP/1.1 aware
+returns an undefined or empty value.  If the client is HTTP/1.1 aware
 then we will use chunked transfer encoding for the response.
 
 =item $c->send_redirect( $loc )
@@ -881,7 +848,7 @@ then we will use chunked transfer encoding for the response.
 =item $c->send_redirect( $loc, $code, $entity_body )
 
 Send a redirect response back to the client.  The location ($loc) can
-be an absolute or relative URL. The $code must be one the redirect
+be an absolute or relative URL. The $code must be one of the redirect
 status codes, and defaults to "301 Moved Permanently"
 
 =item $c->send_error
@@ -892,7 +859,7 @@ status codes, and defaults to "301 Moved Permanently"
 
 Send an error response back to the client.  If the $code is missing a
 "Bad Request" error is reported.  The $error_message is a string that
-is incorporated in the body of the HTML entity body.
+is incorporated in the body of the HTML entity.
 
 =item $c->send_file_response( $filename )
 
@@ -913,6 +880,19 @@ Return a reference to the corresponding C<HTTP::Daemon> object.
 
 =back
 
+=head1 IPv6 SUPPORT
+
+Since version 6.05, C<HTTP::Daemon> is a subclass of C<IO::Socket::IP>
+rather than C<IO::Socket::INET>, so that it supports IPv6.
+
+For some reasons, you may want to force C<HTTP::Daemon> to listen on IPv4 addresses only.
+Then pass C<Family> argument to C<< HTTP::Daemon->new >>:
+
+  use HTTP::Daemon;
+  use Socket 'AF_INET';
+
+  my $d = HTTP::Daemon->new(Family => AF_INET);
+
 =head1 SEE ALSO
 
 RFC 2616
@@ -921,7 +901,7 @@ L<IO::Socket::IP>, L<IO::Socket>
 
 =head1 SUPPORT
 
-bugs may be submitted through L<https://github.com/libwww-perl/HTTP-Daemon/issues>.
+Bugs may be submitted through L<https://github.com/libwww-perl/HTTP-Daemon/issues>.
 
 There is also a mailing list available for users of this distribution, at
 L<mailto:libwww@perl.org>.
@@ -935,17 +915,17 @@ Gisle Aas <gisle@activestate.com>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Ville Skyttä Olaf Alders Mark Stosberg Karen Etheridge Chase Whitener Slaven Rezic Zefram Alexey Tourbin Bron Gondwana Petr Písař Mike Schilli Tom Hukins Ian Kilgore Jacob J Ondrej Hanak Perlover Peter Rabbitson Robert Stone Rolf Grossmann Sean M. Burke Spiros Denaxas Steve Hay Todd Lipcon Tony Finch Toru Yamaguchi Yuri Karaban amire80 jefflee john9art murphy phrstbrn ruff Adam Kennedy sasao Sjogren Alex Kapranoff Andreas J. Koenig Bill Mann DAVIDRW Daniel Hedlund David E. Wheeler FWILES Father Chrysostomos Gavin Peters Graeme Thompson Hans-H. Froehlich
+=for stopwords Olaf Alders Ville Skyttä Mark Stosberg Karen Etheridge Shoichi Kaji Chase Whitener Slaven Rezic Zefram Petr Písař Tom Hukins Alexey Tourbin Mike Schilli Bron Gondwana Ian Kilgore Jacob J Ondrej Hanak Perlover Peter Rabbitson Robert Stone Rolf Grossmann Sean M. Burke Spiros Denaxas Steve Hay Todd Lipcon Tony Finch Toru Yamaguchi Yuri Karaban amire80 jefflee john9art murphy phrstbrn ruff Adam Kennedy sasao Sjogren Alex Kapranoff Andreas J. Koenig Bill Mann DAVIDRW Daniel Hedlund David E. Wheeler FWILES Father Chrysostomos Ferenc Erki Gavin Peters Graeme Thompson Hans-H. Froehlich
 
 =over 4
 
 =item *
 
-Ville Skyttä <ville.skytta@iki.fi>
+Olaf Alders <olaf@wundersolutions.com>
 
 =item *
 
-Olaf Alders <olaf@wundersolutions.com>
+Ville Skyttä <ville.skytta@iki.fi>
 
 =item *
 
@@ -954,6 +934,10 @@ Mark Stosberg <MARKSTOS@cpan.org>
 =item *
 
 Karen Etheridge <ether@cpan.org>
+
+=item *
+
+Shoichi Kaji <skaji@cpan.org>
 
 =item *
 
@@ -969,15 +953,15 @@ Zefram <zefram@fysh.org>
 
 =item *
 
-Alexey Tourbin <at@altlinux.ru>
-
-=item *
-
-Bron Gondwana <brong@fastmail.fm>
-
-=item *
-
 Petr Písař <ppisar@redhat.com>
+
+=item *
+
+Tom Hukins <tom@eborcom.com>
+
+=item *
+
+Alexey Tourbin <at@altlinux.ru>
 
 =item *
 
@@ -985,7 +969,7 @@ Mike Schilli <mschilli@yahoo-inc.com>
 
 =item *
 
-Tom Hukins <tom@eborcom.com>
+Bron Gondwana <brong@fastmail.fm>
 
 =item *
 
@@ -1110,6 +1094,10 @@ FWILES <FWILES@cpan.org>
 =item *
 
 Father Chrysostomos <sprout@cpan.org>
+
+=item *
+
+Ferenc Erki <erkiferenc@gmail.com>
 
 =item *
 

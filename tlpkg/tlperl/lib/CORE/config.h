@@ -9,7 +9,7 @@
 
 /* Package name      : perl5
  * Source directory  : 
- * Configuration time: Wed Mar  4 17:19:06 2020
+ * Configuration time: Tue Feb 23 20:23:57 2021
  * Configured by     : siepo
  * Target system     : 
  */
@@ -346,7 +346,7 @@
 
 /* HAS_REGCOMP:
  *	This symbol, if defined, indicates that the regcomp() routine is
- *	available to do some regular patern matching (usually on POSIX.2
+ *	available to do some regular pattern matching (usually on POSIX.2
  *	conforming systems).
  */
 /*#define HAS_REGCOMP		/ * POSIX.2 */
@@ -1229,7 +1229,7 @@
  *	This symbol contains the ~name expanded version of ARCHLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define ARCHLIB "d:\\tlperl\\lib"		/**/
+#define ARCHLIB "e:\\tlperl\\lib"		/**/
 /*#define ARCHLIB_EXP ""	/ **/
 
 /* BIN:
@@ -1244,8 +1244,8 @@
  *	This symbol, if defined, indicates that we'd like to relocate entries
  *	in @INC at run time based on the location of the perl binary.
  */
-#define BIN "d:\\tlperl\\bin"	/**/
-#define BIN_EXP "d:\\tlperl\\bin"	/**/
+#define BIN "e:\\tlperl\\bin"	/**/
+#define BIN_EXP "e:\\tlperl\\bin"	/**/
 #define PERL_RELOCATABLE_INC "undef"		/**/
 
 /* PERL_INC_VERSION_LIST:
@@ -1283,7 +1283,7 @@
  *	This symbol contains the ~name expanded version of PRIVLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define PRIVLIB "d:\\tlperl\\lib"		/**/
+#define PRIVLIB "e:\\tlperl\\lib"		/**/
 #define PRIVLIB_EXP (PerlEnv_lib_path(PERL_VERSION_STRING, NULL))	/**/
 
 /* SITEARCH:
@@ -1301,7 +1301,7 @@
  *	This symbol contains the ~name expanded version of SITEARCH, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define SITEARCH "d:\\tlperl\\site\\lib"		/**/
+#define SITEARCH "e:\\tlperl\\site\\lib"		/**/
 /*#define SITEARCH_EXP ""	/ **/
 
 /* SITELIB:
@@ -1324,7 +1324,7 @@
  *	removed.  The elements in inc_version_list (inc_version_list.U) can
  *	be tacked onto this variable to generate a list of directories to search.
  */
-#define SITELIB "d:\\tlperl\\site\\lib"		/**/
+#define SITELIB "e:\\tlperl\\site\\lib"		/**/
 #define SITELIB_EXP (PerlEnv_sitelib_path(PERL_VERSION_STRING, NULL))	/**/
 #define SITELIB_STEM ""		/**/
 
@@ -1369,7 +1369,7 @@
  *	feature tests from Configure are generally more reliable.
  */
 #define OSNAME "MSWin32"		/**/
-#define OSVERS "10.0.18363.418"		/**/
+#define OSVERS "10.0.19042.804"		/**/
 
 /* CAT2:
  *	This macro concatenates 2 tokens together.
@@ -1456,6 +1456,10 @@
 /* HASATTRIBUTE_WARN_UNUSED_RESULT:
  *	Can we handle GCC attribute for warning on unused results
  */
+/* HASATTRIBUTE_ALWAYS_INLINE:
+ *	Can we handle GCC attribute for functions that should always be
+ *	inlined.
+ */
 /*#define HASATTRIBUTE_DEPRECATED	/ **/
 /*#define HASATTRIBUTE_FORMAT	/ **/
 /*#define PRINTF_FORMAT_NULL_OK	/ **/
@@ -1465,6 +1469,7 @@
 /*#define HASATTRIBUTE_PURE	/ **/
 /*#define HASATTRIBUTE_UNUSED	/ **/
 /*#define HASATTRIBUTE_WARN_UNUSED_RESULT	/ **/
+/*#define HASATTRIBUTE_ALWAYS_INLINE	/ **/
 
 /* HAS_BACKTRACE:
  *	This symbol, if defined, indicates that the backtrace() routine is
@@ -1904,6 +1909,10 @@
  *	This symbol, if defined, indicates the availability of
  *	struct sockaddr_in6;
  */
+/* HAS_SOCKADDR_STORAGE:
+ *	This symbol, if defined, indicates the availability of
+ *	struct sockaddr_storage;
+ */
 /* HAS_SIN6_SCOPE_ID:
  *	This symbol, if defined, indicates that the struct sockaddr_in6
  *	structure has a member called sin6_scope_id.
@@ -1928,6 +1937,7 @@
 /*#define	HAS_SOCKETPAIR	/ **/
 /*#define	HAS_SOCKADDR_SA_LEN	/ **/
 /*#define	HAS_SOCKADDR_IN6	/ **/
+#define	HAS_SOCKADDR_STORAGE	/**/
 #define	HAS_SIN6_SCOPE_ID	/**/
 /*#define	HAS_IP_MREQ	/ **/
 /*#define	HAS_IP_MREQ_SOURCE	/ **/
@@ -4196,11 +4206,11 @@
 /*#define	USE_64_BIT_ALL		/ **/
 #endif
 
-/* USE_CBACKTRACE:
+/* USE_C_BACKTRACE:
  *	This symbol, if defined, indicates that Perl should
  *	be built with support for backtrace.
  */
-/*#define USE_CBACKTRACE		/ **/
+/*#define USE_C_BACKTRACE		/ **/
 
 /* USE_DTRACE:
  *	This symbol, if defined, indicates that Perl should
@@ -5086,6 +5096,12 @@
  */
 /*#define HAS_TTYNAME_R	/ **/
 #define TTYNAME_R_PROTO 0	/**/
+
+/* HAS_WCRTOMB:
+ *	This symbol, if defined, indicates that the wcrtomb routine is
+ *	available to convert a wide character into a multi-byte character.
+ */
+/*#define HAS_WCRTOMB	/ **/
 
 /* I_MACH_CTHREADS:
  *	This symbol, if defined, indicates to the C program that it should
