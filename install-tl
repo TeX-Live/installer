@@ -2522,6 +2522,7 @@ sub check_env {
                         |PATH
                         |PERL5LIB
                         |SHELLOPTS
+                        |WISH
                        )$/x; # don't worry about these
     if ("$evar $origenv{$evar}" =~ /tex/i) { # check both key and value
       $::env_warns .= "    $evar=$origenv{$evar}\n";
