@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-03-01 01:23+0100\n"
+"POT-Creation-Date: 2021-03-04 01:23+0100\n"
 "PO-Revision-Date: 2019-10-23 02:13+0300\n"
 "Last-Translator: Nikola Lečić <nikola.lecic@anthesphoria.net>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1899,11 +1899,11 @@ msgstr "Помоћни програми за Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX и повезани пакети"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2600
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2601
 msgid "Welcome to TeX Live!"
 msgstr "Добродошли у TeX Live!"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2603
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2604
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1918,7 +1918,7 @@ msgstr ""
 "света; молимо вас да размотрите учлањење у најближу из њих. Списак група "
 "можете пронаћи овде: https://tug.org/usergroups.html."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2613
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2614
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
