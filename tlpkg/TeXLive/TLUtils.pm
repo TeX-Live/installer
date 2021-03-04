@@ -363,7 +363,7 @@ sub platform_name {
     if ($os_major >= 11 || $os_minor >= $mactex_darwin) {
       $CPU = "universal";
       $OS = "darwin";
-    } elsif ($os_major <= 10 && $os_minor >= 6 && $os_minor < $mactex_darwin) {
+    } elsif ($os_major == 10 && $6 <= $os_minor && $os_minor < $mactex_darwin){
       # in between, x86 hardware only.  On 10.6 only, must check if 64-bit,
       # since if later than that, always 64-bit.
       my $is64 = $os_minor == 6
@@ -424,7 +424,7 @@ sub platform_desc {
     'powerpc-linux'    => 'GNU/Linux on PowerPC',
     'sparc-linux'      => 'GNU/Linux on Sparc',
     'sparc-solaris'    => 'Solaris on Sparc',
-    'universal-darwin' => 'MacOSX current (10.13-) on ARM/x86_64',
+    'universal-darwin' => 'MacOSX current (10.14-) on ARM/x86_64',
     'win32'            => 'Windows',
     'x86_64-cygwin'    => 'Cygwin on x86_64',
     'x86_64-darwinlegacy' => 'MacOSX legacy (10.6-) on x86_64',
