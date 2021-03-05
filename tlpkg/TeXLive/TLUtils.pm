@@ -363,7 +363,7 @@ sub platform_name {
     if ($os_major >= 11 || $os_minor >= $mactex_darwin) {
       $CPU = "universal";
       $OS = "darwin";
-    } elsif ($os_major == 10 && $6 <= $os_minor && $os_minor < $mactex_darwin){
+    } elsif ($os_major == 10 && 6 <= $os_minor && $os_minor < $mactex_darwin){
       # in between, x86 hardware only.  On 10.6 only, must check if 64-bit,
       # since if later than that, always 64-bit.
       my $is64 = $os_minor == 6
