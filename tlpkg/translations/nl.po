@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-03-07 20:22+0100\n"
+"POT-Creation-Date: 2021-03-08 01:29+0100\n"
 "PO-Revision-Date: 2021-03-07 21:11+0100\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1521,14 +1521,8 @@ msgid ""
 "This TeX Live Manager front-end should be pretty self-explanatory.\n"
 "Note that it does not cover the full functionality of tlmgr. Notably, it "
 "does not cover user mode or backup and restore.\n"
-"Consult the 'tlmgr help' menu for full documentation on tlmgr itself."
+"Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
-"Deze grafische interface voor TeX Live Manager zou weinig toelichting nodig "
-"moeten hebben.\n"
-"Merk op dat het niet de volledige functionaliteit van tlmgr omvat. Met name "
-"worden user mode en backup en restore niet ondersteund.\n"
-"Raadpleeg het 'Tlmgr Help' menu item voor volledige dokumentatie van tlmgr "
-"zelf."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2315
 #, tcl-format
@@ -1710,211 +1704,211 @@ msgstr ""
 "%s is niet schrijfbaar. Waarschijnlijk kunt u niet veel doen.\n"
 " Weet u zeker dat u wilt doorgaan?"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:1
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
 msgstr "basis-schema (Plain en latex)"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:2
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "ConTeXt scheme"
 msgstr "ConTeXt schema"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:3
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "full scheme (everything)"
 msgstr "volledig schema (alles)"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:4
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
 msgid "GUST TeX Live scheme"
 msgstr "GUST TeX Live schema"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:5
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
 msgid "infrastructure-only scheme (no TeX at all)"
 msgstr "alleen infrastruktuur (helemaal geen TeX)"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:6
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
 msgid "medium scheme (small + more packages and languages)"
 msgstr "medium schema (klein + meer pakketten en taken)"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:7
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
 msgid "minimal scheme (plain only)"
 msgstr "minimum schema (alleen plain)"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:8
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
 msgid "small scheme (basic + xetex, metapost, a few languages)"
 msgstr "klein schema (basis + xetex, metapost, enkele talen)"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:9
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
 msgid "teTeX scheme (more than medium, but nowhere near full)"
 msgstr "teTeX schema (meer dan medium, maar lang niet alles)"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:10
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
 msgid "Essential programs and files"
 msgstr "Essentiële programma's en bestanden"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:11
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:11
 msgid "BibTeX additional styles"
 msgstr "Extra stijlen voor BibTeX"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:12
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:12
 msgid "TeX auxiliary programs"
 msgstr "TeX hulpprogramma's"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:13
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:13
 msgid "ConTeXt and packages"
 msgstr "ConTeXt en pakketten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:14
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:14
 msgid "Additional fonts"
 msgstr "Extra lettertypen"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:15
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:15
 msgid "Recommended fonts"
 msgstr "Aanbevolen lettertypen"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:16
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:16
 msgid "Graphics and font utilities"
 msgstr "Hulpprogramma's voor figuren en lettertypen"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:17
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:17
 msgid "Additional formats"
 msgstr "Extra formaten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:18
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:18
 msgid "Games typesetting"
 msgstr "Spellen typesetten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:19
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:19
 msgid "Humanities packages"
 msgstr "Pakketten voor humaniora"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:20
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:20
 msgid "Arabic"
 msgstr "Arabisch"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:21
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:21
 msgid "Chinese"
 msgstr "Chinees"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:22
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:22
 msgid "Chinese/Japanese/Korean (base)"
 msgstr "Chiness/Japans/Koreaans (basis)"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:23
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
 msgid "Cyrillic"
 msgstr "Cyrillisch"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:24
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
 msgid "Czech/Slovak"
 msgstr "Tsjechisch/Slovaaks"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:25
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:25
 msgid "US and UK English"
 msgstr "Amerikaans en Brits Engels"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:26
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:26
 msgid "Other European languages"
 msgstr "Andere Europese talen"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:27
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:27
 msgid "French"
 msgstr "Frans"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:28
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:28
 msgid "German"
 msgstr "Duits"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:29
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:29
 msgid "Greek"
 msgstr "Grieks"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:30
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:30
 msgid "Italian"
 msgstr "Italiaans"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:31
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:31
 msgid "Japanese"
 msgstr "Japans"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:32
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:32
 msgid "Korean"
 msgstr "Koreaans"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:33
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:33
 msgid "Other languages"
 msgstr "Andere talen"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:34
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:34
 msgid "Polish"
 msgstr "Pools"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:35
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:35
 msgid "Portuguese"
 msgstr "Portugees"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:36
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:36
 msgid "Spanish"
 msgstr "Spaans"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:37
-msgid "LaTeX additional packages"
-msgstr "Extra LaTeX pakketten"
-
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:38
-msgid "LaTeX recommended packages"
-msgstr "LaTeX aanbevolen pakketten"
-
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:39
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:37
 msgid "LaTeX fundamental packages"
 msgstr "LaTeX basis-pakketten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:40
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:38
+msgid "LaTeX additional packages"
+msgstr "Extra LaTeX pakketten"
+
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
+msgid "LaTeX recommended packages"
+msgstr "LaTeX aanbevolen pakketten"
+
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
 msgid "LuaTeX packages"
 msgstr "LuaTeX pakketten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:41
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "Mathematics, natural sciences, computer science packages"
 msgstr "Pakketten voor wiskunde, natuurwetenschappen en informatica"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:42
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "MetaPost and Metafont packages"
 msgstr "MetaPost- en Metafont pakketten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:43
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
 msgid "Music packages"
 msgstr "Muziek pakketten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:44
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
 msgid "Graphics, pictures, diagrams"
 msgstr "Grafieken, figuren, diagrammen"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:45
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:45
 msgid "Plain (La)TeX packages"
 msgstr "Plain (La)TeX pakketten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:46
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
 msgid "PSTricks"
 msgstr "PSTricks"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:47
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:47
 msgid "Publisher styles, theses, etc."
 msgstr "Stijlen voor uitgevers, proefschriften etc."
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:48
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:48
 msgid "TeXworks editor; TL includes only the Windows binary"
 msgstr "TeXworks editor; TL bevat alleen de Windows versie"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:49
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
 msgid "Windows-only support programs"
 msgstr "Ondersteunende programma's specifiek voor Windows"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:50
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX en bijbehorende pakketten"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:2601
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2601
 msgid "Welcome to TeX Live!"
 msgstr "Welkom bij TeX Live!"
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:2604
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2604
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1929,7 +1923,7 @@ msgstr ""
 "wereldwijd; overweeg ondersteuning door lid te worden van zo'n groep. De "
 "lijst van gebruikersgroepen staat op https://tug.org/usergroups.html."
 
-#: /extra/tlsvn/Master/tlpkg/translations/shortdesc.pl:2614
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2614
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1941,6 +1935,19 @@ msgstr ""
 "Voeg %s/texmf-dist/doc/info toe aan INFOPATH.\n"
 "En bovenal, voeg %s/bin/%s\n"
 "toe aan PATH voor huidige en toekomstige sessies."
+
+#~ msgid ""
+#~ "This TeX Live Manager front-end should be pretty self-explanatory.\n"
+#~ "Note that it does not cover the full functionality of tlmgr. Notably, it "
+#~ "does not cover user mode or backup and restore.\n"
+#~ "Consult the 'tlmgr help' menu for full documentation on tlmgr itself."
+#~ msgstr ""
+#~ "Deze grafische interface voor TeX Live Manager zou weinig toelichting "
+#~ "nodig moeten hebben.\n"
+#~ "Merk op dat het niet de volledige functionaliteit van tlmgr omvat. Met "
+#~ "name worden user mode en backup en restore niet ondersteund.\n"
+#~ "Raadpleeg het 'Tlmgr Help' menu item voor volledige dokumentatie van "
+#~ "tlmgr zelf."
 
 #~ msgid "tlmgr help"
 #~ msgstr "tlmgr help"
