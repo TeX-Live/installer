@@ -1347,9 +1347,9 @@ sub do_paper_settings {
 
 
   my $back_config_pap_l1 = $back_config_pap->Label(-text => __("Default paper for all"), -anchor => "w");
-  my $back_config_pap_m1 = $back_config_pap->Button(-text => __("a4"),
+  my $back_config_pap_m1 = $back_config_pap->Button(-text => __("A4"),
     -command => sub { change_paper("all", "a4"); });
-  my $back_config_pap_r1 = $back_config_pap->Button(-text => __("letter"),
+  my $back_config_pap_r1 = $back_config_pap->Button(-text => __("Letter"),
     -command => sub { change_paper("all", "letter"); });
 
   $back_config_pap_l1->grid( $back_config_pap_m1, $back_config_pap_r1,

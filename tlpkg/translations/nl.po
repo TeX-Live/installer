@@ -664,12 +664,12 @@ msgid "Default paper for all"
 msgstr "Standaard papier-formaat voor alle"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1350
-msgid "a4"
-msgstr "a4"
+msgid "A4"
+msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
-msgid "letter"
-msgstr "letter"
+msgid "Letter"
+msgstr "Letter"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
@@ -1390,7 +1390,7 @@ msgid "Error"
 msgstr "Fout"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1613
-msgid "No papersizes available"
+msgid "No paper sizes available"
 msgstr "Geen papiermaten beschikbaar"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1627

@@ -665,11 +665,11 @@ msgid "Default paper for all"
 msgstr "Cỡ giấy mặc định cho tất cả"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1350
-msgid "a4"
-msgstr "a4"
+msgid "A4"
+msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
-msgid "letter"
+msgid "Letter"
 msgstr "thư tín (letter)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
@@ -1391,7 +1391,7 @@ msgid "Error"
 msgstr "Lỗi"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1613
-msgid "No papersizes available"
+msgid "No paper sizes available"
 msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1627

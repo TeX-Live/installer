@@ -707,12 +707,12 @@ msgid "Default paper for all"
 msgstr "Privzeti format papirja za vse"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1350
-msgid "a4"
-msgstr "a4"
+msgid "A4"
+msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
-msgid "letter"
-msgstr "letter"
+msgid "Letter"
+msgstr "Letter"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
@@ -1471,7 +1471,7 @@ msgstr "Napaka"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1613
 #, fuzzy
-msgid "No papersizes available"
+msgid "No paper sizes available"
 msgstr "Na voljo ni nobena velikost papirja"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1627
