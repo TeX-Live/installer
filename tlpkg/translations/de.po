@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-03-08 01:29+0100\n"
-"PO-Revision-Date: 2021-02-26 12:51+0100\n"
+"PO-Revision-Date: 2021-03-10 11:55+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -64,17 +64,14 @@ msgstr "Warnung"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:228
 #, perl-format
-msgid ""
-"You don't have permissions to change the installation in any way;\n"
+msgid "You don't have permissions to change the installation in any way;\n"
 "specifically, the directory %s is not writable.\n"
 "Please run this program as administrator, or contact your local admin.\n"
 "\n"
 "Most buttons will be disabled."
-msgstr ""
-"Sie haben keine Berechtigung,\n"
+msgstr "Sie haben keine Berechtigung,\n"
 "in das Verzeichnis %s zu schreiben.\n"
-"Bitte starten Sie dieses Programm als Administrator bzw, kontaktieren Sie "
-"Ihren Administrator,\n"
+"Bitte starten Sie dieses Programm als Administrator bzw, kontaktieren Sie Ihren Administrator,\n"
 "Die meistens Buttons sind ausgegraut."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:229
@@ -408,11 +405,9 @@ msgstr "Deinstallation abgeschlossen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:634
 #, perl-format
-msgid ""
-"Really remove (uninstall) the COMPLETE TeX Live %s installation?\n"
+msgid "Really remove (uninstall) the COMPLETE TeX Live %s installation?\n"
 "Your last chance to change your mind!"
-msgstr ""
-"Wollen Sie TeX Live %s wirklich komplett entfernen?\n"
+msgstr "Wollen Sie TeX Live %s wirklich komplett entfernen?\n"
 "Es werden keine weiteren Rückfragen gestellt!"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:643
@@ -502,8 +497,7 @@ msgstr "Paketgruppe:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:743
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
-msgstr ""
-"Warnung: Die Katalog-Versionen können veraltet oder einfach falsch sein."
+msgstr "Warnung: Die Katalog-Versionen können veraltet oder einfach falsch sein."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:781
 msgid "Depends:"
@@ -769,18 +763,15 @@ msgid "Installation"
 msgstr "Installation"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1946
-msgid ""
-"Critical updates have been installed.\n"
+msgid "Critical updates have been installed.\n"
 "Program will terminate now.\n"
 "Please restart if necessary."
-msgstr ""
-"Wichtige Updates wurden installiert.\n"
+msgstr "Wichtige Updates wurden installiert.\n"
 "Programm wird beendet.\n"
 "Bitte nochmals starten falls notwendig."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2265
-msgid ""
-"The TeX Live manager (the software you're currently running)\n"
+msgid "The TeX Live manager (the software you're currently running)\n"
 "needs to be updated before any other updates can be done.\n"
 "\n"
 "Please do this by clicking the \"Update the TeX Live Manager\" button,\n"
@@ -788,12 +779,10 @@ msgid ""
 "\n"
 "After the update, the TeX Live manager will terminate.\n"
 "You can then restart it to proceed with further updates."
-msgstr ""
-"Der TeX Live Manager (die Software, die gerade läuft)\n"
+msgstr "Der TeX Live Manager (die Software, die gerade läuft)\n"
 "muss aktualisiert werden, bevor weitere Updates eingespielt werden können.\n"
 "\n"
-"Bitte tun sie dies durch das Klicken des \"Aktualisiere den TeX Live Manager"
-"\" Buttons,\n"
+"Bitte tun sie dies durch das Klicken des \"Aktualisiere den TeX Live Manager\" Buttons,\n"
 "nachdem Sie diesen Dialog hier geschlossen haben.\n"
 "\n"
 "Nach dem Update wird der TeX Live Manager beendet.\n"
@@ -804,12 +793,8 @@ msgid "(Further updates will be available after tlmgr has been updated.)"
 msgstr "(Weitere Updates sind verfügbar, nachdem tlmgr aktualisiert wurde.)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2277
-msgid ""
-"Please wait a bit after the program has terminated so that the update can be "
-"completed."
-msgstr ""
-"Bitte warten Sie etwas nachdem sich das Programm beendet hat, damit die "
-"Aktualisierungen durchgeführt werden können."
+msgid "Please wait a bit after the program has terminated so that the update can be completed."
+msgstr "Bitte warten Sie etwas nachdem sich das Programm beendet hat, damit die Aktualisierungen durchgeführt werden können."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2351
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2353
@@ -818,8 +803,7 @@ msgstr "Wiederherstellung abgeschlossen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2358
 msgid "Select the package to restore, or restore all packages"
-msgstr ""
-"Auswahl des wiederherzustellenden Pakets, oder alle Pakete wiederherstellen"
+msgstr "Auswahl des wiederherzustellenden Pakets, oder alle Pakete wiederherstellen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2374
 msgid "Revision:"
@@ -885,8 +869,7 @@ msgid "Load"
 msgstr "Laden"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2572
-msgid ""
-"Loading remote repository - this may take some time, please be patient ..."
+msgid "Loading remote repository - this may take some time, please be patient ..."
 msgstr "Lade Remote-Repository - dies kann eine Weile dauern, bitte warten ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2598
@@ -905,37 +888,31 @@ msgstr "Abgeschlossen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2664
 #, perl-format
-msgid ""
-"Running %s failed.\n"
+msgid "Running %s failed.\n"
 "Please consult the log window for details."
-msgstr ""
-"Die Ausführung von %s  schlug fehl.\n"
+msgstr "Die Ausführung von %s  schlug fehl.\n"
 "Details finden Sie im Log Fenster."
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "Menü-Kürzel"
 
 #: tlpkg/installer/install-menu-text.pl:43
 msgid "Launcher"
-msgstr ""
+msgstr "Starter"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
-msgid ""
-"Target directory %s non-empty;\n"
+msgid "Target directory %s non-empty;\n"
 "may cause trouble!"
-msgstr ""
-"Zielverzeichnis %s ist nicht leer,\n"
+msgstr "Zielverzeichnis %s ist nicht leer,\n"
 "dies kann Probleme bereiten!"
 
 #: tlpkg/installer/install-tl-gui.tcl:113
 #, tcl-format
-msgid ""
-"Target directory %s non-empty;\n"
+msgid "Target directory %s non-empty;\n"
 "are you sure?"
-msgstr ""
-"Zielverzeichnis %s ist nicht leer,\n"
+msgstr "Zielverzeichnis %s ist nicht leer,\n"
 "sind Sie sicher?"
 
 #: tlpkg/installer/install-tl-gui.tcl:224
@@ -962,13 +939,10 @@ msgstr "TeX Live Installationsprogramm"
 #: tlpkg/installer/install-tl-gui.tcl:373
 #: tlpkg/installer/install-tl-gui.tcl:2020
 #, tcl-format
-msgid ""
-"Trying to load %s.\n"
+msgid "Trying to load %s.\n"
 "\n"
 "If this takes too long, press Abort or choose another repository."
-msgstr ""
-"Versuche, %s zu laden. Sollte dies zu lange dauern, wählen Sie ein anderes "
-"Repository oder brechen Sie ab."
+msgstr "Versuche, %s zu laden. Sollte dies zu lange dauern, wählen Sie ein anderes Repository oder brechen Sie ab."
 
 #: tlpkg/installer/install-tl-gui.tcl:458
 msgid "Cannot be created or cannot be written to"
@@ -987,11 +961,9 @@ msgid "No slashes allowed"
 msgstr "Keine Slashes / erlaubt"
 
 #: tlpkg/installer/install-tl-gui.tcl:510
-msgid ""
-"TL release component highly recommended!\n"
+msgid "TL release component highly recommended!\n"
 "Are you sure?"
-msgstr ""
-"TL Release-Komponente wird sehr empfohlen\n"
+msgstr "TL Release-Komponente wird sehr empfohlen\n"
 "Sind Sie sicher?"
 
 #: tlpkg/installer/install-tl-gui.tcl:519
@@ -1016,8 +988,7 @@ msgstr "Browse..."
 
 #: tlpkg/installer/install-tl-gui.tcl:610
 msgid "Localized directory names will be replaced by their real names"
-msgstr ""
-"Lokalisierte Verzeichnisnamen werden durch ihre tatsächlichen Namen ersetzt"
+msgstr "Lokalisierte Verzeichnisnamen werden durch ihre tatsächlichen Namen ersetzt"
 
 #: tlpkg/installer/install-tl-gui.tcl:691
 #, tcl-format
@@ -1115,12 +1086,10 @@ msgid "More ..."
 msgstr "Mehr ..."
 
 #: tlpkg/installer/install-tl-gui.tcl:1505
-msgid ""
-"Portable setup:\n"
+msgid "Portable setup:\n"
 "May reset TEXMFLOCAL\n"
 "and TEXMFHOME"
-msgstr ""
-"Portables Setup:\n"
+msgstr "Portables Setup:\n"
 "Kann TEXMFLOCAL\n"
 "und TEXMFHOME resetten"
 
@@ -1276,9 +1245,7 @@ msgstr "Lade"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:875
 msgid "If loading takes too long, press Abort and choose another repository."
-msgstr ""
-"Sollte das Laden zu lange dauern, brechen Sie ab und wählen Sie ein anderes "
-"Repository."
+msgstr "Sollte das Laden zu lange dauern, brechen Sie ab und wählen Sie ein anderes Repository."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:876
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2317
@@ -1445,12 +1412,10 @@ msgstr "Nix zu machen hier!"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1973
 #, tcl-format
-msgid ""
-"Also installing dependencies\n"
+msgid "Also installing dependencies\n"
 "\n"
 "%s"
-msgstr ""
-"Installiere abhängige Pakete\n"
+msgstr "Installiere abhängige Pakete\n"
 "\n"
 "%s"
 
@@ -1461,12 +1426,10 @@ msgstr "Bereits installiert: %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2021
 #, tcl-format
-msgid ""
-"Also updating dependencies\n"
+msgid "Also updating dependencies\n"
 "\n"
 "%s?"
-msgstr ""
-"Abhängige Pakete ebenfalls aktualisieren\n"
+msgstr "Abhängige Pakete ebenfalls aktualisieren\n"
 "\n"
 "%s?"
 
@@ -1487,12 +1450,10 @@ msgstr "Übersprungen da schon aktuell: %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2087
 #, tcl-format
-msgid ""
-"Also remove dependencies\n"
+msgid "Also remove dependencies\n"
 "\n"
 "%s?"
-msgstr ""
-"Abhängige Pakete ebenfalls löschen?\n"
+msgstr "Abhängige Pakete ebenfalls löschen?\n"
 "\n"
 "%s?"
 
@@ -1506,28 +1467,23 @@ msgid "Info"
 msgstr "Info"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2275
-msgid ""
-"GUI interface for TeX Live Manager\n"
+msgid "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
-msgstr ""
-"Grafische Nutzeroberflöche für TeX Live Manager\n"
+msgstr "Grafische Nutzeroberflöche für TeX Live Manager\n"
 "Implementiert in Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2281
-msgid ""
-"This TeX Live Manager front-end should be pretty self-explanatory.\n"
-"Note that it does not cover the full functionality of tlmgr. Notably, it "
-"does not cover user mode or backup and restore.\n"
+msgid "This TeX Live Manager front-end should be pretty self-explanatory.\n"
+"Note that it does not cover the full functionality of tlmgr. Notably, it does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
-msgstr ""
+msgstr "Das TeX Live Manager Frontend sollte selbsterklärend sein.\n"
+"Beachte bitte, dass es nicht die volle Funktionalität von tlmgr hat, insbesondere in Bezug auf den User Modus, Backup und Restore.\vSchauen Sie in die tlmgr Hilfe für die Komplett-Dokumentation von tlmgr."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2315
 #, tcl-format
-msgid ""
-"%s is not a local or remote repository.\n"
+msgid "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
-msgstr ""
-"%s ist kein lokales oder remote Repository.\n"
+msgstr "%s ist kein lokales oder remote Repository.\n"
 "Bitte wählen Sie ein valides Repository"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2334
@@ -1573,11 +1529,11 @@ msgstr "GUI Font Skalierung"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2445
 msgid "TLShell Help"
-msgstr ""
+msgstr "TLShell Hilfe"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2446
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Tlmgr Hilfe"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2465
 msgid "Restart self"
@@ -1694,11 +1650,9 @@ msgstr "Single-User"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2755
 #, tcl-format
-msgid ""
-"%s is not writable. You can probably not do much.\n"
+msgid "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
-msgstr ""
-"Pfad %s ist nicht beschreibbar, geht halt nicht.\n"
+msgstr "Pfad %s ist nicht beschreibbar, geht halt nicht.\n"
 "Wollen Sie wirklich weitermachen?"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
@@ -1907,31 +1861,21 @@ msgstr "Willkommen bei TeX Live!"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2604
 #, perl-format
-msgid ""
-"See %s/index.html for links to documentation.\n"
-"The TeX Live web site (https://tug.org/texlive/) contains any updates and "
-"corrections. TeX Live is a joint project of the TeX user groups around the "
-"world; please consider supporting it by joining the group best for you. The "
-"list of groups is available on the web at https://tug.org/usergroups.html."
-msgstr ""
-"Schauen Sie in die %s/index.html für Links auf die Dokumentation.\n"
-"Die TeX Live Website (https://tug.org/texlive/) enthält Updates and "
-"Korrekturen. TeX Live ist ein vereintes Projekt der TeX Nutzergruppen "
-"weltweit, werden Sie Mitglied um ihre Arbeit zu unterstützen. Die Liste der "
-"Gruppen finden Sie unter https://tug.org/usergroups.html."
+msgid "See %s/index.html for links to documentation.\n"
+"The TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html."
+msgstr "Schauen Sie in die %s/index.html für Links auf die Dokumentation.\n"
+"Die TeX Live Website (https://tug.org/texlive/) enthält Updates and Korrekturen. TeX Live ist ein vereintes Projekt der TeX Nutzergruppen weltweit, werden Sie Mitglied um ihre Arbeit zu unterstützen. Die Liste der Gruppen finden Sie unter https://tug.org/usergroups.html."
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2614
 #, perl-format
-msgid ""
-"Add %s/texmf-dist/doc/man to MANPATH.\n"
+msgid "Add %s/texmf-dist/doc/man to MANPATH.\n"
 "Add %s/texmf-dist/doc/info to INFOPATH.\n"
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions."
-msgstr ""
-"Füge %s/texmf-dist/doc/man zu  MANPATH hinzu.\n"
+msgstr "Füge %s/texmf-dist/doc/man zu  MANPATH hinzu.\n"
 "Füge %s/texmf-dist/doc/info zu INFOPATH hinzu.\n"
 "Am wichtigsten, füge  %s/bin/%s\n"
-"zur PATH Variable hinzu."
+"zur PATH Variablen hinzu."
 
 #~ msgid "tlmgr help"
 #~ msgstr "tlmgr help"
