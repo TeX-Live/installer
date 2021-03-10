@@ -906,6 +906,7 @@ proc select_binaries {} {
     .tlbin.lst insert {}  end -id $b -values \
         [list [mark_sym $::vars($bb)] [__ $::bin_descs($b)]]
   }
+  set_tree_col_width .tlbin.lst "desc"
   pgrid .tlbin.lst -in .tlbin.binsf -row 0 -column 0 -sticky news
   pgrid .tlbin.binsc -in .tlbin.binsf -row 0 -column 1 -sticky ns
   grid columnconfigure .tlbin.binsf 0 -weight 1
@@ -955,14 +956,14 @@ proc select_scheme {} {
   ppack .tlschm.cancel -in .tlschm.buts -side right
   bind .tlschm <Escape> {.tlschm.cancel invoke}
 
-  # schemes list
+  # schemes list. use treeview rather than listbox for uniform formatting
   ttk::treeview .tlschm.lst -columns {desc} -show {} -selectmode browse \
       -height [llength $::schemes_order]
-  .tlschm.lst column "desc" -stretch 1; # -minwidth $max_width
   ppack .tlschm.lst -in .tlschm.bg -fill both -expand 1
   foreach s $::schemes_order {
     .tlschm.lst insert {} end -id $s -values [list [__ $::scheme_descs($s)]]
   }
+  set_tree_col_width .tlschm.lst "desc"
   # we already made sure that $::vars(selected_scheme) has a valid value
   .tlschm.lst selection set [list $::vars(selected_scheme)]
 
@@ -1087,6 +1088,8 @@ proc select_collections {} {
     $wgt insert {} end -id $c -values \
         [list [mark_sym $::vars($c)] [__ $::coll_descs($c)]]
   }
+  set_tree_col_width .tlcoll.lang "desc"
+  set_tree_col_width .tlcoll.other "desc"
 
   wm protocol .tlcoll WM_DELETE_WINDOW \
       {cancel_or_destroy .tlcoll.cancel .tlcoll}
@@ -1595,7 +1598,7 @@ proc run_menu {} {
   }
 
   # instopt_letter
-  set ::lpapers {"A4" "letter"}
+  set ::lpapers {"A4" "Letter"}
   incr rw
   pgrid [ttk::label .paperl -text [__ "Default paper size"]] \
       -in $curf -row $rw -column 0 -sticky w
