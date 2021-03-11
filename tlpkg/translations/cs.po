@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-03-08 01:29+0100\n"
-"PO-Revision-Date: 2019-03-26 17:30+0200\n"
+"PO-Revision-Date: 2021-03-10 23:23+0300\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -373,7 +373,7 @@ msgstr "Správa symbolických linků v systémových adresářích"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:619
 #, perl-format
 msgid "Remove TeX Live %s ..."
-msgstr "Odstranit TeX Live %s"
+msgstr "Odstranit TeX Live %s ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:622
 #, perl-format
@@ -668,12 +668,12 @@ msgid "Default paper for all"
 msgstr "Výchozí formát papíru pro všechny"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1350
-msgid "A4"
-msgstr "A4"
+msgid "a4"
+msgstr "a4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
-msgid "Letter"
-msgstr "Letter"
+msgid "letter"
+msgstr "letter"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
@@ -920,11 +920,11 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "Zkratky menu"
 
 #: tlpkg/installer/install-menu-text.pl:43
 msgid "Launcher"
-msgstr ""
+msgstr "Spouštěč"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -950,7 +950,7 @@ msgstr "Opravdu zrušit?"
 
 #: tlpkg/installer/install-tl-gui.tcl:312
 msgid "Local repository"
-msgstr ""
+msgstr "Lokální repozitář"
 
 #: tlpkg/installer/install-tl-gui.tcl:348
 #: tlpkg/installer/install-tl-gui.tcl:365
@@ -973,6 +973,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Pokouším se načíst %s.\n"
+"\n"
+"Pokud to trvá příliš dlouho, stiskněte tlačítko Přerušit nebo vyberte jiné "
+"úložiště."
 
 #: tlpkg/installer/install-tl-gui.tcl:458
 msgid "Cannot be created or cannot be written to"
@@ -1075,11 +1079,11 @@ msgstr "Informační stránky"
 #: tlpkg/installer/install-tl-gui.tcl:1333
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2405
 msgid "GUI language"
-msgstr ""
+msgstr "Jazyk grafického uživatelského rozhraní"
 
 #: tlpkg/installer/install-tl-gui.tcl:1345
 msgid "Font scaling"
-msgstr ""
+msgstr "Změna velikosti písma"
 
 #: tlpkg/installer/install-tl-gui.tcl:1347
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1316
@@ -1135,7 +1139,7 @@ msgstr "Platformy"
 
 #: tlpkg/installer/install-tl-gui.tcl:1525
 msgid "Current platform:"
-msgstr "Aktuální platforma"
+msgstr "Aktuální platforma:"
 
 #: tlpkg/installer/install-tl-gui.tcl:1532
 msgid "N. of additional platform(s):"
@@ -1228,12 +1232,12 @@ msgstr "Přizpůsobení schématu"
 #: tlpkg/installer/install-tl-gui.tcl:1958
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s není lokální nebo vzdálený repozitář"
 
 #: tlpkg/installer/install-tl-gui.tcl:1962
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s vyžaduje argument"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1241,7 +1245,7 @@ msgstr "Specifické zrcadlo..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "Není k dispozici žádný seznam zrcadel"
 
 #: tlpkg/tltcl/tltcl.tcl:744
 msgid "Select or type"
@@ -1275,11 +1279,13 @@ msgstr "Neznámý"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:869
 msgid "Loading"
-msgstr ""
+msgstr "Načítání"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:875
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
+"Pokud načítání trvá příliš dlouho, stiskněte tlačítko Přerušit nebo vyberte "
+"jiné úložiště."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:876
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2317
@@ -1289,7 +1295,7 @@ msgstr "Zdroje"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:914
 msgid "Done loading"
-msgstr ""
+msgstr "Nahrávání dokončeno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:940
 msgid "A configured repository is unavailable."
@@ -1310,11 +1316,11 @@ msgstr "%s není zdroj"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1185
 msgid "No repositories"
-msgstr ""
+msgstr "Žádná úložiště"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1190
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Více úložišť"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1193
 msgid "Not loaded"
@@ -1322,7 +1328,7 @@ msgstr "Nenahráno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1220
 msgid "Actual repository"
-msgstr ""
+msgstr "Aktuální úložiště"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1305
 msgid "Main Repository"
@@ -1377,7 +1383,7 @@ msgstr "Aplikuj a zavři"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1481
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1678
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "Změněné položky jsou tučné"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1494
 msgid "platform"
@@ -1386,15 +1392,15 @@ msgstr "platforma"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1613
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2318
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1613
-msgid "No paper sizes available"
-msgstr ""
+msgid "No papersizes available"
+msgstr "Nejsou k dispozici žádné velikosti papíru"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1627
 msgid "Paper sizes"
-msgstr ""
+msgstr "Velikosti papíru"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1727
 #, tcl-format
@@ -1407,7 +1413,7 @@ msgstr "Nejsou konfigurovány žádné zálohy"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1760
 msgid "No backup directory defined"
-msgstr "žádné zálohy nejsou definovány"
+msgstr "Žádné zálohy nejsou definovány"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1765
 #, tcl-format
@@ -1521,6 +1527,11 @@ msgid ""
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
+"Toto klientské rozhrani programu TeX Live Manager by mělo být zcela "
+"vysvětlující.\n"
+"Všimněte si, že nepokrývá plnou funkčnost programu tlmgr. Zejména nepokrývá "
+"uživatelský režim ani zálohování a obnovování,\n"
+"Pro úplnou dokumentaci samotného programu tlmgr použijte 'Nápovědu tlmgr'."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2315
 #, tcl-format
@@ -1528,6 +1539,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s není lokální ani vzdálené úložiště.\n"
+"Nakonfigurujte, prosím, platný repozitář"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2334
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2360
@@ -1536,7 +1549,7 @@ msgstr "Soubor"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2362
 msgid "Load repository"
-msgstr ""
+msgstr "Načíst úložiště"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2364
 msgid "Exit"
@@ -1564,19 +1577,19 @@ msgstr "Přegeneruj soubory fontmaps"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2375
 msgid "Rebuilding fontmap files..."
-msgstr ""
+msgstr "Přestavba souborů fontmap ..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "GUI font scaling"
-msgstr ""
+msgstr "Zmena velikosti písma grafického uživatelského rozhraní"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2445
 msgid "TLShell Help"
-msgstr ""
+msgstr "Nápověda TLShell"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2446
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Nápověda Tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2465
 msgid "Restart self"
@@ -1601,7 +1614,7 @@ msgstr "Poslední tlmgr příkaz:"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2509
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "Root v %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2522
 msgid "Package list"
@@ -1613,7 +1626,7 @@ msgstr "Instalováno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2542
 msgid "Not installed"
-msgstr ""
+msgstr "Nenainstalováno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2552
 msgid "Updatable"
@@ -1665,7 +1678,7 @@ msgstr "Aktualizovat vše"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2618
 msgid "Mark all displayed"
-msgstr ""
+msgstr "Označit vše zobrazené"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2620
 msgid "Mark none"
@@ -1673,7 +1686,7 @@ msgstr "Odznačit vše"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2623
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "Zobrazeny jsou pouze balíčky pro nainstalované platformy"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2633
 msgid "Name"
@@ -1685,11 +1698,11 @@ msgstr "Popis"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2670
 msgid "Multi-user"
-msgstr ""
+msgstr "Více uživatelů"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2670
 msgid "Single-user"
-msgstr ""
+msgstr "Jeden uživatel"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2755
 #, tcl-format
@@ -1697,6 +1710,8 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"do %s nelze zapisovat. Pravděpodobně toho moc neuděláte.\n"
+"Jste si jistý, že chcete pokračovat?"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
@@ -1704,7 +1719,7 @@ msgstr "základní schéma (plain a latex)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "ConTeXt scheme"
-msgstr "schéma ConTeXt"
+msgstr "Schéma ConTeXt"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "full scheme (everything)"
@@ -1712,7 +1727,7 @@ msgstr "úplné schéma (všechno)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
 msgid "GUST TeX Live scheme"
-msgstr "schéma GUST TeX Live"
+msgstr "Schéma GUST TeX Live"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
 msgid "infrastructure-only scheme (no TeX at all)"
@@ -1860,7 +1875,7 @@ msgstr "Balíky pro LuaTeX"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "Mathematics, natural sciences, computer science packages"
-msgstr ""
+msgstr "Matematické, přírodovědní a informatické balíčky"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "MetaPost and Metafont packages"
