@@ -2019,9 +2019,6 @@ msgstr "Füge %s/texmf-dist/doc/man zu  MANPATH hinzu.\n"
 #~ "Wenn Sie etwas ändern möchten, gehen Sie bitte zurück,\n"
 #~ "andernfalls drücken Sie auf \"Installation\"."
 
-#~ msgid "A4"
-#~ msgstr "A4"
-
 #~ msgid "Please select a different mirror."
 #~ msgstr "Bitte einen anderen Spiegelserver wählen."
 
