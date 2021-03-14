@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-03-08 01:29+0100\n"
-"PO-Revision-Date: 2020-03-24 22:04+0100\n"
+"POT-Creation-Date: 2021-03-06 01:28+0100\n"
+"PO-Revision-Date: 2021-03-13 11:02+0100\n"
 "Last-Translator: Anh K. Huỳnh <kyanh@viettug.org>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: vi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -670,7 +670,7 @@ msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
 msgid "Letter"
-msgstr "thư tín (letter)"
+msgstr "Thư tín (letter)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
@@ -917,11 +917,11 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "Phím nóng menu"
 
 #: tlpkg/installer/install-menu-text.pl:43
 msgid "Launcher"
-msgstr ""
+msgstr "Bệ phóng"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -1077,11 +1077,11 @@ msgstr "Tài liệu info"
 #: tlpkg/installer/install-tl-gui.tcl:1333
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2405
 msgid "GUI language"
-msgstr ""
+msgstr "Ngôn ngữ giao diện đồ họa"
 
 #: tlpkg/installer/install-tl-gui.tcl:1345
 msgid "Font scaling"
-msgstr ""
+msgstr "Co dãn font chữ"
 
 #: tlpkg/installer/install-tl-gui.tcl:1347
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1316
@@ -1379,7 +1379,7 @@ msgstr "Áp dụng và  kết thúc"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1481
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1678
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "Các  phần đã thay đổi được tô đậm"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1494
 msgid "platform"
@@ -1391,12 +1391,12 @@ msgid "Error"
 msgstr "Lỗi"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1613
-msgid "No paper sizes available"
-msgstr ""
+msgid "No papersizes available"
+msgstr "Cỡ giấy không phù hợp"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1627
 msgid "Paper sizes"
-msgstr ""
+msgstr "Cỡ giấy"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1727
 #, tcl-format
@@ -1521,6 +1521,10 @@ msgid ""
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
+"Giao diện cài đặt này tự nó có các chỉ dẫn dễ hiểu.\n"
+"Chú ý là nó không có đầy đủ tính năng như tlmgr. Đáng kể nhất là nó không hỗ "
+"trợ cài đặt riêng cho người dùng, không sao lưu hay phục hồi.\n"
+"Bạn vui lòng xem tài liệu đầy đủ của tlmgr bằng Menu \"Trợ giúp về Tlmgr'."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2315
 #, tcl-format
@@ -1570,15 +1574,15 @@ msgstr "Đang phát sinh lại các ánh xạ font..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "GUI font scaling"
-msgstr ""
+msgstr "Co dãn font chữ giao diện đồ họa"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2445
 msgid "TLShell Help"
-msgstr ""
+msgstr "Trợ giúp về TLShell"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2446
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Trợ giúp về Tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2465
 msgid "Restart self"
@@ -1615,7 +1619,7 @@ msgstr "Đã cài đặt"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2542
 msgid "Not installed"
-msgstr ""
+msgstr "Không được cài"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2552
 msgid "Updatable"
@@ -1667,7 +1671,7 @@ msgstr "Cập nhật tất cả"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2618
 msgid "Mark all displayed"
-msgstr ""
+msgstr "Đánh dấu chọn tất cả gói được hiển thị"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2620
 msgid "Mark none"
@@ -1675,7 +1679,7 @@ msgstr "Bỏ chọn tất cả"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2623
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "Chỉ hiện ra các gói của hệ thống (platform) đã cài"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2633
 msgid "Name"
@@ -1872,7 +1876,7 @@ msgstr "MetaPOST, Metafont"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
 msgid "Music packages"
-msgstr "Âm nhạc"
+msgstr "Gói âm nhạc"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
 msgid "Graphics, pictures, diagrams"
@@ -2075,9 +2079,6 @@ msgstr ""
 #~ "Các thiết lập sau đây sẽ được dùng.\n"
 #~ "Hãy quay lại nếu bạn muốn thay đổi;\n"
 #~ "còn không, hãy chọn \"Cài đặt\" để tiếp tục."
-
-#~ msgid "A4"
-#~ msgstr "A4"
 
 #~ msgid "Please select a different mirror."
 #~ msgstr "Vui lòng chọn mirror khác."
