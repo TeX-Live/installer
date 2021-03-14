@@ -1302,10 +1302,10 @@ proc abort_menu {} {
 }
 
 proc run_menu {} {
-  if [info exists ::env(dbgui)] {
-    #puts "\ndbgui: run_menu: advanced is now $::advanced"
-    #puts "dbgui: run_menu: alltrees is now $::alltrees"
-  }
+  #if [info exists ::env(dbgui)] {
+  #  puts "\ndbgui: run_menu: advanced is now $::advanced"
+  #  puts "dbgui: run_menu: alltrees is now $::alltrees"
+  #}
   wm withdraw .
   foreach c [winfo children .] {
     catch {destroy $c}
@@ -1320,6 +1320,9 @@ proc run_menu {} {
       catch {tk appname appname}
     }
   }
+
+  # name in titlebar; should be redefined after any language switch
+  wm title . [__ "TeX Live Installer"]
 
   # menu, for language selection and font scaling
   menu .mn
@@ -1940,7 +1943,6 @@ proc whataboutclose {} {
 
 proc main_prog {} {
 
-  wm title . [__ "TeX Live Installer"]
   wm protocol . WM_DELETE_WINDOW whataboutclose
 
   # handle some command-line arguments.
