@@ -550,7 +550,7 @@ sub setup_menu_system {
       -command => sub { do_arch_settings(); });
   }
   if ($mode_expert) {
-    $menu_options->add('command', -label => __("GUI Language ..."),
+    $menu_options->add('command', -label => __("GUI language ..."),
       -command => sub { do_gui_language_setting(); });
   }
   $menu_options->add('separator');

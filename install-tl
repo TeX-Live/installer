@@ -1652,7 +1652,8 @@ sub calc_depends {
   if (grep(/^win32$/,@archs)) {
     $install{"tlperl.win32"} = 1;
     $install{"tlgs.win32"} = 1;
-    $install{"tlpsv.win32"} = 1;
+    # tlpsv is gone
+    # $install{"tlpsv.win32"} = 1;
   }
 
   # loop over all the packages until it is getting stable
