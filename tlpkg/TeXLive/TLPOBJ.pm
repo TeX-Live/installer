@@ -851,13 +851,13 @@ sub update_from_catalogue {
       $self->catalogue($entry->entry->{'id'});
     }
     if (defined($entry->license)) {
-      $self->cataloguedata->{'license'} = $entry->license;
+      $self->cataloguedata->{'license'} ||= $entry->license;
     }
     if (defined($entry->version) && $entry->version ne "") {
-      $self->cataloguedata->{'version'} = $entry->version;
+      $self->cataloguedata->{'version'} ||= $entry->version;
     }
     if (defined($entry->ctan) && $entry->ctan ne "") {
-      $self->cataloguedata->{'ctan'} = $entry->ctan;
+      $self->cataloguedata->{'ctan'} ||= $entry->ctan;
     }
     # TODO TODO TODO
     # we should rewrite the also fields to TeX Live package names ...
@@ -865,17 +865,17 @@ sub update_from_catalogue {
     # warning, we expect that cataloguedata entries are strings, 
     # so stringify these lists
     if (@{$entry->also}) {
-      $self->cataloguedata->{'also'} = "@{$entry->also}";
+      $self->cataloguedata->{'also'} ||= "@{$entry->also}";
     }
     if (@{$entry->alias}) {
-      $self->cataloguedata->{'alias'} = "@{$entry->alias}";
+      $self->cataloguedata->{'alias'} ||= "@{$entry->alias}";
     }
     if (@{$entry->topics}) {
-      $self->cataloguedata->{'topics'} = "@{$entry->topics}";
+      $self->cataloguedata->{'topics'} ||= "@{$entry->topics}";
     }
     if (%{$entry->contact}) {
       for my $k (keys %{$entry->contact}) {
-        $self->cataloguedata->{"contact-$k"} = $entry->contact->{$k};
+        $self->cataloguedata->{"contact-$k"} ||= $entry->contact->{$k};
       }
     }
     #if (defined($entry->texlive)) {

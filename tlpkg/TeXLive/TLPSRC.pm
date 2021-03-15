@@ -222,6 +222,9 @@ sub from_file {
     } elsif ($line =~ /^tlpsetvar\s+([-_a-zA-Z0-9]+)\s+(.*)$/) {
       $tlpvars{$1} = $2;
 
+    } elsif ($line =~ /^catalogue-(.+)\s*(.*)$/o) {
+      $self->{'cataloguedata'}{$1} = $2 if defined $2;
+
     } else {
       die "$srcfile:$lineno: unknown tlpsrc directive, fix: $line\n";
     }
@@ -335,6 +338,7 @@ sub make_tlpobj {
   $tlp->shortdesc($self->{'shortdesc'}) if (defined($self->{'shortdesc'}));
   $tlp->longdesc($self->{'longdesc'}) if (defined($self->{'longdesc'}));
   $tlp->catalogue($self->{'catalogue'}) if (defined($self->{'catalogue'}));
+  $tlp->cataloguedata(%{$self->{'cataloguedata'}}) if (defined($self->{'cataloguedata'}));
   $tlp->executes(@{$self->{'executes'}}) if (defined($self->{'executes'}));
   $tlp->postactions(@{$self->{'postactions'}}) if (defined($self->{'postactions'}));
   $tlp->depends(@{$self->{'depends'}}) if (defined($self->{'depends'}));
@@ -687,6 +691,12 @@ sub catalogue {
   my $self = shift;
   if (@_) { $self->{'catalogue'} = shift }
   return $self->{'catalogue'};
+}
+sub cataloguedata {
+  my $self = shift;
+  my %ct = @_;
+  if (@_) { $self->{'cataloguedata'} = \%ct }
+  return $self->{'cataloguedata'};
 }
 sub srcpatterns {
   my $self = shift;
