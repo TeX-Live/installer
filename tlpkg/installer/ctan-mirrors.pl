@@ -14,6 +14,7 @@ $mirrors = {
   },
   'Asia' => {
     'China' => {
+      'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.dgut.edu.cn/CTAN/' => 1,
@@ -21,6 +22,7 @@ $mirrors = {
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
+      'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
     'Hong Kong' => {
@@ -40,11 +42,10 @@ $mirrors = {
     'Japan' => {
       'ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/' => 1,
       'http://ftp.jaist.ac.jp/pub/CTAN/' => 1,
-      'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
     },
     'Korea' => {
-      'http://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
+      'http://ftp.ktug.org/tex-archive/' => 1,
       'http://mirror.kakao.com/CTAN/' => 1,
       'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
@@ -111,6 +112,7 @@ $mirrors = {
     },
     'Greece' => {
       'http://ftp.ntua.gr/mirror/ctan/' => 1,
+      'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
     'Hungary' => {
       'https://mirror.szerverem.hu/ctan/' => 1,
