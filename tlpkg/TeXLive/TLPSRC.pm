@@ -222,7 +222,7 @@ sub from_file {
     } elsif ($line =~ /^tlpsetvar\s+([-_a-zA-Z0-9]+)\s+(.*)$/) {
       $tlpvars{$1} = $2;
 
-    } elsif ($line =~ /^catalogue-(.+)\s*(.*)$/o) {
+    } elsif ($line =~ /^catalogue-([^\s]+)\s+(.*)$/o) {
       $self->{'cataloguedata'}{$1} = $2 if defined $2;
 
     } else {
