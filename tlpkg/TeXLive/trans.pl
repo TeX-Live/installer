@@ -105,7 +105,7 @@ sub __ ($@) {
 }
 
 sub load_translations() {
-  if (($::lang ne "en") && ($::lang ne "C")) {
+  if (defined($::lang) && ($::lang ne "en") && ($::lang ne "C")) {
     my $code = $::lang;
     my @files_to_check;
     if (defined($::area)) {
