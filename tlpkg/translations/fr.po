@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-03-08 01:29+0100\n"
-"PO-Revision-Date: 2021-03-01 12:11+0100\n"
+"PO-Revision-Date: 2021-03-21 16:46+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -1936,19 +1936,6 @@ msgstr ""
 "groupes est disponible sur le web à l'adresse http://tug.org/usergroups."
 "html ;la page du groupe francophone est http://www.gutenberg.eu.org/."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2614
-#, perl-format
-msgid ""
-"Add %s/texmf-dist/doc/man to MANPATH.\n"
-"Add %s/texmf-dist/doc/info to INFOPATH.\n"
-"Most importantly, add %s/bin/%s\n"
-"to your PATH for current and future sessions."
-msgstr ""
-"Veuillez ajouter %s/texmf/doc/man à votre MANPATH\n"
-"et %s/texmf/doc/info à votre INFOPATH,\n"
-"mais surtout, ajoutez %s/bin/%s\n"
-"à votre PATH, pour cette session et les suivantes."
-
 #~ msgid "tlmgr help"
 #~ msgstr "Aide du tlmgr"
 
@@ -2092,9 +2079,6 @@ msgstr ""
 #~ "Les réglages suivants seront utilisés.\n"
 #~ "Si vous souhaitez changer quelque chose, revenez en arrière ;\n"
 #~ "sinon, cliquez sur le bouton « Installer »."
-
-#~ msgid "A4"
-#~ msgstr "A4"
 
 #~ msgid "Please select a different mirror."
 #~ msgstr "Veuillez choisir un autre miroir."
