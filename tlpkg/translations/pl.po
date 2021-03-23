@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: TeX Live 2020\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-03-08 01:29+0100\n"
-"PO-Revision-Date: 2020-03-15 17:09+0100\n"
-"Last-Translator: Zofia Walczak <pelagia48@gmail.com>\n"
+"PO-Revision-Date: 2021-03-22 01:37+0100\n"
+"Last-Translator: Jerzy Ludwichowski <Jerzy.Ludwichowski@umk.pl>\n"
 "Language-Team: \n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
-"|| n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -347,8 +346,7 @@ msgstr "Wyłącz automatyczne instalowanie nowych pakietów"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:568
 msgid "Disable auto-removal of server-deleted packages"
-msgstr ""
-"Wyłącz automatyczne usuwanie pakietów, które zostały usunięte z repozytorium"
+msgstr "Wyłącz automatyczne usuwanie pakietów, które zostały usunięte z repozytorium"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:575
 msgid "Update filename database"
@@ -509,8 +507,7 @@ msgstr "Kolekcja:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:743
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
-msgstr ""
-"Uwaga: nr wersji wg TeX Catalogue może nie być aktualny lub wręcz błędny."
+msgstr "Uwaga: nr wersji wg TeX Catalogue może nie być aktualny lub wręcz być błędny."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:781
 msgid "Depends:"
@@ -809,12 +806,8 @@ msgid "(Further updates will be available after tlmgr has been updated.)"
 msgstr "(Dalsze aktualizacje będą dostępne po zaktualizowaniu tlmgr.)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2277
-msgid ""
-"Please wait a bit after the program has terminated so that the update can be "
-"completed."
-msgstr ""
-"Proszę poczekać chwilę po zamknięciu programu, aby aktualizacja mogła być "
-"zakończona."
+msgid "Please wait a bit after the program has terminated so that the update can be completed."
+msgstr "Proszę poczekać chwilę po zamknięciu programu, aby aktualizacja mogła być zakończona."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2351
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2353
@@ -891,8 +884,7 @@ msgid "Load"
 msgstr "Wczytaj"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2572
-msgid ""
-"Loading remote repository - this may take some time, please be patient ..."
+msgid "Loading remote repository - this may take some time, please be patient ..."
 msgstr "Wczytuję zdalne repozytorium; może to trochę potrwać, cierpliwości ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2598
@@ -920,11 +912,11 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "Skróty klawiszowe"
 
 #: tlpkg/installer/install-menu-text.pl:43
 msgid "Launcher"
-msgstr ""
+msgstr "Launcher"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -1081,11 +1073,11 @@ msgstr "Dokumentacje info"
 #: tlpkg/installer/install-tl-gui.tcl:1333
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2405
 msgid "GUI language"
-msgstr ""
+msgstr "Język dialogu"
 
 #: tlpkg/installer/install-tl-gui.tcl:1345
 msgid "Font scaling"
-msgstr ""
+msgstr "Rozmiar czcionki"
 
 #: tlpkg/installer/install-tl-gui.tcl:1347
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1316
@@ -1285,9 +1277,7 @@ msgstr "Wczytano"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:875
 msgid "If loading takes too long, press Abort and choose another repository."
-msgstr ""
-"Jeżeli wczytywanie trwa zbyt długo, naciśnij Anuluj i wybierz inne "
-"repozytorium."
+msgstr "Jeżeli wczytywanie trwa zbyt długo, naciśnij Anuluj i wybierz inne repozytorium."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:876
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2317
@@ -1385,7 +1375,7 @@ msgstr "Zastosuj i zamknij"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1481
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1678
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "Zmienione pozycje wytłuszczono"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1494
 msgid "platform"
@@ -1398,11 +1388,11 @@ msgstr "Błąd"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1613
 msgid "No paper sizes available"
-msgstr ""
+msgstr "Rozmiary papieru nie są dostępne"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1627
 msgid "Paper sizes"
-msgstr ""
+msgstr "Rozmiary papieru"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1727
 #, tcl-format
@@ -1518,15 +1508,17 @@ msgstr "Info"
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
-msgstr "Interfejs graficzny (GUI) dla TeX Live Manager wTcl/Tk"
+msgstr "Interfejs graficzny (GUI) dla TeX Live Manager w Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2281
 msgid ""
 "This TeX Live Manager front-end should be pretty self-explanatory.\n"
-"Note that it does not cover the full functionality of tlmgr. Notably, it "
-"does not cover user mode or backup and restore.\n"
+"Note that it does not cover the full functionality of tlmgr. Notably, it does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
+"Niniejszy interfejs programu TeX Live Manager jest samoudokumentowany.\n"
+"Proszę zwrócić uwagę, że nie dotyczy to pełnej funkcjonalności tlmgr. Przede wszystkim nie dotyczy np. trybu użytkownika czy też zarządzania kopiami bezpieczeństwa (backup/restore)\n"
+"Pełna dokumentacja tlmgr jest dostępna przez pozycję \\\"Pomoc tlmgr\\\" w menu."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2315
 #, tcl-format
@@ -1576,15 +1568,15 @@ msgstr "Odbudowywanie map fontowych..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2419
 msgid "GUI font scaling"
-msgstr ""
+msgstr "Rozmiar fontu GUI"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2445
 msgid "TLShell Help"
-msgstr ""
+msgstr "Pomoc TLShell"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2446
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Pomoc tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2465
 msgid "Restart self"
@@ -1621,7 +1613,7 @@ msgstr "Zainstalowany"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2542
 msgid "Not installed"
-msgstr ""
+msgstr "Niezainstalowany"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2552
 msgid "Updatable"
@@ -1673,7 +1665,7 @@ msgstr "Aktualizuj wszystko"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2618
 msgid "Mark all displayed"
-msgstr ""
+msgstr "Zaznacz wszystkie pokazane"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2620
 msgid "Mark none"
@@ -1681,7 +1673,7 @@ msgstr "Odznacz wszystko"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2623
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "Pokazano pakiety jedynie dla zainstalowanych platform."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2633
 msgid "Name"
@@ -1738,9 +1730,7 @@ msgstr "schemat minimalny (tylko plain)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
 msgid "small scheme (basic + xetex, metapost, a few languages)"
-msgstr ""
-"schemat skromny (podstawowy + xetex, metapost oraz wzorce przenoszenia kilku "
-"języków):"
+msgstr "schemat skromny (podstawowy + xetex, metapost oraz wzorce przenoszenia kilku języków):"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
 msgid "teTeX scheme (more than medium, but nowhere near full)"
@@ -1918,14 +1908,10 @@ msgstr "Witamy w TeX Live!"
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
-"The TeX Live web site (https://tug.org/texlive/) contains any updates and "
-"corrections. TeX Live is a joint project of the TeX user groups around the "
-"world; please consider supporting it by joining the group best for you. The "
-"list of groups is available on the web at https://tug.org/usergroups.html."
+"The TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
 "Patrz %s/index.html z odnośnikami do dokumentacji.\n"
-"Na stronie TeX Live (https://tug.org/texlive/) znajdziesz aktualizacje i "
-"poprawki.\n"
+"Na stronie TeX Live (https://tug.org/texlive/) znajdziesz aktualizacje i poprawki.\n"
 "TeX Live jest zbiorowym projektem grup użytkowników TeX-a z całego świata;\n"
 "rozważ wsparcie poprzez przystąpienie do jednej z grup.\n"
 "Lista grup dostępna jest na stronie https://tug.org/usergroups.html."
@@ -1984,8 +1970,7 @@ msgstr ""
 #~ "\n"
 #~ "Instalator poprowadzi cię krok po kroku."
 
-#~ msgid ""
-#~ "In case of trouble, try to disable your virus scanner during installation."
+#~ msgid "In case of trouble, try to disable your virus scanner during installation."
 #~ msgstr "W razie kłopotów w trakcie instalacji, wyłącz skaner antywirusowy."
 
 #~ msgid ""
@@ -2082,21 +2067,16 @@ msgstr ""
 #~ "Jeśli chcesz je zmienić, to cofnij się,\n"
 #~ "w przeciwnym razie naciśnij przycisk \"Zainstaluj\"."
 
-#~ msgid "A4"
-#~ msgstr "A4"
-
 #~ msgid "Please select a different mirror."
 #~ msgstr "Proszę wybrać inną kopię zasobów (mirror)."
 
 #~ msgid ""
-#~ "The TeX Live versions of the local installation and the repository being "
-#~ "accessed are not compatible:\n"
+#~ "The TeX Live versions of the local installation and the repository being accessed are not compatible:\n"
 #~ "  local: %s\n"
 #~ "  repository: %s\n"
 #~ "Please select a different mirror."
 #~ msgstr ""
-#~ "Wersje TeX Live lokalnej instalacji i repozytorium w sieci nie są "
-#~ "zgodne:\n"
+#~ "Wersje TeX Live lokalnej instalacji i repozytorium w sieci nie są zgodne:\n"
 #~ "   lokalnie: %s\n"
 #~ "w repozytorium: %s\n"
 #~ "Proszę wybrać inną kopię (mirror) repozytorium."
@@ -2146,10 +2126,8 @@ msgstr ""
 #~ msgid "Continue"
 #~ msgstr "Kontynuuj"
 
-#~ msgid ""
-#~ "In case of trouble, try disabling your virus scanner during installation."
-#~ msgstr ""
-#~ "W razie kłopotów spróbuj wyłączyć na czas instalacji skaner antywirusowy."
+#~ msgid "In case of trouble, try disabling your virus scanner during installation."
+#~ msgstr "W razie kłopotów spróbuj wyłączyć na czas instalacji skaner antywirusowy."
 
 #~ msgid ""
 #~ "The installer does not have adminstrative permissions;\n"
