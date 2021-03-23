@@ -158,6 +158,12 @@ use TeXLive::TLDownload;
 use TeXLive::TLPaper;
 
 if (win32) {
+  require Encode::Locale;
+  Encode::Locale->import ();
+  binmode (STDIN, ':encoding(console_in)');
+  binmode (STDOUT, ':encoding(console_out)');
+  binmode (STDERR, ':encoding(console_out)');
+
   require TeXLive::TLWinGoo;
   TeXLive::TLWinGoo->import( qw(
     &is_vista
@@ -2492,6 +2498,9 @@ sub do_cleanup {
     $::LOGFILENAME = "$vars{'TEXDIR'}/install-tl.log";
     if (open(LOGF,">$::LOGFILENAME")) {
       $::LOGFILE = \*LOGF;
+      if (win32) {
+        binmode (LOGF, ':utf8');
+      }
       foreach my $line(@::LOGLINES) {
         print $::LOGFILE "$line";
       }
