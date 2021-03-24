@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-03-23 19:26+0100\n"
-"PO-Revision-Date: 2021-03-21 16:46+0100\n"
+"PO-Revision-Date: 2021-03-24 08:08+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -330,7 +330,7 @@ msgstr "Plates-formes..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr ""
+msgstr "Langue de l'interface..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -1533,6 +1533,12 @@ msgid ""
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
+"Cette interface du TeX Live Manager devrait être assez explicite.\n"
+"Notez qu'il ne couvre pas toutes les fonctionnalités du programme tlmgr. "
+"Notamment, il ne couvre ni le mode utilisateur ni les sauvegarde et "
+"restauration.\n"
+"Pour une documentation complète sur le tlmgr lui-même, consultez le menu « "
+"Aide du tlmgr »."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2315
 #, tcl-format
@@ -1586,11 +1592,11 @@ msgstr "Taille de la police de l'interface"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2445
 msgid "TLShell Help"
-msgstr ""
+msgstr "Aide du tlshell"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2446
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Aide du tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2465
 msgid "Restart self"
@@ -1944,6 +1950,10 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions."
 msgstr ""
+"Veuillez ajouter %s/texmf/doc/man à votre MANPATH\n"
+"et %s/texmf/doc/info à votre INFOPATH,\n"
+"mais surtout, ajoutez %s/bin/%s\n"
+"à votre PATH, pour cette session et les suivantes."
 
 #~ msgid "GUI Language ..."
 #~ msgstr "Langue pour l'interface graphique..."
