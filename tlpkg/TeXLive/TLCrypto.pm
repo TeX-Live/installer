@@ -311,7 +311,7 @@ sub verify_checksum {
   my ($file, $checksum_url) = @_;
   # don't do anything if we cannot determine a checksum method
   # return -2 which is as much as missing signature
-  return($VS_UNSIGNED) if (!$::checksum_method);
+  return($VS_UNSIGNED, "no checksum method found") if (!$::checksum_method);
   my $checksum_file
     = TeXLive::TLUtils::download_to_temp_or_file($checksum_url);
 
@@ -359,7 +359,7 @@ sub verify_checksum {
   # we are still here, so checksum also succeeded
   debug("checksum of local copy identical with remote hash\n");
 
-  return(0);
+  return($VS_VERIFIED);
 }
 
 # emacs-page
