@@ -9,6 +9,7 @@ $mirrors = {
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'http://mirror.ufs.ac.za/ctan/' => 1,
+      'https://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
     },
   },
   'Asia' => {
@@ -149,9 +150,6 @@ $mirrors = {
     },
     'Serbia' => {
       'http://ctan.mirror.ftn.uns.ac.rs/' => 1,
-    },
-    'Slovenia' => {
-      'http://ctan.ijs.si/tex-archive/' => 1,
     },
     'Spain' => {
       'https://ctan.javinator9889.com/' => 1,
