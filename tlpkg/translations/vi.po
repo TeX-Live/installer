@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-03-24 23:53+0100\n"
+"POT-Creation-Date: 2021-04-07 01:48+0200\n"
 "PO-Revision-Date: 2021-03-13 11:02+0100\n"
 "Last-Translator: Anh K. Huỳnh <kyanh@viettug.org>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -21,20 +21,20 @@ msgstr ""
 #: tlpkg/installer/install-menu-text.pl:41
 #: tlpkg/installer/install-tl-gui.tcl:820
 #: tlpkg/installer/install-tl-gui.tcl:1045
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 msgid "None"
 msgstr "Không"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:138
 #: tlpkg/installer/install-menu-text.pl:38
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 msgid "Only new"
 msgstr "Chỉ cái mới"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:139
 #: tlpkg/installer/install-menu-text.pl:39
 #: tlpkg/installer/install-tl-gui.tcl:1042
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1642
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2547
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2565
@@ -640,7 +640,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "Tạo liên kết nhanh trên Desktop"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1230
-#: tlpkg/installer/install-tl-gui.tcl:1687
+#: tlpkg/installer/install-tl-gui.tcl:1688
 msgid "Install for all users"
 msgstr "Cài đặt cho mọi người trên máy"
 
@@ -963,7 +963,7 @@ msgid "TeX Live Installer"
 msgstr "Chương trình cài đặt TeX Live"
 
 #: tlpkg/installer/install-tl-gui.tcl:373
-#: tlpkg/installer/install-tl-gui.tcl:2025
+#: tlpkg/installer/install-tl-gui.tcl:2021
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1183,56 +1183,56 @@ msgstr "Cài đặt tài liệu cho font/macro"
 msgid "Install font/macro source tree"
 msgstr "Cài đặt mã nguồn của font/macro"
 
-#: tlpkg/installer/install-tl-gui.tcl:1655
+#: tlpkg/installer/install-tl-gui.tcl:1656
 msgid "Adjust searchpath"
 msgstr "Chỉnh đường dẫn tìm kiếm tập tin thi hành"
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "No shortcuts"
 msgstr "Không tạo liên kết nhanh"
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "TeX Live menu"
 msgstr "Menu TeXLive"
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "Launcher entry"
 msgstr "Nơi khởi động chương trình"
 
-#: tlpkg/installer/install-tl-gui.tcl:1664
+#: tlpkg/installer/install-tl-gui.tcl:1665
 msgid "Desktop integration"
 msgstr "Tích hợp với Desktop"
 
-#: tlpkg/installer/install-tl-gui.tcl:1676
+#: tlpkg/installer/install-tl-gui.tcl:1677
 msgid "File associations"
 msgstr "Thay đổi cách mở tập tin"
 
-#: tlpkg/installer/install-tl-gui.tcl:1698
+#: tlpkg/installer/install-tl-gui.tcl:1699
 msgid "Install TeXworks front end"
 msgstr "Cài đặt trình soạn thảo TeXworks"
 
-#: tlpkg/installer/install-tl-gui.tcl:1715
+#: tlpkg/installer/install-tl-gui.tcl:1711
 msgid "Create symlinks in standard directories"
 msgstr "Tạo liên kết mềm trong các thư mục tiêu chuẩn"
 
-#: tlpkg/installer/install-tl-gui.tcl:1721
+#: tlpkg/installer/install-tl-gui.tcl:1717
 msgid "Specify directories"
 msgstr "Chọn thư mục"
 
-#: tlpkg/installer/install-tl-gui.tcl:1735
+#: tlpkg/installer/install-tl-gui.tcl:1731
 msgid "After install, set CTAN as source for package updates"
 msgstr "Sau khi cài xong, đặt CTAN làm nguồn để cập nhật các gói"
 
-#: tlpkg/installer/install-tl-gui.tcl:1786
+#: tlpkg/installer/install-tl-gui.tcl:1782
 msgid "Custom scheme"
 msgstr "Chọn mẫu"
 
-#: tlpkg/installer/install-tl-gui.tcl:1963
+#: tlpkg/installer/install-tl-gui.tcl:1959
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr "%s không phải kho ở dưới máy hay trên mạng"
 
-#: tlpkg/installer/install-tl-gui.tcl:1967
+#: tlpkg/installer/install-tl-gui.tcl:1963
 #, tcl-format
 msgid "%s requires an argument"
 msgstr "%s thiếu một tham số"

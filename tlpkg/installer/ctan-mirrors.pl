@@ -150,6 +150,9 @@ $mirrors = {
     'Serbia' => {
       'http://ctan.mirror.ftn.uns.ac.rs/' => 1,
     },
+    'Slovenia' => {
+      'http://ctan.ijs.si/tex-archive/' => 1,
+    },
     'Spain' => {
       'https://ctan.javinator9889.com/' => 1,
       'https://osl.ugr.es/CTAN/' => 1,
@@ -169,6 +172,7 @@ $mirrors = {
     'Canada' => {
       'http://ctan.mirror.colo-serv.net/' => 1,
       'http://ctan.mirror.globo.tech/' => 1,
+      'https://ctan.math.ca/tex-archive/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {

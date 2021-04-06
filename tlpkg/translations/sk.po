@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-03-24 23:53+0100\n"
+"POT-Creation-Date: 2021-04-07 01:48+0200\n"
 "PO-Revision-Date: 2021-03-11 09:24+0300\n"
 "Last-Translator: Ján Buša <jan.busa@tuke.sk>\n"
 "Language-Team: tex-live@tug.org\n"
@@ -18,20 +18,20 @@ msgstr ""
 #: tlpkg/installer/install-menu-text.pl:41
 #: tlpkg/installer/install-tl-gui.tcl:820
 #: tlpkg/installer/install-tl-gui.tcl:1045
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 msgid "None"
 msgstr "Žiaden"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:138
 #: tlpkg/installer/install-menu-text.pl:38
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 msgid "Only new"
 msgstr "Len nové"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:139
 #: tlpkg/installer/install-menu-text.pl:39
 #: tlpkg/installer/install-tl-gui.tcl:1042
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1642
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2547
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2565
@@ -638,7 +638,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "Vytvoriť odkazy na pracovnej ploche"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1230
-#: tlpkg/installer/install-tl-gui.tcl:1687
+#: tlpkg/installer/install-tl-gui.tcl:1688
 msgid "Install for all users"
 msgstr "Nainštalovať pre všetkých používateľov"
 
@@ -964,7 +964,7 @@ msgid "TeX Live Installer"
 msgstr "Inštalátor TeX Live"
 
 #: tlpkg/installer/install-tl-gui.tcl:373
-#: tlpkg/installer/install-tl-gui.tcl:2025
+#: tlpkg/installer/install-tl-gui.tcl:2021
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1185,56 +1185,56 @@ msgstr "Nainštalovať strom dokumentácie fontov/makier"
 msgid "Install font/macro source tree"
 msgstr "Nainštalovať strom zdrojových súborov fontov/makier"
 
-#: tlpkg/installer/install-tl-gui.tcl:1655
+#: tlpkg/installer/install-tl-gui.tcl:1656
 msgid "Adjust searchpath"
 msgstr "Upraviť cestu vyhľadávania"
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "No shortcuts"
 msgstr "Žiadne skratky"
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "TeX Live menu"
 msgstr "Menu TeX Live"
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "Launcher entry"
 msgstr "Položka zavádzača"
 
-#: tlpkg/installer/install-tl-gui.tcl:1664
+#: tlpkg/installer/install-tl-gui.tcl:1665
 msgid "Desktop integration"
 msgstr "Integrácia pracovnej plochy"
 
-#: tlpkg/installer/install-tl-gui.tcl:1676
+#: tlpkg/installer/install-tl-gui.tcl:1677
 msgid "File associations"
 msgstr "Súborové asociácie"
 
-#: tlpkg/installer/install-tl-gui.tcl:1698
+#: tlpkg/installer/install-tl-gui.tcl:1699
 msgid "Install TeXworks front end"
 msgstr "Nainštalovať pomocný program TeXworks"
 
-#: tlpkg/installer/install-tl-gui.tcl:1715
+#: tlpkg/installer/install-tl-gui.tcl:1711
 msgid "Create symlinks in standard directories"
 msgstr "Vytvoriť symbolické odkazy v štandardných adresároch"
 
-#: tlpkg/installer/install-tl-gui.tcl:1721
+#: tlpkg/installer/install-tl-gui.tcl:1717
 msgid "Specify directories"
 msgstr "Špecifikujte adresáre"
 
-#: tlpkg/installer/install-tl-gui.tcl:1735
+#: tlpkg/installer/install-tl-gui.tcl:1731
 msgid "After install, set CTAN as source for package updates"
 msgstr "Po inštalácii nastavte CTAN ako zdroj aktualizácií balíkov"
 
-#: tlpkg/installer/install-tl-gui.tcl:1786
+#: tlpkg/installer/install-tl-gui.tcl:1782
 msgid "Custom scheme"
 msgstr "Prispôsobenie schémy"
 
-#: tlpkg/installer/install-tl-gui.tcl:1963
+#: tlpkg/installer/install-tl-gui.tcl:1959
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr "%s nie je lokálne alebo vzdialené úložisko"
 
-#: tlpkg/installer/install-tl-gui.tcl:1967
+#: tlpkg/installer/install-tl-gui.tcl:1963
 #, tcl-format
 msgid "%s requires an argument"
 msgstr "%s požaduje argument"

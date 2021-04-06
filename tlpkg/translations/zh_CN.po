@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-03-24 23:53+0100\n"
+"POT-Creation-Date: 2021-04-07 01:48+0200\n"
 "PO-Revision-Date: 2009-09-22 12:54+0800\n"
 "Last-Translator: Jiang Jiang <gzjjgod@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -17,20 +17,20 @@ msgstr ""
 #: tlpkg/installer/install-menu-text.pl:41
 #: tlpkg/installer/install-tl-gui.tcl:820
 #: tlpkg/installer/install-tl-gui.tcl:1045
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 msgid "None"
 msgstr "无"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:138
 #: tlpkg/installer/install-menu-text.pl:38
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 msgid "Only new"
 msgstr "只有新的"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:139
 #: tlpkg/installer/install-menu-text.pl:39
 #: tlpkg/installer/install-tl-gui.tcl:1042
-#: tlpkg/installer/install-tl-gui.tcl:1674
+#: tlpkg/installer/install-tl-gui.tcl:1675
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1642
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2547
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2565
@@ -634,7 +634,7 @@ msgid "Create shortcuts on the desktop"
 msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1230
-#: tlpkg/installer/install-tl-gui.tcl:1687
+#: tlpkg/installer/install-tl-gui.tcl:1688
 msgid "Install for all users"
 msgstr "给所有用户安装"
 
@@ -938,7 +938,7 @@ msgid "TeX Live Installer"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:373
-#: tlpkg/installer/install-tl-gui.tcl:2025
+#: tlpkg/installer/install-tl-gui.tcl:2021
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1149,56 +1149,56 @@ msgstr "安装字体/宏包文档目录树"
 msgid "Install font/macro source tree"
 msgstr "安装字体/宏包源码目录树"
 
-#: tlpkg/installer/install-tl-gui.tcl:1655
+#: tlpkg/installer/install-tl-gui.tcl:1656
 msgid "Adjust searchpath"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "No shortcuts"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "TeX Live menu"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1662
+#: tlpkg/installer/install-tl-gui.tcl:1663
 msgid "Launcher entry"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1664
+#: tlpkg/installer/install-tl-gui.tcl:1665
 msgid "Desktop integration"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1676
+#: tlpkg/installer/install-tl-gui.tcl:1677
 msgid "File associations"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1698
+#: tlpkg/installer/install-tl-gui.tcl:1699
 msgid "Install TeXworks front end"
 msgstr "安装 TeXworks 前端"
 
-#: tlpkg/installer/install-tl-gui.tcl:1715
+#: tlpkg/installer/install-tl-gui.tcl:1711
 msgid "Create symlinks in standard directories"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1721
+#: tlpkg/installer/install-tl-gui.tcl:1717
 msgid "Specify directories"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1735
+#: tlpkg/installer/install-tl-gui.tcl:1731
 msgid "After install, set CTAN as source for package updates"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1786
+#: tlpkg/installer/install-tl-gui.tcl:1782
 msgid "Custom scheme"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1963
+#: tlpkg/installer/install-tl-gui.tcl:1959
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1967
+#: tlpkg/installer/install-tl-gui.tcl:1963
 #, tcl-format
 msgid "%s requires an argument"
 msgstr ""
