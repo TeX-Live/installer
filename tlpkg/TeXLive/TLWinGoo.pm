@@ -32,8 +32,6 @@ C<TeXLive::TLWinGoo> -- Additional utilities for Windows
 
 =head2 DIAGNOSTICS
 
-  TeXLive::TLWinGoo::is_vista;
-  TeXLive::TLWinGoo::is_seven;
   TeXLive::TLWinGoo::is_ten;
   TeXLive::TLWinGoo::admin;
   TeXLive::TLWinGoo::non_admin;
@@ -161,22 +159,18 @@ sub reg_debug {
 
 my $is_win = ($^O =~ /^MSWin/i);
 
-# Win32: import some wrappers for API functions
-# failed to get Win32::API::More to work with raw API functions;
+# Win32: import wrappers for some horrible API functions
 
 # import failures return a null result;
 # call imported functions only if true/non-null
 
 my $SendMessage = 0;
 my $update_fu = 0;
-my $getlang = 0;
 if ($is_win) {
-  $SendMessage = new Win32::API('user32', 'SendMessageTimeout', 'LLPPLLP', 'L');
+  $SendMessage = Win32::API::More->new('user32', 'SendMessageTimeout', 'LLPPLLP', 'L');
   debug ("Import failure SendMessage\n") unless $SendMessage;
-  $update_fu = new Win32::API('shell32', 'SHChangeNotify', 'LIPP', 'V');
+  $update_fu = Win32::API::More->new('shell32', 'SHChangeNotify', 'LIPP', 'V');
   debug ("Import failure assoc_notify\n") unless $update_fu;
-  $getlang = Win32::API::More->new('kernel32', 'long GetUserDefaultLangID()');
-  debug ("Import failure GetUserDefaultLangID\n") unless $getlang;
 }
 
 =pod
@@ -198,9 +192,6 @@ my $windows_version = 0;
 my $windows_subversion = 0;
 
 if ($is_win) {
-  #my @osver = Win32::GetOSVersion(); # deprecated
-  #$windows_version = $osver[1];
-  #debug "Windows version $osver[0], major version $osver[1]\n";
   my $ver = `ver`;
   chomp $ver;
   $ver =~ s/^[^0-9]*//;
@@ -208,25 +199,6 @@ if ($is_win) {
   ($windows_version = $ver) =~ s/\..*$//;
   ($windows_subversion = $ver) =~ s/^[^\.]*\.//;
   $windows_subversion =~ s/\..*$//;
-}
-
-=item C<is_vista>
-
-C<is_vista> returns 1 if windows version is >= 6.0, otherwise 0.
-
-=cut
-
-sub is_vista { return $windows_version >= 6; }
-
-=item C<is_seven>
-
-C<is_seven> returns 1 if windows version is >= 6.1, otherwise 0.
-
-=cut
-
-sub is_seven {
-  return (($windows_version == 6 && $windows_subversion >= 1) ||
-    ($windows_version > 6));
 }
 
 =item C<is_ten>
@@ -272,7 +244,7 @@ to the system environment.
 
 =cut
 
-# during processing of this source, $is_admin will get its correct value
+# $is_admin has already got its correct value
 
 sub admin { return $is_admin; }
 
@@ -307,16 +279,9 @@ Two-letter country code representing the locale of the current user
 =cut
 
 sub reg_country {
-  my $value = 0;
-  if ($getlang) {$value = $getlang->Call();}
-  return unless $value;
-  $value = sprintf ("%04x", $value);
-  my $lmkey = $Registry -> Open("HKEY_CLASSES_ROOT/MIME/Database/Rfc1766/",
-                             {Access => KEY_READ()});
-  return unless $lmkey;
-  $lm = $lmkey->{"/$value"};
+  my $lm = cu_root()->{"Control Panel/international//localename"};
   return unless $lm;
-  debug("found lang codes value = $value, lm = $lm...\n");
+  debug("found lang code lm = $lm...\n");
   if ($lm) {
     if ($lm =~ m/^zh-(tw|hk)$/i) {
       return ("zh", "tw");
@@ -330,6 +295,7 @@ sub reg_country {
       return($lang, $area);
     }
   }
+  # otherwise undef will be returned
 }
 
 
@@ -389,8 +355,7 @@ sub is_a_texdir {
 
 =item C<get_system_path>
 
-Returns unexpanded system path, as stored in the registry, but with
-forward slashes.
+Returns unexpanded system path, as stored in the registry.
 
 =cut
 
@@ -406,9 +371,8 @@ sub get_system_path {
 
 =item C<get_user_path>
 
-Returns unexpanded user path, as stored in the registry, but with
-forward slashes. The user path often does not exist, and is rarely
-expandable.
+Returns unexpanded user path, as stored in the registry. The user
+path often does not exist, and is rarely expandable.
 
 =cut
 
@@ -1034,15 +998,15 @@ sub unregister_file_type {
 =item C<broadcast_env>
 
 Broadcasts system message that enviroment has changed. This only has
-an effect on newly-started programs, not on running programs and the
+an effect on newly-started programs, not on running programs or the
 processes they spawn.
 
 =cut
 
 sub broadcast_env() {
   if ($SendMessage) {
-    use constant HWND_BROADCAST	=> 0xffff;
-    use constant WM_SETTINGCHANGE	=> 0x001A;
+    use constant HWND_BROADCAST => 0xffff;
+    use constant WM_SETTINGCHANGE => 0x001A;
     my $result = "";
     my $ans = "12345678"; # room for dword
     $result = $SendMessage->Call(HWND_BROADCAST, WM_SETTINGCHANGE,
@@ -1062,12 +1026,16 @@ Notifies the system that filetypes have changed.
 =cut
 
 sub update_assocs() {
-  use constant SHCNE_ASSOCCHANGED	=> 0x8000000;
-  use constant SHCNF_IDLIST =>	0;
+  use constant SHCNE_ASSOCCHANGED => 0x8000000;
+  use constant SHCNF_IDLIST => 0;
   if ($update_fu) {
     debug("Notifying changes in filetypes...\n");
-    $update_fu->Call (SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
-    debug("Done notifying\n");
+    my $result = $update_fu->Call(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
+    if ($result) {
+      debug("Done notifying filetype changes\n");
+    } else{
+      debug("Failure notifying filetype changes\n");
+    }
   } else {
     debug("No update_fu\n");
   }

@@ -1644,6 +1644,7 @@ proc run_menu {} {
       ttk::checkbutton .srcb -variable ::vars(tlpdbopt_install_srcfiles) \
           -command {update_vars; show_stats}
       pgrid .srcb -in $curf -row $rw -column 2 -sticky e
+      puts stderr [bindtags .srcb]
     }
   }
 
@@ -1698,14 +1699,9 @@ proc run_menu {} {
     pgrid [ttk::label .texwl -text [__ "Install TeXworks front end"]] \
         -in $curf -row $rw -column 0 -columnspan 2 -sticky w
     ttk::checkbutton .texwb -variable ::vars(collection-texworks)
+    .texwb configure -command \
+        {set ::vars(selected_scheme) "scheme-custom"; update_vars; show_stats}
     pgrid .texwb -in $curf -row $rw -column 2 -sticky e
-    bind .texwb <ButtonRelease> {+
-      set ::vars(selected_scheme) "scheme-custom"; update_vars; show_stats}
-    bind .texwb <Return> {+
-      set ::vars(selected_scheme) "scheme-custom"; update_vars; show_stats}
-    bind .texwb <space> {+
-      set ::vars(selected_scheme) "scheme-custom"; update_vars; show_stats}
-
   } else {
     if $::advanced {
       # instopt_adjustpath, unix edition: symlinks
