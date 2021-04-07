@@ -1644,7 +1644,6 @@ proc run_menu {} {
       ttk::checkbutton .srcb -variable ::vars(tlpdbopt_install_srcfiles) \
           -command {update_vars; show_stats}
       pgrid .srcb -in $curf -row $rw -column 2 -sticky e
-      puts stderr [bindtags .srcb]
     }
   }
 
