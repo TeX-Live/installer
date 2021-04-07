@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-04-07 01:48+0200\n"
+"POT-Creation-Date: 2021-04-08 01:48+0200\n"
 "PO-Revision-Date: 2021-03-11 09:18+0300\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
@@ -22,20 +22,20 @@ msgstr ""
 #: tlpkg/installer/install-menu-text.pl:41
 #: tlpkg/installer/install-tl-gui.tcl:820
 #: tlpkg/installer/install-tl-gui.tcl:1045
-#: tlpkg/installer/install-tl-gui.tcl:1675
+#: tlpkg/installer/install-tl-gui.tcl:1674
 msgid "None"
 msgstr "Žádné"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:138
 #: tlpkg/installer/install-menu-text.pl:38
-#: tlpkg/installer/install-tl-gui.tcl:1675
+#: tlpkg/installer/install-tl-gui.tcl:1674
 msgid "Only new"
 msgstr "Jen nové"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:139
 #: tlpkg/installer/install-menu-text.pl:39
 #: tlpkg/installer/install-tl-gui.tcl:1042
-#: tlpkg/installer/install-tl-gui.tcl:1675
+#: tlpkg/installer/install-tl-gui.tcl:1674
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1642
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2547
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2565
@@ -643,7 +643,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "Vytvořit zkratky na ploše"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1230
-#: tlpkg/installer/install-tl-gui.tcl:1688
+#: tlpkg/installer/install-tl-gui.tcl:1687
 msgid "Install for all users"
 msgstr "Nainstaluj pro všechny uživatele"
 
@@ -966,7 +966,7 @@ msgid "TeX Live Installer"
 msgstr "Instalátor TeX Live"
 
 #: tlpkg/installer/install-tl-gui.tcl:373
-#: tlpkg/installer/install-tl-gui.tcl:2021
+#: tlpkg/installer/install-tl-gui.tcl:2020
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1185,56 +1185,56 @@ msgstr "Instalovat dokumentaci fontů/maker"
 msgid "Install font/macro source tree"
 msgstr "Instalovat zdrojové soubory fontů/maker"
 
-#: tlpkg/installer/install-tl-gui.tcl:1656
+#: tlpkg/installer/install-tl-gui.tcl:1655
 msgid "Adjust searchpath"
 msgstr "Přizpůsob vyhledávací cestu"
 
-#: tlpkg/installer/install-tl-gui.tcl:1663
+#: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "No shortcuts"
 msgstr "Žádné zkratky"
 
-#: tlpkg/installer/install-tl-gui.tcl:1663
+#: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "TeX Live menu"
 msgstr "TeX Live menu"
 
-#: tlpkg/installer/install-tl-gui.tcl:1663
+#: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "Launcher entry"
 msgstr "Položka k spuštění"
 
-#: tlpkg/installer/install-tl-gui.tcl:1665
+#: tlpkg/installer/install-tl-gui.tcl:1664
 msgid "Desktop integration"
 msgstr "Integrace desktopu"
 
-#: tlpkg/installer/install-tl-gui.tcl:1677
+#: tlpkg/installer/install-tl-gui.tcl:1676
 msgid "File associations"
 msgstr "Asociace typů souborů"
 
-#: tlpkg/installer/install-tl-gui.tcl:1699
+#: tlpkg/installer/install-tl-gui.tcl:1698
 msgid "Install TeXworks front end"
 msgstr "Nainstaluj pomocníka TeXworks"
 
-#: tlpkg/installer/install-tl-gui.tcl:1711
+#: tlpkg/installer/install-tl-gui.tcl:1710
 msgid "Create symlinks in standard directories"
 msgstr "Vytvářet symbolické linky ve standardní adresářích"
 
-#: tlpkg/installer/install-tl-gui.tcl:1717
+#: tlpkg/installer/install-tl-gui.tcl:1716
 msgid "Specify directories"
 msgstr "Specifikovat adresáře"
 
-#: tlpkg/installer/install-tl-gui.tcl:1731
+#: tlpkg/installer/install-tl-gui.tcl:1730
 msgid "After install, set CTAN as source for package updates"
 msgstr "Po instalaci nastavte CTAN jako zdroj aktualizace balíků"
 
-#: tlpkg/installer/install-tl-gui.tcl:1782
+#: tlpkg/installer/install-tl-gui.tcl:1781
 msgid "Custom scheme"
 msgstr "Přizpůsobení schématu"
 
-#: tlpkg/installer/install-tl-gui.tcl:1959
+#: tlpkg/installer/install-tl-gui.tcl:1958
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr "%s není lokální nebo vzdálený repozitář"
 
-#: tlpkg/installer/install-tl-gui.tcl:1963
+#: tlpkg/installer/install-tl-gui.tcl:1962
 #, tcl-format
 msgid "%s requires an argument"
 msgstr "%s vyžaduje argument"

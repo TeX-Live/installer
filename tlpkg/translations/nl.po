@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-04-07 01:48+0200\n"
+"POT-Creation-Date: 2021-04-08 01:48+0200\n"
 "PO-Revision-Date: 2021-03-08 12:17+0100\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 #: tlpkg/installer/install-menu-text.pl:41
 #: tlpkg/installer/install-tl-gui.tcl:820
 #: tlpkg/installer/install-tl-gui.tcl:1045
-#: tlpkg/installer/install-tl-gui.tcl:1675
+#: tlpkg/installer/install-tl-gui.tcl:1674
 msgid "None"
 msgstr "Geen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:138
 #: tlpkg/installer/install-menu-text.pl:38
-#: tlpkg/installer/install-tl-gui.tcl:1675
+#: tlpkg/installer/install-tl-gui.tcl:1674
 msgid "Only new"
 msgstr "Alleen nieuw"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:139
 #: tlpkg/installer/install-menu-text.pl:39
 #: tlpkg/installer/install-tl-gui.tcl:1042
-#: tlpkg/installer/install-tl-gui.tcl:1675
+#: tlpkg/installer/install-tl-gui.tcl:1674
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1642
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2547
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2565
@@ -639,7 +639,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "Maak snelkoppelingen op het bureaublad"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1230
-#: tlpkg/installer/install-tl-gui.tcl:1688
+#: tlpkg/installer/install-tl-gui.tcl:1687
 msgid "Install for all users"
 msgstr "Installeer voor alle gebruikers"
 
@@ -961,7 +961,7 @@ msgid "TeX Live Installer"
 msgstr "TeX Live Installatie"
 
 #: tlpkg/installer/install-tl-gui.tcl:373
-#: tlpkg/installer/install-tl-gui.tcl:2021
+#: tlpkg/installer/install-tl-gui.tcl:2020
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -1180,56 +1180,56 @@ msgstr "Installeer font/macro doc folder"
 msgid "Install font/macro source tree"
 msgstr "Installeer font/macro bron folder"
 
-#: tlpkg/installer/install-tl-gui.tcl:1656
+#: tlpkg/installer/install-tl-gui.tcl:1655
 msgid "Adjust searchpath"
 msgstr "Zoekpad aanpassen"
 
-#: tlpkg/installer/install-tl-gui.tcl:1663
+#: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "No shortcuts"
 msgstr "Geen TeX Live menu"
 
-#: tlpkg/installer/install-tl-gui.tcl:1663
+#: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "TeX Live menu"
 msgstr "TeX Live menu"
 
-#: tlpkg/installer/install-tl-gui.tcl:1663
+#: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "Launcher entry"
 msgstr "Launcher item"
 
-#: tlpkg/installer/install-tl-gui.tcl:1665
+#: tlpkg/installer/install-tl-gui.tcl:1664
 msgid "Desktop integration"
 msgstr "Bureaublad-integratie"
 
-#: tlpkg/installer/install-tl-gui.tcl:1677
+#: tlpkg/installer/install-tl-gui.tcl:1676
 msgid "File associations"
 msgstr "Koppeling bestandsformaten"
 
-#: tlpkg/installer/install-tl-gui.tcl:1699
+#: tlpkg/installer/install-tl-gui.tcl:1698
 msgid "Install TeXworks front end"
 msgstr "Installeer TeXworks front-end"
 
-#: tlpkg/installer/install-tl-gui.tcl:1711
+#: tlpkg/installer/install-tl-gui.tcl:1710
 msgid "Create symlinks in standard directories"
 msgstr "Maak symlinks in standaard folders"
 
-#: tlpkg/installer/install-tl-gui.tcl:1717
+#: tlpkg/installer/install-tl-gui.tcl:1716
 msgid "Specify directories"
 msgstr "Specificeer folders"
 
-#: tlpkg/installer/install-tl-gui.tcl:1731
+#: tlpkg/installer/install-tl-gui.tcl:1730
 msgid "After install, set CTAN as source for package updates"
 msgstr "Kies na installatie CTAN als bron voor nieuwe versies van pakketten"
 
-#: tlpkg/installer/install-tl-gui.tcl:1782
+#: tlpkg/installer/install-tl-gui.tcl:1781
 msgid "Custom scheme"
 msgstr "Eigen schema"
 
-#: tlpkg/installer/install-tl-gui.tcl:1959
+#: tlpkg/installer/install-tl-gui.tcl:1958
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr "%s is niet een lokale of online installatie-bron"
 
-#: tlpkg/installer/install-tl-gui.tcl:1963
+#: tlpkg/installer/install-tl-gui.tcl:1962
 #, tcl-format
 msgid "%s requires an argument"
 msgstr "%s vereist een argument"
