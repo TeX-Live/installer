@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-04-08 01:48+0200\n"
+"POT-Creation-Date: 2021-04-11 01:48+0200\n"
 "PO-Revision-Date: 2021-03-24 08:08+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -1921,11 +1921,11 @@ msgstr "Programmes pour le support de Windows seulement"
 msgid "XeTeX and packages"
 msgstr "XeTeX et packages associés"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2623
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2621
 msgid "Welcome to TeX Live!"
 msgstr "Bienvenue sous TeX Live !"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2626
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2624
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1942,7 +1942,7 @@ msgstr ""
 "groupes est disponible sur le web à l'adresse http://tug.org/usergroups."
 "html ;la page du groupe francophone est http://www.gutenberg.eu.org/."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2636
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2634
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
