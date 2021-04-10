@@ -89,8 +89,6 @@ BEGIN {
   use vars qw( @ISA @EXPORT $Registry);
   @ISA = qw( Exporter );
   @EXPORT = qw(
-    &is_vista
-    &is_seven
     &is_ten
     &admin
     &non_admin
@@ -1335,11 +1333,6 @@ sub maybe_make_ro {
   tldie "$dir not a directory\n" unless -d $dir;
   if (!admin()) {
     log "Not an admin install; not making read-only\n";
-    return 1;
-  }
-  if (!is_vista()) {
-    log "Windows version $windows_version earlier than Vista;".
-      " not making read-only\n";
     return 1;
   }
 

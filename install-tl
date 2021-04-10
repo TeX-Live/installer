@@ -181,8 +181,6 @@ binmode (STDERR, ':encoding(console_out)');
 if (win32) {
   require TeXLive::TLWinGoo;
   TeXLive::TLWinGoo->import( qw(
-    &is_vista
-    &is_seven
     &admin
     &non_admin
     &reg_country
