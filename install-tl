@@ -109,7 +109,7 @@ if (($^O !~ /^MSWin/i) &&
         }
       }
     } else {
-      for my $q (qw/in-place profile help print-platform version no-gui/) {
+      for my $q (qw/in-place profile help print-arch print-platform version no-gui/) {
         if ($p eq "-$q") {
           # ignore gui mode
           $want_tcl = 0;

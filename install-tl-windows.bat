@@ -113,6 +113,10 @@ if -print-platform == %p% (
 set tcl=no
 set forbid=yes
 )
+if -print-arch == %p% (
+set tcl=no
+set forbid=yes
+)
 if -version == %p% (
 set tcl=no
 set forbid=yes
