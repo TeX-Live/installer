@@ -869,6 +869,13 @@ sub handle_execute_actions {
   my $sysmode = ($opts{"usermode"} ? "-user" : "-sys");
   my $invoke_fmtutil = "fmtutil$sysmode $common_fmtutil_args";
 
+  # of create_formats is unset (NOT the default) we add --refresh so that
+  # only existing formats are recreated
+  if (!$localtlpdb->option("create_formats")) {
+    $invoke_fmtutil .= " --refresh";
+    info("only existing formats will be refreshed per user option (create_formats=0)\n");
+  }
+
   if ($::files_changed) {
     $errors += do_cmd_and_check("mktexlsr");
     if (defined($localtlpdb->get_package('context'))
@@ -931,9 +938,8 @@ sub handle_execute_actions {
       }
     }
 
-    # format-regenerate is used when the paper size changes.  In that
-    # case, if option("create_formats") is set, we simply want to generate
-    # all formats
+    # format-regenerate is used when the paper size changes.
+    # In that case we simply want to generate all formats
     #
     my %done_formats;
     my %updated_engines;
@@ -957,13 +963,12 @@ sub handle_execute_actions {
     for my $m (keys %{$::execute_actions{'disable'}{'formats'}}) {
       $do_full = 1;
     }
-    my $opt_fmt = $localtlpdb->option("create_formats");
     if ($do_full) {
       info("regenerating fmtutil.cnf in $TEXMFDIST\n");
       TeXLive::TLUtils::create_fmtutil($localtlpdb,
                                        "$TEXMFDIST/web2c/fmtutil.cnf");
     }
-    if ($opt_fmt && !$::regenerate_all_formats) {
+    if (!$::regenerate_all_formats) {
       # first regenerate all formats --byengine 
       for my $e (keys %updated_engines) {
         debug ("updating formats based on $e\n");
@@ -994,20 +999,18 @@ sub handle_execute_actions {
           # Use full path for external command, except on Windows.
           $lang = "$TEXMFSYSVAR/tex/generic/config/$lang";
         }
-        if ($localtlpdb->option("create_formats")
-            && !$::regenerate_all_formats) {
+        if (!$::regenerate_all_formats) {
           $errors += do_cmd_and_check ("$invoke_fmtutil --byhyphen \"$lang\"");
         }
       }
     }
-  }
 
-  #
-  if ($::regenerate_all_formats) {
-    info("Regenerating all formats, this may take some time ...");
-    $errors += do_cmd_and_check("$invoke_fmtutil --all");
-    info("done\n");
-    $::regenerate_all_formats = 0;
+    if ($::regenerate_all_formats) {
+      info("Regenerating all formats, this may take some time ...");
+      $errors += do_cmd_and_check("$invoke_fmtutil --all");
+      info("done\n");
+      $::regenerate_all_formats = 0;
+    }
   }
 
   # undefine the global var, otherwise in GUI mode the actions
