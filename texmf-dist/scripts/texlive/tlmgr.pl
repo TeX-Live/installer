@@ -1005,9 +1005,12 @@ sub handle_execute_actions {
       }
     }
 
+    # ::regenerate_all_formats comes from TLPaper updates
+    # so we just refresh formats instead of generating all that have not been there
     if ($::regenerate_all_formats) {
-      info("Regenerating all formats, this may take some time ...");
-      $errors += do_cmd_and_check("$invoke_fmtutil --all");
+      info("Regenerating available formats, this may take some time ...");
+      # --refresh might already be in $invoke_fmtutil, but we don't care
+      $errors += do_cmd_and_check("$invoke_fmtutil --refresh --all");
       info("done\n");
       $::regenerate_all_formats = 0;
     }
