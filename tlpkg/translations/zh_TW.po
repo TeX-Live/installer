@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-04-11 01:48+0200\n"
+"POT-Creation-Date: 2021-04-13 01:50+0200\n"
 "PO-Revision-Date: 2009-09-03 12:34+0200\n"
 "Last-Translator: Norbert Preining <preining@logic.at>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -102,7 +102,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:888
 #: tlpkg/installer/install-tl-gui.tcl:938
 #: tlpkg/installer/install-tl-gui.tcl:1026
-#: tlpkg/installer/install-tl-gui.tcl:1249 tlpkg/tltcl/tltcl.tcl:683
+#: tlpkg/installer/install-tl-gui.tcl:1249 tlpkg/tltcl/tltcl.tcl:688
 #: texmf-dist/scripts/tlshell/tlshell.tcl:226
 msgid "Ok"
 msgstr "確定"
@@ -409,7 +409,7 @@ msgstr "歡迎進入 TeX Live %s 的世界！"
 #: tlpkg/installer/install-tl-gui.tcl:891
 #: tlpkg/installer/install-tl-gui.tcl:955
 #: tlpkg/installer/install-tl-gui.tcl:1029
-#: tlpkg/installer/install-tl-gui.tcl:1251 tlpkg/tltcl/tltcl.tcl:685
+#: tlpkg/installer/install-tl-gui.tcl:1251 tlpkg/tltcl/tltcl.tcl:690
 #: texmf-dist/scripts/tlshell/tlshell.tcl:236
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1375
 msgid "Cancel"
@@ -1008,7 +1008,7 @@ msgid "Installation root"
 msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:597
-#: tlpkg/installer/install-tl-gui.tcl:1229 tlpkg/tltcl/tltcl.tcl:675
+#: tlpkg/installer/install-tl-gui.tcl:1229 tlpkg/tltcl/tltcl.tcl:680
 msgid "Browse..."
 msgstr ""
 
@@ -1235,7 +1235,7 @@ msgstr ""
 msgid "No mirror list available"
 msgstr ""
 
-#: tlpkg/tltcl/tltcl.tcl:758
+#: tlpkg/tltcl/tltcl.tcl:763
 msgid "Select or type"
 msgstr ""
 
