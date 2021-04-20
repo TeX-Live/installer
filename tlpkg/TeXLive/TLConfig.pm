@@ -344,7 +344,7 @@ These values specify where to find packages.
 =item C<$TeXLive::TLConfig::TeXLiveServerPath>
 
 C<TeXLiveURL> is concatenated from these values, with a string between.
-The defaults are respectively, C<http://mirror.ctan.org> and
+The defaults are respectively, C<https://mirror.ctan.org> and
 C<systems/texlive/tlnet/>.
 
 =item C<@TeXLive::TLConfig::CriticalPackagesList>

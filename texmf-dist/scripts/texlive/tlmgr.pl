@@ -873,7 +873,7 @@ sub handle_execute_actions {
   # only existing formats are recreated
   if (!$localtlpdb->option("create_formats")) {
     $invoke_fmtutil .= " --refresh";
-    info("only existing formats will be refreshed per user option (create_formats=0)\n");
+    debug("only existing formats will be refreshed per user option (create_formats=0)\n");
   }
 
   if ($::files_changed) {
@@ -7698,7 +7698,7 @@ with C<tlmgr>:
 
 =item C<tlmgr option repository ctan>
 
-=item C<tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet>
+=item C<tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet>
 
 Tell C<tlmgr> to use a nearby CTAN mirror for future updates; useful if
 you installed TeX Live from the DVD image and want to have continuing
@@ -7781,7 +7781,7 @@ Equivalent ways of specifying a local directory.
 
 =item C<ctan>
 
-=item C<http://mirror.ctan.org/systems/texlive/tlnet>
+=item C<https://mirror.ctan.org/systems/texlive/tlnet>
 
 Pick a CTAN mirror automatically, trying for one that is both nearby and
 up-to-date. The chosen mirror is used for the entire download. The bare
@@ -8557,7 +8557,7 @@ One common use of C<option> is to permanently change the installation to
 get further updates from the Internet, after originally installing from
 DVD.  To do this, you can run
 
- tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+ tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
 
 The C<install-tl> documentation has more information about the possible
 values for C<repository>.  (For backward compatibility, C<location> can

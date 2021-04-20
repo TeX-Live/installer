@@ -2736,7 +2736,7 @@ http(s), ftp, or scp. The documentation for C<tlmgr> has the details
 (L<https://tug.org/texlive/doc/tlmgr.html#OPTIONS>).
 
 For installation, the default is to pick a mirror automatically, using
-L<http://mirror.ctan.org/systems/texlive/tlnet>; the chosen mirror is
+L<https://mirror.ctan.org/systems/texlive/tlnet>; the chosen mirror is
 used for the entire download. You can use the special argument C<ctan>
 as an abbreviation for this. (See L<https://ctan.org> for more about CTAN
 and its mirrors.)
