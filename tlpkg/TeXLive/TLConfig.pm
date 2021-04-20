@@ -101,7 +101,7 @@ our $MaxLWPErrors = 5;
 our $MaxLWPReinitCount = 10;
 
 our $Archive = "archive";
-our $TeXLiveServerURL = "http://mirror.ctan.org";
+our $TeXLiveServerURL = "https://mirror.ctan.org";
 # from 2009 on we try to put them all into tlnet directly without any
 # release year since we hope that we can switch over to 2010 on the fly
 # our $TeXLiveServerPath = "systems/texlive/tlnet/$ReleaseYear";
