@@ -746,9 +746,9 @@ sub only_load_remote {
     $location =~ s,/(tlpkg(/texlive\.tlpdb)?|archive)?/*$,,;
     if ($location =~ m/^ctan$/i) {
       $location = TeXLive::TLUtils::give_ctan_mirror();
-    } elsif ($location =~ m/^$TeXLiveServerURL/) {
+    } elsif ($location =~ m/^$TeXLiveServerURLRegexp/) {
       my $mirrorbase = TeXLive::TLUtils::give_ctan_mirror_base();
-      $location =~ s,^($TeXLiveServerURL|ctan$),$mirrorbase,;
+      $location =~ s,^($TeXLiveServerURLRegexp|ctan$),$mirrorbase,;
     }
     $TeXLiveURL = $location;
     $media = 'NET';

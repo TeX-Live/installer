@@ -35,6 +35,7 @@ BEGIN {
     $BlockSize
     $Archive
     $TeXLiveServerURL
+    $TeXLiveServerURLRegexp
     $TeXLiveServerPath
     $TeXLiveURL
     @CriticalPackagesList
@@ -102,6 +103,7 @@ our $MaxLWPReinitCount = 10;
 
 our $Archive = "archive";
 our $TeXLiveServerURL = "https://mirror.ctan.org";
+our $TeXLiveServerURLRegexp = 'https?://mirror\.ctan\.org';
 # from 2009 on we try to put them all into tlnet directly without any
 # release year since we hope that we can switch over to 2010 on the fly
 # our $TeXLiveServerPath = "systems/texlive/tlnet/$ReleaseYear";
@@ -341,6 +343,7 @@ The assumed block size, currently 4k.
 These values specify where to find packages.
 
 =item C<$TeXLive::TLConfig::TeXLiveServerURL>
+=item C<$TeXLive::TLConfig::TeXLiveServerURLRegexp>
 =item C<$TeXLive::TLConfig::TeXLiveServerPath>
 
 C<TeXLiveURL> is concatenated from these values, with a string between.

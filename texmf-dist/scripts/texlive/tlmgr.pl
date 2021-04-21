@@ -7007,9 +7007,9 @@ sub _init_tlmedia {
   # choose a mirror if we are asked.
   if ($location =~ m/^ctan$/i) {
     $location = give_ctan_mirror();
-  } elsif ($location =~ m,^$TeXLiveServerURL,) {
+  } elsif ($location =~ m,^$TeXLiveServerURLRegexp,) {
     my $mirrorbase = TeXLive::TLUtils::give_ctan_mirror_base();
-    $location =~ s,^$TeXLiveServerURL,$mirrorbase,;
+    $location =~ s,^$TeXLiveServerURLRegexp,$mirrorbase,;
   }
 
   my $errormsg;
@@ -7049,9 +7049,9 @@ sub setup_one_remotetlpdb {
   # choose a mirror if we are asked.
   if ($location =~ m/^ctan$/i) {
     $location = give_ctan_mirror();
-  } elsif ($location =~ m,^$TeXLiveServerURL,) {
+  } elsif ($location =~ m,^$TeXLiveServerURLRegexp,) {
     my $mirrorbase = TeXLive::TLUtils::give_ctan_mirror_base();
-    $location =~ s,^$TeXLiveServerURL,$mirrorbase,;
+    $location =~ s,^$TeXLiveServerURLRegexp,$mirrorbase,;
   }
 
   # if we talk about a net location try to download the hash of the tlpdb
