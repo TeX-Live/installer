@@ -4582,6 +4582,25 @@ sub setup_sys_user_mode {
   } elsif ($optsref->{'user'}) {
     $texmfconfig = $TEXMFCONFIG;
     $texmfvar    = $TEXMFVAR;
+    # mktexfmt is often run accidentally by a user with missing formats
+    # and the resulting format dumps are put into TEXMFVAR, which is
+    # one of the most common source of problems.
+    # Only for mktexfmt (but not for fmtutil, which would need to be called
+    # explicitely with fmtutil -user) we check whether TEXMFSYSVAR is writable
+    # and if yes, create formats there.
+    if ($prg eq "mktexfmt") {
+      my $switchit = 0;
+      if (-d "$TEXMFSYSVAR/web2c") {
+        $switchit = 1 if (-w "$TEXMFSYSVAR/web2c");
+      } elsif (-d $TEXMFSYSVAR && -w $TEXMFSYSVAR) {
+        $switchit = 1;
+      }
+      if ($switchit) {
+        # inform about switch, but not for mktexfmt which expects output to be only the format
+        $prg eq "mktexfmt" || info("$prg: using TEXMFSYSVAR instead of TEXMFVAR since it is writable!\n");
+        $texmfvar    = $TEXMFSYSVAR;
+      }
+    }
   } else {
     print STDERR "" .
       "$prg [ERROR]: Either -sys or -user mode is required.\n" .
