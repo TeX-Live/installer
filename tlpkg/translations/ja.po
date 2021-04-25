@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-04-13 01:50+0200\n"
+"POT-Creation-Date: 2021-04-26 01:49+0200\n"
 "PO-Revision-Date: 2021-03-18 11:41+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -112,7 +112,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:888
 #: tlpkg/installer/install-tl-gui.tcl:938
 #: tlpkg/installer/install-tl-gui.tcl:1026
-#: tlpkg/installer/install-tl-gui.tcl:1249 tlpkg/tltcl/tltcl.tcl:688
+#: tlpkg/installer/install-tl-gui.tcl:1249 tlpkg/tltcl/tltcl.tcl:690
 #: texmf-dist/scripts/tlshell/tlshell.tcl:226
 msgid "Ok"
 msgstr "OK"
@@ -401,7 +401,7 @@ msgstr "TeX Live %s をアンインストール"
 #: tlpkg/installer/install-tl-gui.tcl:891
 #: tlpkg/installer/install-tl-gui.tcl:955
 #: tlpkg/installer/install-tl-gui.tcl:1029
-#: tlpkg/installer/install-tl-gui.tcl:1251 tlpkg/tltcl/tltcl.tcl:690
+#: tlpkg/installer/install-tl-gui.tcl:1251 tlpkg/tltcl/tltcl.tcl:692
 #: texmf-dist/scripts/tlshell/tlshell.tcl:236
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1375
 msgid "Cancel"
@@ -1015,7 +1015,7 @@ msgid "Installation root"
 msgstr "インストール先"
 
 #: tlpkg/installer/install-tl-gui.tcl:597
-#: tlpkg/installer/install-tl-gui.tcl:1229 tlpkg/tltcl/tltcl.tcl:680
+#: tlpkg/installer/install-tl-gui.tcl:1229 tlpkg/tltcl/tltcl.tcl:682
 msgid "Browse..."
 msgstr "開く…"
 
@@ -1244,7 +1244,7 @@ msgstr "特定のミラーを選択…"
 msgid "No mirror list available"
 msgstr "利用可能なミラーリストがありません"
 
-#: tlpkg/tltcl/tltcl.tcl:763
+#: tlpkg/tltcl/tltcl.tcl:765
 msgid "Select or type"
 msgstr "選択または入力"
 

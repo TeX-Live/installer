@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2021-04-13 01:50+0200\n"
+"POT-Creation-Date: 2021-04-26 01:49+0200\n"
 "PO-Revision-Date: 2021-03-13 11:02+0100\n"
 "Last-Translator: Anh K. Huỳnh <kyanh@viettug.org>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -111,7 +111,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:888
 #: tlpkg/installer/install-tl-gui.tcl:938
 #: tlpkg/installer/install-tl-gui.tcl:1026
-#: tlpkg/installer/install-tl-gui.tcl:1249 tlpkg/tltcl/tltcl.tcl:688
+#: tlpkg/installer/install-tl-gui.tcl:1249 tlpkg/tltcl/tltcl.tcl:690
 #: texmf-dist/scripts/tlshell/tlshell.tcl:226
 msgid "Ok"
 msgstr "Đồng ý"
@@ -400,7 +400,7 @@ msgstr "Gỡ bỏ TeX Live %s"
 #: tlpkg/installer/install-tl-gui.tcl:891
 #: tlpkg/installer/install-tl-gui.tcl:955
 #: tlpkg/installer/install-tl-gui.tcl:1029
-#: tlpkg/installer/install-tl-gui.tcl:1251 tlpkg/tltcl/tltcl.tcl:690
+#: tlpkg/installer/install-tl-gui.tcl:1251 tlpkg/tltcl/tltcl.tcl:692
 #: texmf-dist/scripts/tlshell/tlshell.tcl:236
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1375
 msgid "Cancel"
@@ -1014,7 +1014,7 @@ msgid "Installation root"
 msgstr "Thư mục gốc của bộ cài đặt"
 
 #: tlpkg/installer/install-tl-gui.tcl:597
-#: tlpkg/installer/install-tl-gui.tcl:1229 tlpkg/tltcl/tltcl.tcl:680
+#: tlpkg/installer/install-tl-gui.tcl:1229 tlpkg/tltcl/tltcl.tcl:682
 msgid "Browse..."
 msgstr "Duyệt tìm..."
 
@@ -1245,7 +1245,7 @@ msgstr "Chọn kho đệm..."
 msgid "No mirror list available"
 msgstr "Không thấy danh sách mirror nào"
 
-#: tlpkg/tltcl/tltcl.tcl:763
+#: tlpkg/tltcl/tltcl.tcl:765
 msgid "Select or type"
 msgstr "Chọn hoặc nhập vào"
 
