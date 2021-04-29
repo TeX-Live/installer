@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live 2021\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-04-26 01:49+0200\n"
-"PO-Revision-Date: 2021-04-28 08:30+0200\n"
+"PO-Revision-Date: 2021-04-29 11:20+0200\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +122,7 @@ msgstr "Ok"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:287
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1188
 msgid "Repository"
-msgstr "Lager"
+msgstr "Datalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:288
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2610
@@ -144,7 +144,7 @@ msgstr "Indlæs standard"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1699
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2606
 msgid "multiple repositories"
-msgstr "flere lagre"
+msgstr "flere datalagre"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:304
 msgid "Default:"
@@ -190,7 +190,7 @@ msgstr "samlinger"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:333
 msgid "schemes"
-msgstr "plan"
+msgstr "planer"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:336
 msgid "Match"
@@ -296,19 +296,19 @@ msgstr "Hjælp"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:525
 msgid "Load default (from tlpdb) repository:"
-msgstr "Indlæs standardfjernfjernlager (from tlpdb):"
+msgstr "Indlæs standarddatalager (from tlpdb):"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:528
 msgid "Load cmd line repository:"
-msgstr "Kommandolinjefjernlager:"
+msgstr "Kommandolinjedatalager:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:531
 msgid "Load standard net repository:"
-msgstr "Indlæs standardfjernlager fra nettet:"
+msgstr "Indlæs standarddatalager fra nettet:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:534
 msgid "Load other repository ..."
-msgstr "Indlæs andet fjernlager..."
+msgstr "Indlæs andet datalager..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:538
 #: tlpkg/installer/install-tl-gui.tcl:1389
@@ -370,7 +370,7 @@ msgstr "Gendan pakker fra backup"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:613
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2418
 msgid "Handle symlinks in system dirs"
-msgstr "Håndter symbolske længer i systembiblioteker"
+msgstr "Håndter symbolske lænker i systembiblioteker"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:619
 #, perl-format
@@ -424,13 +424,13 @@ msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:643
 msgid "Manual"
-msgstr "Manuelt"
+msgstr "Vejledning"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:644
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:646
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2444
 msgid "About"
-msgstr "Angående"
+msgstr "Om"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:668
 msgid "Details on:"
@@ -565,7 +565,7 @@ msgstr "Overordnede valgmuligheder"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1136
 msgid "Default package repository"
-msgstr "Standardpakkefjernlager"
+msgstr "Standardpakkedatalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1144
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1182
@@ -656,7 +656,7 @@ msgstr "Skift filtilknytninger"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1277
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1279
 msgid "Load default repository:"
-msgstr "Indlæs standardfjernlager:"
+msgstr "Indlæs standarddatalager:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1336
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1345
@@ -703,7 +703,7 @@ msgstr "Ændringer vil træde i kraft efter genstart"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1478
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1510
 msgid "Default remote repository"
-msgstr "Standardfjernlager"
+msgstr "Standarddatalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1502
 msgid "Choose directory"
@@ -711,11 +711,11 @@ msgstr "Vælg bibliotek"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1568
 msgid "Edit default package repositories"
-msgstr "Rediger standardpakkefjernlagre"
+msgstr "Rediger standardpakkedatalagre"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1571
 msgid "Specify set of repositories to be used"
-msgstr "Angiv et sæt af lagre, der skal bruges"
+msgstr "Angiv et sæt af datalagre, der skal bruges"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1587
 msgid "Delete"
@@ -724,26 +724,26 @@ msgstr "Fjern"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1601
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1604
 msgid "Change main package repository"
-msgstr "Skift hovedpakkefjernlager"
+msgstr "Skift hovedpakkedatalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1602
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1605
 msgid "Change subsidiary package repository"
-msgstr "Skift yderligere pakkefjernlager"
+msgstr "Skift underordnet pakkedatalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1626
 msgid "Add repository"
-msgstr "Tilføj fjernlager"
+msgstr "Tilføj datalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1628
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1629
 msgid "Add package repository"
-msgstr "Tilføj pakkefjernlager"
+msgstr "Tilføj pakkedatalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1655
 #, perl-format
 msgid "Repository tag name already used: %s"
-msgstr "Mærkat for fjernlager er allerede i brug: %s"
+msgstr "Mærkat for datalager er allerede i brug: %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1713
 msgid "Revert"
@@ -872,11 +872,11 @@ msgstr "Vælg bibliotek"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2519
 msgid "Load package repository"
-msgstr "Indlæs pakkefjernlager"
+msgstr "Indlæs pakkedatalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2522
 msgid "Load this package repository:"
-msgstr "Indlæs dette pakkefjernlager:"
+msgstr "Indlæs dette pakkedatalager:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2548
 msgid "Choose local directory"
@@ -884,7 +884,7 @@ msgstr "Vælg andet lokalt bibliotek"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2556
 msgid "Use standard net repository"
-msgstr "Brug standardnetfjernlager"
+msgstr "Brug standardnetdatalager"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2563
 msgid "Load"
@@ -893,7 +893,7 @@ msgstr "Indlæs"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2572
 msgid ""
 "Loading remote repository - this may take some time, please be patient ..."
-msgstr "Indlæser fjernlager - dette kan tage lang tid. Udvis tålmod..."
+msgstr "Indlæser datalager – dette kan tage lang tid. Udvis tålmod..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2598
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2602
@@ -950,7 +950,7 @@ msgstr "Afbryd virkelig?"
 
 #: tlpkg/installer/install-tl-gui.tcl:312
 msgid "Local repository"
-msgstr "Lokalt lager"
+msgstr "Lokalt datalager"
 
 #: tlpkg/installer/install-tl-gui.tcl:348
 #: tlpkg/installer/install-tl-gui.tcl:365
@@ -973,9 +973,9 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
-"Prøver at indlæse  %s.\n"
+"Prøver at indlæse %s.\n"
 "\n"
-"Hvis dette tager for lang tid, tryk Abryd eller vælg et andet fjernlager."
+"Hvis dette tager for lang tid, tryk Abryd eller vælg et andet datalager."
 
 #: tlpkg/installer/install-tl-gui.tcl:458
 msgid "Cannot be created or cannot be written to"
@@ -1232,7 +1232,7 @@ msgstr "Tilpasset plan"
 #: tlpkg/installer/install-tl-gui.tcl:1958
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr "%s er ikke et lokalt eller fjernlager"
+msgstr "%s er ikke et lokalt eller datalager"
 
 #: tlpkg/installer/install-tl-gui.tcl:1962
 #, tcl-format
@@ -1285,13 +1285,13 @@ msgstr "Indlæser"
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
 "Såfremt indlæsningen tager for lang til, tryk Afslut og vælg et andet "
-"fjernlager."
+"datalager."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:876
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2317
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2383
 msgid "Repositories"
-msgstr "Lagre"
+msgstr "Datalagre"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:914
 msgid "Done loading"
@@ -1299,7 +1299,7 @@ msgstr "Færdig med indlæsning"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:940
 msgid "A configured repository is unavailable."
-msgstr "Et konfigureret fjernlager er ikke tilgængeligt."
+msgstr "Et konfigureret datalager er ikke tilgængeligt."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1068
 msgid "Output"
@@ -1312,15 +1312,15 @@ msgstr "Øvrige"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1095
 #, tcl-format
 msgid "%s not a repository"
-msgstr "%s er ikke et fjernfjernlager"
+msgstr "%s er ikke et datalager"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1185
 msgid "No repositories"
-msgstr "Ingen lagre"
+msgstr "Ingen datalagre"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1190
 msgid "Multiple repositories"
-msgstr "Flere lagre"
+msgstr "Flere datalagre"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1193
 msgid "Not loaded"
@@ -1328,11 +1328,11 @@ msgstr "Ikke indlæst"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1220
 msgid "Actual repository"
-msgstr "Aktuelt fjernfjernlager"
+msgstr "Aktuelt datalager"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1305
 msgid "Main Repository"
-msgstr "Hovedfjernfjernlager"
+msgstr "Hoveddatalager"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1322
 msgid "New"
@@ -1348,23 +1348,23 @@ msgstr "Lokalt bibliotek.."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1347
 msgid "tlcontrib additional repository"
-msgstr "yderligere tlcontrib-lager"
+msgstr "yderligere tlcontrib-datalager"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1363
 msgid "tlcontrib repository is included"
-msgstr "tlcontrib-lager er includeret"
+msgstr "tlcontrib-datalager er inkluderet"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1364
 msgid "Remove tlcontrib repository"
-msgstr "Fjern tlcontrib-lager"
+msgstr "Fjern tlcontrib-datalager"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1366
 msgid "tlcontrib repository is not included"
-msgstr "tlcontrib-lager er ikke inkluderet"
+msgstr "tlcontrib-datalager er ikke inkluderet"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1367
 msgid "Add tlcontrib repository"
-msgstr "Tilføj tlcontrib-lager"
+msgstr "Tilføj tlcontrib-datalager"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1372
 msgid "Save and Load"
@@ -1538,8 +1538,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
-"%s er ikke et lokalt eller fjernlager.\n"
-"Konfigurer et gyldigt lager"
+"%s er ikke et lokalt eller datalager.\n"
+"Konfigurer et gyldigt datalager"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2334
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2360
@@ -1548,7 +1548,7 @@ msgstr "Fil"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2362
 msgid "Load repository"
-msgstr "Indlæs fjernfjernlager"
+msgstr "Indlæs datalager"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2364
 msgid "Exit"
@@ -1927,6 +1927,11 @@ msgid ""
 "world; please consider supporting it by joining the group best for you. The "
 "list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
+"Se %s/index.html for lænker til dokumentationen.\n"
+"TeX Live-websitet (https://tug.org/texlive/) indeholder opdateringer og "
+"rettelser. TeX Live er et fælles projekt mellem TeX-brugergrupper verden "
+"rundt; overvej venligt at støtte den gruppe, der passer bedst med dine "
+"behov. En liste med grupper er at finde på https://tug.org/usergroups.html."
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2634
 #, perl-format
