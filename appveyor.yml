@@ -12,3 +12,6 @@ build_script:
 
 test_script:
   - tlmgr --version
+  - tlmgr install latex-bin
+  - echo "\documentclass{article}\begin{document}hello\end{document}" > test.tex
+  - pdflatex test.tex
