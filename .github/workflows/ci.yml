@@ -38,5 +38,5 @@ jobs:
     - if: matrix.os == 'windows-latest'
       name: Installation test on Windows
       run: |
-        echo y | install-tl-windows.bat -v -no-gui -profile=.github/workflows/windows.profile
+        echo y | .\install-tl-windows.bat -v -no-gui -profile=.github/workflows/windows.profile
         tlmgr.bat --version
