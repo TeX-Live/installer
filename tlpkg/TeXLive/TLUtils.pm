@@ -2910,7 +2910,7 @@ Return C</dev/null> on Unix and C<nul> on Windows.
 =cut
 
 sub nulldev {
-  return (&win32)? 'nul' : '/dev/null';
+  return (&win32()) ? 'nul' : '/dev/null';
 }
 
 =item C<get_full_line ($fh)>
@@ -3913,26 +3913,68 @@ Return a particular mirror given by the generic CTAN auto-redirecting
 default (specified in L<$TLConfig::TexLiveServerURL>) if we get a
 response, else the empty string.
 
-Neither C<TL_DOWNLOAD_PROGRAM> nor <TL_DOWNLOAD_ARGS> is honored (see
-L<download_file>), since certain options have to be set to do the job
-and the program has to be C<wget> since we parse the output.
+Use C<curl> if it is listed as a C<working_downloader>, else C<wget>,
+else give up. We can't support arbitrary downloaders here, as we do for
+regular package downloads, since certain options have to be set and the
+output has to be parsed.
+
+We try invoking the program three times (hardwired).
 
 =cut
 
 sub query_ctan_mirror {
+  my @working_downloaders = @{$::progs{'working_downloaders'}};
+  ddebug("query_ctan_mirror: working_downloaders: @working_downloaders\n");
+  if (TeXLive::TLUtils::member("curl", @working_downloaders)) {
+    return query_ctan_mirror_curl();
+  } elsif (TeXLive::TLUtils::member("wget", @working_downloaders)) {
+    return query_ctan_mirror_wget();
+  } else {
+    return;
+  }
+}
+
+# curl will follow the redirect chain for us.
+# 
+sub query_ctan_mirror_curl {
+  my $max_trial = 3;
+  for (my $i = 1; $i <= $max_trial; $i++) {
+    # -L -> follow redirects
+    # -s -> silent
+    # -w -> what to output after completion
+    my $cmd = "$::progs{'curl'} -Ls "
+              . "-o " . nulldev() . " "
+              . "-w '%{url_effective}' "
+              . "--connect-timeout $NetworkTimeout "
+              . "--max-time $NetworkTimeout "
+              . $TeXLiveServerURL;
+    ddebug("query_ctan_mirror_curl: cmd: $cmd\n");
+    my $url = `$cmd`;
+    if (length $url) {
+      # remove trailing slashes
+      $url =~ s,/*$,,;
+      ddebug("query_ctan_mirror_curl: returning url: $url\n");
+      return $url;
+    }
+    sleep(1);
+  }
+  return;
+}
+
+sub query_ctan_mirror_wget {
   my $wget = $::progs{'wget'};
   if (!defined ($wget)) {
-    tlwarn("query_ctan_mirror: Programs not set up, trying wget\n");
+    tlwarn("query_ctan_mirror_wget: Programs not set up, trying wget\n");
     $wget = "wget";
   }
 
   # we need the verbose output, so no -q.
   # do not reduce retries here, but timeout still seems desirable.
   my $mirror = $TeXLiveServerURL;
-  my $cmd = "$wget $mirror --timeout=$NetworkTimeout -O "
-            . (win32() ? "nul" : "/dev/null") . " 2>&1";
+  my $cmd = "$wget $mirror --timeout=$NetworkTimeout "
+            . "-O " . nulldev() . " 2>&1";
+  ddebug("query_ctan_mirror_wget: cmd is $cmd\n");
 
-  #
   # since we are reading the output of wget to find a mirror
   # we have to make sure that the locale is unset
   my $saved_lcall;
@@ -3950,6 +3992,7 @@ sub query_ctan_mirror {
     foreach (@out) {
       if (m/^Location: (\S*)\s*.*$/) {
         (my $mhost = $1) =~ s,/*$,,;  # remove trailing slashes since we add it
+        ddebug("query_ctan_mirror_wget: returning url: $mhost\n");
         return $mhost;
       }
     }
@@ -4013,9 +4056,10 @@ sub check_on_working_mirror {
 
 sub give_ctan_mirror_base {
   # only one backbone has existed for a while (2018).
-  my @backbone = qw!http://www.ctan.org/tex-archive!;
+  my @backbone = qw!https://www.ctan.org/tex-archive!;
 
   # start by selecting a mirror and test its operationality
+  ddebug("give_ctan_mirror_base: calling query_ctan_mirror\n");
   my $mirror = query_ctan_mirror();
   if (!defined($mirror)) {
     # three times calling mirror.ctan.org did not give anything useful,
