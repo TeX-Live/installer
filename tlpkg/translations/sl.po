@@ -2170,9 +2170,6 @@ msgstr ""
 #~ "Če bi radi karkoli spremenili, se vrnite nazaj,\n"
 #~ "sicer pritisnite gumb \"Namesti\"."
 
-#~ msgid "A4"
-#~ msgstr "A4"
-
 #, fuzzy
 #~ msgid "Please select a different mirror."
 #~ msgstr "Prosimo izberite drugi zrcalni strežnik."

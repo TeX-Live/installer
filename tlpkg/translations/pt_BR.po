@@ -2088,9 +2088,6 @@ msgstr ""
 #~ "às etapas anteriores; caso contrário, pressione o\n"
 #~ "botão  \"Instalar\"."
 
-#~ msgid "A4"
-#~ msgstr "A4"
-
 #~ msgid "Please select a different mirror."
 #~ msgstr "Por favor, selecione um espelho diferente."
 

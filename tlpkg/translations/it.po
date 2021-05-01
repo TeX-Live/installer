@@ -2022,9 +2022,6 @@ msgstr "Aggiungi %s/texmf-dist/doc/man alla variabile MANPATH.\n"
 #~ "Se desiderate modificare qualcosa prima di procedere, tornate indietro,\n"
 #~ "altrimenti premete sul pulsante \"Installa\"."
 
-#~ msgid "A4"
-#~ msgstr "A4"
-
 #~ msgid "Please select a different mirror."
 #~ msgstr "Scegli un mirror differente."
 

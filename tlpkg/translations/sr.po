@@ -2083,9 +2083,6 @@ msgstr ""
 #~ "Ако желите да нешто промените, вратите се назад,\n"
 #~ "иначе притисните дугме „Инсталирај“."
 
-#~ msgid "A4"
-#~ msgstr "A4"
-
 #~ msgid "Please select a different mirror."
 #~ msgstr "Изаберите друго огледало (mirror)."
 
