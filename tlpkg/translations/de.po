@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-05-01 01:50+0200\n"
-"PO-Revision-Date: 2021-03-11 13:46+0100\n"
+"PO-Revision-Date: 2021-05-02 19:49+0200\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -1521,9 +1521,9 @@ msgid ""
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
 "Das TeX Live Manager Frontend sollte selbsterklärend sein.\n"
-"Beachte bitte, dass es nicht die volle Funktionalität von tlmgr hat, "
-"insbesondere in Bezug auf den User Modus, Backup und Restore.\vSchauen Sie "
-"in die tlmgr Hilfe für die Komplett-Dokumentation von tlmgr."
+" Beachte bitte, dass es nicht die volle Funktionalität von tlmgr hat, "
+"insbesondere in Bezug auf den User Modus, Backup und Restore. Schauen Sie in "
+"die tlmgr Hilfe für die Komplett-Dokumentation von tlmgr."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2315
 #, tcl-format
