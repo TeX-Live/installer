@@ -1227,8 +1227,10 @@ operations might be disturbed.\n\n";
       $errcount += run_postinst_cmd(
                      "fmtutil-sys $common_fmtutil_args --no-strict --all");
     } else {
-      info("not running fmtutil-sys (not installed)\n");
+      info("not running fmtutil-sys (script not installed)\n");
     }
+  } else {
+    info("not running fmtutil-sys (user option create_formats=0)\n");
   }
 
   # do path adjustments: On Windows add/remove to PATH etc,
@@ -2308,30 +2310,23 @@ sub import_settings_from_old_tlpdb {
   #
   # now for the settings
   # set the defaults to what is specified in the tlpdb
-  $vars{'tlpdbopt_install_docfiles'} =
-    $previoustlpdb->option_pkg("00texlive.installation",
-                               "install_docfiles");
-  $vars{'tlpdbopt_install_srcfiles'} =
-    $previoustlpdb->option_pkg("00texlive.installation",
-                               "install_srcfiles");
-  $vars{'tlpdbopt_create_formats'} =
-    $previoustlpdb->option_pkg("00texlive.installation",
-                               "create_formats");
+  $vars{'tlpdbopt_install_docfiles'}
+    = $previoustlpdb->option_pkg("00texlive.installation", "install_docfiles");
+  $vars{'tlpdbopt_install_srcfiles'}
+    = $previoustlpdb->option_pkg("00texlive.installation", "install_srcfiles");
+  $vars{'tlpdbopt_create_formats'}
+    = $previoustlpdb->option_pkg("00texlive.installation", "create_formats");
   $vars{'tlpdbopt_desktop_integration'} = 1 if win32();
-  $vars{'instopt_adjustpath'} =
-    $previoustlpdb->option_pkg("00texlive.installation",
-                               "path");
+  $vars{'instopt_adjustpath'}
+    = $previoustlpdb->option_pkg("00texlive.installation", "path");
   $vars{'instopt_adjustpath'} = 0 if !defined($vars{'instopt_adjustpath'});
   $vars{'instopt_adjustpath'} = 1 if win32();
-  $vars{'tlpdbopt_sys_bin'} =
-    $previoustlpdb->option_pkg("00texlive.installation",
-                               "sys_bin");
-  $vars{'tlpdbopt_sys_man'} =
-    $previoustlpdb->option_pkg("00texlive.installation",
-                               "sys_man");
-  $vars{'sys_info'} =
-    $previoustlpdb->option_pkg("00texlive.installation",
-                               "sys_info");
+  $vars{'tlpdbopt_sys_bin'}
+    = $previoustlpdb->option_pkg("00texlive.installation", "sys_bin");
+  $vars{'tlpdbopt_sys_man'}
+    = $previoustlpdb->option_pkg("00texlive.installation", "sys_man");
+  $vars{'sys_info'}
+    = $previoustlpdb->option_pkg("00texlive.installation", "sys_info");
   #
   # import the set of selected architectures
   my @aar = $previoustlpdb->setting_pkg("00texlive.installation",
