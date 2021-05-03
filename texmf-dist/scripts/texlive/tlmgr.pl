@@ -5249,13 +5249,18 @@ sub uninstall_texlive {
   return if !check_on_writable();
 
   init_local_db(0);
+  if (defined($opts{"dry-run"})) {
+    # TODO: we should implement --dry-run for remove --all.
+    print "Sorry, no --dry-run with remove --all; goodbye.\n";
+    return ($F_OK | $F_NOPOSTACTION);
+  }
   my $force = defined($opts{"force"}) ? $opts{"force"} : 0;
   if (!$force) {
     print("If you answer yes here the whole TeX Live installation here,\n",
           "under ", $localtlpdb->root, ", will be removed!\n");
     print "Remove TeX Live (y/N): ";
     my $yesno = <STDIN>;
-    if ($yesno !~ m/^y(es)?$/i) {
+    if (!defined($yesno) || $yesno !~ m/^y(es)?$/i) {
       print "Ok, cancelling the removal!\n";
       return ($F_OK | $F_NOPOSTACTION);
     }
@@ -8870,9 +8875,10 @@ written to the terminal.
 
 =back
 
-This action does not automatically remove symlinks to executables from
-system directories; you need to run C<tlmgr path remove> (L</path>)
-yourself if you are using this feature and want stale symlinks removed.
+Except with C<--all>, this C<remove> action does not automatically
+remove symlinks to executables from system directories; you need to run
+C<tlmgr path remove> (L</path>) yourself if you remove an individual
+package with a symlink in a system directory.
 
 =head2 repository
 
