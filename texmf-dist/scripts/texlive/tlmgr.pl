@@ -4864,7 +4864,7 @@ sub action_option {
 #
 sub action_platform {
   my $ret = $F_OK;
-  my @extra_w32_packs = qw/tlperl.win32 tlgs.win32 tlpsv.win32
+  my @extra_w32_packs = qw/tlperl.win32 tlgs.win32
                            collection-wintools
                            dviout.win32 wintools.win32/;
   if ($^O =~ /^MSWin/i) {
