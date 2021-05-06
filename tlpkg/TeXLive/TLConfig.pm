@@ -125,10 +125,13 @@ if ($^O =~ /^MSWin/i) {
 our @AcceptedFallbackDownloaders = qw/curl wget/;
 our %FallbackDownloaderProgram = ( 'wget' => 'wget', 'curl' => 'curl');
 our %FallbackDownloaderArgs = (
-  'curl' => ['--user-agent', 'texlive/curl', '--retry', '4', '--retry-delay', '5',
-             '--fail', '--location',
-             '--connect-timeout', "$NetworkTimeout", '--silent', '--output'],
+  'curl' => ['--user-agent', 'texlive/curl',
+             '--retry', '4', '--retry-delay', '4',
+             '--connect-timeout', "$NetworkTimeout", 
+             '--insecure',
+             '--fail', '--location', '--silent', '--output'],
   'wget' => ['--user-agent=texlive/wget', '--tries=4',
+             '--no-check-certificates',
              "--timeout=$NetworkTimeout", '-q', '-O'],
 );
 # the way we package things on the web
