@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
-# Copyright 2007-2020 Norbert Preining
+# Copyright 2007-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -98,7 +98,8 @@ use TeXLive::TLConfig qw($CategoriesRegexp $DefaultCategory $InfraLocation
 use TeXLive::TLCrypto;
 use TeXLive::TLPOBJ;
 use TeXLive::TLUtils qw(dirname mkdirhier member win32 info log debug ddebug
-                        tlwarn basename download_file merge_into tldie system_pipe);
+                        tlwarn basename download_file merge_into tldie
+                        system_pipe);
 use TeXLive::TLWinGoo;
 
 use Cwd 'abs_path';
@@ -424,7 +425,8 @@ sub writeout {
   }
   my $fd = (@_ ? $_[0] : STDOUT);
   foreach (sort keys %{$self->{'tlps'}}) {
-    ddebug("writeout: tlpname=$_  ", $self->{'tlps'}{$_}->name, "\n");
+    TeXLive::TLUtils::dddebug("writeout: tlpname=$_  ",
+                              $self->{'tlps'}{$_}->name, "\n");
     $self->{'tlps'}{$_}->writeout($fd);
     print $fd "\n";
   }

@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPOBJ.pm - module for using tlpobj files
-# Copyright 2007-2019 Norbert Preining
+# Copyright 2007-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 

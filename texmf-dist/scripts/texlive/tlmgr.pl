@@ -5379,6 +5379,7 @@ sub action_recreate_tlpdb {
     $tlpdb->add_tlpobj($tlp);
   }
   # writeout the re-created tlpdb to stdout
+  &debug("tlmgr:action_recreate_tlpdb: writing out tlpdb\n");
   $tlpdb->writeout;
   return;
 }
@@ -7220,14 +7221,16 @@ and the repository are not compatible:
   # check for being frozen
   if ($remotetlpdb->config_frozen) {
     my $frozen_msg = <<FROZEN;
-TeX Live $TeXLive::TLConfig::ReleaseYear is frozen and will no longer
-be routinely updated. This happens when a new release is made.
+TeX Live $TeXLive::TLConfig::ReleaseYear is frozen
+and will no longer be routinely updated.  This happens when a new
+release is made, or will be made shortly.
 
-If you're willing to help with pretesting the new release, and we hope
-you are, (when pretests are available), please read
-https://tug.org/texlive/pretest.html.
+If you're willing to help with pretesting a new release, and we hope
+you are, please see https://tug.org/texlive/pretest.html.
 
-Otherwise, just wait, and the new release will be ready in due time.
+For general status information about TeX Live, see its home page:
+https://tug.org/texlive
+
 FROZEN
     # don't die here, we want to allow updates even if tlnet is frozen!
     tlwarn($frozen_msg);
@@ -7249,7 +7252,7 @@ FROZEN
       # similar
       &debug("Cannot save remote TeX Live database to $loc_copy_of_remote_tlpdb: $!\n");
     } else {
-      &debug("writing out tlpdb to $loc_copy_of_remote_tlpdb\n");
+      &debug("tlmgr:setup_one_remote_tlpdb: writing out remote tlpdb to $loc_copy_of_remote_tlpdb\n");
       $remotetlpdb->writeout($tlfh);
       close($tlfh);
       # Remove all other copies of main databases in case different mirrors

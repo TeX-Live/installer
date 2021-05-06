@@ -656,8 +656,8 @@ sub run_cmd {
 
 =item C<system_pipe($prog, $infile, $outfile, $removeIn, @extraargs)>
 
-Runs C<$prog> with C<@extraargs> redirecting stdin from C<$infile>, stdout to C<$outfile>.
-Removes C<$infile> if C<$removeIn> is true.
+Runs C<$prog> with C<@extraargs> redirecting stdin from C<$infile>,
+stdout to C<$outfile>. Removes C<$infile> if C<$removeIn> is true.
 
 =cut
 
@@ -2394,7 +2394,7 @@ sub untar {
   # quoting issues.
   # so fall back on chdir in Perl.
   #
-  debug("unpacking $tarfile in $targetdir\n");
+  debug("TLUtils::untar: unpacking $tarfile in $targetdir\n");
   my $cwd = cwd();
   chdir($targetdir) || die "chdir($targetdir) failed: $!";
 
@@ -4585,7 +4585,7 @@ sub mktexupd {
 }
 
 
-=item C<check_sys_user_mode($user,$sys,$tmfc, $tmfsc, $tmfv, $tmfsv)>
+=item C<setup_sys_user_mode($user,$sys,$tmfc, $tmfsc, $tmfv, $tmfsv)>
 
 =cut
 
