@@ -5255,9 +5255,10 @@ sub uninstall_texlive {
     return ($F_OK | $F_NOPOSTACTION);
   }
   my $force = defined($opts{"force"}) ? $opts{"force"} : 0;
+  my $tlroot = $localtlpdb->root;
   if (!$force) {
     print("If you answer yes here the whole TeX Live installation here,\n",
-          "under ", $localtlpdb->root, ", will be removed!\n");
+          "under $tlroot, will be removed!\n");
     print "Remove TeX Live (y/N): ";
     my $yesno = <STDIN>;
     if (!defined($yesno) || $yesno !~ m/^y(es)?$/i) {
@@ -5265,18 +5266,23 @@ sub uninstall_texlive {
       return ($F_OK | $F_NOPOSTACTION);
     }
   }
-  print ("Ok, removing the whole installation:\n");
+  print ("Ok, removing the whole TL installation under: $tlroot\n");
+  
+  print ("symlinks... ");
   TeXLive::TLUtils::remove_symlinks($localtlpdb->root,
     $localtlpdb->platform(),
     $localtlpdb->option("sys_bin"),
     $localtlpdb->option("sys_man"),
     $localtlpdb->option("sys_info"));
   # now remove the rest
+  print ("main dirs... ");
   system("rm", "-rf", "$Master/texmf-dist");
   system("rm", "-rf", "$Master/texmf-doc");
   system("rm", "-rf", "$Master/texmf-var");
   system("rm", "-rf", "$Master/tlpkg");
   system("rm", "-rf", "$Master/bin");
+
+  print ("misc... ");
   system("rm", "-rf", "$Master/readme-html.dir");
   system("rm", "-rf", "$Master/readme-txt.dir");
   for my $f (qw/doc.html index.html install-tl 
@@ -5291,9 +5297,28 @@ sub uninstall_texlive {
   # if they want removal, give them removal. Hopefully they know how to
   # regenerate any changed config files.
   system("rm", "-rf", "$Master/texmf-config");
+  #
   finddepth(sub { rmdir; }, "$Master");
   
-  return -d "$Master";
+  # but not user dirs.
+  chomp (my $texmfconfig = `kpsewhich -var-value=TEXMFCONFIG`);
+  chomp (my $texmfvar = `kpsewhich -var-value=TEXMFVAR`);
+  print <<NOT_REMOVED;
+
+User directories intentionally not touched, removing them is up to you:
+  TEXMFCONFIG=$texmfconfig
+  TEXMFVAR=$texmfvar
+
+NOT_REMOVED
+
+  my $remnants;
+  if (-d $Master) {
+    print "\nSorry, something did not get removed, under: $Master\n";
+    $remnants = 1;
+  } else {
+    $remnants = 0; 
+  }
+  return $remnants;
 }
 
 
