@@ -2750,7 +2750,7 @@ sub download_file {
       return \*RETFH;
     } else {
       if (-r $filetoopen) {
-        copy ($filetoopen, $par);
+        copy ("-f", $filetoopen, $dest);
         return 1;
       }
       return 0;
