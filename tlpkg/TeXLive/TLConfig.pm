@@ -131,7 +131,7 @@ our %FallbackDownloaderArgs = (
              '--insecure',
              '--fail', '--location', '--silent', '--output'],
   'wget' => ['--user-agent=texlive/wget', '--tries=4',
-             '--no-check-certificates',
+             '--no-check-certificate',
              "--timeout=$NetworkTimeout", '-q', '-O'],
 );
 # the way we package things on the web
