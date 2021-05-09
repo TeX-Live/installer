@@ -3938,13 +3938,14 @@ sub query_ctan_mirror {
 # 
 sub query_ctan_mirror_curl {
   my $max_trial = 3;
+  my $warg = (win32() ? "-w %{url_effective} " : "-w '%{url_effective}' ");
   for (my $i = 1; $i <= $max_trial; $i++) {
     # -L -> follow redirects
     # -s -> silent
     # -w -> what to output after completion
     my $cmd = "$::progs{'curl'} -Ls "
               . "-o " . nulldev() . " "
-              . "-w '%{url_effective}' "
+              . $warg
               . "--connect-timeout $NetworkTimeout "
               . "--max-time $NetworkTimeout "
               . $TeXLiveServerURL;
