@@ -5299,7 +5299,8 @@ Error message from creating MainWindow:
 # 
 sub uninstall_texlive {
   if (win32()) {
-    printf STDERR "Please use \"Add/Remove Programs\" from the Control Panel to removing TeX Live!\n";
+    printf STDERR "Please use \"Add/Remove Programs\" from the Control Panel "
+                  . "to uninstall TeX Live!\n";
     return ($F_ERROR);
   }
   return if !check_on_writable();
@@ -5322,54 +5323,62 @@ sub uninstall_texlive {
       return ($F_OK | $F_NOPOSTACTION);
     }
   }
-  print ("Ok, removing the whole TL installation under: $tlroot\n");
+  print "Ok, removing the whole TL installation under: $tlroot\n";
   
-  print ("symlinks... ");
+  # Must use kpsewhich before removing it.
+  chomp (my $texmfsysconfig = `kpsewhich -var-value=TEXMFSYSCONFIG`);
+  chomp (my $texmfsysvar = `kpsewhich -var-value=TEXMFSYSVAR`);
+  chomp (my $texmfconfig = `kpsewhich -var-value=TEXMFCONFIG`);
+  chomp (my $texmfvar = `kpsewhich -var-value=TEXMFVAR`);
+
+  print "symlinks... ";
   TeXLive::TLUtils::remove_symlinks($localtlpdb->root,
     $localtlpdb->platform(),
     $localtlpdb->option("sys_bin"),
     $localtlpdb->option("sys_man"),
     $localtlpdb->option("sys_info"));
-  # now remove the rest
-  print ("main dirs... ");
+
+  # now remove the rest.
+  print "main dirs... ";
   system("rm", "-rf", "$Master/texmf-dist");
   system("rm", "-rf", "$Master/texmf-doc");
+  system("rm", "-rf", "$Master/texmf-config");
   system("rm", "-rf", "$Master/texmf-var");
   system("rm", "-rf", "$Master/tlpkg");
   system("rm", "-rf", "$Master/bin");
 
-  print ("misc... ");
+  # In case SYS{VAR,CONFIG} were configured with different values.
+  # Above we remove the hardwired $Master/texmf-{config,var} 
+  # if present, assuming the user did not pathologically configure things.
+  system("rm", "-rf", "$texmfsysconfig");
+  system("rm", "-rf", "$texmfsysvar");
+
+  print "misc... ";
   system("rm", "-rf", "$Master/readme-html.dir");
   system("rm", "-rf", "$Master/readme-txt.dir");
-  for my $f (qw/doc.html index.html install-tl 
+  for my $f (qw/doc.html index.html install-tl install-tl.log
                 LICENSE.CTAN LICENSE.TL README README.usergroups
-                release-texlive.txt texmf.cnf texmfcnf.lua/) {
+                release-texlive.txt texmf.cnf texmfcnf.lua
+               /) {
     system("rm", "-f", "$Master/$f");
   }
-  if (-d "$Master/temp") {
-    finddepth(sub { rmdir; }, "$Master/temp");
-  }
-  unlink("$Master/install-tl.log");
-  # if they want removal, give them removal. Hopefully they know how to
-  # regenerate any changed config files.
-  system("rm", "-rf", "$Master/texmf-config");
-  #
-  finddepth(sub { rmdir; }, "$Master");
+  finddepth(sub { rmdir; }, $Master);
+  rmdir($Master);
+  print "done.\n";
   
-  # but not user dirs.
-  chomp (my $texmfconfig = `kpsewhich -var-value=TEXMFCONFIG`);
-  chomp (my $texmfvar = `kpsewhich -var-value=TEXMFVAR`);
-  print <<NOT_REMOVED;
+  # don't remove user dirs, which may have been abused.
+  if (-d $texmfconfig || -d $texmfvar) {
+    print <<NOT_REMOVED;
 
 User directories intentionally not touched, removing them is up to you:
   TEXMFCONFIG=$texmfconfig
   TEXMFVAR=$texmfvar
-
 NOT_REMOVED
+  }
 
   my $remnants;
   if (-d $Master) {
-    print "\nSorry, something did not get removed, under: $Master\n";
+    print "\nSorry, something did not get removed under: $Master\n";
     $remnants = 1;
   } else {
     $remnants = 0; 
