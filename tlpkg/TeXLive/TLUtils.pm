@@ -4585,7 +4585,11 @@ sub mktexupd {
 }
 
 
-=item C<setup_sys_user_mode($user,$sys,$tmfc, $tmfsc, $tmfv, $tmfsv)>
+=item C<setup_sys_user_mode($prg, $optsref, $tmfc, $tmfsc, $tmfv, $tmfsv)>
+
+Return two-element list C<($texmfconfig,$texmfvar)> of which directories
+to use, either user or sys. If C<$prg> is C<mktexfmt>, and the system
+dirs are writable, use them even if we are in user mode.
 
 =cut
 
@@ -4613,7 +4617,8 @@ sub setup_sys_user_mode {
       exit(1);
     }
     if (!$optsref->{'sys'}) {
-      print STDERR "$prg [WARNING]: hidden sys mode found, switching to sys mode.\n" if (!$optsref->{'quiet'});
+      print STDERR "$prg [WARNING]: hidden sys mode found, switching to sys mode.\n"
+        if (!$optsref->{'quiet'});
       $optsref->{'sys'} = 1;
     }
   }
@@ -4623,16 +4628,42 @@ sub setup_sys_user_mode {
     # we are running as updmap-sys, make sure that the right tree is used
     $texmfconfig = $TEXMFSYSCONFIG;
     $texmfvar    = $TEXMFSYSVAR;
+    &debug("TLUtils::setup_sys_user_mode: sys mode\n");
+
   } elsif ($optsref->{'user'}) {
     $texmfconfig = $TEXMFCONFIG;
     $texmfvar    = $TEXMFVAR;
+    &debug("TLUtils::setup_sys_user_mode: user mode\n");
+
+    # mktexfmt is run (accidentally or on purpose) by a user with
+    # missing formats; we want to put the resulting format dumps in
+    # TEXMFSYSVAR if possible, so that future format updates will just
+    # work. Until 2021, they were put in TEXMFVAR, causing problems.
+    # 
+    # We only do this for mktexfmt, not fmtutil; if fmtutil is called
+    # explicitly with fmtutil -user, ok, do what they said to do.
+    #
+    if ($prg eq "mktexfmt") {
+      my $switchit = 0;
+      if (-d "$TEXMFSYSVAR/web2c") {
+        $switchit = 1 if (-w "$TEXMFSYSVAR/web2c");
+      } elsif (-d $TEXMFSYSVAR && -w $TEXMFSYSVAR) {
+        $switchit = 1;
+      }
+      if ($switchit) {
+        $texmfvar = $TEXMFSYSVAR;
+        &ddebug("  switched to $texmfvar for mktexfmt\n");
+      }
+    }
   } else {
-    print STDERR "" .
+    print STDERR
       "$prg [ERROR]: Either -sys or -user mode is required.\n" .
       "$prg [ERROR]: In nearly all cases you should use $prg -sys.\n" .
       "$prg [ERROR]: For special cases see https://tug.org/texlive/scripts-sys-user.html\n" ;
     exit(1);
   }
+
+  &debug("  returning: ($texmfconfig,$texmfvar)\n");
   return ($texmfconfig, $texmfvar);
 }
 
