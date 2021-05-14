@@ -128,10 +128,8 @@ our %FallbackDownloaderArgs = (
   'curl' => ['--user-agent', 'texlive/curl',
              '--retry', '4', '--retry-delay', '4',
              '--connect-timeout', "$NetworkTimeout", 
-             '--insecure',
              '--fail', '--location', '--silent', '--output'],
   'wget' => ['--user-agent=texlive/wget', '--tries=4',
-             '--no-check-certificate',
              "--timeout=$NetworkTimeout", '-q', '-O'],
 );
 # the way we package things on the web
