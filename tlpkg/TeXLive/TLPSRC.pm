@@ -1256,12 +1256,12 @@ The constructor C<new> returns a new C<TLPSRC> object. The arguments
 to the C<new> constructor can be in the usual hash representation for
 the different keys above:
 
-  $tlpsrc = TLPSRC->new (name => "foobar",
-                         shortdesc => "The foobar package");
+  $tlpsrc = TLPSRC->new(name => "foobar",
+                        shortdesc => "The foobar package");
 
 =item C<from_file("filename")>
 
-reads a C<tlpsrc> file from disk.  C<filename> can either be a full path
+Reads a C<tlpsrc> file from disk.  C<filename> can either be a full path
 (if it's readable, it's used), or just a package identifier such as
 C<plain>.  In the latter case, the directory searched is the C<tlpsrc>
 sibling of the C<TeXLive> package directory where C<TLPSRC.pm> was found.

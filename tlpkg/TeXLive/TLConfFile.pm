@@ -565,7 +565,8 @@ C<TeXLive::TLConfFile> -- TeX Live generic configuration files
 
   use TeXLive::TLConfFile;
 
-  $conffile = TeXLive::TLConfFile->new($file_name, $comment_char, $separator, $type);
+  my $conffile = TeXLive::TLConfFile->new($file_name, $comment_char,
+                                          $separator, $type);
   $conffile->file;
   $conffile->cc;
   $conffile->sep;

@@ -1478,12 +1478,12 @@ C<TeXLive::TLPOBJ> -- TeX Live Package Object (C<.tlpobj>) module
 
   use TeXLive::TLPOBJ;
 
-  my $tlpobj=TeXLive::TLPOBJ->new(name => "foobar");
+  my $tlpobj = TeXLive::TLPOBJ->new(name => "foobar");
 
 =head1 DESCRIPTION
 
 The L<TeXLive::TLPOBJ> module provide access to TeX Live Package Object
-files describing a self-contained package.
+(C<.tlpobj>) files, which describe a self-contained TL package.
 
 =head1 FILE SPECIFICATION
 

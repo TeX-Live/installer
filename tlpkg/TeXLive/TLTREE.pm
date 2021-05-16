@@ -19,8 +19,25 @@ C<TeXLive::TLTREE> -- TeX Live tree of all files
 =head1 SYNOPSIS
 
   use TeXLive::TLTREE;
-  TeXLive::TLTREE->new ();
-  ...
+  my $tltree = TeXLive::TLTREE->new();
+  
+  $tltree->init_from_svn();
+  $tltree->init_from_statusfile();
+  $tltree->init_from_files();
+  $tltree->init_from_git();
+  $tltree->init_from_gitsvn();
+  $tltree->print();
+  $tltree->find_alldirs();
+  $tltree->print_node();
+  $tltree->walk_tree();
+  $tltree->add_path_to_tree();
+  $tltree->file_svn_lastrevision();
+  $tltree->size_of();
+  $tltree->get_matching_files();
+  $tltree->files_under_path();
+  $tltree->svnroot();
+  $tltree->revision();
+  $tltree->architectures();
 
 =head1 DESCRIPTION
 
@@ -549,8 +566,8 @@ sub architectures {
   return defined $self->{'archs'} ? @{ $self->{'archs'} } : ();
 }
 
-
 1;
+__END__
 
 =head1 SEE ALSO
 

@@ -23,6 +23,33 @@ sub module_revision { return $_modulerevision; }
 
 C<TeXLive::TeXCatalogue> - TeX Live access to the TeX Catalogue from CTAN
 
+=head1 SYNOPSIS
+
+  use TeXLive::TeXCatalogue;
+  my $texcat = TeXLive::TLTREE->new();
+
+  $texcat->initialize();
+  $texcat->beautify();
+  $texcat->name();
+  $texcat->license();
+  $texcat->version();
+  $texcat->caption();
+  $texcat->description();
+  $texcat->ctan();
+  $texcat->texlive();
+  $texcat->miktex();
+  $texcat->docs();
+  $texcat->entry();
+  $texcat->alias();
+  $texcat->also();
+  $texcat->topics();
+  $texcat->contact();
+  $texcat->new(); 
+  $texcat->initialize();
+  $texcat->quest4texlive();
+  $texcat->location();
+  $texcat->entries();
+
 =head1 DESCRIPTION
 
 The L<TeXLive::TeXCatalogue> module provides access to the data stored
@@ -340,7 +367,6 @@ sub entries {
 
 1;
 __END__
-
 
 =head1 SEE ALSO
 
