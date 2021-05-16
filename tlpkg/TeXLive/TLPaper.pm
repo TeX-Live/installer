@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPaper.pm - query/modify paper sizes for our various programs
-# Copyright 2008-2020 Norbert Preining
+# Copyright 2008-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -34,7 +34,7 @@ my $prg = ($::prg ? $::prg : TeXLive::TLUtils::basename($0));
 
 =head1 NAME
 
-C<TeXLive::TLPaper> -- TeX Live paper size setting module
+C<TeXLive::TLPaper> -- TeX Live paper size module
 
 =head1 SYNOPSIS
 

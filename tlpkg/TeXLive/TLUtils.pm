@@ -14,7 +14,7 @@ sub module_revision { return $_modulerevision; }
 
 =head1 NAME
 
-C<TeXLive::TLUtils> - utilities used in TeX Live infrastructure
+C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
 
 =head1 SYNOPSIS
 

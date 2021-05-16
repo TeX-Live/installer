@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TeXCatalogue - module for accessing the TeX Catalogue
-# Copyright 2007-2020 Norbert Preining
+# Copyright 2007-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 # 
@@ -21,7 +21,7 @@ sub module_revision { return $_modulerevision; }
 
 =head1 NAME
 
-TeXLive::TeXCatalogue - accessing the TeX Catalogue for TeX Live
+TeXLive::TeXCatalogue - TeX Live access to the TeX Catalogue fromCTAN
 
 =head1 SYNOPSIS
 
@@ -355,7 +355,7 @@ C<tl-update-tlpdb>), the documentation in C<Master/tlpkg/doc/>, etc.
 =head1 AUTHORS AND COPYRIGHT
 
 This script and its documentation were written for the TeX Live
-distribution (L<http://tug.org/texlive>) and both are licensed under the
+distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
 =cut

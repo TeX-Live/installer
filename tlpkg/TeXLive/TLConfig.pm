@@ -277,7 +277,7 @@ our $ChecksumExtension = "sha512";
 
 =head1 NAME
 
-C<TeXLive::TLConfig> -- TeX Live Configuration module
+C<TeXLive::TLConfig> -- TeX Live configuration parameters
 
 =head1 SYNOPSIS
 
@@ -377,7 +377,7 @@ C<Master/tlpkg/doc/>.
 =head1 AUTHORS AND COPYRIGHT
 
 This script and its documentation were written for the TeX Live
-distribution (L<http://tug.org/texlive>) and both are licensed under the
+distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
 =cut

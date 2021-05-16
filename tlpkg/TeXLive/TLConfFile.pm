@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLConfFile.pm - reading and writing conf files
-# Copyright 2010-2017 Norbert Preining
+# Copyright 2010-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -559,7 +559,7 @@ __END__
 
 =head1 NAME
 
-C<TeXLive::TLConfFile> -- TeX Live Config File Access Module
+C<TeXLive::TLConfFile> -- TeX Live generic configuration files
 
 =head1 SYNOPSIS
 
@@ -706,7 +706,7 @@ After that you can query keys:
 =head1 AUTHORS AND COPYRIGHT
 
 This script and its documentation were written for the TeX Live
-distribution (L<http://tug.org/texlive>) and both are licensed under the
+distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
 =cut

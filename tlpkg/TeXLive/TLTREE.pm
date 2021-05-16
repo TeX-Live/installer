@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLTREE.pm - work with the tree of all files
-# Copyright 2007-2020 Norbert Preining
+# Copyright 2007-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -533,6 +533,33 @@ sub architectures {
 
 
 1;
+
+=head1 NAME
+
+C<TeXLive::TREE> -- TeX Live tree of all files
+
+=head1 SYNOPSIS
+
+  use TeXLive::TREE;
+  TeXLive::TREE->new ();
+
+=head1 DESCRIPTION
+
+Sorry, haven't written documentation for this one yet.
+
+=head1 SEE ALSO
+
+The modules L<TeXLive::TLPSRC>, L<TeXLive::TLPOBJ>, L<TeXLive::TLPDB>,
+L<TeXLive::TLUtils>, etc., and the documentation in the repository:
+C<Master/tlpkg/doc/>.
+
+=head1 AUTHORS AND COPYRIGHT
+
+This script and its documentation were written for the TeX Live
+distribution (L<https://tug.org/texlive>) and both are licensed under the
+GNU General Public License Version 2 or later.
+
+=cut
 
 ### Local Variables:
 ### perl-indent-level: 2

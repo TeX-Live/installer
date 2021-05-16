@@ -20,7 +20,7 @@ sub module_revision { return $_modulerevision; }
 
 =head1 NAME
 
-C<TeXLive::TLCrypto> -- checksums and cryptographic signatures
+C<TeXLive::TLCrypto> -- TeX Live checksums and cryptographic signatures
 
 =head1 SYNOPSIS
 
@@ -655,7 +655,7 @@ Also the standard modules L<Digest::MD5> and L<Digest::SHA>.
 =head1 AUTHORS AND COPYRIGHT
 
 This script and its documentation were written for the TeX Live
-distribution (L<http://tug.org/texlive>) and both are licensed under the
+distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
 =cut

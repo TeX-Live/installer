@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # $Id$
-# Copyright 2009-2016 Norbert Preining
+# Copyright 2009-2021 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 #
@@ -9,9 +9,9 @@
 # if $::lang is unset try to auto-deduce it from LC_MESSAGES/Registry
 # if $::opt_lang is set use that instead
 #
-# this module implements parsing .po files, but no specialities of .po
+# this module implements parsing of .po files, but no specialities of .po
 # files are supported. Only reading of msgstr and msgid and concatenating
-# multiple lines. Furthermore, strings replacements are done:
+# multiple lines. Furthermore, string replacements are done:
 #    \n  -> <newline>
 #   \"   -> "
 #   \\   -> \
@@ -130,7 +130,7 @@ sub load_translations() {
       tlwarn ("\n  Sorry, no translations available for $code (nor $::lang); falling back to English.
     Make sure that you have the package \"texlive-msg-translations\" installed.
     (If you'd like to help translate the installer's messages, please see
-    http://tug.org/texlive/doc.html#install-tl-xlate for information.)\n\n");
+    https://tug.org/texlive/doc.html#install-tl-xlate for information.)\n\n");
     } else {
       # merge the translated strings into the text string
       open(LANG, "<$::installerdir/tlpkg/translations/$::lang.po");
@@ -216,4 +216,3 @@ __END__
 ### indent-tabs-mode: nil
 ### End:
 # vim:set tabstop=2 expandtab: #
-

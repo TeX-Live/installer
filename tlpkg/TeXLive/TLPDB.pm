@@ -14,7 +14,7 @@ sub module_revision { return $_modulerevision; }
 
 =head1 NAME
 
-C<TeXLive::TLPDB> -- A database of TeX Live Packages
+C<TeXLive::TLPDB> -- TeX Live Package Database module
 
 =head1 SYNOPSIS
 
@@ -2981,7 +2981,7 @@ C<Master/tlpkg/doc/>.
 =head1 AUTHORS AND COPYRIGHT
 
 This script and its documentation were written for the TeX Live
-distribution (L<http://tug.org/texlive>) and both are licensed under the
+distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
 =cut

@@ -173,7 +173,7 @@ __END__
 
 =head1 NAME
 
-C<TeXLive::TLDownload> -- TeX Live Download abstraction module
+C<TeXLive::TLDownload> -- TeX Live persistent downloads via LWP
 
 =head1 SYNOPSIS
 
@@ -221,7 +221,7 @@ LWP
 =head1 AUTHORS AND COPYRIGHT
 
 This script and its documentation were written for the TeX Live
-distribution (L<http://tug.org/texlive>) and both are licensed under the
+distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
 =cut

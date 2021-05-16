@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLWinGoo.pm - Windows goop.
-# Copyright 2008-2018 Siep Kroonenberg, Norbert Preining
+# Copyright 2008-2021 Siep Kroonenberg, Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -24,7 +24,7 @@ sub module_revision { return $_modulerevision; }
 
 =head1 NAME
 
-C<TeXLive::TLWinGoo> -- Additional utilities for Windows
+C<TeXLive::TLWinGoo> -- TeX Live Windows-specific support
 
 =head2 SYNOPSIS
 
