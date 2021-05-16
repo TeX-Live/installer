@@ -21,11 +21,7 @@ sub module_revision { return $_modulerevision; }
 
 =head1 NAME
 
-TeXLive::TeXCatalogue - TeX Live access to the TeX Catalogue fromCTAN
-
-=head1 SYNOPSIS
-
-missing
+C<TeXLive::TeXCatalogue> - TeX Live access to the TeX Catalogue from CTAN
 
 =head1 DESCRIPTION
 

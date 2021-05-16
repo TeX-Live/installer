@@ -10,6 +10,24 @@ my $svnrev = '$Revision$';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
+=pod
+
+=head1 NAME
+
+C<TeXLive::TLTREE> -- TeX Live tree of all files
+
+=head1 SYNOPSIS
+
+  use TeXLive::TLTREE;
+  TeXLive::TLTREE->new ();
+  ...
+
+=head1 DESCRIPTION
+
+DOCUMENTATION MISSING, SORRY!!!
+
+=cut
+
 use TeXLive::TLUtils;
 
 sub new {
@@ -533,19 +551,6 @@ sub architectures {
 
 
 1;
-
-=head1 NAME
-
-C<TeXLive::TREE> -- TeX Live tree of all files
-
-=head1 SYNOPSIS
-
-  use TeXLive::TREE;
-  TeXLive::TREE->new ();
-
-=head1 DESCRIPTION
-
-Sorry, haven't written documentation for this one yet.
 
 =head1 SEE ALSO
 

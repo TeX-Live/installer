@@ -14,7 +14,7 @@ sub module_revision { return $_modulerevision; }
 
 =head1 NAME
 
-C<TeXLive::TLPDB> -- TeX Live Package Database module
+C<TeXLive::TLPDB> -- TeX Live Package Database (C<texlive.tlpdb>) module
 
 =head1 SYNOPSIS
 

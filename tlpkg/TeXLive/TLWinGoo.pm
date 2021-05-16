@@ -78,7 +78,7 @@ C<TeXLive::TLWinGoo> -- TeX Live Windows-specific support
 
 All exported functions return forward slashes.
 
-=head2 DESCRIPTION
+=head1 DESCRIPTION
 
 =over 4
 
@@ -1318,12 +1318,20 @@ sub unregister_uninstaller {
 
 =pod
 
+=back
+
+=head2 ADMIN
+
+=over 4
+
 =item C<TeXLive::TLWinGoo::maybe_make_ro($dir)>
 
 Write-protects a directory $dir recursively, using ACLs, but only if
 we are a multi-user install, and only if $dir is on an
 NTFS-formatted local fixed disk, and only on Windows Vista and
 later.  It writes a log message what it does and why.
+
+=back
 
 =cut
 

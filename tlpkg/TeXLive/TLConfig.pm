@@ -288,12 +288,12 @@ C<TeXLive::TLConfig> -- TeX Live configuration parameters
 The L<TeXLive::TLConfig> module contains definitions of variables 
 configuring all of TeX Live.
 
-=over 4
-
-=head1 EXPORTED VARIABLES
+=head2 EXPORTED VARIABLES
 
 All of the following variables are pulled into the callers namespace,
 i.e., are declared with C<EXPORT> (and C<EXPORT_OK>).
+
+=over 4
 
 =item C<@TeXLive::TLConfig::MetaCategories>
 
