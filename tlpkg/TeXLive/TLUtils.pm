@@ -246,6 +246,12 @@ as argument.
 The result is stored in a global variable C<$::_platform_>, and
 subsequent calls just return that value.
 
+As of 2021, C<config.guess> unfortunately requires a shell that
+understands the C<$(...)> construct. This means that on old-enough
+systems, such as Solaris, we have to look for a shell. We use the value
+of the C<CONFIG_SHELL> environment variable if it is set, else
+C</bin/ksh> if it exists, else C</bin/bash> if it exists, else give up.
+
 =cut
 
 sub platform {
@@ -255,12 +261,58 @@ sub platform {
     } else {
       my $config_guess = "$::installerdir/tlpkg/installer/config.guess";
 
+      # For example, if the disc or reader has hardware problems.
+      die "$0: config.guess script does not exist, goodbye: $config_guess"
+        if ! -r $config_guess;
+
       # We cannot rely on #! in config.guess but have to call /bin/sh
       # explicitly because sometimes the 'noexec' flag is set in
       # /etc/fstab for ISO9660 file systems.
-      chomp (my $guessed_platform = `/bin/sh '$config_guess'`);
+      # 
+      # In addition, config.guess was (unnecessarily) changed in 2020 by
+      # to use $(...) instead of `...`, although $(...) is not supported
+      # by Solaris /bin/sh (and others). The maintainers have declined
+      # to revert the change, so now every caller of config.guess must
+      # laboriously find a usable shell. Sigh.
+      # 
+      my $config_shell = $ENV{"CONFIG_SHELL"} || "/bin/sh";
+      #
+      # check if $(...) is supported:
+      my $paren_cmdout = `'$config_shell' -c 'echo \$(echo foo)' 2>/dev/null`;
+      #warn "paren test out: `$paren_cmdout'.\n";
+      #
+      # The echo command might output a newline (maybe CRLF?) even if
+      # the $(...) fails, so don't just check for non-empty output.
+      # Maybe checking exit status would be better, but maybe not.
+      # 
+      if (length ($paren_cmdout) <= 2) {
+        # if CONFIG_SHELL is set to something bad, give up.
+        if ($ENV{"CONFIG_SHELL"}) {
+          die <<END_BAD_CONFIG_SHELL;
+$0: the CONFIG_SHELL environment variable is set to $ENV{CONFIG_SHELL}
+  but this cannot execute \$(...) shell constructs,
+  which is required. Set CONFIG_SHELL to something that works.
+END_BAD_CONFIG_SHELL
 
-      # For example, if the disc or reader has hardware problems.
+        } elsif (-x "/bin/ksh") {
+          $config_shell = "/bin/ksh";
+
+        } elsif (-x "/bin/bash") {
+          $config_shell = "/bin/bash";
+
+        } else {
+          die <<END_NO_PAREN_CMDS_SHELL
+$0: can't find shell to execute $config_guess
+  (which gratuitously requires support for \$(...) command substitution).
+  Tried $config_shell, /bin/ksh, bin/bash.
+  Set the environment variable CONFIG_SHELL to specify explicitly.
+END_NO_PAREN_CMDS_SHELL
+        }
+      }
+      #warn "executing config.guess with $config_shell\n";
+      chomp (my $guessed_platform = `'$config_shell' '$config_guess'`);
+
+      # If we didn't get anything usable, give up.
       die "$0: could not run $config_guess, cannot proceed, sorry"
         if ! $guessed_platform;
 
@@ -273,18 +325,23 @@ sub platform {
 
 =item C<platform_name($canonical_host)>
 
-Convert ORIG_PLATFORM, a canonical host name as returned by
-C<config.guess>, into a TeX Live platform name.
+Convert the C<$canonical_host> argument, a system description as
+returned by C<config.guess>, into a TeX Live platform name, that is, a
+name used as a subdirectory of our C<bin/> dir. Our names have the
+form CPU-OS, for example, C<x86_64-linux>.
 
-CPU type is determined by a regexp, and any C</^i.86/> name is replaced
-by C<i386>.
-
-For the OS value we need a list because what's returned is not likely to
+We need this because what's returned from C<config.,guess> does not
 match our historical names, e.g., C<config.guess> returns C<linux-gnu>
-but we need C<linux>. This list contains old OSs which are no longer
-supported, just in case.
+but we need C<linux>.
 
-If the environment variable TEXLIVE_OS_NAME is set, it is used as-is.
+The C<CPU> part of our name is always taken from the argument, with
+various transformation.
+
+For the C<OS> part, if the environment variable C<TEXLIVE_OS_NAME> is
+set, it is used as-is. Otherwise we do our best to figure it out.
+
+This function still handles old systems which are no longer supported,
+just in case.
 
 =cut
 
