@@ -2585,6 +2585,21 @@ sub setup_programs {
       setup_one(($isWin ? "w32" : "unix"), $defprog,
                  "$bindir/$dltype/$defprog.$platform", "--version", $tlfirst);
   }
+  # check for wget/ssl support
+  if (member("wget", @working_downloaders)) {
+    debug("TLUtils::setup_programs: checking for ssl enabled wget\n");
+    my @lines = `$::progs{'wget'} --version 2>&1`;
+    if (grep(/\+ssl/, @lines)) {
+      $::progs{'options'}{'wget-ssl'} = 1;
+      my @wgetargs = @{$TeXLive::TLConfig::FallbackDownloaderArgs{'wget'}};
+      push @wgetargs, '--no-check-certificate';
+      $TeXLive::TLConfig::FallbackDownloaderArgs{'wget'} = \@wgetargs;
+      debug("TLUtils::setup_programs: wget has ssl, final wget args: @{$TeXLive::TLConfig::FallbackDownloaderArgs{'wget'}}\n");
+    } else {
+      debug("TLUtils::setup_programs: wget without ssl support found\n");
+      $::progs{'options'}{'wget-ssl'} = 0;
+    }
+  }
   $::progs{'working_downloaders'} = [ @working_downloaders ];
   my @working_compressors;
   for my $defprog (sort 
@@ -3985,7 +4000,22 @@ sub query_ctan_mirror {
   if (TeXLive::TLUtils::member("curl", @working_downloaders)) {
     return query_ctan_mirror_curl();
   } elsif (TeXLive::TLUtils::member("wget", @working_downloaders)) {
-    return query_ctan_mirror_wget();
+    if ($::progs{'options'}{'wget-ssl'}) {
+      # we need ssl enabled wget to query ctan
+      return query_ctan_mirror_wget();
+    } else {
+      tlwarn(<<END_NO_SSL);
+TLUtils::query_ctan_mirror: neither curl nor an ssl-enabled wget is
+  available, so no CTAN mirror can be resolved via https://mirror.ctan.org.
+
+  Please install curl or ssl-enabled wget; otherwise, please pick an
+  http (not https) mirror from the list at https://ctan.org/mirrors/mirmon.
+
+  To report a bug about this, please rerun your command with -vv and
+  include the resulting output with the report.
+END_NO_SSL
+      return;
+    }
   } else {
     return;
   }
