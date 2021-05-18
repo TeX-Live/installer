@@ -2592,7 +2592,9 @@ sub setup_programs {
     if (grep(/\+ssl/, @lines)) {
       $::progs{'options'}{'wget-ssl'} = 1;
       my @wgetargs = @{$TeXLive::TLConfig::FallbackDownloaderArgs{'wget'}};
-      push @wgetargs, '--no-check-certificate';
+      # can't push new arg at end of list because builtin list ends with
+      # -O to set the output file.
+      unshift (@wgetargs, '--no-check-certificate');
       $TeXLive::TLConfig::FallbackDownloaderArgs{'wget'} = \@wgetargs;
       debug("TLUtils::setup_programs: wget has ssl, final wget args: @{$TeXLive::TLConfig::FallbackDownloaderArgs{'wget'}}\n");
     } else {
