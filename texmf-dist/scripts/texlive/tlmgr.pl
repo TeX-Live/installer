@@ -390,9 +390,6 @@ sub main {
       }
     }
   }
-  
-  # why is this option so special? help ...
-  $opts{"require-verification"} = 0;
 
   # save command line options for later restart, if necessary
   @::SAVEDARGV = @ARGV;
@@ -400,11 +397,6 @@ sub main {
   TeXLive::TLUtils::process_logging_options();
 
   GetOptions(\%opts, keys(%optarg)) or pod2usage(2);
-
-  # load the config file and set the config options
-  # load it BEFORE starting downloads as we set persistent-downloads there!
-  load_config_file();
-
 
   $::debug_translation = 0;
   $::debug_translation = 1 if $opts{"debug-translation"};
@@ -676,6 +668,10 @@ for the full story.\n";
   }
 
   $loadmediasrcerror = "Cannot load TeX Live database from ";
+
+  # load the config file and set the config options
+  # load it BEFORE starting downloads as we set persistent-downloads there!
+  load_config_file();
 
   # in system mode verify that the selected action is allowed
   if (!$opts{"usermode"} && $config{'allowed-actions'}) {
