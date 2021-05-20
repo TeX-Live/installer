@@ -390,6 +390,9 @@ sub main {
       }
     }
   }
+  
+  # why is this option so special? help ...
+  $opts{"require-verification"} = 0;
 
   # save command line options for later restart, if necessary
   @::SAVEDARGV = @ARGV;
