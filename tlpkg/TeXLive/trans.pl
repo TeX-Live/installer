@@ -37,7 +37,7 @@ if (defined($::opt_lang)) {
       $::lang = $lang;
       $::area = uc($area);
     } else {
-      debug("Didn't get any usuful code from reg_country.\n");
+      debug("didn't get any useful code from reg_country\n");
     }
   } else {
     # we load POSIX and locale stuff
@@ -127,10 +127,11 @@ sub load_translations() {
       }
     }
     if (!$found) {
-      tlwarn ("\n  Sorry, no translations available for $code (nor $::lang); falling back to English.
-    Make sure that you have the package \"texlive-msg-translations\" installed.
-    (If you'd like to help translate the installer's messages, please see
-    https://tug.org/texlive/doc.html#install-tl-xlate for information.)\n\n");
+       debug ("no translations available for $code (nor $::lang); falling back to English\n");
+#      tlwarn ("\n  Sorry, no translations available for $code (nor $::lang); falling back to English.
+#    Make sure that you have the package \"texlive-msg-translations\" installed.
+#    (If you'd like to help translate the installer's messages, please see
+#    https://tug.org/texlive/doc.html#install-tl-xlate for information.)\n\n");
     } else {
       # merge the translated strings into the text string
       open(LANG, "<$::installerdir/tlpkg/translations/$::lang.po");
