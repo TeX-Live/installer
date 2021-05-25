@@ -20,7 +20,6 @@ $mirrors = {
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.dgut.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
-      'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -133,6 +132,7 @@ $mirrors = {
     },
     'Poland' => {
       'https://ftp.gust.org.pl/TeX/' => 1,
+      'https://repo.skni.umcs.pl/ctan/' => 1,
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
@@ -150,6 +150,9 @@ $mirrors = {
     },
     'Serbia' => {
       'http://ctan.mirror.ftn.uns.ac.rs/' => 1,
+    },
+    'Slovenia' => {
+      'https://ctan.ijs.si/tex-archive/' => 1,
     },
     'Spain' => {
       'https://ctan.javinator9889.com/' => 1,
