@@ -50,7 +50,6 @@ $mirrors = {
       'http://ftp.ktug.org/tex-archive/' => 1,
       'https://cran.asia/tex/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
-      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
@@ -203,9 +202,6 @@ $mirrors = {
     },
   },
   'South America' => {
-    'Brazil' => {
-      'http://linorg.usp.br/CTAN/' => 1,
-    },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
     },
