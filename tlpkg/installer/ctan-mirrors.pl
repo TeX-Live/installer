@@ -16,6 +16,7 @@ $mirrors = {
     'China' => {
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
+      'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -26,6 +27,9 @@ $mirrors = {
     },
     'India' => {
       'http://ctan.imsc.res.in/' => 1,
+    },
+    'Indonesia' => {
+      'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
       'http://ctan.yazd.ac.ir/' => 1,
@@ -148,6 +152,9 @@ $mirrors = {
     'Serbia' => {
       'http://ctan.mirror.ftn.uns.ac.rs/' => 1,
     },
+    'Slovenia' => {
+      'https://ctan.ijs.si/tex-archive/' => 1,
+    },
     'Spain' => {
       'https://ctan.javinator9889.com/' => 1,
       'https://osl.ugr.es/CTAN/' => 1,
@@ -169,7 +176,6 @@ $mirrors = {
       'https://ctan.mirror.colo-serv.net/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
-      'https://mirror.0xem.ma/tex-archive/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
@@ -177,7 +183,6 @@ $mirrors = {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
-      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
