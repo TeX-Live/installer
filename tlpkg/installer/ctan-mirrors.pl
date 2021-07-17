@@ -8,7 +8,6 @@ $mirrors = {
     },
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
-      'http://mirror.ufs.ac.za/ctan/' => 1,
       'https://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
     },
   },
@@ -175,7 +174,6 @@ $mirrors = {
   'North America' => {
     'Canada' => {
       'https://ctan.math.ca/tex-archive/' => 1,
-      'https://ctan.mirror.colo-serv.net/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.0xem.ma/tex-archive/' => 1,
@@ -186,6 +184,7 @@ $mirrors = {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
+      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
