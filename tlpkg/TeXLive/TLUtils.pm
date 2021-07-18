@@ -1184,14 +1184,14 @@ time stamps are preserved and symlinks are created on Unix systems. On
 Windows, C<(-l $file)> will never return 'C<true>' and so symlinks will
 be (uselessly) copied as regular files.
 
-If the argument is C<"-L"> and C<$file> is a symlink, the link is
+If the first argument is C<"-L"> and C<$file> is a symlink, the link is
 dereferenced before the copying is done. (If both C<"-f"> and C<"-L">
-are desired, they must be given in that order, although the current code
-has no need to do this.)
+are desired, they must be given in that order, although the codebase
+currently has no need to do this.)
 
-C<copy> invokes C<mkdirhier> if target directories do not exist.  Files
-have mode C<0777> if they are executable and C<0666> otherwise, with
-the set bits in I<umask> cleared in each case.
+C<copy> invokes C<mkdirhier> if target directories do not exist. Files
+start with mode C<0777> if they are executable and C<0666> otherwise,
+with the set bits in I<umask> cleared in each case.
 
 C<$file> can begin with a C<file:/> prefix.
 
