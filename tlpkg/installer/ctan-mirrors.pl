@@ -1,8 +1,5 @@
 $mirrors = {
   'Africa' => {
-    'Algeria' => {
-      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1,
-    },
     'Morocco' => {
       'https://mirror.marwan.ma/ctan/' => 1,
     },
@@ -17,7 +14,6 @@ $mirrors = {
       'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
-      'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.dgut.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
@@ -50,7 +46,6 @@ $mirrors = {
       'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
-      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
@@ -175,10 +170,8 @@ $mirrors = {
   'North America' => {
     'Canada' => {
       'https://ctan.math.ca/tex-archive/' => 1,
-      'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.0xem.ma/tex-archive/' => 1,
-      'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {
