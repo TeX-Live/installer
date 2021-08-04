@@ -6465,7 +6465,7 @@ sub texconfig_conf_mimic {
   }
   info("=========================== active config files ==========================\n");
   for my $m (sort(qw/fmtutil.cnf config.ps mktex.cnf pdftexconfig.tex/)) {
-    info(sprintf("%-17s %s", "$m:", `kpsewhich $m`));
+    info(sprintf("%-17s %s", "$m:", `kpsewhich $m` || "(not found!)\n"));
   }
   for my $m (qw/texmf.cnf updmap.cfg/) {
     for my $f (`kpsewhich -all $m`) {
