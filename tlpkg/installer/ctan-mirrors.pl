@@ -180,9 +180,6 @@ $mirrors = {
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
-    'Costa Rica' => {
-      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
-    },
     'USA' => {
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
