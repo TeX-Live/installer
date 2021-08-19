@@ -134,7 +134,6 @@ $mirrors = {
     },
     'Poland' => {
       'https://ctan.mirrors.tworzy.net/' => 1,
-      'https://ftp.gust.org.pl/TeX/' => 1,
       'https://repo.skni.umcs.pl/ctan/' => 1,
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
