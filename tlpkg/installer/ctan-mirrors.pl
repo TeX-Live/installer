@@ -19,6 +19,7 @@ $mirrors = {
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.dgut.edu.cn/CTAN/' => 1,
+      'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
@@ -194,6 +195,9 @@ $mirrors = {
     },
   },
   'Oceania' => {
+    'Australia' => {
+      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
+    },
     'New Zealand' => {
       'https://mirror.aut.ac.nz/CTAN/' => 1,
     },
