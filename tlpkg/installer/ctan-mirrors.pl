@@ -153,9 +153,6 @@ $mirrors = {
     'Serbia' => {
       'http://ctan.mirror.ftn.uns.ac.rs/' => 1,
     },
-    'Slovenia' => {
-      'https://ctan.ijs.si/tex-archive/' => 1,
-    },
     'Spain' => {
       'https://ctan.javinator9889.com/' => 1,
       'https://osl.ugr.es/CTAN/' => 1,
@@ -184,7 +181,6 @@ $mirrors = {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
-      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
