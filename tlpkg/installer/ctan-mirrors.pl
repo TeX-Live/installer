@@ -113,7 +113,6 @@ $mirrors = {
       'https://packages.oth-regensburg.de/ctan/' => 1,
     },
     'Greece' => {
-      'http://ftp.ntua.gr/mirror/ctan/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
     'Hungary' => {
