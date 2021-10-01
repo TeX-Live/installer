@@ -49,7 +49,6 @@ $mirrors = {
       'http://ftp.ktug.org/tex-archive/' => 1,
       'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
-      'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
@@ -115,6 +114,7 @@ $mirrors = {
       'https://packages.oth-regensburg.de/ctan/' => 1,
     },
     'Greece' => {
+      'http://ftp.ntua.gr/mirror/ctan/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
     'Hungary' => {
@@ -157,6 +157,7 @@ $mirrors = {
       'https://ctan.ijs.si/tex-archive/' => 1,
     },
     'Spain' => {
+      'https://ctan.javinator9889.com/' => 1,
       'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
