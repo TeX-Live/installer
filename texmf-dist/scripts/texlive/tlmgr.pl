@@ -63,7 +63,7 @@ BEGIN {
   }
   if (-r "$bindir/$kpsewhichname") {
     # if not in bootstrapping mode => kpsewhich exists, so use it to get $Master
-    chomp($Master = `kpsewhich -var-value=SELFAUTOPARENT`);
+    chomp($Master = `kpsewhich -var-value=TEXMFROOT`);
   }
 
   # if we have no directory in which to find our modules,

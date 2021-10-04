@@ -1753,7 +1753,7 @@ sub _do_postaction_filetype {
   }
   my $cmd = $keyval{'cmd'};
 
-  my $texdir = `kpsewhich -var-value=SELFAUTOPARENT`;
+  my $texdir = `kpsewhich -var-value=TEXMFROOT`;
   chomp($texdir);
   my $texdir_bsl = conv_to_w32_path($texdir);
   $cmd =~ s!^("?)TEXDIR/!$1$texdir/!g;
@@ -1828,7 +1828,7 @@ sub _do_postaction_script {
   if (win32() && defined($keyval{'filew32'})) {
     $file = $keyval{'filew32'};
   }
-  my $texdir = `kpsewhich -var-value=SELFAUTOPARENT`;
+  my $texdir = `kpsewhich -var-value=TEXMFROOT`;
   chomp($texdir);
   my @syscmd;
   if ($file =~ m/\.pl$/i) {
@@ -1903,7 +1903,7 @@ sub _do_postaction_shortcut {
 
   &log("postaction $how shortcut for " . $tlpobj->name . "\n");
   if ($how eq "install") {
-    my $texdir = `kpsewhich -var-value=SELFAUTOPARENT`;
+    my $texdir = `kpsewhich -var-value=TEXMFROOT`;
     chomp($texdir);
     my $texdir_bsl = conv_to_w32_path($texdir);
     $icon =~ s!^TEXDIR/!$texdir/!;
