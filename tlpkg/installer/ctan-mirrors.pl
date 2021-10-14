@@ -71,9 +71,6 @@ $mirrors = {
       'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
     },
-    'Denmark' => {
-      'https://mirrors.dotsrc.org/ctan/' => 1,
-    },
     'Finland' => {
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
@@ -86,7 +83,6 @@ $mirrors = {
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
       'https://mirrors.chevalier.io/CTAN/' => 1,
-      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
       'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
@@ -96,7 +92,6 @@ $mirrors = {
       'https://ctan.ebinger.cc/tex-archive/' => 1,
       'https://ctan.joethei.xyz/' => 1,
       'https://ctan.kako-dev.de/' => 1,
-      'https://ctan.mc1.root.project-creative.net/' => 1,
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
       'https://ctan.space-pro.be/tex-archive/' => 1,
@@ -196,6 +191,9 @@ $mirrors = {
   'Oceania' => {
     'Australia' => {
       'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
+    },
+    'New Zealand' => {
+      'https://mirror.aut.ac.nz/CTAN/' => 1,
     },
   },
   'South America' => {
