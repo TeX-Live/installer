@@ -7,6 +7,7 @@ $mirrors = {
       'https://mirror.marwan.ma/ctan/' => 1,
     },
     'South Africa' => {
+      'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'https://mirror.ufs.ac.za/ctan/' => 1,
     },
@@ -37,7 +38,6 @@ $mirrors = {
     'Iran' => {
       'http://ctan.yazd.ac.ir/' => 1,
       'https://ctan.asis.ai/' => 1,
-      'https://ctan.um.ac.ir/' => 1,
     },
     'Japan' => {
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
@@ -54,9 +54,6 @@ $mirrors = {
     },
     'Malaysia' => {
       'https://mirrors.upm.edu.my/CTAN/' => 1,
-    },
-    'Singapore' => {
-      'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
   },
   'Europe' => {
