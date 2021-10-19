@@ -1,8 +1,5 @@
 $mirrors = {
   'Africa' => {
-    'Algeria' => {
-      'http://ctan.epst-tlemcen.dz/tex-archive/' => 1,
-    },
     'Morocco' => {
       'https://mirror.marwan.ma/ctan/' => 1,
     },
@@ -38,7 +35,6 @@ $mirrors = {
     'Iran' => {
       'http://ctan.yazd.ac.ir/' => 1,
       'https://ctan.asis.ai/' => 1,
-      'https://ctan.um.ac.ir/' => 1,
     },
     'Japan' => {
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
@@ -56,6 +52,9 @@ $mirrors = {
     },
     'Malaysia' => {
       'https://mirrors.upm.edu.my/CTAN/' => 1,
+    },
+    'Singapore' => {
+      'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
   },
   'Europe' => {
@@ -83,7 +82,6 @@ $mirrors = {
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
-      'https://mirror.ibcp.fr/pub/CTAN/' => 1,
       'https://mirrors.chevalier.io/CTAN/' => 1,
       'https://mirrors.ircam.fr/pub/CTAN/' => 1,
       'https://texlive.mycozy.space/' => 1,
@@ -197,11 +195,6 @@ $mirrors = {
     },
     'New Zealand' => {
       'https://mirror.aut.ac.nz/CTAN/' => 1,
-    },
-  },
-  'South America' => {
-    'Chile' => {
-      'https://ctan.dcc.uchile.cl/' => 1,
     },
   },
 };
