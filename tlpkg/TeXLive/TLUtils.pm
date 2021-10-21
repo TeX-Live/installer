@@ -112,7 +112,7 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::report_tlpdb_differences(\%ret);
   TeXLive::TLUtils::tlnet_disabled_packages($root);
   TeXLive::TLUtils::mktexupd();
-  TeXLive::TLUtils::setup_sys_user_mode($optsref,$tmfc, $tmfsc, $tmfv, $tmfsv);
+  TeXLive::TLUtils::setup_sys_user_mode($prg,$optsref,$tmfc,$tmfsc,$tmfv,$tmfsv);
   TeXLive::TLUtils::prepend_own_path();
   TeXLive::TLUtils::repository_to_array($str);
 
@@ -4677,9 +4677,14 @@ sub mktexupd {
 
 =item C<setup_sys_user_mode($prg, $optsref, $tmfc, $tmfsc, $tmfv, $tmfsv)>
 
-Return two-element list C<($texmfconfig,$texmfvar)> of which directories
-to use, either user or sys. If C<$prg> is C<mktexfmt>, and the system
-dirs are writable, use them even if we are in user mode.
+Return two-element list C<($texmfconfig,$texmfvar)> specifying which
+directories to use, either user or sys.  If C<$optsref->{'sys'}>  is
+true, we are in sys mode; else if C<$optsref->{'user'}> is set, we are
+in user mode; else a fatal error.
+
+If C<$prg> eq C<"mktexfmt">, and C<$TEXMFSYSVAR/web2c> is writable, use
+it instead of C<$TEXMFVAR>, even if we are in user mode. C<$TEXMFCONFIG>
+is not switched, however.
 
 =cut
 
