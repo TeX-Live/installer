@@ -51,7 +51,6 @@ $mirrors = {
       'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
-      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
@@ -186,7 +185,6 @@ $mirrors = {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
-      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
@@ -197,6 +195,9 @@ $mirrors = {
     },
   },
   'Oceania' => {
+    'Australia' => {
+      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
+    },
     'New Zealand' => {
       'https://mirror.aut.ac.nz/CTAN/' => 1,
     },
