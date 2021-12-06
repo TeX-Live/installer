@@ -706,7 +706,7 @@ if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "") {
     info(join("\n", @::welcome_arr));
   }
   do_cleanup(); # sets $::LOGFILENAME if not already defined
-  if ($LOGFILENAME) {
+  if ($::LOGFILENAME) {
     print STDOUT "\nLogfile: $::LOGFILENAME\n";
   } else {
     # do_cleanup sets $::LOGFILENAME to ""
