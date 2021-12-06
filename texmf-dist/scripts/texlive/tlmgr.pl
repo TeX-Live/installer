@@ -5,6 +5,8 @@
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
+use strict; use warnings;
+
 my $svnrev = '$Revision$';
 my $datrev = '$Date$';
 my $tlmgrrevision;
@@ -85,7 +87,6 @@ use File::Find;
 use File::Spec;
 use Pod::Usage;
 use Getopt::Long qw(:config no_autoabbrev permute);
-use strict;
 
 use TeXLive::TLConfig;
 use TeXLive::TLPDB;

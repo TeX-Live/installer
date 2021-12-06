@@ -8,6 +8,8 @@
 # Be careful when changing wording: *every* normal informational message
 # output here must be recognized by the long grep in tl-update-tlnet.
 
+use strict; use warnings;
+
 my $svnrev = '$Revision$';
 $svnrev =~ m/: ([0-9]+) /;
 $::installerrevision = ($1 ? $1 : 'unknown');
@@ -203,8 +205,6 @@ if (win32) {
     &maybe_make_ro
   ));
 }
-
-use strict;
 
 # global list of lines that get logged (see TLUtils.pm::_logit).
 @::LOGLINES = ();
