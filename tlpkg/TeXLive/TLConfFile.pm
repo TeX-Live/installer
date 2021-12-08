@@ -473,11 +473,10 @@ sub parse_config_file {
     # if we are still here, that means we cannot evaluate the config file
     # give a BIG FAT WARNING but save the line as comment and continue 
     # anyway
-    warn("WARNING WARNING WARNING\n");
-    warn("Cannot parse config file $file ($cc, $sep)\n");
-    warn("The following line (l.$l) seems to be wrong:\n");
+    my $userlineno = $l + 1; # one-based
+    warn("$0: WARNING: Cannot parse tlmgr config file ($cc, $sep)\n");
+    warn("$0: $file:$userlineno: treating this line as comment:\n");
     warn(">>> $data[$l]\n");
-    warn("We will treat this line as a comment!\n");
     $config{$l}{'type'} = 'comment';
     $config{$l}{'value'} = $data[$l];
   }
