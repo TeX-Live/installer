@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TeX Live translation\n"
+"Project-Id-Version: TeX Live 2021\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2021-10-14 01:48+0200\n"
-"PO-Revision-Date: 2009-09-22 12:54+0800\n"
-"Last-Translator: Jiang Jiang <gzjjgod@gmail.com>\n"
-"Language-Team: TL Translation Team <tex-live@tug.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2021-12-06 22:16+0800\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 3.0\n"
+"Last-Translator: CyanVesper <hxlqrj@126.com>\n"
+"Language: zh_CN\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -25,7 +25,7 @@ msgstr "无"
 #: tlpkg/installer/install-menu-text.pl:38
 #: tlpkg/installer/install-tl-gui.tcl:1674
 msgid "Only new"
-msgstr "只有新的"
+msgstr "仅新增"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:139
 #: tlpkg/installer/install-menu-text.pl:39
@@ -35,19 +35,19 @@ msgstr "只有新的"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2878
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2896
 msgid "All"
-msgstr "全部的"
+msgstr "全部"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:163
 msgid "Loading local TeX Live database"
-msgstr ""
+msgstr "加载本地 TeX Live 数据库"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:165
 msgid "This may take some time, please be patient ..."
-msgstr ""
+msgstr "这也许会花费一些时间，请耐心等待…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:222
 msgid "... done loading"
-msgstr ""
+msgstr "... 完成加载"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:227
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1056
@@ -70,6 +70,10 @@ msgid ""
 "\n"
 "Most buttons will be disabled."
 msgstr ""
+"您没有权限通过任何方式更改此次安装；\n"
+"具体来说，目录 %s 不可被写入。\n"
+"请以管理员身份运行此程序，或者联系您的本地管理员。\n"
+"大部分按钮会被禁用。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:229
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:623
@@ -109,12 +113,12 @@ msgstr "确定"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:287
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1194
 msgid "Repository"
-msgstr ""
+msgstr "软件源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:288
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2610
 msgid "Loaded:"
-msgstr ""
+msgstr "已加载："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:288
 msgid "none"
@@ -122,7 +126,7 @@ msgstr "无"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:291
 msgid "Load default"
-msgstr "载入缺省软件包仓库"
+msgstr "加载默认项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:299
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:522
@@ -131,11 +135,11 @@ msgstr "载入缺省软件包仓库"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1699
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2606
 msgid "multiple repositories"
-msgstr ""
+msgstr "多重软件源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:304
 msgid "Default:"
-msgstr ""
+msgstr "默认："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:310
 msgid "Display configuration"
@@ -149,7 +153,7 @@ msgstr "状态"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:318
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:370
 msgid "all"
-msgstr "全部的"
+msgstr "全部项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:320
 msgid "installed"
@@ -161,7 +165,7 @@ msgstr "未安装"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:324
 msgid "updates"
-msgstr "更新"
+msgstr "更新项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:327
 msgid "Category"
@@ -173,40 +177,39 @@ msgstr "软件包"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:331
 msgid "collections"
-msgstr "集合"
+msgstr "合集"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:333
 msgid "schemes"
-msgstr "套装"
+msgstr "方案"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:336
 msgid "Match"
 msgstr "匹配"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:341
-#, fuzzy
 msgid "descriptions"
-msgstr "简短描述"
+msgstr "描述"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:344
 msgid "filenames"
-msgstr ""
+msgstr "文件名"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:368
 msgid "Selection"
-msgstr "选择"
+msgstr "选中项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:372
 msgid "selected"
-msgstr "选定的"
+msgstr "已选择"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:375
 msgid "not selected"
-msgstr "未选的"
+msgstr "未选择"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:383
 msgid "Select all"
-msgstr "全部选择"
+msgstr "选择全部"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:385
 msgid "Select none"
@@ -223,12 +226,12 @@ msgstr "软件包名称"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:411
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2965
 msgid "Local rev. (ver.)"
-msgstr "本地版本"
+msgstr "本地版本号(版本)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:412
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2966
 msgid "Remote rev. (ver.)"
-msgstr "远程版本"
+msgstr "远程版本号(版本)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:413
 msgid "Short description"
@@ -236,11 +239,11 @@ msgstr "简短描述"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:428
 msgid "Update all installed"
-msgstr "更新全部已安装的"
+msgstr "更新全部已安装项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:432
 msgid "Reinstall previously removed packages"
-msgstr "重装先前删除的包"
+msgstr "重新安装之前移除的软件包"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:445
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2211
@@ -257,7 +260,7 @@ msgstr "安装"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2008
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2216
 msgid "Remove"
-msgstr "删除"
+msgstr "移除"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:459
 msgid "Backup"
@@ -284,19 +287,19 @@ msgstr "帮助"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:525
 msgid "Load default (from tlpdb) repository:"
-msgstr ""
+msgstr "加载默认 (来自 tlpdb) 软件源："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:528
 msgid "Load cmd line repository:"
-msgstr "载入命令行仓库"
+msgstr "加载命令行软件源："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:531
 msgid "Load standard net repository:"
-msgstr ""
+msgstr "加载标准网络软件源："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:534
 msgid "Load other repository ..."
-msgstr "载入其他仓库"
+msgstr "加载其它软件源 …"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:538
 #: tlpkg/installer/install-tl-gui.tcl:1389
@@ -306,26 +309,25 @@ msgstr "退出"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:544
 msgid "General ..."
-msgstr "通用..."
+msgstr "常规 ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:546
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2695
 msgid "Paper ..."
-msgstr "纸张..."
+msgstr "纸张 …"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:549
-#, fuzzy
 msgid "Platforms ..."
-msgstr "纸张..."
+msgstr "平台 …"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr ""
+msgstr "图形界面语言 …"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
 msgid "Expert options"
-msgstr "专家设置"
+msgstr "专项选项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:561
 msgid "Enable debugging output"
@@ -337,7 +339,7 @@ msgstr "禁用新软件包的自动安装"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:568
 msgid "Disable auto-removal of server-deleted packages"
-msgstr "禁用服务器删除包的自动卸载"
+msgstr "禁用服务端已被删除软件包的自动移除"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:575
 msgid "Update filename database"
@@ -345,7 +347,7 @@ msgstr "更新文件名数据库"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:583
 msgid "Rebuild all formats"
-msgstr "重新创建所有格式文件"
+msgstr "重建全部格式文件"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:594
 msgid "Update font map database"
@@ -354,22 +356,22 @@ msgstr "更新字体映射数据库"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:607
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2336
 msgid "Restore packages from backup"
-msgstr "从备份恢复软件包"
+msgstr "从备份还原软件包"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:613
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2418
 msgid "Handle symlinks in system dirs"
-msgstr "创建指向系统目录的符号链接"
+msgstr "处理系统目录中的符号链接"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:619
 #, perl-format
 msgid "Remove TeX Live %s ..."
-msgstr "删除 TeX Live %s ..."
+msgstr "移除 TeX Live %s ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:622
 #, perl-format
 msgid "Remove TeX Live %s"
-msgstr "删除 TeX Live %s"
+msgstr "移除 TeX Live %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:623
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:624
@@ -400,7 +402,7 @@ msgstr "取消"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:629
 msgid "Complete removal finished"
-msgstr ""
+msgstr "完整移除已完成"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:634
 #, perl-format
@@ -408,12 +410,12 @@ msgid ""
 "Really remove (uninstall) the COMPLETE TeX Live %s installation?\n"
 "Your last chance to change your mind!"
 msgstr ""
-"确定要删除整个 TeX Live %s 的安装吗？\n"
-"这是你最后一次改变主意的机会！"
+"真的要 完全 移除 (卸载) TeX Live %s 安装吗？\n"
+"这是您改变想法的最后机会！"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:643
 msgid "Manual"
-msgstr "手册"
+msgstr "手动"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:644
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:646
@@ -424,28 +426,28 @@ msgstr "关于"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:668
 msgid "Details on:"
-msgstr ""
+msgstr "相关详情："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:678
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2360
 msgid "Package:"
-msgstr "软件包:"
+msgstr "软件包："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:680
 msgid "Category:"
-msgstr "分类:"
+msgstr "分类："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:682
 msgid "Short description:"
-msgstr "简短描述:"
+msgstr "简短描述："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:690
 msgid "Long description:"
-msgstr "详细描述:"
+msgstr "长篇描述："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:693
 msgid "Installed:"
-msgstr "已安装的:"
+msgstr "已安装："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
@@ -463,101 +465,99 @@ msgstr "否"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:696
 msgid "Local revision:"
-msgstr ""
+msgstr "本地版本号："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:700
 msgid "Local Catalogue version:"
-msgstr ""
+msgstr "本地目录版本："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:704
 msgid "Remote revision:"
-msgstr ""
+msgstr "远程版本号："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:708
 msgid "Remote Catalogue version:"
-msgstr ""
+msgstr "远程目录版本："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:713
 msgid "Keywords:"
-msgstr ""
+msgstr "关键字："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:718
 msgid "Functionality:"
-msgstr ""
+msgstr "功能："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:723
 msgid "Primary characterization:"
-msgstr ""
+msgstr "主要特征："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:728
 msgid "Secondary characterization:"
-msgstr ""
+msgstr "次要特征："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:739
 msgid "Collection:"
-msgstr "集合:"
+msgstr "合集："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:743
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
-msgstr "警告: 目录版本可能是旧的或者错的。"
+msgstr "警告：目录版本可能落后或者根本就是错误的。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:781
 msgid "Depends:"
-msgstr "依赖:"
+msgstr "依赖项："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:785
 msgid "Binaries' dependencies:"
-msgstr "二进制依赖:"
+msgstr "二进制依赖项："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:787
 msgid "Runfiles:"
-msgstr "运行文件:"
+msgstr "执行文件："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:788
 msgid "Docfiles:"
-msgstr "文档文件:"
+msgstr "文档文件："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:789
 msgid "Srcfiles:"
-msgstr "源文件:"
+msgstr "源代码文件："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:801
 msgid "Binfiles:"
-msgstr "二进制文件:"
+msgstr "二进制文件："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:806
 msgid "Further information"
-msgstr "详细信息"
+msgstr "更多信息"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:860
 msgid "Update the TeX Live Manager"
-msgstr ""
+msgstr "更新 TeX Live 管理器"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1027
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1032
-#, fuzzy
 msgid "Select platforms to support"
-msgstr "选择支持的架构"
+msgstr "选择要支持的平台"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1043
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1255
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1377
 msgid "Apply changes"
-msgstr "应用修改"
+msgstr "应用更改"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1057
-#, fuzzy
 msgid "Removals of the main platform not possible!"
-msgstr "不可能删除主架构文件！"
+msgstr "不可能移除主要平台！"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1122
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1131
 msgid "General options"
-msgstr "通用设置"
+msgstr "常规选项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1136
 msgid "Default package repository"
-msgstr "缺省的软件包仓库"
+msgstr "默认的软件包安装源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1144
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1182
@@ -582,11 +582,11 @@ msgstr "缺省的软件包仓库"
 #: tlpkg/installer/install-tl-gui.tcl:1541
 #: tlpkg/installer/install-tl-gui.tcl:1560
 msgid "Change"
-msgstr "修改"
+msgstr "更改"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1157
 msgid "Create formats on installation"
-msgstr "安装时创建格式文件"
+msgstr "在安装时创建格式文件"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1161
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1168
@@ -599,15 +599,15 @@ msgstr "切换"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1164
 msgid "Install macro/font sources"
-msgstr "安装宏包/字体源代码"
+msgstr "安装 宏包/字体 源码"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1171
 msgid "Install macro/font docs"
-msgstr "安装宏包/字体文档"
+msgstr "安装 宏包/字体 文档"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1178
 msgid "Default backup directory"
-msgstr "缺省的备份目录"
+msgstr "默认备份目录"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1186
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1784
@@ -618,46 +618,46 @@ msgstr "自动备份设置"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1195
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2425
 msgid "Link destination for programs"
-msgstr "程序的链接目的路径"
+msgstr "程序链接目标"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1203
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2430
 msgid "Link destination for info docs"
-msgstr "info 文档的链接目的路径"
+msgstr "信息文档链接目标"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1211
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2435
 msgid "Link destination for man pages"
-msgstr "man 手册页的链接目的路径"
+msgstr "手册页面链接目标"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1221
 msgid "Create shortcuts on the desktop"
-msgstr ""
+msgstr "在桌面上创建快捷方式"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1230
 #: tlpkg/installer/install-tl-gui.tcl:1687
 msgid "Install for all users"
-msgstr "给所有用户安装"
+msgstr "为所有用户安装"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1239
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1822
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1826
 msgid "Change file associations"
-msgstr "修改文件关联"
+msgstr "更改文件关联"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1277
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1279
 msgid "Load default repository:"
-msgstr "载入缺省软件包仓库"
+msgstr "加载默认软件源："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1336
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1345
 msgid "Paper options"
-msgstr "纸张设置"
+msgstr "纸张选项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1349
 msgid "Default paper for all"
-msgstr "所有程序的缺省纸张"
+msgstr "应用于全部项的默认纸张"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1350
 msgid "A4"
@@ -665,90 +665,90 @@ msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
 msgid "Letter"
-msgstr "Letter"
+msgstr "信纸"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
 #, perl-format
 msgid "Default paper for %s"
-msgstr "缺省的纸张给 %s"
+msgstr "应用于 %s 的默认纸张"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1385
 msgid "GUI Language"
-msgstr ""
+msgstr "图形界面语言"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1409
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1414
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1432
 msgid "System default"
-msgstr ""
+msgstr "系统默认"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1413
 msgid "Default language for GUI:"
-msgstr ""
+msgstr "图形界面默认语言："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1428
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1457
 msgid "Changes will take effect after restart"
-msgstr "修改会在重启后生效"
+msgstr "更改将会在重启后生效"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1478
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1510
 msgid "Default remote repository"
-msgstr "缺省的网络软件包仓库"
+msgstr "默认远程软件源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1502
 msgid "Choose directory"
-msgstr ""
+msgstr "选择目录"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1568
 msgid "Edit default package repositories"
-msgstr ""
+msgstr "编辑默认的软件包安装源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1571
 msgid "Specify set of repositories to be used"
-msgstr ""
+msgstr "指定要被使用的软件源集合"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1587
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1601
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1604
 msgid "Change main package repository"
-msgstr ""
+msgstr "更改主要的软件包安装源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1602
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1605
 msgid "Change subsidiary package repository"
-msgstr ""
+msgstr "更改辅助的软件包安装源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1626
 msgid "Add repository"
-msgstr ""
+msgstr "添加软件源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1628
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1629
 msgid "Add package repository"
-msgstr ""
+msgstr "添加软件包安装源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1655
 #, perl-format
 msgid "Repository tag name already used: %s"
-msgstr ""
+msgstr "软件源标签名已被使用：%s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1713
 msgid "Revert"
-msgstr ""
+msgstr "撤销"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1765
 #, perl-format
 msgid "Select paper format for %s"
-msgstr "选择纸张格式给 %s"
+msgstr "选择用于 %s 的纸张格式"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1792
 msgid "keep arbitrarily many"
-msgstr "保持任意多的"
+msgstr "保持任意多项"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1793
 msgid "disable"
@@ -756,15 +756,15 @@ msgstr "禁用"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1884
 msgid "Loading of remote database failed."
-msgstr ""
+msgstr "远程数据库加载失败。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1885
 msgid "Error message:"
-msgstr ""
+msgstr "错误信息："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1925
 msgid "Installation"
-msgstr "安装 TeX Live"
+msgstr "安装"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1946
 msgid ""
@@ -772,6 +772,9 @@ msgid ""
 "Program will terminate now.\n"
 "Please restart if necessary."
 msgstr ""
+"关键更新已被安装。\n"
+"现在程序将会终止。\n"
+"如有需要请重新启动。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2265
 msgid ""
@@ -784,37 +787,44 @@ msgid ""
 "After the update, the TeX Live manager will terminate.\n"
 "You can then restart it to proceed with further updates."
 msgstr ""
+"在能够完成其它任何更新前，需要先对\n"
+"TeX Live 管理器 (您当前正在运行的软件) 进行更新。 \n"
+"请在关闭此对话框后点击 “更新 TeX Live 管理器” 按钮\n"
+"以执行此项。\n"
+"\n"
+"在更新后，TeX Live 管理器将会终止。\n"
+"您可以随后将其重启来进行进一步的更新。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2275
 msgid "(Further updates will be available after tlmgr has been updated.)"
-msgstr ""
+msgstr "(进一步的更新将会在 tlmgr 更新完成后可用。)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2277
 msgid ""
 "Please wait a bit after the program has terminated so that the update can be "
 "completed."
-msgstr "请在程序退出后等待一会，安装才会完成。"
+msgstr "在程序终止后请稍等片刻，以便能够完成更新。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2351
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2353
 msgid "Restore completed"
-msgstr "恢复完毕"
+msgstr "还原已完成"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2358
 msgid "Select the package to restore, or restore all packages"
-msgstr "选择需要恢复的包，或者恢复所有包"
+msgstr "选择要还原的软件包，或者还原全部软件包"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2374
 msgid "Revision:"
-msgstr "版本:"
+msgstr "版本号："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2379
 msgid "Restore selected package"
-msgstr "恢复指定软件包"
+msgstr "还原所选软件包"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2395
 msgid "Restore all packages to latest version"
-msgstr ""
+msgstr "还原全部软件包到最新版本"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2411
 #: tlpkg/installer/install-tl-gui.tcl:396
@@ -832,16 +842,16 @@ msgstr "更新符号链接"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2450
 msgid "Remove symbolic links"
-msgstr "删除符号链接"
+msgstr "移除符号链接"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2483
 msgid "Edit directory"
-msgstr ""
+msgstr "编辑目录"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2486
 #, perl-format
 msgid "New value for %s:"
-msgstr ""
+msgstr "用于 %s 的新值："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2489
 msgid "Choose Directory"
@@ -849,42 +859,42 @@ msgstr "选择目录"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2519
 msgid "Load package repository"
-msgstr "载入软件包仓库"
+msgstr "加载软件包安装源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2522
 msgid "Load this package repository:"
-msgstr ""
+msgstr "加载此软件包安装源："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2548
 msgid "Choose local directory"
-msgstr ""
+msgstr "选择本地目录"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2556
 msgid "Use standard net repository"
-msgstr ""
+msgstr "选择标准网络软件源"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2563
 msgid "Load"
-msgstr "载入"
+msgstr "加载"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2572
 msgid ""
 "Loading remote repository - this may take some time, please be patient ..."
-msgstr ""
+msgstr "正在加载远程软件源 - 这也许会花费一些时间，请耐心等待 …"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2598
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2602
 msgid "verified"
-msgstr ""
+msgstr "已验证"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2598
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2602
 msgid "not verified"
-msgstr ""
+msgstr "未验证"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2657
 msgid "Completed"
-msgstr "完成"
+msgstr "已完成"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2664
 #, perl-format
@@ -892,16 +902,16 @@ msgid ""
 "Running %s failed.\n"
 "Please consult the log window for details."
 msgstr ""
-"运行 %s 失败。\n"
-"请查看日志窗口以了解细节。"
+"%s 运行失败。\n"
+"详情请参阅日志窗口。"
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "菜单快捷方式"
 
 #: tlpkg/installer/install-menu-text.pl:43
 msgid "Launcher"
-msgstr ""
+msgstr "启动器"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -909,6 +919,8 @@ msgid ""
 "Target directory %s non-empty;\n"
 "may cause trouble!"
 msgstr ""
+"目标目录 %s 不为空；\n"
+"可能会造成麻烦！"
 
 #: tlpkg/installer/install-tl-gui.tcl:113
 #, tcl-format
@@ -916,14 +928,16 @@ msgid ""
 "Target directory %s non-empty;\n"
 "are you sure?"
 msgstr ""
+"目标目录 %s 不为空；\n"
+"您确定吗？"
 
 #: tlpkg/installer/install-tl-gui.tcl:224
 msgid "Really abort?"
-msgstr ""
+msgstr "真的要放弃吗？"
 
 #: tlpkg/installer/install-tl-gui.tcl:312
 msgid "Local repository"
-msgstr ""
+msgstr "本地软件源"
 
 #: tlpkg/installer/install-tl-gui.tcl:348
 #: tlpkg/installer/install-tl-gui.tcl:365
@@ -931,12 +945,12 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:1334
 #: texmf-dist/scripts/tlshell/tlshell.tcl:897
 msgid "Abort"
-msgstr ""
+msgstr "放弃"
 
 #: tlpkg/installer/install-tl-gui.tcl:370
 #: tlpkg/installer/install-tl-gui.tcl:1325
 msgid "TeX Live Installer"
-msgstr ""
+msgstr "TeX Live 安装器"
 
 #: tlpkg/installer/install-tl-gui.tcl:373
 #: tlpkg/installer/install-tl-gui.tcl:2020
@@ -946,147 +960,152 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"尝试加载 %s 。\n"
+"\n"
+"如果此项花费了太长时间，请按下 放弃 或选择另一个软件源。"
 
 #: tlpkg/installer/install-tl-gui.tcl:458
 msgid "Cannot be created or cannot be written to"
-msgstr ""
+msgstr "无法被创建 或 无法被写入到"
 
 #: tlpkg/installer/install-tl-gui.tcl:470
 msgid "Directory name..."
-msgstr ""
+msgstr "目录名称…"
 
 #: tlpkg/installer/install-tl-gui.tcl:477
 msgid "Change name (slashes not allowed)"
-msgstr ""
+msgstr "更改名称 (不允许斜杠符)"
 
 #: tlpkg/installer/install-tl-gui.tcl:488
 msgid "No slashes allowed"
-msgstr ""
+msgstr "不允许使用斜杠符"
 
 #: tlpkg/installer/install-tl-gui.tcl:510
 msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
 msgstr ""
+"强烈建议保留 TL 的版本号成分！\n"
+"您确定吗？"
 
 #: tlpkg/installer/install-tl-gui.tcl:519
 msgid "Add year"
-msgstr ""
+msgstr "添加年份"
 
 #: tlpkg/installer/install-tl-gui.tcl:523
 #: tlpkg/installer/install-tl-gui.tcl:602
 msgid "Remove year"
-msgstr ""
+msgstr "移除年份"
 
 #: tlpkg/installer/install-tl-gui.tcl:569
 #: tlpkg/installer/install-tl-gui.tcl:1421
 #: tlpkg/installer/install-tl-gui.tcl:1429
 msgid "Installation root"
-msgstr ""
+msgstr "安装根目录"
 
 #: tlpkg/installer/install-tl-gui.tcl:597
 #: tlpkg/installer/install-tl-gui.tcl:1229 tlpkg/tltcl/tltcl.tcl:683
 msgid "Browse..."
-msgstr ""
+msgstr "浏览…"
 
 #: tlpkg/installer/install-tl-gui.tcl:610
 msgid "Localized directory names will be replaced by their real names"
-msgstr ""
+msgstr "本地化的目录名称将会被替换为它们的真实名称"
 
 #: tlpkg/installer/install-tl-gui.tcl:691
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
-msgstr ""
+msgstr "'~' 等同于 %s，比如 %s"
 
 #: tlpkg/installer/install-tl-gui.tcl:846
 msgid "Cannot deselect own platform"
-msgstr ""
+msgstr "无法取消选择自身平台"
 
 #: tlpkg/installer/install-tl-gui.tcl:881
 #: tlpkg/installer/install-tl-gui.tcl:1233
 msgid "Binaries"
-msgstr ""
+msgstr "二进制文件"
 
 #: tlpkg/installer/install-tl-gui.tcl:931
 msgid "Schemes"
-msgstr ""
+msgstr "方案"
 
 #: tlpkg/installer/install-tl-gui.tcl:1019
 msgid "Collections"
-msgstr ""
+msgstr "合集"
 
 #: tlpkg/installer/install-tl-gui.tcl:1041
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #: tlpkg/installer/install-tl-gui.tcl:1057
 msgid "Languages"
-msgstr ""
+msgstr "语言"
 
 #: tlpkg/installer/install-tl-gui.tcl:1059
 msgid "Other collections"
-msgstr ""
+msgstr "其它合集"
 
 #: tlpkg/installer/install-tl-gui.tcl:1186
 msgid "Warning. Not all configured directories are writable!"
-msgstr ""
+msgstr "警告。并非所有已配置的目录都是可写的！"
 
 #: tlpkg/installer/install-tl-gui.tcl:1206
 msgid "Symlinks"
-msgstr ""
+msgstr "符号链接"
 
 #: tlpkg/installer/install-tl-gui.tcl:1234
 msgid "Man pages"
-msgstr ""
+msgstr "手册页面"
 
 #: tlpkg/installer/install-tl-gui.tcl:1235
 msgid "Info pages"
-msgstr ""
+msgstr "信息页面"
 
 #: tlpkg/installer/install-tl-gui.tcl:1339
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2736
 msgid "GUI language"
-msgstr ""
+msgstr "图形界面语言"
 
 #: tlpkg/installer/install-tl-gui.tcl:1351
 msgid "Font scaling"
-msgstr ""
+msgstr "字体缩放"
 
 #: tlpkg/installer/install-tl-gui.tcl:1353
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1329
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2754
 msgid "Current:"
-msgstr ""
+msgstr "当前："
 
 #: tlpkg/installer/install-tl-gui.tcl:1376
 #, tcl-format
 msgid "TeX Live %s Installer"
-msgstr ""
+msgstr "TeX Live %s 安装器"
 
 #: tlpkg/installer/install-tl-gui.tcl:1394
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2703
 msgid "Advanced"
-msgstr ""
+msgstr "高级"
 
 #: tlpkg/installer/install-tl-gui.tcl:1424
 msgid "Directories"
-msgstr ""
+msgstr "目录"
 
 #: tlpkg/installer/install-tl-gui.tcl:1443
 msgid "Main tree"
-msgstr ""
+msgstr "主干目录树"
 
 #: tlpkg/installer/install-tl-gui.tcl:1466
 msgid "Local additions"
-msgstr ""
+msgstr "本地附加项"
 
 #: tlpkg/installer/install-tl-gui.tcl:1475
 msgid "Per-user additions"
-msgstr ""
+msgstr "各用户附加项"
 
 #: tlpkg/installer/install-tl-gui.tcl:1502
 msgid "More ..."
-msgstr ""
+msgstr "更多 …"
 
 #: tlpkg/installer/install-tl-gui.tcl:1511
 msgid ""
@@ -1094,85 +1113,87 @@ msgid ""
 "May reset TEXMFLOCAL\n"
 "and TEXMFHOME"
 msgstr ""
+"便携安装：\n"
+"可能会重置 TEXMFLOCAL\n"
+"和 TEXMFHOME"
 
 #: tlpkg/installer/install-tl-gui.tcl:1525
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1475
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2710
 msgid "Platforms"
-msgstr ""
+msgstr "平台"
 
 #: tlpkg/installer/install-tl-gui.tcl:1531
 msgid "Current platform:"
-msgstr ""
+msgstr "当前平台："
 
 #: tlpkg/installer/install-tl-gui.tcl:1538
 msgid "N. of additional platform(s):"
-msgstr ""
+msgstr "附加平台数量："
 
 #: tlpkg/installer/install-tl-gui.tcl:1551
 msgid "Selections"
-msgstr ""
+msgstr "选中项"
 
 #: tlpkg/installer/install-tl-gui.tcl:1556
 msgid "Scheme:"
-msgstr ""
+msgstr "方案："
 
 #: tlpkg/installer/install-tl-gui.tcl:1565
 msgid "N. of collections:"
-msgstr ""
+msgstr "合集数量："
 
 #: tlpkg/installer/install-tl-gui.tcl:1568
 msgid "Customize"
-msgstr ""
+msgstr "自定义"
 
 #: tlpkg/installer/install-tl-gui.tcl:1577
 msgid "Disk space required (in MB):"
-msgstr ""
+msgstr "磁盘空间需求 (按 MB 计算)："
 
 #: tlpkg/installer/install-tl-gui.tcl:1606
-#, fuzzy
 msgid "Default paper size"
-msgstr "缺省的纸张给"
+msgstr "默认纸张大小"
 
 #: tlpkg/installer/install-tl-gui.tcl:1617
 msgid "Allow execution of restricted list of programs via \\write18"
-msgstr "允许用 \\write18 执行一部分在限制列表内的程序"
+msgstr "允许通过 \\write18 来执行处于限制列表中的程序"
 
 #: tlpkg/installer/install-tl-gui.tcl:1624
 msgid "Create all format files"
-msgstr "创建所有格式文件"
+msgstr "创建全部格式文件"
 
 #: tlpkg/installer/install-tl-gui.tcl:1632
 msgid "Install font/macro doc tree"
-msgstr "安装字体/宏包文档目录树"
+msgstr "安装 字体/宏包 文档目录树"
 
 #: tlpkg/installer/install-tl-gui.tcl:1642
 msgid "Install font/macro source tree"
-msgstr "安装字体/宏包源码目录树"
+msgstr "安装 字体/宏包 源码目录树"
 
 #: tlpkg/installer/install-tl-gui.tcl:1655
 msgid "Adjust searchpath"
-msgstr ""
+msgstr "修改搜索路径"
 
 #: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "No shortcuts"
-msgstr ""
+msgstr "不创建快捷方式"
 
 #: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "TeX Live menu"
-msgstr ""
+msgstr "TeX Live 菜单"
 
 #: tlpkg/installer/install-tl-gui.tcl:1662
 msgid "Launcher entry"
-msgstr ""
+msgstr "启动器入口"
 
 #: tlpkg/installer/install-tl-gui.tcl:1664
 msgid "Desktop integration"
-msgstr ""
+msgstr "桌面集成"
 
 #: tlpkg/installer/install-tl-gui.tcl:1676
 msgid "File associations"
-msgstr ""
+msgstr "文件关联"
 
 #: tlpkg/installer/install-tl-gui.tcl:1698
 msgid "Install TeXworks front end"
@@ -1180,230 +1201,230 @@ msgstr "安装 TeXworks 前端"
 
 #: tlpkg/installer/install-tl-gui.tcl:1710
 msgid "Create symlinks in standard directories"
-msgstr ""
+msgstr "在标准目录中创建符号链接"
 
 #: tlpkg/installer/install-tl-gui.tcl:1716
 msgid "Specify directories"
-msgstr ""
+msgstr "指定目录"
 
 #: tlpkg/installer/install-tl-gui.tcl:1730
 msgid "After install, set CTAN as source for package updates"
-msgstr ""
+msgstr "在安装后，将 CTAN 设置为用于软件包更新的安装源"
 
 #: tlpkg/installer/install-tl-gui.tcl:1781
 msgid "Custom scheme"
-msgstr ""
+msgstr "自定义方案"
 
 #: tlpkg/installer/install-tl-gui.tcl:1958
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s 不是一个本地或远程软件源"
 
 #: tlpkg/installer/install-tl-gui.tcl:1962
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s 需要一个参数"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
-msgstr ""
+msgstr "指定镜像..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "没有可用的镜像列表"
 
 #: tlpkg/tltcl/tltcl.tcl:766
 msgid "Select or type"
-msgstr ""
+msgstr "选择或输入"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:374
 #: texmf-dist/scripts/tlshell/tlshell.tcl:397
 #: texmf-dist/scripts/tlshell/tlshell.tcl:530
 #: texmf-dist/scripts/tlshell/tlshell.tcl:566
 msgid "Running"
-msgstr ""
+msgstr "正在运行"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:389
 #: texmf-dist/scripts/tlshell/tlshell.tcl:550
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3019
 msgid "Idle"
-msgstr ""
+msgstr "空闲"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:656
 msgid "Needs updating"
-msgstr ""
+msgstr "需要更新"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:658
 msgid "Up to date"
-msgstr ""
+msgstr "最新"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:660
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2824
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:875
 msgid "Loading"
-msgstr ""
+msgstr "正在加载"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:881
 msgid "If loading takes too long, press Abort and choose another repository."
-msgstr ""
+msgstr "如果加载花费了太长时间，请按下 放弃 并选择另一个软件源。"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:882
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2331
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2692
 msgid "Repositories"
-msgstr ""
+msgstr "软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:920
 msgid "Done loading"
-msgstr ""
+msgstr "完成加载"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:946
 msgid "A configured repository is unavailable."
-msgstr ""
+msgstr "配置的软件源不可用。"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1074
 msgid "Output"
-msgstr ""
+msgstr "输出"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1075
 msgid "Other"
-msgstr ""
+msgstr "其它"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1101
 #, tcl-format
 msgid "%s not a repository"
-msgstr ""
+msgstr "%s 不是一个软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1191
 msgid "No repositories"
-msgstr ""
+msgstr "没有软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1196
 msgid "Multiple repositories"
-msgstr ""
+msgstr "多重软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1199
 msgid "Not loaded"
-msgstr ""
+msgstr "未加载"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1235
 msgid "Actual repository"
-msgstr ""
+msgstr "实际软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1318
 msgid "Main Repository"
-msgstr ""
+msgstr "主要软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1335
 msgid "New"
-msgstr ""
+msgstr "新源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1345
 msgid "Any CTAN mirror"
-msgstr ""
+msgstr "任意 CTAN 镜像"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1355
 msgid "Local directory..."
-msgstr ""
+msgstr "本地目录…"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1360
 msgid "tlcontrib additional repository"
-msgstr ""
+msgstr "tlcontrib 附加软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1376
 msgid "tlcontrib repository is included"
-msgstr ""
+msgstr "已包含 tlcontrib 软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1377
 msgid "Remove tlcontrib repository"
-msgstr ""
+msgstr "移除 tlcontrib 软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1379
 msgid "tlcontrib repository is not included"
-msgstr ""
+msgstr "未包含 tlcontrib 软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1380
 msgid "Add tlcontrib repository"
-msgstr ""
+msgstr "添加 tlcontrib 软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1385
 msgid "Save and Load"
-msgstr ""
+msgstr "保存并加载"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1417
 #, tcl-format
 msgid "Cannot remove own platform %s"
-msgstr ""
+msgstr "无法移除自身平台 %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1483
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1679
 msgid "Apply and close"
-msgstr ""
+msgstr "应用并关闭"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1494
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1691
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "发生变更的条目会加粗显示"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1507
 msgid "platform"
-msgstr ""
+msgstr "平台"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1626
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2332
 msgid "Error"
-msgstr ""
+msgstr "错误"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1626
 msgid "No paper sizes available"
-msgstr ""
+msgstr "没有可用的纸张大小"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1640
 msgid "Paper sizes"
-msgstr ""
+msgstr "纸张大小"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1740
 #, tcl-format
 msgid "Restore %s to revision %s?"
-msgstr ""
+msgstr "是否还原 %s 到版本号 %s ？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1763
 msgid "No backups configured"
-msgstr ""
+msgstr "没有配置备份项"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1773
 msgid "No backup directory defined"
-msgstr ""
+msgstr "没有定义备份目录"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1778
 #, tcl-format
 msgid "Backup directory %s does not exist"
-msgstr ""
+msgstr "备份目录 %s 不存在"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1801
 #, tcl-format
 msgid "No packages in backup directory %s"
-msgstr ""
+msgstr "备份目录 %s 中没有软件包"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1811
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2937
 msgid "Restore from backup"
-msgstr ""
+msgstr "从备份中还原"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1827
 msgid "Package"
-msgstr ""
+msgstr "软件包"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1828
 msgid "Revision"
-msgstr ""
+msgstr "版本号"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1869
 msgid "Restore all"
-msgstr ""
+msgstr "还原全部"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1899
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1931
@@ -1411,7 +1432,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2021
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2096
 msgid "Nothing to do!"
-msgstr ""
+msgstr "没有需要做的事！"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1986
 #, tcl-format
@@ -1420,11 +1441,14 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"同时安装依赖项\n"
+"\n"
+"%s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1993
 #, tcl-format
 msgid "Already installed: %s"
-msgstr ""
+msgstr "已安装：%s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2034
 #, tcl-format
@@ -1433,21 +1457,24 @@ msgid ""
 "\n"
 "%s?"
 msgstr ""
+"是否同时更新依赖项\n"
+"\n"
+"%s ？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2049
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "必须更新某些依赖项 %s 。是否继续？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2061
 #, tcl-format
 msgid "Skipped because not installed: %s"
-msgstr ""
+msgstr "已跳过因为未安装： %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2064
 #, tcl-format
 msgid "Skipped because already up to date: %s"
-msgstr ""
+msgstr "已跳过因为已经是最新：%s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2100
 #, tcl-format
@@ -1456,21 +1483,26 @@ msgid ""
 "\n"
 "%s?"
 msgstr ""
+"是否同时移除依赖项\n"
+"\n"
+"%s ？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2115
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
-msgstr ""
+msgstr "必须移除某些依赖项 %s 。是否继续？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2202
 msgid "Info"
-msgstr ""
+msgstr "信息"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2289
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
 msgstr ""
+"用于 TeX Live 管理器 的图形界面\n"
+"通过 Tcl/Tk 实现"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2295
 msgid ""
@@ -1479,6 +1511,10 @@ msgid ""
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
+"这个 TeX Live 管理器 前端应该是非常一目了然的。\n"
+"请注意其并未涵盖 tlmgr 的完整功能。很明显，其没有涵盖 用户模式 或者 备份和还"
+"原。\n"
+"请参阅 ‘Tlmgr 帮助’ 菜单以获取关于 tlmgr 其自身的完整文档。"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2329
 #, tcl-format
@@ -1486,124 +1522,126 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s 不是一个本地或远程软件源。\n"
+"请配置一个有效的软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2648
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2670
 msgid "File"
-msgstr ""
+msgstr "文件"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2672
 msgid "Load repository"
-msgstr ""
+msgstr "加载软件源"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2674
 msgid "Exit"
-msgstr ""
+msgstr "退出程序"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2678
 msgid "Regenerate filename database"
-msgstr ""
+msgstr "重新生成文件名数据库"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2679
 msgid "Regenerating filename database..."
-msgstr ""
+msgstr "正在重新生成文件名数据库…"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2680
 msgid "Regenerate formats"
-msgstr ""
+msgstr "重新生成格式文件"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2681
 msgid "Rebuilding formats..."
-msgstr ""
+msgstr "正在重建格式文件…"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2682
 msgid "Regenerate fontmaps"
-msgstr ""
+msgstr "重新生成字体映射"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2683
 msgid "Rebuilding fontmap files..."
-msgstr ""
+msgstr "正在重建字体映射…"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2720
 msgid "Add/replace 64-bit binaries"
-msgstr ""
+msgstr "添加/替换 64-bit 程序"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2723
 msgid "Add/replace from local file"
-msgstr ""
+msgstr "从本地文件 添加/替换"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2727
 msgid "Resynchronize with 32-bit"
-msgstr ""
+msgstr "和 32-bit 版本进行重新同步"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2731
 msgid "Remove 64-bit binaries"
-msgstr ""
+msgstr "移除 64-bit 程序"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2750
 msgid "GUI font scaling"
-msgstr ""
+msgstr "图形界面字体缩放"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2776
 msgid "TLShell Help"
-msgstr ""
+msgstr "TLShell 帮助"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2777
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Tlmgr 帮助"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2796
 msgid "Restart self"
-msgstr ""
+msgstr "重启自身"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2798
 msgid "Restart tlmgr"
-msgstr ""
+msgstr "重启 tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2801
 msgid "Show logs"
-msgstr ""
+msgstr "显示日志"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2822
 msgid "TL Manager up to date?"
-msgstr ""
+msgstr "TL 管理器 是否为最新？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2827
 msgid "Last tlmgr command:"
-msgstr ""
+msgstr "前一个 tlmgr 命令："
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2840
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "根目录位于 %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2853
 msgid "Package list"
-msgstr ""
+msgstr "软件包列表"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2871
 msgid "Installed"
-msgstr ""
+msgstr "已安装"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2873
 msgid "Not installed"
-msgstr ""
+msgstr "未安装"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2883
 msgid "Updatable"
-msgstr ""
+msgstr "可更新"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2895
 msgid "Detail >> Global"
-msgstr ""
+msgstr "详情 >> 全局"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2898
 msgid "Collections and schemes"
-msgstr ""
+msgstr "合集与方案"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2900
 msgid "Only schemes"
-msgstr ""
+msgstr "仅方案"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2908
 msgid "Search"
@@ -1611,27 +1649,27 @@ msgstr "搜索"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2911
 msgid "By name"
-msgstr ""
+msgstr "按名称"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2913
 msgid "By name and description"
-msgstr ""
+msgstr "按名称和描述"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2927
 msgid "Install marked"
-msgstr ""
+msgstr "安装标记项"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2930
 msgid "Update marked"
-msgstr ""
+msgstr "更新标记项"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2933
 msgid "Remove marked"
-msgstr ""
+msgstr "移除标记项"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2941
 msgid "Update tlmgr"
-msgstr ""
+msgstr "更新 tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2943
 msgid "Update all"
@@ -1639,31 +1677,31 @@ msgstr "更新全部"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2949
 msgid "Mark all displayed"
-msgstr ""
+msgstr "标记全部显示项"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2951
 msgid "Mark none"
-msgstr ""
+msgstr "不标记任何项"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2954
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "只会显示用于已安装平台的软件包"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2964
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2967
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3002
 msgid "Multi-user"
-msgstr ""
+msgstr "多用户"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3002
 msgid "Single-user"
-msgstr ""
+msgstr "单用户"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3087
 #, tcl-format
@@ -1671,210 +1709,212 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"%s 不可写入。您可能做不了太多事情\n"
+" 您确定您想要继续吗？"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
-msgstr ""
+msgstr "基础 方案 (plain 和 latex)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "ConTeXt scheme"
-msgstr ""
+msgstr "ConTeXt 方案"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "full scheme (everything)"
-msgstr ""
+msgstr "完整 方案 (所有内容)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
 msgid "GUST TeX Live scheme"
-msgstr ""
+msgstr "GUST TeX Live 方案"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
 msgid "infrastructure-only scheme (no TeX at all)"
-msgstr ""
+msgstr "仅基础架构 方案 (完全没有 TeX)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
 msgid "medium scheme (small + more packages and languages)"
-msgstr ""
+msgstr "中型 方案 (小型 + 更多软件包和语言包)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
 msgid "minimal scheme (plain only)"
-msgstr ""
+msgstr "最小 方案 (只有 plain)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
 msgid "small scheme (basic + xetex, metapost, a few languages)"
-msgstr ""
+msgstr "小型 方案 (基础 + xetex、metapost、一些语言包)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
 msgid "teTeX scheme (more than medium, but nowhere near full)"
-msgstr ""
+msgstr "teTeX 方案 (多于 中型，但并没有接近 完整)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
 msgid "Essential programs and files"
-msgstr ""
+msgstr "核心程序和文件"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:11
 msgid "BibTeX additional styles"
-msgstr ""
+msgstr "BibTeX 附加样式"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:12
 msgid "TeX auxiliary programs"
-msgstr ""
+msgstr "TeX 辅助程序"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:13
 msgid "ConTeXt and packages"
-msgstr ""
+msgstr "ConTeXt 和软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:14
 msgid "Additional fonts"
-msgstr ""
+msgstr "附加字体"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:15
 msgid "Recommended fonts"
-msgstr ""
+msgstr "推荐字体"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:16
 msgid "Graphics and font utilities"
-msgstr ""
+msgstr "图形和字体实用程序"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:17
 msgid "Additional formats"
-msgstr ""
+msgstr "附加格式文件"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:18
 msgid "Games typesetting"
-msgstr ""
+msgstr "游戏 排版"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:19
 msgid "Humanities packages"
-msgstr ""
+msgstr "人文 软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:20
 msgid "Arabic"
-msgstr ""
+msgstr "阿拉伯语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:21
 msgid "Chinese"
-msgstr ""
+msgstr "中文"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:22
 msgid "Chinese/Japanese/Korean (base)"
-msgstr ""
+msgstr "中文/日语/韩文 (基本)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
 msgid "Cyrillic"
-msgstr ""
+msgstr "西里尔字母"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
 msgid "Czech/Slovak"
-msgstr ""
+msgstr "捷克/斯洛伐克"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:25
 msgid "US and UK English"
-msgstr ""
+msgstr "英语 (美国和英国)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:26
 msgid "Other European languages"
-msgstr ""
+msgstr "其它欧洲语言"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:27
 msgid "French"
-msgstr ""
+msgstr "法语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:28
 msgid "German"
-msgstr ""
+msgstr "德语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:29
 msgid "Greek"
-msgstr ""
+msgstr "希腊语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:30
 msgid "Italian"
-msgstr ""
+msgstr "意大利语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:31
 msgid "Japanese"
-msgstr ""
+msgstr "日语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:32
 msgid "Korean"
-msgstr ""
+msgstr "韩文"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:33
 msgid "Other languages"
-msgstr ""
+msgstr "其它语言"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:34
 msgid "Polish"
-msgstr ""
+msgstr "波兰语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:35
 msgid "Portuguese"
-msgstr ""
+msgstr "葡萄牙语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:36
 msgid "Spanish"
-msgstr ""
+msgstr "西班牙语"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:37
 msgid "LaTeX fundamental packages"
-msgstr ""
+msgstr "LaTeX 基础软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:38
 msgid "LaTeX additional packages"
-msgstr ""
+msgstr "LaTeX 附加软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
 msgid "LaTeX recommended packages"
-msgstr ""
+msgstr "LaTeX 推荐软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
 msgid "LuaTeX packages"
-msgstr ""
+msgstr "LuaTeX 软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "Mathematics, natural sciences, computer science packages"
-msgstr ""
+msgstr "数学、自然科学、计算机科学 软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "MetaPost and Metafont packages"
-msgstr ""
+msgstr "MetaPost 和 Metafont 软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
 msgid "Music packages"
-msgstr ""
+msgstr "音乐 软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
 msgid "Graphics, pictures, diagrams"
-msgstr ""
+msgstr "图形、图像、图表"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:45
 msgid "Plain (La)TeX packages"
-msgstr ""
+msgstr "Plain (La)TeX 软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
 msgid "PSTricks"
-msgstr ""
+msgstr "PSTricks"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:47
 msgid "Publisher styles, theses, etc."
-msgstr ""
+msgstr "出版社样式、论文 等。"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:48
 msgid "TeXworks editor; TL includes only the Windows binary"
-msgstr ""
+msgstr "TeXworks 编辑器；TL 只包含了其 Windows 版程序"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
 msgid "Windows-only support programs"
-msgstr ""
+msgstr "仅适用于 Windows 的支持程序"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
-msgstr ""
+msgstr "XeTeX 和软件包"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2616
 msgid "Welcome to TeX Live!"
-msgstr "欢迎进入 TeX Live 的世界！"
+msgstr "欢迎来到 TeX Live ！"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2619
 #, perl-format
@@ -1885,6 +1925,10 @@ msgid ""
 "world; please consider supporting it by joining the group best for you. The "
 "list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
+"请查看 %s/index.html 以获取文档链接。\n"
+"TeX Live 网站 (https://tug.org/texlive/) 包含了所有更新和修复。TeX Live 是一"
+"个联合项目，属于遍布全世界的各个 TeX 用户团体；请考虑加入其中最适合您的团体来"
+"支持它。团体名单可以在位于 https://tug.org/usergroups.html 的网页上找到。"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2629
 #, perl-format
@@ -1894,483 +1938,7 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions."
 msgstr ""
-
-#~ msgid "Installation process"
-#~ msgstr "安装过程"
-
-#~ msgid "Finish"
-#~ msgstr "完成"
-
-#~ msgid "Adjust PATH setting in registry"
-#~ msgstr "修改注册表中的 PATH 设置"
-
-#~ msgid "Installation for all users"
-#~ msgstr "为所有用户安装"
-
-#~ msgid "TeX Live %s Installation"
-#~ msgstr "TeX Live %s 安装"
-
-#~ msgid "< Back"
-#~ msgstr "< 上一步"
-
-#~ msgid "Next >"
-#~ msgstr "下一步 >"
-
-#~ msgid "Destination folder:"
-#~ msgstr "目的文件夹:"
-
-#~ msgid ""
-#~ "The destination folder will contain the installation.\n"
-#~ "It is strongly recommended to keep the year as the last component."
-#~ msgstr ""
-#~ "将包含整个安装的目的文件夹。\n"
-#~ "强烈建议以年份作为最后的目录项。"
-
-#, fuzzy
-#~ msgid "disk space required:"
-#~ msgstr "需要的磁盘空间"
-
-#~ msgid "This screen allows you to configure some options"
-#~ msgstr "这个界面允许你配置某些选项"
-
-#~ msgid ""
-#~ "We are ready to install TeX Live %s.\n"
-#~ "The following settings will be used.\n"
-#~ "If you want to change something please go back,\n"
-#~ "otherwise press the \"Install\" button."
-#~ msgstr ""
-#~ "我们可以开始安装 TeX Live %s 了。\n"
-#~ "将使用下列选项。\n"
-#~ "如果你还想修改什么请后退，否则点击“安装”按钮。"
-
-#~ msgid "Basic Information"
-#~ msgstr "基本信息"
-
-#~ msgid "Binary system(s)"
-#~ msgstr "二进制系统"
-
-#~ msgid "Selected scheme"
-#~ msgstr "选择安装方案"
-
-#~ msgid "Further Customization"
-#~ msgstr "进一步定制"
-
-#~ msgid "Directory setup"
-#~ msgstr "目录设置"
-
-#~ msgid "TEXDIR (the main TeX directory)"
-#~ msgstr "TEXDIR (主 TeX 目录)"
-
-#~ msgid "TEXMFLOCAL (directory for site-wide local files)"
-#~ msgstr "TEXMFLOCAL (存放本地格式文件等)"
-
-#~ msgid "TEXMFSYSVAR (directory for autogenerated data)"
-#~ msgstr "TEXMFSYSVAR (存放自动生成数据的目录)"
-
-#~ msgid "TEXMFSYSCONFIG (directory for local config)"
-#~ msgstr "TEXMFSYSCONFIG (存放本地配置)"
-
-#~ msgid "TEXMFHOME (directory for user-specific files)"
-#~ msgstr "TEXMFHOME (用户专有文件的目录)"
-
-#~ msgid "Create symlinks in system directories"
-#~ msgstr "创建指向系统目录的符号链接"
-
-#~ msgid "Install TeX Live"
-#~ msgstr "安装 TeX Live"
-
-#~ msgid "Change variable value"
-#~ msgstr "更改变量的值"
-
-#~ msgid "Enter path for %s (use ~ for %s)"
-#~ msgstr "输入 %s 对应的路径 (使用 ~ 作为 %s)"
-
-#~ msgid "Select the collections to be installed"
-#~ msgstr "选择要安装的组件"
-
-#~ msgid "Select All"
-#~ msgstr "全部选择"
-
-#~ msgid "Deselect All"
-#~ msgstr "取消全部选择"
-
-#~ msgid "create symlinks in standard directories"
-#~ msgstr "在标准位置创建符号链接"
-
-#~ msgid "binaries to"
-#~ msgstr "程序文件安装位置"
-
-#~ msgid "manpages to"
-#~ msgstr "手册文档(*.man)安装位置"
-
-#~ msgid "info to"
-#~ msgstr "超文本文档(*.info)安装位置"
-
-#~ msgid "Select arch-os"
-#~ msgstr "选择系统架构"
-
-#~ msgid "%s out of %s"
-#~ msgstr "%s  来自 %s"
-
-#, fuzzy
-#~ msgid "%s collections out of %s"
-#~ msgstr "%s 集合来自 %s"
-
-#~ msgid "(please change TEXDIR first!)"
-#~ msgstr "(请首先改变 TEXDIR ！)"
-
-#~ msgid "(default not writable - please change!)"
-#~ msgstr "(默认位置不可写 - 请做相应更改！)"
-
-#~ msgid ""
-#~ "See %s/index.html for links to documentation.\n"
-#~ "The TeX Live web site (http://tug.org/texlive/) contains any updates and "
-#~ "corrections. TeX Live is a joint project of the TeX user groups around "
-#~ "the world; please consider supporting it by joining the group best for "
-#~ "you. The list of groups is available on the web at http://tug.org/"
-#~ "usergroups.html."
-#~ msgstr ""
-#~ "请参考 %s/index.html 来获得文档链接。TeX Live 官方网站\n"
-#~ "(http://tug.org/texlive/) 包含所有相关的更新和修正。\n"
-#~ "TeX Live 是全世界 TeX 用户组的一个合作项目；\n"
-#~ "请考虑加入合适的 TeX 用户组来支持该项目。从\n"
-#~ "http://tug.org/usergroups.html 可以获得 TeX 用户组的列表。"
-
-#~ msgid "Enter path for"
-#~ msgstr "输入路径变量"
-
-#~ msgid ""
-#~ "You don't have permissions to change the installation in any way,\n"
-#~ "specifically, the directory %s is not writable.\n"
-#~ "Please run this program as administrator, or contact your local admin.\n"
-#~ "\n"
-#~ "Most buttons will be disabled."
-#~ msgstr ""
-#~ "你没有修改安装的权限，\n"
-#~ "具体说来，%s 目录不可写。\n"
-#~ "请以管理员身份执行本程序，或者联系本地管理员。\n"
-#~ "\n"
-#~ "大部分按钮都被禁用了。"
-
-#~ msgid "Local Revision:"
-#~ msgstr "本地版本:"
-
-#~ msgid "Local Catalogue Version:"
-#~ msgstr "本地目录版本:"
-
-#~ msgid "Remote Revision:"
-#~ msgstr "远程版本:"
-
-#~ msgid "Remote Catalogue Version:"
-#~ msgstr "远程目录版本:"
-
-#~ msgid "Restore all package to latest version"
-#~ msgstr "将所有包恢复到最新版本"
-
-#~ msgid "Loaded repository:"
-#~ msgstr "已载入的软件包仓库"
-
-#~ msgid ""
-#~ "At least %s further updates are available after tlmgr has been updated."
-#~ msgstr "在 tlmgr 更新后至少有 %s 个软件包更新可用。"
-
-#~ msgid "Package repository:"
-#~ msgstr "软件包仓库:"
-
-#~ msgid "Default net package repository"
-#~ msgstr "缺省的网络软件包仓库"
-
-#~ msgid "Load default net repository:"
-#~ msgstr "载入缺省的网络仓库"
-
-#~ msgid "Standard collections"
-#~ msgstr "标准安装"
-
-#~ msgid "Language collections"
-#~ msgstr "语言集合"
-
-#~ msgid "Select language support"
-#~ msgstr "选择语言支持"
-
-#~ msgid "(no language collection selected!)"
-#~ msgstr "(没有选择语言集合！)"
-
-#~ msgid "Select language-specific documentation"
-#~ msgstr "选择相关语言的文档"
-
-#~ msgid ""
-#~ "Add %s/texmf/doc/man to MANPATH.\n"
-#~ "Add %s/texmf/doc/info to INFOPATH.\n"
-#~ "Most importantly, add %s/bin/%s\n"
-#~ "to your PATH for current and future sessions."
-#~ msgstr ""
-#~ "添加 %s/texmf/doc/man 到 MANPATH.\n"
-#~ "添加 %s/texmf/doc/info 到 INFOPATH.\n"
-#~ "最为重要的是，请添加 %s/bin/%s\n"
-#~ "到你的 PATH 变量。"
-
-#~ msgid "Create shortcuts in menu and on desktop"
-#~ msgstr "系统集成"
-
-#~ msgid ""
-#~ "Welcome to the installation of TeX Live %s\n"
-#~ "http://tug.org/texlive\n"
-#~ "\n"
-#~ "This wizard will guide you through the installation.\n"
-#~ "\n"
-#~ "For an advanced, customizable installation, please consult\n"
-#~ "the web pages or installation guide."
-#~ msgstr ""
-#~ "欢迎使用 TeX Live %s 的安装程序\n"
-#~ "http://tug.org/texlive\n"
-#~ "\n"
-#~ "这个向导将引导你完成整个安装。\n"
-#~ "\n"
-#~ "要使用更强大、可定制的安装，请参考网页或安装指南。"
-
-#~ msgid "Or use install-tl-advanced.bat"
-#~ msgstr "或者使用 install-tl-advanced.bat"
-
-#, fuzzy
-#~ msgid "Or use the argument --gui expert to install-tl."
-#~ msgstr "或者使用 install-tl 的 --gui perltk 参数。"
-
-#~ msgid ""
-#~ "Loading local TeX Live Database\n"
-#~ "This may take some time, please wait!"
-#~ msgstr ""
-#~ "正在载入本地 TeX Live 数据库\n"
-#~ "可能会花费一点时间，请稍等！"
-
-#~ msgid "Complete removal completed"
-#~ msgstr "已经完整删除"
-
-#~ msgid ""
-#~ "Could not load the TeX Live Database from %s\n"
-#~ "If you want to install or update packages, please try with a different "
-#~ "package repository!\n"
-#~ "\n"
-#~ "For configuration and removal you don't have to do anything."
-#~ msgstr ""
-#~ "无法从 %s 载入 TeX Live 数据库\n"
-#~ "如果你希望安装或者更新包，请尝试另一个软件包仓库！\n"
-#~ "\n"
-#~ "如果只是需要配置或删除则不需要做任何其他操作。"
-
-#~ msgid "Change default package repository"
-#~ msgstr "修改缺省的软件包仓库"
-
-#~ msgid "New default package repository"
-#~ msgstr "新的缺省软件包仓库"
-
-#~ msgid ""
-#~ "Loading remote TeX Live Database\n"
-#~ "This may take some time, please wait!"
-#~ msgstr ""
-#~ "载入远程 TeX Live 数据库\n"
-#~ "这可能会花费一点时间，请稍等！"
-
-#~ msgid "Restore done"
-#~ msgstr "已经恢复"
-
-#~ msgid "Add shortcuts to menu and desktop"
-#~ msgstr "在桌面和菜单栏添加快捷方式"
-
-#~ msgid ""
-#~ "Updates for the tlmgr are present.\n"
-#~ "Installation and upgrades won't work without being forced.\n"
-#~ "Please select \"Update all installed\" button below.\n"
-#~ "The program will terminate after the update.\n"
-#~ "Then you can restart the program for further updates."
-#~ msgstr ""
-#~ "有 tlmgr 的更新。\n"
-#~ "除非强制运行，否则安装和更新都无法继续。\n"
-#~ "请到更新界面并点击 \"全部更新\" 按钮。\n"
-#~ "这个程序将会在更新后关闭。\n"
-#~ "然后你可以重新启动此程序做后续更新。"
-
-#~ msgid "(no description available)"
-#~ msgstr "(没有描述信息)"
-
-#~ msgid "Use Ctrl or Shift or drag to select more"
-#~ msgstr "使用 Ctrl 或 Shift 或拖拽以多选"
-
-#~ msgid "Select packages"
-#~ msgstr "选择软件包"
-
-#~ msgid "Next"
-#~ msgstr "下一个"
-
-#~ msgid "Information on the selected item"
-#~ msgstr "选定项目的信息"
-
-#~ msgid "Force"
-#~ msgstr "强制"
-
-#~ msgid ""
-#~ "Force the removal of a package even if it is referenced in a collection."
-#~ msgstr "强制删除一个软件包，即使它是某个集合所包含的。"
-
-#~ msgid "without depends"
-#~ msgstr "没有依赖"
-
-#~ msgid ""
-#~ "For collections: install or remove will not install/remove the "
-#~ "dependencies"
-#~ msgstr "关于集合：添加删除并不会影响依赖其依赖的"
-
-#~ msgid "Architectures"
-#~ msgstr "架构"
-
-#~ msgid "Select architectures to support"
-#~ msgstr "选择支持的架构"
-
-#~ msgid "Reset changes"
-#~ msgstr "重置修改"
-
-#~ msgid "Removals of the main architecture not possible!"
-#~ msgstr "不可能删除主架构文件！"
-
-#~ msgid "Configuration"
-#~ msgstr "配置"
-
-#~ msgid "Default settings"
-#~ msgstr "缺省设置"
-
-#~ msgid "Paper settings"
-#~ msgstr "纸张设置"
-
-#~ msgid "Re-initialize file database"
-#~ msgstr "重新初始化文件名数据库"
-
-#~ msgid "Re-create all formats"
-#~ msgstr "重新创建所有格式文件"
-
-#~ msgid "Uninstallation"
-#~ msgstr "卸载"
-
-#~ msgid "Please use the \"Add/Remove Programs\" from the Control Panel!"
-#~ msgstr "请使用控制面板中的“添加/删除程序”！"
-
-#~ msgid ""
-#~ "Really remove the complete TeX Live %s installation?\n"
-#~ "Your last chance to change your mind!"
-#~ msgstr ""
-#~ "确定要删除整个 TeX Live %s 的安装吗？\n"
-#~ "这是你最后一次改变主意的机会！"
-
-#~ msgid "Current package repository:"
-#~ msgstr "当前的软件包仓库:"
-
-#~ msgid "Press this button to load the database from the package repository."
-#~ msgstr "点击这个按钮来从软件包仓库中载入数据库"
-
-#~ msgid ""
-#~ "Change package repository from where packages are fetched at installation "
-#~ "and update time."
-#~ msgstr "修改安装和更新时作为下载来源的软件包仓库。"
-
-#~ msgid "Debug"
-#~ msgstr "调试"
-
-#~ msgid "Turn on debug mode."
-#~ msgstr "打开调试模式"
-
-#~ msgid "Adding packages"
-#~ msgstr "添加软件包"
-
-#~ msgid "Install selected"
-#~ msgstr "安装选定的"
-
-#~ msgid ""
-#~ "The database of the package repository has not been loaded.\n"
-#~ "\n"
-#~ "Please use the \"Load\" (and possibly \"Change\") button to do so."
-#~ msgstr ""
-#~ "软件包仓库的数据库并未载入。\n"
-#~ "\n"
-#~ "请使用 \"载入\" (或者 \"修改\") 按钮来载入。"
-
-#~ msgid "Updating packages"
-#~ msgstr "更新软件包"
-
-#~ msgid "Update selected"
-#~ msgstr "更新选定的"
-
-#~ msgid "Removing packages"
-#~ msgstr "删除软件包"
-
-#~ msgid "Remove selected"
-#~ msgstr "删除选定的"
-
-#~ msgid "Please click on an item on the left for details"
-#~ msgstr "请点击一个左侧的项目以了解详情"
-
-#~ msgid "...please change me..."
-#~ msgstr "...请修改我..."
-
-#~ msgid ""
-#~ "No updates found.\n"
-#~ "\n"
-#~ "Your installation is set up to look on the disk for updates.\n"
-#~ "\n"
-#~ "If you want to install from the Internet for this one time only, click on "
-#~ "the \"Change\" button above and select \"Default net package repository"
-#~ "\" (or any other package repository you know to be working).\n"
-#~ "\n"
-#~ "If you want to change it permanently, go to the \"Configuration\" Tab and "
-#~ "change the default package repository."
-#~ msgstr ""
-#~ "没找到更新。\n"
-#~ "\n"
-#~ "你的安装被配置为查询硬盘以获取更新。\n"
-#~ "\n"
-#~ "如果这次你希望从互联网获取安装，点击上面的 “修改”按钮并选择“缺省的网络软件"
-#~ "包仓库”(或者任何其他你确认工作的软件包仓库)。\n"
-#~ "\n"
-#~ "如果你希望永久地修改这个选项，到“配置”选项卡去修改缺省的软件包仓库。"
-
-#~ msgid "Everything up-to-date!"
-#~ msgstr "所有内容都是最新的！"
-
-#~ msgid ""
-#~ "Updates for the tlmgr are present.\n"
-#~ "Installation and upgrades won't work without being forced.\n"
-#~ "Please go to the update screen and press the \"update all\" button.\n"
-#~ "The program will terminate after the update.\n"
-#~ "Then you can restart the program for further updates."
-#~ msgstr ""
-#~ "有 tlmgr 的更新。\n"
-#~ "除非强制运行，否则安装和更新都无法继续。\n"
-#~ "请到更新界面并点击 \"全部更新\" 按钮。\n"
-#~ "这个程序将会在更新后关闭。\n"
-#~ "然后你可以重新启动此程序做后续更新。"
-
-#~ msgid "Change package repository"
-#~ msgstr "修改软件包仓库"
-
-#~ msgid "New package repository:"
-#~ msgstr "新的软件包仓库"
-
-#~ msgid "Warning Window"
-#~ msgstr "警告窗口"
-
-#~ msgid "Use letter size instead of A4 by default"
-#~ msgstr "默认使用 letter 而不是 A4"
-
-#~ msgid "pattern:"
-#~ msgstr "模式"
-
-#~ msgid "Architectures ..."
-#~ msgstr "架构..."
-
-#, fuzzy
-#~ msgid "Update LuaTeX font database"
-#~ msgstr "更新字体映射数据库"
-
-#, fuzzy
-#~ msgid "%s collections out of %s (disk space required: %s MB)"
-#~ msgstr "%s 集合来自 %s (需要的磁盘空间 %s MB)"
-
-#~ msgid "(use ~ for %%%)"
-#~ msgstr "(使用 ~ 作为 %%%)"
+"添加 %s/texmf-dist/doc/man 到 MANPATH。\n"
+"添加 %s/texmf-dist/doc/info 到 INFOPATH。\n"
+"最重要的是，添加 %s/bin/%s 到您的 PATH \n"
+"使其能够用于当前和未来的会话。"
