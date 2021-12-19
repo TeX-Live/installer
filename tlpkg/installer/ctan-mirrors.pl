@@ -152,6 +152,7 @@ $mirrors = {
       'https://ctan.ijs.si/tex-archive/' => 1,
     },
     'Spain' => {
+      'https://ctan.javinator9889.com/' => 1,
       'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
@@ -170,6 +171,7 @@ $mirrors = {
       'https://ctan.math.ca/tex-archive/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
+      'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
