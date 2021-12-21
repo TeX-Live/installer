@@ -6,6 +6,8 @@
 # 
 # Loads of code adapted from the catalogue checking script of Robin Fairbairns.
 
+use strict; use warnings;
+
 use XML::Parser;
 use XML::XPath;
 use XML::XPath::XMLParser;

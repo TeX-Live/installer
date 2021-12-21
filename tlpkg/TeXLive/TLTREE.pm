@@ -4,6 +4,8 @@
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
+use strict; use warnings;
+
 package TeXLive::TLTREE;
 
 my $svnrev = '$Revision$';

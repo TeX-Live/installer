@@ -2666,7 +2666,7 @@ END_COMPRESSOR_BAD
   if ($::opt_verbosity >= 2) {
     require Data::Dumper;
     # avoid spurious "used only once" warnings due to require
-    # (warnings restored at end of scope):
+    # (warnings restored at end of scope). https://perlmonks.org/?node_id=3333
     no warnings 'once';
     local $Data::Dumper::Sortkeys = 1;  # stable output
     local $Data::Dumper::Purity = 1;    # reconstruct recursive structures

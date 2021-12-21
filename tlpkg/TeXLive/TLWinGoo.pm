@@ -9,6 +9,8 @@
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
+#use strict; use warnings; notyet
+
 package TeXLive::TLWinGoo;
 
 my $svnrev = '$Revision$';
@@ -86,7 +88,7 @@ All exported functions return forward slashes.
 
 BEGIN {
   use Exporter;
-  use vars qw( @ISA @EXPORT $Registry);
+  use vars qw( @ISA @EXPORT @EXPORT_OK $Registry);
   @ISA = qw( Exporter );
   @EXPORT = qw(
     &is_ten
@@ -343,7 +345,7 @@ sub is_a_texdir {
   $sr =~ s/\\/\//g;
   $sr = $sr . '/' unless $sr =~ m!/$!;
   return 0 if index($d, $sr)==0;
-  foreach $p (qw(luatex.exe mktexlsr.exe pdftex.exe tex.exe xetex.exe)) {
+  foreach my $p (qw(luatex.exe mktexlsr.exe pdftex.exe tex.exe xetex.exe)) {
     return 1 if (-e $d.$p);
   }
   return 0;

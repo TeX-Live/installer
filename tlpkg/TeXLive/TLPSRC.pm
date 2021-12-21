@@ -4,6 +4,8 @@
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
+use strict; use warnings;
+
 package TeXLive::TLPSRC;
 
 use FileHandle;
@@ -263,7 +265,7 @@ sub from_file {
 
 sub writeout {
   my $self = shift;
-  my $fd = (@_ ? $_[0] : STDOUT);
+  my $fd = (@_ ? $_[0] : *STDOUT);
   format_name $fd "multilineformat";  # format defined in TLPOBJ, and $:
   $fd->format_lines_per_page (99999); # no pages in this format
   print $fd "name ", $self->name, "\n";
