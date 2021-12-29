@@ -3,6 +3,9 @@ $mirrors = {
     'Algeria' => {
       'http://ctan.epst-tlemcen.dz/tex-archive/' => 1,
     },
+    'Morocco' => {
+      'https://mirror.marwan.ma/ctan/' => 1,
+    },
     'South Africa' => {
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
@@ -171,7 +174,6 @@ $mirrors = {
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
-      'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
