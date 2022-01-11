@@ -64,6 +64,9 @@ $mirrors = {
       'https://mirror.easyname.at/ctan/' => 1,
       'https://mirror.kumi.systems/ctan/' => 1,
     },
+    'Belarus' => {
+      'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
+    },
     'Czech Republic' => {
       'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
