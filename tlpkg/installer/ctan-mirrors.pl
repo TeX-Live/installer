@@ -176,6 +176,7 @@ $mirrors = {
       'https://mirror.foobar.to/CTAN/' => 1,
     },
     'United Kingdom' => {
+      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://www-uxsup.csx.cam.ac.uk/pub/tex-archive/' => 1,
     },
   },
@@ -200,10 +201,8 @@ $mirrors = {
       'https://ctan.mirrors.hoobly.com/' => 1,
       'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
-      'https://mirror.mwt.me/ctan/' => 1,
       'https://mirrors.concertpass.com/tex-archive/' => 1,
       'https://mirrors.mit.edu/CTAN/' => 1,
-      'https://mirrors.rit.edu/CTAN/' => 1,
     },
   },
   'Oceania' => {
