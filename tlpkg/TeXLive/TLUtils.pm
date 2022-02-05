@@ -2624,6 +2624,20 @@ sub setup_programs {
       setup_one(($isWin ? "w32" : "unix"), $defprog,
                  "$bindir/$dltype/$defprog.$platform", "--version", $tlfirst);
   }
+  # check for curl special stuff on MacOS
+  if (member("curl", @working_downloaders) && platform() =~ m/darwin/) {
+    # copied from platform_name
+    chomp (my $sw_vers = `sw_vers -productVersion`);
+    my ($os_major,$os_minor) = split (/\./, $sw_vers);
+    if ($os_major == 10 && ($os_minor == 13 || $os_minor == 14)) {
+      my @curlargs = @{$TeXLive::TLConfig::FallbackDownloaderArgs{'curl'}};
+      # can't push new arg at end of list because builtin list ends with
+      # -o to set the output file.
+      unshift (@curlargs, '--cacert', "$::installerdir/tlpkg/installer/curl/curl-ca-bundle.crt");
+      $TeXLive::TLConfig::FallbackDownloaderArgs{'curl'} = \@curlargs;
+      debug("TLUtils::setup_programs: curl on old darwin, final curl args: @{$TeXLive::TLConfig::FallbackDownloaderArgs{'curl'}}\n");
+    }
+  }
   # check for wget/ssl support
   if (member("wget", @working_downloaders)) {
     debug("TLUtils::setup_programs: checking for ssl enabled wget\n");
