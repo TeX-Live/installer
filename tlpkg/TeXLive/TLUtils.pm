@@ -4176,9 +4176,9 @@ sub check_on_working_mirror {
   # so try wget and only check for the return value
   # please KEEP the / after $mirror, some ftp mirrors do give back
   # an error if the / is missing after ../CTAN/
-  my $cmd = "$wget $mirror/ --timeout=$NetworkTimeout -O "
-            . (win32() ? "nul" : "/dev/null")
-            . " 2>" . (win32() ? "nul" : "/dev/null");
+  my $cmd = "$wget $mirror/ --timeout=$NetworkTimeout -O -"
+            . "  >" . (TeXLive::TLUtils::nulldev())
+            . " 2>" . (TeXLive::TLUtils::nulldev());
   my $ret = system($cmd);
   # if return value is not zero it is a failure, so switch the meanings
   return ($ret ? 0 : 1);
