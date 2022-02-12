@@ -4080,7 +4080,7 @@ END_NO_SSL
 # 
 sub query_ctan_mirror_curl {
   my $max_trial = 3;
-  my $warg = (win32() ? "-w %{url_effective} " : "-w '%{url_effective}' ");
+  my $warg = (win32() ? '-w "%{url_effective}" ' : "-w '%{url_effective}' ");
   for (my $i = 1; $i <= $max_trial; $i++) {
     # -L -> follow redirects
     # -s -> silent
