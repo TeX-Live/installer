@@ -73,7 +73,7 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::create_language_def($tlpdb,$dest,$localconf);
   TeXLive::TLUtils::create_language_lua($tlpdb,$dest,$localconf);
   TeXLive::TLUtils::time_estimate($totalsize, $donesize, $starttime)
-  TeXLive::TLUtils::install_packages($from_tlpdb,$media,$to_tlpdb,$what,$opt_src, $opt_doc)>);
+  TeXLive::TLUtils::install_packages($from_tlpdb,$media,$to_tlpdb,$what,$opt_src, $opt_doc, $continue);
   TeXLive::TLUtils::do_postaction($how, $tlpobj, $do_fileassocs, $do_menu, $do_desktop, $do_script);
   TeXLive::TLUtils::announce_execute_actions($how, @executes, $what);
   TeXLive::TLUtils::add_symlinks($root, $arch, $sys_bin, $sys_man, $sys_info);
@@ -1579,7 +1579,7 @@ sub time_estimate {
 }
 
 
-=item C<install_packages($from_tlpdb, $media, $to_tlpdb, $what, $opt_src, $opt_doc)>
+=item C<install_packages($from_tlpdb, $media, $to_tlpdb, $what, $opt_src, $opt_doc, $continue)>
 
 Installs the list of packages found in C<@$what> (a ref to a list) into
 the TLPDB given by C<$to_tlpdb>. Information on files are taken from
@@ -1588,12 +1588,15 @@ the TLPDB C<$from_tlpdb>.
 C<$opt_src> and C<$opt_doc> specify whether srcfiles and docfiles should be
 installed (currently implemented only for installation from uncompressed media).
 
+If C<$continue> is trueish, installation failure of non-critical packages
+will be ignored.
+
 Returns 1 on success and 0 on error.
 
 =cut
 
 sub install_packages {
-  my ($fromtlpdb,$media,$totlpdb,$what,$opt_src,$opt_doc) = @_;
+  my ($fromtlpdb,$media,$totlpdb,$what,$opt_src,$opt_doc, $opt_continue) = @_;
   my $container_src_split = $fromtlpdb->config_src_container;
   my $container_doc_split = $fromtlpdb->config_doc_container;
   my $root = $fromtlpdb->root;
@@ -1670,7 +1673,12 @@ sub install_packages {
     info("$infostr\n");
     # return false if download failed again
     if (!$fromtlpdb->install_package($package, $totlpdb)) {
-      return 0;
+      if ($opt_continue) {
+        push @::installation_failed_packages, $package;
+        tlwarn("Failed to install $package, but continue anyway!\n");
+      } else {
+        return 0;
+      }
     }
     $donesize += $tlpsizes{$package};
   }

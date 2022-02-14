@@ -298,6 +298,8 @@ my $opt_scheme = "";
 my $opt_version = 0;
 my $opt_warn_checksums = 1;
 my $opt_font;
+# we might want to set this to 1 ...? TODO
+my $opt_continue = 0;
 # unusual cases:
 $::opt_select_repository = 0;
 our $opt_in_place = 0;
@@ -316,6 +318,9 @@ $::lang = "en";
 
 # do not debug translations by default
 $::debug_translation = 0;
+
+# List of packages that failed to install but we continued due to --continue
+@::installation_failed_packages = ();
 
 # before we try to interact with the user, we need to know whether or not
 # install-tl was called from an external gui. This gui will start install-tl
@@ -361,6 +366,7 @@ process_logging_options();
 # now the others
 GetOptions(
            "all-options"                 => \$::opt_all_options,
+           "continue"                    => \$opt_continue,
            "custom-bin=s"                => \$opt_custom_bin,
            "debug-translation"           => \$::debug_translation,
            "fancyselector",
@@ -716,6 +722,19 @@ if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "") {
   }
   printf STDOUT "Installed on platform %s at %s\n",
       $vars{'this_platform'}, $vars{'TEXDIR'} if ($opt_gui eq 'extl');
+
+  if (@::installation_failed_packages) {
+    print <<EOF;
+*************** WARNING *************************
+The following list of inessential packages have failed to install
+  @::installation_failed_packages
+You can fix this by running
+  tlmgr update --all --reinstall-forcibly-removed
+to complete the installation. Doing this immediately might not work
+and the command needs to be called later on.
+************************************************
+EOF
+  }
 }
 exit $status;
 
@@ -2107,24 +2126,31 @@ sub read_profile {
 } # read_profile
 
 sub do_install_packages {
-  # let's install the critical packages first, since they are the most
-  # likely to fail (so let's fail early), and nothing is usable without them.
+  # We split installation of packages into two stages:
+  # - first critical packages, those absolutely necessary for working
+  # - all the other packages, that can be also installed afterwards
+  #   via tlmgr
+  # If something fails in the first group, we stop the installation.
+  # If something fails in the second group:
+  #   - if --continue is given, try to continue install
+  #   - if --continue is not given, terminate (behaviour till now)
+  #
+  my @criticalwhat = ();
   my @what = ();
-  foreach my $package (sort {
-      if ($a =~ /$CriticalPackagesRegexp/) {
-        if ($b =~ /$CriticalPackagesRegexp/) {
-          return $a cmp $b; # both critical
-        } else {
-          return -1; # critical before non-critical
-        }
-      } elsif ($b =~ /$CriticalPackagesRegexp/) {
-        return 1; # critical before non-critical 
-      } else {
-        return $a cmp $b;
-      }
-    } keys %install) {
-    push (@what, $package) if ($install{$package} == 1);
+  my @surely_fail_packages = @CriticalPackagesList;
+  # texlive-scripts are necessary for mktexlsr, updmap, fmtutil, ...
+  # the installation cannot continue without those
+  # TODO for Windows ... what else is needed? luatex?
+  push @surely_fail_packages, "texlive-scripts";
+  for my $package (keys %install) {
+    if (member($package, @surely_fail_packages)) {
+      push @criticalwhat, $package if ($install{$package} == 1);
+    } else {
+      push @what, $package if ($install{$package} == 1);
+    }
   }
+  @criticalwhat = sort @criticalwhat;
+  @what = sort @what;
   # temporary unset the localtlpdb options responsible for
   # running all kind of postactions, since install_packages
   # would call them without the PATH already set up
@@ -2132,9 +2158,15 @@ sub do_install_packages {
   $localtlpdb->option ("desktop_integration", "0");
   $localtlpdb->option ("file_assocs", "0");
   $localtlpdb->option ("post_code", "0");
-  if (!install_packages($tlpdb,$media,$localtlpdb,\@what,
+  if (!install_packages($tlpdb,$media,$localtlpdb,\@criticalwhat,
                         $vars{'tlpdbopt_install_srcfiles'},
-                        $vars{'tlpdbopt_install_docfiles'})) {
+                        $vars{'tlpdbopt_install_docfiles'},
+                        0)
+      ||
+      !install_packages($tlpdb,$media,$localtlpdb,\@what,
+                        $vars{'tlpdbopt_install_srcfiles'},
+                        $vars{'tlpdbopt_install_docfiles'},
+                        $opt_continue)) {
     my $profile_name = "installation.profile";
     create_profile($profile_name);
     tlwarn("Installation failed.\n");
