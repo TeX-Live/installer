@@ -725,14 +725,20 @@ if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "") {
 
   if (@::installation_failed_packages) {
     print <<EOF;
-*************** WARNING *************************
-The following list of inessential packages have failed to install
+*** PLEASE READ THIS WARNING ***********************************
+
+The following (inessential) packages failed to install properly:
+
   @::installation_failed_packages
-You can fix this by running
+
+You can fix this by running this command:
   tlmgr update --all --reinstall-forcibly-removed
-to complete the installation. Doing this immediately might not work
-and the command needs to be called later on.
-************************************************
+to complete the installation.
+
+However, if the problem was a failure to download (by far the
+most common cause), you should ensure that your network connection
+is working first.
+******************************************************************
 EOF
   }
 }
