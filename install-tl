@@ -2143,11 +2143,7 @@ sub do_install_packages {
   #
   my @criticalwhat = ();
   my @what = ();
-  my @surely_fail_packages = @CriticalPackagesList;
-  # texlive-scripts are necessary for mktexlsr, updmap, fmtutil, ...
-  # the installation cannot continue without those
-  # TODO for Windows ... what else is needed? luatex?
-  push @surely_fail_packages, "texlive-scripts";
+  my @surely_fail_packages = ( @CriticalPackagesList, @TeXLive::TLConfig::InstallExtraRequiredPackages );
   for my $package (keys %install) {
     if (member($package, @surely_fail_packages)) {
       push @criticalwhat, $package if ($install{$package} == 1);
