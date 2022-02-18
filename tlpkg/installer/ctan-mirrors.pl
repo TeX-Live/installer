@@ -18,7 +18,6 @@ $mirrors = {
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.dgut.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
-      'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -48,7 +47,6 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
-      'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
@@ -60,6 +58,9 @@ $mirrors = {
     },
     'Philippines' => {
       'http://mirror.rise.ph/ctan/' => 1,
+    },
+    'Singapore' => {
+      'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
     'Taiwan' => {
       'https://ftp.ntou.edu.tw/ctan/' => 1,
@@ -179,7 +180,6 @@ $mirrors = {
       'https://ctan.math.ca/tex-archive/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
-      'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
