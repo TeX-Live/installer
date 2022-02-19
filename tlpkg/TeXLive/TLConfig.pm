@@ -128,7 +128,7 @@ if ($^O =~ /^MSWin/i) {
 # during the first run of the installer.
 # texlive-scripts are necessary for mktexlsr, updmap, fmtutil, ...
 # the installation cannot continue without those
-our @InstallExtraRequiredPackages = qw/texlive.scripts/;
+our @InstallExtraRequiredPackages = qw/texlive.scripts kpathsea hyphen-base/;
 if ($^O =~ /^MSWin/i) {
   push @InstallExtraRequiredPackages, "luatex";
 }
