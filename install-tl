@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # $Id$
-# Copyright 2007-2021
+# Copyright 2007-2022
 # Reinhard Kotucha, Norbert Preining, Karl Berry, Siep Kroonenberg.
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -305,6 +305,8 @@ $::opt_select_repository = 0;
 our $opt_in_place = 0;
 # don't set this to a value, see below
 my $opt_verify_downloads;
+# debug options
+my $opt_debug_fakenet = 0;
 
 # show all options even those not relevant for that arch
 $::opt_all_options = 0;
@@ -369,6 +371,7 @@ GetOptions(
            "continue"                    => \$opt_continue,
            "custom-bin=s"                => \$opt_custom_bin,
            "debug-translation"           => \$::debug_translation,
+           "debug-fakenet"               => \$opt_debug_fakenet,
            "fancyselector",
            "force-platform|force-arch=s" => \$opt_force_arch,
            "gui:s"                       => \$opt_gui,
@@ -2153,6 +2156,8 @@ sub do_install_packages {
   }
   @criticalwhat = sort @criticalwhat;
   @what = sort @what;
+  # determine retrial behavior
+  my $retry = $opt_debug_fakenet || ($media eq "NET");
   # temporary unset the localtlpdb options responsible for
   # running all kind of postactions, since install_packages
   # would call them without the PATH already set up
@@ -2163,12 +2168,12 @@ sub do_install_packages {
   if (!install_packages($tlpdb,$media,$localtlpdb,\@criticalwhat,
                         $vars{'tlpdbopt_install_srcfiles'},
                         $vars{'tlpdbopt_install_docfiles'},
-                        0)
+                        $retry, 0)
       ||
       !install_packages($tlpdb,$media,$localtlpdb,\@what,
                         $vars{'tlpdbopt_install_srcfiles'},
                         $vars{'tlpdbopt_install_docfiles'},
-                        $opt_continue)) {
+                        $retry, $opt_continue)) {
     my $profile_name = "installation.profile";
     create_profile($profile_name);
     tlwarn("Installation failed.\n");
