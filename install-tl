@@ -728,6 +728,7 @@ if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "") {
 
   if (@::installation_failed_packages) {
     print <<EOF;
+
 *** PLEASE READ THIS WARNING ***********************************
 
 The following (inessential) packages failed to install properly:
@@ -739,9 +740,10 @@ You can fix this by running this command:
 to complete the installation.
 
 However, if the problem was a failure to download (by far the
-most common cause), you should ensure that your network connection
+most common cause), you need to ensure that your network connection
 is working first.
 ******************************************************************
+
 EOF
   }
 }
@@ -2184,9 +2186,7 @@ sub do_install_packages {
       my $repostr = ($opt_location ? " --repository $location" : "");
       my $args = "--profile $profile_name [YOUR-EXTRA-ARGS]";
       if (win32()) {
-        tlwarn("  install-tl-windows.bat$repostr $args\n"
-              ."or\n"
-              ."  install-tl-advanced.bat$repostr $args\n");
+        tlwarn("  install-tl-windows.bat$repostr $args\n");
       } else {
         tlwarn("  install-tl$repostr $args\n");
       }
@@ -2669,8 +2669,6 @@ install-tl - TeX Live cross-platform installer
 install-tl [I<option>]...
 
 install-tl-windows.bat [I<option>]...
-
-install-tl-advanced.bat [I<option>]...
 
 =head1 DESCRIPTION
 
