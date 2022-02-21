@@ -648,7 +648,7 @@ if ($opt_profile eq "") {
 
   # before we start the installation we check for the existence of
   # a previous installation, and in case we ship inform the UI
-  if (!exists $ENV{"TEXLIVE_INSTALL_NO_WELCOME"}) {
+  if (!exists $ENV{"TEXLIVE_INSTALL_NO_RESUME"}) {
     my $tlmgrwhich = which("tlmgr");
     if ($tlmgrwhich) {
       my $dn = dirname($tlmgrwhich);
@@ -2811,6 +2811,11 @@ C<custom> before doing each.
 For more information on custom binaries, see
 L<https://tug.org/texlive/custom-bin.html>.  For general information on
 building TeX Live, see L<https://tug.org/texlive/build.html>.
+
+=item B<-debug-fakenet>
+
+Pretend we're doing a network install, for the sole purpose of testing
+broken downloads via moving package files aside in a tlnet mirror.
 
 =item B<-debug-translation>
 
