@@ -1557,7 +1557,7 @@ sub set_platforms_supported {
 
 # Environment variables and default values on UNIX:
 #   TEXLIVE_INSTALL_PREFIX         /usr/local/texlive   => $tex_prefix
-#   TEXLIVE_INSTALL_TEXDIR         $tex_prefix/2010     => $TEXDIR
+#                                  $tex_prefix/2010     => $TEXDIR
 #   TEXLIVE_INSTALL_TEXMFSYSVAR    $TEXDIR/texmf-var
 #   TEXLIVE_INSTALL_TEXMFSYSCONFIG $TEXDIR/texmf-config
 #   TEXLIVE_INSTALL_TEXMFLOCAL     $tex_prefix/texmf-local
@@ -3120,8 +3120,6 @@ C<letter> or C<a4>. The default is C<a4>.
 
 =item C<TEXLIVE_INSTALL_PREFIX>
 
-=item C<TEXLIVE_INSTALL_TEXDIR>
-
 =item C<TEXLIVE_INSTALL_TEXMFCONFIG>
 
 =item C<TEXLIVE_INSTALL_TEXMFVAR>
@@ -3134,11 +3132,13 @@ C<letter> or C<a4>. The default is C<a4>.
 
 =item C<TEXLIVE_INSTALL_TEXMFSYSVAR>
 
-Specify the respective directories.  C<TEXLIVE_INSTALL_PREFIX> defaults
-to C</usr/local/texlive>, while C<TEXLIVE_INSTALL_TEXDIR> defaults to
-the release directory within that prefix, e.g.,
-C</usr/local/texlive/2016>.  All the defaults can be seen by running the
+Specify the respective directories. C<TEXLIVE_INSTALL_PREFIX> defaults
+to C</usr/local/texlive>. All the defaults can be seen by running the
 installer interactively and then typing C<D> for the directory menu.
+
+To override the so-called C<TEXDIR>, which defaults to the release
+directory within that prefix, e.g., C</usr/local/texlive/2020>, use a
+profile file (q.v.).
 
 =item C<NOPERLDOC>
 
