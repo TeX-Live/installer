@@ -60,6 +60,9 @@ $mirrors = {
     'Philippines' => {
       'http://mirror.rise.ph/ctan/' => 1,
     },
+    'Singapore' => {
+      'https://download.nus.edu.sg/mirror/ctan/' => 1,
+    },
     'Taiwan' => {
       'https://ftp.ntou.edu.tw/ctan/' => 1,
     },
