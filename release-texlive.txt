@@ -1,4 +1,4 @@
-TeX Live (https://tug.org/texlive) version 2021
+TeX Live (https://tug.org/texlive) version 2022
 
 This file is public domain.  It is read by install-tl --version,
 tlmgr --version, and texconfig conf, and a final line appended with

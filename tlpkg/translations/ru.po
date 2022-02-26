@@ -672,7 +672,7 @@ msgstr "Размер листа по умолчанию для всех"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1350
 msgid "A4"
-msgstr "A4"
+msgstr "А4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
 msgid "Letter"
@@ -2069,9 +2069,6 @@ msgstr ""
 #~ "Будут использованы следующие настройки.\n"
 #~ "Если нужно что-то изменить, нажмите кнопку «Назад»,\n"
 #~ "если всё в порядке, нажмите кнопку «Установить»."
-
-#~ msgid "A4"
-#~ msgstr "А4"
 
 #~ msgid "Please select a different mirror."
 #~ msgstr "Выберите другое зеркало."
