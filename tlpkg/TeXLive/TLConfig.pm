@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLConfig.pm - module exporting configuration values
-# Copyright 2007-2021 Norbert Preining
+# Copyright 2007-2022 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
