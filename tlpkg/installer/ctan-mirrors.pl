@@ -137,6 +137,9 @@ $mirrors = {
       'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
     },
+    'Norway' => {
+      'https://ctan.uib.no/' => 1,
+    },
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://repo.skni.umcs.pl/ctan/' => 1,
@@ -159,6 +162,7 @@ $mirrors = {
       'https://ctan.ijs.si/tex-archive/' => 1,
     },
     'Spain' => {
+      'https://ctan.javinator9889.com/' => 1,
       'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
