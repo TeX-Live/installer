@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2022-02-21 01:47+0100\n"
-"PO-Revision-Date: 2021-05-02 19:49+0200\n"
+"PO-Revision-Date: 2022-02-27 11:31+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -324,7 +324,7 @@ msgstr "Architekturen ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr ""
+msgstr "GUI Sprache ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -1574,19 +1574,19 @@ msgstr "Erzeuge Fontmap-Dateien..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2720
 msgid "Add/replace 64-bit binaries"
-msgstr ""
+msgstr "Füge hinzu/ersetze 64-Bit Binärdateien"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2723
 msgid "Add/replace from local file"
-msgstr ""
+msgstr "Füge hinzu/ersetze aus lokalem Verzeichnis"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2727
 msgid "Resynchronize with 32-bit"
-msgstr ""
+msgstr "Synchronisiere wieder mit 32-bit"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2731
 msgid "Remove 64-bit binaries"
-msgstr ""
+msgstr "Entferne 64-Bit Binärdateien"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2750
 msgid "GUI font scaling"
