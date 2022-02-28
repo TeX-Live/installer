@@ -594,7 +594,8 @@ proc texdir_setup {} {
       -in .tltd.fr1 -row $rw -column 4
   # corresponding buttons
   incr rw
-  pgrid [ttk::button .tltd.prefix_b -text [__ "Browse..."] \
+  set prefix_text [__ "Prefix"]
+  pgrid [ttk::button .tltd.prefix_b -text "${prefix_text}... \u00B9" \
           -command {if [dirbrowser2widget .tltd.prefix_l] update_full_path}] \
       -in .tltd.fr1 -row $rw -column 0
   pgrid [ttk::button .tltd.name_b -text [__ "Change"] -command edit_name] \
@@ -603,12 +604,18 @@ proc texdir_setup {} {
       -command toggle_rel] \
       -in .tltd.fr1 -row $rw -column 4
 
+  set note_text [__ "Prefix must exist"]
+  ppack [ttk::label .tltd.notes -text "\u00B9 ${note_text}"] \
+           -in .tltd.bg -fill x -anchor w
+
   # windows: note about localized names
   if {$::tcl_platform(platform) eq "windows"} {
-    ttk::label .tltd.loc -anchor w
-    .tltd.loc configure -text \
-        [__ "Localized directory names will be replaced by their real names"]
-    ppack .tltd.loc -in .tltd.bg -fill x
+    .tltd.prefix_b configure -text "${prefix_text}... \u00B9 \u00B2"
+    set loc_text \
+      [__ "Localized directory names will be replaced by their real names"]
+    .tltd.notes configure -justify left \
+      -text "\u00B9 ${note_text}\n\u00B2 ${loc_text}"
+    ppack .tltd.notes -in .tltd.bg -fill x
   }
 
   # ok/cancel buttons
