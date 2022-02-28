@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # $Id$
 #
-# Copyright 2008-2021 Norbert Preining
+# Copyright 2008-2022 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -4306,7 +4306,7 @@ sub show_one_package_detail {
         $binsize += $binsz{$a} if defined($binsz{$a});
         my $atlp = $tlpdb->get_package($tlp->name . ".$a");
         if (!$atlp) {
-          tlwarn("$prg: cannot find depending package" . $tlp->name . ".$a\n");
+          tlwarn("$prg: cannot find depending package " . $tlp->name . ".$a\n");
           return($F_WARNING);
         }
         my %abinsz = %{$atlp->binsize};
