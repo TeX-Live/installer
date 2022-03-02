@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2022-03-01 01:28+0100\n"
-"PO-Revision-Date: 2022-02-27 11:31+0100\n"
+"PO-Revision-Date: 2022-03-02 15:19+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -1012,11 +1012,11 @@ msgstr "Stammverzeichnis für die Installation"
 
 #: tlpkg/installer/install-tl-gui.tcl:597
 msgid "Prefix"
-msgstr ""
+msgstr "Präfix"
 
 #: tlpkg/installer/install-tl-gui.tcl:607
 msgid "Prefix must exist"
-msgstr ""
+msgstr "Präfix muss angegeben werden"
 
 #: tlpkg/installer/install-tl-gui.tcl:615
 msgid "Localized directory names will be replaced by their real names"
