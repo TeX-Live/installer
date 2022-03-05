@@ -962,7 +962,22 @@ sub quit {
 }
 
 sub do_install {
-  $RETURN = $MENU_INSTALL;
+  my $reserve = 100;
+  if ($vars{'free_size'} > 0 && $vars{'free_size'} + $reserve < $vars{'total_size'}) { 
+    print <<"EOF";
+****************** WARNING ***********************
+The required disk space of $vars{'total_size'}M exceeds the available of $vars{'free_size'}M.
+Either choose a differernt installation location or reduce the amount
+to be installed.
+
+Press enter to continue!
+**************************************************
+EOF
+    my $ans = readline (*STDIN);
+    main_menu();
+  } else {
+    $RETURN = $MENU_INSTALL;
+  }
 }
 
 sub toggle_portable {
