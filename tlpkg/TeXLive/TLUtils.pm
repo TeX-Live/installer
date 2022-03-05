@@ -42,6 +42,7 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::xsystem(@args);
   TeXLive::TLUtils::run_cmd($cmd [, @envvars ]);
   TeXLive::TLUtils::system_pipe($prog, $infile, $outfile, $removeIn, @args);
+  TeXLive::TLUtils::diskfree($path);
 
 =head2 File utilities
 
@@ -232,6 +233,7 @@ BEGIN {
     &xsystem
     &run_cmd
     &system_pipe
+    &diskfree
     &announce_execute_actions
     &add_symlinks
     &remove_symlinks
@@ -258,7 +260,7 @@ BEGIN {
   @EXPORT = qw(setup_programs download_file process_logging_options
                tldie tlwarn info log debug ddebug dddebug debug
                debug_hash_str debug_hash
-               win32 xchdir xsystem run_cmd system_pipe sort_archs);
+               win32 xchdir xsystem run_cmd system_pipe diskfree sort_archs);
 }
 
 use Cwd;
@@ -798,6 +800,51 @@ sub system_pipe {
       unlink($infile);
     }
     return 1;
+  }
+}
+
+=item C<diskfree($path)>
+
+If a POSIX compliant C<df> program is found, returns the number of
+Mb free at C<$path>, otherwise C<-1>. If C<$path> is not existent, go
+back up to two levels and check if any of the parents exists, and use
+the existing one for computing the disk space.
+
+=cut
+
+sub diskfree {
+  my $td = shift;
+  return (-1) if (! $::progs{"df"});
+  # drop final /
+  $td =~ s!/$!!;
+  if (! -e $td) {
+    my $ptd = dirname($td);
+    if (-e $ptd) {
+      $td = $ptd;
+    } else {
+      my $pptd = dirname($ptd);
+      if (-e $pptd) {
+        $td = $pptd;
+      }
+    }
+  }
+  $td .= "/" if ($td !~ m!/$!);
+  return (-1) if (! -e $td);
+  debug("Checking for free diskspace in $td\n");
+  my ($output, $retval) = run_cmd("df -P \"$td\"", POSIXLY_CORRECT => 1);
+  if ($retval == 0) {
+    # Output format should be this:
+    # Filesystem      512-blocks       Used  Available Capacity Mounted on
+    # /dev/sdb3       6099908248 3590818104 2406881416      60% /home
+    my ($h,$l) = split(/\n/, $output);
+    my ($fs, $nrb, $used, $avail, @rest) = split(' ', $l);
+    debug("disk space: used=$used (512-block), avail=$avail (512-block)\n");
+    # $avail is in 512 blocks, so we need to device by 2 * 1024 to obtain Mb
+    # require that at least 100M remain free
+    return (int($avail / 2024));
+  } else {
+    # error in running df -P out of whatever reason
+    return (-1);
   }
 }
 
@@ -2635,7 +2682,7 @@ sub setup_programs {
     # tar needs to be provided by the system, we not even check!
     $::progs{'tar'} = "tar";
 
-    setup_one("unix", "df", undef, "-P", 0);
+    setup_one("unix", "df", undef, "-P .", 0);
 
     if (!defined($platform) || ($platform eq "")) {
       # we assume that we run from uncompressed media, so we can call

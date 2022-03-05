@@ -545,6 +545,10 @@ EOF
   if ("\u$answer" eq '1' and !$opt_in_place) {
     print "New value for TEXDIR [$vars{'TEXDIR'}]: ";
     $answer = &input_dirname ();
+    # update free space information
+    if ($answer ne $vars{'TEXDIR'}) {
+      $vars{'free_size'} = TeXLive::TLUtils::diskfree($answer);
+    }
     $vars{'TEXDIR'} = $answer if $answer ne "";
     my $texdirnoslash;
     if ($vars{'TEXDIR'}=~/^(.*)\/$texlive_release$/) {
@@ -1035,6 +1039,7 @@ sub main_menu {
   }
 
   clear_screen;
+  my $freestring = ($vars{'free_size'} >= 0 ? " (free: $vars{'free_size'} MB)" : "");
   print <<"EOF";
 ======================> TeX Live installation procedure <=====================
 
@@ -1053,7 +1058,7 @@ EOF
  <S> set installation scheme: $vars{'selected_scheme'}
 
  <C> set installation collections:
-     $vars{'n_collections_selected'} collections out of $vars{'n_collections_available'}, disk space required: $vars{'total_size'} MB
+     $vars{'n_collections_selected'} collections out of $vars{'n_collections_available'}, disk space required: $vars{'total_size'} MB$freestring
 EOF
 
   }
