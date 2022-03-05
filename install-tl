@@ -326,7 +326,7 @@ $::debug_translation = 0;
 
 #
 # set up signal handlers to catch SIGINT and SIGTERM
-$SIG{INT} = &signal_handler;
+$SIG{'INT'} = \&signal_handler;
 # not necessary AFA we know
 # $SIG{TERM} = &signal_handler;
 
@@ -2538,8 +2538,10 @@ sub update_numbers {
 
 # signal handler for interrupts SIGINT AND SIGTERM
 sub signal_handler {
+  my ($sig) = @_;
   flushlog();
-  die "Installation interrupted $!";
+  print "Caught SIG$sig -- shutting down\n";
+  exit(1);
 }
 
 # to be called at exit when the installation did not complete
