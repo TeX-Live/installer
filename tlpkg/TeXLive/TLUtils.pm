@@ -260,7 +260,7 @@ BEGIN {
   @EXPORT = qw(setup_programs download_file process_logging_options
                tldie tlwarn info log debug ddebug dddebug debug
                debug_hash_str debug_hash
-               win32 xchdir xsystem run_cmd system_pipe diskfree sort_archs);
+               win32 xchdir xsystem run_cmd system_pipe sort_archs);
 }
 
 use Cwd;
@@ -738,8 +738,9 @@ sub xsystem {
 Run shell command C<$cmd> and captures its output. Returns a list with CMD's
 output as the first element and the return value (exit code) as second.
 
-The C<@envvars> - if given - are variable name / value pairs set for the call
-and reset to their original value (or unset if not defined initially).
+If given, C<@envvars> is a list of environment variable name / value
+pairs set in C<%ENV> for the call and reset to their original value (or
+unset if not defined initially).
 
 =cut
 
@@ -805,10 +806,10 @@ sub system_pipe {
 
 =item C<diskfree($path)>
 
-If a POSIX compliant C<df> program is found, returns the number of
-Mb free at C<$path>, otherwise C<-1>. If C<$path> is not existent, go
-back up to two levels and check if any of the parents exists, and use
-the existing one for computing the disk space.
+If a POSIX compliant C<df> program is found, returns the number of Mb
+free at C<$path>, otherwise C<-1>. If C<$path> does not exist, check
+upwards for two levels for an existing parent, and if found, use it for
+computing the disk space.
 
 =cut
 
@@ -839,9 +840,9 @@ sub diskfree {
     my ($h,$l) = split(/\n/, $output);
     my ($fs, $nrb, $used, $avail, @rest) = split(' ', $l);
     debug("disk space: used=$used (512-block), avail=$avail (512-block)\n");
-    # $avail is in 512 blocks, so we need to device by 2 * 1024 to obtain Mb
-    # require that at least 100M remain free
-    return (int($avail / 2024));
+    # $avail is in 512-byte blocks, so we need to divide by 2*1024 to
+    # obtain Mb. Require that at least 100M remain free.
+    return (int($avail / 2048));
   } else {
     # error in running df -P out of whatever reason
     return (-1);

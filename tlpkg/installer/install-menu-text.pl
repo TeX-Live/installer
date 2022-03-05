@@ -1,15 +1,15 @@
 #!/usr/bin/env perl
 # $Id$
-# install-menu-txt.pl
 #
-# Copyright 2007-2021 Norbert Preining, Karl Berry
+# Copyright 2007-2022 Norbert Preining, Karl Berry
 # Copyright 2007-2008 Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 #
 # This file implements the text based menu system for the TeX Live installer.
 
-use vars qw(@::end_install_hook $::opt_no_cls);
+use vars qw(@::end_install_hook
+            $::opt_no_cls $::opt_select_repository $::run_menu);
 
 our %vars;
 our $opt_in_place;
@@ -239,7 +239,7 @@ sub run_menu_text {
     warn "\n";
     warn "Please select a different mirror!  See info above.\n";
     print STDERR "Press Enter to exit... ";
-    $ans = readline (*STDIN);
+    my $ans = readline (*STDIN);
     exit (1);
   }
 
@@ -719,7 +719,7 @@ sub help_menu {
     'R' => \&main_menu,
     'Q' => \&quit
       );
-  my $installer_help="$installerdir/tlpkg/installer/install-tl.html";
+  my $installer_help = "notused/tlpkg/installer/install-tl.html";
 
   clear_screen;
 
@@ -963,15 +963,20 @@ sub quit {
 
 sub do_install {
   my $reserve = 100;
-  if ($vars{'free_size'} > 0 && $vars{'free_size'} + $reserve < $vars{'total_size'}) { 
-    print <<"EOF";
-****************** WARNING ***********************
-The required disk space of $vars{'total_size'}M exceeds the available of $vars{'free_size'}M.
-Either choose a differernt installation location or reduce the amount
-to be installed.
+  if ($vars{'free_size'} > 0
+      && $vars{'free_size'} + $reserve < $vars{'total_size'}) { 
+    print STDERR <<"EOF";
+*** WARNING ************************************************
+The installation requires $vars{'total_size'}M of disk space
+but only $vars{'free_size'}M is available.
 
-Press enter to continue!
-**************************************************
+You probably want to clean up the destination filesystem
+before continuing here, or else quit (CTRL-C)
+and choose a different installation location,
+or reduce what gets installed.
+
+Press Enter to continue the installation anyway.
+************************************************
 EOF
     my $ans = readline (*STDIN);
     main_menu();

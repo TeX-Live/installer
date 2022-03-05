@@ -107,11 +107,12 @@ if (($^O !~ /^MSWin/i) &&
           $asked4tcl = 1;
           $i++;
         } else {
-          die "$0: illegal value $q for parameter -gui.\n";
+          die "$0: invalid value for parameter -gui: $q\n";
         }
       }
     } else {
-      for my $q (qw/in-place profile help print-arch print-platform version no-gui/) {
+      for my $q (qw/in-place profile help print-arch print-platform
+                    version no-gui/) {
         if ($p eq "-$q") {
           # ignore gui mode
           $want_tcl = 0;
@@ -2520,7 +2521,7 @@ sub update_numbers {
 sub signal_handler {
   my ($sig) = @_;
   flushlog();
-  print "Caught SIG$sig -- shutting down\n";
+  print STDERR "$0: caught SIG$sig -- exiting\n";
   exit(1);
 }
 
