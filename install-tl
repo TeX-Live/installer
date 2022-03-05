@@ -324,6 +324,12 @@ $::debug_translation = 0;
 # List of packages that failed to install but we continued due to --continue
 @::installation_failed_packages = ();
 
+#
+# set up signal handlers to catch SIGINT and SIGTERM
+$SIG{INT} = &signal_handler;
+# not necessary AFA we know
+# $SIG{TERM} = &signal_handler;
+
 # before we try to interact with the user, we need to know whether or not
 # install-tl was called from an external gui. This gui will start install-tl
 # with "-from_ext_gui" as its first command-line option.
@@ -936,6 +942,37 @@ sub do_installation {
   mkdirhier "$vars{'TEXDIR'}";
   if (win32()) {
     TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXDIR'});
+  }
+  # If df is available, check for free disk space
+  if ($::progs{"df"}) {
+    # To ensure that GNU coreutil df returns POSIX style 512-blocks,
+    # it is necessary to set POSIXLY_CORRECT=1
+    # (GNU df defaults to 1024-block)
+    # https://en.wikipedia.org/wiki/POSIX#512-_vs_1024-byte_blocks
+    my $td = $vars{'TEXDIR'};
+    $td .= "/" if ($td !~ m!/$!);
+    debug("Checking for free diskspace in $td\n");
+    my ($output, $retval) =
+      TeXLive::TLUtils::run_cmd("df -P \"$vars{'TEXDIR'}\"",
+                                POSIXLY_CORRECT => 1);
+    if ($retval == 0) {
+      # Output format should be this:
+      # Filesystem      512-blocks       Used  Available Capacity Mounted on
+      # /dev/sdb3       6099908248 3590818104 2406881416      60% /home
+      my ($h,$l) = split(/\n/, $output);
+      my ($fs, $nrb, $used, $avail, @rest) = split(' ', $l);
+      debug("disk space: used=$used (512-block), avail=$avail (512-block),",
+            " required=$vars{'total_size'} (Mb)\n");
+      # $vars{'total_size'} is number required in Mb (1024**2)
+      # $vars{'total_size'} =
+      #   sprintf "%d", ($size * $TeXLive::TLConfig::BlockSize)/1024**2;
+      # $avail is in 512 blocks, so we need to device by 2 * 1024 to obtain Mb
+      # require that at least 100M remain free
+      my $reserve = 100;
+      if ( $avail / 2024 + $reserve < $vars{'total_size'}) {
+        die("DISK SPACE INSUFFICIENT!");
+      }
+    }
   }
   # now remove final slash from TEXDIR even if it is the root of a drive
   $vars{'TEXDIR'} =~ s!/$!!;
@@ -2498,6 +2535,12 @@ sub update_numbers {
     }
   }
 } # update_numbers
+
+# signal handler for interrupts SIGINT AND SIGTERM
+sub signal_handler {
+  flushlog();
+  die "Installation interrupted $!";
+}
 
 # to be called at exit when the installation did not complete
 sub flushlog {

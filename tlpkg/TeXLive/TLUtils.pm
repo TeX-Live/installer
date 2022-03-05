@@ -40,7 +40,7 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::xchdir($dir);
   TeXLive::TLUtils::wsystem($msg,@args);
   TeXLive::TLUtils::xsystem(@args);
-  TeXLive::TLUtils::run_cmd($cmd);
+  TeXLive::TLUtils::run_cmd($cmd [, @envvars ]);
   TeXLive::TLUtils::system_pipe($prog, $infile, $outfile, $removeIn, @args);
 
 =head2 File utilities
@@ -731,16 +731,35 @@ sub xsystem {
   return $retval;
 }
 
-=item C<run_cmd($cmd)>
+=item C<run_cmd($cmd, @envvars)>
 
 Run shell command C<$cmd> and captures its output. Returns a list with CMD's
 output as the first element and the return value (exit code) as second.
+
+The C<@envvars> - if given - are variable name / value pairs set for the call
+and reset to their original value (or unset if not defined initially).
 
 =cut
 
 sub run_cmd {
   my $cmd = shift;
+  my %envvars = @_;
+  my %envvarsSetState;
+  my %envvarsValue;
+  for my $k (keys %envvars) {
+    $envvarsSetState{$k} = exists $ENV{$k};
+    $envvarsValue{$k} = $ENV{$k};
+    $ENV{$k} = $envvars{$k};
+  }
   my $output = `$cmd`;
+  for my $k (keys %envvars) {
+    if ($envvarsSetState{$k}) {
+      $ENV{$k} = $envvarsValue{$k};
+    } else {
+      delete $ENV{$k};
+    }
+  }
+
   $output = "" if ! defined ($output);  # don't return undef
 
   my $retval = $?;
@@ -2616,6 +2635,8 @@ sub setup_programs {
     # tar needs to be provided by the system, we not even check!
     $::progs{'tar'} = "tar";
 
+    setup_one("unix", "df", undef, "-P", 0);
+
     if (!defined($platform) || ($platform eq "")) {
       # we assume that we run from uncompressed media, so we can call
       # platform() and thus also the config.guess script but we have to
@@ -2793,6 +2814,10 @@ sub setup_windows_tl_one {
 #   . if the copy is -x and executable, use it
 sub setup_unix_tl_one {
   my ($p, $def, $arg) = @_;
+  if (!$def) {
+    debug("(unix) no default program for $p, no setup done\n");
+    return(1);
+  }
   our $tmp;
   debug("(unix) trying to set up $p, default $def, arg $arg\n");
   if (-r $def) {
