@@ -299,8 +299,7 @@ my $opt_scheme = "";
 my $opt_version = 0;
 my $opt_warn_checksums = 1;
 my $opt_font;
-# we might want to set this to 1 ...? TODO
-my $opt_continue = 0;
+my $opt_continue = 1;
 # unusual cases:
 $::opt_select_repository = 0;
 our $opt_in_place = 0;
@@ -375,7 +374,7 @@ process_logging_options();
 # now the others
 GetOptions(
            "all-options"                 => \$::opt_all_options,
-           "continue"                    => \$opt_continue,
+           "continue!"                   => \$opt_continue,
            "custom-bin=s"                => \$opt_custom_bin,
            "debug-translation"           => \$::debug_translation,
            "debug-fakenet"               => \$opt_debug_fakenet,
@@ -2892,7 +2891,12 @@ release.
 =item B<-no-cls>
 
 For the text mode installer only: do not clear the screen when entering
-a new menu (for debugging purposes).
+a new menu. For debugging.
+
+=item B<-no-continue>
+
+Do not install core packages first, or retry failed packages once.  For
+debugging.
 
 =item B<-no-persistent-downloads>
 
