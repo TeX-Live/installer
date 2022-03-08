@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2010\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2022-03-06 01:29+0100\n"
+"POT-Creation-Date: 2022-03-08 01:30+0100\n"
 "PO-Revision-Date: 2019-03-23 09:02+0200\n"
 "Last-Translator: Andriy Bandura <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <andriykopanytsia@gmail.com>\n"
@@ -1919,11 +1919,11 @@ msgstr "Додаткові програми лише під Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX та пакунки"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2681
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2680
 msgid "Welcome to TeX Live!"
 msgstr "Ласкаво просимо до TeX Live!"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2684
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2683
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1938,7 +1938,7 @@ msgstr ""
 "світу; будь ласка, підтримайте нас, приєднавшись до групи, найкращої для "
 "вас. Список груп доступний на веб-сторінці https://tug.org/usergroups.html."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2694
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2693
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
