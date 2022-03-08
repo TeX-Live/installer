@@ -2716,7 +2716,6 @@ initial installation is complete.
 The default is C<scheme-full>, which installs everything, and this is
 highly recommended.
 
-
 =head1 REFERENCES
 
 Post-installation configuration, package updates, and more, are
@@ -2728,7 +2727,6 @@ Internet at L<https://tug.org/texlive/doc/install-tl.html>.
 
 For the full documentation of TeX Live, see
 L<https://tug.org/texlive/doc>.
-
 
 =head1 OPTIONS
 
@@ -2895,8 +2893,14 @@ a new menu. For debugging.
 
 =item B<-no-continue>
 
-Do not install core packages first, or retry failed packages once.  For
-debugging.
+By default, a few core packages are installed first; then, a failed
+installation of any other (non-core) package is noted, but does not stop
+the installation. Any such failed packages are retried, once.
+
+If the retry also fails, by default the installer proceeds to completion
+anyway, with the idea that it was a transient network problem and
+reinstallation will succeed later. If this option is specified, and the
+retry fails, the installer aborts.
 
 =item B<-no-persistent-downloads>
 
@@ -2966,7 +2970,6 @@ Output version information and exit.  If C<-v> is also given, the
 versions of the TeX Live modules used are also reported.
 
 =back
-
 
 =head1 PROFILES
 
@@ -3104,7 +3107,6 @@ written, the names above are always used.
 For more details on all of the above options, consult the TeX Live
 installation manual, linked from L<https://tug.org/texlive/doc>.
 
-
 =head1 ENVIRONMENT VARIABLES
 
 For ease in scripting and debugging, C<install-tl> looks for the
@@ -3175,7 +3177,6 @@ profile file (q.v.).
 Don't try to run the C<--help> message through C<perldoc>.
 
 =back
-
 
 =head1 AUTHORS AND COPYRIGHT
 
