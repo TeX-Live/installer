@@ -963,6 +963,7 @@ sub quit {
 
 sub do_install {
   my $reserve = 100;
+  my $doit = 1;
   if ($vars{'free_size'} > 0
       && $vars{'free_size'} + $reserve < $vars{'total_size'}) { 
     print STDERR <<"EOF";
@@ -974,13 +975,22 @@ You probably want to either clean up the destination filesystem,
 or choose a different installation location,
 or reduce what gets installed.
 
-Press Enter to return to the menu.
+Press Enter to return to the menu, or type i to install anyway.
 ***************************************************************
 EOF
     my $ans = readline (*STDIN);
-    main_menu();
-  } else {
+    $doit = 0;
+    chomp($ans);
+    if ($ans eq "i" or $ans eq "I") {
+      $doit = 1;
+    }
+  }
+  if ($doit) {
+    # set env variable to make install-tl not trip over
+    $ENV{'TEXLIVE_INSTALL_NO_DISKCHECK'} = 1;
     $RETURN = $MENU_INSTALL;
+  } else {
+    main_menu();
   }
 }
 
