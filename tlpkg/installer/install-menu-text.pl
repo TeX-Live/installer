@@ -967,7 +967,7 @@ sub do_install {
   if ($vars{'free_size'} > 0
       && $vars{'free_size'} + $reserve < $vars{'total_size'}) { 
     print STDERR <<"EOF";
-*** WARNING ***************************************************
+*** WARNING ****************************************************
 The installation requires $vars{'total_size'}M of disk space
 but only $vars{'free_size'}M is available.
 
@@ -975,8 +975,8 @@ You probably want to either clean up the destination filesystem,
 or choose a different installation location,
 or reduce what gets installed.
 
-Press Enter to return to the menu, or type i to install anyway.
-***************************************************************
+Press Enter to return to the menu, or i to install anyway.
+****************************************************************
 EOF
     my $ans = readline (*STDIN);
     $doit = 0;

@@ -2897,6 +2897,8 @@ a new menu. For debugging.
 
 =item B<-no-continue>
 
+Quit early on installation failure of a non-core package.
+
 By default, a few core packages are installed first; then, a failed
 installation of any other (non-core) package is noted, but does not stop
 the installation. Any such failed packages are retried, once.
@@ -3113,11 +3115,12 @@ installation manual, linked from L<https://tug.org/texlive/doc>.
 
 =head1 SPACE CONSTRAINTS
 
-If a POSIX compliant C<df> program is available, the installer will
-check the available disk space in the selected installation location,
-and will abort installation if there is insufficient disk space.
-In case the check is incorrect, setting the environment variable
-C<TEXLIVE_INSTALL_NO_DISKCHECK> to 1 will disable this check.
+If a POSIX-compliant C<df> program (supporting C<-P>) is available, the
+installer will check the available disk space in the selected
+installation location, and will abort installation if there is
+insufficient disk space, plus a margin of 100MB. In case this check is
+invalid for your filesystem, setting the environment variable
+C<TEXLIVE_INSTALL_NO_DISKCHECK> to 1 will disable it.
 
 =head1 ENVIRONMENT VARIABLES
 
