@@ -2444,6 +2444,8 @@ sub import_settings_from_old_tlpdb {
       tlwarn("  to redo this setting by running:\n");
     }
   }
+  # update size information
+  $vars{'free_size'} = TeXLive::TLUtils::diskfree($vars{'TEXDIR'});
 } # import_settings_from_old_tlpdb
 
 # do everything to select a scheme
