@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2022-03-10 01:49+0100\n"
+"POT-Creation-Date: 2022-03-14 01:47+0100\n"
 "PO-Revision-Date: 2021-03-11 09:18+0300\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
@@ -1937,11 +1937,11 @@ msgstr "Podpůrné programy výhradně pro Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX a balíky"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2684
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2686
 msgid "Welcome to TeX Live!"
 msgstr "Vítejte v TeX Live!"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2687
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2689
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1956,7 +1956,7 @@ msgstr ""
 "podporu přijetím členství ve sdružení, které je Vám nejbližší (CSTUG). "
 "Seznam skupin u6ivatel; najdete na webu https://tug.org/usergroups.html."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2697
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2699
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

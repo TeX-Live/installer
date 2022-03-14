@@ -41,7 +41,6 @@ $mirrors = {
       'https://mirror.bardia.tech/ctan/' => 1,
     },
     'Japan' => {
-      'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
@@ -148,7 +147,6 @@ $mirrors = {
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
-      'https://ftp.eq.uc.pt/software/TeX/' => 1,
       'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
