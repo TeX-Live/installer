@@ -60,9 +60,6 @@
 #  define prime_env_iter()
 #  define WIN32IO_IS_STDIO		/* don't pull in custom stdio layer */
 #  define WIN32SCK_IS_STDSCK		/* don't pull in custom wsock layer */
-#  ifdef PERL_GLOBAL_STRUCT
-#    error PERL_GLOBAL_STRUCT cannot be defined with PERL_IMPLICIT_SYS
-#  endif
 #endif
 
 #ifdef __GNUC__
@@ -114,7 +111,7 @@
 
 #if (defined(__GNUC__) && defined(__MINGW32__) && \
      !defined(__MINGW64_VERSION_MAJOR) && !defined(__clang__) && \
-	((__GNUC__ < 3) || ((__GNUC__ == 3) && (__GNUC_MINOR__ <= 5))))
+        ((__GNUC__ < 3) || ((__GNUC__ == 3) && (__GNUC_MINOR__ <= 5))))
 /* use default fallbacks from perl.h for this particular GCC */
 #else
 #  if !defined(PERLDLL) && !defined(PERL_EXT_RE_BUILD)
@@ -184,10 +181,10 @@ WINBASEAPI LPCH WINAPI GetEnvironmentStringsA(VOID);
 #endif
 
 struct tms {
-	long	tms_utime;
-	long	tms_stime;
-	long	tms_cutime;
-	long	tms_cstime;
+        long	tms_utime;
+        long	tms_stime;
+        long	tms_cutime;
+        long	tms_cstime;
 };
 
 #ifndef SYS_NMLN
@@ -230,8 +227,6 @@ struct utsname {
 #else
 #  define WIN32_NO_REGISTRY_M_(x) x,
 #endif
-
-#define PERL_NO_FORCE_LINK		/* no need for PL_force_link_funcs */
 
 #define ENV_IS_CASELESS
 
@@ -423,7 +418,9 @@ extern  void	*sbrk(ptrdiff_t need);
 #endif
 extern	char *	getlogin(void);
 extern	int	chown(const char *p, uid_t o, gid_t g);
-#if !defined(__MINGW64_VERSION_MAJOR) || __MINGW64_VERSION_MAJOR < 4
+#if((!defined(__MINGW64_VERSION_MAJOR) || __MINGW64_VERSION_MAJOR < 4) && \
+    (!defined(__MINGW32_MAJOR_VERSION) || __MINGW32_MAJOR_VERSION < 3 || \
+     (__MINGW32_MAJOR_VERSION == 3 && __MINGW32_MINOR_VERSION < 21)))
 extern  int	mkstemp(const char *path);
 #endif
 #endif
@@ -568,7 +565,6 @@ struct interp_intern {
     UINT	timerid;
     unsigned 	poll_count;
     Sighandler_t sigtable[SIG_SIZE];
-    bool sloppystat;
 };
 
 #define WIN32_POLL_INTERVAL 32768
@@ -602,7 +598,6 @@ struct interp_intern {
 #define w32_init_socktype	(PL_sys_intern.thr_intern.Winit_socktype)
 #define w32_use_showwindow	(PL_sys_intern.thr_intern.Wuse_showwindow)
 #define w32_showwindow	(PL_sys_intern.thr_intern.Wshowwindow)
-#define w32_sloppystat	(PL_sys_intern.sloppystat)
 
 #ifdef USE_ITHREADS
 void win32_wait_for_children(pTHX);
@@ -735,6 +730,38 @@ DllExport void *win32_signal_context(void);
 #if defined(PERL_CORE) && !defined(O_ACCMODE)
 #  define O_ACCMODE (O_RDWR | O_WRONLY | O_RDONLY)
 #endif
+
+/* ucrt at least seems to allocate a whole bit per type,
+   just mask off one bit from the mask for our symlink
+   file type.
+*/
+#define _S_IFLNK ((unsigned)(_S_IFMT ^ (_S_IFMT & -_S_IFMT)))
+#undef S_ISLNK
+#define S_ISLNK(mode) (((mode) & _S_IFMT) == _S_IFLNK)
+
+/*
+
+The default CRT struct stat uses unsigned short for st_dev and st_ino
+which obviously isn't enough, so we define our own structure.
+
+ */
+
+typedef DWORD Dev_t;
+typedef unsigned __int64 Ino_t;
+
+struct w32_stat {
+    Dev_t st_dev;
+    Ino_t st_ino;
+    unsigned short st_mode;
+    DWORD st_nlink;
+    short st_uid;
+    short st_gid;
+    Dev_t st_rdev;
+    Off_t st_size;
+    time_t st_atime;
+    time_t st_mtime;
+    time_t st_ctime;
+};
 
 #endif /* _INC_WIN32_PERL5 */
 

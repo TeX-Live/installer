@@ -2,7 +2,7 @@ package HTML::LinkExtor;
 
 require HTML::Parser;
 our @ISA = qw(HTML::Parser);
-our $VERSION = '3.75';
+our $VERSION = '3.76';
 
 =head1 NAME
 
@@ -31,7 +31,7 @@ use strict;
 use HTML::Tagset ();
 
 # legacy (some applications grabs this hash directly)
-use vars qw(%LINK_ELEMENT);
+our %LINK_ELEMENT;
 *LINK_ELEMENT = \%HTML::Tagset::linkElements;
 
 =over 4

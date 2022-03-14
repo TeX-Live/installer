@@ -10,7 +10,7 @@ use strict;
 use warnings;
 our ( %Config, $VERSION );
 
-$VERSION = "5.032001";
+$VERSION = "5.034000";
 
 # Skip @Config::EXPORT because it only contains %Config, which we special
 # case below as it's not a function. @Config::EXPORT won't change in the
@@ -56,11 +56,11 @@ sub import {
     return;
 }
 
-die "$0: Perl lib version (5.32.1) doesn't match executable '$^X' version ($])"
+die "$0: Perl lib version (5.34.0) doesn't match executable '$^X' version ($])"
     unless $^V;
 
-$^V eq 5.32.1
-    or die sprintf "%s: Perl lib version (5.32.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
+$^V eq 5.34.0
+    or die sprintf "%s: Perl lib version (5.34.0) doesn't match executable '$^X' version (%vd)", $0, $^V;
 
 
 sub FETCH {
@@ -85,15 +85,15 @@ sub AUTOLOAD {
 my $rootdir = __FILE__;
 $rootdir =~ s![\\/][^\\/]*[\\/][^\\/]*$!!;
 $rootdir =~ s!/!\\!g;
-my $mingdir = "E:\\wprogs\\mingw2021";
+my $mingdir = "E:\\mingw";
 
 # tie returns the object, so the value returned to require will be true.
 tie %Config, 'Config', {
     archlibexp => "$rootdir\\lib",
     archname => 'MSWin32-x86-multi-thread',
     cc => 'gcc',
-    d_readlink => undef,
-    d_symlink => undef,
+    d_readlink => 'define',
+    d_symlink => 'define',
     dlext => 'dll',
     dlsrc => 'dl_win32.xs',
     dont_use_nlink => undef,
@@ -101,9 +101,9 @@ tie %Config, 'Config', {
     inc_version_list => '',
     intsize => '4',
     ldlibpthname => '',
-    libpth => "$mingdir\\lib",
+    libpth => "$mingdir\\lib $mingdir\\i686-w64-mingw32\\lib $mingdir\\lib\\gcc\\i686-w64-mingw32\\8.3.0",
     osname => 'MSWin32',
-    osvers => '10.0.19042.804',
+    osvers => '10.0.19042.508',
     path_sep => ';',
     privlibexp => "$rootdir\\lib",
     scriptdir => "$rootdir\\bin",
@@ -112,5 +112,5 @@ tie %Config, 'Config', {
     so => 'dll',
     useithreads => 'define',
     usevendorprefix => undef,
-    version => '5.32.1',
+    version => '5.34.0',
 };

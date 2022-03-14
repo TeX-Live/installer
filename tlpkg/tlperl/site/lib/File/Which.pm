@@ -2,14 +2,13 @@ package File::Which;
 
 use strict;
 use warnings;
-use Exporter   ();
+use base qw( Exporter );
 use File::Spec ();
 
 # ABSTRACT: Perl implementation of the which utility as an API
-our $VERSION = '1.23'; # VERSION
+our $VERSION = '1.27'; # VERSION
 
 
-our @ISA       = 'Exporter';
 our @EXPORT    = 'which';
 our @EXPORT_OK = 'where';
 
@@ -29,7 +28,7 @@ my @PATHEXT = ('');
 if ( IS_WIN ) {
   # WinNT. PATHEXT might be set on Cygwin, but not used.
   if ( $ENV{PATHEXT} ) {
-    push @PATHEXT, split ';', $ENV{PATHEXT};
+    push @PATHEXT, split /;/, $ENV{PATHEXT};
   } else {
     # Win9X or other: doesn't have PATHEXT, so needs hardcoded.
     push @PATHEXT, qw{.com .exe .bat};
@@ -49,7 +48,7 @@ sub which {
   return undef unless defined $exec;
   return undef if $exec eq '';
 
-  my $all = wantarray;
+  my $all = wantarray;  ## no critic (Freenode::Wantarray)
   my @results = ();
 
   # check for aliases first
@@ -79,7 +78,7 @@ sub which {
     }
   }
 
-  return $exec
+  return $exec  ## no critic (ValuesAndExpressions::ProhibitMixedBooleanOperators)
           if !IS_VMS and !IS_MAC and !IS_WIN and $exec =~ /\// and -f $exec and -x $exec;
 
   my @path;
@@ -88,7 +87,7 @@ sub which {
     # add the implicit . for you on MSWin32,
     # but we may or may not want to include
     # that.
-    @path = split(';', $ENV{PATH});
+    @path = split /;/, $ENV{PATH};
     s/"//g for @path;
     @path = grep length, @path;
   } else {
@@ -110,12 +109,12 @@ sub which {
         -x _
         or (
           # MacOS doesn't mark as executable so we check -e
-          IS_MAC
+          IS_MAC  ## no critic (ValuesAndExpressions::ProhibitMixedBooleanOperators)
           ||
           (
             ( IS_WIN or IS_CYG )
             and
-            grep {
+            grep {   ## no critic (BuiltinFunctions::ProhibitBooleanGrep)
               $file =~ /$_\z/i
             } @PATHEXT[1..$#PATHEXT]
           )
@@ -160,7 +159,7 @@ File::Which - Perl implementation of the which utility as an API
 
 =head1 VERSION
 
-version 1.23
+version 1.27
 
 =head1 SYNOPSIS
 
@@ -296,7 +295,7 @@ or PowerShell on Windows you can do this:
 
  use File::Which qw( which );
  use Shell::Guess;
-
+ 
  my $path = do {
    my $is_power = Shell::Guess->running_shell->is_power;
    local $File::Which::IMPLICIT_CURRENT_DIR = !$is_power;
@@ -324,7 +323,7 @@ report of how it went.
 
 Bugs should be reported via the GitHub issue tracker
 
-L<https://github.com/plicease/File-Which/issues>
+L<https://github.com/uperl/File-Which/issues>
 
 For other issues, contact the maintainer.
 
@@ -337,6 +336,8 @@ For other issues, contact the maintainer.
 Command line interface to this module.
 
 =item L<IPC::Cmd>
+
+Requires Perl 5.8.3.  Included as part of the Perl core as of 5.9.5.
 
 This module provides (among other things) a C<can_run> function, which is
 similar to C<which>.  It is a much heavier module since it does a lot more,
@@ -359,8 +360,13 @@ registry (see L<https://technet.microsoft.com/en-us/library/cc959352.aspx>).
 
 =item L<Devel::CheckBin>
 
+Requires Perl 5.8.1.
+
 This module purports to "check that a command is available", but does not
 provide any documentation on how you might use it.
+
+This module also relies on L<ExtUtils::MakeMaker> so has the same overhead
+burdens as L<IPC::Cmd>.
 
 =back
 

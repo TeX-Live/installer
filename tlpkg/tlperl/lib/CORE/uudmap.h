@@ -1,3 +1,8 @@
+/* ..\uudmap.h:
+ * THIS FILE IS AUTO-GENERATED DURING THE BUILD by: ..\generate_uudmap.exe
+ *
+ * These values will populate PL_uumap[], as used by unpack('u')
+*/
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 

@@ -136,8 +136,8 @@ modify it under the same terms as Perl itself.
 =cut
 
 use strict;
-our $VERSION = '3.75';
-use vars qw(%entity2char %char2entity);
+our $VERSION = '3.76';
+our (%entity2char, %char2entity);
 
 require 5.004;
 require Exporter;

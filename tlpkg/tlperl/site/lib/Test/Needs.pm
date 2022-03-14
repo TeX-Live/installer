@@ -2,7 +2,7 @@ package Test::Needs;
 use strict;
 use warnings;
 no warnings 'once';
-our $VERSION = '0.002006';
+our $VERSION = '0.002009';
 $VERSION =~ tr/_//d;
 
 BEGIN {
@@ -12,9 +12,17 @@ BEGIN {
   *_WORK_AROUND_BROKEN_MODULE_STATE
     = "$]" < 5.009
     ? sub(){1} : sub(){0};
+
+  # this allows regexes to match wide characters in vstrings
+  if ("$]" >= 5.006001 && "$]" <= 5.006002) {
+    require utf8;
+    utf8->import;
+  }
 }
 
 our @EXPORT = qw(test_needs);
+
+our $Level = 0;
 
 sub _try_require {
   local %^H
@@ -42,7 +50,7 @@ sub _croak {
   my $i = 1;
   while (my ($p, $f, $l) = caller($i++)) {
     next
-      if $p->isa(__PACKAGE__);
+      if $p =~ /\ATest::Needs(?:::|\z)/;
     die "$message at $f line $l.\n";
   }
   die $message;
@@ -58,11 +66,11 @@ sub _numify_version {
   for ($_[0]) {
     return
         !$_ ? 0
-      : /^[0-9]+\.[0-9]+$/ ? sprintf('%.6f', $_)
-      : /^v?([0-9]+(?:\.[0-9]+)+)$/
+      : /^[0-9]+(?:\.[0-9]+)?$/ ? sprintf('%.6f', $_)
+      : /^v?([0-9]+(?:\.[0-9]+)*)$/
         ? sprintf('%d.%03d%03d', ((split /\./, $1), 0, 0)[0..2])
-      : /^(\x05)(.*)$/s
-        ? sprintf('%d.%03d%03d', map ord, $1, split //, $2)
+      : /^([\x05-\x07])(.*)$/s
+        ? sprintf('%d.%03d%03d', ((map ord, /(.)/gs), 0, 0)[0..2])
       : _croak qq{version "$_" does not look like a number};
   }
 }
@@ -92,7 +100,7 @@ sub import {
   my $class = shift;
   my $target = caller;
   if (@_) {
-    local $Test::Builder::Level = ($Test::Builder::Level||0) + 1;
+    local $Level = $Level + 1;
     test_needs(@_);
   }
   no strict 'refs';
@@ -102,7 +110,7 @@ sub import {
 
 sub test_needs {
   my $missing = _find_missing(@_);
-  local $Test::Builder::Level = ($Test::Builder::Level||0) + 1;
+  local $Level = $Level + 1;
   if ($missing) {
     if ($ENV{RELEASE_TESTING}) {
       _fail("$missing due to RELEASE_TESTING");
@@ -111,11 +119,17 @@ sub test_needs {
       _skip($missing);
     }
   }
-
+  return 1;
 }
 
-sub _skip { _fail_or_skip($_[0], 0) }
-sub _fail { _fail_or_skip($_[0], 1) }
+sub _skip {
+  local $Level = $Level + 1;
+  _fail_or_skip($_[0], 0)
+}
+sub _fail {
+  local $Level = $Level + 1;
+  _fail_or_skip($_[0], 1)
+}
 
 sub _pairs {
   map +(
@@ -134,7 +148,7 @@ sub _pairs {
 sub _fail_or_skip {
   my ($message, $fail) = @_;
   if ($INC{'Test2/API.pm'}) {
-    my $ctx = Test2::API::context();
+    my $ctx = Test2::API::context(level => $Level);
     my $hub = $ctx->hub;
     if ($fail) {
       $ctx->ok(0, "Test::Needs modules available", [$message]);
@@ -157,6 +171,7 @@ sub _fail_or_skip {
     $ctx->send_event('+'._t2_terminate_event());
   }
   elsif ($INC{'Test/Builder.pm'}) {
+    local $Test::Builder::Level = $Test::Builder::Level + $Level;
     my $tb = Test::Builder->new;
     my $has_plan = Test::Builder->can('has_plan') ? 'has_plan'
       : sub { $_[0]->expected_tests || eval { $_[0]->current_test($_[0]->current_test); 'no_plan' } };
@@ -174,7 +189,7 @@ sub _fail_or_skip {
           = $plan && $plan ne 'no_plan' ? $plan - $tests : 1;
         $tb->skip("Test::Needs modules not available")
           for 1 .. $skips;
-        Test::Builer->can('note') ? $tb->note($message) : print "# $message\n";
+        Test::Builder->can('note') ? $tb->note($message) : print "# $message\n";
       }
       else {
         $tb->skip_all($message);
@@ -204,17 +219,19 @@ sub _t2_terminate_event () {
   return $terminate_event
     if $terminate_event;
   local $@;
-  my $file = __FILE__;
-  $terminate_event = eval <<"END_CODE" or die "$@";
+  $terminate_event = eval sprintf <<'END_CODE', __LINE__+2, __FILE__ or die "$@";
+#line %d "%s"
     package # hide
       Test::Needs::Event::Terminate;
     use Test2::Event ();
-    our \@ISA = qw(Test2::Event);
+    our @ISA = qw(Test2::Event);
     sub no_display { 1 }
     sub terminate { 0 }
-    \$INC{'Test/Needs/Event/Terminate.pm'} = \$file;
     __PACKAGE__;
 END_CODE
+    (my $pm = "$terminate_event.pm") =~ s{::}{/}g;
+    $INC{$pm} = __FILE__;
+    $terminate_event;
 }
 
 1;
