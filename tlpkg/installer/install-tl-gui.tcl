@@ -1,6 +1,6 @@
 #!/usr/bin/env wish
 
-# Copyright 2018-2021 Siep Kroonenberg
+# Copyright 2018-2022 Siep Kroonenberg
 
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -557,6 +557,7 @@ proc commit_root {} {
     set ::vars(TEXMFCONFIG) $::vars(TEXMFSYSCONFIG)
   }
   destroy .tltd
+  update_vars
 }
 
 ### main directory dialog ###
@@ -1308,6 +1309,15 @@ proc abort_menu {} {
   # i.e. anything but advanced, alltrees or startinst
 }
 
+proc maybe_install {} {
+  if {($::vars(free_size)!=-1) && \
+          ($::vars(total_size) >= ($::vars(free_size)-100))} {
+    tk_messageBox -icon error -message [__ "Not enough room"]
+  } else {
+    set ::menu_ans "startinst"
+  }
+}
+
 proc run_menu {} {
   #if [info exists ::env(dbgui)] {
   #  puts "\ndbgui: run_menu: advanced is now $::advanced"
@@ -1391,8 +1401,8 @@ proc run_menu {} {
   # frame at bottom with install/quit buttons
   pack [ttk::frame .final] \
       -in .bg -side bottom -pady {5pt 2pt} -fill x
-  ppack [ttk::button .install -text [__ "Install"] -command {
-    set ::menu_ans "startinst"}] -in .final -side right
+  ppack [ttk::button .install -text [__ "Install"] -command maybe_install] \
+    -in .final -side right
   ppack [ttk::button .quit -text [__ "Quit"] -command {
     set ::out_log {}
     set ::menu_ans "no_inst"}] -in .final -side right
@@ -1577,7 +1587,7 @@ proc run_menu {} {
         -in .selsf -row $rw -column 2 -sticky e
   }
 
-  # total size
+  # total size and available space
   # curf: current frame
   set curf [expr {$::advanced ? ".selsf" : ".dirf"}]
   incr rw
@@ -1585,6 +1595,13 @@ proc run_menu {} {
   ttk::label .size_req -textvariable ::vars(total_size)
   pgrid .lsize -in $curf -row $rw -column 0 -sticky w
   pgrid .size_req -in $curf -row $rw -column 1 -sticky w
+  if {$::vars(free_size) != -1} {
+    incr rw
+    ttk::label .lavail -text [__ "Disk space available (in MB):"]
+    ttk::label .avail -textvariable ::vars(free_size)
+    pgrid .lavail -in $curf -row $rw -column 0 -sticky w
+    pgrid .avail -in $curf -row $rw -column 1 -sticky w
+  }
 
   ########################################################
   # right side: options

@@ -83,6 +83,7 @@ sub read_vars {
     if ($l =~ /^([^:]+): (.*)$/) {
       $vars{$1} = $2;
     } elsif ($l eq 'endvars') {
+      $vars{'free_size'} = TeXLive::TLUtils::diskfree($vars{'TEXDIR'});
       return 1;
     } else {
       return 0;
