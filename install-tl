@@ -2915,7 +2915,7 @@ retry fails, the installer aborts.
 =item B<-persistent-downloads>
 
 For network installs, activating this option makes the installer try to
-set up a persistent connection using the C<Net::LWP> Perl module.  This
+set up a persistent connection using the C<LWP> Perl module.  This
 opens only one connection between your computer and the server per
 session and reuses it, instead of initiating a new download for each
 package, which typically yields a significant speed-up.
