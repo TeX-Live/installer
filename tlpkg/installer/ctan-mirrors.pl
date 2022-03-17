@@ -1,5 +1,8 @@
 $mirrors = {
   'Africa' => {
+    'Morocco' => {
+      'https://mirror.marwan.ma/ctan/' => 1,
+    },
     'South Africa' => {
       'http://ftp.leg.uct.ac.za/pub/packages/ctan/' => 1,
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
@@ -35,6 +38,7 @@ $mirrors = {
       'http://ctan.yazd.ac.ir/' => 1,
       'https://ctan.asis.ai/' => 1,
       'https://ctan.um.ac.ir/' => 1,
+      'https://mirror.bardia.tech/ctan/' => 1,
     },
     'Japan' => {
       'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
