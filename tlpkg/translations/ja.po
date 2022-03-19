@@ -1,13 +1,13 @@
-# Copyright 2010-2021 TeX Live Team
+# Copyright 2010-2022 TeX Live Team
 # This file is distributed under the same license as the TeX Live package.
 # Koji Yokota <yokota33@gmail.com>, 2010, 2011, 2012, 2014, 2015.
-# Takuto Asakura <tkt.asakura@gmail.com>, 2019-2021.
+# Takuto Asakura <tkt.asakura@gmail.com>, 2019-2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2022-03-19 01:49+0100\n"
-"PO-Revision-Date: 2021-03-18 11:41+0900\n"
+"PO-Revision-Date: 2022-03-19 20:42+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
@@ -1017,11 +1017,11 @@ msgstr "インストール先"
 
 #: tlpkg/installer/install-tl-gui.tcl:598
 msgid "Prefix"
-msgstr ""
+msgstr "プレフィックス"
 
 #: tlpkg/installer/install-tl-gui.tcl:608
 msgid "Prefix must exist"
-msgstr ""
+msgstr "プレフィックスは必須です"
 
 #: tlpkg/installer/install-tl-gui.tcl:616
 msgid "Localized directory names will be replaced by their real names"
@@ -1083,7 +1083,7 @@ msgstr "info ページ"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "空きスペースが不足しています"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2736
@@ -1175,8 +1175,9 @@ msgid "Disk space required (in MB):"
 msgstr "必要なディスク容量 (MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
+#, fuzzy
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "必要なディスク容量 (MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1591,19 +1592,19 @@ msgstr "フォントマップを再生成中……"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2720
 msgid "Add/replace 64-bit binaries"
-msgstr ""
+msgstr "64-bit バイナリを追加/置換"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2723
 msgid "Add/replace from local file"
-msgstr ""
+msgstr "ローカルファイルから追加/置換"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2727
 msgid "Resynchronize with 32-bit"
-msgstr ""
+msgstr "32-bit で再同期"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2731
 msgid "Remove 64-bit binaries"
-msgstr ""
+msgstr "64-bit バイナリを削除"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2750
 msgid "GUI font scaling"
@@ -1741,7 +1742,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3099
 msgid "See internal help"
-msgstr ""
+msgstr "内部ヘルプを参照してください"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
