@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2022-03-16 01:51+0100\n"
+"POT-Creation-Date: 2022-03-19 01:49+0100\n"
 "PO-Revision-Date: 2021-03-11 09:24+0300\n"
 "Last-Translator: Ján Buša <jan.busa@tuke.sk>\n"
 "Language-Team: tex-live@tug.org\n"
@@ -1745,6 +1745,10 @@ msgid ""
 msgstr ""
 "%s je chránený proti zápisu. Pravdepodobne toho veľa nenarobíte. \n"
 "Ste si istý, že chcete pokračovať?"
+
+#: texmf-dist/scripts/tlshell/tlshell.tcl:3099
+msgid "See internal help"
+msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
