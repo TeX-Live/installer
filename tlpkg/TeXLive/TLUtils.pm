@@ -815,42 +815,6 @@ computing the disk space.
 
 sub diskfree {
   my $td = shift;
-  my ($output, $retval);
-  if (win32()) {
-    # the powershell one-liner only works from win8 on.
-    my @winver = Win32::GetOSVersion();
-    if ($winver[1]<=6 && $winver[2]<=1) {
-      return -1;
-    }
-    my $avl;
-    if ($td =~ /^[a-zA-Z]:/) {
-      my $drv = substr($td,0,1);
-      # ea ignore: error action ignore: no output at all
-      my $cmd = "powershell -nologo -noninteractive -noprofile -command " .
-       "\"get-psdrive -name $drv -ea ignore |select-object free |format-wide\"";
-      ($output, $retval) = run_cmd($cmd);
-      # ignore exit code, just parse the output
-      my @lines = split(/\r*\n/, $output);
-      foreach (@lines) {
-        chomp $_;
-        if ($_ !~ /^\s*$/) {
-          $_ =~ s/^\s*//;
-          $_ =~ s/\s*$//;
-          $avl = $_;
-          last;
-        }
-      }
-      if ($avl !~ /^[0-9]+$/) {
-        return (-1);
-      } else {
-        return (int($avl/(1024*1024)));
-      }
-    } else {
-      # maybe UNC drive; do not try to handle this
-      return -1;
-    }
-  }
-  # now windows case has been taken care of
   return (-1) if (! $::progs{"df"});
   # drop final /
   $td =~ s!/$!!;
@@ -868,7 +832,7 @@ sub diskfree {
   $td .= "/" if ($td !~ m!/$!);
   return (-1) if (! -e $td);
   debug("Checking for free diskspace in $td\n");
-  ($output, $retval) = run_cmd("df -P \"$td\"", POSIXLY_CORRECT => 1);
+  my ($output, $retval) = run_cmd("df -P \"$td\"", POSIXLY_CORRECT => 1);
   if ($retval == 0) {
     # Output format should be this:
     # Filesystem      512-blocks       Used  Available Capacity Mounted on
