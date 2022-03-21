@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2022-03-19 01:49+0100\n"
-"PO-Revision-Date: 2021-02-07 21:14+0100\n"
+"PO-Revision-Date: 2022-03-21 13:45+0100\n"
 "Last-Translator: Mojca Miklavec <mojca.miklavec.lists@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: sl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Bookmarks: 77,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -347,7 +347,7 @@ msgstr "OS/arhitektura ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr ""
+msgstr "Jezik grafičnega vmesnika ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -973,11 +973,12 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "Bližnjice v meniju"
 
 #: tlpkg/installer/install-menu-text.pl:43
+#, fuzzy
 msgid "Launcher"
-msgstr ""
+msgstr "Zaganjalnik"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -1073,11 +1074,11 @@ msgstr "Korenska mapa za namestitev"
 
 #: tlpkg/installer/install-tl-gui.tcl:598
 msgid "Prefix"
-msgstr ""
+msgstr "Predpona"
 
 #: tlpkg/installer/install-tl-gui.tcl:608
 msgid "Prefix must exist"
-msgstr ""
+msgstr "Predpona mora obstajati"
 
 #: tlpkg/installer/install-tl-gui.tcl:616
 #, fuzzy
@@ -1141,7 +1142,7 @@ msgstr "Pomoč 'info'"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "Ni dovolj prostora"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2736
@@ -1236,7 +1237,7 @@ msgstr "Potreben prostor na disku (v MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "Prostor na disku, ki je na voljo (v MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1614,12 +1615,18 @@ msgstr ""
 "Spisan v jeziku Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2295
+#, fuzzy
 msgid ""
 "This TeX Live Manager front-end should be pretty self-explanatory.\n"
 "Note that it does not cover the full functionality of tlmgr. Notably, it "
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
+"Uporabniški vmesnik TeX Live Manager je pripravljen v upanju na intuitivno "
+"uporabniško izkušnjo.\n"
+"Ne nadomešča celotne funkcionalnosti tlmgr-ja, izrecno manjka npr. "
+"enouporabniški način ali shranjevanje varnostnih kopij.\n"
+"Za celotno dokumentacijo tlmgr-ja uporabite meni 'Pomoč za Tlmgr'."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2329
 #, tcl-format
@@ -1668,20 +1675,23 @@ msgid "Rebuilding fontmap files..."
 msgstr "Posodabljam mapiranje pisav …"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2720
+#, fuzzy
 msgid "Add/replace 64-bit binaries"
-msgstr ""
+msgstr "Dodaj/zamenjaj 64-bitne programe"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2723
+#, fuzzy
 msgid "Add/replace from local file"
-msgstr ""
+msgstr "Dodaj/zamenjaj iz lokalne datoteke"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2727
+#, fuzzy
 msgid "Resynchronize with 32-bit"
-msgstr ""
+msgstr "Ponovno sinhroniziraj z 32-bitno verzijo"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2731
 msgid "Remove 64-bit binaries"
-msgstr ""
+msgstr "Odstrani 64-bitne programe"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2750
 msgid "GUI font scaling"
@@ -1689,11 +1699,11 @@ msgstr "Povečava pisave za GUI"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2776
 msgid "TLShell Help"
-msgstr ""
+msgstr "Pomoč za TLShell"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2777
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Pomoč za Tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2796
 msgid "Restart self"
@@ -1822,7 +1832,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3099
 msgid "See internal help"
-msgstr ""
+msgstr "Poglej interno pomoč"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
