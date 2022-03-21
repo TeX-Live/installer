@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2022-03-19 01:49+0100\n"
-"PO-Revision-Date: 2022-03-02 15:19+0100\n"
+"PO-Revision-Date: 2022-03-21 06:26+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -1079,7 +1079,7 @@ msgstr "Info pages"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "Nicht genug Speicherplatz"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2736
@@ -1172,7 +1172,7 @@ msgstr "Benötigter Speicherplatz (in MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "Verfügbarer Speicherplatz (in MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1739,7 +1739,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3099
 msgid "See internal help"
-msgstr ""
+msgstr "Siehe die interne Hilfe"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
