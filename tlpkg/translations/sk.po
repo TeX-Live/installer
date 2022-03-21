@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2022-03-19 01:49+0100\n"
-"PO-Revision-Date: 2021-03-11 09:24+0300\n"
+"PO-Revision-Date: 2022-03-21 13:59+0100\n"
 "Last-Translator: Ján Buša <jan.busa@tuke.sk>\n"
 "Language-Team: tex-live@tug.org\n"
 "Language: sk\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -325,7 +325,7 @@ msgstr "Platformy ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr ""
+msgstr "Jazyk GUI ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -1017,11 +1017,11 @@ msgstr "Root inštalácie"
 
 #: tlpkg/installer/install-tl-gui.tcl:598
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: tlpkg/installer/install-tl-gui.tcl:608
 msgid "Prefix must exist"
-msgstr ""
+msgstr "Prefix musí existovať"
 
 #: tlpkg/installer/install-tl-gui.tcl:616
 msgid "Localized directory names will be replaced by their real names"
@@ -1083,7 +1083,7 @@ msgstr "Informačné strany"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "Nedostatok miesta"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2736
@@ -1176,7 +1176,7 @@ msgstr "Požadovaný diskový priestor (v MB)"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "Dostupný diskový priestor (v MB)"
 
 # Slovak translation update - Jan Busa 02/05/15.
 #: tlpkg/installer/install-tl-gui.tcl:1630
@@ -1227,7 +1227,7 @@ msgstr "Súborové asociácie"
 
 #: tlpkg/installer/install-tl-gui.tcl:1722
 msgid "Install TeXworks front end"
-msgstr "Nainštalovať pomocný program TeXworks"
+msgstr "Nainštalovať editačný program TeXworks"
 
 #: tlpkg/installer/install-tl-gui.tcl:1734
 msgid "Create symlinks in standard directories"
@@ -1257,7 +1257,7 @@ msgstr "%s požaduje argument"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
-msgstr "Konkrétne zrkadlo ..."
+msgstr "Konkrétne zrkadlo..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
@@ -1412,7 +1412,7 @@ msgstr "Chyba"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1626
 msgid "No paper sizes available"
-msgstr ""
+msgstr "Nie sú dostupné žiadne veľkosti papiera"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1640
 msgid "Paper sizes"
@@ -1526,7 +1526,7 @@ msgstr "V každom prípade odstrániť závislosti %s. Pokračovať?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2202
 msgid "Info"
-msgstr "Info"
+msgstr "Informácie"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2289
 msgid ""
@@ -1578,7 +1578,7 @@ msgstr "Znovu vytvoriť databázu názvov súborov"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2679
 msgid "Regenerating filename database..."
-msgstr "Znovuvytvorenie databázy názvov súborov ..."
+msgstr "Znovuvytvorenie databázy názvov súborov..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2680
 msgid "Regenerate formats"
@@ -1586,7 +1586,7 @@ msgstr "Znovu vytvoriť formáty"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2681
 msgid "Rebuilding formats..."
-msgstr "Znovuvybudovanie formátov ..."
+msgstr "Znovuvybudovanie formátov..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2682
 msgid "Regenerate fontmaps"
@@ -1594,23 +1594,23 @@ msgstr "Znovu vygenerovať mapy fontov"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2683
 msgid "Rebuilding fontmap files..."
-msgstr "Znovuvybudovanie súborov fontových máp ..."
+msgstr "Znovuvybudovanie súborov fontových máp..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2720
 msgid "Add/replace 64-bit binaries"
-msgstr ""
+msgstr "Pridať/zameniť 64-bitové binárky"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2723
 msgid "Add/replace from local file"
-msgstr ""
+msgstr "Pridať/nahradiť z lokálneho súboru"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2727
 msgid "Resynchronize with 32-bit"
-msgstr ""
+msgstr "Zosúladiť s 32-bitovými"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2731
 msgid "Remove 64-bit binaries"
-msgstr ""
+msgstr "Odstrániť 64-bitové binárky"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2750
 msgid "GUI font scaling"
@@ -1748,7 +1748,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3099
 msgid "See internal help"
-msgstr ""
+msgstr "Pozri vnútornú nápovedu"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
@@ -1981,7 +1981,7 @@ msgstr ""
 "Pridajte %s/texmf-dist/doc/man ku MANPATH.\n"
 "Pridajte %s/texmf-dist/doc/info ku INFOPATH.\n"
 "Ako najdôležitejšie pridajte  %s/bin/%s\n"
-"ku Vašej premennej PATH pre aktuálnu a budúcu prácu."
+"ku vašej premennej PATH pre aktuálnu a budúcu prácu."
 
 #~ msgid "GUI Language ..."
 #~ msgstr "Jazyk grafického používateľského rozhrania ..."

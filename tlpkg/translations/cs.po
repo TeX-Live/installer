@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2022-03-19 01:49+0100\n"
-"PO-Revision-Date: 2021-03-11 09:18+0300\n"
+"PO-Revision-Date: 2022-03-21 13:54+0100\n"
 "Last-Translator: Petr Sojka <sojka@fi.muni.cz>\n"
 "Language-Team: Czech <>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -329,7 +329,7 @@ msgstr "Platformy ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr ""
+msgstr "Jazyk GUI ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -409,7 +409,7 @@ msgstr "Zrušit"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:629
 msgid "Complete removal finished"
-msgstr "Finální odstranění dokončeno"
+msgstr "Finální smazání dokončeno"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:634
 #, perl-format
@@ -1020,11 +1020,11 @@ msgstr "Kořenový instalační adresář"
 
 #: tlpkg/installer/install-tl-gui.tcl:598
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: tlpkg/installer/install-tl-gui.tcl:608
 msgid "Prefix must exist"
-msgstr ""
+msgstr "Prefix musí existovat"
 
 #: tlpkg/installer/install-tl-gui.tcl:616
 msgid "Localized directory names will be replaced by their real names"
@@ -1033,7 +1033,7 @@ msgstr "Lokální názvy adresářů budou nahrazeny jejich reálnými jmény"
 #: tlpkg/installer/install-tl-gui.tcl:699
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
-msgstr "'~' je totéž co %s, e.g. %s"
+msgstr "'~' je totéž co %s, t.j. %s"
 
 #: tlpkg/installer/install-tl-gui.tcl:854
 msgid "Cannot deselect own platform"
@@ -1086,7 +1086,7 @@ msgstr "Informační stránky"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "Nedostatek místa"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2736
@@ -1179,7 +1179,7 @@ msgstr "Požadovaná disková kapacita (v MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "Dostupná disková kapacita (v MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1412,7 +1412,7 @@ msgstr "Chyba"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1626
 msgid "No paper sizes available"
-msgstr ""
+msgstr "Nejsou k dispozici žádné velikosti papíru"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1640
 msgid "Paper sizes"
@@ -1597,19 +1597,19 @@ msgstr "Přestavba souborů fontmap ..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2720
 msgid "Add/replace 64-bit binaries"
-msgstr ""
+msgstr "Přidat/nahradit 64bitové binární soubory"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2723
 msgid "Add/replace from local file"
-msgstr ""
+msgstr "Přidat/nahradit z místního souboru"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2727
 msgid "Resynchronize with 32-bit"
-msgstr ""
+msgstr "Znovu synchronizujte s 32bitovou verzí"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2731
 msgid "Remove 64-bit binaries"
-msgstr ""
+msgstr "Odebrat 64bitové binární soubory"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2750
 msgid "GUI font scaling"
@@ -1747,7 +1747,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3099
 msgid "See internal help"
-msgstr ""
+msgstr "Viz interní nápovědu"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
@@ -1979,7 +1979,7 @@ msgstr ""
 "Přidejte %s/texmf-dist/doc/man do MANPATH.\n"
 "Přidejte %s/texmf-dist/doc/info do INFOPATH.\n"
 "A především, přidejte %s/bin/%s\n"
-"do proměnnér PATH pro současnou i budoucí sessions."
+"do proměnné PATH pro aktuální i budoucí relace."
 
 #~ msgid "GUI Language ..."
 #~ msgstr "Jazyk GUI ..."
