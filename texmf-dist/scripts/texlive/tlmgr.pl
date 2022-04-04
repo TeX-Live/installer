@@ -7339,9 +7339,6 @@ TeX Live $TeXLive::TLConfig::ReleaseYear is frozen
 and will no longer be routinely updated.  This happens when a new
 release is made, or will be made shortly.
 
-If you're willing to help with pretesting a new release, and we hope
-you are, please see https://tug.org/texlive/pretest.html.
-
 For general status information about TeX Live, see its home page:
 https://tug.org/texlive
 
