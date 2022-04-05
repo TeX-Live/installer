@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2022-03-19 01:49+0100\n"
-"PO-Revision-Date: 2021-03-08 12:43+0800\n"
+"PO-Revision-Date: 2022-03-23 09:50+0800\n"
 "Last-Translator: Vladimir Lomov <irk.translator@yandex.ru>\n"
 "Language-Team: Russian <tldoc@tug.org>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -332,7 +332,7 @@ msgstr "Платформы ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr ""
+msgstr "Язык ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -1022,11 +1022,11 @@ msgstr "Корневой каталог установки"
 
 #: tlpkg/installer/install-tl-gui.tcl:598
 msgid "Prefix"
-msgstr ""
+msgstr "Префикс"
 
 #: tlpkg/installer/install-tl-gui.tcl:608
 msgid "Prefix must exist"
-msgstr ""
+msgstr "Префикс должен существовать"
 
 #: tlpkg/installer/install-tl-gui.tcl:616
 msgid "Localized directory names will be replaced by their real names"
@@ -1088,7 +1088,7 @@ msgstr "Документация в Info"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "Не достаточно места"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2736
@@ -1181,7 +1181,7 @@ msgstr "Требуется места на диске (в МБ):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "Доступно (в МБ):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1475,7 +1475,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Будут установлены зависимости\n"
+"Установить зависимости\n"
 "\n"
 "%s"
 
@@ -1491,7 +1491,7 @@ msgid ""
 "\n"
 "%s?"
 msgstr ""
-"Будем обновлять зависимости\n"
+"Обновлять зависимости\n"
 "\n"
 "%s?"
 
@@ -1517,7 +1517,7 @@ msgid ""
 "\n"
 "%s?"
 msgstr ""
-"Будем удалять зависимости\n"
+"Удалить зависимости\n"
 "\n"
 "%s?"
 
@@ -1545,6 +1545,11 @@ msgid ""
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
+"Эта оболочка диспетчера TeX Live должна быть интуитивно понятной.\n"
+"Однако, она не предоставляет всех возможностей tlmgr. В частности, нет "
+"пользовательского режима или создание архива и восстановления.\n"
+"Посмотрите пункт меню «Справка по Tlmgr» чтобы посмтреть всю документацию по "
+"tlmgr."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2329
 #, tcl-format
@@ -1594,19 +1599,19 @@ msgstr "Пересоздание файлов fontmap..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2720
 msgid "Add/replace 64-bit binaries"
-msgstr ""
+msgstr "Добавить/заменить 64-битные программы"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2723
 msgid "Add/replace from local file"
-msgstr ""
+msgstr "Добавить/заменить из локального файла"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2727
 msgid "Resynchronize with 32-bit"
-msgstr ""
+msgstr "Синхронизировать с 32-битной"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2731
 msgid "Remove 64-bit binaries"
-msgstr ""
+msgstr "Удалить 64-битные программы"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2750
 msgid "GUI font scaling"
@@ -1614,11 +1619,11 @@ msgstr "Шрифт"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2776
 msgid "TLShell Help"
-msgstr ""
+msgstr "Справка по TLShell"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2777
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Справка по Tlmgr"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2796
 msgid "Restart self"
@@ -1744,7 +1749,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3099
 msgid "See internal help"
-msgstr ""
+msgstr "Посмотреть встроенную справку"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
