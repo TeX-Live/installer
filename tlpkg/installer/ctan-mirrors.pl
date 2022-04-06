@@ -53,9 +53,6 @@ $mirrors = {
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
-    'Malaysia' => {
-      'https://mirrors.upm.edu.my/CTAN/' => 1,
-    },
     'Philippines' => {
       'http://mirror.rise.ph/ctan/' => 1,
     },
