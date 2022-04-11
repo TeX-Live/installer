@@ -58,9 +58,7 @@ sub dblogsub {
 
 if (($^O !~ /^MSWin/i) &&
       # this wrapper is only for unix, since windows has its own wrapper
-      ($#ARGV >= 0 || ($^O eq 'darwin')) &&
-        # tcl parameter may still come, or tcl is default
-      ($#ARGV < 0 || $ARGV[0] ne '-from_ext_gui')
+      ($#ARGV >= 0) && ($ARGV[0] ne '-from_ext_gui')
         # this run is not invoked by tcl
     ) {
 
@@ -81,7 +79,7 @@ if (($^O !~ /^MSWin/i) &&
   # build argument array @new_args for install-tl-gui.tcl.
   # '-gui' or '-gui tcl' will not be copied to @new_args.
   # quit scanning and building @new_args once tcl is ruled out.
-  my $want_tcl = ($^O eq 'darwin');
+  my $want_tcl = 0;
   my $asked4tcl = 0;
   my $forbid = 0;
   my @new_args = ();
@@ -127,8 +125,6 @@ if (($^O !~ /^MSWin/i) &&
   }
   # done scanning arguments
   if ($want_tcl) {
-    # Darwin: suppress deprecation warning
-    $ENV{'TK_SILENCE_DEPRECATION'} = 1 if $^O eq 'darwin';
     unshift (@new_args, "--");
     unshift (@new_args, "$::installerdir/tlpkg/installer/install-tl-gui.tcl");
     my @wishes = qw /wish wish8.7 wish8.6 wish8.5 tclkit/;
