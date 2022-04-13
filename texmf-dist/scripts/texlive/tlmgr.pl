@@ -5614,6 +5614,7 @@ sub check_files {
     tlpkg/texlive.tlpdb tlpkg/tlpobj tlpkg/texlive.profile
     texmf-config/ texmf-var/
     texmf.cnf texmfcnf.lua install-tl.log
+    tlmgr.log tlmgr-commands.log
   !;
   my %tltreefiles = %{$tltree->{'_allfiles'}};
   my @tlpdbfiles = keys %filetopacks;
@@ -9647,6 +9648,11 @@ just as in normal mode.
 
 In user mode, these actions operate only on the user tree's
 configuration files and/or C<texlive.tlpdb>.
+
+=head2 User mode logs
+
+In user mode, C<tlmgr.log> and <tlmgr-commands.log> are written in the 
+C<USERTREE/web2c/> directlry instead of C<TEXMFSYSVAR/web2c/>.
 
 =head1 MULTIPLE REPOSITORIES
 
