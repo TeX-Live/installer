@@ -640,9 +640,10 @@ for the full story.\n";
   $packagelogged = 0;  # how many msgs we logged
   $commandslogged = 0;
   chomp (my $texmfsysvar = `kpsewhich -var-value=TEXMFSYSVAR`);
+  chomp (my $texmfvar = `kpsewhich -var-value=TEXMFVAR`);
   $packagelogfile = $opts{"package-logfile"};
   if ($opts{"usermode"}) {
-    $packagelogfile ||= "$::maintree/web2c/tlmgr.log";
+    $packagelogfile ||= "$texmfvar/web2c/tlmgr.log";
   } else {
     $packagelogfile ||= "$texmfsysvar/web2c/tlmgr.log";
   }
@@ -659,7 +660,7 @@ for the full story.\n";
   # output of executed commands are put into -command-logfile
   $commandlogfile = $opts{"command-logfile"};
   if ($opts{"usermode"}) {
-    $commandlogfile ||= "$::maintree/web2c/tlmgr-commands.log";
+    $commandlogfile ||= "$texmfvar/web2c/tlmgr-commands.log";
   } else {
     $commandlogfile ||= "$texmfsysvar/web2c/tlmgr-commands.log";
   }
@@ -9652,7 +9653,7 @@ configuration files and/or C<texlive.tlpdb>.
 =head2 User mode logs
 
 In user mode, C<tlmgr.log> and <tlmgr-commands.log> are written in the 
-C<USERTREE/web2c/> directlry instead of C<TEXMFSYSVAR/web2c/>.
+C<TEXMFVAR/web2c/> directlry instead of C<TEXMFSYSVAR/web2c/>.
 
 =head1 MULTIPLE REPOSITORIES
 
