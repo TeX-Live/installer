@@ -1976,7 +1976,7 @@ msgstr ""
 "d'utilisateurs de TeX à travers le monde ; pensez à lui apporter votre "
 "soutien en rejoignant le groupe qui vous convient le mieux. La liste des "
 "groupes est disponible sur le web à l'adresse http://tug.org/usergroups."
-"html ;la page du groupe francophone est http://www.gutenberg.eu.org/."
+"html ; la page du groupe francophone est https://www.gutenberg-asso.fr/."
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2695
 #, perl-format
@@ -1986,8 +1986,8 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions."
 msgstr ""
-"Veuillez ajouter %s/texmf/doc/man à votre MANPATH\n"
-"et %s/texmf/doc/info à votre INFOPATH,\n"
+"Veuillez ajouter %s/texmf-dist/doc/man à votre MANPATH\n"
+"et %s/texmf-dist/doc/info à votre INFOPATH,\n"
 "mais surtout, ajoutez %s/bin/%s\n"
 "à votre PATH, pour cette session et les suivantes."
 
@@ -2377,7 +2377,7 @@ msgstr ""
 #~ "d'utilisateurs de TeX à travers le monde ; pensez à lui apporter votre "
 #~ "soutien en rejoignant le groupe qui vous convient le mieux. La liste des "
 #~ "groupes est disponible sur le web à l'adresse http://tug.org/usergroups."
-#~ "html ; la page du groupe francophone est http://www.gutenberg.eu.org/."
+#~ "html ; la page du groupe francophone est https://www.gutenberg-asso.fr/."
 
 #~ msgid "no"
 #~ msgstr "Non"
