@@ -211,6 +211,9 @@ $mirrors = {
     },
   },
   'South America' => {
+    'Brazil' => {
+      'https://linorg.usp.br/CTAN/' => 1,
+    },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
     },
