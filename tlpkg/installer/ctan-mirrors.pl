@@ -48,6 +48,7 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
+      'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
@@ -166,9 +167,6 @@ $mirrors = {
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
       'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
-    },
-    'Switzerland' => {
-      'https://mirror.foobar.to/CTAN/' => 1,
     },
     'United Kingdom' => {
       'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
