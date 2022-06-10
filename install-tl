@@ -1408,7 +1408,8 @@ sub do_texmf_cnf {
       # by default TEXMFLOCAL = TEXDIR/../texmf-local, if this is the case
       # we don't have to write a new setting.
       my $deftmflocal = Cwd::abs_path($vars{'TEXDIR'}.'/../texmf-local');
-      if (Cwd::abs_path($vars{TEXMFLOCAL}) ne "$deftmflocal") {
+      if (!defined $deftmflocal       # in case abs_path couldn't resolve
+          || Cwd::abs_path($vars{TEXMFLOCAL}) ne "$deftmflocal") {
         push @changedtmf, "TEXMFLOCAL = $vars{'TEXMFLOCAL'}\n";
       }
     } elsif ($line =~ m/^TEXMFSYSVAR/) {
