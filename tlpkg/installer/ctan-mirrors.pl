@@ -18,6 +18,7 @@ $mirrors = {
       'https://mirrors.dgut.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
+      'https://mirrors.nwafu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
@@ -45,8 +46,10 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
+      'https://cran.asia/tex/' => 1,
       'https://ftp.harukasan.org/CTAN/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
+      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
       'https://mirror.yongbok.net/ctan/' => 1,
     },
