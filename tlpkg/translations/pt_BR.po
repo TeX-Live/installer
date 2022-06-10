@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2022-04-12 01:49+0200\n"
+"POT-Creation-Date: 2022-06-11 01:49+0200\n"
 "PO-Revision-Date: 2022-02-21 07:43-0300\n"
 "Last-Translator: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
 "Language-Team: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
@@ -1952,11 +1952,11 @@ msgstr "Programas de suporte exclusivos para Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX e pacotes"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2682
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2683
 msgid "Welcome to TeX Live!"
 msgstr "Bem-vindo ao TeX Live!"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2685
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2686
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1972,7 +1972,7 @@ msgstr ""
 "inscrevendo-se em um grupo que lhe seja oportuno. A lista de grupos está "
 "disponível na web no endereço https://tug.org/usergroups.html."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2695
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2696
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
