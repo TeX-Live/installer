@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2022-06-11 01:49+0200\n"
+"POT-Creation-Date: 2022-06-12 01:52+0200\n"
 "PO-Revision-Date: 2022-03-21 13:59+0100\n"
 "Last-Translator: Ján Buša <jan.busa@tuke.sk>\n"
 "Language-Team: tex-live@tug.org\n"
@@ -1755,206 +1755,210 @@ msgid "basic scheme (plain and latex)"
 msgstr "základná schéma (plain a latex)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
+msgid "book publishing scheme (core LaTeX and add-ons)"
+msgstr ""
+
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "ConTeXt scheme"
 msgstr "Schéma ConTeXt"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
 msgid "full scheme (everything)"
 msgstr "úplná schéma (všetko)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
 msgid "GUST TeX Live scheme"
 msgstr "Schéma GUST TeXlive"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
 msgid "infrastructure-only scheme (no TeX at all)"
 msgstr "schéma len-infraštruktúra (vôbec žiaden TeX)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
 msgid "medium scheme (small + more packages and languages)"
 msgstr "stredná schéma (malá + viac balíkov a jazykov)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
 msgid "minimal scheme (plain only)"
 msgstr "minimálna schéma (len plainTeX)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
 msgid "small scheme (basic + xetex, metapost, a few languages)"
 msgstr "malá schéma (základ + xetex, metapost a niektoré jazyky)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
 msgid "teTeX scheme (more than medium, but nowhere near full)"
 msgstr "schéma teTeX (o niečo väčšia než stredne veľká, ale ďaleko od úplnej)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:11
 msgid "Essential programs and files"
 msgstr "Dôležité programy a súbory"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:11
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:12
 msgid "BibTeX additional styles"
 msgstr "Ďalšie štýly BibTeXu"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:12
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:13
 msgid "TeX auxiliary programs"
 msgstr "Pomocné programy TeXu"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:13
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:14
 msgid "ConTeXt and packages"
 msgstr "ConTeXt a balíky"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:14
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:15
 msgid "Additional fonts"
 msgstr "Ďalšie fonty"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:15
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:16
 msgid "Recommended fonts"
 msgstr "Odporúčané fonty"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:16
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:17
 msgid "Graphics and font utilities"
 msgstr "Pomocné programy pre grafiku a fonty"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:17
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:18
 msgid "Additional formats"
 msgstr "Ďalšie formáty"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:18
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:19
 msgid "Games typesetting"
 msgstr "Sadzba hier"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:19
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:20
 msgid "Humanities packages"
 msgstr "Balíky pre humanitné odbory"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:20
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:21
 msgid "Arabic"
 msgstr "Arabčina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:21
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:22
 msgid "Chinese"
 msgstr "Čínština"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:22
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
 msgid "Chinese/Japanese/Korean (base)"
 msgstr "Čínština/japončina/kórejčina (základ)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
 msgid "Cyrillic"
 msgstr "Ruština, ukrajinčina (azbuka)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:25
 msgid "Czech/Slovak"
 msgstr "Čeština/slovenčina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:25
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:26
 msgid "US and UK English"
 msgstr "Angličtina (US a UK)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:26
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:27
 msgid "Other European languages"
 msgstr "Ďalšie európske jazyky"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:27
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:28
 msgid "French"
 msgstr "Francúzština"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:28
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:29
 msgid "German"
 msgstr "Nemčina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:29
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:30
 msgid "Greek"
 msgstr "Gréčtina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:30
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:31
 msgid "Italian"
 msgstr "Taliančina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:31
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:32
 msgid "Japanese"
 msgstr "Japončina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:32
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:33
 msgid "Korean"
 msgstr "Kórejčina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:33
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:34
 msgid "Other languages"
 msgstr "Ďalšie jazyky"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:34
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:35
 msgid "Polish"
 msgstr "Poľština"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:35
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:36
 msgid "Portuguese"
 msgstr "Portugalčina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:36
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:37
 msgid "Spanish"
 msgstr "Španielčina"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:37
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:38
 msgid "LaTeX fundamental packages"
 msgstr "Základné balíky LaTeXu"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:38
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
 msgid "LaTeX additional packages"
 msgstr "Ďalšie balíky LaTeXu"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
 msgid "LaTeX recommended packages"
 msgstr "Odporúčané balíky LaTeXu"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "LuaTeX packages"
 msgstr "Balíky LuaTeXu"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "Mathematics, natural sciences, computer science packages"
 msgstr "Matematické, prírodovedné a informatické balíky"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
 msgid "MetaPost and Metafont packages"
 msgstr "Balíky MetaPostu a Metafontu"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
 msgid "Music packages"
 msgstr "Hudobné balíky"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:45
 msgid "Graphics, pictures, diagrams"
 msgstr "Grafika, obrázky, diagramy"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:45
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
 msgid "Plain (La)TeX packages"
 msgstr "Balíky Plain (La)TeXu"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:47
 msgid "PSTricks"
 msgstr "PSTricks"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:47
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:48
 msgid "Publisher styles, theses, etc."
 msgstr "Štýly vydavateľstiev, záverečné práce atď."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:48
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
 msgid "TeXworks editor; TL includes only the Windows binary"
 msgstr "Editor TeXworks; TL zahŕňa len binárky pre Windows"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "Windows-only support programs"
 msgstr "Podporné programy len pre Windows"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:51
 msgid "XeTeX and packages"
 msgstr "XeTeX a balíky"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2683
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2684
 msgid "Welcome to TeX Live!"
 msgstr "Vitajte vo svete TeX Live!"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2686
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2687
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1970,7 +1974,7 @@ msgstr ""
 "najlepšej. Zoznam skupín je dostupný na webe na https://tug.org/usergroups."
 "html."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2696
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2697
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

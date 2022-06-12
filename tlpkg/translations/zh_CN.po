@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2022-06-11 01:49+0200\n"
+"POT-Creation-Date: 2022-06-12 01:52+0200\n"
 "PO-Revision-Date: 2009-09-22 12:54+0800\n"
 "Last-Translator: Jiang Jiang <gzjjgod@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1696,206 +1696,210 @@ msgid "basic scheme (plain and latex)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
-msgid "ConTeXt scheme"
+msgid "book publishing scheme (core LaTeX and add-ons)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
-msgid "full scheme (everything)"
+msgid "ConTeXt scheme"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
-msgid "GUST TeX Live scheme"
+msgid "full scheme (everything)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
-msgid "infrastructure-only scheme (no TeX at all)"
+msgid "GUST TeX Live scheme"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
-msgid "medium scheme (small + more packages and languages)"
+msgid "infrastructure-only scheme (no TeX at all)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
-msgid "minimal scheme (plain only)"
+msgid "medium scheme (small + more packages and languages)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
-msgid "small scheme (basic + xetex, metapost, a few languages)"
+msgid "minimal scheme (plain only)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
-msgid "teTeX scheme (more than medium, but nowhere near full)"
+msgid "small scheme (basic + xetex, metapost, a few languages)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
-msgid "Essential programs and files"
+msgid "teTeX scheme (more than medium, but nowhere near full)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:11
-msgid "BibTeX additional styles"
+msgid "Essential programs and files"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:12
-msgid "TeX auxiliary programs"
+msgid "BibTeX additional styles"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:13
-msgid "ConTeXt and packages"
+msgid "TeX auxiliary programs"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:14
-msgid "Additional fonts"
+msgid "ConTeXt and packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:15
-msgid "Recommended fonts"
+msgid "Additional fonts"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:16
-msgid "Graphics and font utilities"
+msgid "Recommended fonts"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:17
-msgid "Additional formats"
+msgid "Graphics and font utilities"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:18
-msgid "Games typesetting"
+msgid "Additional formats"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:19
-msgid "Humanities packages"
+msgid "Games typesetting"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:20
-msgid "Arabic"
+msgid "Humanities packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:21
-msgid "Chinese"
+msgid "Arabic"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:22
-msgid "Chinese/Japanese/Korean (base)"
+msgid "Chinese"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
-msgid "Cyrillic"
+msgid "Chinese/Japanese/Korean (base)"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
-msgid "Czech/Slovak"
+msgid "Cyrillic"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:25
-msgid "US and UK English"
+msgid "Czech/Slovak"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:26
-msgid "Other European languages"
+msgid "US and UK English"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:27
-msgid "French"
+msgid "Other European languages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:28
-msgid "German"
+msgid "French"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:29
-msgid "Greek"
+msgid "German"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:30
-msgid "Italian"
+msgid "Greek"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:31
-msgid "Japanese"
+msgid "Italian"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:32
-msgid "Korean"
+msgid "Japanese"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:33
-msgid "Other languages"
+msgid "Korean"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:34
-msgid "Polish"
+msgid "Other languages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:35
-msgid "Portuguese"
+msgid "Polish"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:36
-msgid "Spanish"
+msgid "Portuguese"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:37
-msgid "LaTeX fundamental packages"
+msgid "Spanish"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:38
-msgid "LaTeX additional packages"
+msgid "LaTeX fundamental packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
-msgid "LaTeX recommended packages"
+msgid "LaTeX additional packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
-msgid "LuaTeX packages"
+msgid "LaTeX recommended packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
-msgid "Mathematics, natural sciences, computer science packages"
+msgid "LuaTeX packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
-msgid "MetaPost and Metafont packages"
+msgid "Mathematics, natural sciences, computer science packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
-msgid "Music packages"
+msgid "MetaPost and Metafont packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
-msgid "Graphics, pictures, diagrams"
+msgid "Music packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:45
-msgid "Plain (La)TeX packages"
+msgid "Graphics, pictures, diagrams"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
-msgid "PSTricks"
+msgid "Plain (La)TeX packages"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:47
-msgid "Publisher styles, theses, etc."
+msgid "PSTricks"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:48
-msgid "TeXworks editor; TL includes only the Windows binary"
+msgid "Publisher styles, theses, etc."
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
-msgid "Windows-only support programs"
+msgid "TeXworks editor; TL includes only the Windows binary"
 msgstr ""
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
+msgid "Windows-only support programs"
+msgstr ""
+
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:51
 msgid "XeTeX and packages"
 msgstr ""
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2683
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2684
 msgid "Welcome to TeX Live!"
 msgstr "欢迎进入 TeX Live 的世界！"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2686
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2687
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1905,7 +1909,7 @@ msgid ""
 "list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2696
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2697
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
