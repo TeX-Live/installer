@@ -2257,7 +2257,7 @@ sub read_profile {
     }
   }
   # Cmdline argument --scheme should override scheme selection in the profile
-  update_selected_scheme_from_cmdline();
+  update_default_scheme();
 
   # if at least one collection has been defined return here
   return if $coldefined;
