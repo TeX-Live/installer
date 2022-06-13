@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2022-06-12 01:52+0200\n"
+"POT-Creation-Date: 2022-06-14 01:49+0200\n"
 "PO-Revision-Date: 2022-03-19 20:42+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1950,11 +1950,11 @@ msgstr "Windows 専用プログラム"
 msgid "XeTeX and packages"
 msgstr "XeTeX とパッケージ"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2684
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2808
 msgid "Welcome to TeX Live!"
 msgstr "TeX Live へようこそ！"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2687
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2811
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1970,7 +1970,7 @@ msgstr ""
 "入会することをご検討ください．TeX ユーザ会の一覧はhttps://tug.org/usergroups."
 "html でご確認いただけます．"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2697
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2821
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
