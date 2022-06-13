@@ -149,11 +149,11 @@ use TeXLive::TLUtils qw(platform platform_desc sort_archs
    member process_logging_options rmtree wsystem
    mkdirhier make_var_skeleton make_local_skeleton install_package copy
    install_packages dirname setup_programs native_slashify forward_slashify);
-use TeXLive::TLPOBJ;
-use TeXLive::TLPDB;
 use TeXLive::TLConfig;
 use TeXLive::TLCrypto;
 use TeXLive::TLDownload;
+use TeXLive::TLPDB;
+use TeXLive::TLPOBJ;
 use TeXLive::TLPaper;
 
 use Encode::Alias;
@@ -267,42 +267,48 @@ our %vars=( # 'n_' means 'number of'.
     );
 
 my %path_keys = (
+  'TEXDIR' => 1,
+  'TEXMFHOME' => 1,
   'TEXMFLOCAL' => 1,
   'TEXMFCONFIG' => 1,
   'TEXMFSYSCONFIG' => 1,
   'TEXMFVAR' => 1,
   'TEXMFSYSVAR' => 1,
-  'TEXDIR' => 1,
-  'TEXMFHOME' => 1,
 );
 
 # option handling
-my $opt_allow_ftp = 0;
-my $opt_custom_bin;
-my $opt_force_arch;
 # tcl gui weeded out at start
+my $opt_allow_ftp = 0;
+my $opt_continue = 1;
+my $opt_custom_bin;
+my $opt_debug_fakenet = 0;
+my $opt_debug_setup_vars = 0;
+my $opt_font;
+my $opt_force_arch;
 my $opt_gui = "text";
 my $opt_help = 0;
 my $opt_init_from_profile = "";
+my $opt_installation = 1;
+my $opt_interaction = 1;
 my $opt_location = "";
 my $opt_no_gui = 0;
 my $opt_nonadmin = 0;
+my $opt_paper = "";
 my $opt_persistent_downloads = 1;
 my $opt_portable = 0;
 my $opt_print_arch = 0;
 my $opt_profile = "";
 my $opt_scheme = "";
+my $opt_texdir = "";
+my $opt_texuserdir = "";
 my $opt_version = 0;
 my $opt_warn_checksums = 1;
-my $opt_font;
-my $opt_continue = 1;
+my %pathopts;
 # unusual cases:
 $::opt_select_repository = 0;
 our $opt_in_place = 0;
 # don't set this to a value, see below
 my $opt_verify_downloads;
-# debug options
-my $opt_debug_fakenet = 0;
 
 # show all options even those not relevant for that arch
 $::opt_all_options = 0;
@@ -336,10 +342,8 @@ if ((defined $ARGV[0]) && $ARGV[0] eq "-from_ext_gui") {
   $from_ext_gui = 1;
 
   # do not buffer output to the frontend
-  select(STDERR);
-  $| = 1;
-  select(STDOUT);
-  $| = 1;
+  select(STDERR); $| = 1;
+  select(STDOUT); $| = 1;
 
   # windows: suppress console windows when invoking other programs
   Win32::SetChildShowWindow(0) if win32();
@@ -372,26 +376,38 @@ GetOptions(
            "all-options"                 => \$::opt_all_options,
            "continue!"                   => \$opt_continue,
            "custom-bin=s"                => \$opt_custom_bin,
-           "debug-translation"           => \$::debug_translation,
            "debug-fakenet"               => \$opt_debug_fakenet,
+           "debug-setup-vars"            => \$opt_debug_setup_vars,
+           "debug-translation"           => \$::debug_translation,
            "fancyselector",
+           "font=s"                      => \$opt_font,
            "force-platform|force-arch=s" => \$opt_force_arch,
            "gui:s"                       => \$opt_gui,
            "in-place"                    => \$opt_in_place,
            "init-from-profile=s"         => \$opt_init_from_profile,
+           "installation!",              => \$opt_installation,
+           "interaction!",               => \$opt_interaction,
            "lang|gui-lang=s"             => \$::opt_lang,
            "location|url|repository|repos|repo=s" => \$opt_location,
            "no-cls",                    # $::opt_no_cls in install-menu-text-pl
            "no-gui"                      => \$opt_no_gui,
            "non-admin"                   => \$opt_nonadmin,
+           "paper=s"                     => \$opt_paper,
            "persistent-downloads!"       => \$opt_persistent_downloads,
            "portable"                    => \$opt_portable,
            "print-platform|print-arch"   => \$opt_print_arch,
            "profile=s"                   => \$opt_profile,
            "scheme=s"                    => \$opt_scheme,
            "select-repository"           => \$::opt_select_repository,
-           "font=s"                      => \$opt_font,
            "tcl",                       # handled by wrapper
+           "texdir=s"                    => \$opt_texdir,
+           "texmfconfig=s"               => \$pathopts{'texmfconfig'},
+           "texmfhome=s"                 => \$pathopts{'texmfhome'},
+           "texmflocal=s"                => \$pathopts{'texmflocal'},
+           "texmfsysconfig=s"            => \$pathopts{'texmfsysconfig'},
+           "texmfsysvar=s"               => \$pathopts{'texmfsysvar'},
+           "texmfvar=s"                  => \$pathopts{'texmfvar'},
+           "texuserdir=s"                => \$opt_texuserdir,
            "verify-downloads!"           => \$opt_verify_downloads,
            "version"                     => \$opt_version,
            "warn-checksums!"             => \$opt_warn_checksums,
@@ -466,14 +482,22 @@ load_translations();
 
 # some option checks
 
-die "$0: Options custom-bin and in-place are incompatible.\n"
+die "$0: Incompatible options: custom-bin and in-place.\n"
   if ($opt_in_place && $opt_custom_bin);
 
-die "$0: Options profile and in-place are incompatible.\n"
+die "$0: Incompatible options: in-place and profile ($opt_profile).\n"
   if ($opt_in_place && $opt_profile);
 
-die "$0: Options init-from-profile and in-place are incompatible.\n"
+die "$0: Incompatible options init-from-profile and in-place.\n"
   if ($opt_in_place && $opt_init_from_profile);
+
+die "$0: Incompatible options: texuserdir ($opt_texuserdir) and "
+    . "any of texmfhome, texmfconfig, texmfvar ("
+    . "$pathopts{'texmfhome'}, $pathopts{'texmfvar'}, $pathopts{'texmfconfig'}"
+    . ").\n"
+  if ($opt_texuserdir && 
+       ($pathopts{'texmfhome'} || $pathopts{'texmfvar'}
+        || $pathopts{'texmfconfig'}));
 
 if ($#ARGV >= 0) {
   die "$0: Extra arguments `@ARGV'; try --help if you need it.\n";
@@ -534,9 +558,9 @@ if (TeXLive::TLCrypto::setup_checksum_method()) {
 } else {
   if ($opt_warn_checksums) {
       tldie(<<END_NO_CHECKSUMS);
-Warning: Cannot find a checksum implementation.
-Please install Digest::SHA (from CPAN), openssl, or sha512sum,
-or use --no-warn-checksums command line!
+$0: Quitting, cannot find a checksum implementation.
+Please install Digest::SHA (from CPAN), or openssl, or sha512sum,
+or use the --no-warn-checksums command line option.
 END_NO_CHECKSUMS
   }
 }
@@ -610,15 +634,15 @@ if (!setup_programs ("$::installerdir/tlpkg/installer", "$::_platform_")) {
 }
 
 
-if ($opt_profile eq "") {
+if ($opt_profile eq "" && $opt_interaction) {
   if ($opt_init_from_profile) {
     read_profile("$opt_init_from_profile", seed => 1);
   }
   # do the normal interactive installation.
   #
   # here we could load different menu systems. Currently several things
-  # are "our" so that the menu implementation can use it. The $tlpdb, the
-  # %var, and all the @collection*
+  # are "our" so that the menu implementation can use it: The $tlpdb, the
+  # %var, and all the @collection*.
   # install-menu-*.pl have to assign a code ref to $::run_menu which is
   # run, and should change ONLY stuff in %vars
   # The allowed keys in %vars should be specified somewhere ...
@@ -687,7 +711,7 @@ if ($opt_profile eq "") {
   if (!do_remote_init()) {
     die ("Exiting installation.\n");
   }
-  read_profile($opt_profile);
+  read_profile($opt_profile) if ($opt_profile ne "");
 }
 
 my $varsdump = "";
@@ -703,6 +727,11 @@ $vars{'tlpdbopt_file_assocs'} = 0 if $vars{'instopt_portable'};
 $vars{'tlpdbopt_desktop_integration'} = 0 if $vars{'instopt_portable'};
 install_warnlines_hook(); # collect warnings in @::WARNLINES
 info("Installing to: $vars{TEXDIR}\n");
+
+if (!$opt_installation) {
+  print STDERR "Not doing installation due to --no-installation, terminating here.\n";
+  exit 0;
+}
 
 $::env_warns = "";
 create_welcome();
@@ -742,8 +771,8 @@ You can fix this by running this command:
 to complete the installation.
 
 However, if the problem was a failure to download (by far the
-most common cause), you need to ensure that your network connection
-is working first.
+most common cause), check that you can connect to the chosen mirror
+in a browser; you may need to specify a mirror explicitly.
 ******************************************************************
 
 EOF
@@ -805,7 +834,6 @@ sub only_load_remote {
   if ($from_ext_gui) {print "location: $location\n";}
   return load_tlpdb();
 } # only_load_remote
-
 
 sub do_remote_init {
   if (!only_load_remote(@_)) {
@@ -906,6 +934,11 @@ sub final_remote_init {
   # size information
   $vars{'free_size'} = TeXLive::TLUtils::diskfree($vars{'TEXDIR'});
 
+  update_default_scheme();
+  update_default_paper();
+} # final_remote_init
+
+sub update_default_scheme {
   # initialize the scheme from the command line value, if given.
   if ($opt_scheme) {
     # add the scheme- prefix if they didn't give it.
@@ -917,9 +950,34 @@ sub final_remote_init {
       tlwarn("Scheme $opt_scheme not defined, ignoring it.\n");
     }
   }
-} # final_remote_init
+} # update_default_scheme
 
+sub update_default_paper {
+  # initialize default paper size from the command line or envvar value,
+  # if either is given.
+  my $env_paper = $ENV{"TEXLIVE_INSTALL_PAPER"};
+  if ($opt_paper) {
+    if (defined $env_paper && $env_paper ne $opt_paper) {
+      tlwarn("$0: paper selected via both envvar TEXLIVE_INSTALL_PAPER and\n");
+      tlwarn("$0:   cmdline arg --paper, preferring the latter: $opt_paper\n");
+    }
+    if ($opt_paper eq "letter") { $vars{'instopt_letter'} = 1; }
+    elsif ($opt_paper eq "a4")  { $vars{'instopt_letter'} = 0; }
+    else {
+      tlwarn("$0: cmdline option --paper value must be letter or a4, not: "
+             . "$opt_paper (ignoring)\n");
+    }
+  } elsif ($env_paper) {
+    if ($env_paper eq "letter") { $vars{'instopt_letter'} = 1; } 
+    elsif ($env_paper eq "a4") { ; } # do nothing
+    else {
+      tlwarn("$0: TEXLIVE_INSTALL_PAPER value must be letter or a4, not: "
+             . "$env_paper (ignoring)\n");
+    }
+  }
+} # update_default_paper
 
+
 sub do_installation {
   if (win32()) {
     non_admin() if !$vars{'tlpdbopt_w32_multi_user'};
@@ -934,6 +992,11 @@ sub do_installation {
       && $vars{'n_collections_selected'} <= 0) {
     tldie("$0: Nothing selected, nothing to install, exiting!\n");
   }
+  # expand ~ in various variables just to be sure
+  for my $v (qw/TEXDIR TEXMFLOCAL TEXMFSYSVAR TEXMFSYSCONFIG TEXMFHOME
+                TEXMFVAR TEXMFCONFIG/) {
+    $vars{$v} = TeXLive::TLUtils::expand_tilde($vars{$v}) if ($vars{$v});
+  }
   # maybe_make_ro tests for admin, local drive and NTFS before proceeding.
   # making the root read-only automatically locks everything below it.
   # do TEXDIR now, before it loses its final slash
@@ -946,11 +1009,14 @@ sub do_installation {
   # -1 is returned if df not available or some other error
   if ($diskfree != -1) {
     my $reserve = 100;
-    if ( $diskfree + $reserve < $vars{'total_size'}) {
+    if ($diskfree < $reserve + $vars{'total_size'}) {
+      my $msg = "($diskfree free < $reserve reserve "
+                . "+ installed $vars{total_size})";
       if ($ENV{'TEXLIVE_INSTALL_NO_DISKCHECK'}) {
-        tlwarn("Insufficient disk space, but continuing anyway.");
+        tlwarn("$0: Insufficient disk space\n$msg\n"
+          ." but continuing anyway per envvar TEXLIVE_INSTALL_NO_DISKCHECK\n");
       } else {
-        die("DISK SPACE INSUFFICIENT!");
+        tldie("$0: DISK SPACE INSUFFICIENT!\n$msg\nAborting installation.\n");
       }
     }
   }
@@ -1186,7 +1252,6 @@ operations might be disturbed.\n\n";
     tlwarn("Old configuration file $TEXMFLOCAL/web2c/fmtutil-local.cnf found.\n");
     tlwarn("fmtutil now reads *all* fmtutil.cnf files, so probably the easiest way\nis to rename the above file to $TEXMFLOCAL/web2c/fmtutil.cnf\n");
   }
-    
 
   info("writing updmap.cfg to $TEXDIR/texmf-dist/web2c/updmap.cfg\n");
   TeXLive::TLUtils::create_updmap ($usedtlpdb,
@@ -1218,20 +1283,12 @@ operations might be disturbed.\n\n";
   }
 
   # now work through the options if specified at all
-  my $env_paper = $ENV{"TEXLIVE_INSTALL_PAPER"};
-  if (defined $env_paper && $env_paper eq "letter") {
-    $vars{'instopt_letter'} = 1;
-  } elsif (defined $env_paper && $env_paper eq "a4") {
-    ; # do nothing
-  } elsif ($env_paper) {
-    tlwarn("$0: TEXLIVE_INSTALL_PAPER value must be letter or a4, not: "
-           . "$env_paper (ignoring)\n");
-  }
+
   # letter instead of a4
   if ($vars{'instopt_letter'}) {
     # set paper size, but do not execute any post actions, which in this
     # case would be mktexlsr and fmtutil-sys -all; clearly premature
-    # here in the installer.
+    # here at this point in the installer.
     info("setting default paper size to letter:\n");
     $errcount += run_postinst_cmd("tlmgr --no-execute-actions paper letter");
   }
@@ -1388,7 +1445,6 @@ sub do_path_adjustments {
   return $ret;
 } # do_path_adjustments
 
-
 # we have to adjust the texmf.cnf file to the paths set in the configuration!
 sub do_texmf_cnf {
   open(TMF,"<$vars{'TEXDIR'}/texmf-dist/web2c/texmf.cnf")
@@ -1542,6 +1598,18 @@ EOF
   close(TMFLUA) || warn "close($TMFLUA) failed: $!";
 } # do_texmf_cnf
 
+# Determine which platforms are supported.
+sub set_platforms_supported {
+  my @binaries = $tlpdb->available_architectures;
+  for my $binary (@binaries) {
+    unless (defined $vars{"binary_$binary"}) {
+      $vars{"binary_$binary"}=0;
+    }
+  }
+  for my $key (keys %vars) {
+    ++$vars{'n_systems_available'} if ($key=~/^binary/);
+  }
+} # set_platforms_supported
 
 sub dump_vars {
   my $filename=shift;
@@ -1559,20 +1627,7 @@ sub dump_vars {
   debug("\n%vars dumped to '$filename'.\n");
 } # dump_vars
 
-
-# Determine which platforms are supported.
-sub set_platforms_supported {
-  my @binaries = $tlpdb->available_architectures;
-  for my $binary (@binaries) {
-    unless (defined $vars{"binary_$binary"}) {
-      $vars{"binary_$binary"}=0;
-    }
-  }
-  for my $key (keys %vars) {
-    ++$vars{'n_systems_available'} if ($key=~/^binary/);
-  }
-} # set_platforms_supported
-
+
 # Environment variables and default values on UNIX:
 #   TEXLIVE_INSTALL_PREFIX         /usr/local/texlive   => $tex_prefix
 #                                  $tex_prefix/2010     => $TEXDIR
@@ -1584,34 +1639,59 @@ sub set_platforms_supported {
 #   TEXLIVE_INSTALL_TEXMFCONFIG    ~/.texlive2010/texmf-config
 
 sub set_var_from_alternatives {
-  my ($whatref, @alternatives) = @_;
+  my ($what, $whatref, @alternatives) = @_;
+  my @alt_text;
+  for my $i (@alternatives) {
+    push @alt_text, ($i ? $i : "undef")
+  }
   my $final;
   while (@alternatives) {
     my $el = pop @alternatives;
     $final = $el if ($el);
   }
+  debug("setting $what to $final from @alt_text\n");
   $$whatref = $final;
 }
 
 sub set_standard_var {
-  my ($what, $envstr, $default) = @_;
+  my ($what, $envstr, $cmdlinestr, $default) = @_;
   # warn if a value was set from both the profile and
   # via env var
   my $envvar = getenv($envstr);
-  if ($vars{$what} && $envvar && $vars{$what} ne $envvar) {
-    tlwarn("Trying to define $what via conflicting settings:\n");
-    tlwarn("  from envvar $envvar = $envvar($envstr)\n");
-    tlwarn("  from profile = $vars{$what}\n");
-    tlwarn("  Preferring the profile value!\n");
-    $envvar = undef;
+  my $cmdlinevar = $pathopts{$cmdlinestr};
+  my %nrdefs;
+  $nrdefs{$vars{$what}} = 1 if ($vars{$what});
+  $nrdefs{$envvar} = 1 if ($envvar);
+  $nrdefs{$cmdlinevar} = 1 if ($cmdlinevar);
+  # texmfhome/texmfvar/texmfconfig have actually been set by
+  # via $opt_texuserdir/....
+  # So warn about this
+  my $actual_cmdline_str = $cmdlinestr;
+  my $actual_cmdline_var = $cmdlinevar;
+  if ($opt_texuserdir) {
+    if ($cmdlinestr eq "texmfhome" || $cmdlinestr eq "texmfvar" || $cmdlinestr eq "texmfconfig") {
+      $actual_cmdline_str = "opt_texuserdir";
+      $actual_cmdline_var = $opt_texuserdir;
+    }
   }
-  # default for most variables is in increasing priority
+  if (scalar keys %nrdefs > 1) {
+    # multiple conflicting definitions, fail!
+    tlwarn("Trying to define $what via conflicting settings:\n");
+    tlwarn("  from envvar $envstr = $envvar\n") if ($envvar);
+    tlwarn("  from profile = $vars{$what}\n") if ($vars{$what});
+    tlwarn("  from command line argument $actual_cmdline_str = $actual_cmdline_var\n") if ($actual_cmdline_var);
+    tlwarn("  Preferring the last value from above!\n");
+    # actual preference order is given via the below call
+  }
+  # default for most variables, in increasing priority
   # - some default
-  # - setting from profile saved already in $vars{$what}
   # - environment variable
-  set_var_from_alternatives( \$vars{$what},
-    $envvar,
+  # - setting from profile saved already in $vars{$what}
+  # - command line
+  set_var_from_alternatives( $what, \$vars{$what},
+    $cmdlinevar,
     $vars{$what},
+    $envvar,
     $default);
 }
 
@@ -1619,42 +1699,75 @@ sub set_texlive_default_dirs {
   my $homedir = (platform() =~ m/darwin/) ? "~/Library" : "~";
   my $yyyy = $TeXLive::TLConfig::ReleaseYear;
   #
+  # We already checked that either $opt_texuserdir xor at least one of the
+  # directory options (texmfhome, texmfvar, texmfconfig) is set. In case
+  # $opt_texuserdir is set, assign the respective values to texmfhome etc.
+  if ($opt_texuserdir) {
+    $pathopts{'texmfhome'} = "$opt_texuserdir/texmf";
+    $pathopts{'texmfvar'} = "$opt_texuserdir/texmf-var";
+    $pathopts{'texmfconfig'} = "$opt_texuserdir/texmf-config";
+  }
+  #
+  # Sources of target directory settings in priority order:
+  # - env variable TEXLIVE_INSTALL_PREFIX
+  #   will be used with YYYY (in portable case without)
+  # - --texdir cmd line option
+  #   will be used as is, similar to profile setting
+  # - profile setting
+  #
+  # first compare whether profile setting and cmd line agree if both given
+  if ($opt_texdir && $vars{'TEXDIR'}) {
+    if ($opt_texdir ne $vars{'TEXDIR'}) {
+      tlwarn("Conflicting settings for installation path given:\n");
+      tlwarn("  from profile TEXDIR = $vars{'TEXDIR'}\n");
+      tlwarn("  from command line option --texdir = $opt_texdir\n");
+      tlwarn("  Preferring the command line value!\n");
+      # actual setting of preference is done below in the
+      #   set_var_from_alternatives( \$vars{'TEXDIR'},
+      # call, where the order determines the preference!
+    }
+  }
   my $tlprefixenv = getenv('TEXLIVE_INSTALL_PREFIX');
-  if ($tlprefixenv && $vars{'TEXDIR'}) {
+  if ($tlprefixenv && ($opt_texdir || $vars{'TEXDIR'})) {
     # NOTE we cannot compare these two values because the one might
     # contain the YYYY part (TEXDIR) while the other is the one without.
     tlwarn("Trying to set up basic path using two incompatible methods:\n");
     tlwarn("  from envvar TEXLIVE_INSTALL_PREFIX = $tlprefixenv\n");
-    tlwarn("  from profile TEXDIR = $vars{'TEXDIR'}\n");
-    tlwarn("  Preferring the profile value!\n");
+    tlwarn("  from profile TEXDIR = $vars{'TEXDIR'}\n") if ($vars{'TEXDIR'});
+    tlwarn("  from command line option --texdir = $opt_texdir\n") if ($opt_texdir);
+    tlwarn("  Preferring the later value!\n");
     $tlprefixenv = undef;
   }
   # first set $tex_prefix
   my $tex_prefix;
-  set_var_from_alternatives( \$tex_prefix,
+  set_var_from_alternatives( "TEX_PREFIX", \$tex_prefix,
     ($opt_in_place ? abs_path($::installerdir) : undef),
     $tlprefixenv,
     (win32() ? getenv('SystemDrive') . '/texlive' : '/usr/local/texlive'));
-  set_var_from_alternatives( \$vars{'TEXDIR'},
+  set_var_from_alternatives( "TEXDIR", \$vars{'TEXDIR'},
+    $opt_texdir,
     $vars{'TEXDIR'},
     ($vars{'instopt_portable'} || $opt_in_place)
       ? $tex_prefix : "$tex_prefix/$texlive_release");
   set_standard_var('TEXMFSYSVAR', 'TEXLIVE_INSTALL_TEXMFSYSVAR',
-    $vars{'TEXDIR'} . '/texmf-var');
+                   'texmfsysvar', "$vars{'TEXDIR'}/texmf-var");
+  #
   set_standard_var('TEXMFSYSCONFIG', 'TEXLIVE_INSTALL_TEXMFSYSCONFIG',
-    $vars{'TEXDIR'} . '/texmf-config');
+                   'texmfsysconfig', "$vars{'TEXDIR'}/texmf-config");
+  #
   set_standard_var('TEXMFLOCAL', 'TEXLIVE_INSTALL_TEXMFLOCAL',
-    "$tex_prefix/texmf-local");
+                   'texmflocal', "$vars{'TEXDIR'}/texmf-local");
+  #
   set_standard_var('TEXMFHOME', 'TEXLIVE_INSTALL_TEXMFHOME',
-    "$homedir/texmf");
-  set_standard_var('TEXMFVAR', 'TEXLIVE_INSTALL_TEXMFVAR',
-    (platform() =~ m/darwin/)
-      ? "$homedir/texlive/$yyyy/texmf-var"
-      : "$homedir/.texlive$yyyy/texmf-var");
-  set_standard_var('TEXMFCONFIG', 'TEXLIVE_INSTALL_TEXMFCONFIG',
-    (platform() =~ m/darwin/)
-      ? "$homedir/texlive/$yyyy/texmf-config"
-      : "$homedir/.texlive$yyyy/texmf-config");
+                   'texmfhome', "$homedir/texmf");
+  #
+  set_standard_var('TEXMFVAR', 'TEXLIVE_INSTALL_TEXMFVAR', 'texmfvar',
+    (platform() =~ m/darwin/) ? "$homedir/texlive/$yyyy/texmf-var"
+                              : "$homedir/.texlive$yyyy/texmf-var");
+  #
+  set_standard_var('TEXMFCONFIG', 'TEXLIVE_INSTALL_TEXMFCONFIG', 'texmfconfig',
+    (platform() =~ m/darwin/) ? "$homedir/texlive/$yyyy/texmf-config"
+                              : "$homedir/.texlive$yyyy/texmf-config");
 
   # for portable installation we want everything in one directory
   if ($vars{'instopt_portable'}) {
@@ -1662,12 +1775,21 @@ sub set_texlive_default_dirs {
     $vars{'TEXMFVAR'}    = "\$TEXMFSYSVAR";
     $vars{'TEXMFCONFIG'} = "\$TEXMFSYSCONFIG";
   }
+
+  if ($opt_debug_setup_vars) {
+    print "DV:final values from setup of paths:\n";
+    for my $i (qw/TEXDIR TEXMFSYSVAR TEXMFSYSCONFIG TEXMFHOME TEXMFVAR
+                  TEXMFCONFIG TEXMFLOCAL/) {
+      print "$i = $vars{$i}\n";
+    }
+  }
 } # set_texlive_default_dirs
 
+
 sub calc_depends {
   # we have to reset the install hash EVERY TIME otherwise everything will
   # always be installed since the default is scheme-full which selects
-  # all packages and never deselects it
+  # all packages and never deselects.
   %install=();
   my $p;
   my $a;
@@ -1708,12 +1830,6 @@ sub calc_depends {
     }
   }
 
-  #
-  # work through the addon settings in the %vars hash
-  #if ($vars{'addon_editor'}) {
-  #  $install{"texworks"} = 1;
-  #}
-
   # if programs for arch=win32 are installed we also have to install
   # tlperl.win32 which provides the "hidden" perl that will be used
   # to run all the perl scripts.
@@ -1733,7 +1849,7 @@ sub calc_depends {
 
     # collect the already selected packages
     my @pre_selected = keys %install;
-    debug("initial number of installations: $#pre_selected\n");
+    debug("calc_depends: number of packages to install: $#pre_selected\n");
 
     # loop over all the pre_selected and add them
     foreach $p (@pre_selected) {
@@ -1764,7 +1880,7 @@ sub calc_depends {
 
     # check for newly selected packages
     my @post_selected = keys %install;
-    debug("number of post installations: $#post_selected\n");
+    debug("calc_depends:   after resolution, #packages: $#post_selected\n");
 
     # set repeat condition
     if ($#pre_selected != $#post_selected) {
@@ -1772,7 +1888,7 @@ sub calc_depends {
     }
   }
 
-  # now do the size computation
+  # after loop, now do the size computation.
   my $size = 0;
   foreach $p (keys %install) {
     my $tlpobj = $tlpdb->get_package($p);
@@ -2140,6 +2256,9 @@ sub read_profile {
       }
     }
   }
+  # Cmdline argument --scheme should override scheme selection in the profile
+  update_selected_scheme_from_cmdline();
+
   # if at least one collection has been defined return here
   return if $coldefined;
   # since no collections have been defined in the profile, we
@@ -2451,6 +2570,7 @@ sub select_scheme {
   my $s = shift;
   # set the selected scheme to $s
   $vars{'selected_scheme'} = $s;
+  debug("setting selected scheme: $s\n");
   # if we are working on scheme-custom simply return
   return if ($s eq "scheme-custom");
   # remove the selection of all collections
@@ -2489,7 +2609,7 @@ sub schemes_ordered_for_presentation {
   my %schemes_shown;
   for my $s ($tlpdb->schemes) { $schemes_shown{$s} = 0 ; }
   # first try the size-name-schemes in decreasing order
-  for my $sn (qw/full medium small basic minimal/) {
+  for my $sn (qw/full medium small basic minimal infraonly/) {
     if (defined($schemes_shown{"scheme-$sn"})) {
       push @scheme_order, "scheme-$sn";
       $schemes_shown{"scheme-$sn"} = 1;
@@ -2601,6 +2721,8 @@ sub check_env {
                         |ARGS
                         |GENDOCS_TEMPLATE_DIR
                         |INSTROOT
+                        |INFOPATH
+                        |MANPATH
                         |PATH
                         |PERL5LIB
                         |SHELLOPTS
@@ -2618,7 +2740,9 @@ sub check_env {
  (case-independent).  If you're doing anything but adding personal
  directories to the system paths, they may well cause trouble somewhere
  while running TeX.  If you encounter problems, try unsetting them.
- Please ignore spurious matches unrelated to TeX.
+ 
+ Please ignore spurious matches unrelated to TeX. (To omit this check,
+ set the environment variable TEXLIVE_INSTALL_ENV_NOCHECK.)
 
 $::env_warns ----------------------------------------------------------------------
 EOF
@@ -2709,7 +2833,9 @@ L<https://tug.org/texlive/acquire.html>.
 The basic idea of TeX Live installation is for you to choose one of the
 top-level I<schemes>, each of which is defined as a different set of
 I<collections> and I<packages>, where a collection is a set of packages,
-and a package is what contains actual files.
+and a package is what contains actual files. Each package is in exactly
+one collection, while schemes can contain any combination of packages
+and collections.
 
 Within the installer, you can choose a scheme, and further customize the
 set of collections to install, but not the set of the packages.  To work
@@ -2728,8 +2854,46 @@ handled through B<tlmgr>(1), the TeX Live Manager
 The most up-to-date version of this installer documentation is on the
 Internet at L<https://tug.org/texlive/doc/install-tl.html>.
 
+For step-by-step instructions, see
+L<https://tug.org/texlive/quickinstall.html>.
+
 For the full documentation of TeX Live, see
 L<https://tug.org/texlive/doc>.
+
+=head1 EXAMPLES
+
+With no options, C<install-tl> drops you into an interactive menu where
+essentially all default settings can be changed. 
+
+With options, you can initialize the settings in various ways, or
+perform the installation without interaction.
+
+=over 4
+
+=item C<install-tl --paper=letter>
+
+Initialize paper size setting. The only values allowed are C<letter> and
+(the default) C<a4>.
+
+=item C<install-tl --scheme> I<scheme>
+
+Initialize the installation scheme; the default is C<full>.  For a list
+of schemes, see the interactive C<S> menu.
+
+=item C<install-tl --no-interaction>
+
+Perform the installation immediately after parsing options, without
+entering the interactive menu.
+
+=item C<install-tl --profile> I<texlive.profile>
+
+Install, without interaction, according to the given TL profile file;
+see L</PROFILES> below. To initialize from the profile and then enter the
+interactive menu, add C<--init-from-profile>.
+
+=back
+
+Full documentation follows.
 
 =head1 OPTIONS
 
@@ -2763,10 +2927,10 @@ C<perltk> interface.
 
 =back
 
-The default GUI requires Tcl/Tk. This is standard on Macs (although it
-is considered deprecated since Catalina) and is often already installed
-on GNU/Linux, or can be easily installed through a distro package
-manager. For Windows, TeX Live provides a Tcl/Tk runtime.
+The default GUI requires Tcl/Tk. This was standard on Macs, but has been
+removed in the latest macOS releases. It's often already installed on
+GNU/Linux, or can be easily installed through a distro package manager.
+For Windows, TeX Live provides a Tcl/Tk runtime.
 
 =item B<-no-gui>
 
@@ -2841,6 +3005,11 @@ building TeX Live, see L<https://tug.org/texlive/build.html>.
 Pretend we're doing a network install, for the sole purpose of testing
 broken downloads via moving package files aside in a tlnet mirror.
 
+=item B<-debug-setup-vars>
+
+Print final values of directory variables; for more debugging
+information on how they were set, also specify C<-v>.
+
 =item B<-debug-translation>
 
 In the former Perl/Tk GUI modes, this option reported any missing,
@@ -2907,6 +3076,16 @@ anyway, with the idea that it was a transient network problem and
 reinstallation will succeed later. If this option is specified, and the
 retry fails, the installer aborts.
 
+=item B<-no-installation>
+
+Do not perform any installation. This is for debugging the
+initialization and setup routines without touching the disk.
+
+=item B<-no-interaction>
+
+Do not enter the interactive menu, just perform the installation after
+initialization and option parsing.
+
 =item B<-no-persistent-downloads>
 
 =item B<-persistent-downloads>
@@ -2932,6 +3111,12 @@ L<https://tug.org/texlive/doc/tlmgr.html#CRYPTOGRAPHIC-VERIFICATION>
 =item B<-non-admin>
 
 For Windows only: configure for the current user, not for all users.
+
+=item B<-paper> C<a4>B<|>C<letter>
+
+Set the default paper size for all TeX Live programs, as specified.
+The default is C<a4>. The paper size can be set after installation with
+the C<tlmgr paper> command.
 
 =item B<-portable>
 
@@ -2968,6 +3153,58 @@ menu list.
 
 Include verbose debugging messages; repeat for maximum debugging: C<-v
 -v>.  (Further repeats are accepted but ignored.)
+
+=item B<-texdir> I<dir>
+
+Specify the system installation directory; the default is
+C</usr/local/texlive/YYYY> for release YYYY. Specifying this option also
+causes the C<TEXMFLOCAL>, C<TEXMFSYSCONFIG>, and C<TEXMFSYSVAR>
+directories to be set as subdirectories, so they don't have to be set
+individually.
+
+For more on the several directory trees set up by default, see the main
+TeX Live documentation at L<https://tug.org/texlive/doc>.
+
+=item B<-texuserdir> I<dir>
+
+Specify the user installation directory; the default is
+C<~/.texliveYYYY> (except on Macs, where there is no leading dot).
+Specifying this also causes the C<TEXMFHOME>, C<TEXMFCONFIG>, and
+C<TEXMFVAR> directories to be set as subdirectories.
+
+=item B<-texmflocal> I<dir>
+
+Specify the C<TEXMFLOCAL> directory; the default is
+C</usr/local/texlive/texmf-local>, that is, one level up from the main
+installation. This is so locally-installed packages can be easily used
+across releases, which is usually desirable. Specifying the C<-texdir>
+option changes this, putting C<TEXMFLOCAL> under the main tree, on the
+theory that you want to use some setup different than the default. The
+C<-texmflocal> option can be used to specify an explicit directory for it.
+
+Anything installed here must follow the TeX directory structure (TDS),
+e.g., C<TEXMFHOME/tex/latex/mypkg/mypkg.sty>. See the TDS reference at
+L<https://tug.org/tds>.
+
+=item B<-texmfhome> I<dir>
+
+Specify the C<TEXMFHOME> directory; the default is C<~/texmf>, except on
+Macs, where it is C<~/Library/texmf>. Analogously to C<TEXMFLOCAL>, the
+C<-texuserdir> option changes this default.
+
+Also as with C<TEXMFLOCAL>, anything installed here must follow the TDS.
+
+=item B<-texmfsysconfig> I<dir>
+
+=item B<-texmfsysvar> I<dir>
+
+Specify the C<TEXMFSYSCONFIG> and C<TEXMFSYSVAR> system directories.
+
+=item B<-texmfconfig> I<dir>
+
+=item B<-texmfvar> I<dir>
+
+Specify the C<TEXMFCONFIG> and C<TEXMFVAR> user directories.
 
 =item B<-version>, B<--version>
 
@@ -3065,7 +3302,14 @@ Set letter size paper as the default, instead of a4.
 
 =item C<instopt_portable> (default 0)
 
-Install for portable use, e.g., on a USB stick.
+Install for portable use, e.g., on a USB stick, without touching the
+host system. Specifically, this forces the user directories
+C<TEXMFHOME>, C<TEXMFCONFIG>, C<TEXMFVAR> to be identical to the system
+directories C<TEXMFLOCAL>, C<TEXMFSYSCONFIG>, C<TEXMFSYSVAR>,
+respectively (regardless of other options and environment variable.)
+
+In addition, on Windows, it disables the desktop integration, path
+adjustment, and file associations actions usually performed.
 
 =item C<instopt_write18_restricted> (default 1)
 
@@ -3112,15 +3356,6 @@ written, the names above are always used.
 For more details on all of the above options, consult the TeX Live
 installation manual, linked from L<https://tug.org/texlive/doc>.
 
-=head1 SPACE CONSTRAINTS
-
-If a POSIX-compliant C<df> program (supporting C<-P>) is available, the
-installer will check the available disk space in the selected
-installation location, and will abort installation if there is
-insufficient disk space, plus a margin of 100MB. In case this check is
-invalid for your filesystem, setting the environment variable
-C<TEXLIVE_INSTALL_NO_DISKCHECK> to 1 will disable it.
-
 =head1 ENVIRONMENT VARIABLES
 
 For ease in scripting and debugging, C<install-tl> looks for the
@@ -3151,7 +3386,12 @@ Omit creating the ConTeXt cache.  This is useful for redistributors.
 
 =item C<TEXLIVE_INSTALL_NO_DISKCHECK>
 
-Omit free disk space check.
+If set to 1, omit free disk space check. By default, if a
+POSIX-compliant C<df> program (supporting C<-P>) is available, the
+installer checks for available disk space in the selected installation
+location, and will abort installation if there is insufficient disk
+space, plus a margin of 100MB. An equivalent check is made on Windows
+(not involving C<df>).
 
 =item C<TEXLIVE_INSTALL_NO_RESUME>
 
@@ -3186,9 +3426,9 @@ Specify the respective directories. C<TEXLIVE_INSTALL_PREFIX> defaults
 to C</usr/local/texlive>. All the defaults can be seen by running the
 installer interactively and then typing C<D> for the directory menu.
 
-To override the so-called C<TEXDIR>, which defaults to the release
-directory within that prefix, e.g., C</usr/local/texlive/2020>, use a
-profile file (q.v.).
+The various command line options for specifying directories override
+these environment variables; since specifying both is usually
+accidental, a warning is given if the values are different.
 
 =item C<NOPERLDOC>
 

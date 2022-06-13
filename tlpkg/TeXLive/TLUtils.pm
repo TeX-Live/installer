@@ -43,6 +43,8 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::run_cmd($cmd [, @envvars ]);
   TeXLive::TLUtils::system_pipe($prog, $infile, $outfile, $removeIn, @args);
   TeXLive::TLUtils::diskfree($path);
+  TeXLive::TLUtils::get_user_home();
+  TeXLive::TLUtils::expand_tilde($str);
 
 =head2 File utilities
 
@@ -234,6 +236,8 @@ BEGIN {
     &run_cmd
     &system_pipe
     &diskfree
+    &get_user_home
+    &expand_tilde
     &announce_execute_actions
     &add_symlinks
     &remove_symlinks
@@ -868,7 +872,7 @@ sub diskfree {
   }
   $td .= "/" if ($td !~ m!/$!);
   return (-1) if (! -e $td);
-  debug("Checking for free diskspace in $td\n");
+  debug("checking diskfree() in $td\n");
   ($output, $retval) = run_cmd("df -P \"$td\"", POSIXLY_CORRECT => 1);
   if ($retval == 0) {
     # Output format should be this:
@@ -876,14 +880,45 @@ sub diskfree {
     # /dev/sdb3       6099908248 3590818104 2406881416      60% /home
     my ($h,$l) = split(/\n/, $output);
     my ($fs, $nrb, $used, $avail, @rest) = split(' ', $l);
-    debug("disk space: used=$used (512-block), avail=$avail (512-block)\n");
+    debug("diskfree: used=$used (512-block), avail=$avail (512-block)\n");
     # $avail is in 512-byte blocks, so we need to divide by 2*1024 to
     # obtain Mb. Require that at least 100M remain free.
     return (int($avail / 2048));
   } else {
-    # error in running df -P out of whatever reason
+    # error in running df -P for whatever reason
     return (-1);
   }
+}
+
+=item C<get_user_home()>
+
+Returns the current user's home directory (C<$HOME> on Unix,
+C<$USERPROFILE> on Windows, and C<~> if none of the two are
+set. Save in package variable C<$user_home_dir> after computing.
+
+=cut
+
+# only search for home directory once, and save expansion here
+my $user_home_dir;
+
+sub get_user_home {
+  return $user_home_dir if ($user_home_dir);
+  $user_home_dir = getenv (win32() ? 'USERPROFILE' : 'HOME') || '~';
+  return $user_home_dir;
+}
+
+=item C<expand_tilde($str)>
+
+Expands initial C<~> with the user's home directory in C<$str> if
+available, else leave C<~> in place.
+
+=cut
+
+sub expand_tilde {
+  my $str = shift;
+  my $h = get_user_home();
+  $str =~ s/^~/$h/;
+  return $str;
 }
 
 =back

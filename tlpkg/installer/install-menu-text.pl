@@ -623,10 +623,7 @@ sub input_dirname
   $answer =~ s!\\!/!g if win32();  # switch to forward slashes
 
   if (!$noexpansion) {
-    my $home = getenv('HOME');
-    $home = getenv('USERPROFILE') if win32();
-    $home ||= '~';
-    $answer =~ s/^~/$home/;          # $home expansion
+    $answer = TeXLive::TLUtils::expand_tilde($answer);
   }
 
   if ($answer !~ m/^~/) {
@@ -723,7 +720,7 @@ sub help_menu {
 
   clear_screen;
 
-  my @text=html2text "$installer_help";
+  my @text=html2text ($installer_help);
   my $lines=(@text);
   my $overlap=3;
   my $lps=32; # lines per screen - overlap
@@ -844,9 +841,7 @@ EOF
 
   if (unix()) {
     if (("\u$answer" eq 'L') and !$vars{'instopt_portable'}) {
-      my $home = getenv('HOME');
-      $home = getenv('USERPROFILE') if (win32());
-      $home ||= '~';
+      my $home = TeXLive::TLUtils::get_user_home();
       toggle 'instopt_adjustpath';
       if ($vars{'instopt_adjustpath'}) {
         print "New value for binary directory [$sys_bin]: ";
@@ -874,9 +869,7 @@ EOF
     }
   } else {
     if (("\u$answer" eq 'L') and !$vars{'instopt_portable'}) {
-      my $home = getenv('HOME');
-      $home = getenv('USERPROFILE') if (win32());
-      $home ||= '~';
+      my $home = TeXLive::TLUtils::get_user_home;
       toggle 'instopt_adjustpath';
       return $command{'self'};
     }
