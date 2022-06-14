@@ -292,6 +292,8 @@ my $opt_installation = 1;
 my $opt_interaction = 1;
 my $opt_location = "";
 my $opt_no_gui = 0;
+my $opt_no_doc_install = 0;
+my $opt_no_src_install = 0;
 my $opt_nonadmin = 0;
 my $opt_paper = "";
 my $opt_persistent_downloads = 1;
@@ -391,6 +393,8 @@ GetOptions(
            "location|url|repository|repos|repo=s" => \$opt_location,
            "no-cls",                    # $::opt_no_cls in install-menu-text-pl
            "no-gui"                      => \$opt_no_gui,
+           "no-doc-install"              => \$opt_no_doc_install,
+           "no-src-install"              => \$opt_no_src_install,
            "non-admin"                   => \$opt_nonadmin,
            "paper=s"                     => \$opt_paper,
            "persistent-downloads!"       => \$opt_persistent_downloads,
@@ -491,13 +495,14 @@ die "$0: Incompatible options: in-place and profile ($opt_profile).\n"
 die "$0: Incompatible options init-from-profile and in-place.\n"
   if ($opt_in_place && $opt_init_from_profile);
 
-die "$0: Incompatible options: texuserdir ($opt_texuserdir) and "
-    . "any of texmfhome, texmfconfig, texmfvar ("
-    . "$pathopts{'texmfhome'}, $pathopts{'texmfvar'}, $pathopts{'texmfconfig'}"
-    . ").\n"
-  if ($opt_texuserdir && 
-       ($pathopts{'texmfhome'} || $pathopts{'texmfvar'}
-        || $pathopts{'texmfconfig'}));
+# We now allow --texuserdir XXX --texmfhome YYYY
+# die "$0: Incompatible options: texuserdir ($opt_texuserdir) and "
+#     . "any of texmfhome, texmfconfig, texmfvar ("
+#     . "$pathopts{'texmfhome'}, $pathopts{'texmfvar'}, $pathopts{'texmfconfig'}"
+#     . ").\n"
+#   if ($opt_texuserdir && 
+#        ($pathopts{'texmfhome'} || $pathopts{'texmfvar'}
+#         || $pathopts{'texmfconfig'}));
 
 if ($#ARGV >= 0) {
   die "$0: Extra arguments `@ARGV'; try --help if you need it.\n";
@@ -936,6 +941,7 @@ sub final_remote_init {
 
   update_default_scheme();
   update_default_paper();
+  update_default_src_doc_install();
 } # final_remote_init
 
 sub update_default_scheme {
@@ -976,6 +982,16 @@ sub update_default_paper {
     }
   }
 } # update_default_paper
+
+sub update_default_src_doc_install {
+  if ($opt_no_src_install) {
+    $vars{'tlpdbopt_install_srcfiles'} = 0;
+  }
+  if ($opt_no_doc_install) {
+    $vars{'tlpdbopt_install_docfiles'} = 0;
+  }
+} # update_default_src_doc_install
+
 
 
 sub do_installation {
@@ -1699,13 +1715,12 @@ sub set_texlive_default_dirs {
   my $homedir = (platform() =~ m/darwin/) ? "~/Library" : "~";
   my $yyyy = $TeXLive::TLConfig::ReleaseYear;
   #
-  # We already checked that either $opt_texuserdir xor at least one of the
-  # directory options (texmfhome, texmfvar, texmfconfig) is set. In case
-  # $opt_texuserdir is set, assign the respective values to texmfhome etc.
+  # If the --texuserdir is given, assign values to texmfhome/var/config
+  # unless the separate cmd line options are also present.
   if ($opt_texuserdir) {
-    $pathopts{'texmfhome'} = "$opt_texuserdir/texmf";
-    $pathopts{'texmfvar'} = "$opt_texuserdir/texmf-var";
-    $pathopts{'texmfconfig'} = "$opt_texuserdir/texmf-config";
+    $pathopts{'texmfhome'} = "$opt_texuserdir/texmf" if (!$pathopts{'texmfhome'});
+    $pathopts{'texmfvar'} = "$opt_texuserdir/texmf-var" if (!$pathopts{'texmfvar'});
+    $pathopts{'texmfconfig'} = "$opt_texuserdir/texmf-config" if (!$pathopts{'texmfconfig'});
   }
   #
   # Sources of target directory settings in priority order:
@@ -3075,6 +3090,13 @@ If the retry also fails, by default the installer proceeds to completion
 anyway, with the idea that it was a transient network problem and
 reinstallation will succeed later. If this option is specified, and the
 retry fails, the installer aborts.
+
+=item B<-no-doc-install>
+
+=item B<-no-src-install>
+
+Do not install source/doc files and set the options to not install source/doc
+files in the saved database.
 
 =item B<-no-installation>
 
