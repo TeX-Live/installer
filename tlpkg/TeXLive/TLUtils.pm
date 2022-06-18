@@ -544,6 +544,7 @@ sub platform_desc {
     return "$platform_name{$platform}";
   } else {
     my ($CPU,$OS) = split ('-', $platform);
+    $OS = "" if ! defined $OS; # e.g., -force-platform foo
     return "$CPU with " . ucfirst "$OS";
   }
 }
