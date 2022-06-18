@@ -154,7 +154,7 @@ sub run_menu_text {
       }
     }
     print "----\n";
-    print "[0] default mirror   http://mirror.ctan.org\n";
+    print "[0] default mirror   https://mirror.ctan.org\n";
     my $local_ind = "a";
     if ($#media_available >= 0) {
       print "Local repositories:\n";

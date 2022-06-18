@@ -351,11 +351,13 @@ if ((defined $ARGV[0]) && $ARGV[0] eq "-from_ext_gui") {
   Win32::SetChildShowWindow(0) if win32();
 }
 
-# if we find a file installation.profile we ask the user whether we should
-# continue with the installation
-# note, we are in the directory from which the aborted installation was run.
+# If we find a file installation.profile we ask the user whether we should
+# continue with the installation, unless there shouldn't be interaction.
+# We are in the directory from which the aborted installation was run.
 my %profiledata;
-if (-r "installation.profile" && !exists $ENV{"TEXLIVE_INSTALL_NO_RESUME"}) {
+if (-r "installation.profile"
+    && $opt_interaction
+    && !exists $ENV{"TEXLIVE_INSTALL_NO_RESUME"}) {
   if ($from_ext_gui) { # prepare for dialog interaction
     print "mess_yesno\n";
   }
@@ -392,8 +394,8 @@ GetOptions(
            "lang|gui-lang=s"             => \$::opt_lang,
            "location|url|repository|repos|repo=s" => \$opt_location,
            "no-cls",                    # $::opt_no_cls in install-menu-text-pl
-           "no-gui"                      => \$opt_no_gui,
            "no-doc-install"              => \$opt_no_doc_install,
+           "no-gui"                      => \$opt_no_gui,
            "no-src-install"              => \$opt_no_src_install,
            "non-admin"                   => \$opt_nonadmin,
            "paper=s"                     => \$opt_paper,
@@ -679,7 +681,7 @@ if ($opt_profile eq "" && $opt_interaction) {
 
   # before we start the installation we check for the existence of
   # a previous installation, and in case we ship inform the UI
-  if (!exists $ENV{"TEXLIVE_INSTALL_NO_RESUME"}) {
+  if (!exists $ENV{"TEXLIVE_INSTALL_NO_RESUME"} && $opt_interaction) {
     my $tlmgrwhich = which("tlmgr");
     if ($tlmgrwhich) {
       my $dn = dirname($tlmgrwhich);
@@ -949,6 +951,11 @@ sub update_default_scheme {
   if ($opt_scheme) {
     # add the scheme- prefix if they didn't give it.
     $opt_scheme = "scheme-$opt_scheme" if $opt_scheme !~ /^scheme-/;
+    #
+    # add "only" if they said "infra" (Tired of making this typo, should
+    # have named it "infra" in the first place, but too late.)
+    $opt_scheme .= "only" if $opt_scheme eq "scheme-infra";
+    #
     my $scheme = $tlpdb->get_package($opt_scheme);
     if (defined($scheme)) {
       select_scheme($opt_scheme);  # select it
@@ -1823,7 +1830,7 @@ sub calc_depends {
       }
     } else {
       for my $scheme_content ($scheme->depends) {
-        $install{"$scheme_content"}=1 unless ($scheme_content=~/^collection-/);
+        $install{"$scheme_content"}=1 unless $scheme_content =~ /^collection-/;
       }
     }
   }
@@ -1992,14 +1999,21 @@ END_EXPLICIT_MIRROR
 
   # select scheme: either $vars{'selected_scheme'} or $default_scheme
   # check that the default scheme is actually present, otherwise switch to
-  # scheme-minimal
-  my $selscheme = defined($vars{'selected_scheme'}) ? $vars{'selected_scheme'}
-                                                    : $default_scheme;
+  # scheme-minimal.
+  my $selscheme;
+  if ($opt_scheme) {
+    $selscheme = $opt_scheme;
+  } elsif ($vars{"selected_scheme"}) {
+    $selscheme = $vars{"selected_scheme"};
+  } else {
+    $selscheme = $default_scheme;
+  }
   if (!defined($tlpdb->get_package($selscheme))) {
     if (!defined($tlpdb->get_package("scheme-minimal"))) {
       die("Aborting, cannot find either $selscheme or scheme-minimal");
     }
     $default_scheme = "scheme-minimal";
+    tlwarn("$0: No $selscheme, switching to $default_scheme.\n");
     $vars{'selected_scheme'} = $default_scheme;
   }
   # make sure that we update %vars for collection_* if only selected_scheme
@@ -2878,10 +2892,9 @@ L<https://tug.org/texlive/doc>.
 =head1 EXAMPLES
 
 With no options, C<install-tl> drops you into an interactive menu where
-essentially all default settings can be changed. 
-
-With options, you can initialize the settings in various ways, or
-perform the installation without interaction.
+essentially all default settings can be changed. With options, you can
+initialize the settings in various ways, or perform the installation
+without interaction. Some examples:
 
 =over 4
 
@@ -2916,9 +2929,14 @@ As usual, all options can be specified in any order, and with either a
 leading C<-> or C<-->.  An argument value can be separated from its
 option by either a space or C<=>.
 
+The options relating to customization of the installation can also be
+selected in the interactive installation menus (GUI or text).
+
 =over 4
 
 =item B<-gui> [[=]I<module>]
+
+=item B<-no-gui>
 
 If no I<module> is given, starts the Tcl/Tk (see below) GUI installer.
 
@@ -2947,10 +2965,6 @@ removed in the latest macOS releases. It's often already installed on
 GNU/Linux, or can be easily installed through a distro package manager.
 For Windows, TeX Live provides a Tcl/Tk runtime.
 
-=item B<-no-gui>
-
-Use the text mode installer (default except on Windows and Macs).
-
 =for comment Keep language list in sync with tlmgr.
 
 =item B<-lang> I<llcode>
@@ -2974,9 +2988,9 @@ http(s), ftp, or scp. The documentation for C<tlmgr> has the details
 
 For installation, the default is to pick a mirror automatically, using
 L<https://mirror.ctan.org/systems/texlive/tlnet>; the chosen mirror is
-used for the entire download. You can use the special argument C<ctan>
-as an abbreviation for this. (See L<https://ctan.org> for more about CTAN
-and its mirrors.)
+then used for the entire download. You can use the special argument
+C<ctan> as an abbreviation for this. (See L<https://ctan.org> for more
+about CTAN and its mirrors.)
 
 After installation is complete, you can use that installation as the
 repository for another installation.  If you chose to install less than
@@ -3001,15 +3015,15 @@ settings.
 
 =item B<-custom-bin> I<path>
 
-If you have built your own set of TeX Live binaries (perhaps because
-your platform was not supported by TeX Live out of the box), this option
-allows you to specify the I<path> to a directory where the binaries for
-the current system are present.  The installation will continue as
-usual, but at the end all files from I<path> are copied over to
-C<bin/custom/> under your installation directory and this C<bin/custom/>
-directory is what will be added to the path for the post-install
-actions.  To install multiple custom binary sets, manually rename
-C<custom> before doing each.
+If you have built your own set of TeX Live binaries (e.g., because
+precompiled binaries were not provided by TL for your platform), this
+option allows you to specify the I<path> to a directory where the
+binaries for the current system are present. The installation will
+continue as usual, but at the end all files from I<path> are copied over
+to C<bin/custom/> under your installation directory and this
+C<bin/custom/> directory is what will be added to the path for the
+post-install actions. To install multiple custom binary sets, manually
+rename C<custom> before doing each.
 
 For more information on custom binaries, see
 L<https://tug.org/texlive/custom-bin.html>.  For general information on
@@ -3017,8 +3031,9 @@ building TeX Live, see L<https://tug.org/texlive/build.html>.
 
 =item B<-debug-fakenet>
 
-Pretend we're doing a network install, for the sole purpose of testing
-broken downloads via moving package files aside in a tlnet mirror.
+Pretend we're doing a network install. This is for the sole purpose of
+testing the code to handle broken downloads, via moving package files
+aside in a tlnet mirror hierarchy.
 
 =item B<-debug-setup-vars>
 
@@ -3035,8 +3050,9 @@ what remains to be done.
 =item B<-force-platform> I<platform>
 
 Instead of auto-detecting the current platform, use I<platform>.
-Binaries for this platform must be present and they must actually be
-runnable, or installation will fail.  C<-force-arch> is a synonym.
+Binaries for this platform must be present in C<bin/>I<platform>C</> and
+they must be runnable, or installation will fail. C<-force-arch> is a
+synonym.
 
 =item B<-help>, B<--help>, B<-?>
 
@@ -3095,8 +3111,22 @@ retry fails, the installer aborts.
 
 =item B<-no-src-install>
 
-Do not install source/doc files and set the options to not install source/doc
-files in the saved database.
+Do not install the documentation resp. source package files, both for
+the immediate installation and for future updates. After installation,
+inclusion of the doc/src files can be re-enabled via C<tlmgr>:
+
+  tlmgr option docfiles 1
+  tlmgr option srcfiles 1
+
+If you later find that you want the doc/src files for a package that has
+been installed without them, you can get them like this (using the
+C<fontspec> package as the example):
+
+  tlmgr install --reinstall --with-doc --with-src fontspec
+
+The source files mentioned here are those relating to TeX packages, such
+as C<.dtx> files. The sources that are compiled to make the binaries are
+available separately: see L<https://tug.org/texlive/svn/>.
 
 =item B<-no-installation>
 
@@ -3105,8 +3135,9 @@ initialization and setup routines without touching the disk.
 
 =item B<-no-interaction>
 
-Do not enter the interactive menu, just perform the installation after
-initialization and option parsing.
+Do not enter the interactive menu; immediately perform the installation
+after initialization and option parsing. Also omit the check for a
+previous installation and asking about importing previous settings.
 
 =item B<-no-persistent-downloads>
 
@@ -3142,8 +3173,8 @@ the C<tlmgr paper> command.
 
 =item B<-portable>
 
-Install for portable use, e.g., on a USB stick.  Also selectable from
-within the perltk and text installers.
+Install for portable use, e.g., on a USB stick.  See the
+C<instopt_portable> description below for details.
 
 =item B<-print-platform>
 
@@ -3164,35 +3195,31 @@ Omit normal informational messages.
 =item B<-scheme> I<scheme>
 
 Schemes are the highest level of package grouping in TeX Live; the
-default is to use the C<full> scheme, which includes everything.  This
-option overrides that default.  You can change the scheme again before
-the actual installation with the usual menu.  The I<scheme> argument may
-optionally have a prefix C<scheme->.  The list of supported scheme names
+default is to use the C<full> scheme, which includes everything. This
+option overrides that default. The I<scheme> argument value may
+optionally have a prefix C<scheme->. The list of supported scheme names
 depends on what your package repository provides; see the interactive
 menu list.
-
-=item B<-v>
-
-Include verbose debugging messages; repeat for maximum debugging: C<-v
--v>.  (Further repeats are accepted but ignored.)
 
 =item B<-texdir> I<dir>
 
 Specify the system installation directory; the default is
 C</usr/local/texlive/YYYY> for release YYYY. Specifying this option also
 causes the C<TEXMFLOCAL>, C<TEXMFSYSCONFIG>, and C<TEXMFSYSVAR>
-directories to be set as subdirectories, so they don't have to be set
-individually.
+directories to be set as subdirectories of I<dir>, so they don't have to
+be set individually.
 
-For more on the several directory trees set up by default, see the main
-TeX Live documentation at L<https://tug.org/texlive/doc>.
+There is a brief summary of these directories trees at L</DIRECTORY
+TREES> below; for details on the trees set up by default, and their
+intended usage, see the main TeX Live documentation at
+L<https://tug.org/texlive/doc>.
 
 =item B<-texuserdir> I<dir>
 
 Specify the user installation directory; the default is
 C<~/.texliveYYYY> (except on Macs, where there is no leading dot).
 Specifying this also causes the C<TEXMFHOME>, C<TEXMFCONFIG>, and
-C<TEXMFVAR> directories to be set as subdirectories.
+C<TEXMFVAR> directories to be set as subdirectories of I<dir>.
 
 =item B<-texmflocal> I<dir>
 
@@ -3200,12 +3227,11 @@ Specify the C<TEXMFLOCAL> directory; the default is
 C</usr/local/texlive/texmf-local>, that is, one level up from the main
 installation. This is so locally-installed packages can be easily used
 across releases, which is usually desirable. Specifying the C<-texdir>
-option changes this, putting C<TEXMFLOCAL> under the main tree, on the
-theory that you want to use some setup different than the default. The
-C<-texmflocal> option can be used to specify an explicit directory for it.
+option changes this, putting C<TEXMFLOCAL> under the main tree. The
+C<-texmflocal> option can be used to specify an explicit directory.
 
 Anything installed here must follow the TeX directory structure (TDS),
-e.g., C<TEXMFHOME/tex/latex/mypkg/mypkg.sty>. See the TDS reference at
+e.g., C<TEXMFHOME/tex/latex/mypkg/mypkg.sty>. TDS reference:
 L<https://tug.org/tds>.
 
 =item B<-texmfhome> I<dir>
@@ -3227,6 +3253,13 @@ Specify the C<TEXMFSYSCONFIG> and C<TEXMFSYSVAR> system directories.
 =item B<-texmfvar> I<dir>
 
 Specify the C<TEXMFCONFIG> and C<TEXMFVAR> user directories.
+The defaults are C<~/.texliveYYYY/texmf-{config,var}>, except on Macs,
+where the leading dot is omitted (C<~/texliveYYYY/...>).
+
+=item B<-v>
+
+Include verbose debugging messages; repeat for maximum debugging: C<-v
+-v>.  (Further repeats are accepted but ignored.)
 
 =item B<-version>, B<--version>
 
@@ -3237,17 +3270,18 @@ versions of the TeX Live modules used are also reported.
 
 =head1 PROFILES
 
-A I<profile> file contains all the values needed to perform an
-installation.  After a normal installation has finished, a profile for
+A I<profile> file normally contains all the values needed to perform an
+installation. After a normal installation has finished, a profile for
 that exact installation is written to the file C<tlpkg/texlive.profile>.
 In addition, from the text menu one can select C<P> to save the current
-setup as a profile at any time.
+setup as a profile at any time. These are small text files; feel free to
+peruse and edit them according to your needs.
 
 Such a profile file can be given as the argument to C<-profile>, for
 example to redo the exact same installation on a different system.
 Alternatively, you can use a custom profile, most easily created by
-starting from a generated one and changing values, or an empty file,
-which will take all the defaults.
+starting from a generated one and changing values. An empty profile
+file will cause the installer to use the defaults.
 
 As mentioned above, the installer only supports selection by scheme and
 collections, not individual packages, so packages cannot be specified in
@@ -3265,9 +3299,9 @@ characters).  Leading whitespace is ignored.
 If the variable C<selected_scheme> is defined and I<no> collection
 variables at all are defined, then the collections required by the
 specified scheme (which might change over time) are installed, without
-explicitly listing them.  This eases maintenance of profile files.  If
-any collections are specified in a profile, though, then all desired
-collections must be given explicitly.
+explicitly listing them. This eases maintenance of profile files. If any
+collections are specified in a profile, though, then the scheme is
+ignored and all desired collections must be given explicitly.
 
 For example, a line 
 
@@ -3278,8 +3312,8 @@ under "path options") suffices to install the "small" scheme with all
 default options.  The schemes are described in the C<S> menu in the
 text installer, or equivalent.
 
-Besides C<selected_scheme>, here is the list of variable names supported
-in a profile:
+In addition to C<selected_scheme>, here are the other variable names
+supported in a profile:
 
 B<collection options> (prefix C<collection->)
 
@@ -3293,17 +3327,17 @@ files in the C<tlpkg/tlpsrc/> source directory.
 
 B<path options>
 
-It is best to define all of these, even though they may not be used in
-the installation, so as to avoid unintentionally getting a default value
-that could cause problems later.
+It is best to define all of these, even though they may not be used in a
+given installation, so as to avoid unintentionally getting a default
+value that could cause problems later.
 
   TEXDIR
-  TEXMFCONFIG
-  TEXMFVAR
-  TEXMFHOME
   TEXMFLOCAL
   TEXMFSYSCONFIG
   TEXMFSYSVAR
+  TEXMFCONFIG
+  TEXMFVAR
+  TEXMFHOME
 
 B<installer options> (prefix C<instopt_>)
 
@@ -3386,6 +3420,10 @@ user installations.
 
 =over 4
 
+=item C<NOPERLDOC>
+
+Don't try to run the C<--help> message through C<perldoc>.
+
 =item C<TEXLIVE_DOWNLOADER>
 
 =item C<TL_DOWNLOAD_PROGRAM>
@@ -3452,11 +3490,41 @@ The various command line options for specifying directories override
 these environment variables; since specifying both is usually
 accidental, a warning is given if the values are different.
 
-=item C<NOPERLDOC>
-
-Don't try to run the C<--help> message through C<perldoc>.
-
 =back
+
+=head1 DIRECTORY TREES
+
+There are a plethora of ways to specify the plethora of directory trees
+used by TeX Live. By far the simplest, and recommended, approach is not
+to change anything. The defaults suffice for the vast majority of
+installations.
+
+But, for the sake of explanation, here is a table of the trees and the
+command line options that change them. The first group of three are
+system directories, and the second group of three are user directories;
+the two groups are quite analogous.
+
+  +----------------+--------------------------------------+--------------+------------------+
+  |    tree        | default                              | group change | single change    |
+  +----------------+--------------------------------------+--------------+------------------+
+  | TEXMFLOCAL     | /usr/local/texlive/YYYY/texmf-local  | --texdir     | --texmflocal     |
+  | TEXMFSYSVAR    | /usr/local/texlive/YYYY/texmf-var    | --texdir     | --texmfsysvar    |
+  | TEXMFSYSCONFIG | /usr/local/texlive/YYYY/texmf-config | --texdir     | --texmfsysconfig |
+  +----------------+--------------------------------------+--------------+------------------+
+  | TEXMFHOME      | ~/texmf                              | --texuserdir | --texmfhome      |
+  | TEXMFVAR       | ~/.texliveYYYY/texmf-var             | --texuserdir | --texmfvar       |
+  | TEXMFCONFIG    | ~/.texliveYYYY/texmf-config          | --texuserdir | --texmfconfig    |
+  +----------------+--------------------------------------+--------------+------------------+
+
+In addition, as mentioned in the previous section, each tree has an
+environment variable C<TEXLIVE_INSTALL_>I<tree> which overrides the
+default; command line and profile settings both override environment
+variable settings.
+
+The defaults vary slightly on Macs, as explained above in L</OPTIONS>.
+
+For more on the directory trees and their intended usage, see the main
+TeX Live documentation at L<https://tug.org/texlive/doc>.
 
 =head1 AUTHORS AND COPYRIGHT
 
