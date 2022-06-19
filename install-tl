@@ -283,6 +283,7 @@ my $opt_continue = 1;
 my $opt_custom_bin;
 my $opt_debug_fakenet = 0;
 my $opt_debug_setup_vars = 0;
+my $opt_doc_install = 1;
 my $opt_font;
 my $opt_force_arch;
 my $opt_gui = "text";
@@ -292,8 +293,7 @@ my $opt_installation = 1;
 my $opt_interaction = 1;
 my $opt_location = "";
 my $opt_no_gui = 0;
-my $opt_no_doc_install = 0;
-my $opt_no_src_install = 0;
+my $opt_no_interaction = 0;
 my $opt_nonadmin = 0;
 my $opt_paper = "";
 my $opt_persistent_downloads = 1;
@@ -301,6 +301,7 @@ my $opt_portable = 0;
 my $opt_print_arch = 0;
 my $opt_profile = "";
 my $opt_scheme = "";
+my $opt_src_install = 1;
 my $opt_texdir = "";
 my $opt_texuserdir = "";
 my $opt_version = 0;
@@ -383,6 +384,7 @@ GetOptions(
            "debug-fakenet"               => \$opt_debug_fakenet,
            "debug-setup-vars"            => \$opt_debug_setup_vars,
            "debug-translation"           => \$::debug_translation,
+           "doc-install!"                => \$opt_doc_install,
            "fancyselector",
            "font=s"                      => \$opt_font,
            "force-platform|force-arch=s" => \$opt_force_arch,
@@ -394,17 +396,17 @@ GetOptions(
            "lang|gui-lang=s"             => \$::opt_lang,
            "location|url|repository|repos|repo=s" => \$opt_location,
            "no-cls",                    # $::opt_no_cls in install-menu-text-pl
-           "no-doc-install"              => \$opt_no_doc_install,
+           "N"                           => \$opt_no_interaction,
            "no-gui"                      => \$opt_no_gui,
-           "no-src-install"              => \$opt_no_src_install,
            "non-admin"                   => \$opt_nonadmin,
            "paper=s"                     => \$opt_paper,
            "persistent-downloads!"       => \$opt_persistent_downloads,
            "portable"                    => \$opt_portable,
            "print-platform|print-arch"   => \$opt_print_arch,
            "profile=s"                   => \$opt_profile,
-           "scheme=s"                    => \$opt_scheme,
+           "scheme|s=s"                  => \$opt_scheme,
            "select-repository"           => \$::opt_select_repository,
+           "src-install!"                => \$opt_src_install,
            "tcl",                       # handled by wrapper
            "texdir=s"                    => \$opt_texdir,
            "texmfconfig=s"               => \$pathopts{'texmfconfig'},
@@ -421,6 +423,9 @@ GetOptions(
 if ($from_ext_gui) {
   $opt_gui = "extl";
 }
+
+# just so we can use -N as abbreviation for --no-interaction.
+$opt_interaction = 0 if $opt_no_interaction;
 
 # informational invocations: help, version, platform
 
@@ -991,10 +996,10 @@ sub update_default_paper {
 } # update_default_paper
 
 sub update_default_src_doc_install {
-  if ($opt_no_src_install) {
+  if (! $opt_src_install) {
     $vars{'tlpdbopt_install_srcfiles'} = 0;
   }
-  if ($opt_no_doc_install) {
+  if (! $opt_doc_install) {
     $vars{'tlpdbopt_install_docfiles'} = 0;
   }
 } # update_default_src_doc_install
@@ -3525,6 +3530,21 @@ The defaults vary slightly on Macs, as explained above in L</OPTIONS>.
 
 For more on the directory trees and their intended usage, see the main
 TeX Live documentation at L<https://tug.org/texlive/doc>.
+
+=head1 BUGS
+
+The C<install-tl> script copies itself into the installed tree.
+Usually, it can be run from there, using the installed tree as the
+source for another installation.  Occasionally, however, there may be
+incompatibilities in the code of the new C<install-tl> and the
+infrastructure, resulting in (typically) inscrutable Perl errors.  The
+way forward is to run C<install-tl> out of the installer package
+(C<install-tl-unx.tar.gz> or C<install-tl.zip>) instead of the
+installation. Feel free to also report the bug and generally the code
+can be easily synced up again.
+
+By the way, do not try to use C<install-tl> to adjust options or
+installed packaged in an existing installed tree. Use C<tlmgr> instead.
 
 =head1 AUTHORS AND COPYRIGHT
 
