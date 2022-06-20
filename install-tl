@@ -1784,8 +1784,13 @@ sub set_texlive_default_dirs {
   set_standard_var('TEXMFSYSCONFIG', 'TEXLIVE_INSTALL_TEXMFSYSCONFIG',
                    'texmfsysconfig', "$vars{'TEXDIR'}/texmf-config");
   #
+  # TEXMFLOCAL is special because the default in texmf.cnf
+  #   TEXMFLOCAL = $SELFAUTOGRANDPARENT/texmf-local
+  # that is
+  #   ..../texlive/texmf-local
+  #
   set_standard_var('TEXMFLOCAL', 'TEXLIVE_INSTALL_TEXMFLOCAL',
-                   'texmflocal', "$tex_prefix/texmf-local");
+                   'texmflocal', ($opt_texdir ? "$vars{'TEXDIR'}/texmf-local" :"$tex_prefix/texmf-local"));
   #
   set_standard_var('TEXMFHOME', 'TEXLIVE_INSTALL_TEXMFHOME',
                    'texmfhome', "$homedir/texmf");
@@ -3514,7 +3519,7 @@ the two groups are quite analogous.
   +----------------+--------------------------------------+--------------+------------------+
   |    tree        | default                              | group change | single change    |
   +----------------+--------------------------------------+--------------+------------------+
-  | TEXMFLOCAL     | /usr/local/texlive/YYYY/texmf-local  | --texdir     | --texmflocal     |
+  | TEXMFLOCAL     | /usr/local/texlive/texmf-local       | --texdir     | --texmflocal     |
   | TEXMFSYSVAR    | /usr/local/texlive/YYYY/texmf-var    | --texdir     | --texmfsysvar    |
   | TEXMFSYSCONFIG | /usr/local/texlive/YYYY/texmf-config | --texdir     | --texmfsysconfig |
   +----------------+--------------------------------------+--------------+------------------+
