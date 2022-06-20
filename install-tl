@@ -1176,12 +1176,12 @@ sub run_postinst_cmd {
 # and more.  Return count of errors detected, hopefully zero.
 #
 sub do_postinst_stuff {
-  my $TEXDIR = "$vars{'TEXDIR'}";
-  my $TEXMFSYSVAR = "$vars{'TEXMFSYSVAR'}";
-  my $TEXMFSYSCONFIG = "$vars{'TEXMFSYSCONFIG'}";
-  my $TEXMFVAR = "$vars{'TEXMFVAR'}";
-  my $TEXMFCONFIG = "$vars{'TEXMFCONFIG'}";
-  my $TEXMFLOCAL = "$vars{'TEXMFLOCAL'}";
+  my $TEXDIR = $vars{'TEXDIR'};
+  my $TEXMFSYSVAR = $vars{'TEXMFSYSVAR'};
+  my $TEXMFSYSCONFIG = $vars{'TEXMFSYSCONFIG'};
+  my $TEXMFVAR = $vars{'TEXMFVAR'};
+  my $TEXMFCONFIG = $vars{'TEXMFCONFIG'};
+  my $TEXMFLOCAL = $vars{'TEXMFLOCAL'};
   my $tmv;
 
   do_texmf_cnf();
@@ -1767,15 +1767,17 @@ sub set_texlive_default_dirs {
   }
   # first set $tex_prefix
   my $tex_prefix;
-  set_var_from_alternatives( "TEX_PREFIX", \$tex_prefix,
+  set_var_from_alternatives("TEX_PREFIX", \$tex_prefix,
     ($opt_in_place ? abs_path($::installerdir) : undef),
     $tlprefixenv,
     (win32() ? getenv('SystemDrive') . '/texlive' : '/usr/local/texlive'));
-  set_var_from_alternatives( "TEXDIR", \$vars{'TEXDIR'},
+  #
+  set_var_from_alternatives("TEXDIR", \$vars{'TEXDIR'},
     $opt_texdir,
     $vars{'TEXDIR'},
     ($vars{'instopt_portable'} || $opt_in_place)
       ? $tex_prefix : "$tex_prefix/$texlive_release");
+  #
   set_standard_var('TEXMFSYSVAR', 'TEXLIVE_INSTALL_TEXMFSYSVAR',
                    'texmfsysvar', "$vars{'TEXDIR'}/texmf-var");
   #
@@ -1783,7 +1785,7 @@ sub set_texlive_default_dirs {
                    'texmfsysconfig', "$vars{'TEXDIR'}/texmf-config");
   #
   set_standard_var('TEXMFLOCAL', 'TEXLIVE_INSTALL_TEXMFLOCAL',
-                   'texmflocal', "$vars{'TEXDIR'}/texmf-local");
+                   'texmflocal', "$tex_prefix/texmf-local");
   #
   set_standard_var('TEXMFHOME', 'TEXLIVE_INSTALL_TEXMFHOME',
                    'texmfhome', "$homedir/texmf");
