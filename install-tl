@@ -2021,12 +2021,20 @@ END_EXPLICIT_MIRROR
     $selscheme = $default_scheme;
   }
   if (!defined($tlpdb->get_package($selscheme))) {
+    # let us try scheme-minimal, and if also that is not available, scheme-infra
+    # which is required to be installed
     if (!defined($tlpdb->get_package("scheme-minimal"))) {
-      die("Aborting, cannot find either $selscheme or scheme-minimal");
+      if (!defined($tlpdb->get_package("scheme-infra"))) {
+        die("Aborting, cannot find either $selscheme or scheme-minimal or scheme-infra");
+      }
+      $default_scheme = "scheme-infra";
+    } else {
+      $default_scheme = "scheme-minimal";
     }
-    $default_scheme = "scheme-minimal";
     tlwarn("$0: No $selscheme, switching to $default_scheme.\n");
     $vars{'selected_scheme'} = $default_scheme;
+  } else {
+    $vars{'selected_scheme'} = $selscheme;
   }
   # make sure that we update %vars for collection_* if only selected_scheme
   # is there, but no collection information
