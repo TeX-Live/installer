@@ -1021,8 +1021,9 @@ sub do_installation {
     tldie("$0: Nothing selected, nothing to install, exiting!\n");
   }
   # expand ~ in various variables just to be sure
-  for my $v (qw/TEXDIR TEXMFLOCAL TEXMFSYSVAR TEXMFSYSCONFIG TEXMFHOME
-                TEXMFVAR TEXMFCONFIG/) {
+  # (but not the user dirs since we want the ~ to stay literal ... must
+  # think more ... qqq)
+  for my $v (qw/TEXDIR TEXMFLOCAL TEXMFSYSVAR TEXMFSYSCONFIG/) {
     $vars{$v} = TeXLive::TLUtils::expand_tilde($vars{$v}) if ($vars{$v});
   }
   # maybe_make_ro tests for admin, local drive and NTFS before proceeding.
