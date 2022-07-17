@@ -3544,6 +3544,14 @@ variable settings.
 
 The defaults vary slightly on Macs, as explained above in L</OPTIONS>.
 
+For the user trees, the default value uses C<~>, and this is left as a
+literal C<~> in C<texmf.cnf>. That way, each user can have their own
+C<TEXMFHOME>, etc., as intended. On the other hand, for the system
+trees, if C<~> is used during the installation, this is assumed to
+simply be a typing shorthand, and the expanded home directory is written
+in C<texmf.cnf>, since it doesn't make sense to have user-specific
+system directories.
+
 For more on the directory trees and their intended usage, see the main
 TeX Live documentation at L<https://tug.org/texlive/doc>.
 
@@ -3553,14 +3561,14 @@ The C<install-tl> script copies itself into the installed tree.
 Usually, it can be run from there, using the installed tree as the
 source for another installation.  Occasionally, however, there may be
 incompatibilities in the code of the new C<install-tl> and the
-infrastructure, resulting in (typically) inscrutable Perl errors.  The
+infrastructure, resulting in (probably) inscrutable Perl errors.  The
 way forward is to run C<install-tl> out of the installer package
 (C<install-tl-unx.tar.gz> or C<install-tl.zip>) instead of the
-installation. Feel free to also report the bug and generally the code
+installation. Feel free to also report the issue; usually the code
 can be easily synced up again.
 
 By the way, do not try to use C<install-tl> to adjust options or
-installed packaged in an existing installed tree. Use C<tlmgr> instead.
+installed packages in an existing installed tree. Use C<tlmgr> instead.
 
 =head1 AUTHORS AND COPYRIGHT
 
