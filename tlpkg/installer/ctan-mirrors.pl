@@ -30,11 +30,11 @@ $mirrors = {
       'http://ctan.imsc.res.in/' => 1,
     },
     'Indonesia' => {
-      'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
       'http://ctan.yazd.ac.ir/' => 1,
+      'https://ctan.asis.sh/' => 1,
       'https://ctan.um.ac.ir/' => 1,
       'https://mirror.bardia.tech/ctan/' => 1,
     },
@@ -46,7 +46,6 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
-      'https://cran.asia/tex/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
@@ -57,9 +56,6 @@ $mirrors = {
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
-    },
-    'Taiwan' => {
-      'https://ftp.ntou.edu.tw/ctan/' => 1,
     },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
