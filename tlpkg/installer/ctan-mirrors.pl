@@ -44,7 +44,6 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
-      'https://cran.asia/tex/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
@@ -80,6 +79,7 @@ $mirrors = {
       'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
+      'https://ctan.crest.fr/tex-archive/' => 1,
       'https://ctan.gutenberg-asso.fr/' => 1,
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
