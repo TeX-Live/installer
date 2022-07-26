@@ -30,7 +30,6 @@ $mirrors = {
       'http://ctan.imsc.res.in/' => 1,
     },
     'Indonesia' => {
-      'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
@@ -74,9 +73,6 @@ $mirrors = {
     'Czech Republic' => {
       'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
-    },
-    'Denmark' => {
-      'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
