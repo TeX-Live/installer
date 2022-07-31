@@ -131,7 +131,10 @@ sub from_file {
     $line =~ /^ /
       && die "$srcfile:$lineno: non-continuation indentation not allowed: `$line'";
     #
-    # remove trailing white space.
+    # remove trailing comment (whitespace preceding #).
+    $line =~ s/\s+#.*$//;
+    #
+    # remove other trailing white space.
     $line =~ s/\s+$//;
 
     # expand tlpvars while reading in (except in descriptions).
