@@ -13,7 +13,6 @@ $mirrors = {
       'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
-      'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
@@ -49,7 +48,6 @@ $mirrors = {
       'https://cran.asia/tex/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
-      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
     'Singapore' => {
@@ -71,6 +69,7 @@ $mirrors = {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
     },
     'Czech Republic' => {
+      'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
     },
     'Denmark' => {
@@ -162,6 +161,7 @@ $mirrors = {
       'https://mirror.foobar.to/CTAN/' => 1,
     },
     'United Kingdom' => {
+      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://www-uxsup.csx.cam.ac.uk/pub/tex-archive/' => 1,
     },
   },
