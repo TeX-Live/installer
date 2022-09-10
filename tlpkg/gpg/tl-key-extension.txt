@@ -30,6 +30,8 @@ unset GNUPGHOME
 
 gpg --send-keys $KEYID
 
+# also update https://keyserver.ubuntu.com/ and maybe others?
+
 # update TeX Live repository
 export GNUPGHOME=/home/texlive/Master/tlpkg/gpg # wherever svn checkout
 # use gpg version 1 here!!!
