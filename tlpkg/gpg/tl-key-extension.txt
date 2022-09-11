@@ -28,9 +28,17 @@ gpg -a --export $KEYID > texlive.asc
 rm -rf $GNUPGHOME
 unset GNUPGHOME
 
-gpg --send-keys $KEYID
+# send keys
+# make sure that .gnupg/dirmngr.conf does NOT contain hkp-cacert lines!!!
 
-# also update https://keyserver.ubuntu.com/ and maybe others?
+# keys.openpgp.org
+gpg --export $KEYID |  curl -T - https://keys.openpgp.org
+# this will give an URL to associate key with email, visit it!
+
+# ubuntu key server
+gpg --send-key --keyserver hkp://keyserver.ubuntu.com:80 $KEYID
+
+
 
 # update TeX Live repository
 export GNUPGHOME=/home/texlive/Master/tlpkg/gpg # wherever svn checkout
