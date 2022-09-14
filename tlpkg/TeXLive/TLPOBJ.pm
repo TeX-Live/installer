@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPOBJ.pm - module for using tlpobj files
-# Copyright 2007-2021 Norbert Preining
+# Copyright 2007-2022 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -680,6 +680,9 @@ sub make_container {
       tlwarn("$0: (make_container $containername) $f does not exist\n");
     } else {
       tlwarn("$0: (make_container $containername) $f not file or symlink\n");
+      if (! win32()) {
+        tlwarn("$0:   ", `ls -l $f 2>&1`);
+      }
     }
   }
   
