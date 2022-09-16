@@ -32,7 +32,6 @@ $mirrors = {
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
-      'http://ctan.yazd.ac.ir/' => 1,
       'https://ctan.asis.sh/' => 1,
       'https://ctan.um.ac.ir/' => 1,
       'https://mirror.bardia.tech/ctan/' => 1,
@@ -165,6 +164,7 @@ $mirrors = {
       'https://mirror.foobar.to/CTAN/' => 1,
     },
     'United Kingdom' => {
+      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://www-uxsup.csx.cam.ac.uk/pub/tex-archive/' => 1,
     },
   },
