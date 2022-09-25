@@ -146,10 +146,11 @@ BEGIN {
   @::ddebug_hook = @::ddebug_hook;
   @::dddebug_hook = @::dddebug_hook;
   @::info_hook = @::info_hook;
+  @::install_packages_hook = @::install_packages_hook;
+  @::installation_failed_packages = @::installation_failed_packages;
   @::warn_hook = @::warn_hook;
   $::checksum_method = $::checksum_method;
   $::gui_mode = $::gui_mode;
-  @::install_packages_hook = @::install_packages_hook;
   $::machinereadable = $::machinereadable;
   $::no_execute_actions = $::no_execute_actions;
   $::regenerate_all_formats = $::regenerate_all_formats;
@@ -3712,8 +3713,8 @@ package.
 =cut
 
 sub debug {
-  my $str = "D:" . join("", @_);
   return if ($::opt_verbosity < 1);
+  my $str = "D:" . join("", @_);
   logit(\*STDERR, 1, $str);
   for my $i (@::debug_hook) {
     &{$i}($str);
@@ -3733,8 +3734,8 @@ each package, in addition to the first level.
 =cut
 
 sub ddebug {
-  my $str = "DD:" . join("", @_);
   return if ($::opt_verbosity < 2);
+  my $str = "DD:" . join("", @_);
   logit(\*STDERR, 2, $str);
   for my $i (@::ddebug_hook) {
     &{$i}($str);
@@ -3757,8 +3758,8 @@ debugging those parts of the code, it just gets in the way.
 =cut
 
 sub dddebug {
-  my $str = "DDD:" . join("", @_);
   return if ($::opt_verbosity < 3);
+  my $str = "DDD:" . join("", @_);
   logit(\*STDERR, 3, $str);
   for my $i (@::dddebug_hook) {
     &{$i}($str);
