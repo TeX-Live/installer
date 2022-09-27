@@ -30,6 +30,7 @@ $mirrors = {
       'http://ctan.imsc.res.in/' => 1,
     },
     'Indonesia' => {
+      'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
@@ -47,11 +48,7 @@ $mirrors = {
       'https://cran.asia/tex/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
-      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
-    },
-    'Philippines' => {
-      'http://mirror.rise.ph/ctan/' => 1,
     },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
@@ -72,6 +69,7 @@ $mirrors = {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
     },
     'Czech Republic' => {
+      'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
     },
     'Denmark' => {
@@ -161,13 +159,11 @@ $mirrors = {
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
-      'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
     },
     'Switzerland' => {
       'https://mirror.foobar.to/CTAN/' => 1,
     },
     'United Kingdom' => {
-      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://mirrors.harcombe.net/tex-archive/' => 1,
       'https://www-uxsup.csx.cam.ac.uk/pub/tex-archive/' => 1,
     },
