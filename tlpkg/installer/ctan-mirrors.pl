@@ -115,9 +115,6 @@ $mirrors = {
       'http://ftp.ntua.gr/mirror/ctan/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
-    'Hungary' => {
-      'https://mirror.szerverem.hu/ctan/' => 1,
-    },
     'Italy' => {
       'https://ctan.mirror.garr.it/mirrors/ctan/' => 1,
     },
@@ -164,6 +161,7 @@ $mirrors = {
       'https://mirror.foobar.to/CTAN/' => 1,
     },
     'United Kingdom' => {
+      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://mirrors.harcombe.net/tex-archive/' => 1,
       'https://www-uxsup.csx.cam.ac.uk/pub/tex-archive/' => 1,
     },
