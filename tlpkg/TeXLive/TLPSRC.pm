@@ -218,7 +218,7 @@ sub from_file {
     } elsif ($line =~ /^execute\s+(.*)$/) {
       push (@executes, $1) if ($1 ne "");
 
-    } elsif ($line =~ /^depend\s+(.*)$/) {
+    } elsif ($line =~ /^(depend|hard)\s+(.*)$/) {
       push (@depends, $1) if ($1 ne "");
 
     } elsif ($line =~ /^postaction\s+(.*)$/) {
@@ -903,7 +903,10 @@ For example, C<latex.tlpsrc> contains (among others):
   depend latex-fonts
   depend pdftex
 
-to ensure these packages are installed if the C<latex> package is.
+to ensure these packages are installed if the C<latex> package is.  The
+directive C<hard> is an alias for C<depend>, since that's we specified
+for the C<DEPENDS.txt> files package authors can provide; see
+L<https://www.tug.org/texlive/pkgcontrib.html#deps>.
 
 =head2 C<execute>
 
