@@ -219,7 +219,7 @@ sub from_file {
       push (@executes, $1) if ($1 ne "");
 
     } elsif ($line =~ /^(depend|hard)\s+(.*)$/) {
-      push (@depends, $1) if ($1 ne "");
+      push (@depends, $2) if ($2 ne "");
 
     } elsif ($line =~ /^postaction\s+(.*)$/) {
       push (@postactions, $1) if ($1 ne "");
