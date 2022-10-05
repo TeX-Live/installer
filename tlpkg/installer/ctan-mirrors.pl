@@ -47,9 +47,6 @@ $mirrors = {
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
-    'Philippines' => {
-      'http://mirror.rise.ph/ctan/' => 1,
-    },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
