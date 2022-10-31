@@ -48,6 +48,7 @@ $mirrors = {
       'https://cran.asia/tex/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
+      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
     'Singapore' => {
@@ -135,7 +136,6 @@ $mirrors = {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
       'https://repo.skni.umcs.pl/ctan/' => 1,
-      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
