@@ -51,9 +51,6 @@ $mirrors = {
       'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
-    'Philippines' => {
-      'http://mirror.rise.ph/ctan/' => 1,
-    },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
@@ -130,7 +127,6 @@ $mirrors = {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
-      'https://mirrors.evoluso.com/CTAN/' => 1,
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
@@ -152,6 +148,7 @@ $mirrors = {
       'https://ctan.altspu.ru/' => 1,
       'https://mirror.macomnet.net/pub/CTAN/' => 1,
       'https://mirror.truenetwork.ru/CTAN/' => 1,
+      'https://mirrors.mi-ras.ru/CTAN/' => 1,
     },
     'Slovenia' => {
       'https://ctan.ijs.si/tex-archive/' => 1,
