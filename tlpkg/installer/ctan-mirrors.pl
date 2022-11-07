@@ -40,6 +40,7 @@ $mirrors = {
     'Japan' => {
       'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
+      'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
     },
     'Korea' => {
@@ -207,9 +208,6 @@ $mirrors = {
     },
   },
   'South America' => {
-    'Brazil' => {
-      'https://linorg.usp.br/CTAN/' => 1,
-    },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
     },
