@@ -52,9 +52,6 @@ $mirrors = {
       'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
-    'Philippines' => {
-      'http://mirror.rise.ph/ctan/' => 1,
-    },
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
@@ -112,6 +109,7 @@ $mirrors = {
       'https://ftp.tu-chemnitz.de/pub/tex/' => 1,
       'https://mirror.clientvps.com/CTAN/' => 1,
       'https://mirror.dogado.de/tex-archive/' => 1,
+      'https://mirror.informatik.hs-fulda.de/tex-archive/' => 1,
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
       'https://packages.oth-regensburg.de/ctan/' => 1,
     },
