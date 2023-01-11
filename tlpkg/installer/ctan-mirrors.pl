@@ -10,6 +10,7 @@ $mirrors = {
   },
   'Asia' => {
     'China' => {
+      'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
@@ -53,12 +54,6 @@ $mirrors = {
     'Philippines' => {
       'http://mirror.rise.ph/ctan/' => 1,
     },
-    'Singapore' => {
-      'https://download.nus.edu.sg/mirror/ctan/' => 1,
-    },
-    'Taiwan' => {
-      'https://ftp.ntou.edu.tw/ctan/' => 1,
-    },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
     },
@@ -72,6 +67,7 @@ $mirrors = {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
     },
     'Czech Republic' => {
+      'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
     },
     'Denmark' => {
@@ -136,10 +132,12 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
+      'https://repo.skni.umcs.pl/ctan/' => 1,
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
+      'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
       'https://mirrors.nxthost.com/ctan/' => 1,
