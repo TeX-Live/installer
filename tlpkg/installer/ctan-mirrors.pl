@@ -53,9 +53,6 @@ $mirrors = {
     'Philippines' => {
       'http://mirror.rise.ph/ctan/' => 1,
     },
-    'Singapore' => {
-      'https://download.nus.edu.sg/mirror/ctan/' => 1,
-    },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
     },
@@ -171,6 +168,7 @@ $mirrors = {
   },
   'North America' => {
     'Canada' => {
+      'https://ctan.math.ca/tex-archive/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
