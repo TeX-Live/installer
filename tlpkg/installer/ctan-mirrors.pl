@@ -115,9 +115,6 @@ $mirrors = {
       'http://ftp.ntua.gr/mirror/ctan/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
-    'Hungary' => {
-      'https://mirror.szerverem.hu/ctan/' => 1,
-    },
     'Italy' => {
       'https://ctan.mirror.garr.it/mirrors/ctan/' => 1,
     },
