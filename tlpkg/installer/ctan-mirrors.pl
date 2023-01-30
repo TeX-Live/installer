@@ -35,7 +35,6 @@ $mirrors = {
     'Iran' => {
       'http://ctan.yazd.ac.ir/' => 1,
       'https://ctan.asis.sh/' => 1,
-      'https://mirror.bardia.tech/ctan/' => 1,
     },
     'Japan' => {
       'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
@@ -53,9 +52,6 @@ $mirrors = {
     },
     'Philippines' => {
       'http://mirror.rise.ph/ctan/' => 1,
-    },
-    'Singapore' => {
-      'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
