@@ -170,7 +170,6 @@ $mirrors = {
     },
     'United Kingdom' => {
       'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
-      'https://www-uxsup.csx.cam.ac.uk/pub/tex-archive/' => 1,
     },
   },
   'North America' => {
@@ -181,6 +180,9 @@ $mirrors = {
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
+    },
+    'Costa Rica' => {
+      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
       'http://bay.uchicago.edu/CTAN/' => 1,
