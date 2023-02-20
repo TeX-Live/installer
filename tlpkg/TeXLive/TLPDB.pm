@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
-# Copyright 2007-2021 Norbert Preining
+# Copyright 2007-2023 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -1187,10 +1187,10 @@ sub platform {
   # try to deduce the platform
   my $self = shift;
   my $ret = $self->setting("platform");
-  print STDERR "platform $ret set in tlpdb\n" if defined $ret;
+  #print STDERR "platform $ret set in tlpdb\n" if defined $ret;
   return $ret if defined $ret;
   # the platform setting wasn't found in the tlpdb, try TLUtils::platform
-  print STDERR "Setting platform to ",TeXLive::TLUtils::platform(), "\n";
+  #print STDERR "Setting platform to ",TeXLive::TLUtils::platform(), "\n";
   return TeXLive::TLUtils::platform();
 }
 
