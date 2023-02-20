@@ -123,7 +123,7 @@ sub run_menu_extl {
   print "year: $texlive_release\n";
   print "svn: $::installerrevision\n";
   # for windows, add a key indicating elevated permissions
-  if (win32()) {
+  if (wndws()) {
     print "admin: ". TeXLive::TLWinGoo::admin() . "\n";
   }
   print_descs();

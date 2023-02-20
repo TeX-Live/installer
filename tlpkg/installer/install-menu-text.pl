@@ -40,7 +40,7 @@ $::fileassocdesc[2] = __("All");
 
 $::deskintdesc[0] = __("None");
 $::deskintdesc[1] = __("Menu shortcuts");
-if (win32()) { $::deskintdesc[2] = __("Launcher"); }
+if (wndws()) { $::deskintdesc[2] = __("Launcher"); }
 
 sub clear_screen {
   return 0 if ($::opt_no_cls);
@@ -323,7 +323,7 @@ sub binary_menu {
       print "Unknown command: $answer\n\n";
     }
   }
-  if ($vars{"binary_win32"}) {
+  if ($vars{"binary_windows"}) {
     $vars{"collection-wintools"} = 1;
   } else {
     $vars{"collection-wintools"} = 0;
@@ -371,7 +371,7 @@ sub scheme_menu {
 
   select_scheme($vars{'selected_scheme'});
 
-  if ($vars{"binary_win32"}) {
+  if ($vars{"binary_windows"}) {
     $vars{"collection-wintools"} = 1;
   } else {
     $vars{"collection-wintools"} = 0;
@@ -532,7 +532,7 @@ EOF
 
 EOF
 
-    if (win32) {
+    if (wndws()) {
       print " Note: ~ will expand to %USERPROFILE%\n";
     } else {
       print " Note: ~ will expand to \$HOME (or to %USERPROFILE% on Windows)\n";
@@ -620,7 +620,7 @@ sub input_dirname
   chomp (my $answer = <STDIN>);
   return "" if $answer eq "";
 
-  $answer =~ s!\\!/!g if win32();  # switch to forward slashes
+  $answer =~ s!\\!/!g if wndws();  # switch to forward slashes
 
   if (!$noexpansion) {
     $answer = TeXLive::TLUtils::expand_tilde($answer);
@@ -817,7 +817,7 @@ EOF
 EOF
 ;
     }
-    if ((win32() && !$vars{'instopt_portable'}) || $::opt_all_options) {
+    if ((wndws() && !$vars{'instopt_portable'}) || $::opt_all_options) {
       print " <M> Start menu shortcuts / launcher:          ".obutton(
           $vars{'tlpdbopt_desktop_integration'}, \@::deskintdesc)."\n";
       print " <N> update file associations:                 ".obutton(
@@ -828,7 +828,7 @@ EOF
       }
     }
   }
-  if (win32() || $::opt_all_options) {
+  if (wndws() || $::opt_all_options) {
     print " <W> install TeXworks front end:               $b_addoneditor\n";
   }
   if ($media ne "NET") {
@@ -847,7 +847,7 @@ EOF
         print "New value for binary directory [$sys_bin]: ";
         chomp($answer=<STDIN>);
         $vars{'tlpdbopt_sys_bin'} =  "$answer" if (length $answer);
-        $vars{'tlpdbopt_sys_bin'} =~ s@\\@/@g if (win32());
+        $vars{'tlpdbopt_sys_bin'} =~ s@\\@/@g if (wndws());
         $vars{'tlpdbopt_sys_bin'} =~ s/^~/$home/;
         if ($vars{'tlpdbopt_sys_bin'}=~/^(.*)\/bin$/) {
           $vars{'tlpdbopt_sys_man'}="$1/man";
@@ -856,13 +856,13 @@ EOF
         print "New value for man directory    [$vars{'tlpdbopt_sys_man'}]: ";
         chomp($answer=<STDIN>);
         $vars{'tlpdbopt_sys_man'}="$answer" if (length $answer);
-        $vars{'tlpdbopt_sys_man'} =~ s@\\@/@g if (win32());
+        $vars{'tlpdbopt_sys_man'} =~ s@\\@/@g if (wndws());
         $vars{'tlpdbopt_sys_man'} =~ s/^~/$home/;
 
         print "New value for info directory   [$vars{'tlpdbopt_sys_info'}]: ";
         chomp($answer=<STDIN>);
         $vars{'tlpdbopt_sys_info'}="$answer" if (length $answer);
-        $vars{'tlpdbopt_sys_info'} =~ s@\\@/@g if (win32());
+        $vars{'tlpdbopt_sys_info'} =~ s@\\@/@g if (wndws());
         $vars{'tlpdbopt_sys_info'} =~ s/^~/$home/;
       }
       return $command{'self'};
@@ -877,7 +877,7 @@ EOF
 
 #  # tlpdbopt_desktop_integration, tlpdbopt_file_assocs
 #
-#  if (win32() || $::opt_all_options) {
+#  if (wndws() || $::opt_all_options) {
 #    if ("\u$answer" eq 'M' and !$vars{'instopt_portable'}) {
 #      toggle 'tlpdbopt_desktop_integration';
 #      return $command{'self'};
@@ -933,7 +933,7 @@ EOF
   } elsif (defined $command{"\u$answer"}) {
     return $command{"\u$answer"};
 
-  } elsif (("\u$answer" eq 'W') && ($::opt_all_options || win32()) &&
+  } elsif (("\u$answer" eq 'W') && ($::opt_all_options || wndws()) &&
        !$opt_in_place ) {
     toggle 'collection-texworks';
     return $command{'self'};
@@ -1021,7 +1021,7 @@ sub main_menu {
   my $b_fmt=button($vars{'tlpdbopt_create_formats'});
   my $b_letter=button($vars{'instopt_letter'});
   my $b_deskint=button($vars{'tlpdbopt_desktop_integration'}, \@::deskintdesc);
-  if (win32()) {
+  if (wndws()) {
     my $b_fileassoc=button($vars{'tlpdbopt_file_assocs'}, \@::fileassocdesc);
   }
   my $b_admin=button($vars{'tlpdbopt_w32_multi_user'});
@@ -1131,7 +1131,7 @@ EOF
       print "   $b_src install macro/font source tree\n";
     }
   }
-  if (win32()) {
+  if (wndws()) {
     if (!$vars{'instopt_portable'}) {
       print "   $b_path adjust search path\n";
       print "   $b_deskint add menu items, shortcuts, etc.\n";
@@ -1144,7 +1144,7 @@ EOF
   }
 
   print "   $b_path create symlinks to standard directories\n"
-    unless ($vars{'instopt_portable'} || win32());
+    unless ($vars{'instopt_portable'} || wndws());
   
   print "   $b_adjustrepo after install, set CTAN as source "
           . "for package updates\n"
