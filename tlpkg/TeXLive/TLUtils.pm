@@ -297,14 +297,13 @@ understands the C<$(...)> construct. This means that on old-enough
 systems, such as Solaris, we have to look for a shell. We use the value
 of the C<CONFIG_SHELL> environment variable if it is set, else
 C</bin/ksh> if it exists, else C</bin/bash> if it exists, else give up.
+Happily, C<config.guess> later reverted this change, but we keep our
+shell-finding code anyway to defend against future mistakes of the same ilk.
 
 =cut
 
 sub platform {
-  if (defined $::_platform_) {
-    print STDERR "_platform_: already defined as $::_platform_\n";
-  }
-  unless (defined $::_platform_) {
+  if (! defined $::_platform_) {
     if ($^O =~ /^MSWin/i) {
       print STDERR "\$^O is $^O\n";
       $::_platform_ = "windows";
@@ -532,7 +531,8 @@ sub platform_desc {
     'sparc-linux'      => 'GNU/Linux on Sparc',
     'sparc-solaris'    => 'Solaris on Sparc',
     'universal-darwin' => 'MacOSX current (10.14-) on ARM/x86_64',
-    'windows'            => 'Windows',
+    'win32'            => 'Windows (32-bit)',
+    'windows'          => 'Windows (64-bit)',
     'x86_64-cygwin'    => 'Cygwin on x86_64',
     'x86_64-darwinlegacy' => 'MacOSX legacy (10.6-) on x86_64',
     'x86_64-dragonfly' => 'DragonFlyBSD on x86_64',
