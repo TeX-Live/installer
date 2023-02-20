@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id$
+# $Id: uninstall-win32.pl 63068 2022-04-18 05:58:07Z preining $
 # Copyright 2008, 2010, 2011, 2012, 2014 Norbert Preining
 #
 # GUI for tlmgr
@@ -61,7 +61,7 @@ sub doit {
   `rmdir /s /q "$menupath\\$TeXLive::TLConfig::WindowsMainMenuName" 2>nul`;
 
   # remove bindir from PATH settings
-  TeXLive::TLUtils::w32_remove_from_path("$Master/bin/win32", 
+  TeXLive::TLUtils::w32_remove_from_path("$Master/bin/windows", 
     $localtlpdb->option("w32_multi_user"));
 
   # unsetenv_reg("TEXBINDIR");

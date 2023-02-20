@@ -38,7 +38,7 @@ use Pod::Text;
 
 #use Devel::Leak;
 
-use TeXLive::TLUtils qw(setup_programs platform_desc win32 debug);
+use TeXLive::TLUtils qw(setup_programs platform_desc wndws debug);
 use TeXLive::TLConfig;
 
 #
@@ -509,7 +509,7 @@ sub setup_menu_system {
     $menu->add('cascade', -label => __("Actions"), -menu => $menu_actions);
   }
   # on win32 people expect to have the Help button on the right side
-  if (win32()) { $menu->add('separator'); }
+  if (wndws()) { $menu->add('separator'); }
   $menu->add('cascade', -label => __("Help"), -menu => $menu_help);
 
   #
@@ -545,7 +545,7 @@ sub setup_menu_system {
     -command => sub { do_general_settings(); });
   $menu_options->add('command', -label => __("Paper ..."),
     -command => sub { do_paper_settings(); });
-  if (!win32() && $mode_expert) {
+  if (!wndws() && $mode_expert) {
     $menu_options->add('command', -label => __("Platforms ..."),
       -command => sub { do_arch_settings(); });
   }
@@ -608,13 +608,13 @@ sub setup_menu_system {
     -state => $::action_button_state,
     -command => \&cb_handle_restore);
 
-  if (!win32()) {
+  if (!wndws()) {
     $menu_actions->add('command', 
       -label => __("Handle symlinks in system dirs") . " ...",
       -state => $::action_button_state,
       -command => \&cb_handle_symlinks);
   }
-  if (!win32()) {
+  if (!wndws()) {
     $menu_actions->add('separator');
     $menu_actions->add('command', -label => __("Remove TeX Live %s ...", $TeXLive::TLConfig::ReleaseYear),
       -state => $::action_button_state,
@@ -1190,7 +1190,7 @@ sub do_general_settings {
       $back_config_set->Button(-text => __("Change"),
         -command => sub { select_autobackup($sw); });
 
-    if (!win32()) {
+    if (!wndws()) {
       push @config_set_l,
         $back_config_set->Label(-text => __("Link destination for programs"), -anchor => "w");
       $settings_label{'sys_bin'} = $back_config_set->Label(-textvariable => \$changeddefaults{"sys_bin"}{'display'});
@@ -1216,7 +1216,7 @@ sub do_general_settings {
           -command => sub { edit_dir_option ($sw, "sys_man"); });
     }
 
-    if (win32()) {
+    if (wndws()) {
       push @config_set_l,
         $back_config_set->Label(-text => __("Create shortcuts on the desktop"), -anchor => "w");
       $settings_label{'desktop_integration'} = $back_config_set->Label(-textvariable => \$changeddefaults{"desktop_integration"}{'display'});
@@ -1289,7 +1289,7 @@ sub apply_settings_changes {
 ########## PAPER HANDLING #################
 
 sub init_paper_xdvi {
-  if (!win32()) {
+  if (!wndws()) {
     $papers{"xdvi"} = TeXLive::TLPaper::get_paper_list("xdvi");
     $currentpaper{"xdvi"} = $papers{"xdvi"}->[0];
   }
@@ -2274,7 +2274,7 @@ You can then restart it to proceed with further updates.");
       $t .= "\n\n"
 . __("(Further updates will be available after tlmgr has been updated.)");
     }
-    $t .= "\n\n" . __("Please wait a bit after the program has terminated so that the update can be completed.") if win32();
+    $t .= "\n\n" . __("Please wait a bit after the program has terminated so that the update can be completed.") if wndws();
     $sw->add("Label", -text => $t)->pack(-padx => "3m", -pady => "3m");
     $sw->Show;
   }

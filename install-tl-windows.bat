@@ -19,6 +19,12 @@ if %ver_str:~,3% == 6.0 (
   echo TeX Live 2020 has not been tested on Windows Vista.
   pause
 )
+if not "AMD64"=="%PROCESSOR_ARCHITECTURE%" (
+if not "AMD64"=="%PROCESSOR_ARCHITEW6432%" (
+  echo 32-bit no longer supported
+  pause
+  goto eoff
+))
 
 rem version of external perl, if any. used by install-tl.
 set extperl=0

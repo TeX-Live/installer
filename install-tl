@@ -145,7 +145,7 @@ use Pod::Usage;
 use POSIX ();
 
 use TeXLive::TLUtils qw(platform platform_desc sort_archs
-   which getenv win32 unix info log debug tlwarn ddebug tldie
+   which getenv wndws unix info log debug tlwarn ddebug tldie
    member process_logging_options rmtree wsystem
    mkdirhier make_var_skeleton make_local_skeleton install_package copy
    install_packages dirname setup_programs native_slashify forward_slashify);
@@ -163,7 +163,7 @@ eval {
   debug("Encode::Locale is loaded.\n");
 };
 if ($@) {
-  if (win32) {
+  if (wndws()) {
     die ("For Windows, Encode::Locale is required.\n");
   }
 
@@ -177,7 +177,7 @@ binmode (STDIN, ':encoding(console_in)');
 binmode (STDOUT, ':encoding(console_out)');
 binmode (STDERR, ':encoding(console_out)');
 
-if (win32) {
+if (wndws()) {
   require TeXLive::TLWinGoo;
   TeXLive::TLWinGoo->import( qw(
     &admin
@@ -349,7 +349,7 @@ if ((defined $ARGV[0]) && $ARGV[0] eq "-from_ext_gui") {
   select(STDOUT); $| = 1;
 
   # windows: suppress console windows when invoking other programs
-  Win32::SetChildShowWindow(0) if win32();
+  Win32::SetChildShowWindow(0) if wndws();
 }
 
 # If we find a file installation.profile we ask the user whether we should
@@ -433,7 +433,7 @@ if ($opt_help) {
   # theoretically we could make a subroutine with all the same
   # painful checks as we do in tlmgr, but let's not bother until people ask.
   my @noperldoc = ();
-  if (win32() || $ENV{"NOPERLDOC"}) {
+  if (wndws() || $ENV{"NOPERLDOC"}) {
     @noperldoc = ("-noperldoc", "1");
   }
 
@@ -473,7 +473,7 @@ if ($opt_version) {
     print "\nTLPOBJ:   " . TeXLive::TLPOBJ->module_revision();
     print "\nTLTREE:   " . TeXLive::TLTREE->module_revision();
     print "\nTLUtils:  " . TeXLive::TLUtils->module_revision();
-    print "\nTLWinGoo: " . TeXLive::TLWinGoo->module_revision() if win32();
+    print "\nTLWinGoo: " . TeXLive::TLWinGoo->module_revision() if wndws();
     print "\n";
   }
   exit 0;
@@ -526,7 +526,7 @@ if ($opt_profile) { # not allowed if in_place
   }
 }
 
-if ($opt_nonadmin and win32()) {
+if ($opt_nonadmin and wndws()) {
   non_admin();
 }
 
@@ -928,7 +928,7 @@ sub final_remote_init {
   }
   $opt_scheme = "" if $opt_in_place;
   $vars{'instopt_portable'} = $opt_portable;
-  $vars{'instopt_adjustpath'} = 1 if win32();
+  $vars{'instopt_adjustpath'} = 1 if wndws();
 
   log("Installer revision: $::installerrevision\n");
   log("Database revision: " . $tlpdb->config_revision . "\n");
@@ -1007,7 +1007,7 @@ sub update_default_src_doc_install {
 
 
 sub do_installation {
-  if (win32()) {
+  if (wndws()) {
     non_admin() if !$vars{'tlpdbopt_w32_multi_user'};
   }
   if ($vars{'instopt_portable'}) {
@@ -1030,7 +1030,7 @@ sub do_installation {
   # making the root read-only automatically locks everything below it.
   # do TEXDIR now, before it loses its final slash
   mkdirhier "$vars{'TEXDIR'}";
-  if (win32()) {
+  if (wndws()) {
     TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXDIR'});
   }
   # check for free disk space
@@ -1056,7 +1056,7 @@ sub do_installation {
   my $oldlocal = -d $vars{'TEXMFLOCAL'};
   make_local_skeleton "$vars{'TEXMFLOCAL'}";
   mkdirhier "$vars{'TEXMFSYSCONFIG'}";
-  if (win32()) {
+  if (wndws()) {
     TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXMFSYSVAR'});
     TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXMFLOCAL'}) unless $oldlocal;
     TeXLive::TLWinGoo::maybe_make_ro ($vars{'TEXMFSYSCONFIG'});
@@ -1224,16 +1224,16 @@ operations might be disturbed.\n\n";
 
   # Step 2: Setup the PATH, switch to the new Perl
 
-  my $pathsep = (win32)? ';' : ':';
+  my $pathsep = (wndws())? ';' : ':';
   my $plat_bindir = "$TEXDIR/bin/$vars{'this_platform'}";
   my $perl_bindir = "$TEXDIR/tlpkg/tlperl/bin";
   my $perl_libdir = "$TEXDIR/tlpkg/tlperl/lib";
-  my $progext = (win32)? '.exe' : '';
+  my $progext = (wndws())? '.exe' : '';
 
   debug("Prepending $plat_bindir to PATH\n");
   $ENV{'PATH'} = $plat_bindir . $pathsep . $ENV{'PATH'};
 
-  if (win32) {
+  if (wndws()) {
     debug("Prepending $perl_bindir to PATH\n");
     $ENV{'PATH'} = "$perl_bindir" . "$pathsep" . "$ENV{'PATH'}";
     $ENV{'PATH'} =~ s!/!\\!g;
@@ -1244,7 +1244,7 @@ operations might be disturbed.\n\n";
     debug("  $dir\n");
   }
   debug("\n");
-  if (win32) {
+  if (wndws()) {
     $ENV{'PERL5LIB'} = $perl_libdir;
   }
 
@@ -1254,7 +1254,7 @@ operations might be disturbed.\n\n";
 
   my $usedtlpdb = $opt_in_place ? $tlpdb : $localtlpdb;
 
-  if (win32()) {
+  if (wndws()) {
     debug("Actual environment:\n" . `set` ."\n\n");
     debug("Effective TEXMFCNF: " . `kpsewhich -expand-path=\$TEXMFCNF` ."\n");
   }
@@ -1267,7 +1267,7 @@ operations might be disturbed.\n\n";
   }
 
   # we have to generate the various config file. That could be done with
-  # texconfig generate * but Win32 does not have texconfig. But we have
+  # texconfig generate * but Windows does not have texconfig. But we have
   # $localtlpdb and this is simple code, so do it directly, i.e., duplicate
   # the code from the various generate-*.pl scripts
 
@@ -1323,7 +1323,7 @@ operations might be disturbed.\n\n";
   }
 
   # option settings in launcher.ini
-  if (win32() && !$vars{'instopt_portable'}) {
+  if (wndws() && !$vars{'instopt_portable'}) {
     if ($vars{'tlpdbopt_file_assocs'} != 1 || !$vars{'instopt_adjustpath'}) {
       # create higher priority tlaunch.ini with adjusted settings
       # whether or not launcher mode (desktop integration 2)
@@ -1335,7 +1335,7 @@ operations might be disturbed.\n\n";
   # now rerun mktexlsr for updmap-sys and tlmgr paper letter updates.
   wsystem("re-running", "mktexlsr", $TEXMFSYSVAR, $TEXMFSYSCONFIG) && exit(1);
 
-  if (win32() and !$vars{'instopt_portable'} and !$opt_in_place) {
+  if (wndws() and !$vars{'instopt_portable'} and !$opt_in_place) {
     if ($vars{'tlpdbopt_desktop_integration'} != 2) {
       create_uninstaller($vars{'TEXDIR'});
     } else {
@@ -1351,6 +1351,7 @@ operations might be disturbed.\n\n";
       && !exists $ENV{"TEXLIVE_INSTALL_NO_CONTEXT_CACHE"}) {
     info("setting up ConTeXt cache: ");
     $errcount += run_postinst_cmd("mtxrun --generate");
+    $errcount += run_postinst_cmd("context --luatex --generate");
   }
 
   # all formats option
@@ -1413,7 +1414,7 @@ sub do_tlpdb_postactions {
     }
   }
   # windows: alert the system about changed file associations
-  if (win32) { TeXLive::TLWinGoo::update_assocs(); }
+  if (wndws()) { TeXLive::TLWinGoo::update_assocs(); }
   info ("finished with package-specific postactions\n");
   return $ret;
 } # do_tlpdb_postactions
@@ -1458,8 +1459,8 @@ sub rewrite_tlaunch_ini {
 sub do_path_adjustments {
   my $ret = 0;
   info ("running path adjustment actions\n");
-  if (win32()) {
-    TeXLive::TLUtils::w32_add_to_path($vars{'TEXDIR'}.'/bin/win32',
+  if (wndws()) {
+    TeXLive::TLUtils::w32_add_to_path($vars{'TEXDIR'} . '/bin/windows',
       $vars{'tlpdbopt_w32_multi_user'});
     broadcast_env();
   } else {
@@ -1518,7 +1519,7 @@ sub do_texmf_cnf {
         push @changedtmf, "TEXMFHOME = $vars{'TEXMFHOME'}\n";
       }
     } elsif ($line =~ m/^OSFONTDIR/) {
-      if (win32()) {
+      if (wndws()) {
         push @changedtmf, "OSFONTDIR = \$SystemRoot/fonts//;\$LOCALAPPDATA/Microsoft/Windows/Fonts//\n";
       }
     }
@@ -1571,7 +1572,7 @@ EOF
   # external perl for third-party scripts?
   # the wrapper batchfile has set the environment variable extperl
   # to its version if available and 0 otherwise.
-  if (win32) {
+  if (wndws()) {
     my $use_ext = 0;
     if (!$vars{'instopt_portable'} &&
           defined $ENV{'extperl'} &&  $ENV{'extperl'} =~ /^(\d+\.\d+)/) {
@@ -1771,7 +1772,7 @@ sub set_texlive_default_dirs {
   set_var_from_alternatives("TEX_PREFIX", \$tex_prefix,
     ($opt_in_place ? abs_path($::installerdir) : undef),
     $tlprefixenv,
-    (win32() ? getenv('SystemDrive') . '/texlive' : '/usr/local/texlive'));
+    (wndws() ? getenv('SystemDrive') . '/texlive' : '/usr/local/texlive'));
   #
   set_var_from_alternatives("TEXDIR", \$vars{'TEXDIR'},
     $opt_texdir,
@@ -1865,15 +1866,14 @@ sub calc_depends {
     }
   }
 
-  # if programs for arch=win32 are installed we also have to install
-  # tlperl.win32 which provides the "hidden" perl that will be used
+  # if programs for arch=windows are installed we also have to install
+  # tlperl.windows which provides the "hidden" perl that will be used
   # to run all the perl scripts.
-  # Furthermore we install tlgs.win32 and tlpsv.win32, too
-  if (grep(/^win32$/,@archs)) {
-    $install{"tlperl.win32"} = 1;
-    $install{"tlgs.win32"} = 1;
+  # Furthermore we install tlgs.windows
+  if (grep(/^windows$/,@archs)) {
+    $install{"tlperl.windows"} = 1;
+    $install{"tlgs.windows"} = 1;
     # tlpsv is gone
-    # $install{"tlpsv.win32"} = 1;
   }
 
   # loop over all the packages until it is getting stable
@@ -1901,10 +1901,10 @@ sub calc_depends {
           foreach $a (@archs) {
             $install{"$foo.$a"} = 1 if defined($tlpdb->get_package("$foo.$a"));
           }
-        } elsif ($p_dep =~ m/^(.*)\.win32$/) {
-          # a win32 package should *only* be installed if we are installing
-          # the win32 arch
-          if (grep(/^win32$/,@archs)) {
+        } elsif ($p_dep =~ m/^(.*)\.windows$/) {
+          # a windows package should *only* be installed if we are installing
+          # the windows arch
+          if (grep(/^windows$/,@archs)) {
             $install{$p_dep} = 1;
           }
         } else {
@@ -1999,7 +1999,7 @@ END_EXPLICIT_MIRROR
     $vars{"tlpdbopt_$o"} = $tlpdb->option($o)
       if (!defined($profiledata{"tlpdbopt_$o"}));
   }
-  if (win32()) {
+  if (wndws()) {
     # below, we really mean (start) menu integration.
     # 2016: always menu shortcuts, never desktop shortcuts, whatever the setting
     # 2017: new option value 2: launcher instead of menu.
@@ -2078,7 +2078,7 @@ sub initialize_collections {
       ++$vars{'n_collections_selected'};
     }
   }
-  if ($vars{"binary_win32"}) {
+  if ($vars{"binary_windows"}) {
     $vars{"collection-wintools"} = 1;
     ++$vars{'n_collections_selected'};
   }
@@ -2372,7 +2372,7 @@ sub do_install_packages {
       tlwarn("Or you can restart by running the installer with:\n");
       my $repostr = ($opt_location ? " --repository $location" : "");
       my $args = "--profile $profile_name [YOUR-EXTRA-ARGS]";
-      if (win32()) {
+      if (wndws()) {
         tlwarn("  install-tl-windows.bat$repostr $args\n");
       } else {
         tlwarn("  install-tl$repostr $args\n");
@@ -2542,11 +2542,11 @@ sub import_settings_from_old_tlpdb {
     = $previoustlpdb->option_pkg("00texlive.installation", "install_srcfiles");
   $vars{'tlpdbopt_create_formats'}
     = $previoustlpdb->option_pkg("00texlive.installation", "create_formats");
-  $vars{'tlpdbopt_desktop_integration'} = 1 if win32();
+  $vars{'tlpdbopt_desktop_integration'} = 1 if wndws();
   $vars{'instopt_adjustpath'}
     = $previoustlpdb->option_pkg("00texlive.installation", "path");
   $vars{'instopt_adjustpath'} = 0 if !defined($vars{'instopt_adjustpath'});
-  $vars{'instopt_adjustpath'} = 1 if win32();
+  $vars{'instopt_adjustpath'} = 1 if wndws();
   $vars{'tlpdbopt_sys_bin'}
     = $previoustlpdb->option_pkg("00texlive.installation", "sys_bin");
   $vars{'tlpdbopt_sys_man'}
@@ -2569,7 +2569,7 @@ sub import_settings_from_old_tlpdb {
   #
   # try to import paper settings
   my $xdvi_paper;
-  if (!win32()) {
+  if (!wndws()) {
     $xdvi_paper = TeXLive::TLPaper::get_paper("xdvi");
   }
   my $pdftex_paper = TeXLive::TLPaper::get_paper("pdftex");
@@ -2643,8 +2643,8 @@ sub select_scheme {
   # we have first set all collection-* keys to zero and than
   # set to 1 only those which are required by the scheme
   # since now scheme asks for collection-wintools we set its vars value
-  # to 1 in case we are installing win32 binaries
-  if ($vars{"binary_win32"}) {
+  # to 1 in case we are installing windows binaries
+  if ($vars{"binary_windows"}) {
     $vars{"collection-wintools"} = 1;
     ++$vars{'n_collections_selected'};
   }
@@ -2809,7 +2809,7 @@ sub create_welcome {
   push @::welcome_arr, __(
     "See %s/index.html for links to documentation.\nThe TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html.",
     $::vars{'TEXDIR'});
-  if (win32()
+  if (wndws()
       || ($vars{'instopt_adjustpath'}
          && $vars{'tlpdbopt_desktop_integration'} != 2)) {
      ; # don't tell them to make path adjustments on Windows,
