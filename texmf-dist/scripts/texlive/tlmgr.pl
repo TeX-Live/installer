@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # $Id$
 #
-# Copyright 2008-2022 Norbert Preining
+# Copyright 2008-2023 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -5517,6 +5517,7 @@ sub init_tltree {
 }
 
 sub action_check {
+  ddebug("starting action_check\n");
   my $svn = defined($opts{"use-svn"}) ? $opts{"use-svn"} : 0;
   my $what = shift @ARGV;
   $what || ($what = "all");
@@ -5777,6 +5778,7 @@ sub check_runfiles {
 # check executes
 #
 sub check_executes {
+  ddebug("starting check_executes\n");
   my $Master = $localtlpdb->root;
   my (%maps,%langcodes,%fmtlines);
   for my $pkg ($localtlpdb->list_packages) {
@@ -5800,8 +5802,10 @@ sub check_executes {
       }
     }
   }
+
+  ddebug(" check_executes: checking maps\n");
   my %badmaps;
-  foreach my $mf (keys %maps) {
+  foreach my $mf (sort keys %maps) {
     my @pkgsfound = @{$maps{$mf}};
     if ($#pkgsfound > 0) {
       tlwarn("$prg: map file $mf is referenced in the executes of @pkgsfound\n");
@@ -5841,9 +5845,11 @@ sub check_executes {
       print "\t$mf (execute in @{$badmaps{$mf}})\n";
     }
   }
+
+  ddebug(" check_executes: checking hyphcodes\n");
   my %badhyphcodes;
   my %problemhyphen;
-  foreach my $lc (keys %langcodes) {
+  foreach my $lc (sort keys %langcodes) {
     next if ($lc eq "zerohyph.tex");
     my @found = $localtlpdb->find_file("texmf-dist/tex/generic/hyph-utf8/loadhyph/$lc");
     if ($#found < 0) {
@@ -5869,7 +5875,7 @@ sub check_executes {
   #    print "\t$mf (@{$problemhyphen{$mf}})\n";
   #  }
   #}
-  #
+
   # what should be checked for the executes? we could check
   # - the existence of the engine in bin/i386-linux or all $arch
   # - the existence of the format name link/bat
@@ -5880,8 +5886,9 @@ sub check_executes {
   my %missingengines;
   my %missinginis;
   my @archs_to_check = $localtlpdb->available_architectures;
-  for (keys %fmtlines) {
-    my %r = TeXLive::TLUtils::parse_AddFormat_line("$_");
+  ddebug("archs_to_check: @archs_to_check\n");
+  for (sort keys %fmtlines) {
+    my %r = TeXLive::TLUtils::parse_AddFormat_line($_);
     if (defined($r{"error"})) {
       die "$r{'error'}, parsing $_, package(s) @{$fmtlines{$_}}";
     }
@@ -6006,7 +6013,7 @@ sub check_file {
     return 1;
   } else {
     # not -r, so check for the extensions .bat and .exe on windoze-ish.
-    if ($a =~ /win[0-9]|.*-cygwin/) {
+    if ($a =~ /windows|win[0-9]|.*-cygwin/) {
       if (-r "$f.exe" || -r "$f.bat") {
         return 1;
       }
