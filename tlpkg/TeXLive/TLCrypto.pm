@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLCrypto.pm - handle checksums and signatures.
-# Copyright 2016-2021 Norbert Preining
+# Copyright 2016-2023 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
