@@ -687,7 +687,7 @@ sub make_container {
   }
   
   my $tartempfile = "";
-  if (win32()) {
+  if (wndws()) {
     # Since we provide our own (GNU) tar on Windows, we know it has -T.
     my $tmpdir = TeXLive::TLUtils::tl_tmpdir();
     $tartempfile = "$tmpdir/mc$$";
@@ -1576,9 +1576,9 @@ with C<|> characters inserted to show the indentation:
   |binfiles arch=i386-solaris size=87
   | bin/i386-solaris/afm2tfm
   | bin/i386-solaris/dvips
-  |binfiles arch=win32 size=51
-  | bin/win32/afm2tfm.exe
-  | bin/win32/dvips.exe
+  |binfiles arch=windows size=51
+  | bin/windows/afm2tfm.exe
+  | bin/windows/dvips.exe
   |...
 
 =head1 PACKAGE VARIABLES

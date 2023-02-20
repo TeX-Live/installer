@@ -119,8 +119,8 @@ our $RelocPrefix = "RELOC";
 our @CriticalPackagesList = qw/texlive.infra/;
 our $CriticalPackagesRegexp = '^(texlive\.infra)';
 if ($^O =~ /^MSWin/i) {
-  push (@CriticalPackagesList, "tlperl.win32");
-  $CriticalPackagesRegexp = '^(texlive\.infra|tlperl\.win32$)';
+  push (@CriticalPackagesList, "tlperl.windows");
+  $CriticalPackagesRegexp = '^(texlive\.infra|tlperl\.windows$)';
 }
 
 
@@ -367,7 +367,7 @@ C<systems/texlive/tlnet/>.
 =item C<@TeXLive::TLConfig::CriticalPackagesRegexp>
 
 A list of all those packages which we do not update regularly since they
-are too central, currently texlive.infra and (for Windows) tlperl.win32.
+are too central, currently texlive.infra and (for Windows) tlperl.windows.
 
 =item C<@TeXLive::TLConfig::InstallExtraRequiredPackages>
 

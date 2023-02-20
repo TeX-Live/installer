@@ -434,7 +434,7 @@ sub _get_files_matching_glob_pattern
     }
   }
 
-  if ($dirpart =~ m,^bin/(win[0-9]|.*-cygwin),
+  if ($dirpart =~ m,^bin/(windows|win[0-9]|.*-cygwin),
       || $dirpart =~ m,tlpkg/installer,) {
     # for windows-ish we want to automatch more extensions.
     foreach my $f (@candfiles) {

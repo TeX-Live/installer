@@ -9,7 +9,7 @@ package TeXLive::TLCrypto;
 use Digest::MD5;
 
 use TeXLive::TLConfig;
-use TeXLive::TLUtils qw(debug ddebug win32 which platform
+use TeXLive::TLUtils qw(debug ddebug wndws which platform
                         conv_to_w32_path tlwarn tldie);
 
 my $svnrev = '$Revision$';
@@ -421,7 +421,7 @@ sub setup_gpg {
   # Set up the gpg invocation:
   my $gpghome = ($ENV{'TL_GNUPGHOME'} ? $ENV{'TL_GNUPGHOME'} : 
                                         "$master/tlpkg/gpg" );
-  $gpghome =~ s!/!\\!g if win32();
+  $gpghome =~ s!/!\\!g if wndws();
   my $gpghome_quote = "\"$gpghome\"";
   # mind the final space for following args
   $::gpg = "$prg --homedir $gpghome_quote ";
@@ -568,7 +568,7 @@ Internal routine running gpg to verify signature C<$sig> of C<$file>.
 sub gpg_verify_signature {
   my ($file, $sig) = @_;
   my ($file_quote, $sig_quote);
-  if (win32()) {
+  if (wndws()) {
     $file =~ s!/!\\!g;
     $sig =~ s!/!\\!g;
   }

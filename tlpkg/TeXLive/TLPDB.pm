@@ -98,7 +98,7 @@ use TeXLive::TLConfig qw($CategoriesRegexp $DefaultCategory $InfraLocation
       $RelocPrefix $RelocTree);
 use TeXLive::TLCrypto;
 use TeXLive::TLPOBJ;
-use TeXLive::TLUtils qw(dirname mkdirhier member win32 info log debug ddebug
+use TeXLive::TLUtils qw(dirname mkdirhier member wndws info log debug ddebug
                         tlwarn basename download_file merge_into tldie
                         system_pipe);
 use TeXLive::TLWinGoo;
@@ -875,10 +875,10 @@ sub expand_dependencies {
             $install{"$foo.$a"} = $install{$foo}
               if defined($self->get_package("$foo.$a"));
           }
-        } elsif ($p_dep =~ m/^(.*)\.win32$/) {
-          # a win32 package should *only* be installed if we are installing
-          # the win32 arch
-          if (grep(/^win32$/,@archs)) {
+        } elsif ($p_dep =~ m/^(.*)\.windows$/) {
+          # a windows package should *only* be installed if we are installing
+          # the windows arch
+          if (grep(/^windows$/,@archs)) {
             $install{$p_dep} = 0;
           }
         } else {
@@ -1187,8 +1187,10 @@ sub platform {
   # try to deduce the platform
   my $self = shift;
   my $ret = $self->setting("platform");
+  print STDERR "platform $ret set in tlpdb\n" if defined $ret;
   return $ret if defined $ret;
   # the platform setting wasn't found in the tlpdb, try TLUtils::platform
+  print STDERR "Setting platform to ",TeXLive::TLUtils::platform(), "\n";
   return TeXLive::TLUtils::platform();
 }
 
@@ -1682,7 +1684,7 @@ sub install_package_files {
     # Run the post installation code in the postaction tlpsrc entries
     # in case we are on w32 and the admin did install for himself only
     # we switch off admin mode
-    if (win32() && admin() && !$self->option("w32_multi_user")) {
+    if (wndws() && admin() && !$self->option("w32_multi_user")) {
       non_admin();
     }
     # for now desktop_integration maps to both installation
@@ -1831,7 +1833,7 @@ sub not_virtual_install_package {
       # will never be installed, and we do already check that there
       # are at all src/doc files, which in split packages of the form 
       # foo.ARCH are not present. And if they are present, than that is fine,
-      # too (bin-foobar.win32.doc.tar.xz)
+      # too (bin-foobar.windows.doc.tar.xz)
       # - there are actually src/doc files present
       if ($container_src_split && $opt_src && $tlpobj->srcfiles) {
         my $srccontainer = $container;
@@ -1914,7 +1916,7 @@ sub not_virtual_install_package {
     # Run the post installation code in the postaction tlpsrc entries
     # in case we are on w32 and the admin did install for himself only
     # we switch off admin mode
-    if (win32() && admin() && !$totlpdb->option("w32_multi_user")) {
+    if (wndws() && admin() && !$totlpdb->option("w32_multi_user")) {
       non_admin();
     }
     # for now desktop_integration maps to both installation
@@ -2125,7 +2127,7 @@ sub remove_package {
     # Run the post installation code in the postaction tlpsrc entries
     # in case we are on w32 and the admin did install for himself only
     # we switch off admin mode
-    if (win32() && admin() && !$localtlpdb->option("w32_multi_user")) {
+    if (wndws() && admin() && !$localtlpdb->option("w32_multi_user")) {
       non_admin();
     }
     #

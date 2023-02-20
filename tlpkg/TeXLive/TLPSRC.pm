@@ -148,12 +148,12 @@ sub from_file {
       # check that no variables remain unexpanded, or rather, for any
       # remaining $ (which we don't otherwise allow in tlpsrc files, so
       # should never occur) ... except for ${ARCH} which we specially
-      # expand in TLTREE.pm, and ${global_*} (and ${wndws}) which need to
+      # expand in TLTREE.pm, and ${global_*} which need to
       # be defined in 00texlive.autopatterns.tlpsrc. (We distribute one
       # file dvi$pdf.bat, but fortunately it is matched by a directory.)
       # 
       (my $testline = $line) =~ s,\$\{ARCH\},,g;
-      $testline =~ s,\$\{(global_[^}]*|wndws)\},,g;
+      $testline =~ s,\$\{(global_[^}]*)\},,g;
       $testline =~ /\$/
         && die "$srcfile:$lineno: variable undefined or syntax error: $line\n";
       #debug: warn "new line $line, from $origline\n" if $origline ne $line;
@@ -161,11 +161,11 @@ sub from_file {
 
     # names of source packages can either be
     # - normal names: ^[-\w]+$
-    # - win32 specific packages: ^[-\w]+\.win32$
+    # - windows specific packages: ^[-\w]+\.windows$
     # - normal texlive specific packages: ^texlive.*\..*$
     # - configuration texlive specific packages: ^00texlive.*\..*$
     if ($line =~ /^name\s/) {
-      $line =~ /^name\s+([-\w]+(\.win32)?|(00)?texlive\..*)$/;
+      $line =~ /^name\s+([-\w]+(\.windows)?|(00)?texlive\..*)$/;
       $foundnametag 
         && die "$srcfile:$lineno: second name directive not allowed: $line"
                . "(have $name)\n";
@@ -492,10 +492,10 @@ sub make_tlpobj {
       $finalp = "$pt $pr";
     }
     # one final trick
-    # if the original pattern string matches bin/win32/ then we *only*
-    # work on the win32 arch
-    if ($finalp =~ m! bin/win32/!) {
-      @todoarchs = qw/win32/;
+    # if the original pattern string matches bin/windows/ then we *only*
+    # work on the windows arch
+    if ($finalp =~ m! bin/windows/!) {
+      @todoarchs = qw/windows/;
     }
     # now @todoarchs contains only those archs for which we want
     # to match the pattern
@@ -503,7 +503,7 @@ sub make_tlpobj {
       # get only those files matching the pattern
       my @archfiles = $tltree->get_matching_files('bin',$finalp, $pkgname, $arch);
       if (!@archfiles) {
-        if (($arch ne "win32") || defined($::tlpsrc_pattern_warn_win)) {
+        if (($arch ne "windows") || defined($::tlpsrc_pattern_warn_win)) {
           tlwarn("$self->{name} ($arch): no hit on binpattern $finalp\n");
         }
       }
@@ -540,7 +540,7 @@ sub make_tlpobj {
       # get only those files matching the pattern
       my @archfiles = $tltree->get_matching_files('bin', $finalp, $pkgname, $arch);
       if (!@archfiles) {
-        if (($arch ne "win32") || defined($::tlpsrc_pattern_warn_win)) {
+        if (($arch ne "windows") || defined($::tlpsrc_pattern_warn_win)) {
           tlwarn("$self->{name} ($arch): no hit on negative binpattern $finalp\n")
             unless $::tlpsrc_pattern_no_warn_negative;
             # see comments in libexec/place script.
@@ -588,7 +588,7 @@ sub _do_normal_pattern {
 # 
 # The returned hash has an additional key C<tlpvars> for global tlpsrc
 # variables, which can be used in any C<.tlpsrc> files. The names of these
-# variables all start with C<global_>, except for super-special ${wndws}.
+# variables all start with C<global_>.
 # 
 # =cut 
 # (all doc at bottom, let's not rewrite now.)
@@ -647,7 +647,7 @@ sub find_default_patterns {
   # check defined variables to ensure their names start with "global_".
   my %gvars = %{$tlsrc->_tlpvars};
   for my $v (keys %gvars) {
-    if ($v !~ /^(global_[-_a-zA-Z0-9]+|wndws)$/) {
+    if ($v !~ /^(global_[-_a-zA-Z0-9]+)$/) {
       tlwarn("$apfile: variable does not start with global_: $v\n")
         unless $v eq "PKGNAME";
         # the auto-defined PKGNAME is not expected to be global.
@@ -1010,7 +1010,7 @@ definition and expansion.)
 Ordinarily, variables can be used only within the C<.tlpsrc> file where
 they are defined. There is one exception: global tlpsrc variables can be
 defined in the C<00texlive.autopatterns.tlpsrc> file (mentioned below);
-their names must start with C<global_> (plus super-special C<wndws>),
+their names must start with C<global_>,
 and can only be used in C<depend>, C<execute>, and C<...pattern>
 directives, another C<tlpsetvar>. For example, our
 C<autopatterns.tlpsrc> defines:
@@ -1193,7 +1193,7 @@ all available architectures.
 
 =item C<bat/exe/dll/texlua> for Windows
 
-C<binpattern>s that match Windows, e.g., C<f bin/win32/foobar> or C<f
+C<binpattern>s that match Windows, e.g., C<f bin/windows/foobar> or C<f
 bin/${ARCH}/foobar>, also match the files C<foobar.bat>, C<foobar.cmd>,
 C<foobar.dll>, C<foobar.exe>, and C<foobar.texlua>.
 
@@ -1204,7 +1204,7 @@ architectures in one binpattern
 
   binpattern f bin/${ARCH}/dvips
 
-and would get C<bin/win32/dvips.exe> into the runfiles for C<arch=win32>.
+and would get C<bin/windows/dvips.exe> into the runfiles for C<arch=windows>.
 
 This C<bat>/C<exe>/etc. expansion I<only> works for patterns of the C<f>
 type.
@@ -1216,10 +1216,10 @@ package only for some architectures, or for all but some architectures.
 This can be done by specifying the list of architectures for which this
 pattern should be matched after the pattern specifier using a C</>:
 
-  binpattern f/win32 tlpkg/bin/perl.exe
+  binpattern f/windows tlpkg/bin/perl.exe
 
 will include the file C<tlpkg/bin/perl.exe> only in the binfiles for
-the architecture C<win32>. Another example:
+the architecture C<windows>. Another example:
 
   binpattern f/arch1,arch2,arch3 path/$ARCH/foo/bar
 
