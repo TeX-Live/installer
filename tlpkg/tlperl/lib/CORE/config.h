@@ -9,7 +9,7 @@
 
 /* Package name      : perl5
  * Source directory  : 
- * Configuration time: Tue Mar  1 12:42:18 2022
+ * Configuration time: Mon Jul 11 03:22:33 2022
  * Configured by     : siepo
  * Target system     : 
  */
@@ -849,7 +849,7 @@
 #    endif
 #  endif
 #else
-#define BYTEORDER 0x1234	/* large digits for MSB */
+#define BYTEORDER 0x12345678	/* large digits for MSB */
 #endif
 
 /* CHARBITS:
@@ -1173,7 +1173,7 @@
  *	the compiler supports (void *); otherwise it will be
  *	sizeof(char *).
  */
-#define PTRSIZE 4		/**/
+#define PTRSIZE 8		/**/
 
 /* Drand01:
  *	This macro is to be used to generate uniformly distributed
@@ -1208,7 +1208,7 @@
  *	to get any typedef'ed information.
  *	We will pick a type such that sizeof(SSize_t) == sizeof(Size_t).
  */
-#define SSize_t int	/* signed count of bytes */
+#define SSize_t long long	/* signed count of bytes */
 
 /* EBCDIC:
  *	This symbol, if defined, indicates that this system uses
@@ -1229,7 +1229,7 @@
  *	This symbol contains the ~name expanded version of ARCHLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define ARCHLIB "e:\\tlperl\\lib"		/**/
+#define ARCHLIB "E:\\tlperl\\lib"		/**/
 /*#define ARCHLIB_EXP ""	/ **/
 
 /* BIN:
@@ -1244,8 +1244,8 @@
  *	This symbol, if defined, indicates that we'd like to relocate entries
  *	in @INC at run time based on the location of the perl binary.
  */
-#define BIN "e:\\tlperl\\bin"	/**/
-#define BIN_EXP "e:\\tlperl\\bin"	/**/
+#define BIN "E:\\tlperl\\bin"	/**/
+#define BIN_EXP "E:\\tlperl\\bin"	/**/
 #define PERL_RELOCATABLE_INC "undef"		/**/
 
 /* PERL_INC_VERSION_LIST:
@@ -1283,7 +1283,7 @@
  *	This symbol contains the ~name expanded version of PRIVLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define PRIVLIB "e:\\tlperl\\lib"		/**/
+#define PRIVLIB "E:\\tlperl\\lib"		/**/
 #define PRIVLIB_EXP (PerlEnv_lib_path(PERL_VERSION_STRING, NULL))	/**/
 
 /* SITEARCH:
@@ -1301,7 +1301,7 @@
  *	This symbol contains the ~name expanded version of SITEARCH, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define SITEARCH "e:\\tlperl\\site\\lib"		/**/
+#define SITEARCH "E:\\tlperl\\site\\lib"		/**/
 /*#define SITEARCH_EXP ""	/ **/
 
 /* SITELIB:
@@ -1324,7 +1324,7 @@
  *	removed.  The elements in inc_version_list (inc_version_list.U) can
  *	be tacked onto this variable to generate a list of directories to search.
  */
-#define SITELIB "e:\\tlperl\\site\\lib"		/**/
+#define SITELIB "E:\\tlperl\\site\\lib"		/**/
 #define SITELIB_EXP (PerlEnv_sitelib_path(PERL_VERSION_STRING, NULL))	/**/
 #define SITELIB_STEM ""		/**/
 
@@ -1765,7 +1765,7 @@
 #define  HAS_LDEXPL		/**/
 #define HAS_LONG_DOUBLE		/**/
 #ifdef HAS_LONG_DOUBLE
-#define LONG_DOUBLESIZE 12		/**/
+#define LONG_DOUBLESIZE 16		/**/
 #define LONG_DOUBLEKIND 3		/**/
 #define LONG_DOUBLE_IS_DOUBLE				0
 #define LONG_DOUBLE_IS_IEEE_754_128_BIT_LITTLE_ENDIAN	1
@@ -2266,7 +2266,7 @@
  *	This symbol, if defined, indicates that the atoll routine is
  *	available to convert strings into long longs.
  */
-/*#define HAS_ATOLL		/ **/
+#define HAS_ATOLL		/**/
 
 /* HAS__FWALK:
  *	This symbol, if defined, indicates that the _fwalk system call is
@@ -3399,7 +3399,7 @@
  *	This symbol, if defined, indicates that the strtoll routine is
  *	available to convert strings to long longs.
  */
-/*#define HAS_STRTOLL		/ **/
+#define HAS_STRTOLL		/**/
 
 /* HAS_STRTOQ:
  *	This symbol, if defined, indicates that the strtoq routine is
@@ -3411,7 +3411,7 @@
  *	This symbol, if defined, indicates that the strtoull routine is
  *	available to convert strings to unsigned long longs.
  */
-/*#define HAS_STRTOULL		/ **/
+#define HAS_STRTOULL		/**/
 
 /* HAS_STRTOUQ:
  *	This symbol, if defined, indicates that the strtouq routine is
@@ -3816,8 +3816,8 @@
  */
 #define DOUBLEINFBYTES  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x7f		/**/
 #define DOUBLENANBYTES  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf8, 0x7f		/**/
-#define LONGDBLINFBYTES 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xff, 0x7f, 0x00, 0x00		/**/
-#define LONGDBLNANBYTES 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0xff, 0xff, 0x00, 0x00		/**/
+#define LONGDBLINFBYTES 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xff, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00		/**/
+#define LONGDBLNANBYTES 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00		/**/
 
 /* PERL_PRIfldbl:
  *	This symbol, if defined, contains the string used by stdio to
@@ -4038,8 +4038,8 @@
  *	This symbol, if defined, indicates that a variable of type NVTYPE
  *	stores 0.0 in memory as all bits zero.
  */
-#define	IVTYPE		long		/**/
-#define	UVTYPE		unsigned long		/**/
+#define	IVTYPE		long long		/**/
+#define	UVTYPE		unsigned long long		/**/
 #define	I8TYPE		char		/**/
 #define	U8TYPE		unsigned char		/**/
 #define	I16TYPE		short	/**/
@@ -4051,8 +4051,8 @@
 #define	U64TYPE		unsigned long long	/**/
 #endif
 #define	NVTYPE		double		/**/
-#define	IVSIZE		4		/**/
-#define	UVSIZE		4		/**/
+#define	IVSIZE		8		/**/
+#define	UVSIZE		8		/**/
 #define	I8SIZE		1		/**/
 #define	U8SIZE		1		/**/
 #define	I16SIZE		2	/**/
@@ -4064,8 +4064,8 @@
 #define	U64SIZE		8	/**/
 #endif
 #define	NVSIZE		8		/**/
-#define	NV_PRESERVES_UV
-#define	NV_PRESERVES_UV_BITS	32
+#undef	NV_PRESERVES_UV
+#define	NV_PRESERVES_UV_BITS	53
 #define	NV_OVERFLOWS_INTEGERS_AT	(256.0*256.0*256.0*256.0*256.0*256.0*2.0*2.0*2.0*2.0*2.0)
 #define	NV_ZERO_IS_ALLBITS_ZERO
 #if UVSIZE == 8
@@ -4114,11 +4114,11 @@
  *	This symbol defines the format string used for printing a Perl NV
  *	using %g-ish floating point format.
  */
-#define	IVdf		"ld"		/**/
-#define	UVuf		"lu"		/**/
-#define	UVof		"lo"		/**/
-#define	UVxf		"lx"		/**/
-#define	UVXf		"lX"		/**/
+#define	IVdf		"I64d"		/**/
+#define	UVuf		"I64u"		/**/
+#define	UVof		"I64o"		/**/
+#define	UVxf		"I64x"		/**/
+#define	UVXf		"I64X"		/**/
 #define	NVef		"e"		/**/
 #define	NVff		"f"		/**/
 #define	NVgf		"g"		/**/
@@ -4140,7 +4140,7 @@
  *	1 for unsigned, -1 for signed.
  */
 #define ST_INO_SIGN 1	/* st_ino sign */
-#define ST_INO_SIZE 4	/* st_ino size */
+#define ST_INO_SIZE 8	/* st_ino size */
 
 /* STARTPERL:
  *	This variable contains the string to put in front of a perl
@@ -4202,7 +4202,7 @@
  *	you may need at least to reboot your OS to 64-bit mode.
  */
 #ifndef USE_64_BIT_INT
-/*#define	USE_64_BIT_INT		/ **/
+#define	USE_64_BIT_INT		/**/
 #endif
 #ifndef USE_64_BIT_ALL
 /*#define	USE_64_BIT_ALL		/ **/
@@ -4395,7 +4395,7 @@
  *	where library files may be held under a private library, for
  *	instance.
  */
-#define ARCHNAME "MSWin32-x86-multi-thread"		/**/
+#define ARCHNAME "MSWin32-x64-multi-thread"		/**/
 
 /* HAS_ASCTIME_R:
  *	This symbol, if defined, indicates that the asctime_r routine
@@ -5246,7 +5246,7 @@
 /* Size_t_size:
  *	This symbol holds the size of a Size_t in bytes.
  */
-#define Size_t_size 4		/**/
+#define Size_t_size 8		/**/
 
 /* Size_t:
  *	This symbol holds the type used to declare length parameters

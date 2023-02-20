@@ -81,16 +81,16 @@ sub AUTOLOAD {
     goto \&launcher unless $Config::AUTOLOAD =~ /launcher$/;
     die "&Config::AUTOLOAD failed on $Config::AUTOLOAD";
 }
-
+ 
 my $rootdir = __FILE__;
 $rootdir =~ s![\\/][^\\/]*[\\/][^\\/]*$!!;
 $rootdir =~ s!/!\\!g;
-my $mingdir = "E:\\mingw";
+my $mingdir = "E:\\mingw64";
 
 # tie returns the object, so the value returned to require will be true.
 tie %Config, 'Config', {
     archlibexp => "$rootdir\\lib",
-    archname => 'MSWin32-x86-multi-thread',
+    archname => 'MSWin32-x64-multi-thread',
     cc => 'gcc',
     d_readlink => 'define',
     d_symlink => 'define',
@@ -101,7 +101,7 @@ tie %Config, 'Config', {
     inc_version_list => '',
     intsize => '4',
     ldlibpthname => '',
-    libpth => "$mingdir\\lib $mingdir\\i686-w64-mingw32\\lib $mingdir\\lib\\gcc\\i686-w64-mingw32\\8.3.0",
+    libpth => "$mingdir\\lib $mingdir\\x86_64-w64-mingw32\\lib $mingdir\\lib\\gcc\\x86_64-w64-mingw32\\8.3.0",
     osname => 'MSWin32',
     osvers => '10.0.19042.508',
     path_sep => ';',
