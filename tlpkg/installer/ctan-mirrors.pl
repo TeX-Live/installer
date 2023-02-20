@@ -5,7 +5,6 @@ $mirrors = {
     },
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
-      'https://mirror.ufs.ac.za/ctan/' => 1,
     },
   },
   'Asia' => {
@@ -193,6 +192,7 @@ $mirrors = {
       'https://mirror2.sandyriver.net/pub/ctan/' => 1,
       'https://mirrors.concertpass.com/tex-archive/' => 1,
       'https://mirrors.mit.edu/CTAN/' => 1,
+      'https://mirrors.rit.edu/CTAN/' => 1,
     },
   },
   'Oceania' => {
