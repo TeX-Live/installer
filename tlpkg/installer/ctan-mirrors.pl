@@ -5,6 +5,7 @@ $mirrors = {
     },
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
+      'https://mirror.ufs.ac.za/ctan/' => 1,
     },
   },
   'Asia' => {
