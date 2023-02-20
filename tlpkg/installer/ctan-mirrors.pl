@@ -193,7 +193,6 @@ $mirrors = {
       'https://mirror2.sandyriver.net/pub/ctan/' => 1,
       'https://mirrors.concertpass.com/tex-archive/' => 1,
       'https://mirrors.mit.edu/CTAN/' => 1,
-      'https://mirrors.rit.edu/CTAN/' => 1,
     },
   },
   'Oceania' => {
