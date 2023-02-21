@@ -886,6 +886,7 @@ sub diskfree {
     # /dev/sdb3       6099908248 3590818104 2406881416      60% /home
     my ($h,$l) = split(/\n/, $output);
     my ($fs, $nrb, $used, $avail, @rest) = split(' ', $l);
+    debug("diskfree: df -P output: $output");
     debug("diskfree: used=$used (512-block), avail=$avail (512-block)\n");
     # $avail is in 512-byte blocks, so we need to divide by 2*1024 to
     # obtain Mb. Require that at least 100M remain free.
