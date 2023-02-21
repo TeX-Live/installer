@@ -305,7 +305,7 @@ shell-finding code anyway to defend against future mistakes of the same ilk.
 sub platform {
   if (! defined $::_platform_) {
     if ($^O =~ /^MSWin/i) {
-      print STDERR "\$^O is $^O\n";
+      # print STDERR "\$^O is $^O\n";
       $::_platform_ = "windows";
     } else {
       my $config_guess = "$::installerdir/tlpkg/installer/config.guess";
