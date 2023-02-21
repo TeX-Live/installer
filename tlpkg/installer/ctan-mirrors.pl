@@ -31,6 +31,7 @@ $mirrors = {
     },
     'Indonesia' => {
       'http://repo.ugm.ac.id/ctan/' => 1,
+      'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
       'https://ctan.asis.sh/' => 1,
@@ -142,7 +143,6 @@ $mirrors = {
       'https://mirrors.nxthost.com/ctan/' => 1,
     },
     'Russia' => {
-      'https://ctan.altspu.ru/' => 1,
       'https://mirror.macomnet.net/pub/CTAN/' => 1,
       'https://mirror.truenetwork.ru/CTAN/' => 1,
       'https://mirrors.mi-ras.ru/CTAN/' => 1,
@@ -165,6 +165,7 @@ $mirrors = {
     },
     'United Kingdom' => {
       'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
+      'https://www-uxsup.csx.cam.ac.uk/pub/tex-archive/' => 1,
     },
   },
   'North America' => {
