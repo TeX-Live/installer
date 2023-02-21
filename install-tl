@@ -1,9 +1,11 @@
 #!/usr/bin/env perl
 # $Id$
-# Copyright 2007-2022
+# Copyright 2007-2023
 # Reinhard Kotucha, Norbert Preining, Karl Berry, Siep Kroonenberg.
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
+#
+# TeX Live standalone installer.
 #
 # Be careful when changing wording: *every* normal informational message
 # output here must be recognized by the long grep in tl-update-tlnet.

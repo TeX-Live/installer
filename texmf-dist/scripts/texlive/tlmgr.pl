@@ -1,9 +1,10 @@
 #!/usr/bin/env perl
 # $Id$
-#
 # Copyright 2008-2023 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
+# 
+# TeX Live Manager.
 
 use strict; use warnings;
 
@@ -895,7 +896,7 @@ sub handle_execute_actions {
     if (defined($localtlpdb->get_package('context'))
 	    && (-x "$bindir/texlua" || -x "$bindir/texlua.exe")) {
       $errors += do_cmd_and_check("mtxrun --generate");
-      $errors += run_postinst_cmd("context --luatex --generate");
+      $errors += do_cmd_and_check("context --luatex --generate");
     }
     $::files_changed = 0;
   }
