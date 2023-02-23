@@ -214,10 +214,10 @@ our %TLPDBOptions = (
       "Generate formats at installation or update" ],
   "desktop_integration" =>
     [ "b", 1, "desktop_integration",
-      "Create Start menu shortcuts (w32)" ],
+      "Create Start menu shortcuts (Windows)" ],
   "file_assocs" =>
     [ "n:0..2", 1, "fileassocs",
-      "Change file associations (w32)" ],
+      "Change file associations (Windows)" ],
   "generate_updmap" =>
     [ "b", 0, "generate_updmap",
       "Run tlmgr generate updmap after maps have changed" ],
@@ -244,7 +244,7 @@ our %TLPDBOptions = (
       "Destination for symlinks for man pages" ],
   "w32_multi_user" =>
     [ "b", 1, "multiuser",
-      "Install for all users (w32)" ],
+      "Install for all users (Windows)" ],
 );
 
 
