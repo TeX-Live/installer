@@ -879,20 +879,23 @@ sub diskfree {
   $td .= "/" if ($td !~ m!/$!);
   return (-1) if (! -e $td);
   debug("checking diskfree() in $td\n");
-  ($output, $retval) = run_cmd("df -P \"$td\"", POSIXLY_CORRECT => 1);
+  ($output, $retval) = run_cmd("df -Pk \"$td\"");
+    # With -k (mandated by POSIX), we should always get 1024-blocks.
+    # Otherwise, the POSIXLY_CORRECT envvar for GNU df would need to
+    # be set, to force 512-blocks; and the BLOCKSIZE envvar would need
+    # to be unset to avoid overriding.
   if ($retval == 0) {
     # Output format should be this:
-    # Filesystem      512-blocks       Used  Available Capacity Mounted on
-    # /dev/sdb3       6099908248 3590818104 2406881416      60% /home
+    # Filesystem      1024-blocks     Used Available Capacity Mounted on
+    # /dev/sdb3       209611780 67718736 141893044      33% /
     my ($h,$l) = split(/\n/, $output);
     my ($fs, $nrb, $used, $avail, @rest) = split(' ', $l);
-    debug("diskfree: df -P output: $output");
-    debug("diskfree: used=$used (512-block), avail=$avail (512-block)\n");
-    # $avail is in 512-byte blocks, so we need to divide by 2*1024 to
-    # obtain Mb. Require that at least 100M remain free.
-    return (int($avail / 2048));
+    debug("diskfree: df -Pk output: $output");
+    debug("diskfree: used=$used (1024-block), avail=$avail (1024-block)\n");
+    # $avail is in 1024-byte blocks, so we divide by 1024 to obtain Mb.
+    return (int($avail / 1024));
   } else {
-    # error in running df -P for whatever reason
+    # error in running df -P for whatever reason, just skip the check.
     return (-1);
   }
 }

@@ -1047,7 +1047,9 @@ sub do_installation {
         tlwarn("$0: Insufficient disk space\n$msg\n"
           ." but continuing anyway per envvar TEXLIVE_INSTALL_NO_DISKCHECK\n");
       } else {
-        tldie("$0: DISK SPACE INSUFFICIENT!\n$msg\nAborting installation.\n");
+        tldie("$0: DISK SPACE INSUFFICIENT!\n$msg\nAborting installation.\n"
+            . "  To skip the check, set the environment variable\n"
+            . "  TEXLIVE_INSTALL_NO_DISKCHECK=1\n");
       }
     }
   }
@@ -3470,7 +3472,7 @@ Omit creating the ConTeXt cache.  This is useful for redistributors.
 =item C<TEXLIVE_INSTALL_NO_DISKCHECK>
 
 If set to 1, omit free disk space check. By default, if a
-POSIX-compliant C<df> program (supporting C<-P>) is available, the
+POSIX-compliant C<df> program (supporting C<-Pk>) is available, the
 installer checks for available disk space in the selected installation
 location, and will abort installation if there is insufficient disk
 space, plus a margin of 100MB. An equivalent check is made on Windows
