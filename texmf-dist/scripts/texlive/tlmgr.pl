@@ -894,8 +894,9 @@ sub handle_execute_actions {
     $errors += do_cmd_and_check("mktexlsr");
     if (defined($localtlpdb->get_package('context'))
 	    && (-x "$bindir/luametatex" || -x "$bindir/luametatex.exe")) {
-      $errors += do_cmd_and_check("mtxrun --generate");
-      $errors += do_cmd_and_check("context --luatex --generate");
+; # x86_64-linux binary too new
+#      $errors += do_cmd_and_check("mtxrun --generate");
+#      $errors += do_cmd_and_check("context --luatex --generate");
     }
     $::files_changed = 0;
   }
