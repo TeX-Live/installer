@@ -499,7 +499,7 @@ sub make_tlpobj {
     }
     # now @todoarchs contains only those archs for which we want
     # to match the pattern
-    foreach my $arch (@todoarchs) {
+    foreach my $arch (sort @todoarchs) {
       # get only those files matching the pattern
       my @archfiles = $tltree->get_matching_files('bin',$finalp, $pkgname, $arch);
       if (!@archfiles) {
@@ -536,7 +536,7 @@ sub make_tlpobj {
     }
     # now @todoarchs contains only those archs for which we want
     # to match the pattern
-    foreach my $arch (@todoarchs) {
+    foreach my $arch (sort @todoarchs) {
       # get only those files matching the pattern
       my @archfiles = $tltree->get_matching_files('bin', $finalp, $pkgname, $arch);
       if (!@archfiles) {

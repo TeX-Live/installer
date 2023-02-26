@@ -883,7 +883,6 @@ sub handle_execute_actions {
   my $status_file = TeXLive::TLUtils::tl_tmpfile();
   my $fmtutil_args = "$common_fmtutil_args --status-file=$status_file";
 
-
   # if create_formats is false (NOT the default) we add --refresh so that
   # only existing formats are recreated
   if (!$localtlpdb->option("create_formats")) {
@@ -894,7 +893,7 @@ sub handle_execute_actions {
   if ($::files_changed) {
     $errors += do_cmd_and_check("mktexlsr");
     if (defined($localtlpdb->get_package('context'))
-	    && (-x "$bindir/texlua" || -x "$bindir/texlua.exe")) {
+	    && (-x "$bindir/luametatex" || -x "$bindir/luametatex.exe")) {
       $errors += do_cmd_and_check("mtxrun --generate");
       $errors += do_cmd_and_check("context --luatex --generate");
     }

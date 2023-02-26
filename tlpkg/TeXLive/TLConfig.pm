@@ -257,7 +257,7 @@ our %TLPDBSettings = (
 our $WindowsMainMenuName = "TeX Live $ReleaseYear";
 
 # Comma-separated list of engines which do not exist on all platforms.
-our $PartialEngineSupport = "luajithbtex,luajittex,mfluajit";
+our $PartialEngineSupport = "luametatex,luajithbtex,luajittex,mfluajit";
 
 # Flags for error handling across the scripts and modules
 # all fine
