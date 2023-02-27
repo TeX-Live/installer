@@ -1349,14 +1349,22 @@ operations might be disturbed.\n\n";
     }
   }
 
-  # luatex/context setup.
+  # lmtx/context setup. The story here is that in 2023, the lmtx binary
+  # for x86_64-linux was too new to run on the system where we build TL.
+  # (luametatex: /lib64/libm.so.6: version `GLIBC_2.23' not found)
+  # So we have to try running it to see it succeeds, not just test for 
+  # the program's existence. And since it exits nonzero given no args,
+  # we have to specify --version. Hope it keeps working like that ...
+  my $lmtx = "$plat_bindir/luametatex$progext";
   if (exists($install{"context"}) && $install{"context"} == 1
-      && -x "$plat_bindir/luametatex$progext"
-      && !exists $ENV{"TEXLIVE_INSTALL_NO_CONTEXT_CACHE"}) {
-; # x86_64-linux binary too new
-#    info("setting up ConTeXt cache: ");
-#    $errcount += run_postinst_cmd("mtxrun --generate");
-#    $errcount += run_postinst_cmd("context --luatex --generate");
+      && !exists $ENV{"TEXLIVE_INSTALL_NO_CONTEXT_CACHE"}
+      && TeXLive::TLUtils::system_ok("$lmtx --version")
+     ) {
+    info("setting up ConTeXt cache: ");
+    $errcount += run_postinst_cmd("mtxrun --generate");
+    $errcount += run_postinst_cmd("context --luatex --generate");
+  } else {
+    debug("skipped ConTeXt cache setup\n");
   }
 
   # all formats option

@@ -106,12 +106,6 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::member($item, @list);
   TeXLive::TLUtils::merge_into(\%to, \%from);
   TeXLive::TLUtils::texdir_check($texdir);
-  TeXLive::TLUtils::quotify_path_with_spaces($path);
-  TeXLive::TLUtils::conv_to_w32_path($path);
-  TeXLive::TLUtils::native_slashify($internal_path);
-  TeXLive::TLUtils::forward_slashify($path_from_user);
-  TeXLive::TLUtils::give_ctan_mirror();
-  TeXLive::TLUtils::give_ctan_mirror_base();
   TeXLive::TLUtils::compare_tlpobjs($tlpA, $tlpB);
   TeXLive::TLUtils::compare_tlpdbs($tlpdbA, $tlpdbB);
   TeXLive::TLUtils::report_tlpdb_differences(\%ret);
@@ -120,6 +114,18 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::setup_sys_user_mode($prg,$optsref,$tmfc,$tmfsc,$tmfv,$tmfsv);
   TeXLive::TLUtils::prepend_own_path();
   TeXLive::TLUtils::repository_to_array($str);
+
+=head2 Windows and paths
+
+  TeXLive::TLUtils::quotify_path_with_spaces($path);
+  TeXLive::TLUtils::conv_to_w32_path($path);
+  TeXLive::TLUtils::native_slashify($internal_path);
+  TeXLive::TLUtils::forward_slashify($path_from_user);
+
+=head2 CTAN
+
+  TeXLive::TLUtils::give_ctan_mirror();
+  TeXLive::TLUtils::give_ctan_mirror_base();
 
 =head2 JSON
 
@@ -232,6 +238,7 @@ BEGIN {
     &give_ctan_mirror_base
     &create_mirror_list
     &extract_mirror_entry
+    &system_ok
     &wsystem
     &xsystem
     &run_cmd
@@ -704,6 +711,18 @@ sub xchdir {
   ddebug("xchdir($dir) ok\n");
 }
 
+=item C<system_ok($cmdline)>
+
+Run C<system($cmdline)> and return true if return status was zero, false
+if status was nonzero. Throw away stdout and stderr.
+
+=cut
+
+sub system_ok {
+  my ($cmdline) = @_;
+  `$cmdline >/dev/null 2>&1`;
+  return $? == 0;
+}
 
 =item C<wsystem($msg, @args)>
 
