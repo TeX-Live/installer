@@ -107,7 +107,6 @@ $mirrors = {
       'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.informatik.hs-fulda.de/tex-archive/' => 1,
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
-      'https://packages.oth-regensburg.de/ctan/' => 1,
     },
     'Greece' => {
       'http://ftp.ntua.gr/mirror/ctan/' => 1,
