@@ -1,14 +1,14 @@
 #
 #
 #
-# Denis Bitouzé <denis.bitouze@univ-littoral.fr>, 2013-2018, 2019, 2022.
+# Denis Bitouzé <denis.bitouze@univ-littoral.fr>, 2013-2018, 2019, 2022, 2023.
 # Manuel Pégourié-Gonnard <mpg@elzevir.fr>, 2010, 2011, 2012, 2013, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2023-02-28 01:49+0100\n"
-"PO-Revision-Date: 2022-03-20 22:41+0100\n"
+"PO-Revision-Date: 2023-03-03 11:44+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -1763,6 +1763,7 @@ msgstr "Schéma de base (plain et latex)"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "book publishing scheme (core LaTeX and add-ons)"
 msgstr ""
+"Schéma pour publication de livres (LaTeX de base et modules complémentaires)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "ConTeXt scheme"
