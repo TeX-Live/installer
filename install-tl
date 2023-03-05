@@ -1358,7 +1358,7 @@ operations might be disturbed.\n\n";
   my $lmtx = "$plat_bindir/luametatex$progext";
   if (exists($install{"context"}) && $install{"context"} == 1
       && !exists $ENV{"TEXLIVE_INSTALL_NO_CONTEXT_CACHE"}
-      && TeXLive::TLUtils::system_ok("$lmtx --version")
+      && (wndws() || TeXLive::TLUtils::system_ok("$lmtx --version"))
      ) {
     info("setting up ConTeXt cache: ");
     $errcount += run_postinst_cmd("mtxrun --generate");
