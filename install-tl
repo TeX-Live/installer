@@ -1879,6 +1879,12 @@ sub calc_depends {
     }
   }
 
+  #
+  # ensure that packages listed in InstallExtraRequiredPackages are installed
+  for my $p (@TeXLive::TLConfig::InstallExtraRequiredPackages) {
+    $install{$p} = 1;
+  }
+
   # if programs for arch=windows are installed we also have to install
   # tlperl.windows which provides the "hidden" perl that will be used
   # to run all the perl scripts.
