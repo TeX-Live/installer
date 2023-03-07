@@ -719,8 +719,9 @@ if status was nonzero. Throw away stdout and stderr.
 =cut
 
 sub system_ok {
+  my $nulldev = nulldev();
   my ($cmdline) = @_;
-  `$cmdline >/dev/null 2>&1`;
+  `$cmdline >$nulldev 2>&1`;
   return $? == 0;
 }
 
