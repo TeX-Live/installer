@@ -896,7 +896,7 @@ sub handle_execute_actions {
     my $lmtx = "$bindir/luametatex";
     if (defined($localtlpdb->get_package('context'))
         && (-x "$lmtx" || -x "$lmtx.exe")
-        && (wndws() || TeXLive::TLUtils::system_ok("$lmtx --version"))
+        && TeXLive::TLUtils::system_ok("$lmtx --version")
        ) {
       $errors += do_cmd_and_check("mtxrun --generate");
       $errors += do_cmd_and_check("context --luatex --generate");
