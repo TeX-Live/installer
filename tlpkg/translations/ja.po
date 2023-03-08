@@ -1,13 +1,13 @@
-# Copyright 2010-2022 TeX Live Team
+# Copyright 2010-2023 TeX Live Team
 # This file is distributed under the same license as the TeX Live package.
 # Koji Yokota <yokota33@gmail.com>, 2010, 2011, 2012, 2014, 2015.
-# Takuto Asakura <tkt.asakura@gmail.com>, 2019-2022.
+# Takuto Asakura <tkt.asakura@gmail.com>, 2019-2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2023-03-08 01:50+0100\n"
-"PO-Revision-Date: 2022-03-19 20:42+0900\n"
+"POT-Creation-Date: 2023-02-28 01:49+0100\n"
+"PO-Revision-Date: 2023-03-08 12:20+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
@@ -44,11 +44,11 @@ msgstr "すべて"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:163
 msgid "Loading local TeX Live database"
-msgstr "ローカルの TeX Live データベースを読み込んでいます"
+msgstr "ローカルのTeX Liveデータベースを読み込んでいます"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:165
 msgid "This may take some time, please be patient ..."
-msgstr "これには少し時間がかかるかもしれません．少しお待ちください……"
+msgstr "これには少し時間がかかるかもしれません。少しお待ちください……"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:222
 msgid "... done loading"
@@ -75,12 +75,12 @@ msgid ""
 "\n"
 "Most buttons will be disabled."
 msgstr ""
-"インストール済みのものを変更する権限がありません．\n"
-"具体的には，ディレクトリ %s が書き込み可能になっていません．\n"
-"このプログラムを管理者として実行するか，コンピュータの管理者に連絡をとってく"
-"ださい．\n"
+"インストール済みのものを変更する権限がありません。\n"
+"具体的には、ディレクトリ%sが書き込み可能になっていません。\n"
+"このプログラムを管理者として実行するか、コンピュータの管理者に連絡をとってく"
+"ださい。\n"
 "\n"
-"ほとんどのボタンは利用できなくなります．"
+"ほとんどのボタンは利用できなくなります。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:229
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:623
@@ -294,7 +294,7 @@ msgstr "ヘルプ"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:525
 msgid "Load default (from tlpdb) repository:"
-msgstr "（tlpdb から）デフォルトリポジトリを読み込む："
+msgstr "（tlpdbから）デフォルトリポジトリを読み込む："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:528
 msgid "Load cmd line repository:"
@@ -329,7 +329,7 @@ msgstr "プラットフォーム…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr "GUI 言語…"
+msgstr "GUI言語…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -373,12 +373,12 @@ msgstr "システムのディレクトリでシンボリックリンクを取り
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:619
 #, perl-format
 msgid "Remove TeX Live %s ..."
-msgstr "TeX Live %s をアンインストール…"
+msgstr "TeX Live %sをアンインストール…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:622
 #, perl-format
 msgid "Remove TeX Live %s"
-msgstr "TeX Live %s をアンインストール"
+msgstr "TeX Live %sをアンインストール"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:623
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:624
@@ -417,7 +417,7 @@ msgid ""
 "Really remove (uninstall) the COMPLETE TeX Live %s installation?\n"
 "Your last chance to change your mind!"
 msgstr ""
-"本当に TeX Live %s を完全にアンインストールしますか？\n"
+"本当にTeX Live %sを完全にアンインストールしますか？\n"
 "この操作は取り消せません！"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:643
@@ -508,7 +508,7 @@ msgstr "コレクション："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:743
 msgid "Warning: Catalogue versions might be lagging behind or be simply wrong."
-msgstr "警告：カタログバージョンが古いか，単純に間違っている可能性があります．"
+msgstr "警告：カタログバージョンが古いか、単純に間違っている可能性があります。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:781
 msgid "Depends:"
@@ -606,11 +606,11 @@ msgstr "切替"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1164
 msgid "Install macro/font sources"
-msgstr "font/macro のソースをインストール"
+msgstr "font/macroのソースをインストール"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1171
 msgid "Install macro/font docs"
-msgstr "font/macro のドキュメントをインストール"
+msgstr "font/macroのドキュメントをインストール"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1178
 msgid "Default backup directory"
@@ -630,12 +630,12 @@ msgstr "プログラムのリンク先"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1203
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2430
 msgid "Link destination for info docs"
-msgstr "info ページのリンク先"
+msgstr "infoページのリンク先"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1211
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2435
 msgid "Link destination for man pages"
-msgstr "man ページのリンク先"
+msgstr "manページのリンク先"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1221
 msgid "Create shortcuts on the desktop"
@@ -678,11 +678,11 @@ msgstr "レター"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
 #, perl-format
 msgid "Default paper for %s"
-msgstr "%s のデフォルト用紙サイズ"
+msgstr "%sのデフォルト用紙サイズ"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1385
 msgid "GUI Language"
-msgstr "GUI 言語"
+msgstr "GUI言語"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1409
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1414
@@ -692,7 +692,7 @@ msgstr "システムのデフォルト値"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1413
 msgid "Default language for GUI:"
-msgstr "GUI 用のデフォルト言語："
+msgstr "GUI用のデフォルト言語："
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1428
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1457
@@ -751,7 +751,7 @@ msgstr "戻す"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1765
 #, perl-format
 msgid "Select paper format for %s"
-msgstr "%s 用に用紙サイズを選択してください"
+msgstr "%s用に用紙サイズを選択してください"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1792
 msgid "keep arbitrarily many"
@@ -763,7 +763,7 @@ msgstr "無効化"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1884
 msgid "Loading of remote database failed."
-msgstr "リモートデータベースの読み込みに失敗しました．"
+msgstr "リモートデータベースの読み込みに失敗しました。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1885
 msgid "Error message:"
@@ -779,9 +779,9 @@ msgid ""
 "Program will terminate now.\n"
 "Please restart if necessary."
 msgstr ""
-"重要な更新が適用されました．\n"
-"直ちにプログラムを終了します．\n"
-"必要ならば再起動してください．"
+"重要な更新が適用されました。\n"
+"直ちにプログラムを終了します。\n"
+"必要ならば再起動してください。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2265
 msgid ""
@@ -794,25 +794,25 @@ msgid ""
 "After the update, the TeX Live manager will terminate.\n"
 "You can then restart it to proceed with further updates."
 msgstr ""
-"ほかのアップデートを行う前に TeX Live Manager 自身を\n"
-"アップデートする必要があります．\n"
+"ほかのアップデートを行う前にTeX Liveマネージャ自身を\n"
+"アップデートする必要があります。\n"
 "\n"
-"このダイアログを閉じた後，「TeX Live Manager をアップデート」\n"
-"ボタンをクリックして，アップデートを実行してください．\n"
+"このダイアログを閉じた後、「TeX Liveマネージャをアップデート」\n"
+"ボタンをクリックして、アップデートを実行してください。\n"
 "\n"
-"アップデート後，TeX Live Manager は自動で終了します．\n"
-"自動終了の後，再起動してほかのアップデートを続けることができます．"
+"アップデート後、TeX Live Managerは自動で終了します。\n"
+"自動終了の後、再起動してほかのアップデートを続けることができます。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2275
 msgid "(Further updates will be available after tlmgr has been updated.)"
-msgstr "（アップデートの続きは，tlmgr のアップデート後に可能になります．）"
+msgstr "（アップデートの続きは、tlmgrのアップデート後に可能になります。）"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2277
 msgid ""
 "Please wait a bit after the program has terminated so that the update can be "
 "completed."
 msgstr ""
-"このプログラムが終了した後も，アップデートが完了するまで少しお待ちください．"
+"このプログラムが終了した後も、アップデートが完了するまで少しお待ちください。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2351
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2353
@@ -821,7 +821,7 @@ msgstr "復元が完了しました"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2358
 msgid "Select the package to restore, or restore all packages"
-msgstr "復元するパッケージを選択するか，すべてのパッケージを復元してください"
+msgstr "復元するパッケージを選択するか、すべてのパッケージを復元してください"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2374
 msgid "Revision:"
@@ -860,7 +860,7 @@ msgstr "ディレクトリを編集"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2486
 #, perl-format
 msgid "New value for %s:"
-msgstr "%s の新しい値"
+msgstr "%sの新しい値"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2489
 msgid "Choose Directory"
@@ -890,8 +890,8 @@ msgstr "読み込み"
 msgid ""
 "Loading remote repository - this may take some time, please be patient ..."
 msgstr ""
-"リモートリポジトリを読み込んでいます．これには少し時間がかかるかもしれませ"
-"ん．お待ちください……"
+"リモートリポジトリを読み込んでいます。これには少し時間がかかるかもしれませ"
+"ん。お待ちください……"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2598
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2602
@@ -913,8 +913,8 @@ msgid ""
 "Running %s failed.\n"
 "Please consult the log window for details."
 msgstr ""
-"%s の実行に失敗しました．\n"
-"詳細については，ログウィンドウをご覧ください．"
+"%sの実行に失敗しました。\n"
+"詳細については、ログウィンドウをご覧ください。"
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
@@ -930,7 +930,7 @@ msgid ""
 "Target directory %s non-empty;\n"
 "may cause trouble!"
 msgstr ""
-"ターゲットディレクトリ %s が空ではありません．\n"
+"ターゲットディレクトリ%sが空ではありません。\n"
 "これはトラブルの原因になる可能性があります！"
 
 #: tlpkg/installer/install-tl-gui.tcl:113
@@ -939,7 +939,7 @@ msgid ""
 "Target directory %s non-empty;\n"
 "are you sure?"
 msgstr ""
-"ターゲットディレクトリ %s が空ではありません．\n"
+"ターゲットディレクトリ%sが空ではありません。\n"
 "本当に合っていますか？"
 
 #: tlpkg/installer/install-tl-gui.tcl:224
@@ -961,7 +961,7 @@ msgstr "中止"
 #: tlpkg/installer/install-tl-gui.tcl:370
 #: tlpkg/installer/install-tl-gui.tcl:1342
 msgid "TeX Live Installer"
-msgstr "TeX Live インストーラ"
+msgstr "TeX Liveインストーラ"
 
 #: tlpkg/installer/install-tl-gui.tcl:373
 #: tlpkg/installer/install-tl-gui.tcl:2044
@@ -971,10 +971,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
-"%s をロードしています．\n"
+"%s をロードしています。\n"
 "\n"
 "処理に時間がかかり過ぎる場合は「中止」を押すか別のリポジトリを選択してくださ"
-"い．"
+"い。"
 
 #: tlpkg/installer/install-tl-gui.tcl:458
 msgid "Cannot be created or cannot be written to"
@@ -997,7 +997,7 @@ msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
 msgstr ""
-"TeX Live のリリース年を含めることを強く推奨します！\n"
+"TeX Liveのリリース年を含めることを強く推奨します！\n"
 "本当に続行しますか？"
 
 #: tlpkg/installer/install-tl-gui.tcl:519
@@ -1030,7 +1030,7 @@ msgstr "ローカライズされたディレクトリ名は実体名に置き換
 #: tlpkg/installer/install-tl-gui.tcl:699
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
-msgstr "'~' は %s と等価です．例：%s"
+msgstr "'~'は%sと等価です。例：%s"
 
 #: tlpkg/installer/install-tl-gui.tcl:854
 msgid "Cannot deselect own platform"
@@ -1063,7 +1063,7 @@ msgstr "ほかのコレクション"
 
 #: tlpkg/installer/install-tl-gui.tcl:1194
 msgid "Warning. Not all configured directories are writable!"
-msgstr "警告．指定したディレクトリの一部が書き込み不能です！"
+msgstr "警告。指定したディレクトリの一部が書き込み不能です！"
 
 #: tlpkg/installer/install-tl-gui.tcl:1214
 msgid "Symlinks"
@@ -1075,11 +1075,11 @@ msgstr "開く…"
 
 #: tlpkg/installer/install-tl-gui.tcl:1242
 msgid "Man pages"
-msgstr "man ページ"
+msgstr "manページ"
 
 #: tlpkg/installer/install-tl-gui.tcl:1243
 msgid "Info pages"
-msgstr "info ページ"
+msgstr "infoページ"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
@@ -1088,7 +1088,7 @@ msgstr "空きスペースが不足しています"
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2735
 msgid "GUI language"
-msgstr "GUI 言語"
+msgstr "GUI言語"
 
 #: tlpkg/installer/install-tl-gui.tcl:1368
 msgid "Font scaling"
@@ -1103,7 +1103,7 @@ msgstr "現在："
 #: tlpkg/installer/install-tl-gui.tcl:1393
 #, tcl-format
 msgid "TeX Live %s Installer"
-msgstr "TeX Live %s インストーラ"
+msgstr "TeX Live %sインストーラ"
 
 #: tlpkg/installer/install-tl-gui.tcl:1411
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2702
@@ -1137,7 +1137,7 @@ msgid ""
 "and TEXMFHOME"
 msgstr ""
 "ポータブル設定：\n"
-"TEXMFLOCAL と TEXMFHOME は\n"
+"TEXMFLOCALとTEXMFHOMEは\n"
 "リセットされます"
 
 #: tlpkg/installer/install-tl-gui.tcl:1542
@@ -1172,12 +1172,11 @@ msgstr "カスタマイズ"
 
 #: tlpkg/installer/install-tl-gui.tcl:1594
 msgid "Disk space required (in MB):"
-msgstr "必要なディスク容量 (MB):"
+msgstr "必要なディスク容量（MB）："
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
-#, fuzzy
 msgid "Disk space available (in MB):"
-msgstr "必要なディスク容量 (MB):"
+msgstr "ディスクの空き容量（MB）：:"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1185,7 +1184,7 @@ msgstr "デフォルト用紙サイズ"
 
 #: tlpkg/installer/install-tl-gui.tcl:1641
 msgid "Allow execution of restricted list of programs via \\write18"
-msgstr "\\write18 を用いて制限リストにあるプログラムの実行を許可"
+msgstr "\\write18を用いて制限リストにあるプログラムの実行を許可"
 
 #: tlpkg/installer/install-tl-gui.tcl:1648
 msgid "Create all format files"
@@ -1193,11 +1192,11 @@ msgstr "フォーマットファイルをすべて生成"
 
 #: tlpkg/installer/install-tl-gui.tcl:1656
 msgid "Install font/macro doc tree"
-msgstr "font/macro のドキュメントツリーをインストール"
+msgstr "font/macroのドキュメントツリーをインストール"
 
 #: tlpkg/installer/install-tl-gui.tcl:1666
 msgid "Install font/macro source tree"
-msgstr "font/macro のソースツリーをインストール"
+msgstr "font/macroのソースツリーをインストール"
 
 #: tlpkg/installer/install-tl-gui.tcl:1679
 msgid "Adjust searchpath"
@@ -1209,7 +1208,7 @@ msgstr "ショートカットなし"
 
 #: tlpkg/installer/install-tl-gui.tcl:1686
 msgid "TeX Live menu"
-msgstr "TeX Live メニュー"
+msgstr "TeX Liveメニュー"
 
 #: tlpkg/installer/install-tl-gui.tcl:1686
 msgid "Launcher entry"
@@ -1225,7 +1224,7 @@ msgstr "ファイルの関連付けを変更"
 
 #: tlpkg/installer/install-tl-gui.tcl:1722
 msgid "Install TeXworks front end"
-msgstr "TeXworks をインストール"
+msgstr "TeXworksをインストール"
 
 #: tlpkg/installer/install-tl-gui.tcl:1734
 msgid "Create symlinks in standard directories"
@@ -1237,7 +1236,7 @@ msgstr "ディレクトリを指定"
 
 #: tlpkg/installer/install-tl-gui.tcl:1754
 msgid "After install, set CTAN as source for package updates"
-msgstr "インストール後に CTAN をパッケージのアップデート元に設定"
+msgstr "インストール後にCTANをパッケージのアップデート元に設定"
 
 #: tlpkg/installer/install-tl-gui.tcl:1805
 msgid "Custom scheme"
@@ -1246,12 +1245,12 @@ msgstr "カスタムスキーム"
 #: tlpkg/installer/install-tl-gui.tcl:1982
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr "%s はローカルリポジトリでもリモートリポジトリでもありません"
+msgstr "%sはローカルリポジトリでもリモートリポジトリでもありません"
 
 #: tlpkg/installer/install-tl-gui.tcl:1986
 #, tcl-format
 msgid "%s requires an argument"
-msgstr "%s には引数が必要です"
+msgstr "%sには引数が必要です"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1299,7 +1298,7 @@ msgstr "ロード中"
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
 "処理に時間がかかり過ぎる場合は「中止」を押すか別のリポジトリを選択してくださ"
-"い．"
+"い。"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:880
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2329
@@ -1313,7 +1312,7 @@ msgstr "読み込み完了"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:944
 msgid "A configured repository is unavailable."
-msgstr "設定されたリポジトリの1つが利用不能です．"
+msgstr "設定されたリポジトリの1つが利用不能です。"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1072
 msgid "Output"
@@ -1326,7 +1325,7 @@ msgstr "その他"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1099
 #, tcl-format
 msgid "%s not a repository"
-msgstr "%s はリポジトリではありません"
+msgstr "%sはリポジトリではありません"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1189
 msgid "No repositories"
@@ -1362,23 +1361,23 @@ msgstr "ローカルディレクトリ…"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1358
 msgid "tlcontrib additional repository"
-msgstr "追加リポジトリ (tlcontrib)"
+msgstr "追加リポジトリ（tlcontrib）"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1374
 msgid "tlcontrib repository is included"
-msgstr "tlcontrib リポジトリを含みます"
+msgstr "tlcontribリポジトリを含みます"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1375
 msgid "Remove tlcontrib repository"
-msgstr "tlcontrib リポジトリを削除"
+msgstr "tlcontribリポジトリを削除"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1377
 msgid "tlcontrib repository is not included"
-msgstr "tlcontrib リポジトリは含まれていません"
+msgstr "tlcontribリポジトリは含まれていません"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1378
 msgid "Add tlcontrib repository"
-msgstr "tlcontrib リポジトリを追加する"
+msgstr "tlcontribリポジトリを追加する"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1383
 msgid "Save and Load"
@@ -1387,7 +1386,7 @@ msgstr "保存して読み込み"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1415
 #, tcl-format
 msgid "Cannot remove own platform %s"
-msgstr "現在のプラットフォーム (%s) を削除することはできません"
+msgstr "現在のプラットフォーム（%s）を削除することはできません"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1481
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1677
@@ -1419,7 +1418,7 @@ msgstr "用紙サイズ"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1738
 #, tcl-format
 msgid "Restore %s to revision %s?"
-msgstr "%s パッケージをリビジョン %s へ復元しますか？"
+msgstr "%sパッケージをリビジョン%sへ復元しますか？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1761
 msgid "No backups configured"
@@ -1432,12 +1431,12 @@ msgstr "バックアップディレクトリが指定されていません"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1776
 #, tcl-format
 msgid "Backup directory %s does not exist"
-msgstr "バックアップディレクトリ %s が存在しません"
+msgstr "バックアップディレクトリ%sが存在しません"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1799
 #, tcl-format
 msgid "No packages in backup directory %s"
-msgstr "バックアップディレクトリ %s にパッケージがありません"
+msgstr "バックアップディレクトリ%sにパッケージがありません"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1809
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2936
@@ -1478,7 +1477,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1991
 #, tcl-format
 msgid "Already installed: %s"
-msgstr "%s はインストール済み"
+msgstr "%sはインストール済み"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2032
 #, tcl-format
@@ -1494,17 +1493,17 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2047
 #, tcl-format
 msgid "Updating some dependencies %s anyway. Continue?"
-msgstr "依存パッケージ %s をアップデートします．続行しますか？"
+msgstr "依存パッケージ%sをアップデートします。続行しますか？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2059
 #, tcl-format
 msgid "Skipped because not installed: %s"
-msgstr "%s は未インストールなのでスキップします"
+msgstr "%sは未インストールなのでスキップします"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2062
 #, tcl-format
 msgid "Skipped because already up to date: %s"
-msgstr "%s は既に最新版なのでスキップします"
+msgstr "%sは既に最新版なのでスキップします"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2098
 #, tcl-format
@@ -1520,7 +1519,7 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2113
 #, tcl-format
 msgid "Removing some dependencies %s anyway. Continue?"
-msgstr "依存パッケージ %s をアンインストールします．続行しますか？"
+msgstr "依存パッケージ%sをアンインストールします。続行しますか？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2200
 msgid "Info"
@@ -1530,7 +1529,9 @@ msgstr "情報"
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
-msgstr "GUI 版 TeX Live マネージャTcl/Tk 実装"
+msgstr ""
+"GUI版TeX Liveマネージャ\n"
+"Tcl/Tk実装"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2293
 msgid ""
@@ -1539,10 +1540,10 @@ msgid ""
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
-"この TeX Live マネージャ GUI は直感的に操作できるはずです．\n"
-"ただし tlmgr の全機能はカバーしていないことに注意してください．\n"
-"特にユーザモードとバックアップ機能はサポートしていません．\n"
-"tlmgr 自体のマニュアルについては「tlmgr ヘルプ」メニューを確認してください．"
+"このTeX LiveマネージャGUIは直感的に操作できるはずです。\n"
+"ただしtlmgrの全機能はカバーしていないことに注意してください。\n"
+"特にユーザモードとバックアップ機能はサポートしていません。\n"
+"tlmgr自体のマニュアルについては「tlmgrヘルプ」メニューを確認してください。"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2327
 #, tcl-format
@@ -1550,7 +1551,7 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
-"%s はローカルリポジトリでもリモートリポジトリでもありません．\n"
+"%sはローカルリポジトリでもリモートリポジトリでもありません。\n"
 "有効なリポジトリを設定してください"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2647
@@ -1600,31 +1601,31 @@ msgstr "ローカルファイルから追加/置換"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2726
 msgid "Resynchronize with 32-bit"
-msgstr "32-bit で再同期"
+msgstr "32-bitで再同期"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2730
 msgid "Remove 64-bit binaries"
-msgstr "64-bit バイナリを削除"
+msgstr "64-bitバイナリを削除"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2749
 msgid "GUI font scaling"
-msgstr "GUI フォントスケーリング"
+msgstr "GUIフォントスケーリング"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2775
 msgid "TLShell Help"
-msgstr "tlshell ヘルプ"
+msgstr "tlshellヘルプ"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2776
 msgid "Tlmgr Help"
-msgstr "tlmgr ヘルプ"
+msgstr "tlmgrヘルプ"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2795
 msgid "Restart self"
-msgstr "tlshell を再起動"
+msgstr "tlshellを再起動"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2797
 msgid "Restart tlmgr"
-msgstr "tlmgr を再起動"
+msgstr "tlmgrを再起動"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2800
 msgid "Show logs"
@@ -1632,16 +1633,16 @@ msgstr "ログを表示"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2821
 msgid "TL Manager up to date?"
-msgstr "tlmgr は最新版？"
+msgstr "tlmgrは最新版？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2826
 msgid "Last tlmgr command:"
-msgstr "tlmgr コマンド："
+msgstr "tlmgrコマンド："
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2839
 #, tcl-format
 msgid "Root at %s"
-msgstr "ルートは %s です"
+msgstr "ルートは%sです"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2852
 msgid "Package list"
@@ -1661,7 +1662,7 @@ msgstr "アップデート可能"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2894
 msgid "Detail >> Global"
-msgstr "カテゴリ"
+msgstr "詳細 >> グローバル"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2897
 msgid "Collections and schemes"
@@ -1697,7 +1698,7 @@ msgstr "選択項目をアンインストール"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2940
 msgid "Update tlmgr"
-msgstr "tlmgr をアップデート"
+msgstr "tlmgrをアップデート"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2942
 msgid "Update all"
@@ -1737,8 +1738,8 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
-"%s は書き込み不能です．多くの処理が完了できない可能性があります．  それでも続"
-"行しますか？"
+"%sは書き込み不能です。多くの処理が完了できない可能性があります。\n"
+"  それでも続行しますか？"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3098
 msgid "See internal help"
@@ -1746,45 +1747,45 @@ msgstr "内部ヘルプを参照してください"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
-msgstr "basic スキーム（plain および latex）"
+msgstr "basicスキーム（plain および latex）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "book publishing scheme (core LaTeX and add-ons)"
-msgstr ""
+msgstr "書籍出版スキーム（LaTeX本体およびアドオン）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "ConTeXt scheme"
-msgstr "ConTeXt スキーム"
+msgstr "ConTeXtスキーム"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
 msgid "full scheme (everything)"
-msgstr "full スキーム（すべて）"
+msgstr "fullスキーム（すべて）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
 msgid "GUST TeX Live scheme"
-msgstr "GUST TeX Live スキーム"
+msgstr "GUST TeX Liveスキーム"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
 msgid "infrastructure-only scheme (no TeX at all)"
-msgstr "infrastructure-only スキーム（TeX 処理系は一切含みません）"
+msgstr "infrastructure-onlyスキーム（TeX 処理系は一切含みません）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
 msgid "medium scheme (small + more packages and languages)"
-msgstr "midium スキーム（small スキーム＋欧州の主要言語サポート）"
+msgstr "midiumスキーム（smallスキーム＋欧州の主要言語サポート）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
 msgid "minimal scheme (plain only)"
-msgstr "minimal スキーム（plain のみ）"
+msgstr "minimalスキーム（plainのみ）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
 msgid "small scheme (basic + xetex, metapost, a few languages)"
 msgstr ""
-"small スキーム（basic スキーム＋XeTeX, MetaPost といくつかの言語サポート）"
+"smallスキーム（basicスキーム＋XeTeX＋MetaPostといくつかの言語サポート）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
 msgid "teTeX scheme (more than medium, but nowhere near full)"
 msgstr ""
-"teTeX スキーム（medium スキームよりも大きいが，full スキームには及ばない）"
+"teTeXスキーム（mediumスキームよりも大きいが、fullスキームには及ばない）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:11
 msgid "Essential programs and files"
@@ -1792,15 +1793,15 @@ msgstr "必須プログラムとファイル"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:12
 msgid "BibTeX additional styles"
-msgstr "BibTeX の追加スタイル"
+msgstr "BibTeXの追加スタイル"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:13
 msgid "TeX auxiliary programs"
-msgstr "TeX 外部プログラム"
+msgstr "TeX外部プログラム"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:14
 msgid "ConTeXt and packages"
-msgstr "ConTeXt とパッケージ"
+msgstr "ConTeXtとパッケージ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:15
 msgid "Additional fonts"
@@ -1836,7 +1837,7 @@ msgstr "中国語"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
 msgid "Chinese/Japanese/Korean (base)"
-msgstr "日中韓 (base)"
+msgstr "日中韓（基本）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
 msgid "Cyrillic"
@@ -1896,27 +1897,27 @@ msgstr "スペイン語"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:38
 msgid "LaTeX fundamental packages"
-msgstr "LaTeX 基本パッケージ"
+msgstr "LaTeX基本パッケージ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
 msgid "LaTeX additional packages"
-msgstr "LaTeX 追加パッケージ"
+msgstr "LaTeX追加パッケージ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
 msgid "LaTeX recommended packages"
-msgstr "LaTeX 推奨パッケージ"
+msgstr "LaTeX推奨パッケージ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "LuaTeX packages"
-msgstr "LuaTeX パッケージ"
+msgstr "LuaTeXパッケージ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "Mathematics, natural sciences, computer science packages"
-msgstr "数学，自然科学，計算機科学パッケージ"
+msgstr "数学、自然科学、計算機科学パッケージ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
 msgid "MetaPost and Metafont packages"
-msgstr "MetaPost および Metafont パッケージ"
+msgstr "MetaPostおよびMetafontパッケージ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
 msgid "Music packages"
@@ -1928,7 +1929,7 @@ msgstr "画像と図表"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
 msgid "Plain (La)TeX packages"
-msgstr "Plain (La)TeX パッケージ"
+msgstr "Plain (La)TeXパッケージ"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:47
 msgid "PSTricks"
@@ -1940,21 +1941,21 @@ msgstr "出版社スタイルや学位論文"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
 msgid "TeXworks editor; TL includes only the Windows binary"
-msgstr "TeXworks（Windows 版のみ）"
+msgstr "TeXworks（Windows版のみ）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "Windows-only support programs"
-msgstr "Windows 専用プログラム"
+msgstr "Windows専用プログラム"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:51
 msgid "XeTeX and packages"
-msgstr "XeTeX とパッケージ"
+msgstr "XeTeXとパッケージ"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2877
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2871
 msgid "Welcome to TeX Live!"
-msgstr "TeX Live へようこそ！"
+msgstr "TeX Liveへようこそ！"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2880
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2874
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1963,14 +1964,14 @@ msgid ""
 "world; please consider supporting it by joining the group best for you. The "
 "list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
-"ドキュメントの一覧は %s/index.html をご覧ください．TeX Live のウェブサイト "
-"(https://tug.org/texlive/) にはすべてのアップデートとコレクションの情報が掲載"
-"されています．TeX Live は全世界の TeX ユーザ会有志による合同プロジェクトで"
-"す．TeX Live プロジェクトをサポートしていただける場合お好きな TeX ユーザ会に"
-"入会することをご検討ください．TeX ユーザ会の一覧はhttps://tug.org/usergroups."
-"html でご確認いただけます．"
+"ドキュメントの一覧は%s/index.htmlをご覧ください。TeX Liveのウェブサイト"
+"（https://tug.org/texlive/）にはすべてのアップデートとコレクションの情報が掲"
+"載されています。TeX Liveは全世界のTeXユーザ会有志による合同プロジェクトです。"
+"TeX Liveプロジェクトをサポートしていただける場合お好きなTeXユーザ会に入会する"
+"ことをご検討ください。TeXユーザ会の一覧はhttps://tug.org/usergroups.htmlでご"
+"確認いただけます。"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2890
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2884
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1978,7 +1979,7 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions."
 msgstr ""
-"%s/texmf-dist/doc/man を MANPATH に追加してください．\n"
-"%s/texmf-dist/doc/info を INFOPATH に追加してください．\n"
-"最重要：TeX Live に含まれるバイナリを利用可能にするため\n"
-"%s/bin/%s を PATH に追加してください．"
+"%s/texmf-dist/doc/manをMANPATHに追加してください。\n"
+"%s/texmf-dist/doc/infoをINFOPATHに追加してください。\n"
+"最重要：TeX Liveに含まれるバイナリを利用可能にするため\n"
+"%s/bin/%sをPATHに追加してください。"
