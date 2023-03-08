@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2023-02-28 01:49+0100\n"
+"POT-Creation-Date: 2023-03-08 01:50+0100\n"
 "PO-Revision-Date: 2021-03-13 11:02+0100\n"
 "Last-Translator: Anh K. Huỳnh <kyanh@viettug.org>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1946,11 +1946,11 @@ msgstr "Các chương trình chỉ cho Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX và các gói của nó"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2871
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2877
 msgid "Welcome to TeX Live!"
 msgstr "Chào mừng đến với TeX Live!"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2874
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2880
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1966,7 +1966,7 @@ msgstr ""
 "hợp nhất. Danh sách các nhóm người dùng có thể tìm thấy tại http://tug.org/"
 "usergroups.html."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2884
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2890
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"

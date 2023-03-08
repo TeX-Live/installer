@@ -80,6 +80,7 @@ $mirrors = {
       'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
+      'https://ctan.crest.fr/tex-archive/' => 1,
       'https://ctan.gutenberg-asso.fr/' => 1,
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
@@ -139,6 +140,7 @@ $mirrors = {
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
+      'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
       'https://mirrors.nxthost.com/ctan/' => 1,
@@ -159,10 +161,8 @@ $mirrors = {
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
-      'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
     },
     'Switzerland' => {
-      'https://mirror.foobar.to/CTAN/' => 1,
       'https://mirror.init7.net/ctan/' => 1,
       'https://mirror.metanet.ch/tex-archive/' => 1,
     },

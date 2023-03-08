@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2023-02-28 01:49+0100\n"
+"POT-Creation-Date: 2023-03-08 01:50+0100\n"
 "PO-Revision-Date: 2023-03-02 16:26+0800\n"
 "Last-Translator: Kung-chih Jen <kaitul@outlook.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -803,7 +803,9 @@ msgid "(Further updates will be available after tlmgr has been updated.)"
 msgstr "(tlmgr 更新後將會提供更多更新。)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2277
-msgid "Please wait a bit after the program has terminated so that the update can be completed."
+msgid ""
+"Please wait a bit after the program has terminated so that the update can be "
+"completed."
 msgstr "程式終止後請稍候片刻，以便完成更新。"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2351
@@ -879,7 +881,8 @@ msgid "Load"
 msgstr "載入"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2572
-msgid "Loading remote repository - this may take some time, please be patient ..."
+msgid ""
+"Loading remote repository - this may take some time, please be patient ..."
 msgstr "載入遠端存放庫 - 這可能需要一段時間，請耐心等候…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2598
@@ -1522,11 +1525,13 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2293
 msgid ""
 "This TeX Live Manager front-end should be pretty self-explanatory.\n"
-"Note that it does not cover the full functionality of tlmgr. Notably, it does not cover user mode or backup and restore.\n"
+"Note that it does not cover the full functionality of tlmgr. Notably, it "
+"does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
 "這個 TeX Live 管理員前端應該是一目了然的。\n"
-"請注意，它並未涵蓋 tlmgr 的完整功能。值得注意的是，並未涵蓋使用者模式或備份與還原。\n"
+"請注意，它並未涵蓋 tlmgr 的完整功能。值得注意的是，並未涵蓋使用者模式或備份與"
+"還原。\n"
 "有關 tlmgr 本身的完整文件，請參閱「Tlmgr 說明」選單。"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2327
@@ -1645,8 +1650,8 @@ msgid "Updatable"
 msgstr "可更新"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2894
-msgid "Detail &gt;&gt; Global"
-msgstr "詳細資料 &gt;&gt; 全域"
+msgid "Detail >> Global"
+msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2897
 msgid "Collections and schemes"
@@ -1933,20 +1938,25 @@ msgstr "僅 Windows 支援程式"
 msgid "XeTeX and packages"
 msgstr "XeTeX 和套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2871
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2877
 msgid "Welcome to TeX Live!"
 msgstr "歡迎使用 TeX Live！"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2874
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2880
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
-"The TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html."
+"The TeX Live web site (https://tug.org/texlive/) contains any updates and "
+"corrections. TeX Live is a joint project of the TeX user groups around the "
+"world; please consider supporting it by joining the group best for you. The "
+"list of groups is available on the web at https://tug.org/usergroups.html."
 msgstr ""
 "請參閱 %s/index.html 以取得文件連結。\n"
-"TeX Live 網站 (https://tug.org/texlive/) 包含任何更新和校正。 TeX Live 是全球 TeX 使用者群組的共同專案；請考慮加入最適合您的群組來支持它。群組清單可在 https://tug.org/usergroups.html 網站上找到。"
+"TeX Live 網站 (https://tug.org/texlive/) 包含任何更新和校正。 TeX Live 是全"
+"球 TeX 使用者群組的共同專案；請考慮加入最適合您的群組來支持它。群組清單可在 "
+"https://tug.org/usergroups.html 網站上找到。"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2884
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2890
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1958,6 +1968,9 @@ msgstr ""
 "新增 %s/texmf-dist/doc/info 至 INFOPATH.\n"
 "更重要的是，新增 %s/bin/%s\n"
 "至您目前和將來的工作階段 PATH。"
+
+#~ msgid "Detail &gt;&gt; Global"
+#~ msgstr "詳細資料 &gt;&gt; 全域"
 
 #, fuzzy
 #~ msgid "Installation process"
@@ -2060,7 +2073,11 @@ msgstr ""
 
 #~ msgid ""
 #~ "See %s/index.html for links to documentation.\n"
-#~ "The TeX Live web site (http://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at http://tug.org/usergroups.html."
+#~ "The TeX Live web site (http://tug.org/texlive/) contains any updates and "
+#~ "corrections. TeX Live is a joint project of the TeX user groups around "
+#~ "the world; please consider supporting it by joining the group best for "
+#~ "you. The list of groups is available on the web at http://tug.org/"
+#~ "usergroups.html."
 #~ msgstr ""
 #~ "請參考 %s/index.html 來獲得文檔鏈結。TeX Live 官方網站\n"
 #~ "(http://tug.org/texlive/) 包含所有相關的更新和修正。\n"
