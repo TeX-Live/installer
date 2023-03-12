@@ -1626,6 +1626,11 @@ EOF
     $luavalue =~ s/\$SELFAUTOPARENT/selfautoparent:/g;
     print TMFLUA "      $luavalue\n";
   }
+  if ($vars{'instopt_portable'}) {
+    print TMFLUA "      TEXMFHOME = \"\$TEXMFLOCAL\",\n";
+    print TMFLUA "      TEXMFVAR = \"\$TEXMFSYSVAR\",\n";
+    print TMFLUA "      TEXMFCONFIG = \"\$TEXMFSYSCONFIG\",\n";
+  }
   print TMFLUA "    },\n";
   print TMFLUA "  },\n";
   if (!$vars{"instopt_write18_restricted"}) {
