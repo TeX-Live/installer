@@ -5,19 +5,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: TeX Live 2020\n"
+"Project-Id-Version: TeX Live 2023\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2023-03-12 23:19+0100\n"
-"PO-Revision-Date: 2022-03-20 17:17+0100\n"
-"Last-Translator: Jerzy Ludwichowski <Jerzy.Ludwichowski@umk.pl>\n"
+"PO-Revision-Date: 2023-03-13 17:56+0100\n"
+"Last-Translator: Zofia Walczak <zofia.walczak@wmii.uni.lodz.pl>\n"
 "Language-Team: \n"
-"Language: pl_PL\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -26,7 +26,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:1053
 #: tlpkg/installer/install-tl-gui.tcl:1698
 msgid "None"
-msgstr "Żaden"
+msgstr "Żadne"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:138
 #: tlpkg/installer/install-menu-text.pl:38
@@ -116,7 +116,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:691
 #: texmf-dist/scripts/tlshell/tlshell.tcl:223
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:287
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1192
@@ -330,7 +330,7 @@ msgstr "Systemy operacyjne ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr "Język GUI użytkownika"
+msgstr "Język trybu graficznego (GUI)"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -365,7 +365,7 @@ msgstr "Aktualizuj mapy fontowe"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:607
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2336
 msgid "Restore packages from backup"
-msgstr "Odtwórz pakiety z kopii zapasowej"
+msgstr "Przywróć pakiety z kopii zapasowej"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:613
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2418
@@ -826,8 +826,6 @@ msgstr "Przywracanie zakończone"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2358
 msgid "Select the package to restore, or restore all packages"
 msgstr ""
-"Zaznacz pakiet który chcesz przywrócić\n"
-" lub przywróć wszystkie pakiety"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2374
 msgid "Revision:"
@@ -1089,12 +1087,12 @@ msgstr "Dokumentacje info"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "Za mało miejsca"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2735
 msgid "GUI language"
-msgstr "Język GUI"
+msgstr "Język trybu graficznego (GUI)"
 
 #: tlpkg/installer/install-tl-gui.tcl:1368
 msgid "Font scaling"
@@ -1182,7 +1180,7 @@ msgstr "Wymagana przestrzeń na dysku (w MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "Dostępna przestrzeń na dysku (w MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1260,7 +1258,7 @@ msgstr "%s wymaga podania argumentu"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
-msgstr "Konkretna kopia zasobów (mirror) ..."
+msgstr "Kopia konkretnych zasobów (mirror) ..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
@@ -1268,7 +1266,7 @@ msgstr "Żadna kopia zasobów (mirror) nie jest dostępna"
 
 #: tlpkg/tltcl/tltcl.tcl:766
 msgid "Select or type"
-msgstr "Wybierz lub wpisz"
+msgstr "Wybierz lub napisz"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:372
 #: texmf-dist/scripts/tlshell/tlshell.tcl:395
@@ -1281,7 +1279,7 @@ msgstr "Uruchomiony"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:548
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3018
 msgid "Idle"
-msgstr "Bezczynny"
+msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:654
 msgid "Needs updating"
@@ -1367,11 +1365,11 @@ msgstr "Katalog lokalny ..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1358
 msgid "tlcontrib additional repository"
-msgstr "Dodatkowe repozytorium tlcontrib"
+msgstr "dodatkowe repozytorium tlcontrib"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1374
 msgid "tlcontrib repository is included"
-msgstr "Repozytorium tlcontrib jest dołączone"
+msgstr "repozytorium tlcontrib jest dołączone"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1375
 msgid "Remove tlcontrib repository"
@@ -1379,7 +1377,7 @@ msgstr "Usuń repozytorium tlcontrib"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1377
 msgid "tlcontrib repository is not included"
-msgstr "Repozytorium tlcontrib nie jest dołączone"
+msgstr "repozytorium tlcontrib nie jest dołączone"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1378
 msgid "Add tlcontrib repository"
@@ -1535,7 +1533,10 @@ msgstr "Info"
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
-msgstr "Interfejs graficzny (GUI) dla TeX Live Manager w Tcl/Tk"
+msgstr ""
+"Interfejs graficzny (GUI) dla \n"
+" \n"
+"TeX Live Manager w Tcl/Tk"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2293
 msgid ""
@@ -1544,11 +1545,11 @@ msgid ""
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
-"Niniejszy interfejs programu TeX Live Manager jest samoudokumentowany.\n"
+"Niniejszy interfejs programu TeX Live Manager jest dość oczywisty.\n"
 "Proszę zwrócić uwagę, że nie dotyczy to pełnej funkcjonalności tlmgr. Przede "
 "wszystkim nie dotyczy np. trybu użytkownika czy też zarządzania kopiami "
 "bezpieczeństwa (backup/restore)\n"
-"Pełna dokumentacja tlmgr jest dostępna w \\\"Pomoc tlmgr\\\" w menu."
+"Pełna dokumentacja tlmgr jest dostępna w \"Tlmgr Help\" w menu."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2327
 #, tcl-format
@@ -1748,7 +1749,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3098
 msgid "See internal help"
-msgstr ""
+msgstr "Skorzystaj z pomocy"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
@@ -1756,7 +1757,7 @@ msgstr "schemat podstawowy (plain i latex)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "book publishing scheme (core LaTeX and add-ons)"
-msgstr ""
+msgstr "schemat do publikacji książek (LaTeX i dodatki)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "ConTeXt scheme"
@@ -1776,7 +1777,7 @@ msgstr "wyłącznie schemat plików (w ogóle bez TeX-a):"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
 msgid "medium scheme (small + more packages and languages)"
-msgstr "schemat typowy (skromny + wybrane dodatkowe pakiety i języki):"
+msgstr "schemat typowy (skromny +  dodatkowe pakiety i języki):"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
 msgid "minimal scheme (plain only)"
@@ -1785,8 +1786,8 @@ msgstr "schemat minimalny (tylko plain)"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
 msgid "small scheme (basic + xetex, metapost, a few languages)"
 msgstr ""
-"schemat skromny (podstawowy + xetex, metapost oraz wzorce przenoszenia kilku "
-"języków):"
+"schemat skromny (podstawowy + xetex, metapost oraz wzorce przenoszenia dla "
+"kilku języków):"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
 msgid "teTeX scheme (more than medium, but nowhere near full)"
@@ -1988,287 +1989,3 @@ msgstr ""
 "Dodaj %s/texmf-dist/doc/info do INFOPATH.\n"
 "Najważniejsze: dodaj %s/bin/%s\n"
 "do zmiennej PATH dla bieżącej i przyszłych sesji."
-
-#~ msgid "GUI Language ..."
-#~ msgstr "Język komunikatów  trybu graficznego (GUI) ..."
-
-#~ msgid "tlmgr help"
-#~ msgstr "pomoc tlmgr"
-
-#~ msgid "Installation process"
-#~ msgstr "Instalacja w toku"
-
-#~ msgid "Scroll back to inspect warnings"
-#~ msgstr "Przewiń wstecz, aby sprawdzić komunikaty ostrzeżeń"
-
-#~ msgid "Finish"
-#~ msgstr "Zakończ"
-
-#~ msgid "Add menu shortcuts"
-#~ msgstr "Dodaj menu skrótów"
-
-#~ msgid "Adjust PATH setting in registry"
-#~ msgstr "Dostosuj ustawienia PATH w rejestrze"
-
-#~ msgid "Installation for all users"
-#~ msgstr "Instalacja dla wszystkich użytkowników"
-
-#~ msgid "TeX Live %s Installation"
-#~ msgstr "Instalowanie TeX Live %s"
-
-#~ msgid "< Back"
-#~ msgstr "<Cofnij"
-
-#~ msgid "Next >"
-#~ msgstr "Dalej >"
-
-#~ msgid ""
-#~ "Welcome to the installation of TeX Live %s\n"
-#~ "http://tug.org/texlive\n"
-#~ "\n"
-#~ "This wizard will guide you through the installation."
-#~ msgstr ""
-#~ "Witamy w programie instalacyjnym TeX Live %s\n"
-#~ "http://tug.org/texlive\n"
-#~ "\n"
-#~ "Instalator poprowadzi cię krok po kroku."
-
-#~ msgid ""
-#~ "In case of trouble, try to disable your virus scanner during installation."
-#~ msgstr "W razie kłopotów w trakcie instalacji, wyłącz skaner antywirusowy."
-
-#~ msgid ""
-#~ "For an advanced, customizable installation, please consult\n"
-#~ "the web pages or installation guide."
-#~ msgstr ""
-#~ "Aby dokonać zaawansowanej instalacji (z wyborem\n"
-#~ "schematów, kolekcji itp.) opuść program i zapoznaj się\n"
-#~ "z ,,Przewodnikiem TeX  Live\"."
-
-#~ msgid "Or use install-tl-advanced.bat."
-#~ msgstr "Albo użyj install-tl-advanced.bat."
-
-#~ msgid "Or specify  --gui expert  to install-tl."
-#~ msgstr "Albo dodaj parametr --gui expert przy wywołaniu install-tl."
-
-#~ msgid "Change default repository"
-#~ msgstr "Zmień domyślne repozytorium"
-
-#~ msgid "Command line repository"
-#~ msgstr "Repozytorium z linii poleceń"
-
-#~ msgid "LOCAL REPOSITORIES"
-#~ msgstr "REPOZYTORIA LOKALNE"
-
-#~ msgid "NETWORK REPOSITORIES"
-#~ msgstr "REPOZYTORIA W SIECI"
-
-#~ msgid "Select repository"
-#~ msgstr "Wybierz repozytorium"
-
-#~ msgid "Mirror:"
-#~ msgstr "Mirror (kopia CTAN):"
-
-#~ msgid "Continent"
-#~ msgstr "Kontynent"
-
-#~ msgid "Countries"
-#~ msgstr "Kraje"
-
-#~ msgid "Mirrors"
-#~ msgstr "Lustrzane kopie zasobów"
-
-#~ msgid "Please wait while the repository database is loaded."
-#~ msgstr "Proszę zaczekać na wczytanie bazy danych repozytorium."
-
-#~ msgid "This will take some time!"
-#~ msgstr "To trochę potrwa!"
-
-#~ msgid "Could not load remote TeX Live Database:"
-#~ msgstr "Nie można wczytać bazy danych TeX Live z sieci:"
-
-#~ msgid "Please go back and select a different mirror."
-#~ msgstr "Cofnij i wybierz inną kopię zasobów (mirror) w sieci."
-
-#~ msgid ""
-#~ "The TeX Live versions of the local installation\n"
-#~ "and the repository being accessed are not compatible:\n"
-#~ "     local: %s\n"
-#~ "repository: %s"
-#~ msgstr ""
-#~ "Wersje TeX Live  instalacji lokalnej\n"
-#~ "i w repozytorium są niezgodne:\n"
-#~ "         lokalnie: %s\n"
-#~ "repozytorium: %s"
-
-#~ msgid "Destination folder:"
-#~ msgstr "Folder docelowy:"
-
-#~ msgid ""
-#~ "The destination folder will contain the installation.\n"
-#~ "It is strongly recommended to keep the year as the last component."
-#~ msgstr ""
-#~ "Folder docelowy będzie zawierał instalację.\n"
-#~ "Zaleca się, by ostatnim składnikiem był rok wydania."
-
-#~ msgid "disk space required:"
-#~ msgstr "wymagana przestrzeń na dysku:"
-
-#~ msgid "(default not allowed or not writable - please change!)"
-#~ msgstr "(domyślnie niedozwolone lub nie do zapisu - proszę zmienić!)"
-
-#~ msgid "This screen allows you to configure some options"
-#~ msgstr "Tutaj możesz skonfigurować niektóre ustawienia"
-
-#~ msgid ""
-#~ "We are ready to install TeX Live %s.\n"
-#~ "The following settings will be used.\n"
-#~ "If you want to change something please go back,\n"
-#~ "otherwise press the \"Install\" button."
-#~ msgstr ""
-#~ "TeX Live jest gotowy do zainstalowania %s.\n"
-#~ "Użyte zostaną następujące ustawienia.\n"
-#~ "Jeśli chcesz je zmienić, to cofnij się,\n"
-#~ "w przeciwnym razie naciśnij przycisk \"Zainstaluj\"."
-
-#~ msgid "Please select a different mirror."
-#~ msgstr "Proszę wybrać inną kopię zasobów (mirror)."
-
-#~ msgid ""
-#~ "The TeX Live versions of the local installation and the repository being "
-#~ "accessed are not compatible:\n"
-#~ "  local: %s\n"
-#~ "  repository: %s\n"
-#~ "Please select a different mirror."
-#~ msgstr ""
-#~ "Wersje TeX Live lokalnej instalacji i repozytorium w sieci nie są "
-#~ "zgodne:\n"
-#~ "   lokalnie: %s\n"
-#~ "w repozytorium: %s\n"
-#~ "Proszę wybrać inną kopię (mirror) repozytorium."
-
-#~ msgid "Basic Information"
-#~ msgstr "Informacje podstawowe"
-
-#~ msgid "Binary system(s)"
-#~ msgstr "Programy dla systemów operacyjnych"
-
-#~ msgid "Selected scheme"
-#~ msgstr "Wybrany schemat instalacji"
-
-#~ msgid "Further Customization"
-#~ msgstr "Dalsze ustawienia"
-
-#~ msgid "Installation collections"
-#~ msgstr "Wybór kolekcji"
-
-#~ msgid "Directory setup"
-#~ msgstr "Wybór katalogów"
-
-#~ msgid "Portable setup"
-#~ msgstr "Ustawienia instalacji przenośnej"
-
-#~ msgid "TEXDIR (the main TeX directory)"
-#~ msgstr "TEXDIR (główny katalog instalacji TeX)"
-
-#~ msgid "TEXMFLOCAL (directory for site-wide local files)"
-#~ msgstr "TEXMFLOCAL (katalog stylów, fontów itp. w sieci lokalnej)"
-
-#~ msgid "TEXMFSYSVAR (directory for autogenerated data)"
-#~ msgstr "TEXMFSYSVAR (katalog plików generowanych automatycznie)"
-
-#~ msgid "TEXMFSYSCONFIG (directory for local config)"
-#~ msgstr "TEXMFSYSCONFIG (katalog dla lokalnych plików konfiguracyjnych)"
-
-#~ msgid "TEXMFHOME (directory for user-specific files)"
-#~ msgstr "TEXMFHOME (katalog dla prywatnych plików użytkownika)"
-
-#~ msgid "Create symlinks in system directories"
-#~ msgstr "Utwórz dowiązania symboliczne w katalogach systemowych"
-
-#~ msgid "Install TeX Live"
-#~ msgstr "Zainstaluj TeX Live"
-
-#~ msgid "Continue"
-#~ msgstr "Kontynuuj"
-
-#~ msgid ""
-#~ "In case of trouble, try disabling your virus scanner during installation."
-#~ msgstr ""
-#~ "W razie kłopotów spróbuj wyłączyć na czas instalacji skaner antywirusowy."
-
-#~ msgid ""
-#~ "The installer does not have adminstrative permissions;\n"
-#~ "so can only install for current user."
-#~ msgstr ""
-#~ "Program instalujący uruchomiono bez uprawnień administratora;\n"
-#~ "instalacja tylko dla aktualnego użytkownika."
-
-#~ msgid ""
-#~ "Right-click install-tl-advanced and select \"run as administrator\"\n"
-#~ " if you want to install for all users."
-#~ msgstr ""
-#~ "Kliknij prawym klawiszem myszy w install-tl-advanced i wybierz\n"
-#~ "\"Uruchom jako administrator\", jeśli instalacja ma być\n"
-#~ "dostępna dla wszystkich użytkowników."
-
-#~ msgid "Change variable value"
-#~ msgstr "Zmień wartość zmiennej"
-
-#~ msgid "Enter path for %s (use ~ for %s)"
-#~ msgstr "Podaj ścieżkę dla %s (użyj ~ dla %s)"
-
-#~ msgid "custom selection of collections"
-#~ msgstr "indywidualny wybór kolekcji"
-
-#~ msgid "Select the collections to be installed"
-#~ msgstr "Wybierz kolekcje do zainstalowania"
-
-#~ msgid "Select All"
-#~ msgstr "Wybierz wszystko"
-
-#~ msgid "Deselect All"
-#~ msgstr "Wyłącz wszystko"
-
-#~ msgid "create symlinks in standard directories"
-#~ msgstr "utwórz dowiązania symboliczne w standardowych folderach"
-
-#~ msgid "binaries to"
-#~ msgstr "programy według"
-
-#~ msgid "manpages to"
-#~ msgstr "strony man według"
-
-#~ msgid "info to"
-#~ msgstr "dokumentacje info według"
-
-#~ msgid "Select arch-os"
-#~ msgstr "Wybór systemu operacyjnego"
-
-#~ msgid "%s out of %s"
-#~ msgstr "%s spośród %s"
-
-#~ msgid "%s collections out of %s"
-#~ msgstr "%s kolekcji spośród %s"
-
-#~ msgid "(please change TEXDIR first!)"
-#~ msgstr "(najpierw proszę zmienić TEXDIR!)"
-
-#~ msgid "(default not writable - please change!)"
-#~ msgstr "(domyślnie nie do zapisu - proszę zmienić!)"
-
-#~ msgid ""
-#~ "Portable option changed;\n"
-#~ "Directories have been reinitialized"
-#~ msgstr ""
-#~ "Zmieniono opcję dla instalacji przenośnej.\n"
-#~ "Katalogi zostały ponownie zainicjowane"
-
-#~ msgid "Mark all"
-#~ msgstr "Zaznacz wszystko"
-
-#~ msgid "Cannot set default GUI language"
-#~ msgstr "Nie można ustawić domyślnego języka GUI"
-
-#~ msgid "GUI language (restarts tlshell)"
-#~ msgstr "Język trybu graficznego (GIU) (uruchamia ponownie tlshell)"
