@@ -16,7 +16,6 @@ $mirrors = {
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
-      'https://mirrors.pku.edu.cn/ctan/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -30,7 +29,6 @@ $mirrors = {
       'https://mirror.niser.ac.in/ctan/' => 1,
     },
     'Indonesia' => {
-      'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
@@ -40,12 +38,13 @@ $mirrors = {
     'Japan' => {
       'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
+      'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
-      'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
+      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
     'Singapore' => {
@@ -94,12 +93,14 @@ $mirrors = {
       'https://ctan.kako-dev.de/' => 1,
       'https://ctan.mc1.root.project-creative.net/' => 1,
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
+      'https://ctan.net/' => 1,
       'https://ctan.space-pro.be/tex-archive/' => 1,
       'https://ftp.agdsn.de/pub/mirrors/latex/dante/' => 1,
       'https://ftp.fau.de/ctan/' => 1,
       'https://ftp.gwdg.de/pub/ctan/' => 1,
       'https://ftp.rrze.uni-erlangen.de/ctan/' => 1,
       'https://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/' => 1,
+      'https://ftp.tu-chemnitz.de/pub/tex/' => 1,
       'https://mirror.clientvps.com/CTAN/' => 1,
       'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.informatik.hs-fulda.de/tex-archive/' => 1,
@@ -120,6 +121,7 @@ $mirrors = {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
+      'https://mirrors.evoluso.com/CTAN/' => 1,
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
@@ -149,6 +151,7 @@ $mirrors = {
     'Spain' => {
       'https://ctan.fisiquimicamente.com/' => 1,
       'https://ctan.javinator9889.com/' => 1,
+      'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
@@ -166,6 +169,7 @@ $mirrors = {
   },
   'North America' => {
     'Canada' => {
+      'https://ctan.math.ca/tex-archive/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
@@ -181,7 +185,7 @@ $mirrors = {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
-      'https://ctan.mirrors.hoobly.com/' => 1,
+      'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirror.mwt.me/ctan/' => 1,
       'https://mirror2.sandyriver.net/pub/ctan/' => 1,
@@ -191,14 +195,10 @@ $mirrors = {
   },
   'Oceania' => {
     'Australia' => {
-      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
       'https://mirror.cse.unsw.edu.au/pub/CTAN/' => 1,
     },
   },
   'South America' => {
-    'Brazil' => {
-      'https://linorg.usp.br/CTAN/' => 1,
-    },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
     },
