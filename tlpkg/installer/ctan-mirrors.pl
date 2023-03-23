@@ -16,6 +16,7 @@ $mirrors = {
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
+      'https://mirrors.pku.edu.cn/ctan/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -176,9 +177,6 @@ $mirrors = {
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
-    'Costa Rica' => {
-      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
-    },
     'USA' => {
       'http://bay.uchicago.edu/CTAN/' => 1,
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
@@ -199,6 +197,9 @@ $mirrors = {
     },
   },
   'South America' => {
+    'Brazil' => {
+      'https://linorg.usp.br/CTAN/' => 1,
+    },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
     },
