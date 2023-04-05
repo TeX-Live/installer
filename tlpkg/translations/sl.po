@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2023-03-12 23:19+0100\n"
+"POT-Creation-Date: 2023-04-06 01:49+0200\n"
 "PO-Revision-Date: 2022-03-21 13:45+0100\n"
 "Last-Translator: Mojca Miklavec <mojca.miklavec.lists@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -110,7 +110,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:896
 #: tlpkg/installer/install-tl-gui.tcl:946
 #: tlpkg/installer/install-tl-gui.tcl:1034
-#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:691
+#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:690
 #: texmf-dist/scripts/tlshell/tlshell.tcl:223
 msgid "Ok"
 msgstr "V redu"
@@ -425,7 +425,7 @@ msgstr "Odstrani TeX Live %s"
 #: tlpkg/installer/install-tl-gui.tcl:899
 #: tlpkg/installer/install-tl-gui.tcl:963
 #: tlpkg/installer/install-tl-gui.tcl:1037
-#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:693
+#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:692
 #: texmf-dist/scripts/tlshell/tlshell.tcl:233
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1386
 msgid "Cancel"
@@ -484,14 +484,14 @@ msgstr "Nameščen:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:373
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:372
 #: texmf-dist/scripts/tlshell/tlshell.tcl:227
 msgid "Yes"
 msgstr "Da"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:375
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:374
 #: texmf-dist/scripts/tlshell/tlshell.tcl:229
 msgid "No"
 msgstr "Ne"
@@ -1127,7 +1127,7 @@ msgstr "Opozorilo: V nekatere od map ni moč pisati!"
 msgid "Symlinks"
 msgstr "Simbolne povezave"
 
-#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:683
+#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:682
 #, fuzzy
 msgid "Browse..."
 msgstr "Brskaj …"
@@ -1327,7 +1327,7 @@ msgstr "Izberi zrcalni strežnik …"
 msgid "No mirror list available"
 msgstr "Seznam zrcalnih strežnikov ni na voljo"
 
-#: tlpkg/tltcl/tltcl.tcl:766
+#: tlpkg/tltcl/tltcl.tcl:765
 #, fuzzy
 msgid "Select or type"
 msgstr "Izberi ali napiši"

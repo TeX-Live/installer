@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2023-03-12 23:19+0100\n"
+"POT-Creation-Date: 2023-04-06 01:49+0200\n"
 "PO-Revision-Date: 2023-03-16 22:21+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
@@ -107,7 +107,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:896
 #: tlpkg/installer/install-tl-gui.tcl:946
 #: tlpkg/installer/install-tl-gui.tcl:1034
-#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:691
+#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:690
 #: texmf-dist/scripts/tlshell/tlshell.tcl:223
 msgid "Ok"
 msgstr "Ok"
@@ -396,7 +396,7 @@ msgstr "TeX Live %s entfernen"
 #: tlpkg/installer/install-tl-gui.tcl:899
 #: tlpkg/installer/install-tl-gui.tcl:963
 #: tlpkg/installer/install-tl-gui.tcl:1037
-#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:693
+#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:692
 #: texmf-dist/scripts/tlshell/tlshell.tcl:233
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1386
 msgid "Cancel"
@@ -453,14 +453,14 @@ msgstr "Installiert:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:373
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:372
 #: texmf-dist/scripts/tlshell/tlshell.tcl:227
 msgid "Yes"
 msgstr "Ja"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:375
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:374
 #: texmf-dist/scripts/tlshell/tlshell.tcl:229
 msgid "No"
 msgstr "Nein"
@@ -793,8 +793,8 @@ msgstr ""
 "Der TeX Live Manager (die Software, die gerade läuft)\n"
 "muss aktualisiert werden, bevor weitere Updates eingespielt werden können.\n"
 "\n"
-"Bitte tun sie dies durch das Klicken des \"Aktualisiere den TeX Live "
-"Manager\" Buttons,\n"
+"Bitte tun sie dies durch das Klicken des \"Aktualisiere den TeX Live Manager"
+"\" Buttons,\n"
 "nachdem Sie diesen Dialog hier geschlossen haben.\n"
 "\n"
 "Nach dem Update wird der TeX Live Manager beendet.\n"
@@ -1065,7 +1065,7 @@ msgstr "Warnung: Nicht alle konfigurierten Verzeichnisse sind beschreibbar!"
 msgid "Symlinks"
 msgstr "Symbolische Links"
 
-#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:683
+#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:682
 msgid "Browse..."
 msgstr "Browse..."
 
@@ -1256,7 +1256,7 @@ msgstr "Spezifischer CTAN-Mirror..."
 msgid "No mirror list available"
 msgstr "Liste der Spiegelserver nicht verfügbar"
 
-#: tlpkg/tltcl/tltcl.tcl:766
+#: tlpkg/tltcl/tltcl.tcl:765
 msgid "Select or type"
 msgstr "Wähle aus oder tippe ein"
 
@@ -2816,8 +2816,8 @@ msgstr ""
 #~ "Then you can restart the program for further updates."
 #~ msgstr ""
 #~ "Aktualisierungen des TeX Live Managers stehen bereit.\n"
-#~ "Installation und Aktualisierungen anderer Pakete nur mit der "
-#~ "\"erzwingen\" Option möglich.\n"
+#~ "Installation und Aktualisierungen anderer Pakete nur mit der \"erzwingen"
+#~ "\" Option möglich.\n"
 #~ "Bitte drücken Sie \"Aktualisieren aller Pakete\".\n"
 #~ "Das Programm beendet sich nach der Aktualisierung.\n"
 #~ "Danach können Sie das Programm neu starten für weitere Aktualisierungen."
@@ -2926,8 +2926,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Die Datenbank der aktuellen Installationsquelle wurde nicht geladen.\n"
 #~ "\n"
-#~ "Bitte durch betätigen der \"Lade\"- (und gegebenenfalls zuvor der "
-#~ "\"Ändern\"-) Schaltfläche nachholen."
+#~ "Bitte durch betätigen der \"Lade\"- (und gegebenenfalls zuvor der \"Ändern"
+#~ "\"-) Schaltfläche nachholen."
 
 #~ msgid "Updating packages"
 #~ msgstr "Aktualisieren von Paketen"
@@ -2955,8 +2955,8 @@ msgstr ""
 #~ "Your installation is set up to look on the disk for updates.\n"
 #~ "\n"
 #~ "If you want to install from the Internet for this one time only, click on "
-#~ "the \"Change\" button above and select \"Default net package "
-#~ "repository\" (or any other package repository you know to be working).\n"
+#~ "the \"Change\" button above and select \"Default net package repository"
+#~ "\" (or any other package repository you know to be working).\n"
 #~ "\n"
 #~ "If you want to change it permanently, go to the \"Configuration\" Tab and "
 #~ "change the default package repository."
@@ -2984,8 +2984,8 @@ msgstr ""
 #~ "Then you can restart the program for further updates."
 #~ msgstr ""
 #~ "Aktualisierungen des TeX Live Managers stehen bereit.\n"
-#~ "Installation und Aktualisierungen anderer Pakete nur mit der "
-#~ "\"erzwingen\" Option möglich.\n"
+#~ "Installation und Aktualisierungen anderer Pakete nur mit der \"erzwingen"
+#~ "\" Option möglich.\n"
 #~ "Bitte gehen Sie zur Aktualisierungsseite und drücken Sie \"Aktualisieren "
 #~ "aller Pakete\".\n"
 #~ "Das Programm beendet sich nach der Aktualisierung.\n"
