@@ -327,7 +327,7 @@ msgstr "Plataformas ..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:553
 msgid "GUI language ..."
-msgstr ""
+msgstr "Idioma de Interfaz Gráfico de Usuario..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:557
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1458
@@ -673,7 +673,7 @@ msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
 msgid "Letter"
-msgstr "carta"
+msgstr "Carta"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
@@ -926,11 +926,11 @@ msgstr ""
 
 #: tlpkg/installer/install-menu-text.pl:42
 msgid "Menu shortcuts"
-msgstr ""
+msgstr "Acceso rápido del menú"
 
 #: tlpkg/installer/install-menu-text.pl:43
 msgid "Launcher"
-msgstr ""
+msgstr "Inicializador"
 
 #: tlpkg/installer/install-tl-gui.tcl:107
 #, tcl-format
@@ -956,7 +956,7 @@ msgstr "Realmente quieres abortar?"
 
 #: tlpkg/installer/install-tl-gui.tcl:312
 msgid "Local repository"
-msgstr ""
+msgstr "Repositorio local"
 
 #: tlpkg/installer/install-tl-gui.tcl:348
 #: tlpkg/installer/install-tl-gui.tcl:365
@@ -979,6 +979,10 @@ msgid ""
 "\n"
 "If this takes too long, press Abort or choose another repository."
 msgstr ""
+"Intentando cargar %s.\n"
+"\n"
+"Si este proceso dura mucho tiempo, presione Abortar"
+"o escoja otro repositorio."
 
 #: tlpkg/installer/install-tl-gui.tcl:458
 msgid "Cannot be created or cannot be written to"
@@ -1021,16 +1025,15 @@ msgstr "Raíz de instalación"
 
 #: tlpkg/installer/install-tl-gui.tcl:598
 msgid "Prefix"
-msgstr ""
+msgstr "Prefijo"
 
 #: tlpkg/installer/install-tl-gui.tcl:608
 msgid "Prefix must exist"
-msgstr ""
+msgstr "Prefijo tiene que existir"
 
 #: tlpkg/installer/install-tl-gui.tcl:616
 msgid "Localized directory names will be replaced by their real names"
-msgstr ""
-"Nombres de directorios localizados serán reemplazados por sus nombres reales"
+msgstr "Nombres de directorios localizados serán reemplazados por sus nombres reales"
 
 #: tlpkg/installer/install-tl-gui.tcl:699
 #, tcl-format
@@ -1068,8 +1071,7 @@ msgstr "Otras colecciones"
 
 #: tlpkg/installer/install-tl-gui.tcl:1194
 msgid "Warning. Not all configured directories are writable!"
-msgstr ""
-"Advertencia: ¡No todos los directorios configurados se pueden escribir!"
+msgstr "Advertencia: ¡No todos los directorios configurados se pueden escribir!"
 
 #: tlpkg/installer/install-tl-gui.tcl:1214
 msgid "Symlinks"
@@ -1089,16 +1091,16 @@ msgstr "Páginas de información"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "No hay suficiente espacio"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2735
 msgid "GUI language"
-msgstr ""
+msgstr "Idioma del Interfaz Gráfico de Usuario"
 
 #: tlpkg/installer/install-tl-gui.tcl:1368
 msgid "Font scaling"
-msgstr ""
+msgstr "Ajustes para la fuente"
 
 #: tlpkg/installer/install-tl-gui.tcl:1370
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1327
@@ -1182,7 +1184,7 @@ msgstr "Espacio requerido (en MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "Espacio disponible en el disco (in MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1245,7 +1247,7 @@ msgstr "Especifica directorios"
 #: tlpkg/installer/install-tl-gui.tcl:1754
 msgid "After install, set CTAN as source for package updates"
 msgstr ""
-"Después de instalar, seleccione a CTAN para actualizar todos los paquetes"
+"Después de instalar, seleccione CTAN para actualizar todos los paquetes"
 
 #: tlpkg/installer/install-tl-gui.tcl:1805
 msgid "Custom scheme"
@@ -1254,12 +1256,12 @@ msgstr "Esquema personalizado"
 #: tlpkg/installer/install-tl-gui.tcl:1982
 #, tcl-format
 msgid "%s not a local or remote repository"
-msgstr ""
+msgstr "%s no es un repositorio remoto o local"
 
 #: tlpkg/installer/install-tl-gui.tcl:1986
 #, tcl-format
 msgid "%s requires an argument"
-msgstr ""
+msgstr "%s requiere un argumento"
 
 #: tlpkg/tltcl/tltcl.tcl:135
 msgid "Specific mirror..."
@@ -1267,7 +1269,7 @@ msgstr "Espejo específico..."
 
 #: tlpkg/tltcl/tltcl.tcl:152
 msgid "No mirror list available"
-msgstr ""
+msgstr "No list de espejos disponibles"
 
 #: tlpkg/tltcl/tltcl.tcl:765
 msgid "Select or type"
@@ -1301,11 +1303,13 @@ msgstr "Desconocido"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:873
 msgid "Loading"
-msgstr ""
+msgstr "Cargando"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:879
 msgid "If loading takes too long, press Abort and choose another repository."
 msgstr ""
+"Si la carga toma mucho tiempo, presione Abortar\n"
+"y escoja otro repositorio."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:880
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2329
@@ -1315,7 +1319,7 @@ msgstr "Repositorios"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:918
 msgid "Done loading"
-msgstr ""
+msgstr "La carga se completó"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:944
 msgid "A configured repository is unavailable."
@@ -1336,11 +1340,11 @@ msgstr "%s no es un repositorio"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1189
 msgid "No repositories"
-msgstr ""
+msgstr "No repositorios"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1194
 msgid "Multiple repositories"
-msgstr ""
+msgstr "Múltiple repositorios"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1197
 msgid "Not loaded"
@@ -1348,7 +1352,7 @@ msgstr "No está cargado"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1233
 msgid "Actual repository"
-msgstr ""
+msgstr "Repositorio actual"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1316
 msgid "Main Repository"
@@ -1403,7 +1407,7 @@ msgstr "Aplicar y cerrar"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1492
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1689
 msgid "Changed entries are bold"
-msgstr ""
+msgstr "Los ingresos modificados están en negritas"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1505
 msgid "platform"
@@ -1412,15 +1416,15 @@ msgstr "plataforma"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1624
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2330
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1624
 msgid "No paper sizes available"
-msgstr ""
+msgstr "No tamaños de papel disponibles"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1638
 msgid "Paper sizes"
-msgstr ""
+msgstr "Tamaños del papel"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1738
 #, tcl-format
@@ -1540,10 +1544,14 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2293
 msgid ""
 "This TeX Live Manager front-end should be pretty self-explanatory.\n"
-"Note that it does not cover the full functionality of tlmgr. Notably, it "
+"Note that it does not cover the full functionality of tlmgr. Notably, it\n"
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
+"Esta Interfaz Administrativa de TeX Live debe ser bastante explícito\n"
+"Note que no abarca toda la funcionalidad de tlmgr, principalmente, \n"
+"no cubre el material de Modo de Usuario o reservas de copias y restauración.\n"
+"Consulte el menú 'Tlmgr Help' para una completa documentación de tlmgr como tal."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2327
 #, tcl-format
@@ -1551,6 +1559,8 @@ msgid ""
 "%s is not a local or remote repository.\n"
 "Please configure a valid repository"
 msgstr ""
+"%s no es un repositorio local o remoto.\n"
+"Por favor, configure un repositorio válido"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2647
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2669
@@ -1559,7 +1569,7 @@ msgstr "Archivo"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2671
 msgid "Load repository"
-msgstr ""
+msgstr "Cargue repositorio"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2673
 msgid "Exit"
@@ -1591,31 +1601,31 @@ msgstr "Reedificando archivos de los mapas de las fuentes..."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2719
 msgid "Add/replace 64-bit binaries"
-msgstr ""
+msgstr "Añádir/reemplazar binarios de 64-bit"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2722
 msgid "Add/replace from local file"
-msgstr ""
+msgstr "Añada/reemplace de archivo local"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2726
 msgid "Resynchronize with 32-bit"
-msgstr ""
+msgstr "Resincronizar con 32-bit"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2730
 msgid "Remove 64-bit binaries"
-msgstr ""
+msgstr "Remueva binarios de 64-bit"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2749
 msgid "GUI font scaling"
-msgstr ""
+msgstr "Ajustes de fuente de GUI"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2775
 msgid "TLShell Help"
-msgstr ""
+msgstr "TLShell Help"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2776
 msgid "Tlmgr Help"
-msgstr ""
+msgstr "Tlmgr Help"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2795
 msgid "Restart self"
@@ -1640,7 +1650,7 @@ msgstr "Último comando de tlmgr:"
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2839
 #, tcl-format
 msgid "Root at %s"
-msgstr ""
+msgstr "Raíz en %s"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2852
 msgid "Package list"
@@ -1652,7 +1662,7 @@ msgstr "Instalado"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2872
 msgid "Not installed"
-msgstr ""
+msgstr "No instalado"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2882
 msgid "Updatable"
@@ -1704,15 +1714,15 @@ msgstr "Actualizar todo"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2948
 msgid "Mark all displayed"
-msgstr ""
+msgstr "Seleccione todos los que se muestra"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2950
 msgid "Mark none"
-msgstr "Marcar ninguno"
+msgstr "Seleccione ninguno"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2953
 msgid "Only packages for installed platforms are displayed"
-msgstr ""
+msgstr "Solamente paquetes para plataformas instaladas se muestran"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2963
 msgid "Name"
@@ -1724,11 +1734,11 @@ msgstr "Descripción"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3001
 msgid "Multi-user"
-msgstr ""
+msgstr "Multi-usuario"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3001
 msgid "Single-user"
-msgstr ""
+msgstr "Único-usuario"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3086
 #, tcl-format
@@ -1736,10 +1746,12 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
+"%s not es grabable. Posiblemente no pueda hacer mucho.\n"
+"	Está seguro que desea continuar?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3098
 msgid "See internal help"
-msgstr ""
+msgstr "Ver ayuda interna"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
@@ -1748,6 +1760,8 @@ msgstr "esquema básico (TeX básico y LaTeX)"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "book publishing scheme (core LaTeX and add-ons)"
 msgstr ""
+"esquema de publicación de libros (core-LaTeX y otros programas\n"
+"complementarios."
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "ConTeXt scheme"
@@ -2396,7 +2410,7 @@ msgstr ""
 #~ "Añada %s/texmf/doc/man a MANPATH.\n"
 #~ "Añada %s/texmf/doc/info a INFOPATH.\n"
 #~ "Y en especial,añada %s/bin/%s\n"
-#~ "a su ruta (PATH) para sus sesiones actual y futuras."
+#~ "a su ruta (PATH) para sus sesiones actuales y futuras."
 
 #~ msgid "Create shortcuts in menu and on desktop"
 #~ msgstr "Crear enlaces en el menú y en el escritorio"
