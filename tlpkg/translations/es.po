@@ -673,7 +673,7 @@ msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
 msgid "Letter"
-msgstr "Carta"
+msgstr "Formato de tamaño 8½x11"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
@@ -1746,7 +1746,7 @@ msgid ""
 "%s is not writable. You can probably not do much.\n"
 "  Are you sure you want to continue?"
 msgstr ""
-"%s not es grabable. Posiblemente no pueda hacer mucho.\n"
+"%s no es grabable. Posiblemente no pueda hacer mucho.\n"
 "	Está seguro que desea continuar?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3098
@@ -2492,7 +2492,7 @@ msgstr ""
 #~ "Entonces podrá reiniciar el programa para otras actualizaciones."
 
 #~ msgid "Use letter size instead of A4 by default"
-#~ msgstr "Usar tamaño de carta en vez de A4 por defecto"
+#~ msgstr "Usar tamaño de 8½x11 en vez de A4 estándar"
 
 #~ msgid "%s collections out of %s "
 #~ msgstr "%s colecciones de %s"
