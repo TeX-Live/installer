@@ -892,17 +892,6 @@ sub handle_execute_actions {
 
   if ($::files_changed) {
     $errors += do_cmd_and_check("mktexlsr");
-    # see comments in install-tl about lmtx.
-    my $lmtx = "$bindir/luametatex";
-    if (defined($localtlpdb->get_package('context'))
-        && (-x "$lmtx" || -x "$lmtx.exe")
-        && TeXLive::TLUtils::system_ok("$lmtx --version")
-       ) {
-      $errors += do_cmd_and_check("mtxrun --generate");
-      $errors += do_cmd_and_check("context --luatex --generate");
-    } else {
-      debug("skipped ConTeXt cache regeneration\n");
-    }
     $::files_changed = 0;
   }
 

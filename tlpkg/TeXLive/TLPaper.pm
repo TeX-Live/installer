@@ -83,14 +83,8 @@ our %paper = (
   "context"  => {
     sub => \&paper_context,
     default_component => "tex/context/user",
-    default_file      => "cont-sys.mkxl",
+    default_file      => "context-papersize.tex",
     pkg => "context",
-    variant => {
-      sub => \&paper_context,
-      default_component => "tex/context/user",
-      default_file      => "cont-sys.mkiv",
-      pkg => "context",
-    }
   },
   "psutils"  => {
     sub => \&paper_psutils,
@@ -292,11 +286,10 @@ sub find_paper_file {
 
 sub setup_names {
   my $prog = shift;
-  my $variant = shift || "";
   my $outcomp = $paper_config_path_component{$prog}
-                || ($variant eq "variant" ? $paper{$prog}{'variant'}{'default_component'} : $paper{$prog}{'default_component'});
+                || $paper{$prog}{'default_component'};
   my $filecomp = $paper_config_name{$prog}
-                 || ($variant eq "variant" ? $paper{$prog}{'variant'}{'default_file'} : $paper{$prog}{'default_file'});
+                 || $paper{$prog}{'default_file'};
   return ($outcomp, $filecomp);
 }
 
@@ -681,7 +674,7 @@ sub paper_dvipdfmx {
 
 
 # context format:
-# /--- cont-sys.mkxl  and cont-sys.mkiv // formerly {tex,rme}
+# /--- context-papersize.tex // formerly cont-sys.{tex,rme}
 # |...
 # |\setuppapersize[letter][letter]
 # |...
@@ -696,21 +689,8 @@ sub paper_context {
   if ($newpaper && $newpaper eq "a4") {
     $newpaper = "A4";
   }
-  return (__paper_context($outtree, $newpaper, "context") | __paper_context($outtree, $newpaper, "variant"));
-}
-
-sub __paper_context {
-  my $outtree = shift;
-  my $newpaper = shift;
-  my $what = shift;
-  my $prog = $what;
-  my $prog_long = $what;
-  if ($what eq "variant") {
-    $prog = "context";
-    $prog_long = "context (MkIV)";
-  }
-  my ($outcomp, $filecomp) = setup_names($prog, $what);
-  my $dftfile = ($what eq 'variant' ? $paper{$prog}{'variant'}{'default_file'} : $paper{$prog}{'default_file'});
+  my ($outcomp, $filecomp) = setup_names('context');
+  my $dftfile = $paper{'context'}{'default_file'};
   my $outfile = "$outtree/$outcomp/$filecomp";
   my $inp = &find_paper_file("context", "tex", $filecomp, $dftfile);
 
@@ -749,7 +729,6 @@ sub __paper_context {
     }
   } else {
     @lines = []
-    # TODO ???
   }
   # if we haven't found a paper line, assume a4
   $currentpaper || ($currentpaper = "A4");
@@ -768,7 +747,7 @@ sub __paper_context {
         push @ret, $p unless ($p eq $currentpaper);
       }
       my %foo;
-      $foo{'program'} = $prog;
+      $foo{'program'} = 'context';
       $foo{'file'} = $inp;
       $foo{'options'} = \@ret;
       return \%foo;
@@ -803,14 +782,14 @@ sub __paper_context {
             $lines[$#lines] = $addlines;
           }
         }
-        info("$prg: setting paper size for $prog_long to $newpaper: $outfile\n");
+        info("$prg: setting paper size for context to $newpaper: $outfile\n");
         mkdirhier(dirname($outfile));
         # if we create the outfile we have to call mktexlsr
         TeXLive::TLUtils::announce_execute_actions("files-changed")
           unless (-r $outfile);
         if (!open(TMP, ">$outfile")) {
           tlwarn("$prg: Cannot write to $outfile: $!\n");
-          tlwarn("Not setting paper size for $prog_long.\n");
+          tlwarn("Not setting paper size for context.\n");
           return($F_ERROR);
         }
         for (@lines) { print TMP; }
@@ -819,12 +798,12 @@ sub __paper_context {
         # TODO should we return the value of announce_execute action?
         return($F_OK);
       } else {
-        tlwarn("$prg: Not a valid paper size for $prog_long: $newpaper\n");
+        tlwarn("$prg: Not a valid paper size for context: $newpaper\n");
         return($F_WARNING);
       }
     }
   } else {
-    info("Current $prog_long paper size (from $inp): $currentpaper\n");
+    info("Current context paper size (from $inp): $currentpaper\n");
   }
   return($F_OK);
 }
