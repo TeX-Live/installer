@@ -1,5 +1,8 @@
 $mirrors = {
   'Africa' => {
+    'Morocco' => {
+      'https://mirror.marwan.ma/ctan/' => 1,
+    },
     'South Africa' => {
       'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'https://mirror.ufs.ac.za/ctan/' => 1,
@@ -44,6 +47,7 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
+      'https://cran.asia/tex/' => 1,
       'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
@@ -132,6 +136,7 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
+      'https://repo.skni.umcs.pl/ctan/' => 1,
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
@@ -189,6 +194,7 @@ $mirrors = {
       'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirror.mwt.me/ctan/' => 1,
+      'https://mirror2.sandyriver.net/pub/ctan/' => 1,
       'https://mirrors.mit.edu/CTAN/' => 1,
       'https://mirrors.rit.edu/CTAN/' => 1,
     },
