@@ -673,7 +673,7 @@ msgstr "A4"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1352
 msgid "Letter"
-msgstr "Formato de tamaño 8½x11"
+msgstr "Formato de tamaño carta 21.59 cm x 27.94 cm"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1364
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1769
