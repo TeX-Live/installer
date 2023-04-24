@@ -127,6 +127,7 @@ $mirrors = {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
+      'https://mirrors.evoluso.com/CTAN/' => 1,
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
@@ -207,6 +208,9 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'https://linorg.usp.br/CTAN/' => 1,
+    },
+    'Chile' => {
+      'https://ctan.dcc.uchile.cl/' => 1,
     },
   },
 };
