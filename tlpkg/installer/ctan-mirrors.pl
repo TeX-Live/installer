@@ -4,6 +4,7 @@ $mirrors = {
       'https://mirror.marwan.ma/ctan/' => 1,
     },
     'South Africa' => {
+      'http://ftp.sun.ac.za/ftp/CTAN/' => 1,
       'https://mirror.ufs.ac.za/ctan/' => 1,
     },
   },
@@ -23,9 +24,6 @@ $mirrors = {
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
       'https://mirrors.zju.edu.cn/CTAN/' => 1,
-    },
-    'Hong Kong' => {
-      'https://mirror-hk.koddos.net/CTAN/' => 1,
     },
     'India' => {
       'https://mirror.niser.ac.in/ctan/' => 1,
@@ -80,6 +78,7 @@ $mirrors = {
       'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
+      'https://ctan.crest.fr/tex-archive/' => 1,
       'https://ctan.gutenberg-asso.fr/' => 1,
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
@@ -105,6 +104,7 @@ $mirrors = {
       'https://ftp.gwdg.de/pub/ctan/' => 1,
       'https://ftp.rrze.uni-erlangen.de/ctan/' => 1,
       'https://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/' => 1,
+      'https://ftp.tu-chemnitz.de/pub/tex/' => 1,
       'https://mirror.clientvps.com/CTAN/' => 1,
       'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
@@ -155,6 +155,7 @@ $mirrors = {
     'Spain' => {
       'https://ctan.fisiquimicamente.com/' => 1,
       'https://ctan.javinator9889.com/' => 1,
+      'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
