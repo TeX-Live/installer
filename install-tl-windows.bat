@@ -24,7 +24,7 @@ for /f "usebackq skip=1 tokens=*" %%i in (`wmic OS get OSArchitecture ^| findstr
   rem remove spaces
   set "_bits=!_bits: =!"
   )
-if "%_bits%" EQU "64bits" (
+if "%_bits%" EQU "32bits" (
   echo 32-bit no longer supported
   pause
   goto eoff
