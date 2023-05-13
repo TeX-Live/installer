@@ -19,8 +19,8 @@ if %ver_str:~,3% == 6.0 (
   echo TeX Live 2020 has not been tested on Windows Vista.
   pause
 )
-if not "AMD64"=="%PROCESSOR_ARCHITECTURE%" (
-if not "AMD64"=="%PROCESSOR_ARCHITEW6432%" (
+if "x86"=="%PROCESSOR_ARCHITECTURE%" (
+if ""=="%PROCESSOR_ARCHITEW6432%" (
   echo 32-bit no longer supported
   pause
   goto eoff
