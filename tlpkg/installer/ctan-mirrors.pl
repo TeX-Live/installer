@@ -54,9 +54,6 @@ $mirrors = {
     'Singapore' => {
       'https://download.nus.edu.sg/mirror/ctan/' => 1,
     },
-    'Taiwan' => {
-      'https://ctan.mirror.twds.com.tw/tex-archive/' => 1,
-    },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
     },
@@ -124,7 +121,6 @@ $mirrors = {
     },
     'Netherlands' => {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
-      'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
       'https://mirrors.evoluso.com/CTAN/' => 1,
     },
