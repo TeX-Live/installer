@@ -179,7 +179,6 @@ $mirrors = {
     'Canada' => {
       'https://ctan.math.ca/tex-archive/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
-      'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://mirror.quantum5.ca/CTAN/' => 1,
