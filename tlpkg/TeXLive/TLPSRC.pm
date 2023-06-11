@@ -113,6 +113,14 @@ sub from_file {
   for my $line (@lines) {
     $lineno++;
     
+    # remove end of line comments
+    # we require "<space>#" because since we don't want an embedded # in
+    # long descriptions, as in urls, to be a comment.
+    # Do this *before* we check for continuation lines: A line
+    #      .... # foobar \
+    # should *not* be treated as continuation line.
+    $line =~ s/\s+#.*$//;
+
     # we allow continuation lines in tlpsrc files, i.e., lines ending with \.
     if ($line =~ /^(.*)\\$/) {
       $savedline .= $1;
@@ -779,6 +787,7 @@ they are concatenated into C<foobar>.  The backslash and the newline are
 removed; no other whitespace is added or removed.
 
 Comment lines begin with a # and continue to the end of the line.
+Within a line, a # that is preceded by whitespace is also a comment.
 
 Blank lines are ignored.
 
