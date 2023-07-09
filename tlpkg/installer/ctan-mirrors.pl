@@ -37,7 +37,6 @@ $mirrors = {
     },
     'Iran' => {
       'https://ctan.asis.sh/' => 1,
-      'https://ctan.yazd.ac.ir/' => 1,
     },
     'Japan' => {
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
@@ -201,6 +200,9 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'https://linorg.usp.br/CTAN/' => 1,
+    },
+    'Chile' => {
+      'https://ctan.dcc.uchile.cl/' => 1,
     },
   },
 };
