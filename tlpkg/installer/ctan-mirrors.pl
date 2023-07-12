@@ -51,9 +51,6 @@ $mirrors = {
       'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
-    'Taiwan' => {
-      'https://ctan.mirror.twds.com.tw/tex-archive/' => 1,
-    },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
     },
