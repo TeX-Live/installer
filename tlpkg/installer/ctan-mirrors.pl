@@ -28,9 +28,6 @@ $mirrors = {
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
     },
-    'India' => {
-      'https://mirror.niser.ac.in/ctan/' => 1,
-    },
     'Indonesia' => {
       'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -119,7 +116,6 @@ $mirrors = {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
-      'https://mirrors.evoluso.com/CTAN/' => 1,
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
