@@ -25,6 +25,12 @@ $mirrors = {
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
       'https://mirrors.zju.edu.cn/CTAN/' => 1,
     },
+    'Hong Kong' => {
+      'https://mirror-hk.koddos.net/CTAN/' => 1,
+    },
+    'India' => {
+      'https://mirror.niser.ac.in/ctan/' => 1,
+    },
     'Indonesia' => {
       'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -44,6 +50,9 @@ $mirrors = {
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
+    },
+    'Taiwan' => {
+      'https://ctan.mirror.twds.com.tw/tex-archive/' => 1,
     },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
