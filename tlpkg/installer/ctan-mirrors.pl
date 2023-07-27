@@ -99,6 +99,7 @@ $mirrors = {
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
       'https://ctan.space-pro.be/tex-archive/' => 1,
+      'https://ftp.agdsn.de/pub/mirrors/latex/dante/' => 1,
       'https://ftp.fau.de/ctan/' => 1,
       'https://ftp.gwdg.de/pub/ctan/' => 1,
       'https://ftp.rrze.uni-erlangen.de/ctan/' => 1,
@@ -113,6 +114,7 @@ $mirrors = {
     },
     'Greece' => {
       'http://ftp.ntua.gr/mirror/ctan/' => 1,
+      'https://fosszone.csd.auth.gr/CTAN/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
     'Hungary' => {
@@ -201,6 +203,7 @@ $mirrors = {
   },
   'Oceania' => {
     'Australia' => {
+      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
       'https://mirror.cse.unsw.edu.au/pub/CTAN/' => 1,
     },
   },
