@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2023-04-06 01:49+0200\n"
+"POT-Creation-Date: 2023-08-08 01:43+0200\n"
 "PO-Revision-Date: 2019-03-30 17:58-0400\n"
 "Last-Translator: linguafalsa <linguafalsa@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -981,8 +981,7 @@ msgid ""
 msgstr ""
 "Intentando cargar %s.\n"
 "\n"
-"Si este proceso dura mucho tiempo, presione Abortar"
-"o escoja otro repositorio."
+"Si este proceso dura mucho tiempo, presione Abortaro escoja otro repositorio."
 
 #: tlpkg/installer/install-tl-gui.tcl:458
 msgid "Cannot be created or cannot be written to"
@@ -1033,7 +1032,8 @@ msgstr "Prefijo tiene que existir"
 
 #: tlpkg/installer/install-tl-gui.tcl:616
 msgid "Localized directory names will be replaced by their real names"
-msgstr "Nombres de directorios localizados serán reemplazados por sus nombres reales"
+msgstr ""
+"Nombres de directorios localizados serán reemplazados por sus nombres reales"
 
 #: tlpkg/installer/install-tl-gui.tcl:699
 #, tcl-format
@@ -1071,7 +1071,8 @@ msgstr "Otras colecciones"
 
 #: tlpkg/installer/install-tl-gui.tcl:1194
 msgid "Warning. Not all configured directories are writable!"
-msgstr "Advertencia: ¡No todos los directorios configurados se pueden escribir!"
+msgstr ""
+"Advertencia: ¡No todos los directorios configurados se pueden escribir!"
 
 #: tlpkg/installer/install-tl-gui.tcl:1214
 msgid "Symlinks"
@@ -1544,14 +1545,10 @@ msgstr ""
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2293
 msgid ""
 "This TeX Live Manager front-end should be pretty self-explanatory.\n"
-"Note that it does not cover the full functionality of tlmgr. Notably, it\n"
+"Note that it does not cover the full functionality of tlmgr. Notably, it "
 "does not cover user mode or backup and restore.\n"
 "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
 msgstr ""
-"Esta Interfaz Administrativa de TeX Live debe ser bastante explícito\n"
-"Note que no abarca toda la funcionalidad de tlmgr, principalmente, \n"
-"no cubre el material de Modo de Usuario o reservas de copias y restauración.\n"
-"Consulte el menú 'Tlmgr Help' para una completa documentación de tlmgr como tal."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2327
 #, tcl-format
@@ -1747,7 +1744,7 @@ msgid ""
 "  Are you sure you want to continue?"
 msgstr ""
 "%s no es grabable. Posiblemente no pueda hacer mucho.\n"
-"	Está seguro que desea continuar?"
+"\tEstá seguro que desea continuar?"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3098
 msgid "See internal help"
@@ -1959,11 +1956,11 @@ msgstr "Programas de respaldo solamente para Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX y paquetes"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2882
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2885
 msgid "Welcome to TeX Live!"
 msgstr "¡Bienvenido a Tex Live!"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2885
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2888
 #, perl-format
 msgid ""
 "See %s/index.html for links to documentation.\n"
@@ -1979,7 +1976,7 @@ msgstr ""
 "apoyarlo formando parte de un grupo que más conveniente sea para usted. La "
 "lista de grupos está disponible en el web en https://tug.org/usergroups.html."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2895
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2898
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1991,6 +1988,19 @@ msgstr ""
 "Añadir %s/texmf-dist/doc/info a INFOPATH.\n"
 "Más importante aún, añade %s/bin/%s\n"
 "a tu PATH para todas las sesiones actuales y futuras."
+
+#~ msgid ""
+#~ "This TeX Live Manager front-end should be pretty self-explanatory.\n"
+#~ "Note that it does not cover the full functionality of tlmgr. Notably, it\n"
+#~ "does not cover user mode or backup and restore.\n"
+#~ "Consult the 'Tlmgr Help' menu for full documentation on tlmgr itself."
+#~ msgstr ""
+#~ "Esta Interfaz Administrativa de TeX Live debe ser bastante explícito\n"
+#~ "Note que no abarca toda la funcionalidad de tlmgr, principalmente, \n"
+#~ "no cubre el material de Modo de Usuario o reservas de copias y "
+#~ "restauración.\n"
+#~ "Consulte el menú 'Tlmgr Help' para una completa documentación de tlmgr "
+#~ "como tal."
 
 #~ msgid "GUI Language ..."
 #~ msgstr "Lenguaje de Interfaz Gráfica ..."
