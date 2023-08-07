@@ -2238,7 +2238,10 @@ sub read_profile {
   # from the tlpdb do not overwrite -seed-profile values.
   my %pro;
   while (<PROFILE>) {
-    chomp;
+    # don't use chomp here since we might use files written for Windows
+    # on Unix or the other way round.
+    # \R is a general line terminator, \z is end of string
+    s{\R\z}{};
     next if m/^[[:space:]]*$/; # skip empty lines
     next if m/^[[:space:]]*#/; # skip comment lines
     s/^[[:space:]]+//;         # ignore leading (but not trailing) whitespace
