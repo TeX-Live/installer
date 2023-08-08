@@ -114,9 +114,6 @@ $mirrors = {
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
-    'Hungary' => {
-      'https://mirror.szerverem.hu/ctan/' => 1,
-    },
     'Italy' => {
       'https://ctan.mirror.garr.it/mirrors/ctan/' => 1,
     },
@@ -172,7 +169,6 @@ $mirrors = {
   },
   'North America' => {
     'Canada' => {
-      'https://ctan.math.ca/tex-archive/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
