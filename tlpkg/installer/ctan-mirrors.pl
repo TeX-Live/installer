@@ -29,11 +29,16 @@ $mirrors = {
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
     },
+    'India' => {
+      'https://mirror.niser.ac.in/ctan/' => 1,
+    },
     'Indonesia' => {
+      'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
       'https://ctan.asis.sh/' => 1,
+      'https://ctan.yazd.ac.ir/' => 1,
     },
     'Japan' => {
       'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
