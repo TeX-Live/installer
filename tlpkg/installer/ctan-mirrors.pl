@@ -72,9 +72,6 @@ $mirrors = {
       'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
     },
-    'Denmark' => {
-      'https://mirrors.dotsrc.org/ctan/' => 1,
-    },
     'Finland' => {
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
