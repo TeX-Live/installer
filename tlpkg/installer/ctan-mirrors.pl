@@ -23,17 +23,12 @@ $mirrors = {
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
-      'https://mirrors.ustc.edu.cn/CTAN/' => 1,
       'https://mirrors.zju.edu.cn/CTAN/' => 1,
-    },
-    'Hong Kong' => {
-      'https://mirror-hk.koddos.net/CTAN/' => 1,
     },
     'India' => {
       'https://mirror.niser.ac.in/ctan/' => 1,
     },
     'Indonesia' => {
-      'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
@@ -48,9 +43,7 @@ $mirrors = {
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
-      'https://ftp.kaist.ac.kr/pub/tex-archive/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
-      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
     'Taiwan' => {
@@ -130,7 +123,6 @@ $mirrors = {
     },
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
-      'https://polish-mirror.evolution-host.com/ctan/' => 1,
       'https://repo.skni.umcs.pl/ctan/' => 1,
     },
     'Portugal' => {
@@ -173,8 +165,6 @@ $mirrors = {
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
-      'https://mirror.its.dal.ca/ctan/' => 1,
-      'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {
@@ -182,12 +172,10 @@ $mirrors = {
     },
     'USA' => {
       'http://bay.uchicago.edu/CTAN/' => 1,
-      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
-      'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirror.mwt.me/ctan/' => 1,
       'https://mirror2.sandyriver.net/pub/ctan/' => 1,
