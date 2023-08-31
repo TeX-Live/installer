@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2023-08-08 01:43+0200\n"
-"PO-Revision-Date: 2023-03-08 12:20+0900\n"
+"PO-Revision-Date: 2023-08-30 23:15+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
@@ -540,7 +540,7 @@ msgstr "詳細情報"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:860
 msgid "Update the TeX Live Manager"
-msgstr "TeX Live Manager をアップデート"
+msgstr "TeX Liveマネージャをアップデート"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1027
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1032
@@ -1176,7 +1176,7 @@ msgstr "必要なディスク容量（MB）："
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr "ディスクの空き容量（MB）：:"
+msgstr "ディスクの空き容量（MB）："
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1747,7 +1747,7 @@ msgstr "内部ヘルプを参照してください"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
-msgstr "basicスキーム（plain および latex）"
+msgstr "basicスキーム（plainおよびlatex）"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "book publishing scheme (core LaTeX and add-ons)"
