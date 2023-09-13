@@ -34,7 +34,7 @@ $mirrors = {
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
-      'https://ctan.asis.sh/' => 1,
+      'http://ctan.asis.ai/' => 1,
       'https://ctan.yazd.ac.ir/' => 1,
     },
     'Japan' => {
@@ -134,7 +134,6 @@ $mirrors = {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
       'https://repo.skni.umcs.pl/ctan/' => 1,
-      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
