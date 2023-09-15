@@ -3371,8 +3371,11 @@ sub action_update {
       if ($pkg =~ m/$CriticalPackagesRegexp/) {
         debug("Not removing critical package $pkg\n");
       } else {
-        $localtlpdb->remove_package($pkg, 
-          "remove-warn-files" => \%do_warn_on_move);
+        if (! $localtlpdb->remove_package($pkg, 
+                "remove-warn-files" => \%do_warn_on_move)) {
+          info("aborted\n") unless $::machinereadable;
+          next;
+        }
       }
       if ($remotetlpdb->install_package($pkg, $localtlpdb)) {
         # installation succeeded because we got a reference
@@ -10253,4 +10256,4 @@ $Id$
 ### tab-width: 2
 ### indent-tabs-mode: nil
 ### End:
-# vim:set tabstop=2 expandtab: #
+# vim:set tabstop=2 shiftwidth=2 expandtab: #

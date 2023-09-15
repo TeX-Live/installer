@@ -2107,14 +2107,27 @@ sub remove_package {
         0, # tlpdbopt_desktop_integration, desktop part
         $localtlpdb->option("post_code"));
     }
-    # 
-    my @removals = &TeXLive::TLUtils::removed_dirs (@goodfiles);
+    # we want to check whether we can actually remove files
+    # there might be various reasons that this fails, like texmf-dist
+    # directory suddently becoming ro (for whatever definition of
+    # suddenly).
+    my (%by_dirs, %removed_dirs) = &TeXLive::TLUtils::all_dirs_and_removed_dirs (@goodfiles);
+    my @removals = keys %removed_dirs;
+
+    # we have already check for the existence of the dirs returned
+    for my $d (keys %by_dirs) {
+      if (! &TeXLive::TLUtils::dir_writable($d)) {
+        tlwarn("TLPDB: directories are not writable, cannot remove files: $d\n");
+        return 0;
+      }
+    }
+
     # now do the removal
     for my $entry (@goodfiles) {
-      unlink $entry;
+      unlink $entry or tlwarn("Could not unlink $entry: $!\n");
     }
     for my $d (@removals) {
-      rmdir $d;
+      rmdir $d or tlwarn("Could not remove directory $d: $!\n")
     }
     $localtlpdb->remove_tlpobj($pkg);
     TeXLive::TLUtils::announce_execute_actions("disable", $tlp);
@@ -3000,4 +3013,4 @@ GNU General Public License Version 2 or later.
 ### tab-width: 2
 ### indent-tabs-mode: nil
 ### End:
-# vim:set tabstop=2 expandtab autoindent: #
+# vim:set tabstop=2 shiftwidth=2 expandtab autoindent: #
