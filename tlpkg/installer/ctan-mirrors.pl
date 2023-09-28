@@ -161,7 +161,6 @@ $mirrors = {
     'Switzerland' => {
       'https://mirror.foobar.to/CTAN/' => 1,
       'https://mirror.init7.net/ctan/' => 1,
-      'https://mirror.metanet.ch/tex-archive/' => 1,
     },
     'United Kingdom' => {
       'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
