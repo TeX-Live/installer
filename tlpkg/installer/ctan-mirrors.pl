@@ -137,6 +137,7 @@ $mirrors = {
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
+      'https://ftp.eq.uc.pt/software/TeX/' => 1,
       'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
@@ -179,7 +180,6 @@ $mirrors = {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
-      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
