@@ -55,9 +55,6 @@ $mirrors = {
     'Taiwan' => {
       'https://ctan.mirror.twds.com.tw/tex-archive/' => 1,
     },
-    'Thailand' => {
-      'https://mirror.kku.ac.th/CTAN/' => 1,
-    },
   },
   'Europe' => {
     'Austria' => {
@@ -176,10 +173,8 @@ $mirrors = {
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
-    'Costa Rica' => {
-      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
-    },
     'USA' => {
+      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
