@@ -33,9 +33,9 @@ $mirrors = {
     },
     'Indonesia' => {
       'http://repo.ugm.ac.id/ctan/' => 1,
-      'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
+      'http://ctan.asis.ai/' => 1,
       'https://ctan.yazd.ac.ir/' => 1,
     },
     'Japan' => {
