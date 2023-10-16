@@ -2128,8 +2128,13 @@ sub remove_package {
 
     # now do the removal
     for my $entry (@goodfiles) {
+      # sometimes the files might not be there: 1) we remove .tlpobj
+      # explicitly above; 2) we're called from tl-update-containers
+      # to update the network tlpdb, and that doesn't have an expanded
+      # texmf-dist.
+      next unless -e $entry;
+      #
       unlink($entry)
-      || $entry =~ /\.tlpobj$/ # we remove .tlpobj explicitly above
       || tlwarn("TLPDB::remove_package: Could not unlink $entry: $!\n");
     }
     for my $d (@removals) {
