@@ -13,7 +13,6 @@ $mirrors = {
       'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirror.nyist.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
-      'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
@@ -175,6 +174,9 @@ $mirrors = {
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
+    },
+    'Costa Rica' => {
+      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
