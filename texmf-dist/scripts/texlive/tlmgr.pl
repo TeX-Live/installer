@@ -7340,6 +7340,32 @@ and the repository are not compatible:
     }
   }
 
+  # check for remote main db being *older* than what we have seen before
+  # The check we employ is heuristic: texlive-scripts is updated practically
+  # every day. We compare the locally installed texlive-scripts with the
+  # remove revision, and if that does not line up, we error out.
+  # Alternative approaches
+  # - loop over all installed packages and take the maximum of the found revisions
+  # - on every update, save the last seen remote main revision into 00texlive.installation
+  #
+  if ($is_main) {
+    my $remote_revision = $remotetlpdb->config_revision;
+    my $tlp = $localtlpdb->get_package("texlive-scripts");
+    my $local_revision;
+    if (!defined($tlp)) {
+      info("texlive-scripts not found, not doing revision consistency check\n");
+      $local_revision = 0;
+    } else {
+      $local_revision = $tlp->revision;
+    }
+    if ($local_revision > $remote_revision) {
+      info("fail load $location\n") if ($::machinereadable);
+      return(undef, "Remote database (rev $remote_revision) seems to be older than local (rev $local_revision), please use different mirror or wait a bit.")
+    } else {
+      debug("Remote database revision $remote_revision, texlive-scripts local revision $local_revision\n");
+    }
+  }
+
   # check for being frozen
   if ($remotetlpdb->config_frozen) {
     my $frozen_msg = <<FROZEN;
