@@ -119,6 +119,7 @@ $mirrors = {
     'Greece' => {
       'http://ftp.ntua.gr/mirror/ctan/' => 1,
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
+      'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
     'Hungary' => {
       'https://mirror.szerverem.hu/ctan/' => 1,
@@ -150,6 +151,7 @@ $mirrors = {
     'Russia' => {
       'https://ctan.altspu.ru/' => 1,
       'https://mirror.macomnet.net/pub/CTAN/' => 1,
+      'https://mirror.truenetwork.ru/CTAN/' => 1,
       'https://mirrors.mi-ras.ru/CTAN/' => 1,
     },
     'Spain' => {
@@ -179,7 +181,6 @@ $mirrors = {
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://mirror.quantum5.ca/CTAN/' => 1,
-      'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
