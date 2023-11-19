@@ -37,7 +37,7 @@ our $allowed_verify_args_regex = qr/^(none|main|all)$/i;
 
 END {
   if ($opts{"pause"}) {
-    print "Press Enter to exit the program.\n";
+    print "\n$prg: Pausing at end of run as requested; press Enter to exit.\n";
     <STDIN>;
   }
 }
@@ -2334,7 +2334,9 @@ sub write_w32_updater {
   my $root = $localtlpdb->root;
   my $temp = "$root/temp";
   TeXLive::TLUtils::mkdirhier($temp);
-  tlwarn("$prg: Backup option not implemented for infrastructure update.\n") if ($opts{"backup"});
+  tlwarn("$prg: warning: backup option not implemented for infrastructure "
+         . " update on Windows; continuing anyway.\n") 
+    if ($opts{"backup"});
   if ($media eq 'local_uncompressed') {
     tlwarn("$prg: Creating updater from local_uncompressed currently not implemented!\n");
     tlwarn("$prg: But it should not be necessary!\n");
@@ -4924,7 +4926,7 @@ sub action_option {
       }
     }
     if (!$found) {
-      tlwarn("$prg: option $what not supported!\n");
+      tlwarn("$prg: Option not supported: $what\n");
       return ($F_ERROR);
     }
   }
@@ -7344,25 +7346,30 @@ and the repository are not compatible:
   # The check we employ is heuristic: texlive-scripts is updated practically
   # every day. We compare the locally installed texlive-scripts with the
   # remove revision, and if that does not line up, we error out.
-  # Alternative approaches
-  # - loop over all installed packages and take the maximum of the found revisions
-  # - on every update, save the last seen remote main revision into 00texlive.installation
+  # Alternative approaches:
+  # - loop over all installed packages and take the maximum of revisions found
+  # - on every update, save the last seen remote main revision into
+  #   00texlive.installation
   #
   if ($is_main) {
     my $remote_revision = $remotetlpdb->config_revision;
     my $tlp = $localtlpdb->get_package("texlive-scripts");
     my $local_revision;
     if (!defined($tlp)) {
-      info("texlive-scripts not found, not doing revision consistency check\n");
+      info("texlive-scripts package not found (?!), "
+           . "skipping revision consistency check\n");
       $local_revision = 0;
     } else {
       $local_revision = $tlp->revision;
     }
+    debug("Remote database revision $remote_revision, "
+          . "texlive-scripts local revision $local_revision\n");
     if ($local_revision > $remote_revision) {
       info("fail load $location\n") if ($::machinereadable);
-      return(undef, "Remote database (rev $remote_revision) seems to be older than local (rev $local_revision), please use different mirror or wait a bit.")
-    } else {
-      debug("Remote database revision $remote_revision, texlive-scripts local revision $local_revision\n");
+      return(undef, "Remote database (rev $remote_revision) seems to be "
+                    . "older than local (rev $local_revision of "
+                    . "texlive-scripts); please use different mirror or "
+                    . " wait a day or so.")
     }
   }
 
