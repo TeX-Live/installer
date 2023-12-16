@@ -25,6 +25,9 @@ $mirrors = {
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
+    'Hong Kong' => {
+      'https://mirror-hk.koddos.net/CTAN/' => 1,
+    },
     'India' => {
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
