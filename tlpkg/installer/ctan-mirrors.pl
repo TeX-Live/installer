@@ -25,9 +25,6 @@ $mirrors = {
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
-    'Hong Kong' => {
-      'https://mirror-hk.koddos.net/CTAN/' => 1,
-    },
     'India' => {
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
@@ -183,9 +180,6 @@ $mirrors = {
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
-    'Costa Rica' => {
-      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
-    },
     'USA' => {
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
@@ -203,7 +197,6 @@ $mirrors = {
   'Oceania' => {
     'Australia' => {
       'https://au.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
       'https://mirror.cse.unsw.edu.au/pub/CTAN/' => 1,
     },
   },
