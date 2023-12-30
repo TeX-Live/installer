@@ -53,6 +53,7 @@ $mirrors = {
       'https://kr.mirrors.cicku.me/ctan/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
+      'https://mirror.navercorp.com/CTAN/' => 1,
     },
     'Singapore' => {
       'https://sg.mirrors.cicku.me/ctan/' => 1,
@@ -199,7 +200,6 @@ $mirrors = {
   'Oceania' => {
     'Australia' => {
       'https://au.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
       'https://mirror.cse.unsw.edu.au/pub/CTAN/' => 1,
     },
   },
