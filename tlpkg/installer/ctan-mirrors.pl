@@ -133,7 +133,6 @@ $mirrors = {
       'https://mirror.lyrahosting.com/CTAN/' => 1,
     },
     'Norway' => {
-      'https://ctan.uib.no/' => 1,
       'https://ftp.fagskolen.gjovik.no/pub/tex-archive/' => 1,
     },
     'Poland' => {
@@ -203,7 +202,6 @@ $mirrors = {
   'Oceania' => {
     'Australia' => {
       'https://au.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
       'https://mirror.cse.unsw.edu.au/pub/CTAN/' => 1,
     },
   },
