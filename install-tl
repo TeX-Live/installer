@@ -914,7 +914,9 @@ sub final_remote_init {
   } elsif ($media eq "NET") {
     info("Distribution: net  (downloading)\n");
     info("Using URL: $TeXLiveURL\n");
-    TeXLive::TLUtils::setup_persistent_downloads() if $opt_persistent_downloads;
+    TeXLive::TLUtils::setup_persistent_downloads(
+      "$::installerdir/tlpkg/installer/curl/curl-ca-bundle.crt"
+    ) if $opt_persistent_downloads;
   } else {
     info("Distribution: $media\n");
   }

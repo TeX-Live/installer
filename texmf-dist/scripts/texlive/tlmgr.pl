@@ -690,7 +690,9 @@ for the full story.\n";
   # if we are asked to use persistent connections try to start it here
   ddebug("tlmgr:main: do persistent downloads = $opts{'persistent-downloads'}\n");
   if ($opts{'persistent-downloads'}) {
-    TeXLive::TLUtils::setup_persistent_downloads() ;
+    TeXLive::TLUtils::setup_persistent_downloads(
+      "$Master/tlpkg/installer/curl/curl-ca-bundle.crt"
+    ) ;
   }
   if (!defined($::tldownload_server)) {
     debug("tlmgr:main: ::tldownload_server not defined\n");
