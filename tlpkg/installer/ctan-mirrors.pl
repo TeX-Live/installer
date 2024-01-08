@@ -22,11 +22,9 @@ $mirrors = {
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
-    'Hong Kong' => {
-      'https://mirror-hk.koddos.net/CTAN/' => 1,
-    },
     'India' => {
       'https://in.mirrors.cicku.me/ctan/' => 1,
+      'https://mirror.niser.ac.in/ctan/' => 1,
     },
     'Indonesia' => {
       'http://repo.ugm.ac.id/ctan/' => 1,
@@ -72,9 +70,6 @@ $mirrors = {
     'Czech Republic' => {
       'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
-    },
-    'Denmark' => {
-      'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
