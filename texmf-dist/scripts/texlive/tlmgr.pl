@@ -7348,30 +7348,41 @@ and the repository are not compatible:
   # The check we employ is heuristic: texlive-scripts is updated practically
   # every day. We compare the locally installed texlive-scripts with the
   # remove revision, and if that does not line up, we error out.
+  # Note that we only do this check if the remote database contains texlive-scripts
+  # otherwise sub-repos (like tlgpg) will fail.
   # Alternative approaches:
   # - loop over all installed packages and take the maximum of revisions found
   # - on every update, save the last seen remote main revision into
   #   00texlive.installation
   #
   if ($is_main) {
-    my $remote_revision = $remotetlpdb->config_revision;
-    my $tlp = $localtlpdb->get_package("texlive-scripts");
+    my $rtlp = $remotetlpdb->get_package("texlive-scripts");
+    my $ltlp = $localtlpdb->get_package("texlive-scripts");
     my $local_revision;
-    if (!defined($tlp)) {
+    my $remote_revision;
+    if (!defined($rtlp)) {
+      # remote db does not contain texlive-scripts, so we skip all checks
+      debug("Remote database does not contain texlive-scripts, "
+            . "not doing version checks\n");
+      $remote_revision = 0;
+    } else {
+      $remote_revision = $rtlp->revision;
+    }
+    if (!defined($ltlp)) {
       info("texlive-scripts package not found (?!), "
            . "skipping revision consistency check\n");
       $local_revision = 0;
     } else {
-      $local_revision = $tlp->revision;
+      $local_revision = $ltlp->revision;
     }
-    debug("Remote database revision $remote_revision, "
+    debug("texlive-scripts remote revision $remote_revision, "
           . "texlive-scripts local revision $local_revision\n");
-    if ($local_revision > $remote_revision) {
+    if ($remote_revision > 0 && $local_revision > $remote_revision) {
       info("fail load $location\n") if ($::machinereadable);
-      return(undef, "Remote database (rev $remote_revision) seems to be "
-                    . "older than local (rev $local_revision of "
+      return(undef, "Remote database (rev $remote_revision of texlive-scripts) "
+                    . "seems to be older than local (rev $local_revision of "
                     . "texlive-scripts); please use different mirror or "
-                    . " wait a day or so.")
+                    . "wait a day or so.")
     }
   }
 
