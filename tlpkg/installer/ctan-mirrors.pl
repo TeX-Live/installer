@@ -58,6 +58,9 @@ $mirrors = {
     'Singapore' => {
       'https://sg.mirrors.cicku.me/ctan/' => 1,
     },
+    'Taiwan' => {
+      'https://ctan.mirror.twds.com.tw/tex-archive/' => 1,
+    },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
     },
@@ -78,6 +81,7 @@ $mirrors = {
       'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
+      'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
@@ -151,6 +155,7 @@ $mirrors = {
     'Spain' => {
       'https://ctan.fisiquimicamente.com/' => 1,
       'https://ctan.javinator9889.com/' => 1,
+      'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
