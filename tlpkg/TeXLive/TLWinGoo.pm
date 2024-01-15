@@ -34,7 +34,6 @@ C<TeXLive::TLWinGoo> -- TeX Live Windows-specific support
 
 =head2 DIAGNOSTICS
 
-  TeXLive::TLWinGoo::is_ten;
   TeXLive::TLWinGoo::admin;
   TeXLive::TLWinGoo::non_admin;
   TeXLive::TLWinGoo::reg_country;
@@ -91,7 +90,6 @@ BEGIN {
   use vars qw( @ISA @EXPORT @EXPORT_OK $Registry);
   @ISA = qw( Exporter );
   @EXPORT = qw(
-    &is_ten
     &admin
     &non_admin
   );
@@ -179,35 +177,7 @@ if ($is_win) {
 
 =head2 DIAGNOSTICS
 
-=over 4
-
-=item C<win_version>
-
-C<win_version> returns the Windows version number as stored in the
-registry: 5.0 for Windows 2000, 5.1 for Windows XP and 6.0 for Vista.
-
 =cut
-
-my $windows_version = 0;
-my $windows_subversion = 0;
-
-if ($is_win) {
-  my $ver = `ver`;
-  chomp $ver;
-  $ver =~ s/^[^0-9]*//;
-  $ver =~ s/[^0-9.]*$//;
-  ($windows_version = $ver) =~ s/\..*$//;
-  ($windows_subversion = $ver) =~ s/^[^\.]*\.//;
-  $windows_subversion =~ s/\..*$//;
-}
-
-=item C<is_ten>
-
-C<is_ten> returns 1 if windows version is >= 10.0, otherwise 0.
-
-=cut
-
-sub is_ten { return $windows_version >= 10; }
 
 # permissions with which we try to access the system environment
 
@@ -1272,7 +1242,7 @@ UNEND3
   # but not for a user install under win10 because then
   # it shows up in Settings / Apps / Apps & features,
   # where it will trigger an inappropriate UAC prompt
-  if (admin() || !is_ten()) {
+  if (admin()) {
     &log("Registering uninstaller\n");
     my $k;
     my $uninst_key = $Registry -> Open((admin() ? "LMachine" : "CUser") .
