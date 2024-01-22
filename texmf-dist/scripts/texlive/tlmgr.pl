@@ -622,7 +622,9 @@ for the full story.\n";
     tldie("$prg: Try --help if you need it.\n");
   }
 
-  #
+  # nice to have the version if debugging.
+  debug("tlmgr version $tlmgrversion\n");
+
   # the main tree we will be working on
   $::maintree = $Master;
   if ($opts{"usermode"}) {
@@ -634,6 +636,7 @@ for the full story.\n";
       chomp($::maintree = `kpsewhich -var-value TEXMFHOME`);
     }
   }
+  debug("maintree=$::maintree\n");
 
   # besides doing normal logging if -logfile is specified, we try to log
   # package related actions (install, remove, update) to
