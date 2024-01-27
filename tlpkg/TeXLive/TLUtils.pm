@@ -41,6 +41,7 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::wsystem($msg,@args);
   TeXLive::TLUtils::xsystem(@args);
   TeXLive::TLUtils::run_cmd($cmd [, @envvars ]);
+  TeXLive::TLUtils::run_cmd_with_log($cmd, $logfn);
   TeXLive::TLUtils::system_pipe($prog, $infile, $outfile, $removeIn, @args);
   TeXLive::TLUtils::diskfree($path);
   TeXLive::TLUtils::get_user_home();
@@ -80,6 +81,7 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::time_estimate($totalsize, $donesize, $starttime)
   TeXLive::TLUtils::install_packages($from_tlpdb,$media,$to_tlpdb,$what,$opt_src, $opt_doc, $retry, $continue);
   TeXLive::TLUtils::do_postaction($how, $tlpobj, $do_fileassocs, $do_menu, $do_desktop, $do_script);
+  TeXLive::TLUtils::update_context_cache($plat_bindir);
   TeXLive::TLUtils::announce_execute_actions($how, @executes, $what);
   TeXLive::TLUtils::add_symlinks($root, $arch, $sys_bin, $sys_man, $sys_info);
   TeXLive::TLUtils::remove_symlinks($root, $arch, $sys_bin, $sys_man, $sys_info);
@@ -246,6 +248,7 @@ BEGIN {
     &wsystem
     &xsystem
     &run_cmd
+    &run_cmd_with_log
     &system_pipe
     &diskfree
     &get_user_home
@@ -769,8 +772,9 @@ sub xsystem {
 
 =item C<run_cmd($cmd, @envvars)>
 
-Run shell command C<$cmd> and captures its output. Returns a list with CMD's
-output as the first element and the return value (exit code) as second.
+Run shell command C<$cmd> and captures its standard output (not standard
+error). Returns a list with CMD's output as the first element and its
+return value (exit code) as second.
 
 If given, C<@envvars> is a list of environment variable name / value
 pairs set in C<%ENV> for the call and reset to their original value (or
@@ -805,6 +809,34 @@ sub run_cmd {
   }
   return ($output,$retval);
 }
+
+=item C<run_cmd_with_log($cmd, $logfn)>
+
+Run shell command C<$cmd> and captures both standard output and standard
+error (as one string), passing them to C<$logfn>. The return value is
+the exit status of C<$cmd>. Environment variable overrides cannot be
+passed. (This is used for running special post-installation commands in
+install-tl and tlmgr.)
+
+=cut
+
+sub run_cmd_with_log {
+  my ($cmd,$logfn) = @_;
+  
+  info ("running $cmd ...");
+  my ($out,$ret) = TeXLive::TLUtils::run_cmd ("$cmd 2>&1");
+  if ($ret == 0) {
+    info ("done\n");
+  } else {
+    info ("failed\n");
+    tlwarn ("$0: $cmd failed (status $ret): $!\n");
+    $ret = 1; # be sure we don't overflow the sum on anything crazy
+  }
+  &$logfn ($out);
+  
+  return $ret;
+} # run_cmd_with_log
+
 
 =item C<system_pipe($prog, $infile, $outfile, $removeIn, @extraargs)>
 
@@ -2198,6 +2230,10 @@ sub _do_postaction_shortcut {
   return 1;
 }
 
+=item C<parse_into_keywords>
+
+=cut
+
 sub parse_into_keywords {
   my ($str, @keys) = @_;
   my @words = quotewords('\s+', 0, $str);
@@ -2220,6 +2256,55 @@ sub parse_into_keywords {
     }
   }
   return($error, %ret);
+}
+
+=item C<update_context_cache($bindir,$progext,$run_postinst_cmd)>
+
+Run the ConTeXt cache generation commands, using C<$bindir> and
+C<$progext> to check if commands can be run. Use the function reference
+C<$run_postinst_cmd> to actually run the commands. The return status is
+zero if all succeeded, nonzero otherwise. If the main ConTeXt program
+(C<luametatex>) cannot be run at all, the return status is status.
+
+Functions C<info> and C<debug> are called with status reports.
+
+=cut
+
+sub update_context_cache {
+  my ($bindir,$progext,$run_postinst_cmd) = @_;
+  
+  my $errcount = 0;
+
+  # The story here is that in 2023, the lmtx binary for x86_64-linux was
+  # too new to run on the system where we build TL. (luametatex:
+  # /lib64/libm.so.6: version `GLIBC_2.23' not found) So we have to try
+  # running it to see if it is available, not just test for the
+  # program's existence. And since it exits nonzero given no args, we
+  # have to specify --version. Hope it keeps working like that ...
+  # 
+  # If lmtx is not runnable, don't consider that an error, since nothing
+  # can be done about it.
+  my $lmtx = "$bindir/luametatex$progext";
+  if (TeXLive::TLUtils::system_ok("$lmtx --version")) {
+    info("setting up ConTeXt cache: ");
+    $errcount += &$run_postinst_cmd("mtxrun --generate");
+    #
+    # If mtxrun failed, don't bother trying more.
+    if ($errcount == 0) {
+      $errcount += &$run_postinst_cmd("context --luatex --generate");
+      #
+      # If context succeeded too, try luajittex. Missing on some platforms.
+      if ($errcount == 0) {
+        my $luajittex = "$bindir/luajittex$progext";
+        if (TeXLive::TLUtils::system_ok("$luajittex --version")) {
+          $errcount += &$run_postinst_cmd("context --luajittex --generate");
+        } else {
+          debug("skipped luajittex cache setup, can't run $luajittex\n");
+        }
+      }
+    }
+  }
+  return $errcount;
 }
 
 =item C<announce_execute_actions($how, $tlpobj, $what)>

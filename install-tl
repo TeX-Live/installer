@@ -1161,21 +1161,8 @@ sub do_installation {
 
 sub run_postinst_cmd {
   my ($cmd) = @_;
-  
-  info ("running $cmd ...");
-  my ($out,$ret) = TeXLive::TLUtils::run_cmd ("$cmd 2>&1");
-  if ($ret == 0) {
-    info ("done\n");
-  } else {
-    info ("failed\n");
-    tlwarn ("$0: $cmd failed (status $ret): $!\n");
-    $ret = 1; # be sure we don't overflow the sum on anything crazy
-  }
-  log ($out);
-  
-  return $ret;
-} # run_postinst_cmd
-
+  &TeXLive::TLUtils::run_cmd_with_log ($cmd, \&log);
+}
 
 # 
 # Make texmf.cnf, backup directory, cleanups, path setting, and
@@ -1351,22 +1338,15 @@ operations might be disturbed.\n\n";
     }
   }
 
-  # lmtx/context setup. The story here is that in 2023, the lmtx binary
-  # for x86_64-linux was too new to run on the system where we build TL.
-  # (luametatex: /lib64/libm.so.6: version `GLIBC_2.23' not found)
-  # So we have to try running it to see it succeeds, not just test for 
-  # the program's existence. And since it exits nonzero given no args,
-  # we have to specify --version. Hope it keeps working like that ...
-  my $lmtx = "$plat_bindir/luametatex$progext";
+  # lmtx/context cache setup, relegated to a common subroutine
+  # that tlmgr can also call.
   if (exists($install{"context"}) && $install{"context"} == 1
-      && !exists $ENV{"TEXLIVE_INSTALL_NO_CONTEXT_CACHE"}
-      && TeXLive::TLUtils::system_ok("$lmtx --version")
-     ) {
-    info("setting up ConTeXt cache: ");
-    $errcount += run_postinst_cmd("mtxrun --generate");
-    $errcount += run_postinst_cmd("context --luatex --generate");
+      && !exists $ENV{"TEXLIVE_INSTALL_NO_CONTEXT_CACHE"}) {
+    $errcount +=
+      TeXLive::TLUtils::update_context_cache($plat_bindir, $progext,
+                                             \&run_postinst_cmd);
   } else {
-    debug("skipped ConTeXt cache setup\n");
+    debug("skipped ConTeXt cache setup, not installed or told not to\n");
   }
 
   # all formats option
@@ -2832,21 +2812,18 @@ EOF
 # Create a welcome message.
 sub create_welcome {
   @::welcome_arr = ();
-  push @::welcome_arr, "\n";
   push @::welcome_arr, __("Welcome to TeX Live!");
-  push @::welcome_arr, "\n";
-  push @::welcome_arr, __(
-    "See %s/index.html for links to documentation.\nThe TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html.",
-    $::vars{'TEXDIR'});
+  push @::welcome_arr, __("See %s/index.html for links to documentation.\n",
+                          $::vars{'TEXDIR'});
+  push @::welcome_arr, __("The TeX Live web site (https://tug.org/texlive/) provides all updates\nand corrections. TeX Live is a joint project of the TeX user groups\naround the world; please consider supporting it by joining the group\nbest for you. The list of groups is available on the web\nat https://tug.org/usergroups.html.\n");
   if (wndws()
       || ($vars{'instopt_adjustpath'}
          && $vars{'tlpdbopt_desktop_integration'} != 2)) {
      ; # don't tell them to make path adjustments on Windows,
        # or if they chose to "create symlinks".
    } else {
-    push @::welcome_arr, "\n";
     push @::welcome_arr, __(
-      "Add %s/texmf-dist/doc/man to MANPATH.\nAdd %s/texmf-dist/doc/info to INFOPATH.\nMost importantly, add %s/bin/%s\nto your PATH for current and future sessions.",
+      "Add %s/texmf-dist/doc/man to MANPATH.\nAdd %s/texmf-dist/doc/info to INFOPATH.\nMost importantly, add %s/bin/%s\nto your PATH for current and future sessions.\n",
       $::vars{'TEXDIR'}, $::vars{'TEXDIR'}, $::vars{'TEXDIR'},
       $::vars{'this_platform'});
   }
