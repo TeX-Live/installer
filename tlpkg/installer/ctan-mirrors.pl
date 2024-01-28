@@ -59,9 +59,6 @@ $mirrors = {
     'Taiwan' => {
       'https://ctan.mirror.twds.com.tw/tex-archive/' => 1,
     },
-    'Thailand' => {
-      'https://mirror.kku.ac.th/CTAN/' => 1,
-    },
   },
   'Europe' => {
     'Austria' => {
