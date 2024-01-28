@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2024-01-08 01:44+0100\n"
+"POT-Creation-Date: 2024-01-28 01:50+0100\n"
 "PO-Revision-Date: 2023-03-02 16:26+0800\n"
 "Last-Translator: Kung-chih Jen <kaitul@outlook.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1938,36 +1938,56 @@ msgstr "僅 Windows 支援程式"
 msgid "XeTeX and packages"
 msgstr "XeTeX 和套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2887
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2866
 msgid "Welcome to TeX Live!"
 msgstr "歡迎使用 TeX Live！"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2890
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2867
 #, perl-format
-msgid ""
-"See %s/index.html for links to documentation.\n"
-"The TeX Live web site (https://tug.org/texlive/) contains any updates and "
-"corrections. TeX Live is a joint project of the TeX user groups around the "
-"world; please consider supporting it by joining the group best for you. The "
-"list of groups is available on the web at https://tug.org/usergroups.html."
+msgid "See %s/index.html for links to documentation.\n"
 msgstr ""
-"請參閱 %s/index.html 以取得文件連結。\n"
-"TeX Live 網站 (https://tug.org/texlive/) 包含任何更新和校正。 TeX Live 是全"
-"球 TeX 使用者群組的共同專案；請考慮加入最適合您的群組來支持它。群組清單可在 "
-"https://tug.org/usergroups.html 網站上找到。"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2900
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2869
+msgid ""
+"The TeX Live web site (https://tug.org/texlive/) provides all updates\n"
+"and corrections. TeX Live is a joint project of the TeX user groups\n"
+"around the world; please consider supporting it by joining the group\n"
+"best for you. The list of groups is available on the web\n"
+"at https://tug.org/usergroups.html.\n"
+msgstr ""
+
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2877
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
 "Add %s/texmf-dist/doc/info to INFOPATH.\n"
 "Most importantly, add %s/bin/%s\n"
-"to your PATH for current and future sessions."
+"to your PATH for current and future sessions.\n"
 msgstr ""
-"新增 %s/texmf-dist/doc/man 至 MANPATH.\n"
-"新增 %s/texmf-dist/doc/info 至 INFOPATH.\n"
-"更重要的是，新增 %s/bin/%s\n"
-"至您目前和將來的工作階段 PATH。"
+
+#~ msgid ""
+#~ "See %s/index.html for links to documentation.\n"
+#~ "The TeX Live web site (https://tug.org/texlive/) contains any updates and "
+#~ "corrections. TeX Live is a joint project of the TeX user groups around "
+#~ "the world; please consider supporting it by joining the group best for "
+#~ "you. The list of groups is available on the web at https://tug.org/"
+#~ "usergroups.html."
+#~ msgstr ""
+#~ "請參閱 %s/index.html 以取得文件連結。\n"
+#~ "TeX Live 網站 (https://tug.org/texlive/) 包含任何更新和校正。 TeX Live 是"
+#~ "全球 TeX 使用者群組的共同專案；請考慮加入最適合您的群組來支持它。群組清單"
+#~ "可在 https://tug.org/usergroups.html 網站上找到。"
+
+#~ msgid ""
+#~ "Add %s/texmf-dist/doc/man to MANPATH.\n"
+#~ "Add %s/texmf-dist/doc/info to INFOPATH.\n"
+#~ "Most importantly, add %s/bin/%s\n"
+#~ "to your PATH for current and future sessions."
+#~ msgstr ""
+#~ "新增 %s/texmf-dist/doc/man 至 MANPATH.\n"
+#~ "新增 %s/texmf-dist/doc/info 至 INFOPATH.\n"
+#~ "更重要的是，新增 %s/bin/%s\n"
+#~ "至您目前和將來的工作階段 PATH。"
 
 #~ msgid "Detail &gt;&gt; Global"
 #~ msgstr "詳細資料 &gt;&gt; 全域"

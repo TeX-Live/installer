@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2024-01-08 01:44+0100\n"
+"POT-Creation-Date: 2024-01-28 01:50+0100\n"
 "PO-Revision-Date: 2022-03-21 13:45+0100\n"
 "Last-Translator: Mojca Miklavec <mojca.miklavec.lists@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -2040,36 +2040,56 @@ msgstr "Programi za MS Windows"
 msgid "XeTeX and packages"
 msgstr "XeTeX s paketi"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2887
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2866
 msgid "Welcome to TeX Live!"
 msgstr "Dobrodošli v TeX Live-u!"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2890
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2867
 #, perl-format
-msgid ""
-"See %s/index.html for links to documentation.\n"
-"The TeX Live web site (https://tug.org/texlive/) contains any updates and "
-"corrections. TeX Live is a joint project of the TeX user groups around the "
-"world; please consider supporting it by joining the group best for you. The "
-"list of groups is available on the web at https://tug.org/usergroups.html."
+msgid "See %s/index.html for links to documentation.\n"
 msgstr ""
-"Glej %s/index.html za povezave do dokumentacije.\n"
-"Domača stran za TeX Live-a (https://tug.org/texlive/) vsebuje popravke in "
-"posodobitve. TeX Live je skupni projekt društev uporabnikov TeX-a širom "
-"sveta; podprete ga lahko s pridružitvijo vam najbližjemu društvu. Seznam le-"
-"teh je na voljo na strani https://tug.org/usergroups.html."
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2900
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2869
+msgid ""
+"The TeX Live web site (https://tug.org/texlive/) provides all updates\n"
+"and corrections. TeX Live is a joint project of the TeX user groups\n"
+"around the world; please consider supporting it by joining the group\n"
+"best for you. The list of groups is available on the web\n"
+"at https://tug.org/usergroups.html.\n"
+msgstr ""
+
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2877
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
 "Add %s/texmf-dist/doc/info to INFOPATH.\n"
 "Most importantly, add %s/bin/%s\n"
-"to your PATH for current and future sessions."
+"to your PATH for current and future sessions.\n"
 msgstr ""
-"Dodajte %s/texmf-dist/doc/man v spremenljivko MANPATH.\n"
-"Dodajte %s/texmf-dist/doc/info v spremenljivko INFOPATH.\n"
-"Najpomembneje - dodajte %s/bin/%s v spremenljivko PATH."
+
+#~ msgid ""
+#~ "See %s/index.html for links to documentation.\n"
+#~ "The TeX Live web site (https://tug.org/texlive/) contains any updates and "
+#~ "corrections. TeX Live is a joint project of the TeX user groups around "
+#~ "the world; please consider supporting it by joining the group best for "
+#~ "you. The list of groups is available on the web at https://tug.org/"
+#~ "usergroups.html."
+#~ msgstr ""
+#~ "Glej %s/index.html za povezave do dokumentacije.\n"
+#~ "Domača stran za TeX Live-a (https://tug.org/texlive/) vsebuje popravke in "
+#~ "posodobitve. TeX Live je skupni projekt društev uporabnikov TeX-a širom "
+#~ "sveta; podprete ga lahko s pridružitvijo vam najbližjemu društvu. Seznam "
+#~ "le-teh je na voljo na strani https://tug.org/usergroups.html."
+
+#~ msgid ""
+#~ "Add %s/texmf-dist/doc/man to MANPATH.\n"
+#~ "Add %s/texmf-dist/doc/info to INFOPATH.\n"
+#~ "Most importantly, add %s/bin/%s\n"
+#~ "to your PATH for current and future sessions."
+#~ msgstr ""
+#~ "Dodajte %s/texmf-dist/doc/man v spremenljivko MANPATH.\n"
+#~ "Dodajte %s/texmf-dist/doc/info v spremenljivko INFOPATH.\n"
+#~ "Najpomembneje - dodajte %s/bin/%s v spremenljivko PATH."
 
 #~ msgid "GUI Language ..."
 #~ msgstr "Jezik uporabniškega vmesnika ..."
