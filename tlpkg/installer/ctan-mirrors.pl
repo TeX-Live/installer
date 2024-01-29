@@ -59,6 +59,9 @@ $mirrors = {
     'Taiwan' => {
       'https://ctan.mirror.twds.com.tw/tex-archive/' => 1,
     },
+    'Thailand' => {
+      'https://mirror.kku.ac.th/CTAN/' => 1,
+    },
   },
   'Europe' => {
     'Austria' => {
@@ -135,7 +138,6 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
-      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
@@ -152,7 +154,6 @@ $mirrors = {
     'Spain' => {
       'https://ctan.fisiquimicamente.com/' => 1,
       'https://ctan.javinator9889.com/' => 1,
-      'https://osl.ugr.es/CTAN/' => 1,
     },
     'Sweden' => {
       'https://ftp.acc.umu.se/mirror/CTAN/' => 1,
