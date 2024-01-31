@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
-# Copyright 2007-2023 Norbert Preining, Reinhard Kotucha
+# Copyright 2007-2024 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -147,7 +147,8 @@ our $PERL_SINGLE_QUOTE; # we steal code from Text::ParseWords
 # We use myriad global and package-global variables, unfortunately.
 # To avoid "used only once" warnings, we must use the variable names again.
 # 
-# This ugly repetition in the BEGIN block works with all Perl versions.
+# This ugly repetition in the BEGIN block works with all Perl versions;
+# cleaner/fancier ways of handling this don't.
 BEGIN {
   $::LOGFILE = $::LOGFILE;
   $::LOGFILENAME = $::LOGFILENAME;
@@ -164,6 +165,7 @@ BEGIN {
   $::machinereadable = $::machinereadable;
   $::no_execute_actions = $::no_execute_actions;
   $::regenerate_all_formats = $::regenerate_all_formats;
+  $::context_cache_update_needed = $::context_cache_update_needed;
   #
   $JSON::false = $JSON::false;
   $JSON::true = $JSON::true;
@@ -818,6 +820,8 @@ the exit status of C<$cmd>. Environment variable overrides cannot be
 passed. (This is used for running special post-installation commands in
 install-tl and tlmgr.)
 
+The C<info> function is called to report what is happening.
+
 =cut
 
 sub run_cmd_with_log {
@@ -830,9 +834,9 @@ sub run_cmd_with_log {
   } else {
     info ("failed\n");
     tlwarn ("$0: $cmd failed (status $ret): $!\n");
-    $ret = 1; # be sure we don't overflow the sum on anything crazy
+    $ret = 1;
   }
-  &$logfn ($out);
+  &$logfn ($out); # log the output
   
   return $ret;
 } # run_cmd_with_log
@@ -2275,11 +2279,11 @@ sub update_context_cache {
   
   my $errcount = 0;
 
-  # The story here is that in 2023, the lmtx binary for x86_64-linux was
-  # too new to run on the system where we build TL. (luametatex:
-  # /lib64/libm.so.6: version `GLIBC_2.23' not found) So we have to try
-  # running it to see if it is available, not just test for the
-  # program's existence. And since it exits nonzero given no args, we
+  # The story here is that in 2023, the provided lmtx binary for
+  # x86_64-linux was too new to run on the system where we build TL.
+  # (luametatex: /lib64/libm.so.6: version `GLIBC_2.23' not found)
+  # So we have to try running the binary to see if it works, not just
+  # test for its existence. And since it exits nonzero given no args, we
   # have to specify --version. Hope it keeps working like that ...
   # 
   # If lmtx is not runnable, don't consider that an error, since nothing
@@ -2294,6 +2298,10 @@ sub update_context_cache {
       $errcount += &$run_postinst_cmd("context --luatex --generate");
       #
       # If context succeeded too, try luajittex. Missing on some platforms.
+      # Although we build luajittex normally, instead of importing the
+      # binary, testing for file existence should suffice, we may as
+      # well test execution since it's just as easy.
+      # 
       if ($errcount == 0) {
         my $luajittex = "$bindir/luajittex$progext";
         if (TeXLive::TLUtils::system_ok("$luajittex --version")) {
@@ -2307,25 +2315,39 @@ sub update_context_cache {
   return $errcount;
 }
 
-=item C<announce_execute_actions($how, $tlpobj, $what)>
+=item C<announce_execute_actions($how, [$tlpobj[, $what]])>
 
-Announces that the actions given in C<$tlpobj> should be executed
-after all packages have been unpacked. C<$what> provides 
-additional information.
+Announces (records) that the actions, usually given in C<$tlpobj> (but
+can be omitted for global actions), should be executed after all
+packages have been unpacked. The optional C<$what> depends on the
+action, e.g., a parse_AddFormat_line reference for formats; not sure if
+it's used for anything else.
+
+This is called for every package that gets installed.
 
 =cut
 
 sub announce_execute_actions {
-  my ($type, $tlp, $what) = @_;
-  # do simply return immediately if execute actions are suppressed
+  my ($type,$tlp,$what) = @_;
+  # return immediately if execute actions are suppressed
   return if $::no_execute_actions;
-
+  
+  # since we're called for every package with "enable",
+  # it's not helpful to report that again.
+  if ($type ne "enable") {
+    my $forpkg = $tlp ? ("for " . $tlp->name) : "no package";
+    debug("announce_execute_actions: given $type ($forpkg)\n");
+  }
   if (defined($type) && ($type eq "regenerate-formats")) {
     $::regenerate_all_formats = 1;
     return;
   }
   if (defined($type) && ($type eq "files-changed")) {
     $::files_changed = 1;
+    return;
+  }
+  if (defined($type) && ($type eq "context-cache")) {
+    $::context_cache_update_needed = 1;
     return;
   }
   if (defined($type) && ($type eq "rebuild-format")) {
@@ -2337,17 +2359,18 @@ sub announce_execute_actions {
   if (!defined($type) || (($type ne "enable") && ($type ne "disable"))) {
     die "announce_execute_actions: enable or disable, not type $type";
   }
-  my (@maps, @formats, @dats);
   if ($tlp->runfiles || $tlp->srcfiles || $tlp->docfiles) {
     $::files_changed = 1;
   }
-  $what = "map format hyphen" if (!defined($what));
+  #
+  $what = "map format hyphen" if (!defined($what)); # do all by default
   foreach my $e ($tlp->executes) {
     if ($e =~ m/^add((Mixed|Kanji)?Map)\s+([^\s]+)\s*$/) {
       # save the refs as we have another =~ grep in the following lines
       my $a = $1;
       my $b = $3;
       $::execute_actions{$type}{'maps'}{$b} = $a if ($what =~ m/map/);
+
     } elsif ($e =~ m/^AddFormat\s+(.*)\s*$/) {
       my %r = TeXLive::TLUtils::parse_AddFormat_line("$1");
       if (defined($r{"error"})) {
@@ -2356,6 +2379,7 @@ sub announce_execute_actions {
         $::execute_actions{$type}{'formats'}{$r{'name'}} = \%r
           if ($what =~ m/format/);
       }
+
     } elsif ($e =~ m/^AddHyphen\s+(.*)\s*$/) {
       my %r = TeXLive::TLUtils::parse_AddHyphen_line("$1");
       if (defined($r{"error"})) {
@@ -2364,6 +2388,7 @@ sub announce_execute_actions {
         $::execute_actions{$type}{'hyphens'}{$r{'name'}} = \%r
           if ($what =~ m/hyphen/);
       }
+
     } else {
       tlwarn("Unknown execute $e in ", $tlp->name, "\n");
     }
