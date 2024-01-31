@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLWinGoo.pm - Windows goop.
-# Copyright 2008-2023 Siep Kroonenberg, Norbert Preining
+# Copyright 2008-2024 Siep Kroonenberg, Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
