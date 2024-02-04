@@ -1,13 +1,13 @@
-# Copyright 2010-2023 TeX Live Team
+# Copyright 2010-2024 TeX Live Team
 # This file is distributed under the same license as the TeX Live package.
 # Koji Yokota <yokota33@gmail.com>, 2010, 2011, 2012, 2014, 2015.
-# Takuto Asakura <tkt.asakura@gmail.com>, 2019-2023.
+# Takuto Asakura <tkt.asakura@gmail.com>, 2019-2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2024-01-28 01:50+0100\n"
-"PO-Revision-Date: 2023-08-30 23:15+0900\n"
+"PO-Revision-Date: 2024-02-04 15:32+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
@@ -1958,7 +1958,7 @@ msgstr "TeX Liveへようこそ！"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2867
 #, perl-format
 msgid "See %s/index.html for links to documentation.\n"
-msgstr ""
+msgstr "ドキュメントの一覧は%s/index.htmlをご覧ください。\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2869
 msgid ""
@@ -1968,6 +1968,11 @@ msgid ""
 "best for you. The list of groups is available on the web\n"
 "at https://tug.org/usergroups.html.\n"
 msgstr ""
+"TeX Liveのウェブサイト（https://tug.org/texlive/）にはすべてのアップデートと"
+"コレクションの情報が掲載されています。TeX Liveは全世界のTeXユーザ会有志による"
+"合同プロジェクトです。TeX Liveプロジェクトをサポートしていただける場合お好き"
+"なTeXユーザ会に入会することをご検討ください。TeXユーザ会の一覧はhttps://tug."
+"org/usergroups.htmlでご確認いただけます。\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2877
 #, perl-format
@@ -1977,29 +1982,7 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions.\n"
 msgstr ""
-
-#~ msgid ""
-#~ "See %s/index.html for links to documentation.\n"
-#~ "The TeX Live web site (https://tug.org/texlive/) contains any updates and "
-#~ "corrections. TeX Live is a joint project of the TeX user groups around "
-#~ "the world; please consider supporting it by joining the group best for "
-#~ "you. The list of groups is available on the web at https://tug.org/"
-#~ "usergroups.html."
-#~ msgstr ""
-#~ "ドキュメントの一覧は%s/index.htmlをご覧ください。TeX Liveのウェブサイト"
-#~ "（https://tug.org/texlive/）にはすべてのアップデートとコレクションの情報が"
-#~ "掲載されています。TeX Liveは全世界のTeXユーザ会有志による合同プロジェクト"
-#~ "です。TeX Liveプロジェクトをサポートしていただける場合お好きなTeXユーザ会"
-#~ "に入会することをご検討ください。TeXユーザ会の一覧はhttps://tug.org/"
-#~ "usergroups.htmlでご確認いただけます。"
-
-#~ msgid ""
-#~ "Add %s/texmf-dist/doc/man to MANPATH.\n"
-#~ "Add %s/texmf-dist/doc/info to INFOPATH.\n"
-#~ "Most importantly, add %s/bin/%s\n"
-#~ "to your PATH for current and future sessions."
-#~ msgstr ""
-#~ "%s/texmf-dist/doc/manをMANPATHに追加してください。\n"
-#~ "%s/texmf-dist/doc/infoをINFOPATHに追加してください。\n"
-#~ "最重要：TeX Liveに含まれるバイナリを利用可能にするため\n"
-#~ "%s/bin/%sをPATHに追加してください。"
+"%s/texmf-dist/doc/manをMANPATHに追加してください。\n"
+"%s/texmf-dist/doc/infoをINFOPATHに追加してください。\n"
+"最重要：TeX Liveに含まれるバイナリを利用可能にするため\n"
+"%s/bin/%sをPATHに追加してください。\n"
