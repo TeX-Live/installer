@@ -2,7 +2,7 @@ package Test::Needs;
 use strict;
 use warnings;
 no warnings 'once';
-our $VERSION = '0.002009';
+our $VERSION = '0.002010';
 $VERSION =~ tr/_//d;
 
 BEGIN {
@@ -175,27 +175,29 @@ sub _fail_or_skip {
     my $tb = Test::Builder->new;
     my $has_plan = Test::Builder->can('has_plan') ? 'has_plan'
       : sub { $_[0]->expected_tests || eval { $_[0]->current_test($_[0]->current_test); 'no_plan' } };
+    my $tests = $tb->current_test;
     if ($fail) {
       $tb->plan(tests => 1)
         unless $tb->$has_plan;
+      $tests++;
       $tb->ok(0, "Test::Needs modules available");
       $tb->diag($message);
     }
     else {
       my $plan = $tb->$has_plan;
-      my $tests = $tb->current_test;
       if ($plan || $tests) {
         my $skips
           = $plan && $plan ne 'no_plan' ? $plan - $tests : 1;
         $tb->skip("Test::Needs modules not available")
           for 1 .. $skips;
+        $tests += $skips;
         Test::Builder->can('note') ? $tb->note($message) : print "# $message\n";
       }
       else {
         $tb->skip_all($message);
       }
     }
-    $tb->done_testing
+    $tb->done_testing($tests)
       if Test::Builder->can('done_testing');
     die bless {} => 'Test::Builder::Exception'
       if Test::Builder->can('parent') && $tb->parent;

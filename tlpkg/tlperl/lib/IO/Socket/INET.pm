@@ -14,7 +14,7 @@ use Exporter;
 use Errno;
 
 our @ISA = qw(IO::Socket);
-our $VERSION = "1.46";
+our $VERSION = "1.52";
 
 my $EINVAL = exists(&Errno::EINVAL) ? Errno::EINVAL() : 1;
 
@@ -330,7 +330,7 @@ inherits all the methods defined by L<IO::Socket>.
 =item new ( [ARGS] )
 
 Creates an C<IO::Socket::INET> object, which is a reference to a
-newly created symbol (see the C<Symbol> package). C<new>
+newly created symbol (see the L<Symbol> package). C<new>
 optionally takes arguments, these arguments are in key-value pairs.
 
 In addition to the key-value pairs accepted by L<IO::Socket>,
@@ -401,7 +401,7 @@ Examples:
    $sock = IO::Socket::INET->new(
                            PeerPort  => 9999,
                            PeerAddr  => inet_ntoa(INADDR_BROADCAST),
-                           Proto     => udp,    
+                           Proto     => 'udp',
                            LocalAddr => 'localhost',
                            Broadcast => 1 ) 
                        or die "Can't bind : $IO::Socket::errstr\n";
@@ -460,7 +460,7 @@ L<Socket>, L<IO::Socket>
 =head1 AUTHOR
 
 Graham Barr. Currently maintained by the Perl Porters.  Please report all
-bugs to <perlbug@perl.org>.
+bugs at L<https://github.com/Perl/perl5/issues>.
 
 =head1 COPYRIGHT
 

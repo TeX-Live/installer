@@ -1,11 +1,12 @@
 # Generated from XSLoader_pm.PL (resolved %Config::Config value)
 # This file is unique for every OS
 
+use strict;
+no strict 'refs';
+
 package XSLoader;
 
-$VERSION = "0.30"; # remember to update version in POD!
-
-#use strict;
+our $VERSION = "0.32"; # remember to update version in POD!
 
 package DynaLoader;
 
@@ -111,13 +112,15 @@ sub load {
     return &$xs(@_);
 }
 
+# Can't test with DynaLoader->can('bootstrap_inherit') when building in the
+# core, as XSLoader gets built before DynaLoader.
+
 sub bootstrap_inherit {
     require DynaLoader;
     goto \&DynaLoader::bootstrap_inherit;
 }
 
 1;
-
 
 __END__
 
@@ -127,7 +130,7 @@ XSLoader - Dynamically load C libraries into Perl code
 
 =head1 VERSION
 
-Version 0.30
+Version 0.32
 
 =head1 SYNOPSIS
 

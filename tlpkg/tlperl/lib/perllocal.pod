@@ -1,10 +1,10 @@
-=head2 Tue Jul 12 09:48:50 2022: C<Module> L<Math::Int64|Math::Int64>
+=head2 Tue Feb 13 14:47:28 2024: C<Module> L<Math::Int64|Math::Int64>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -12,7 +12,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 0.54>
+C<VERSION: 0.57>
 
 =item *
 
@@ -20,13 +20,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 09:54:16 2022: C<Module> L<IO::String|IO::String>
+=head2 Tue Feb 13 14:47:56 2024: C<Module> L<IO::String|IO::String>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -42,13 +42,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 09:54:45 2022: C<Module> L<File::Which|File::Which>
+=head2 Tue Feb 13 14:48:56 2024: C<Module> L<File::Which|File::Which>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -64,13 +64,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 09:55:07 2022: C<Module> L<Digest::SHA|Digest::SHA>
+=head2 Tue Feb 13 14:50:16 2024: C<Module> L<Digest::SHA|Digest::SHA>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -78,7 +78,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.02>
+C<VERSION: 6.04>
 
 =item *
 
@@ -86,13 +86,13 @@ C<EXE_FILES: shasum>
 
 =back
 
-=head2 Tue Jul 12 09:56:10 2022: C<Module> L<Encode::compat|Encode::compat>
+=head2 Tue Feb 13 14:51:10 2024: C<Module> L<Encode::compat|Encode::compat>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -108,13 +108,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 09:56:29 2022: C<Module> L<Encode::Locale|Encode::Locale>
+=head2 Tue Feb 13 14:51:36 2024: C<Module> L<Encode::Locale|Encode::Locale>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -130,13 +130,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 09:56:51 2022: C<Module> L<Win32::API|Win32::API>
+=head2 Tue Feb 13 14:52:37 2024: C<Module> L<Win32::API|Win32::API>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -152,13 +152,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 09:59:18 2022: C<Module> L<Win32API::Registry|Win32API::Registry>
+=head2 Tue Feb 13 14:54:26 2024: C<Module> L<Win32API::Registry|Win32API::Registry>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -174,13 +174,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:00:04 2022: C<Module> L<Win32::Console|Win32::Console>
+=head2 Tue Feb 13 14:55:31 2024: C<Module> L<Win32::Console|Win32::Console>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -196,13 +196,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:00:32 2022: C<Module> L<Win32::TieRegistry|Win32::TieRegistry>
+=head2 Tue Feb 13 14:56:13 2024: C<Module> L<Win32::TieRegistry|Win32::TieRegistry>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -218,13 +218,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:00:51 2022: C<Module> L<Win32::Shortcut|Win32::Shortcut>
+=head2 Tue Feb 13 14:56:47 2024: C<Module> L<Win32::Shortcut|Win32::Shortcut>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -240,13 +240,57 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:01:24 2022: C<Module> L<Date::Parse|Date::Parse>
+=head2 Tue Feb 13 14:59:52 2024: C<Module> L<Cpanel::JSON::XS|Cpanel::JSON::XS>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 4.37>
+
+=item *
+
+C<EXE_FILES: bin/cpanel_json_xs>
+
+=back
+
+=head2 Tue Feb 13 19:02:15 2024: C<Module> L<Socket|Socket>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.037>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Feb 13 19:03:02 2024: C<Module> L<Date::Parse|Date::Parse>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -262,13 +306,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:01:51 2022: C<Module> L<HTTP::Date|HTTP::Date>
+=head2 Tue Feb 13 19:08:57 2024: C<Module> L<HTTP::Date|HTTP::Date>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -276,7 +320,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.05>
+C<VERSION: 6.06>
 
 =item *
 
@@ -284,13 +328,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:02:10 2022: C<Module> L<File::Listing|File::Listing>
+=head2 Tue Feb 13 19:09:20 2024: C<Module> L<File::Listing|File::Listing>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -298,7 +342,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.14>
+C<VERSION: 6.16>
 
 =item *
 
@@ -306,13 +350,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:02:32 2022: C<Module> L<IO::HTML|IO::HTML>
+=head2 Tue Feb 13 19:09:58 2024: C<Module> L<IO::HTML|IO::HTML>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -328,13 +372,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:02:51 2022: C<Module> L<Try::Tiny|Try::Tiny>
+=head2 Tue Feb 13 19:10:35 2024: C<Module> L<Try::Tiny|Try::Tiny>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -350,13 +394,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:19:14 2022: C<Module> L<Test::Fatal|Test::Fatal>
+=head2 Tue Feb 13 19:11:32 2024: C<Module> L<Test::Fatal|Test::Fatal>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -364,7 +408,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 0.016>
+C<VERSION: 0.017>
 
 =item *
 
@@ -372,13 +416,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:19:35 2022: C<Module> L<Test::Needs|Test::Needs>
+=head2 Tue Feb 13 19:12:32 2024: C<Module> L<Test::Needs|Test::Needs>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -386,7 +430,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 0.002009>
+C<VERSION: 0.002010>
 
 =item *
 
@@ -394,13 +438,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:19:51 2022: C<Module> L<LWP::MediaTypes|LWP::MediaTypes>
+=head2 Tue Feb 13 19:13:04 2024: C<Module> L<LWP::MediaTypes|LWP::MediaTypes>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -416,13 +460,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:20:09 2022: C<Module> L<URI|URI>
+=head2 Tue Feb 13 19:22:03 2024: C<Module> L<Test::Warnings|Test::Warnings>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -430,7 +474,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 5.10>
+C<VERSION: 0.033>
 
 =item *
 
@@ -438,13 +482,57 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:20:26 2022: C<Module> L<HTTP::Message|HTTP::Message>
+=head2 Tue Feb 13 19:22:35 2024: C<Module> L<URI|URI>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 5.27>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Feb 13 19:27:56 2024: C<Module> L<Test::Harness|Test::Harness>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 3.48>
+
+=item *
+
+C<EXE_FILES: bin/prove>
+
+=back
+
+=head2 Tue Feb 13 19:36:19 2024: C<Module> L<HTTP::Message|HTTP::Message>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -460,13 +548,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:20:44 2022: C<Module> L<HTML::Tagset|HTML::Tagset>
+=head2 Tue Feb 13 19:41:22 2024: C<Module> L<HTML::Tagset|HTML::Tagset>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -482,13 +570,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:21:26 2022: C<Module> L<HTML::Parser|HTML::Parser>
+=head2 Tue Feb 13 19:42:23 2024: C<Module> L<HTML::Parser|HTML::Parser>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -496,7 +584,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 3.76>
+C<VERSION: 3.81>
 
 =item *
 
@@ -504,13 +592,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:21:50 2022: C<Module> L<WWW::RobotRules|WWW::RobotRules>
+=head2 Tue Feb 13 19:44:00 2024: C<Module> L<WWW::RobotRules|WWW::RobotRules>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -526,13 +614,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:22:07 2022: C<Module> L<HTTP::Negotiate|HTTP::Negotiate>
+=head2 Tue Feb 13 19:44:29 2024: C<Module> L<HTTP::Negotiate|HTTP::Negotiate>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -548,13 +636,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:22:31 2022: C<Module> L<Net::HTTP|Net::HTTP>
+=head2 Tue Feb 13 19:45:04 2024: C<Module> L<Net::HTTP|Net::HTTP>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -562,7 +650,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.22>
+C<VERSION: 6.23>
 
 =item *
 
@@ -570,13 +658,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:22:48 2022: C<Module> L<Mozilla::CA|Mozilla::CA>
+=head2 Tue Feb 13 19:45:43 2024: C<Module> L<Mozilla::CA|Mozilla::CA>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -584,7 +672,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 20211001>
+C<VERSION: 20231213>
 
 =item *
 
@@ -592,13 +680,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:23:15 2022: C<Module> L<HTTP::Daemon|HTTP::Daemon>
+=head2 Tue Feb 13 19:46:18 2024: C<Module> L<HTTP::Daemon|HTTP::Daemon>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -606,7 +694,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.14>
+C<VERSION: 6.16>
 
 =item *
 
@@ -614,13 +702,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:44:24 2022: C<Module> L<HTTP::Cookies|HTTP::Cookies>
+=head2 Tue Feb 13 19:56:31 2024: C<Module> L<ExtUtils::Config|ExtUtils::Config>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -628,7 +716,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.10>
+C<VERSION: 0.008>
 
 =item *
 
@@ -636,13 +724,123 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:44:56 2022: C<Module> L<Test::RequiresInternet|Test::RequiresInternet>
+=head2 Tue Feb 13 19:57:40 2024: C<Module> L<ExtUtils::Config|ExtUtils::Config>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.008>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Feb 13 20:03:27 2024: C<Module> L<ExtUtils::Helpers|ExtUtils::Helpers>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.026>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Feb 13 20:08:52 2024: C<Module> L<ExtUtils::InstallPaths|ExtUtils::InstallPaths>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.012>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Feb 13 20:18:08 2024: C<Module> L<HTTP::Daemon|HTTP::Daemon>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.16>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Feb 13 20:19:09 2024: C<Module> L<HTTP::Cookies|HTTP::Cookies>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 6.11>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Feb 13 20:19:35 2024: C<Module> L<Test::RequiresInternet|Test::RequiresInternet>
+
+=over 4
+
+=item *
+
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 
@@ -658,57 +856,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Tue Jul 12 10:45:58 2022: C<Module> L<libwww::perl|libwww::perl>
+=head2 Thu Feb 15 14:10:53 2024: C<Module> L<JSON::MaybeXS|JSON::MaybeXS>
 
 =over 4
 
 =item *
 
-C<installed into: E:\tlperl\site\lib>
-
-=item *
-
-C<LINKTYPE: dynamic>
-
-=item *
-
-C<VERSION: 6.61>
-
-=item *
-
-C<EXE_FILES: bin/lwp-download bin/lwp-dump bin/lwp-mirror bin/lwp-request>
-
-=back
-
-=head2 Tue Jul 12 10:46:22 2022: C<Module> L<Cpanel::JSON::XS|Cpanel::JSON::XS>
-
-=over 4
-
-=item *
-
-C<installed into: E:\tlperl\site\lib>
-
-=item *
-
-C<LINKTYPE: dynamic>
-
-=item *
-
-C<VERSION: 4.27>
-
-=item *
-
-C<EXE_FILES: bin/cpanel_json_xs>
-
-=back
-
-=head2 Tue Jul 12 10:46:50 2022: C<Module> L<JSON::MaybeXS|JSON::MaybeXS>
-
-=over 4
-
-=item *
-
-C<installed into: E:\tlperl\site\lib>
+C<installed into: d:\tlperl\site\lib>
 
 =item *
 

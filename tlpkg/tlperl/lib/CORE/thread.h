@@ -16,8 +16,6 @@
 
 #ifdef WIN32
 #  include <win32thread.h>
-#elif defined(NETWARE)
-#  include <nw5thread.h>
 #else
 #  ifdef OLD_PTHREADS_API /* Here be dragons. */
 #    define DETACH(t) \
@@ -34,11 +32,6 @@
 #    define PERL_SET_CONTEXT(t)	Perl_set_context((void*)t)
 
 #    define PTHREAD_GETSPECIFIC_INT
-#    ifdef DJGPP
-#      define pthread_addr_t any_t
-#      define NEED_PTHREAD_INIT
-#      define PTHREAD_CREATE_JOINABLE (1)
-#    endif
 #    ifdef OEMVS
 #      define pthread_addr_t void *
 #      define pthread_create(t,a,s,d)        pthread_create(t,&(a),s,d)
@@ -61,7 +54,7 @@
 #      define pthread_mutexattr_init(a) pthread_mutexattr_create(a)
 #      define pthread_mutexattr_settype(a,t) pthread_mutexattr_setkind_np(a,t)
 #    endif
-#    if defined(DJGPP) || defined(OEMVS)
+#    if defined(OEMVS)
 #      define PTHREAD_ATTR_SETDETACHSTATE(a,s) pthread_attr_setdetachstate(a,&(s))
 #      define YIELD pthread_yield(NULL)
 #    endif
@@ -181,20 +174,20 @@
 #  ifdef MUTEX_INIT_NEEDS_MUTEX_ZEROED
     /* Temporary workaround, true bug is deeper. --jhi 1999-02-25 */
 #    define MUTEX_INIT(m) \
-    STMT_START {						\
-        int _eC_;						\
-        Zero((m), 1, perl_mutex);                               \
-        if ((_eC_ = pthread_mutex_init((m), pthread_mutexattr_default)))	\
-            Perl_croak_nocontext("panic: MUTEX_INIT (%d) [%s:%d]",	\
-                                 _eC_, __FILE__, __LINE__);	\
+    STMT_START {                                                    \
+        int _eC_;                                                   \
+        Zero((m), 1, perl_mutex);                                   \
+        if ((_eC_ = pthread_mutex_init((m), pthread_mutexattr_default)))\
+            Perl_croak_nocontext("panic: MUTEX_INIT (%d) [%s:%d]",  \
+                                 _eC_, __FILE__, __LINE__);         \
     } STMT_END
 #  else
 #    define MUTEX_INIT(m) \
     STMT_START {						\
         int _eC_;						\
-        if ((_eC_ = pthread_mutex_init((m), pthread_mutexattr_default)))	\
-            Perl_croak_nocontext("panic: MUTEX_INIT (%d) [%s:%d]",	\
-                                 _eC_, __FILE__, __LINE__);	\
+        if ((_eC_ = pthread_mutex_init((m), pthread_mutexattr_default))) \
+            Perl_croak_nocontext("panic: MUTEX_INIT (%d) [%s:%d]", \
+                                 _eC_, __FILE__, __LINE__);     \
     } STMT_END
 #  endif
 
@@ -206,28 +199,38 @@
 #    define perl_pthread_mutex_unlock(m) pthread_mutex_unlock(m)
 #  endif
 
-#  define MUTEX_LOCK(m) \
+#  define MUTEX_LOCK(m)                                         \
     STMT_START {						\
+        dSAVE_ERRNO;                                            \
         int _eC_;						\
-        if ((_eC_ = perl_pthread_mutex_lock((m))))			\
-            Perl_croak_nocontext("panic: MUTEX_LOCK (%d) [%s:%d]",	\
+        if ((_eC_ = perl_pthread_mutex_lock((m))))		\
+            Perl_croak_nocontext("panic: MUTEX_LOCK (%d) [%s:%d]",\
                                  _eC_, __FILE__, __LINE__);	\
+        RESTORE_ERRNO;                                          \
     } STMT_END
 
-#  define MUTEX_UNLOCK(m) \
+#  define MUTEX_UNLOCK(m)                                       \
     STMT_START {						\
+        dSAVE_ERRNO; /* Shouldn't be necessary as panics if fails */\
         int _eC_;						\
-        if ((_eC_ = perl_pthread_mutex_unlock((m))))			\
-            Perl_croak_nocontext("panic: MUTEX_UNLOCK (%d) [%s:%d]",	\
+        if ((_eC_ = perl_pthread_mutex_unlock((m)))) {          \
+            Perl_croak_nocontext(                               \
+                            "panic: MUTEX_UNLOCK (%d) [%s:%d]", \
                                  _eC_, __FILE__, __LINE__);	\
+        }                                                       \
+        RESTORE_ERRNO;                                          \
     } STMT_END
 
-#  define MUTEX_DESTROY(m) \
-    STMT_START {						\
-        int _eC_;						\
-        if ((_eC_ = pthread_mutex_destroy((m))))		\
-            Perl_croak_nocontext("panic: MUTEX_DESTROY (%d) [%s:%d]",	\
-                                 _eC_, __FILE__, __LINE__);	\
+#  define MUTEX_DESTROY(m)                                                  \
+    STMT_START {						            \
+        int _eC_;						            \
+        if ((_eC_ = pthread_mutex_destroy((m)))) {                          \
+            dTHX;                                                           \
+            if (PL_phase != PERL_PHASE_DESTRUCT) {                          \
+                Perl_croak_nocontext("panic: MUTEX_DESTROY (%d) [%s:%d]",   \
+                                    _eC_, __FILE__, __LINE__);	            \
+            }                                                               \
+        }                                                                   \
     } STMT_END
 #endif /* MUTEX_INIT */
 
@@ -265,11 +268,15 @@
     } STMT_END
 
 #  define COND_DESTROY(c) \
-    STMT_START {						\
-        int _eC_;						\
-        if ((_eC_ = pthread_cond_destroy((c))))			\
-            Perl_croak_nocontext("panic: COND_DESTROY (%d) [%s:%d]",	\
-                                 _eC_, __FILE__, __LINE__);	\
+    STMT_START {						            \
+        int _eC_;						            \
+        if ((_eC_ = pthread_cond_destroy((c)))) {                           \
+            dTHX;                                                           \
+            if (PL_phase != PERL_PHASE_DESTRUCT) {                          \
+                Perl_croak_nocontext("panic: COND_DESTROY (%d) [%s:%d]",    \
+                                    _eC_, __FILE__, __LINE__);	            \
+            }                                                               \
+        }                                                                   \
     } STMT_END
 #endif /* COND_INIT */
 
@@ -379,19 +386,51 @@
 #    define PTHREAD_GETSPECIFIC(key) pthread_getspecific(key)
 #endif
 
-#ifndef PERL_GET_CONTEXT
-#  define PERL_GET_CONTEXT	PTHREAD_GETSPECIFIC(PL_thr_key)
-#endif
+#if defined(PERL_THREAD_LOCAL) && !defined(PERL_GET_CONTEXT) && !defined(PERL_SET_CONTEXT) && !defined(__cplusplus)
+/* Use C11 thread-local storage, where possible.
+ * Frustratingly we can't use it for C++ extensions, C++ and C disagree on the
+ * syntax used for thread local storage, meaning that the working token that
+ * Configure probed for C turns out to be a compiler error on C++. Great.
+ * (Well, unless one or both is supporting non-standard syntax as an extension)
+ * As Configure doesn't have a way to probe for C++ dialects, we just take the
+ * safe option and do the same as 5.34.0 and earlier - use pthreads on C++.
+ * Of course, if C++ XS extensions really want to avoid *all* this overhead,
+ * they should #define PERL_NO_GET_CONTEXT and pass aTHX/aTHX_ explicitly) */
+#  define PERL_USE_THREAD_LOCAL
+extern PERL_THREAD_LOCAL void *PL_current_context;
 
-#ifndef PERL_SET_CONTEXT
-#  define PERL_SET_CONTEXT(t) \
-    STMT_START {						\
-        int _eC_;						\
-        if ((_eC_ = pthread_setspecific(PL_thr_key, (void *)(t))))	\
-            Perl_croak_nocontext("panic: pthread_setspecific (%d) [%s:%d]",	\
-                                 _eC_, __FILE__, __LINE__);	\
+#  define PERL_GET_CONTEXT        PL_current_context
+
+/* We must also call pthread_setspecific() always, as C++ code has to read it
+ * with pthreads (the #else side just below) */
+
+#  define PERL_SET_CONTEXT(t)                                               \
+    STMT_START {                                                            \
+        int _eC_;                                                           \
+        if ((_eC_ = pthread_setspecific(PL_thr_key,                         \
+                                        PL_current_context = (void *)(t)))) \
+            Perl_croak_nocontext("panic: pthread_setspecific (%d) [%s:%d]", \
+                                 _eC_, __FILE__, __LINE__);                 \
+        PERL_SET_NON_tTHX_CONTEXT(t);                                       \
     } STMT_END
-#endif /* PERL_SET_CONTEXT */
+
+#else
+/* else fall back to pthreads */
+
+#  ifndef PERL_GET_CONTEXT
+#    define PERL_GET_CONTEXT	PTHREAD_GETSPECIFIC(PL_thr_key)
+#  endif
+
+/* For C++ extensions built on a system where the C compiler provides thread
+ * local storage that call PERL_SET_CONTEXT() also need to set
+ * PL_current_context, so need to call into C code to do this.
+ * To avoid exploding code complexity, do this also on C platforms that don't
+ * support thread local storage. PERL_SET_CONTEXT is not called that often. */
+
+#  ifndef PERL_SET_CONTEXT
+#    define PERL_SET_CONTEXT(t) Perl_set_context((void*)t)
+#  endif /* PERL_SET_CONTEXT */
+#endif /* PERL_THREAD_LOCAL */
 
 #ifndef INIT_THREADS
 #  ifdef NEED_PTHREAD_INIT

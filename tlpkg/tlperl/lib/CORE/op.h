@@ -15,7 +15,13 @@
  *			but this is replaced when op is grafted in, when
  *			this op will point to the real next op, and the new
  *			parent takes over role of remembering starting op.)
+ * 	op_sibparent    Pointer to the op's next sibling, or to the parent
+ *			if there are no more siblings.
  *	op_ppaddr	Pointer to current ppcode's function.
+ * 	op_targ		An index into the current pad, identifying an SV
+ *			that is typically used to store the OP's result
+ *			(such as a lexical variable, or a SVs_PADTMP
+ *			temporary intermediate value).
  *	op_type		The type of the operation.
  *	op_opt		Whether or not the op has been optimised by the
  *			peephole optimiser.
@@ -58,6 +64,14 @@ typedef PERL_BITFIELD16 Optype;
     U8		op_private;
 #endif
 
+#define OpTYPE_set(o,type)                      \
+    STMT_START {                                \
+        OP *o_ = (OP *)o;                       \
+        OPCODE type_ = type;                    \
+        o_->op_type = type_;                    \
+        o_->op_ppaddr = PL_ppaddr[type_];       \
+    } STMT_END
+
 /* If op_type:9 is changed to :10, also change cx_pusheval()
    Also, if the type of op_type is ever changed (e.g. to PERL_BITFIELD32)
    then all the other bit-fields before/after it should change their
@@ -74,12 +88,12 @@ typedef PERL_BITFIELD16 Optype;
 
 =for apidoc Amn|U32|GIMME_V
 The XSUB-writer's equivalent to Perl's C<wantarray>.  Returns C<G_VOID>,
-C<G_SCALAR> or C<G_ARRAY> for void, scalar or list context,
+C<G_SCALAR> or C<G_LIST> for void, scalar or list context,
 respectively.  See L<perlcall> for a usage example.
 
 =for apidoc AmnD|U32|GIMME
 A backward-compatible version of C<GIMME_V> which can only return
-C<G_SCALAR> or C<G_ARRAY>; in a void context, it returns C<G_SCALAR>.
+C<G_SCALAR> or C<G_LIST>; in a void context, it returns C<G_SCALAR>.
 Deprecated.  Use C<GIMME_V> instead.
 
 =cut
@@ -147,6 +161,9 @@ Deprecated.  Use C<GIMME_V> instead.
                                 /*  On OP_DUMP, has no label */
                                 /*  On OP_UNSTACK, in a C-style for loop */
                                 /*  On OP_READLINE, it's for <<>>, not <> */
+                                /*  On OP_RETURN, module_true is in effect */
+                                /*  On OP_NEXT/OP_LAST/OP_REDO, there is no
+                                 *  loop label */
 /* There is no room in op_flags for this one, so it has its own bit-
    field member (op_folded) instead.  The flag is only used to tell
    op_convert_list to set op_folded.  */
@@ -160,7 +177,7 @@ Deprecated.  Use C<GIMME_V> instead.
 #  define GIMME \
           (PL_op->op_flags & OPf_WANT					\
            ? ((PL_op->op_flags & OPf_WANT) == OPf_WANT_LIST		\
-              ? G_ARRAY							\
+              ? G_LIST							\
               : G_SCALAR)						\
            : dowantarray())
 #endif
@@ -242,8 +259,7 @@ struct methop {
     BASEOP
     union {
         /* op_u.op_first *must* be aligned the same as the op_first
-         * field of the other op types, and op_u.op_meth_sv *must*
-         * be aligned with op_sv */
+         * field of the other op types */
         OP* op_first;   /* optree for method name */
         SV* op_meth_sv; /* static method name */
     } op_u;
@@ -463,6 +479,7 @@ struct loop {
 #define cPVOP		cPVOPx(PL_op)
 #define cCOP		cCOPx(PL_op)
 #define cLOOP		cLOOPx(PL_op)
+#define cMETHOP         cMETHOPx(PL_op)
 
 #define cUNOPo		cUNOPx(o)
 #define cUNOP_AUXo	cUNOP_AUXx(o)
@@ -475,6 +492,7 @@ struct loop {
 #define cPVOPo		cPVOPx(o)
 #define cCOPo		cCOPx(o)
 #define cLOOPo		cLOOPx(o)
+#define cMETHOPo        cMETHOPx(o)
 
 #define kUNOP		cUNOPx(kid)
 #define kUNOP_AUX	cUNOP_AUXx(kid)
@@ -487,6 +505,7 @@ struct loop {
 #define kPVOP		cPVOPx(kid)
 #define kCOP		cCOPx(kid)
 #define kLOOP		cLOOPx(kid)
+#define kMETHOP         cMETHOPx(kid)
 
 
 typedef enum {
@@ -508,33 +527,40 @@ typedef enum {
 
 
 #ifdef USE_ITHREADS
-#  define	cGVOPx_gv(o)	((GV*)PAD_SVl(cPADOPx(o)->op_padix))
+#  define cGVOPx_gv(o)  ((GV*)PAD_SVl(cPADOPx(o)->op_padix))
 #  ifndef PERL_CORE
-#    define	IS_PADGV(v)	(v && isGV(v))
-#    define	IS_PADCONST(v) \
+#    define IS_PADGV(v) (v && isGV(v))
+#    define IS_PADCONST(v) \
         (v && (SvREADONLY(v) || (SvIsCOW(v) && !SvLEN(v))))
 #  endif
-#  define	cSVOPx_sv(v)	(cSVOPx(v)->op_sv \
+#  define cSVOPx_sv(v)  (cSVOPx(v)->op_sv \
                                  ? cSVOPx(v)->op_sv : PAD_SVl((v)->op_targ))
-#  define	cSVOPx_svp(v)	(cSVOPx(v)->op_sv \
+#  define cSVOPx_svp(v) (cSVOPx(v)->op_sv \
                                  ? &cSVOPx(v)->op_sv : &PAD_SVl((v)->op_targ))
-#  define	cMETHOPx_rclass(v) PAD_SVl(cMETHOPx(v)->op_rclass_targ)
+#  define       cMETHOPx_meth(v) (cMETHOPx(v)->op_u.op_meth_sv \
+                                  ? cMETHOPx(v)->op_u.op_meth_sv : PAD_SVl((v)->op_targ))
+#  define cMETHOPx_rclass(v) PAD_SVl(cMETHOPx(v)->op_rclass_targ)
 #else
-#  define	cGVOPx_gv(o)	((GV*)cSVOPx(o)->op_sv)
+#  define cGVOPx_gv(o)  ((GV*)cSVOPx(o)->op_sv)
 #  ifndef PERL_CORE
-#    define	IS_PADGV(v)	FALSE
-#    define	IS_PADCONST(v)	FALSE
+#    define IS_PADGV(v) FALSE
+#    define IS_PADCONST(v)      FALSE
 #  endif
-#  define	cSVOPx_sv(v)	(cSVOPx(v)->op_sv)
-#  define	cSVOPx_svp(v)	(&cSVOPx(v)->op_sv)
-#  define	cMETHOPx_rclass(v) (cMETHOPx(v)->op_rclass_sv)
+#  define cSVOPx_sv(v)  (cSVOPx(v)->op_sv)
+#  define cSVOPx_svp(v) (&cSVOPx(v)->op_sv)
+#  define       cMETHOPx_meth(v)   (cMETHOPx(v)->op_u.op_meth_sv)
+#  define cMETHOPx_rclass(v) (cMETHOPx(v)->op_rclass_sv)
 #endif
 
-#define	cMETHOPx_meth(v)	cSVOPx_sv(v)
+#define cMETHOP_meth            cMETHOPx_meth(PL_op)
+#define cMETHOP_rclass          cMETHOPx_rclass(PL_op)
 
-#define	cGVOP_gv		cGVOPx_gv(PL_op)
-#define	cGVOPo_gv		cGVOPx_gv(o)
-#define	kGVOP_gv		cGVOPx_gv(kid)
+#define cMETHOPo_meth           cMETHOPx_meth(o)
+#define cMETHOPo_rclass         cMETHOPx_rclass(o)
+
+#define cGVOP_gv                cGVOPx_gv(PL_op)
+#define cGVOPo_gv               cGVOPx_gv(o)
+#define kGVOP_gv                cGVOPx_gv(kid)
 #define cSVOP_sv		cSVOPx_sv(PL_op)
 #define cSVOPo_sv		cSVOPx_sv(o)
 #define kSVOP_sv		cSVOPx_sv(kid)
@@ -595,6 +621,7 @@ typedef enum {
  * The same mutex is used to protect the refcounts of the reg_trie_data
  * and reg_ac_data structures, which are shared between duplicated
  * regexes.
+ * The same mutex is used to protect the refcounts for RCPV objects.
  */
 
 #ifdef USE_ITHREADS
@@ -602,7 +629,7 @@ typedef enum {
 #  ifdef PERL_CORE
 #    define OP_REFCNT_LOCK		MUTEX_LOCK(&PL_op_mutex)
 #    define OP_REFCNT_UNLOCK		MUTEX_UNLOCK(&PL_op_mutex)
-#  else
+#  else     /* Subject non-core uses to clang thread safety analysis */
 #    define OP_REFCNT_LOCK		op_refcnt_lock()
 #    define OP_REFCNT_UNLOCK		op_refcnt_unlock()
 #  endif
@@ -762,29 +789,29 @@ struct block_hooks {
 =for apidoc mx|U32|BhkFLAGS|BHK *hk
 Return the BHK's flags.
 
-=for apidoc mxu|void *|BhkENTRY|BHK *hk|which
+=for apidoc mxu|void *|BhkENTRY|BHK *hk|token which
 Return an entry from the BHK structure.  C<which> is a preprocessor token
 indicating which entry to return.  If the appropriate flag is not set
 this will return C<NULL>.  The type of the return value depends on which
 entry you ask for.
 
-=for apidoc Amxu|void|BhkENTRY_set|BHK *hk|which|void *ptr
+=for apidoc Amxu|void|BhkENTRY_set|BHK *hk|token which|void *ptr
 Set an entry in the BHK structure, and set the flags to indicate it is
 valid.  C<which> is a preprocessing token indicating which entry to set.
 The type of C<ptr> depends on the entry.
 
-=for apidoc Amxu|void|BhkDISABLE|BHK *hk|which
+=for apidoc Amxu|void|BhkDISABLE|BHK *hk|token which
 Temporarily disable an entry in this BHK structure, by clearing the
 appropriate flag.  C<which> is a preprocessor token indicating which
 entry to disable.
 
-=for apidoc Amxu|void|BhkENABLE|BHK *hk|which
+=for apidoc Amxu|void|BhkENABLE|BHK *hk|token which
 Re-enable an entry in this BHK structure, by setting the appropriate
 flag.  C<which> is a preprocessor token indicating which entry to enable.
 This will assert (under -DDEBUGGING) if the entry doesn't contain a valid
 pointer.
 
-=for apidoc mxu|void|CALL_BLOCK_HOOKS|which|arg
+=for apidoc mxu|void|CALL_BLOCK_HOOKS|token which|arg
 Call all the registered block hooks for type C<which>.  C<which> is a
 preprocessing token; the type of C<arg> depends on C<which>.
 
@@ -860,7 +887,7 @@ preprocessing token; the type of C<arg> depends on C<which>.
 =for apidoc Am|U32|XopFLAGS|XOP *xop
 Return the XOP's flags.
 
-=for apidoc Am||XopENTRY|XOP *xop|which
+=for apidoc Amu||XopENTRY|XOP *xop|token which
 Return a member of the XOP structure.  C<which> is a cpp token
 indicating which entry to return.  If the member is not set
 this will return a default value.  The return type depends
@@ -868,21 +895,21 @@ on C<which>.  This macro evaluates its arguments more than
 once.  If you are using C<Perl_custom_op_xop> to retrieve a
 C<XOP *> from a C<OP *>, use the more efficient L</XopENTRYCUSTOM> instead.
 
-=for apidoc Am||XopENTRYCUSTOM|const OP *o|which
+=for apidoc Amu||XopENTRYCUSTOM|const OP *o|token which
 Exactly like C<XopENTRY(XopENTRY(Perl_custom_op_xop(aTHX_ o), which)> but more
 efficient.  The C<which> parameter is identical to L</XopENTRY>.
 
-=for apidoc Am|void|XopENTRY_set|XOP *xop|which|value
+=for apidoc Amu|void|XopENTRY_set|XOP *xop|token which|value
 Set a member of the XOP structure.  C<which> is a cpp token
 indicating which entry to set.  See L<perlguts/"Custom Operators">
 for details about the available members and how
 they are used.  This macro evaluates its argument
 more than once.
 
-=for apidoc Am|void|XopDISABLE|XOP *xop|which
+=for apidoc Amu|void|XopDISABLE|XOP *xop|token which
 Temporarily disable a member of the XOP, by clearing the appropriate flag.
 
-=for apidoc Am|void|XopENABLE|XOP *xop|which
+=for apidoc Amu|void|XopENABLE|XOP *xop|token which
 Reenable a member of the XOP which has been disabled.
 
 =cut
@@ -1142,6 +1169,8 @@ struct op_argcheck_aux {
     UV   opt_params; /* number of optional positional parameters */
     char slurpy;     /* presence of slurpy: may be '\0', '@' or '%' */
 };
+
+#define MI_INIT_WORKAROUND_PACK "Module::Install::DSL"
 
 
 /*

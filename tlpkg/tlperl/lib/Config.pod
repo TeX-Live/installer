@@ -8,8 +8,8 @@ Config - access Perl configuration information
 
     use Config;
     if ($Config{usethreads}) {
-	print "has thread support\n"
-    } 
+        print "has thread support\n"
+    }
 
     use Config qw(myconfig config_sh config_vars config_re);
 
@@ -25,7 +25,7 @@ Config - access Perl configuration information
 =head1 DESCRIPTION
 
 The Config module contains all the information that was available to
-the C<Configure> program at Perl build time (over 900 values).
+the F<Configure> program at Perl build time (over 900 values).
 
 Shell variables from the F<config.sh> file (written by Configure) are
 stored in the readonly-variable C<%Config>, indexed by their names.
@@ -104,19 +104,19 @@ Here's a more sophisticated example of using %Config:
     my %sig_num;
     my @sig_name;
     unless($Config{sig_name} && $Config{sig_num}) {
-	die "No sigs?";
+        die "No sigs?";
     } else {
-	my @names = split ' ', $Config{sig_name};
-	@sig_num{@names} = split ' ', $Config{sig_num};
-	foreach (@names) {
-	    $sig_name[$sig_num{$_}] ||= $_;
-	}   
+        my @names = split ' ', $Config{sig_name};
+        @sig_num{@names} = split ' ', $Config{sig_num};
+        foreach (@names) {
+            $sig_name[$sig_num{$_}] ||= $_;
+        }
     }
 
     print "signal #17 = $sig_name[17]\n";
-    if ($sig_num{ALRM}) { 
-	print "SIGALRM is $sig_num{ALRM}\n";
-    }   
+    if ($sig_num{ALRM}) {
+        print "SIGALRM is $sig_num{ALRM}\n";
+    }
 
 =head1 WARNING
 
@@ -147,6 +147,80 @@ specific to that particular port.  See the port specific documentation
 in such cases.
 
 =cut
+
+=head2 P
+
+=over 4
+
+=item C<PERL_API_REVISION>
+
+From F<patchlevel.h>:
+
+This number describes the earliest compatible C<PERL_REVISION> of
+Perl (C<compatibility> here being defined as sufficient F<binary/C<API>>
+compatibility to run C<XS> code built with the older version).
+Normally this does not change across maintenance releases.
+Please read the comment in F<patchlevel.h>.
+
+=item C<PERL_API_SUBVERSION>
+
+From F<patchlevel.h>:
+
+This number describes the earliest compatible C<PERL_SUBVERSION> of
+Perl (C<compatibility> here being defined as sufficient F<binary/C<API>>
+compatibility to run C<XS> code built with the older version).
+Normally this does not change across maintenance releases.
+Please read the comment in F<patchlevel.h>.
+
+=item C<PERL_API_VERSION>
+
+From F<patchlevel.h>:
+
+This number describes the earliest compatible C<PERL_VERSION> of
+Perl (C<compatibility> here being defined as sufficient F<binary/C<API>>
+compatibility to run C<XS> code built with the older version).
+Normally this does not change across maintenance releases.
+Please read the comment in F<patchlevel.h>.
+
+=item C<PERL_CONFIG_SH>
+
+From F<Oldsyms.U>:
+
+This is set to C<true> in F<config.sh> so that a shell script
+sourcing F<config.sh> can tell if it has been sourced already.
+
+=item C<PERL_PATCHLEVEL>
+
+From F<Oldsyms.U>:
+
+This symbol reflects the patchlevel, if available. Will usually
+come from the F<.patch> file, which is available when the perl
+source tree was fetched with rsync.
+
+=item C<PERL_REVISION>
+
+From F<Oldsyms.U>:
+
+In a Perl version number such as 5.6.2, this is the 5.
+This value is manually set in F<patchlevel.h>
+
+=item C<PERL_SUBVERSION>
+
+From F<Oldsyms.U>:
+
+In a Perl version number such as 5.6.2, this is the 2.
+Values greater than 50 represent potentially unstable
+development subversions.
+This value is manually set in F<patchlevel.h>
+
+=item C<PERL_VERSION>
+
+From F<Oldsyms.U>:
+
+In a Perl version number such as 5.6.2, this is the 6.
+This value is manually set in F<patchlevel.h>
+
+=back
 
 =head2 _
 
@@ -771,6 +845,130 @@ is defined.
 
 =over 4
 
+=item C<d_Gconvert>
+
+From F<d_gconvert.U>:
+
+This variable holds what Gconvert is defined as to convert
+floating point numbers into strings.  By default, Configure
+sets C<this> macro to use the first of gconvert, gcvt, or sprintf
+that pass sprintf-%g-like behavior tests.  If perl is using
+long doubles, the macro uses the first of the following
+functions that pass Configure's tests: qgcvt, sprintf (if
+Configure knows how to make sprintf format long doubles--see
+sPRIgldbl), gconvert, gcvt, and sprintf (casting to double).
+The gconvert_preference and gconvert_ld_preference variables
+can be used to alter Configure's preferences, for doubles and
+long doubles, respectively.  If present, they contain a
+space-separated list of one or more of the above function
+names in the order they should be tried.
+
+d_Gconvert may be set to override Configure with a platform-
+specific function.  If this function expects a double, a
+different value may need to be set by the F<uselongdouble.cbu>
+call-back unit so that long doubles can be formatted without
+loss of precision.
+
+=item C<d_PRIEUldbl>
+
+From F<longdblfio.U>:
+
+This variable conditionally defines the PERL_PRIfldbl symbol, which
+indicates that stdio has a symbol to print long doubles.
+The C<U> in the name is to separate this from d_PRIeldbl so that even
+case-blind systems can see the difference.
+
+=item C<d_PRIFUldbl>
+
+From F<longdblfio.U>:
+
+This variable conditionally defines the PERL_PRIfldbl symbol, which
+indicates that stdio has a symbol to print long doubles.
+The C<U> in the name is to separate this from d_PRIfldbl so that even
+case-blind systems can see the difference.
+
+=item C<d_PRIGUldbl>
+
+From F<longdblfio.U>:
+
+This variable conditionally defines the PERL_PRIfldbl symbol, which
+indicates that stdio has a symbol to print long doubles.
+The C<U> in the name is to separate this from d_PRIgldbl so that even
+case-blind systems can see the difference.
+
+=item C<d_PRIXU64>
+
+From F<quadfio.U>:
+
+This variable conditionally defines the PERL_PRIXU64 symbol, which
+indicates that stdio has a symbol to print 64-bit hExADECimAl numbers.
+The C<U> in the name is to separate this from d_PRIx64 so that even
+case-blind systems can see the difference.
+
+=item C<d_PRId64>
+
+From F<quadfio.U>:
+
+This variable conditionally defines the PERL_PRId64 symbol, which
+indicates that stdio has a symbol to print 64-bit decimal numbers.
+
+=item C<d_PRIeldbl>
+
+From F<longdblfio.U>:
+
+This variable conditionally defines the PERL_PRIfldbl symbol, which
+indicates that stdio has a symbol to print long doubles.
+
+=item C<d_PRIfldbl>
+
+From F<longdblfio.U>:
+
+This variable conditionally defines the PERL_PRIfldbl symbol, which
+indicates that stdio has a symbol to print long doubles.
+
+=item C<d_PRIgldbl>
+
+From F<longdblfio.U>:
+
+This variable conditionally defines the PERL_PRIfldbl symbol, which
+indicates that stdio has a symbol to print long doubles.
+
+=item C<d_PRIi64>
+
+From F<quadfio.U>:
+
+This variable conditionally defines the PERL_PRIi64 symbol, which
+indicates that stdio has a symbol to print 64-bit decimal numbers.
+
+=item C<d_PRIo64>
+
+From F<quadfio.U>:
+
+This variable conditionally defines the PERL_PRIo64 symbol, which
+indicates that stdio has a symbol to print 64-bit octal numbers.
+
+=item C<d_PRIu64>
+
+From F<quadfio.U>:
+
+This variable conditionally defines the PERL_PRIu64 symbol, which
+indicates that stdio has a symbol to print 64-bit unsigned decimal
+numbers.
+
+=item C<d_PRIx64>
+
+From F<quadfio.U>:
+
+This variable conditionally defines the PERL_PRIx64 symbol, which
+indicates that stdio has a symbol to print 64-bit hexadecimal numbers.
+
+=item C<d_SCNfldbl>
+
+From F<longdblfio.U>:
+
+This variable conditionally defines the PERL_PRIfldbl symbol, which
+indicates that stdio has a symbol to scan long doubles.
+
 =item C<d__fwalk>
 
 From F<d__fwalk.U>:
@@ -936,6 +1134,13 @@ This variable conditionally defines C<HASATTRIBUTE_UNUSED>, which
 indicates that the C compiler can know that certain variables
 and arguments may not always be used, and to not throw warnings
 if they don't get used.
+
+=item C<d_attribute_visibility>
+
+From F<d_attribut.U>:
+
+This variable conditionally defines the C<HASATTRIBUTE_VISIBILITY> symbol,
+and indicates different C<GCC> attribute visibility
 
 =item C<d_attribute_warn_unused_result>
 
@@ -1603,6 +1808,22 @@ From F<d_fegetround.U>:
 This variable conditionally defines C<HAS_FEGETROUND> if fegetround() is
 available to get the floating point rounding mode.
 
+=item C<d_ffs>
+
+From F<d_ffs.U>:
+
+This variable conditionally defines the C<HAS_FFS> symbol, which
+indicates to the C program that the ffs() routine is available
+to find the first bit which is set in its integer argument.
+
+=item C<d_ffsl>
+
+From F<d_ffs.U>:
+
+This variable conditionally defines the C<HAS_FFSL> symbol, which
+indicates to the C program that the ffsl() routine is available
+to find the first bit which is set in its long integer argument.
+
 =item C<d_fgetpos>
 
 From F<d_fgetpos.U>:
@@ -1826,30 +2047,6 @@ This variable conditionally defines the C<HAS_GAI_STRERROR> symbol
 if the gai_strerror() routine is available and can be used to
 translate error codes returned by getaddrinfo() into human
 readable strings.
-
-=item C<d_Gconvert>
-
-From F<d_gconvert.U>:
-
-This variable holds what Gconvert is defined as to convert
-floating point numbers into strings.  By default, Configure
-sets C<this> macro to use the first of gconvert, gcvt, or sprintf
-that pass sprintf-%g-like behavior tests.  If perl is using
-long doubles, the macro uses the first of the following
-functions that pass Configure's tests: qgcvt, sprintf (if
-Configure knows how to make sprintf format long doubles--see
-sPRIgldbl), gconvert, gcvt, and sprintf (casting to double).
-The gconvert_preference and gconvert_ld_preference variables
-can be used to alter Configure's preferences, for doubles and
-long doubles, respectively.  If present, they contain a
-space-separated list of one or more of the above function
-names in the order they should be tried.
-
-d_Gconvert may be set to override Configure with a platform-
-specific function.  If this function expects a double, a
-different value may need to be set by the F<uselongdouble.cbu>
-call-back unit so that long doubles can be formatted without
-loss of precision.
 
 =item C<d_gdbm_ndbm_h_uses_prototypes>
 
@@ -3221,6 +3418,22 @@ From F<d_nl_langinfo.U>:
 This variable conditionally defines the C<HAS_NL_LANGINFO> symbol, which
 indicates to the C program that the nl_langinfo() routine is available.
 
+=item C<d_nl_langinfo_l>
+
+From F<d_nl_langinfo_l.U>:
+
+This variable contains the eventual value of the
+C<HAS_NL_LANGINFO_L> symbol, which indicates if the
+nl_langinfo_l() function exists.
+
+=item C<d_non_int_bitfields>
+
+From F<d_bitfield.U>:
+
+This variable conditionally defines C<HAS_NON_INT_BITFIELDS>
+which indicates that the C compiler accepts struct bitfields of sizes
+that aren't C<int> or C<unsigned int>
+
 =item C<d_nv_preserves_uv>
 
 From F<perlxv.U>:
@@ -3361,105 +3574,12 @@ This variable conditionally defines the C<HAS_PRCTL_SET_NAME> symbol,
 which indicates to the C program that the prctl() routine supports
 the C<PR_SET_NAME> option.
 
-=item C<d_PRId64>
-
-From F<quadfio.U>:
-
-This variable conditionally defines the PERL_PRId64 symbol, which
-indicates that stdio has a symbol to print 64-bit decimal numbers.
-
-=item C<d_PRIeldbl>
-
-From F<longdblfio.U>:
-
-This variable conditionally defines the PERL_PRIfldbl symbol, which
-indicates that stdio has a symbol to print long doubles.
-
-=item C<d_PRIEUldbl>
-
-From F<longdblfio.U>:
-
-This variable conditionally defines the PERL_PRIfldbl symbol, which
-indicates that stdio has a symbol to print long doubles.
-The C<U> in the name is to separate this from d_PRIeldbl so that even
-case-blind systems can see the difference.
-
-=item C<d_PRIfldbl>
-
-From F<longdblfio.U>:
-
-This variable conditionally defines the PERL_PRIfldbl symbol, which
-indicates that stdio has a symbol to print long doubles.
-
-=item C<d_PRIFUldbl>
-
-From F<longdblfio.U>:
-
-This variable conditionally defines the PERL_PRIfldbl symbol, which
-indicates that stdio has a symbol to print long doubles.
-The C<U> in the name is to separate this from d_PRIfldbl so that even
-case-blind systems can see the difference.
-
-=item C<d_PRIgldbl>
-
-From F<longdblfio.U>:
-
-This variable conditionally defines the PERL_PRIfldbl symbol, which
-indicates that stdio has a symbol to print long doubles.
-
-=item C<d_PRIGUldbl>
-
-From F<longdblfio.U>:
-
-This variable conditionally defines the PERL_PRIfldbl symbol, which
-indicates that stdio has a symbol to print long doubles.
-The C<U> in the name is to separate this from d_PRIgldbl so that even
-case-blind systems can see the difference.
-
-=item C<d_PRIi64>
-
-From F<quadfio.U>:
-
-This variable conditionally defines the PERL_PRIi64 symbol, which
-indicates that stdio has a symbol to print 64-bit decimal numbers.
-
 =item C<d_printf_format_null>
 
 From F<d_attribut.U>:
 
 This variable conditionally defines C<PRINTF_FORMAT_NULL_OK>, which
 indicates the C compiler allows printf-like formats to be null.
-
-=item C<d_PRIo64>
-
-From F<quadfio.U>:
-
-This variable conditionally defines the PERL_PRIo64 symbol, which
-indicates that stdio has a symbol to print 64-bit octal numbers.
-
-=item C<d_PRIu64>
-
-From F<quadfio.U>:
-
-This variable conditionally defines the PERL_PRIu64 symbol, which
-indicates that stdio has a symbol to print 64-bit unsigned decimal
-numbers.
-
-=item C<d_PRIx64>
-
-From F<quadfio.U>:
-
-This variable conditionally defines the PERL_PRIx64 symbol, which
-indicates that stdio has a symbol to print 64-bit hexadecimal numbers.
-
-=item C<d_PRIXU64>
-
-From F<quadfio.U>:
-
-This variable conditionally defines the PERL_PRIXU64 symbol, which
-indicates that stdio has a symbol to print 64-bit hExADECimAl numbers.
-The C<U> in the name is to separate this from d_PRIx64 so that even
-case-blind systems can see the difference.
 
 =item C<d_procselfexe>
 
@@ -3758,13 +3878,6 @@ This variable conditionally defines the C<HAS_SCM_RIGHTS> symbol,
 which indicates that the C<SCM_RIGHTS> is available.  #ifdef is
 not enough because it may be an enum, glibc has been known to do this.
 
-=item C<d_SCNfldbl>
-
-From F<longdblfio.U>:
-
-This variable conditionally defines the PERL_PRIfldbl symbol, which
-indicates that stdio has a symbol to scan long doubles.
-
 =item C<d_seekdir>
 
 From F<d_readdir.U>:
@@ -3836,6 +3949,13 @@ From F<d_setegid.U>:
 This variable conditionally defines the C<HAS_SETEGID> symbol, which
 indicates to the C program that the setegid() routine is available
 to change the effective gid of the current program.
+
+=item C<d_setenv>
+
+From F<d_setenv.U>:
+
+This variable conditionally defines the C<HAS_SETENV> symbol, which
+indicates to the C program that the setenv routine is available.
 
 =item C<d_seteuid>
 
@@ -4574,6 +4694,13 @@ From F<d_strxfrm.U>:
 This variable conditionally defines C<HAS_STRXFRM> if strxfrm() is
 available to transform strings.
 
+=item C<d_strxfrm_l>
+
+From F<d_strxfrm_l.U>:
+
+This variable conditionally defines C<HAS_STRXFRM_L> if strxfrm_l() is
+available to transform strings.
+
 =item C<d_suidsafe>
 
 From F<d_dosuid.U>:
@@ -4673,6 +4800,13 @@ From F<d_tgamma.U>:
 This variable conditionally defines the C<HAS_TGAMMA> symbol, which
 indicates to the C program that the tgamma() routine is available
 for the gamma function.  See also d_lgamma.
+
+=item C<d_thread_local>
+
+From F<d_thread_local.U>:
+
+This variable conditionally defines the C<PERL_THREAD_LOCAL> symbol. In
+turn that gives a linkage specification for thread-local storage.
 
 =item C<d_thread_safe_nl_langinfo_l>
 
@@ -5321,6 +5455,15 @@ This variable holds a list of extra modules to install.
 
 =over 4
 
+=item C<fflushNULL>
+
+From F<fflushall.U>:
+
+This symbol, if defined, tells that fflush(C<NULL>) correctly
+flushes all pending stdio output without side effects. In
+particular, on some platforms calling fflush(C<NULL>) *still*
+corrupts C<STDIN> if it is a pipe.
+
 =item C<fflushall>
 
 From F<fflushall.U>:
@@ -5330,15 +5473,6 @@ all pending stdio output one must loop through all
 the stdio file handles stored in an array and fflush them.
 Note that if fflushNULL is defined, fflushall will not
 even be probed for and will be left undefined.
-
-=item C<fflushNULL>
-
-From F<fflushall.U>:
-
-This symbol, if defined, tells that fflush(C<NULL>) correctly
-flushes all pending stdio output without side effects. In
-particular, on some platforms calling fflush(C<NULL>) *still*
-corrupts C<STDIN> if it is a pipe.
 
 =item C<find>
 
@@ -5839,6 +5973,13 @@ This variable is the size of an I16 in bytes.
 From F<perlxv.U>:
 
 This variable contains the C type used for Perl's I16.
+
+=item C<i32dformat>
+
+From F<perlx32f.U>:
+
+This variable contains the format string used for printing
+a Perl I32 as a signed decimal integer.
 
 =item C<i32size>
 
@@ -6344,6 +6485,13 @@ From F<i_sysstatvfs.U>:
 This variable conditionally defines the C<I_SYSSTATVFS> symbol,
 and indicates whether a C program should include <sys/statvfs.h>.
 
+=item C<i_syssyscall>
+
+From F<i_syssyscall.U>:
+
+This variable conditionally defines the C<I_SYS_SYSCALL> symbol,
+and indicates whether a C program should include <sys/syscall.h>.
+
 =item C<i_systime>
 
 From F<i_time.U>:
@@ -6478,8 +6626,8 @@ that indicates whether a C program may include <wctype.h>.
 
 From F<d_newlocale.U>:
 
-This symbol, if defined, indicates to the C program that it should
-include <xlocale.h> to get uselocale() and its friends
+This symbol, if defined, indicates to the C program that the
+header F<xlocale.h> is available.  See also xlocale_needed.
 
 =item C<ignore_versioned_solibs>
 
@@ -7498,6 +7646,27 @@ This variable is used internally by Configure to determine the
 full pathname (if any) of the nroff program.  After Configure runs,
 the value is reset to a plain C<nroff> and is not useful.
 
+=item C<nvEUformat>
+
+From F<perlxvf.U>:
+
+This variable contains the format string used for printing
+a Perl C<NV> using %E-ish floating point format.
+
+=item C<nvFUformat>
+
+From F<perlxvf.U>:
+
+This variable contains the format string used for printing
+a Perl C<NV> using %F-ish floating point format.
+
+=item C<nvGUformat>
+
+From F<perlxvf.U>:
+
+This variable contains the format string used for printing
+a Perl C<NV> using %G-ish floating point format.
+
 =item C<nv_overflows_integers_at>
 
 From F<perlxv.U>:
@@ -7520,13 +7689,6 @@ From F<perlxvf.U>:
 This variable contains the format string used for printing
 a Perl C<NV> using %e-ish floating point format.
 
-=item C<nvEUformat>
-
-From F<perlxvf.U>:
-
-This variable contains the format string used for printing
-a Perl C<NV> using %E-ish floating point format.
-
 =item C<nvfformat>
 
 From F<perlxvf.U>:
@@ -7534,26 +7696,12 @@ From F<perlxvf.U>:
 This variable contains the format string used for printing
 a Perl C<NV> using %f-ish floating point format.
 
-=item C<nvFUformat>
-
-From F<perlxvf.U>:
-
-This variable contains the format string used for printing
-a Perl C<NV> using %F-ish floating point format.
-
 =item C<nvgformat>
 
 From F<perlxvf.U>:
 
 This variable contains the format string used for printing
 a Perl C<NV> using %g-ish floating point format.
-
-=item C<nvGUformat>
-
-From F<perlxvf.U>:
-
-This variable contains the format string used for printing
-a Perl C<NV> using %G-ish floating point format.
 
 =item C<nvmantbits>
 
@@ -7717,57 +7865,6 @@ This variable contains the full path (if any) to a previously
 installed F<perl5.005> or later suitable for running the script
 to determine inc_version_list.
 
-=back
-
-=head2 P
-
-=over 4
-
-=item C<PERL_API_REVISION>
-
-From F<patchlevel.h>:
-
-This number describes the earliest compatible C<PERL_REVISION> of
-Perl (C<compatibility> here being defined as sufficient F<binary/C<API>>
-compatibility to run C<XS> code built with the older version).
-Normally this does not change across maintenance releases.
-Please read the comment in F<patchlevel.h>.
-
-=item C<PERL_API_SUBVERSION>
-
-From F<patchlevel.h>:
-
-This number describes the earliest compatible C<PERL_SUBVERSION> of
-Perl (C<compatibility> here being defined as sufficient F<binary/C<API>>
-compatibility to run C<XS> code built with the older version).
-Normally this does not change across maintenance releases.
-Please read the comment in F<patchlevel.h>.
-
-=item C<PERL_API_VERSION>
-
-From F<patchlevel.h>:
-
-This number describes the earliest compatible C<PERL_VERSION> of
-Perl (C<compatibility> here being defined as sufficient F<binary/C<API>>
-compatibility to run C<XS> code built with the older version).
-Normally this does not change across maintenance releases.
-Please read the comment in F<patchlevel.h>.
-
-=item C<PERL_CONFIG_SH>
-
-From F<Oldsyms.U>:
-
-This is set to C<true> in F<config.sh> so that a shell script
-sourcing F<config.sh> can tell if it has been sourced already.
-
-=item C<PERL_PATCHLEVEL>
-
-From F<Oldsyms.U>:
-
-This symbol reflects the patchlevel, if available. Will usually
-come from the F<.patch> file, which is available when the perl
-source tree was fetched with rsync.
-
 =item C<perl_patchlevel>
 
 From F<patchlevel.U>:
@@ -7778,13 +7875,6 @@ is used to maintain the patches; currently Perforce.
 It does not correlate with the Perl version numbers or
 the maintenance versus development dichotomy except
 by also being increasing.
-
-=item C<PERL_REVISION>
-
-From F<Oldsyms.U>:
-
-In a Perl version number such as 5.6.2, this is the 5.
-This value is manually set in F<patchlevel.h>
 
 =item C<perl_static_inline>
 
@@ -7799,21 +7889,12 @@ static __inline     (C<MSVC>)
 static _inline      (older C<MSVC>)
 static              (c89 compilers)
 
-=item C<PERL_SUBVERSION>
+=item C<perl_thread_local>
 
-From F<Oldsyms.U>:
+From F<d_thread_local.U>:
 
-In a Perl version number such as 5.6.2, this is the 2.
-Values greater than 50 represent potentially unstable
-development subversions.
-This value is manually set in F<patchlevel.h>
-
-=item C<PERL_VERSION>
-
-From F<Oldsyms.U>:
-
-In a Perl version number such as 5.6.2, this is the 6.
-This value is manually set in F<patchlevel.h>
+This variable gives the value for the C<PERL_THREAD_LOCAL> symbol (when
+defined), which gives a linkage specification for thread-local storage.
 
 =item C<perladmin>
 
@@ -8081,6 +8162,133 @@ of usenm and the flags on the Configure command line.
 
 =over 4
 
+=item C<sGMTIME_max>
+
+From F<time_size.U>:
+
+This variable defines the maximum value of the time_t offset that
+the system function gmtime () accepts
+
+=item C<sGMTIME_min>
+
+From F<time_size.U>:
+
+This variable defines the minimum value of the time_t offset that
+the system function gmtime () accepts
+
+=item C<sLOCALTIME_max>
+
+From F<time_size.U>:
+
+This variable defines the maximum value of the time_t offset that
+the system function localtime () accepts
+
+=item C<sLOCALTIME_min>
+
+From F<time_size.U>:
+
+This variable defines the minimum value of the time_t offset that
+the system function localtime () accepts
+
+=item C<sPRIEUldbl>
+
+From F<longdblfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format long doubles (format C<E>) for output.
+The C<U> in the name is to separate this from sPRIeldbl so that even
+case-blind systems can see the difference.
+
+=item C<sPRIFUldbl>
+
+From F<longdblfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format long doubles (format C<F>) for output.
+The C<U> in the name is to separate this from sPRIfldbl so that even
+case-blind systems can see the difference.
+
+=item C<sPRIGUldbl>
+
+From F<longdblfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format long doubles (format C<G>) for output.
+The C<U> in the name is to separate this from sPRIgldbl so that even
+case-blind systems can see the difference.
+
+=item C<sPRIXU64>
+
+From F<quadfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format 64-bit hExADECimAl numbers (format C<X>) for output.
+The C<U> in the name is to separate this from sPRIx64 so that even
+case-blind systems can see the difference.
+
+=item C<sPRId64>
+
+From F<quadfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format 64-bit decimal numbers (format C<d>) for output.
+
+=item C<sPRIeldbl>
+
+From F<longdblfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format long doubles (format C<e>) for output.
+
+=item C<sPRIfldbl>
+
+From F<longdblfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format long doubles (format C<f>) for output.
+
+=item C<sPRIgldbl>
+
+From F<longdblfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format long doubles (format C<g>) for output.
+
+=item C<sPRIi64>
+
+From F<quadfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format 64-bit decimal numbers (format C<i>) for output.
+
+=item C<sPRIo64>
+
+From F<quadfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format 64-bit octal numbers (format C<o>) for output.
+
+=item C<sPRIu64>
+
+From F<quadfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format 64-bit unsigned decimal numbers (format C<u>) for output.
+
+=item C<sPRIx64>
+
+From F<quadfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format 64-bit hexadecimal numbers (format C<x>) for output.
+
+=item C<sSCNfldbl>
+
+From F<longdblfio.U>:
+
+This variable, if defined, contains the string used by stdio to
+format long doubles (format C<f>) for input.
+
 =item C<sched_yield>
 
 From F<d_pthread_y.U>:
@@ -8208,20 +8416,6 @@ This variable encodes the prototype of setservent_r.
 It is zero if d_setservent_r is undef, and one of the
 C<REENTRANT_PROTO_T_ABC> macros of F<reentr.h> if d_setservent_r
 is defined.
-
-=item C<sGMTIME_max>
-
-From F<time_size.U>:
-
-This variable defines the maximum value of the time_t offset that
-the system function gmtime () accepts
-
-=item C<sGMTIME_min>
-
-From F<time_size.U>:
-
-This variable defines the minimum value of the time_t offset that
-the system function gmtime () accepts
 
 =item C<sh>
 
@@ -8560,20 +8754,6 @@ From F<Loc.U>:
 This variable is defined but not used by Configure.
 The value is the empty string and is not useful.
 
-=item C<sLOCALTIME_max>
-
-From F<time_size.U>:
-
-This variable defines the maximum value of the time_t offset that
-the system function localtime () accepts
-
-=item C<sLOCALTIME_min>
-
-From F<time_size.U>:
-
-This variable defines the minimum value of the time_t offset that
-the system function localtime () accepts
-
 =item C<smail>
 
 From F<Loc.U>:
@@ -8631,98 +8811,6 @@ From F<spitshell.U>:
 This variable contains the command necessary to spit out a runnable
 shell on this system.  It is either cat or a grep C<-v> for # comments.
 
-=item C<sPRId64>
-
-From F<quadfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format 64-bit decimal numbers (format C<d>) for output.
-
-=item C<sPRIeldbl>
-
-From F<longdblfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format long doubles (format C<e>) for output.
-
-=item C<sPRIEUldbl>
-
-From F<longdblfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format long doubles (format C<E>) for output.
-The C<U> in the name is to separate this from sPRIeldbl so that even
-case-blind systems can see the difference.
-
-=item C<sPRIfldbl>
-
-From F<longdblfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format long doubles (format C<f>) for output.
-
-=item C<sPRIFUldbl>
-
-From F<longdblfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format long doubles (format C<F>) for output.
-The C<U> in the name is to separate this from sPRIfldbl so that even
-case-blind systems can see the difference.
-
-=item C<sPRIgldbl>
-
-From F<longdblfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format long doubles (format C<g>) for output.
-
-=item C<sPRIGUldbl>
-
-From F<longdblfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format long doubles (format C<G>) for output.
-The C<U> in the name is to separate this from sPRIgldbl so that even
-case-blind systems can see the difference.
-
-=item C<sPRIi64>
-
-From F<quadfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format 64-bit decimal numbers (format C<i>) for output.
-
-=item C<sPRIo64>
-
-From F<quadfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format 64-bit octal numbers (format C<o>) for output.
-
-=item C<sPRIu64>
-
-From F<quadfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format 64-bit unsigned decimal numbers (format C<u>) for output.
-
-=item C<sPRIx64>
-
-From F<quadfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format 64-bit hexadecimal numbers (format C<x>) for output.
-
-=item C<sPRIXU64>
-
-From F<quadfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format 64-bit hExADECimAl numbers (format C<X>) for output.
-The C<U> in the name is to separate this from sPRIx64 so that even
-case-blind systems can see the difference.
-
 =item C<srand48_r_proto>
 
 From F<d_srand48_r.U>:
@@ -8749,13 +8837,6 @@ This variable holds the (possibly relative) path of the package source.
 It is up to the Makefile to use this variable and set C<VPATH> accordingly
 to find the sources remotely.  Use $pkgsrc to have an absolute path.
 
-=item C<sSCNfldbl>
-
-From F<longdblfio.U>:
-
-This variable, if defined, contains the string used by stdio to
-format long doubles (format C<f>) for input.
-
 =item C<ssizetype>
 
 From F<ssizetype.U>:
@@ -8764,6 +8845,19 @@ This variable defines ssizetype to be something like ssize_t,
 long or int.  It is used by functions that return a count
 of bytes or an error condition.  It must be a signed type.
 We will pick a type such that sizeof(SSize_t) == sizeof(Size_t).
+
+=item C<st_dev_sign>
+
+From F<st_dev_def.U>:
+
+This variable contains the signedness of struct stat's st_dev.
+1 for unsigned, -1 for signed.
+
+=item C<st_dev_size>
+
+From F<st_dev_def.U>:
+
+This variable contains the size of struct stat's st_dev in bytes.
 
 =item C<st_ino_sign>
 
@@ -8917,6 +9011,26 @@ From F<Loc.U>:
 
 This variable is defined but not used by Configure.
 The value is the empty string and is not useful.
+
+=item C<taint_disabled>
+
+From define: C<SILENT_NO_TAINT_SUPPORT> or C<NO_TAINT_SUPPORT>
+
+If this perl is compiled with support for taint mode this variable will
+be set to the empty string, if it was compiled with
+C<SILENT_NO_TAINT_SUPPORT> defined then it will be set to be "silent",
+and if it was compiled with C<NO_TAINT_SUPPORT> defined it will be
+'define'. Either of the above defines will results in it being a true
+value. This property was added in 5.37.11. See also L</taint_support>.
+
+=item C<taint_support>
+
+From define: C<SILENT_NO_TAINT_SUPPORT> or C<NO_TAINT_SUPPORT>
+
+If this perl is compiled with support for taint mode this variable will
+be set to 'define', if it is not it will be set to the empty string.
+Either of the above defines will result in it being empty.  This property
+was added in version 5.37.11. See also L</taint_disabled>.
 
 =item C<tar>
 
@@ -9094,6 +9208,20 @@ From F<perlxv.U>:
 
 This variable contains the C type used for Perl's U16.
 
+=item C<u32XUformat>
+
+From F<perlx32f.U>:
+
+This variable contains the format string used for printing
+a Perl U32 as an unsigned hexadecimal integer in uppercase C<ABCDEF>.
+
+=item C<u32oformat>
+
+From F<perlx32f.U>:
+
+This variable contains the format string used for printing
+a Perl U32 as an unsigned octal integer.
+
 =item C<u32size>
 
 From F<perlxv.U>:
@@ -9105,6 +9233,20 @@ This variable is the size of an U32 in bytes.
 From F<perlxv.U>:
 
 This variable contains the C type used for Perl's U32.
+
+=item C<u32uformat>
+
+From F<perlx32f.U>:
+
+This variable contains the format string used for printing
+a Perl U32 as an unsigned decimal integer.
+
+=item C<u32xformat>
+
+From F<perlx32f.U>:
+
+This variable contains the format string used for printing
+a Perl U32 as an unsigned hexadecimal integer in lowercase abcdef.
 
 =item C<u64size>
 
@@ -9463,6 +9605,13 @@ From F<Loc.U>:
 This variable is defined but not used by Configure.
 The value is the empty string and is not useful.
 
+=item C<uvXUformat>
+
+From F<perlxvf.U>:
+
+This variable contains the format string used for printing
+a Perl C<UV> as an unsigned hexadecimal integer in uppercase C<ABCDEF>.
+
 =item C<uvoformat>
 
 From F<perlxvf.U>:
@@ -9495,13 +9644,6 @@ From F<perlxvf.U>:
 
 This variable contains the format string used for printing
 a Perl C<UV> as an unsigned hexadecimal integer in lowercase abcdef.
-
-=item C<uvXUformat>
-
-From F<perlxvf.U>:
-
-This variable contains the format string used for printing
-a Perl C<UV> as an unsigned hexadecimal integer in uppercase C<ABCDEF>.
 
 =back
 
@@ -9742,6 +9884,13 @@ This variable holds extra path (space-separated) used to find
 libraries on this platform, for example C<CPU>-specific libraries
 (on multi-C<CPU> platforms) may be listed here.
 
+=item C<xlocale_needed>
+
+From F<d_newlocale.U>:
+
+This symbol, if defined, indicates that the C program should
+include <xlocale.h> to get newlocale() and its friends.
+
 =back
 
 =head2 y
@@ -9783,8 +9932,8 @@ This variable is used internally by Configure to determine the
 full pathname (if any) of the zip program.  After Configure runs,
 the value is reset to a plain C<zip> and is not useful.
 
-
 =back
+
 
 =head1 GIT DATA
 

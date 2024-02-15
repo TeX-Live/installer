@@ -1,8 +1,0 @@
-(This file public domain.)
-
-This directory contains Perl 5.34.0 compiled for Windows.
-
-The only purpose of this Perl is to provide support on Windows for
-Perl scripts shipped with TeX Live.  It is not intended for general use.
-
-The sources and notes on compilation can be found in Master/source/tlperl.

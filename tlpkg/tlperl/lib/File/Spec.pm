@@ -2,7 +2,7 @@ package File::Spec;
 
 use strict;
 
-our $VERSION = '3.80';
+our $VERSION = '3.88';
 $VERSION =~ tr/_//d;
 
 my %module = (
@@ -33,13 +33,13 @@ File::Spec - portably perform operations on file names
 
 	use File::Spec;
 
-	$x=File::Spec->catfile('a', 'b', 'c');
+	my $x = File::Spec->catfile('a', 'b', 'c');
 
 which returns 'a/b/c' under Unix. Or:
 
 	use File::Spec::Functions;
 
-	$x = catfile('a', 'b', 'c');
+	my $x = catfile('a', 'b', 'c');
 
 =head1 DESCRIPTION
 
@@ -316,7 +316,7 @@ L<ExtUtils::MakeMaker>
 
 =head1 AUTHOR
 
-Currently maintained by Ken Williams C<< <KWILLIAMS@cpan.org> >>.
+Maintained by perl5-porters <F<perl5-porters@perl.org>>.
 
 The vast majority of the code was written by
 Kenneth Albanowski C<< <kjahds@kjahds.com> >>,

@@ -12,10 +12,9 @@ package B::Concise;
 use strict; # use #2
 use warnings; # uses #3 and #4, since warnings uses Carp
 
-use Exporter (); # use #5
+use Exporter 'import'; # use #5
 
-our $VERSION   = "1.004";
-our @ISA       = qw(Exporter);
+our $VERSION   = "1.007";
 our @EXPORT_OK = qw( set_style set_style_standard add_callback
 		     concise_subref concise_cv concise_main
 		     add_style walk_output compile reset_sequence );
@@ -853,9 +852,14 @@ sub concise_op {
 	# targ holds a reference count
         my $refs = "ref" . ($h{targ} != 1 ? "s" : "");
         $h{targarglife} = $h{targarg} = "$h{targ} $refs";
-    } elsif ($h{targ}) {
+    } elsif ($h{targ} && $h{name} ne 'iter') {
+        # for my ($q, $r, $s) () {} syntax hijacks the targ of the iter op,
+        # (which is the ->next of the enteriter) hence the special cases above
+        # and just below:
 	my $count = $h{name} eq 'padrange'
             ? ($op->private & $B::Op_private::defines{'OPpPADRANGE_COUNTMASK'})
+            : $h{name} eq 'enteriter'
+            ? $op->next->targ + 1
             : 1;
 	my (@targarg, @targarglife);
 	for my $i (0..$count-1) {
@@ -1484,6 +1488,11 @@ Private flags, if any are set for an opcode, are displayed after a '/'
 They're opcode specific, and occur less often than the public ones, so
 they're represented by short mnemonics instead of single-chars; see
 B::Op_private and F<regen/op_private> for more details.
+
+Note that a number after a '/' often indicates the number of arguments.
+In the I<sassign> example above, the OP takes 2 arguments. These values
+are sometimes used at runtime: in particular, the MAXARG macro makes use
+of them.
 
 =head1 FORMATTING SPECIFICATIONS
 

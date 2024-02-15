@@ -3,7 +3,7 @@ use strict;
 use Exporter;
 
 
-our $VERSION = '3.80';
+our $VERSION = '3.89';
 my $xs_version = $VERSION;
 $VERSION =~ tr/_//d;
 
@@ -181,12 +181,6 @@ if ($^O =~ /android/) {
 }
 
 my $found_pwd_cmd = defined($pwd_cmd);
-unless ($pwd_cmd) {
-    # Isn't this wrong?  _backtick_pwd() will fail if someone has
-    # pwd in their path but it is not /bin/pwd or /usr/bin/pwd?
-    # See [perl #16774]. --jhi
-    $pwd_cmd = 'pwd';
-}
 
 # Lazy-load Carp
 sub _carp  { require Carp; Carp::carp(@_)  }
@@ -198,8 +192,14 @@ sub _backtick_pwd {
     # Localize %ENV entries in a way that won't create new hash keys.
     # Under AmigaOS we don't want to localize as it stops perl from
     # finding 'sh' in the PATH.
-    my @localize = grep exists $ENV{$_}, qw(PATH IFS CDPATH ENV BASH_ENV) if $^O ne "amigaos";
+    my @localize = grep exists $ENV{$_}, qw(IFS CDPATH ENV BASH_ENV) if $^O ne "amigaos";
     local @ENV{@localize} if @localize;
+    # empty PATH is the same as "." on *nix, so localize it to /something/
+    # we won't *use* the path as code above turns $pwd_cmd into a specific
+    # executable, but it will blow up anyway under taint. We could set it to
+    # anything absolute. Perhaps "/" would be better.
+    local $ENV{PATH}= "/usr/bin"
+        if $^O ne "amigaos";
     
     my $cwd = `$pwd_cmd`;
     # Belt-and-suspenders in case someone said "undef $/".
@@ -213,26 +213,13 @@ sub _backtick_pwd {
 # we take care not to override an existing definition for cwd().
 
 unless ($METHOD_MAP{$^O}{cwd} or defined &cwd) {
-    # The pwd command is not available in some chroot(2)'ed environments
-    my $sep = $Config::Config{path_sep} || ':';
-    my $os = $^O;  # Protect $^O from tainting
-
-
-    # Try again to find a pwd, this time searching the whole PATH.
-    if (defined $ENV{PATH} and $os ne 'MSWin32') {  # no pwd on Windows
-	my @candidates = split($sep, $ENV{PATH});
-	while (!$found_pwd_cmd and @candidates) {
-	    my $candidate = shift @candidates;
-	    $found_pwd_cmd = 1 if -x "$candidate/pwd";
-	}
-    }
-
     if( $found_pwd_cmd )
     {
 	*cwd = \&_backtick_pwd;
     }
     else {
-	*cwd = \&getcwd;
+        # getcwd() might have an empty prototype
+	*cwd = sub { getcwd(); };
     }
 }
 
@@ -275,7 +262,7 @@ sub fastcwd_ {
 	($odev, $oino) = ($cdev, $cino);
 	CORE::chdir('..') || return undef;
 	($cdev, $cino) = stat('.');
-	last if $odev == $cdev && $oino == $cino;
+	last if $odev == $cdev && $oino eq $cino;
 	opendir(DIR, '.') || return undef;
 	for (;;) {
 	    $direntry = readdir(DIR);
@@ -284,7 +271,7 @@ sub fastcwd_ {
 	    next if $direntry eq '..';
 
 	    ($tdev, $tino) = lstat($direntry);
-	    last unless $tdev != $odev || $tino != $oino;
+	    last unless $tdev != $odev || $tino ne $oino;
 	}
 	closedir(DIR);
 	return undef unless defined $direntry; # should never happen
@@ -298,7 +285,7 @@ sub fastcwd_ {
 	&& CORE::chdir($1) or return undef;
     ($cdev, $cino) = stat('.');
     die "Unstable directory path, current directory changed unexpectedly"
-	if $cdev != $orig_cdev || $cino != $orig_cino;
+	if $cdev != $orig_cdev || $cino ne $orig_cino;
     $path;
 }
 if (not defined &fastcwd) { *fastcwd = \&fastcwd_ }
@@ -315,7 +302,7 @@ sub chdir_init {
     if ($ENV{'PWD'} and $^O ne 'os2' and $^O ne 'dos' and $^O ne 'MSWin32') {
 	my($dd,$di) = stat('.');
 	my($pd,$pi) = stat($ENV{'PWD'});
-	if (!defined $dd or !defined $pd or $di != $pi or $dd != $pd) {
+	if (!defined $dd or !defined $pd or $di ne $pi or $dd != $pd) {
 	    $ENV{'PWD'} = cwd();
 	}
     }
@@ -328,7 +315,7 @@ sub chdir_init {
     if ($^O ne 'MSWin32' and $ENV{'PWD'} =~ m|(/[^/]+(/[^/]+/[^/]+))(.*)|s) {
 	my($pd,$pi) = stat($2);
 	my($dd,$di) = stat($1);
-	if (defined $pd and defined $dd and $di == $pi and $dd == $pd) {
+	if (defined $pd and defined $dd and $di ne $pi and $dd == $pd) {
 	    $ENV{'PWD'}="$2$3";
 	}
     }
@@ -430,7 +417,7 @@ sub _perl_abs_path
 	    $! = $e;
 	    return undef;
 	}
-	if ($pst[0] == $cst[0] && $pst[1] == $cst[1])
+	if ($pst[0] == $cst[0] && $pst[1] eq $cst[1])
 	{
 	    $dir = undef;
 	}
@@ -448,7 +435,7 @@ sub _perl_abs_path
 		$tst[0] = $pst[0]+1 unless (@tst = lstat("$dotdots/$dir"))
 	    }
 	    while ($dir eq '.' || $dir eq '..' || $tst[0] != $pst[0] ||
-		   $tst[1] != $pst[1]);
+		   $tst[1] ne $pst[1]);
 	}
 	$cwd = (defined $dir ? "$dir" : "" ) . "/$cwd" ;
 	closedir(PARENT);
@@ -820,9 +807,7 @@ C<fast_abs_path()>.
 
 =head1 AUTHOR
 
-Originally by the perl5-porters.
-
-Maintained by Ken Williams <KWILLIAMS@cpan.org>
+Maintained by perl5-porters <F<perl5-porters@perl.org>>.
 
 =head1 COPYRIGHT
 

@@ -34,6 +34,10 @@ SOFTWARE.
  * header files, because they depend on proto.h (included after most other
  * headers) or struct definitions.
  *
+ * Note also perlstatic.h for functions that can't or shouldn't be inlined, but
+ * whose details should be exposed to the compiler, for such things as tail
+ * call optimization.
+ *
  * Each section names the header file that the functions "belong" to.
  */
 
@@ -57,6 +61,161 @@ Perl_av_count(pTHX_ AV *av)
     return AvFILL(av) + 1;
 }
 
+/* ------------------------------- av.c ------------------------------- */
+
+/*
+=for apidoc av_store_simple
+
+This is a cut-down version of av_store that assumes that the array is
+very straightforward - no magic, not readonly, and AvREAL - and that
+C<key> is not negative. This function MUST NOT be used in situations
+where any of those assumptions may not hold.
+
+Stores an SV in an array.  The array index is specified as C<key>. It
+can be dereferenced to get the C<SV*> that was stored there (= C<val>)).
+
+Note that the caller is responsible for suitably incrementing the reference
+count of C<val> before the call.
+
+Approximate Perl equivalent: C<splice(@myarray, $key, 1, $val)>.
+
+=cut
+*/
+
+PERL_STATIC_INLINE SV**
+Perl_av_store_simple(pTHX_ AV *av, SSize_t key, SV *val)
+{
+    SV** ary;
+
+    PERL_ARGS_ASSERT_AV_STORE_SIMPLE;
+    assert(SvTYPE(av) == SVt_PVAV);
+    assert(!SvMAGICAL(av));
+    assert(!SvREADONLY(av));
+    assert(AvREAL(av));
+    assert(key > -1);
+
+    ary = AvARRAY(av);
+
+    if (AvFILLp(av) < key) {
+        if (key > AvMAX(av)) {
+            av_extend(av,key);
+            ary = AvARRAY(av);
+        }
+        AvFILLp(av) = key;
+    } else
+        SvREFCNT_dec(ary[key]);
+
+    ary[key] = val;
+    return &ary[key];
+}
+
+/*
+=for apidoc av_fetch_simple
+
+This is a cut-down version of av_fetch that assumes that the array is
+very straightforward - no magic, not readonly, and AvREAL - and that
+C<key> is not negative. This function MUST NOT be used in situations
+where any of those assumptions may not hold.
+
+Returns the SV at the specified index in the array.  The C<key> is the
+index.  If lval is true, you are guaranteed to get a real SV back (in case
+it wasn't real before), which you can then modify.  Check that the return
+value is non-null before dereferencing it to a C<SV*>.
+
+The rough perl equivalent is C<$myarray[$key]>.
+
+=cut
+*/
+
+PERL_STATIC_INLINE SV**
+Perl_av_fetch_simple(pTHX_ AV *av, SSize_t key, I32 lval)
+{
+    PERL_ARGS_ASSERT_AV_FETCH_SIMPLE;
+    assert(SvTYPE(av) == SVt_PVAV);
+    assert(!SvMAGICAL(av));
+    assert(!SvREADONLY(av));
+    assert(AvREAL(av));
+    assert(key > -1);
+
+    if ( (key > AvFILLp(av)) || !AvARRAY(av)[key]) {
+        return lval ? av_store_simple(av,key,newSV_type(SVt_NULL)) : NULL;
+    } else {
+        return &AvARRAY(av)[key];
+    }
+}
+
+/*
+=for apidoc av_push_simple
+
+This is a cut-down version of av_push that assumes that the array is very
+straightforward - no magic, not readonly, and AvREAL - and that C<key> is
+not less than -1. This function MUST NOT be used in situations where any
+of those assumptions may not hold.
+
+Pushes an SV (transferring control of one reference count) onto the end of the
+array.  The array will grow automatically to accommodate the addition.
+
+Perl equivalent: C<push @myarray, $val;>.
+
+=cut
+*/
+
+PERL_STATIC_INLINE void
+Perl_av_push_simple(pTHX_ AV *av, SV *val)
+{
+    PERL_ARGS_ASSERT_AV_PUSH_SIMPLE;
+    assert(SvTYPE(av) == SVt_PVAV);
+    assert(!SvMAGICAL(av));
+    assert(!SvREADONLY(av));
+    assert(AvREAL(av));
+    assert(AvFILLp(av) > -2);
+
+    (void)av_store_simple(av,AvFILLp(av)+1,val);
+}
+
+/*
+=for apidoc av_new_alloc
+
+This implements L<perlapi/C<newAV_alloc_x>>
+and L<perlapi/C<newAV_alloc_xz>>, which are the public API for this
+functionality.
+
+Creates a new AV and allocates its SV* array.
+
+This is similar to, but more efficient than doing:
+
+    AV *av = newAV();
+    av_extend(av, key);
+
+The size parameter is used to pre-allocate a SV* array large enough to
+hold at least elements C<0..(size-1)>.  C<size> must be at least 1.
+
+The C<zeroflag> parameter controls whether or not the array is NULL
+initialized.
+
+=cut
+*/
+
+PERL_STATIC_INLINE AV *
+Perl_av_new_alloc(pTHX_ SSize_t size, bool zeroflag)
+{
+    AV * const av = newAV();
+    SV** ary;
+    PERL_ARGS_ASSERT_AV_NEW_ALLOC;
+    assert(size > 0);
+
+    Newx(ary, size, SV*); /* Newx performs the memwrap check */
+    AvALLOC(av) = ary;
+    AvARRAY(av) = ary;
+    AvMAX(av) = size - 1;
+
+    if (zeroflag)
+        Zero(ary, size, SV*);
+
+    return av;
+}
+
+
 /* ------------------------------- cv.h ------------------------------- */
 
 /*
@@ -76,6 +235,13 @@ Perl_CvGV(pTHX_ CV *sv)
         : ((XPVCV*)MUTABLE_PTR(SvANY(sv)))->xcv_gv_u.xcv_gv;
 }
 
+/*
+=for apidoc CvDEPTH
+Returns the recursion level of the CV C<sv>.  Hence >= 2 indicates we are in a
+recursive call.
+
+=cut
+*/
 PERL_STATIC_INLINE I32 *
 Perl_CvDEPTH(const CV * const sv)
 {
@@ -113,6 +279,25 @@ S_strip_spaces(pTHX_ const char * orig, STRLEN * const len)
     *len = tmps - SvPVX(tmpsv);
                 return SvPVX(tmpsv);
 }
+#endif
+
+/* ------------------------------- iperlsys.h ------------------------------- */
+#if ! defined(PERL_IMPLICIT_SYS) && defined(USE_ITHREADS)
+
+/* Otherwise this function is implemented as macros in iperlsys.h */
+
+PERL_STATIC_INLINE bool
+S_PerlEnv_putenv(pTHX_ char * str)
+{
+    PERL_ARGS_ASSERT_PERLENV_PUTENV;
+
+    ENV_LOCK;
+    bool retval = putenv(str);
+    ENV_UNLOCK;
+
+    return retval;
+}
+
 #endif
 
 /* ------------------------------- mg.h ------------------------------- */
@@ -197,6 +382,21 @@ Perl_POPMARK(pTHX)
 
 /* ----------------------------- regexp.h ----------------------------- */
 
+/* PVLVs need to act as a superset of all scalar types - they are basically
+ * PVMGs with a few extra fields.
+ * REGEXPs are first class scalars, but have many fields that can't be copied
+ * into a PVLV body.
+ *
+ * Hence we take a different approach - instead of a copy, PVLVs store a pointer
+ * back to the original body. To avoid increasing the size of PVLVs just for the
+ * rare case of REGEXP assignment, this pointer is stored in the memory usually
+ * used for SvLEN(). Hence the check for SVt_PVLV below, and the ? : ternary to
+ * read the pointer from the two possible locations. The macro SvLEN() wraps the
+ * access to the union's member xpvlenu_len, but there is no equivalent macro
+ * for wrapping the union's member xpvlenu_rx, hence the direct reference here.
+ *
+ * See commit df6b4bd56551f2d3 for more details. */
+
 PERL_STATIC_INLINE struct regexp *
 Perl_ReANY(const REGEXP * const re)
 {
@@ -208,154 +408,6 @@ Perl_ReANY(const REGEXP * const re)
     return SvTYPE(re) == SVt_PVLV ? p->xpv_len_u.xpvlenu_rx
                                    : (struct regexp *)p;
 }
-
-/* ------------------------------- sv.h ------------------------------- */
-
-PERL_STATIC_INLINE bool
-Perl_SvTRUE(pTHX_ SV *sv)
-{
-    PERL_ARGS_ASSERT_SVTRUE;
-
-    if (UNLIKELY(sv == NULL))
-        return FALSE;
-    SvGETMAGIC(sv);
-    return SvTRUE_nomg_NN(sv);
-}
-
-PERL_STATIC_INLINE bool
-Perl_SvTRUE_nomg(pTHX_ SV *sv)
-{
-    PERL_ARGS_ASSERT_SVTRUE_NOMG;
-
-    if (UNLIKELY(sv == NULL))
-        return FALSE;
-    return SvTRUE_nomg_NN(sv);
-}
-
-PERL_STATIC_INLINE bool
-Perl_SvTRUE_NN(pTHX_ SV *sv)
-{
-    PERL_ARGS_ASSERT_SVTRUE_NN;
-
-    SvGETMAGIC(sv);
-    return SvTRUE_nomg_NN(sv);
-}
-
-PERL_STATIC_INLINE bool
-Perl_SvTRUE_common(pTHX_ SV * sv, const bool sv_2bool_is_fallback)
-{
-    PERL_ARGS_ASSERT_SVTRUE_COMMON;
-
-    if (UNLIKELY(SvIMMORTAL_INTERP(sv)))
-        return SvIMMORTAL_TRUE(sv);
-
-    if (! SvOK(sv))
-        return FALSE;
-
-    if (SvPOK(sv))
-        return SvPVXtrue(sv);
-
-    if (SvIOK(sv))
-        return SvIVX(sv) != 0; /* casts to bool */
-
-    if (SvROK(sv) && !(SvOBJECT(SvRV(sv)) && HvAMAGIC(SvSTASH(SvRV(sv)))))
-        return TRUE;
-
-    if (sv_2bool_is_fallback)
-        return sv_2bool_nomg(sv);
-
-    return isGV_with_GP(sv);
-}
-
-
-PERL_STATIC_INLINE SV *
-Perl_SvREFCNT_inc(SV *sv)
-{
-    if (LIKELY(sv != NULL))
-        SvREFCNT(sv)++;
-    return sv;
-}
-PERL_STATIC_INLINE SV *
-Perl_SvREFCNT_inc_NN(SV *sv)
-{
-    PERL_ARGS_ASSERT_SVREFCNT_INC_NN;
-
-    SvREFCNT(sv)++;
-    return sv;
-}
-PERL_STATIC_INLINE void
-Perl_SvREFCNT_inc_void(SV *sv)
-{
-    if (LIKELY(sv != NULL))
-        SvREFCNT(sv)++;
-}
-PERL_STATIC_INLINE void
-Perl_SvREFCNT_dec(pTHX_ SV *sv)
-{
-    if (LIKELY(sv != NULL)) {
-        U32 rc = SvREFCNT(sv);
-        if (LIKELY(rc > 1))
-            SvREFCNT(sv) = rc - 1;
-        else
-            Perl_sv_free2(aTHX_ sv, rc);
-    }
-}
-
-PERL_STATIC_INLINE void
-Perl_SvREFCNT_dec_NN(pTHX_ SV *sv)
-{
-    U32 rc = SvREFCNT(sv);
-
-    PERL_ARGS_ASSERT_SVREFCNT_DEC_NN;
-
-    if (LIKELY(rc > 1))
-        SvREFCNT(sv) = rc - 1;
-    else
-        Perl_sv_free2(aTHX_ sv, rc);
-}
-
-PERL_STATIC_INLINE void
-Perl_SvAMAGIC_on(SV *sv)
-{
-    PERL_ARGS_ASSERT_SVAMAGIC_ON;
-    assert(SvROK(sv));
-
-    if (SvOBJECT(SvRV(sv))) HvAMAGIC_on(SvSTASH(SvRV(sv)));
-}
-PERL_STATIC_INLINE void
-Perl_SvAMAGIC_off(SV *sv)
-{
-    PERL_ARGS_ASSERT_SVAMAGIC_OFF;
-
-    if (SvROK(sv) && SvOBJECT(SvRV(sv)))
-        HvAMAGIC_off(SvSTASH(SvRV(sv)));
-}
-
-PERL_STATIC_INLINE U32
-Perl_SvPADSTALE_on(SV *sv)
-{
-    assert(!(SvFLAGS(sv) & SVs_PADTMP));
-    return SvFLAGS(sv) |= SVs_PADSTALE;
-}
-PERL_STATIC_INLINE U32
-Perl_SvPADSTALE_off(SV *sv)
-{
-    assert(!(SvFLAGS(sv) & SVs_PADTMP));
-    return SvFLAGS(sv) &= ~SVs_PADSTALE;
-}
-#if defined(PERL_CORE) || defined (PERL_EXT)
-PERL_STATIC_INLINE STRLEN
-S_sv_or_pv_pos_u2b(pTHX_ SV *sv, const char *pv, STRLEN pos, STRLEN *lenp)
-{
-    PERL_ARGS_ASSERT_SV_OR_PV_POS_U2B;
-    if (SvGAMAGIC(sv)) {
-        U8 *hopped = utf8_hop((U8 *)pv, pos);
-        if (lenp) *lenp = (STRLEN)(utf8_hop(hopped, *lenp) - hopped);
-        return (STRLEN)(hopped - (U8 *)pv);
-    }
-    return sv_pos_u2b_flags(sv,pos,lenp,SV_CONST_RETURN);
-}
-#endif
 
 /* ------------------------------- utf8.h ------------------------------- */
 
@@ -535,7 +587,7 @@ Perl_is_utf8_invariant_string_loc(const U8* const s, STRLEN len, const U8 ** ep)
         /* Here, we know we have at least one full word to process.  Process
          * per-word as long as we have at least a full word left */
         do {
-            if ((* (PERL_UINTMAX_T *) x) & PERL_VARIANTS_WORD_MASK)  {
+            if ((* (const PERL_UINTMAX_T *) x) & PERL_VARIANTS_WORD_MASK)  {
 
                 /* Found a variant.  Just return if caller doesn't want its
                  * exact position */
@@ -546,7 +598,7 @@ Perl_is_utf8_invariant_string_loc(const U8* const s, STRLEN len, const U8 ** ep)
 #  if   BYTEORDER == 0x1234 || BYTEORDER == 0x12345678    \
      || BYTEORDER == 0x4321 || BYTEORDER == 0x87654321
 
-                *ep = x + variant_byte_number(* (PERL_UINTMAX_T *) x);
+                *ep = x + variant_byte_number(* (const PERL_UINTMAX_T *) x);
                 assert(*ep >= s && *ep < send);
 
                 return FALSE;
@@ -581,96 +633,420 @@ Perl_is_utf8_invariant_string_loc(const U8* const s, STRLEN len, const U8 ** ep)
     return TRUE;
 }
 
+/* See if the platform has builtins for finding the most/least significant bit,
+ * and which one is right for using on 32 and 64 bit operands */
+#if (__has_builtin(__builtin_clz) || PERL_GCC_VERSION_GE(3,4,0))
+#  if U32SIZE == INTSIZE
+#    define PERL_CLZ_32 __builtin_clz
+#  endif
+#  if defined(U64TYPE) && U64SIZE == INTSIZE
+#    define PERL_CLZ_64 __builtin_clz
+#  endif
+#endif
+#if (__has_builtin(__builtin_ctz) || PERL_GCC_VERSION_GE(3,4,0))
+#  if U32SIZE == INTSIZE
+#    define PERL_CTZ_32 __builtin_ctz
+#  endif
+#  if defined(U64TYPE) && U64SIZE == INTSIZE
+#    define PERL_CTZ_64 __builtin_ctz
+#  endif
+#endif
+
+#if (__has_builtin(__builtin_clzl) || PERL_GCC_VERSION_GE(3,4,0))
+#  if U32SIZE == LONGSIZE && ! defined(PERL_CLZ_32)
+#    define PERL_CLZ_32 __builtin_clzl
+#  endif
+#  if defined(U64TYPE) && U64SIZE == LONGSIZE && ! defined(PERL_CLZ_64)
+#    define PERL_CLZ_64 __builtin_clzl
+#  endif
+#endif
+#if (__has_builtin(__builtin_ctzl) || PERL_GCC_VERSION_GE(3,4,0))
+#  if U32SIZE == LONGSIZE && ! defined(PERL_CTZ_32)
+#    define PERL_CTZ_32 __builtin_ctzl
+#  endif
+#  if defined(U64TYPE) && U64SIZE == LONGSIZE && ! defined(PERL_CTZ_64)
+#    define PERL_CTZ_64 __builtin_ctzl
+#  endif
+#endif
+
+#if (__has_builtin(__builtin_clzll) || PERL_GCC_VERSION_GE(3,4,0))
+#  if U32SIZE == LONGLONGSIZE && ! defined(PERL_CLZ_32)
+#    define PERL_CLZ_32 __builtin_clzll
+#  endif
+#  if defined(U64TYPE) && U64SIZE == LONGLONGSIZE && ! defined(PERL_CLZ_64)
+#    define PERL_CLZ_64 __builtin_clzll
+#  endif
+#endif
+#if (__has_builtin(__builtin_ctzll) || PERL_GCC_VERSION_GE(3,4,0))
+#  if U32SIZE == LONGLONGSIZE && ! defined(PERL_CTZ_32)
+#    define PERL_CTZ_32 __builtin_ctzll
+#  endif
+#  if defined(U64TYPE) && U64SIZE == LONGLONGSIZE && ! defined(PERL_CTZ_64)
+#    define PERL_CTZ_64 __builtin_ctzll
+#  endif
+#endif
+
+#if defined(_MSC_VER)
+#  include <intrin.h>
+#  pragma intrinsic(_BitScanForward)
+#  pragma intrinsic(_BitScanReverse)
+#  ifdef _WIN64
+#    pragma intrinsic(_BitScanForward64)
+#    pragma intrinsic(_BitScanReverse64)
+#  endif
+#endif
+
+/* The reason there are not checks to see if ffs() and ffsl() are available for
+ * determining the lsb, is because these don't improve on the deBruijn method
+ * fallback, which is just a branchless integer multiply, array element
+ * retrieval, and shift.  The others, even if the function call overhead is
+ * optimized out, have to cope with the possibility of the input being all
+ * zeroes, and almost certainly will have conditionals for this eventuality.
+ * khw, at the time of this commit, looked at the source for both gcc and clang
+ * to verify this.  (gcc used a method inferior to deBruijn.) */
+
+/* Below are functions to find the first, last, or only set bit in a word.  On
+ * platforms with 64-bit capability, there is a pair for each operation; the
+ * first taking a 64 bit operand, and the second a 32 bit one.  The logic is
+ * the same in each pair, so the second is stripped of most comments. */
+
+#ifdef U64TYPE  /* HAS_QUAD not usable outside the core */
+
+PERL_STATIC_INLINE unsigned
+Perl_lsbit_pos64(U64 word)
+{
+    /* Find the position (0..63) of the least significant set bit in the input
+     * word */
+
+    ASSUME(word != 0);
+
+    /* If we can determine that the platform has a usable fast method to get
+     * this info, use that */
+
+#  if defined(PERL_CTZ_64)
+#    define PERL_HAS_FAST_GET_LSB_POS64
+
+    return (unsigned) PERL_CTZ_64(word);
+
+#  elif U64SIZE == 8 && defined(_WIN64) && defined(_MSC_VER)
+#    define PERL_HAS_FAST_GET_LSB_POS64
+
+    {
+        unsigned long index;
+        _BitScanForward64(&index, word);
+        return (unsigned)index;
+    }
+
+#  else
+
+    /* Here, we didn't find a fast method for finding the lsb.  Fall back to
+     * making the lsb the only set bit in the word, and use our function that
+     * works on words with a single bit set.
+     *
+     * Isolate the lsb;
+     * https://stackoverflow.com/questions/757059/position-of-least-significant-bit-that-is-set
+     *
+     * The word will look like this, with a rightmost set bit in position 's':
+     * ('x's are don't cares, and 'y's are their complements)
+     *      s
+     *  x..x100..00
+     *  y..y011..11      Complement
+     *  y..y100..00      Add 1
+     *  0..0100..00      And with the original
+     *
+     *  (Yes, complementing and adding 1 is just taking the negative on 2's
+     *  complement machines, but not on 1's complement ones, and some compilers
+     *  complain about negating an unsigned.)
+     */
+    return single_1bit_pos64(word & (~word + 1));
+
+#  endif
+
+}
+
+#  define lsbit_pos_uintmax_(word) lsbit_pos64(word)
+#else   /* ! QUAD */
+#  define lsbit_pos_uintmax_(word) lsbit_pos32(word)
+#endif
+
+PERL_STATIC_INLINE unsigned     /* Like above for 32 bit word */
+Perl_lsbit_pos32(U32 word)
+{
+    /* Find the position (0..31) of the least significant set bit in the input
+     * word */
+
+    ASSUME(word != 0);
+
+#if defined(PERL_CTZ_32)
+#  define PERL_HAS_FAST_GET_LSB_POS32
+
+    return (unsigned) PERL_CTZ_32(word);
+
+#elif U32SIZE == 4 && defined(_MSC_VER)
+#  define PERL_HAS_FAST_GET_LSB_POS32
+
+    {
+        unsigned long index;
+        _BitScanForward(&index, word);
+        return (unsigned)index;
+    }
+
+#else
+
+    return single_1bit_pos32(word & (~word + 1));
+
+#endif
+
+}
+
+
+/* Convert the leading zeros count to the bit position of the first set bit.
+ * This just subtracts from the highest position, 31 or 63.  But some compilers
+ * don't optimize this optimally, and so a bit of bit twiddling encourages them
+ * to do the right thing.  It turns out that subtracting a smaller non-negative
+ * number 'x' from 2**n-1 for any n is the same as taking the exclusive-or of
+ * the two numbers.  To see why, first note that the sum of any number, x, and
+ * its complement, x', is all ones.  So all ones minus x is x'.  Then note that
+ * the xor of x and all ones is x'. */
+#define LZC_TO_MSBIT_POS_(size, lzc)  ((size##SIZE * CHARBITS - 1) ^ (lzc))
+
+#ifdef U64TYPE  /* HAS_QUAD not usable outside the core */
+
+PERL_STATIC_INLINE unsigned
+Perl_msbit_pos64(U64 word)
+{
+    /* Find the position (0..63) of the most significant set bit in the input
+     * word */
+
+    ASSUME(word != 0);
+
+    /* If we can determine that the platform has a usable fast method to get
+     * this, use that */
+
+#  if defined(PERL_CLZ_64)
+#    define PERL_HAS_FAST_GET_MSB_POS64
+
+    return (unsigned) LZC_TO_MSBIT_POS_(U64, PERL_CLZ_64(word));
+
+#  elif U64SIZE == 8 && defined(_WIN64) && defined(_MSC_VER)
+#    define PERL_HAS_FAST_GET_MSB_POS64
+
+    {
+        unsigned long index;
+        _BitScanReverse64(&index, word);
+        return (unsigned)index;
+    }
+
+#  else
+
+    /* Here, we didn't find a fast method for finding the msb.  Fall back to
+     * making the msb the only set bit in the word, and use our function that
+     * works on words with a single bit set.
+     *
+     * Isolate the msb; http://codeforces.com/blog/entry/10330
+     *
+     * Only the most significant set bit matters.  Or'ing word with its right
+     * shift of 1 makes that bit and the next one to its right both 1.
+     * Repeating that with the right shift of 2 makes for 4 1-bits in a row.
+     * ...  We end with the msb and all to the right being 1. */
+    word |= (word >>  1);
+    word |= (word >>  2);
+    word |= (word >>  4);
+    word |= (word >>  8);
+    word |= (word >> 16);
+    word |= (word >> 32);
+
+    /* Then subtracting the right shift by 1 clears all but the left-most of
+     * the 1 bits, which is our desired result */
+    word -= (word >> 1);
+
+    /* Now we have a single bit set */
+    return single_1bit_pos64(word);
+
+#  endif
+
+}
+
+#  define msbit_pos_uintmax_(word) msbit_pos64(word)
+#else   /* ! QUAD */
+#  define msbit_pos_uintmax_(word) msbit_pos32(word)
+#endif
+
+PERL_STATIC_INLINE unsigned
+Perl_msbit_pos32(U32 word)
+{
+    /* Find the position (0..31) of the most significant set bit in the input
+     * word */
+
+    ASSUME(word != 0);
+
+#if defined(PERL_CLZ_32)
+#  define PERL_HAS_FAST_GET_MSB_POS32
+
+    return (unsigned) LZC_TO_MSBIT_POS_(U32, PERL_CLZ_32(word));
+
+#elif U32SIZE == 4 && defined(_MSC_VER)
+#  define PERL_HAS_FAST_GET_MSB_POS32
+
+    {
+        unsigned long index;
+        _BitScanReverse(&index, word);
+        return (unsigned)index;
+    }
+
+#else
+
+    word |= (word >>  1);
+    word |= (word >>  2);
+    word |= (word >>  4);
+    word |= (word >>  8);
+    word |= (word >> 16);
+    word -= (word >> 1);
+    return single_1bit_pos32(word);
+
+#endif
+
+}
+
+#if UVSIZE == U64SIZE
+#  define msbit_pos(word)  msbit_pos64(word)
+#  define lsbit_pos(word)  lsbit_pos64(word)
+#elif UVSIZE == U32SIZE
+#  define msbit_pos(word)  msbit_pos32(word)
+#  define lsbit_pos(word)  lsbit_pos32(word)
+#endif
+
+#ifdef U64TYPE  /* HAS_QUAD not usable outside the core */
+
+PERL_STATIC_INLINE unsigned
+Perl_single_1bit_pos64(U64 word)
+{
+    /* Given a 64-bit word known to contain all zero bits except one 1 bit,
+     * find and return the 1's position: 0..63 */
+
+#  ifdef PERL_CORE    /* macro not exported */
+    ASSUME(isPOWER_OF_2(word));
+#  else
+    ASSUME(word && (word & (word-1)) == 0);
+#  endif
+
+    /* The only set bit is both the most and least significant bit.  If we have
+     * a fast way of finding either one, use that.
+     *
+     * It may appear at first glance that those functions call this one, but
+     * they don't if the corresponding #define is set */
+
+#  ifdef PERL_HAS_FAST_GET_MSB_POS64
+
+    return msbit_pos64(word);
+
+#  elif defined(PERL_HAS_FAST_GET_LSB_POS64)
+
+    return lsbit_pos64(word);
+
+#  else
+
+    /* The position of the only set bit in a word can be quickly calculated
+     * using deBruijn sequences.  See for example
+     * https://en.wikipedia.org/wiki/De_Bruijn_sequence */
+    return PL_deBruijn_bitpos_tab64[(word * PERL_deBruijnMagic64_)
+                                                    >> PERL_deBruijnShift64_];
+#  endif
+
+}
+
+#endif
+
+PERL_STATIC_INLINE unsigned
+Perl_single_1bit_pos32(U32 word)
+{
+    /* Given a 32-bit word known to contain all zero bits except one 1 bit,
+     * find and return the 1's position: 0..31 */
+
+#ifdef PERL_CORE    /* macro not exported */
+    ASSUME(isPOWER_OF_2(word));
+#else
+    ASSUME(word && (word & (word-1)) == 0);
+#endif
+#ifdef PERL_HAS_FAST_GET_MSB_POS32
+
+    return msbit_pos32(word);
+
+#elif defined(PERL_HAS_FAST_GET_LSB_POS32)
+
+    return lsbit_pos32(word);
+
+/* Unlikely, but possible for the platform to have a wider fast operation but
+ * not a narrower one.  But easy enough to handle the case by widening the
+ * parameter size.  (Going the other way, emulating 64 bit by two 32 bit ops
+ * would be slower than the deBruijn method.) */
+#elif defined(PERL_HAS_FAST_GET_MSB_POS64)
+
+    return msbit_pos64(word);
+
+#elif defined(PERL_HAS_FAST_GET_LSB_POS64)
+
+    return lsbit_pos64(word);
+
+#else
+
+    return PL_deBruijn_bitpos_tab32[(word * PERL_deBruijnMagic32_)
+                                                    >> PERL_deBruijnShift32_];
+#endif
+
+}
+
 #ifndef EBCDIC
 
 PERL_STATIC_INLINE unsigned int
 Perl_variant_byte_number(PERL_UINTMAX_T word)
 {
-
     /* This returns the position in a word (0..7) of the first variant byte in
      * it.  This is a helper function.  Note that there are no branches */
 
-    assert(word);
-
     /* Get just the msb bits of each byte */
     word &= PERL_VARIANTS_WORD_MASK;
+
+    /* This should only be called if we know there is a variant byte in the
+     * word */
+    assert(word);
 
 #  if BYTEORDER == 0x1234 || BYTEORDER == 0x12345678
 
     /* Bytes are stored like
      *  Byte8 ... Byte2 Byte1
      *  63..56...15...8 7...0
-     *
-     *  Isolate the lsb;
-     * https://stackoverflow.com/questions/757059/position-of-least-significant-bit-that-is-set
-     *
-     * The word will look like this, with a rightmost set bit in position 's':
-     * ('x's are don't cares)
-     *      s
-     *  x..x100..0
-     *  x..xx10..0      Right shift (rightmost 0 is shifted off)
-     *  x..xx01..1      Subtract 1, turns all the trailing zeros into 1's and
-     *                  the 1 just to their left into a 0; the remainder is
-     *                  untouched
-     *  0..0011..1      The xor with the original, x..xx10..0, clears that
-     *                  remainder, sets the bottom to all 1
-     *  0..0100..0      Add 1 to clear the word except for the bit in 's'
-     *
-     * Another method is to do 'word &= -word'; but it generates a compiler
-     * message on some platforms about taking the negative of an unsigned */
+     * so getting the lsb of the whole modified word is getting the msb of the
+     * first byte that has its msb set */
+    word = lsbit_pos_uintmax_(word);
 
-    word >>= 1;
-    word = 1 + (word ^ (word - 1));
+    /* Here, word contains the position 7,15,23,...55,63 of that bit.  Convert
+     * to 0..7 */
+    return (unsigned int) ((word + 1) >> 3) - 1;
 
 #  elif BYTEORDER == 0x4321 || BYTEORDER == 0x87654321
 
     /* Bytes are stored like
      *  Byte1 Byte2  ... Byte8
      * 63..56 55..47 ... 7...0
-     *
-     * Isolate the msb; http://codeforces.com/blog/entry/10330
-     *
-     * Only the most significant set bit matters.  Or'ing word with its right
-     * shift of 1 makes that bit and the next one to its right both 1.  Then
-     * right shifting by 2 makes for 4 1-bits in a row. ...  We end with the
-     * msb and all to the right being 1. */
-    word |= word >>  1;
-    word |= word >>  2;
-    word |= word >>  4;
-    word |= word >>  8;
-    word |= word >> 16;
-    word |= word >> 32;  /* This should get optimized out on 32-bit systems. */
+     * so getting the msb of the whole modified word is getting the msb of the
+     * first byte that has its msb set */
+    word = msbit_pos_uintmax_(word);
 
-    /* Then subtracting the right shift by 1 clears all but the left-most of
-     * the 1 bits, which is our desired result */
-    word -= (word >> 1);
+    /* Here, word contains the position 63,55,...,23,15,7 of that bit.  Convert
+     * to 0..7 */
+    word = ((word + 1) >> 3) - 1;
+
+    /* And invert the result because of the reversed byte order on this
+     * platform */
+    word = CHARBITS - word - 1;
+
+    return (unsigned int) word;
 
 #  else
 #    error Unexpected byte order
 #  endif
 
-    /* Here 'word' has a single bit set: the  msb of the first byte in which it
-     * is set.  Calculate that position in the word.  We can use this
-     * specialized solution: https://stackoverflow.com/a/32339674/1626653,
-     * assumes an 8-bit byte.  (On a 32-bit machine, the larger numbers should
-     * just get shifted off at compile time) */
-    word = (word >> 7) * ((UINTMAX_C( 7) << 56) | (UINTMAX_C(15) << 48)
-                        | (UINTMAX_C(23) << 40) | (UINTMAX_C(31) << 32)
-                        |           (39 <<  24) |           (47 <<  16)
-                        |           (55 <<   8) |           (63 <<   0));
-    word >>= PERL_WORDSIZE * 7; /* >> by either 56 or 24 */
-
-    /* Here, word contains the position 7..63 of that bit.  Convert to 0..7 */
-    word = ((word + 1) >> 3) - 1;
-
-#  if BYTEORDER == 0x4321 || BYTEORDER == 0x87654321
-
-    /* And invert the result */
-    word = CHARBITS - word - 1;
-
-#  endif
-
-    return (unsigned int) word;
 }
 
 #endif
@@ -754,7 +1130,8 @@ S_variant_under_utf8_count(const U8* const s, const U8* const e)
 
 #endif
 
-#ifndef PERL_IN_REGEXEC_C   /* Keep  these around for that file */
+   /* Keep  these around for these files */
+#if ! defined(PERL_IN_REGEXEC_C) && ! defined(PERL_IN_UTF8_C)
 #  undef PERL_WORDSIZE
 #  undef PERL_COUNT_MULTIPLIER
 #  undef PERL_WORD_BOUNDARY_MASK
@@ -1074,6 +1451,108 @@ Perl_is_utf8_string_loclen(const U8 *s, STRLEN len, const U8 **ep, STRLEN *el)
     }
 }
 
+/* The perl core arranges to never call the DFA below without there being at
+ * least one byte available to look at.  This allows the DFA to use a do {}
+ * while loop which means that calling it with a UTF-8 invariant has a single
+ * conditional, same as the calling code checking for invariance ahead of time.
+ * And having the calling code remove that conditional speeds up by that
+ * conditional, the case where it wasn't invariant.  So there's no reason to
+ * check before caling this.
+ *
+ * But we don't know this for non-core calls, so have to retain the check for
+ * them. */
+#ifdef PERL_CORE
+#  define PERL_NON_CORE_CHECK_EMPTY(s,e)  assert((e) > (s))
+#else
+#  define PERL_NON_CORE_CHECK_EMPTY(s,e)  if ((e) <= (s)) return FALSE
+#endif
+
+/*
+ * DFA for checking input is valid UTF-8 syntax.
+ *
+ * This uses adaptations of the table and algorithm given in
+ * https://bjoern.hoehrmann.de/utf-8/decoder/dfa/, which provides comprehensive
+ * documentation of the original version.  A copyright notice for the original
+ * version is given at the beginning of this file.  The Perl adaptations are
+ * documented at the definition of PL_extended_utf8_dfa_tab[].
+ *
+ * This dfa is fast.  There are three exit conditions:
+ *  1) a well-formed code point, acceptable to the table
+ *  2) the beginning bytes of an incomplete character, whose completion might
+ *     or might not be acceptable
+ *  3) unacceptable to the table.  Some of the adaptations have certain,
+ *     hopefully less likely to occur, legal inputs be unacceptable to the
+ *     table, so these must be sorted out afterwards.
+ *
+ * This macro is a complete implementation of the code executing the DFA.  It
+ * is passed the input sequence bounds and the table to use, and what to do
+ * for each of the exit conditions.  There are three canned actions, likely to
+ * be the ones you want:
+ *      DFA_RETURN_SUCCESS_
+ *      DFA_RETURN_FAILURE_
+ *      DFA_GOTO_TEASE_APART_FF_
+ *
+ * You pass a parameter giving the action to take for each of the three
+ * possible exit conditions:
+ *
+ * 'accept_action'  This is executed when the DFA accepts the input.
+ *                  DFA_RETURN_SUCCESS_ is the most likely candidate.
+ * 'reject_action'  This is executed when the DFA rejects the input.
+ *                  DFA_RETURN_FAILURE_ is a candidate, or 'goto label' where
+ *                  you have written code to distinguish the rejecting state
+ *                  results.  Because it happens in several places, and
+ *                  involves #ifdefs, the special action
+ *                  DFA_GOTO_TEASE_APART_FF_ is what you want with
+ *                  PL_extended_utf8_dfa_tab.  On platforms without
+ *                  EXTRA_LONG_UTF8, there is no need to tease anything apart,
+ *                  so this evaluates to DFA_RETURN_FAILURE_; otherwise you
+ *                  need to have a label 'tease_apart_FF' that it will transfer
+ *                  to.
+ * 'incomplete_char_action'  This is executed when the DFA ran off the end
+ *                  before accepting or rejecting the input.
+ *                  DFA_RETURN_FAILURE_ is the likely action, but you could
+ *                  have a 'goto', or NOOP.  In the latter case the DFA drops
+ *                  off the end, and you place your code to handle this case
+ *                  immediately after it.
+ */
+
+#define DFA_RETURN_SUCCESS_      return s - s0
+#define DFA_RETURN_FAILURE_      return 0
+#ifdef HAS_EXTRA_LONG_UTF8
+#  define DFA_TEASE_APART_FF_  goto tease_apart_FF
+#else
+#  define DFA_TEASE_APART_FF_  DFA_RETURN_FAILURE_
+#endif
+
+#define PERL_IS_UTF8_CHAR_DFA(s0, e, dfa_tab,                               \
+                              accept_action,                                \
+                              reject_action,                                \
+                              incomplete_char_action)                       \
+    STMT_START {                                                            \
+        const U8 * s = s0;                                                  \
+        const U8 * e_ = e;                                                  \
+        UV state = 0;                                                       \
+                                                                            \
+        PERL_NON_CORE_CHECK_EMPTY(s, e_);                                   \
+                                                                            \
+        do {                                                                \
+            state = dfa_tab[256 + state + dfa_tab[*s]];                     \
+            s++;                                                            \
+                                                                            \
+            if (state == 0) {   /* Accepting state */                       \
+                accept_action;                                              \
+            }                                                               \
+                                                                            \
+            if (UNLIKELY(state == 1)) { /* Rejecting state */               \
+                reject_action;                                              \
+            }                                                               \
+        } while (s < e_);                                                   \
+                                                                            \
+        /* Here, dropped out of loop before end-of-char */                  \
+        incomplete_char_action;                                             \
+    } STMT_END
+
+
 /*
 
 =for apidoc isUTF8_CHAR
@@ -1107,46 +1586,41 @@ machines) is a valid UTF-8 character.
 This uses an adaptation of the table and algorithm given in
 https://bjoern.hoehrmann.de/utf-8/decoder/dfa/, which provides comprehensive
 documentation of the original version.  A copyright notice for the original
-version is given at the beginning of this file.  The Perl adapation is
+version is given at the beginning of this file.  The Perl adaptation is
 documented at the definition of PL_extended_utf8_dfa_tab[].
-
 */
 
 PERL_STATIC_INLINE Size_t
 Perl_isUTF8_CHAR(const U8 * const s0, const U8 * const e)
 {
-    const U8 * s = s0;
-    UV state = 0;
-
     PERL_ARGS_ASSERT_ISUTF8_CHAR;
 
-    /* This dfa is fast.  If it accepts the input, it was for a well-formed,
-     * code point, which can be returned immediately.  Otherwise, it is either
-     * malformed, or for the start byte FF which the dfa doesn't handle (except
-     * on 32-bit ASCII platforms where it trivially is an error).  Call a
-     * helper function for the other platforms. */
+    PERL_IS_UTF8_CHAR_DFA(s0, e, PL_extended_utf8_dfa_tab,
+                          DFA_RETURN_SUCCESS_,
+                          DFA_TEASE_APART_FF_,
+                          DFA_RETURN_FAILURE_);
 
-    while (s < e && LIKELY(state != 1)) {
-        state = PL_extended_utf8_dfa_tab[256
-                                         + state
-                                         + PL_extended_utf8_dfa_tab[*s]];
-        if (state != 0) {
-            s++;
-            continue;
-        }
+    /* Here, we didn't return success, but dropped out of the loop.  In the
+     * case of PL_extended_utf8_dfa_tab, this means the input is either
+     * malformed, or the start byte was FF on a platform that the dfa doesn't
+     * handle FF's.  Call a helper function. */
 
-        return s - s0 + 1;
+#ifdef HAS_EXTRA_LONG_UTF8
+
+  tease_apart_FF:
+
+    /* In the case of PL_extended_utf8_dfa_tab, getting here means the input is
+     * either malformed, or was for the largest possible start byte, which we
+     * now check, not inline */
+    if (*s0 != I8_TO_NATIVE_UTF8(0xFF)) {
+        return 0;
     }
 
-#if defined(UV_IS_QUAD) || defined(EBCDIC)
-
-    if (NATIVE_UTF8_TO_I8(*s0) == 0xFF && e - s0 >= UTF8_MAXBYTES) {
-       return is_utf8_char_helper(s0, e, 0);
-    }
-
+    return is_utf8_FF_helper_(s0, e,
+                              FALSE /* require full, not partial char */
+                             );
 #endif
 
-    return 0;
 }
 
 /*
@@ -1181,7 +1655,7 @@ C<L</is_strict_utf8_string_loclen>> to check entire strings.
 This uses an adaptation of the tables and algorithm given in
 https://bjoern.hoehrmann.de/utf-8/decoder/dfa/, which provides comprehensive
 documentation of the original version.  A copyright notice for the original
-version is given at the beginning of this file.  The Perl adapation is
+version is given at the beginning of this file.  The Perl adaptation is
 documented at the definition of strict_extended_utf8_dfa_tab[].
 
 */
@@ -1189,32 +1663,21 @@ documented at the definition of strict_extended_utf8_dfa_tab[].
 PERL_STATIC_INLINE Size_t
 Perl_isSTRICT_UTF8_CHAR(const U8 * const s0, const U8 * const e)
 {
-    const U8 * s = s0;
-    UV state = 0;
-
     PERL_ARGS_ASSERT_ISSTRICT_UTF8_CHAR;
 
-    while (s < e && LIKELY(state != 1)) {
-        state = PL_strict_utf8_dfa_tab[256 + state + PL_strict_utf8_dfa_tab[*s]];
+    PERL_IS_UTF8_CHAR_DFA(s0, e, PL_strict_utf8_dfa_tab,
+                          DFA_RETURN_SUCCESS_,
+                          goto check_hanguls,
+                          DFA_RETURN_FAILURE_);
+  check_hanguls:
 
-        if (state != 0) {
-            s++;
-            continue;
-        }
+    /* Here, we didn't return success, but dropped out of the loop.  In the
+     * case of PL_strict_utf8_dfa_tab, this means the input is either
+     * malformed, or was for certain Hanguls; handle them specially */
 
-        return s - s0 + 1;
-    }
-
-#ifndef EBCDIC
-
-    /* The dfa above drops out for certain Hanguls; handle them specially */
-    if (is_HANGUL_ED_utf8_safe(s0, e)) {
-        return 3;
-    }
-
-#endif
-
-    return 0;
+    /* The dfa above drops out for incomplete or illegal inputs, and certain
+     * legal Hanguls; check and return accordingly */
+    return is_HANGUL_ED_utf8_safe(s0, e);
 }
 
 /*
@@ -1247,7 +1710,7 @@ C<L</is_c9strict_utf8_string_loclen>> to check entire strings.
 This uses an adaptation of the tables and algorithm given in
 https://bjoern.hoehrmann.de/utf-8/decoder/dfa/, which provides comprehensive
 documentation of the original version.  A copyright notice for the original
-version is given at the beginning of this file.  The Perl adapation is
+version is given at the beginning of this file.  The Perl adaptation is
 documented at the definition of PL_c9_utf8_dfa_tab[].
 
 */
@@ -1255,23 +1718,12 @@ documented at the definition of PL_c9_utf8_dfa_tab[].
 PERL_STATIC_INLINE Size_t
 Perl_isC9_STRICT_UTF8_CHAR(const U8 * const s0, const U8 * const e)
 {
-    const U8 * s = s0;
-    UV state = 0;
-
     PERL_ARGS_ASSERT_ISC9_STRICT_UTF8_CHAR;
 
-    while (s < e && LIKELY(state != 1)) {
-        state = PL_c9_utf8_dfa_tab[256 + state + PL_c9_utf8_dfa_tab[*s]];
-
-        if (state != 0) {
-            s++;
-            continue;
-        }
-
-        return s - s0 + 1;
-    }
-
-    return 0;
+    PERL_IS_UTF8_CHAR_DFA(s0, e, PL_c9_utf8_dfa_tab,
+                          DFA_RETURN_SUCCESS_,
+                          DFA_RETURN_FAILURE_,
+                          DFA_RETURN_FAILURE_);
 }
 
 /*
@@ -1552,11 +2004,16 @@ Perl_utf8_distance(pTHX_ const U8 *a, const U8 *b)
 =for apidoc utf8_hop
 
 Return the UTF-8 pointer C<s> displaced by C<off> characters, either
-forward or backward.
+forward (if C<off> is positive) or backward (if negative).  C<s> does not need
+to be pointing to the starting byte of a character.  If it isn't, one count of
+C<off> will be used up to get to the start of the next character for forward
+hops, and to the start of the current character for negative ones.
 
-WARNING: do not use the following unless you *know* C<off> is within
-the UTF-8 data pointed to by C<s> *and* that on entry C<s> is aligned
-on the first byte of character or just after the last byte of a character.
+WARNING: Prefer L</utf8_hop_safe> to this one.
+
+Do NOT use this function unless you B<know> C<off> is within
+the UTF-8 data pointed to by C<s> B<and> that on entry C<s> is aligned
+on the first byte of a character or just after the last byte of a character.
 
 =cut
 */
@@ -1567,10 +2024,20 @@ Perl_utf8_hop(const U8 *s, SSize_t off)
     PERL_ARGS_ASSERT_UTF8_HOP;
 
     /* Note: cannot use UTF8_IS_...() too eagerly here since e.g
-     * the bitops (especially ~) can create illegal UTF-8.
+     * the XXX bitops (especially ~) can create illegal UTF-8.
      * In other words: in Perl UTF-8 is not just for Unicode. */
 
-    if (off >= 0) {
+    if (off > 0) {
+
+        /* Get to next non-continuation byte */
+        if (UNLIKELY(UTF8_IS_CONTINUATION(*s))) {
+            do {
+                s++;
+            }
+            while (UTF8_IS_CONTINUATION(*s));
+            off--;
+        }
+
         while (off--)
             s += UTF8SKIP(s);
     }
@@ -1581,6 +2048,7 @@ Perl_utf8_hop(const U8 *s, SSize_t off)
                 s--;
         }
     }
+
     GCC_DIAG_IGNORE(-Wcast-qual)
     return (U8 *)s;
     GCC_DIAG_RESTORE
@@ -1590,7 +2058,9 @@ Perl_utf8_hop(const U8 *s, SSize_t off)
 =for apidoc utf8_hop_forward
 
 Return the UTF-8 pointer C<s> displaced by up to C<off> characters,
-forward.
+forward.  C<s> does not need to be pointing to the starting byte of a
+character.  If it isn't, one count of C<off> will be used up to get to the
+start of the next character.
 
 C<off> must be non-negative.
 
@@ -1615,6 +2085,15 @@ Perl_utf8_hop_forward(const U8 *s, SSize_t off, const U8 *end)
     assert(s <= end);
     assert(off >= 0);
 
+    if (off && UNLIKELY(UTF8_IS_CONTINUATION(*s))) {
+        /* Get to next non-continuation byte */
+        do {
+            s++;
+        }
+        while (UTF8_IS_CONTINUATION(*s));
+        off--;
+    }
+
     while (off--) {
         STRLEN skip = UTF8SKIP(s);
         if ((STRLEN)(end - s) <= skip) {
@@ -1634,7 +2113,9 @@ Perl_utf8_hop_forward(const U8 *s, SSize_t off, const U8 *end)
 =for apidoc utf8_hop_back
 
 Return the UTF-8 pointer C<s> displaced by up to C<off> characters,
-backward.
+backward.  C<s> does not need to be pointing to the starting byte of a
+character.  If it isn't, one count of C<off> will be used up to get to that
+start.
 
 C<off> must be non-positive.
 
@@ -1659,6 +2140,13 @@ Perl_utf8_hop_back(const U8 *s, SSize_t off, const U8 *start)
     assert(start <= s);
     assert(off <= 0);
 
+    /* Note: if we know that the input is well-formed, we can do per-word
+     * hop-back.  Commit d6ad3b72778369a84a215b498d8d60d5b03aa1af implemented
+     * that.  But it was reverted because doing per-word has some
+     * start-up/tear-down overhead, so only makes sense if the distance to be
+     * moved is large, and core perl doesn't currently move more than a few
+     * characters at a time.  You can reinstate it if it does become
+     * advantageous. */
     while (off++ && s > start) {
         do {
             s--;
@@ -1674,7 +2162,10 @@ Perl_utf8_hop_back(const U8 *s, SSize_t off, const U8 *start)
 =for apidoc utf8_hop_safe
 
 Return the UTF-8 pointer C<s> displaced by up to C<off> characters,
-either forward or backward.
+either forward or backward.  C<s> does not need to be pointing to the starting
+byte of a character.  If it isn't, one count of C<off> will be used up to get
+to the start of the next character for forward hops, and to the start of the
+current character for negative ones.
 
 When moving backward it will not move before C<start>.
 
@@ -1702,6 +2193,73 @@ Perl_utf8_hop_safe(const U8 *s, SSize_t off, const U8 *start, const U8 *end)
     else {
         return utf8_hop_back(s, off, start);
     }
+}
+
+/*
+
+=for apidoc isUTF8_CHAR_flags
+
+Evaluates to non-zero if the first few bytes of the string starting at C<s> and
+looking no further than S<C<e - 1>> are well-formed UTF-8, as extended by Perl,
+that represents some code point, subject to the restrictions given by C<flags>;
+otherwise it evaluates to 0.  If non-zero, the value gives how many bytes
+starting at C<s> comprise the code point's representation.  Any bytes remaining
+before C<e>, but beyond the ones needed to form the first code point in C<s>,
+are not examined.
+
+If C<flags> is 0, this gives the same results as C<L</isUTF8_CHAR>>;
+if C<flags> is C<UTF8_DISALLOW_ILLEGAL_INTERCHANGE>, this gives the same results
+as C<L</isSTRICT_UTF8_CHAR>>;
+and if C<flags> is C<UTF8_DISALLOW_ILLEGAL_C9_INTERCHANGE>, this gives
+the same results as C<L</isC9_STRICT_UTF8_CHAR>>.
+Otherwise C<flags> may be any combination of the C<UTF8_DISALLOW_I<foo>> flags
+understood by C<L</utf8n_to_uvchr>>, with the same meanings.
+
+The three alternative macros are for the most commonly needed validations; they
+are likely to run somewhat faster than this more general one, as they can be
+inlined into your code.
+
+Use L</is_utf8_string_flags>, L</is_utf8_string_loc_flags>, and
+L</is_utf8_string_loclen_flags> to check entire strings.
+
+=cut
+*/
+
+PERL_STATIC_INLINE STRLEN
+Perl_isUTF8_CHAR_flags(const U8 * const s0, const U8 * const e, const U32 flags)
+{
+    PERL_ARGS_ASSERT_ISUTF8_CHAR_FLAGS;
+    assert(0 == (flags & ~(UTF8_DISALLOW_ILLEGAL_INTERCHANGE
+                          |UTF8_DISALLOW_PERL_EXTENDED)));
+
+    PERL_IS_UTF8_CHAR_DFA(s0, e, PL_extended_utf8_dfa_tab,
+                          goto check_success,
+                          DFA_TEASE_APART_FF_,
+                          DFA_RETURN_FAILURE_);
+
+  check_success:
+
+    return is_utf8_char_helper_(s0, e, flags);
+
+#ifdef HAS_EXTRA_LONG_UTF8
+
+  tease_apart_FF:
+
+    /* In the case of PL_extended_utf8_dfa_tab, getting here means the input is
+     * either malformed, or was for the largest possible start byte, which
+     * indicates perl extended UTF-8, well above the Unicode maximum */
+    if (   *s0 != I8_TO_NATIVE_UTF8(0xFF)
+        || (flags & (UTF8_DISALLOW_SUPER|UTF8_DISALLOW_PERL_EXTENDED)))
+    {
+        return 0;
+    }
+
+    /* Otherwise examine the sequence not inline */
+    return is_utf8_FF_helper_(s0, e,
+                              FALSE /* require full, not partial char */
+                             );
+#endif
+
 }
 
 /*
@@ -1754,18 +2312,47 @@ determined from just the first one or two bytes.
  */
 
 PERL_STATIC_INLINE bool
-Perl_is_utf8_valid_partial_char_flags(const U8 * const s, const U8 * const e, const U32 flags)
+Perl_is_utf8_valid_partial_char_flags(const U8 * const s0, const U8 * const e, const U32 flags)
 {
     PERL_ARGS_ASSERT_IS_UTF8_VALID_PARTIAL_CHAR_FLAGS;
-
     assert(0 == (flags & ~(UTF8_DISALLOW_ILLEGAL_INTERCHANGE
                           |UTF8_DISALLOW_PERL_EXTENDED)));
 
-    if (s >= e || s + UTF8SKIP(s) <= e) {
-        return FALSE;
+    PERL_IS_UTF8_CHAR_DFA(s0, e, PL_extended_utf8_dfa_tab,
+                          DFA_RETURN_FAILURE_,
+                          DFA_TEASE_APART_FF_,
+                          NOOP);
+
+    /* The NOOP above causes the DFA to drop down here iff the input was a
+     * partial character.  flags=0 => can return TRUE immediately; otherwise we
+     * need to check (not inline) if the partial character is the beginning of
+     * a disallowed one */
+    if (flags == 0) {
+        return TRUE;
     }
 
-    return cBOOL(is_utf8_char_helper(s, e, flags));
+    return cBOOL(is_utf8_char_helper_(s0, e, flags));
+
+#ifdef HAS_EXTRA_LONG_UTF8
+
+  tease_apart_FF:
+
+    /* Getting here means the input is either malformed, or, in the case of
+     * PL_extended_utf8_dfa_tab, was for the largest possible start byte.  The
+     * latter case has to be extended UTF-8, so can fail immediately if that is
+     * forbidden */
+
+    if (   *s0 != I8_TO_NATIVE_UTF8(0xFF)
+        || (flags & (UTF8_DISALLOW_SUPER|UTF8_DISALLOW_PERL_EXTENDED)))
+    {
+        return 0;
+    }
+
+    return is_utf8_FF_helper_(s0, e,
+                              TRUE /* Require to be a partial character */
+                             );
+#endif
+
 }
 
 /*
@@ -1844,11 +2431,11 @@ Perl_is_utf8_fixed_width_buf_loclen_flags(const U8 * const s,
 
 PERL_STATIC_INLINE UV
 Perl_utf8n_to_uvchr_msgs(const U8 *s,
-                      STRLEN curlen,
-                      STRLEN *retlen,
-                      const U32 flags,
-                      U32 * errors,
-                      AV ** msgs)
+                         STRLEN curlen,
+                         STRLEN *retlen,
+                         const U32 flags,
+                         U32 * errors,
+                         AV ** msgs)
 {
     /* This is the inlined portion of utf8n_to_uvchr_msgs.  It handles the
      * simple cases, and, if necessary calls a helper function to deal with the
@@ -1860,13 +2447,13 @@ Perl_utf8n_to_uvchr_msgs(const U8 *s,
      * https://bjoern.hoehrmann.de/utf-8/decoder/dfa/, which provides
      * comprehensive documentation of the original version.  A copyright notice
      * for the original version is given at the beginning of this file.  The
-     * Perl adapation is documented at the definition of PL_strict_utf8_dfa_tab[].
+     * Perl adaptation is documented at the definition of PL_strict_utf8_dfa_tab[].
      */
 
     const U8 * const s0 = s;
     const U8 * send = s0 + curlen;
-    UV uv = 0;      /* The 0 silences some stupid compilers */
-    UV state = 0;
+    UV type;
+    UV uv;
 
     PERL_ARGS_ASSERT_UTF8N_TO_UVCHR_MSGS;
 
@@ -1875,34 +2462,60 @@ Perl_utf8n_to_uvchr_msgs(const U8 *s,
      * Otherwise we call a helper function to figure out the more complicated
      * cases. */
 
-    while (s < send && LIKELY(state != 1)) {
-        UV type = PL_strict_utf8_dfa_tab[*s];
+    /* No calls from core pass in an empty string; non-core need a check */
+#ifdef PERL_CORE
+    assert(curlen > 0);
+#else
+    if (curlen == 0) return _utf8n_to_uvchr_msgs_helper(s0, 0, retlen,
+                                                        flags, errors, msgs);
+#endif
 
-        uv = (state == 0)
-             ?  ((0xff >> type) & NATIVE_UTF8_TO_I8(*s))
-             : UTF8_ACCUMULATE(uv, *s);
-        state = PL_strict_utf8_dfa_tab[256 + state + type];
+    type = PL_strict_utf8_dfa_tab[*s];
 
-        if (state != 0) {
-            s++;
-            continue;
+    /* The table is structured so that 'type' is 0 iff the input byte is
+     * represented identically regardless of the UTF-8ness of the string */
+    if (type == 0) {   /* UTF-8 invariants are returned unchanged */
+        uv = *s;
+    }
+    else {
+        UV state = PL_strict_utf8_dfa_tab[256 + type];
+        uv = (0xff >> type) & NATIVE_UTF8_TO_I8(*s);
+
+        while (++s < send) {
+            type  = PL_strict_utf8_dfa_tab[*s];
+            state = PL_strict_utf8_dfa_tab[256 + state + type];
+
+            uv = UTF8_ACCUMULATE(uv, *s);
+
+            if (state == 0) {
+#ifdef EBCDIC
+                uv = UNI_TO_NATIVE(uv);
+#endif
+                goto success;
+            }
+
+            if (UNLIKELY(state == 1)) {
+                break;
+            }
         }
 
-        if (retlen) {
-            *retlen = s - s0 + 1;
-        }
-        if (errors) {
-            *errors = 0;
-        }
-        if (msgs) {
-            *msgs = NULL;
-        }
-
-        return UNI_TO_NATIVE(uv);
+        /* Here is potentially problematic.  Use the full mechanism */
+        return _utf8n_to_uvchr_msgs_helper(s0, curlen, retlen, flags,
+                                           errors, msgs);
     }
 
-    /* Here is potentially problematic.  Use the full mechanism */
-    return _utf8n_to_uvchr_msgs_helper(s0, curlen, retlen, flags, errors, msgs);
+  success:
+    if (retlen) {
+        *retlen = s - s0 + 1;
+    }
+    if (errors) {
+        *errors = 0;
+    }
+    if (msgs) {
+        *msgs = NULL;
+    }
+
+    return uv;
 }
 
 PERL_STATIC_INLINE UV
@@ -1922,7 +2535,7 @@ Perl_utf8_to_uvchr_buf_helper(pTHX_ const U8 *s, const U8 *send, STRLEN *retlen)
     }
     else {
         UV ret = utf8n_to_uvchr(s, send - s, retlen, 0);
-        if (retlen && ret == 0 && *s != '\0') {
+        if (retlen && ret == 0 && (send <= s || *s != '\0')) {
             *retlen = (STRLEN) -1;
         }
 
@@ -2045,7 +2658,7 @@ S_lossless_NV_to_IV(const NV nv, IV *ivp)
 
 /* ------------------ pp.c, regcomp.c, toke.c, universal.c ------------ */
 
-#if defined(PERL_IN_PP_C) || defined(PERL_IN_REGCOMP_C) || defined(PERL_IN_TOKE_C) || defined(PERL_IN_UNIVERSAL_C)
+#if defined(PERL_IN_PP_C) || defined(PERL_IN_REGCOMP_ANY) || defined(PERL_IN_TOKE_C) || defined(PERL_IN_UNIVERSAL_C)
 
 #define MAX_CHARSET_NAME_LENGTH 2
 
@@ -2444,6 +3057,8 @@ Perl_cx_poploop(pTHX_ PERL_CONTEXT *cx)
         cx->blk_loop.itersave = NULL;
         SvREFCNT_dec(cursv);
     }
+    if (cx->cx_type & (CXp_FOR_GV|CXp_FOR_LVREF))
+        SvREFCNT_dec(cx->blk_loop.itervar_u.svp);
 }
 
 
@@ -2492,6 +3107,36 @@ Perl_cx_popgiven(pTHX_ PERL_CONTEXT *cx)
     SvREFCNT_dec(sv);
 }
 
+/*
+=for apidoc newPADxVOP
+
+Constructs, checks and returns an op containing a pad offset.  C<type> is
+the opcode, which should be one of C<OP_PADSV>, C<OP_PADAV>, C<OP_PADHV>
+or C<OP_PADCV>.  The returned op will have the C<op_targ> field set by
+the C<padix> argument.
+
+This is convenient when constructing a large optree in nested function
+calls, as it avoids needing to store the pad op directly to set the
+C<op_targ> field as a side-effect. For example
+
+    o = op_append_elem(OP_LINESEQ, o,
+        newPADxVOP(OP_PADSV, 0, padix));
+
+=cut
+*/
+
+PERL_STATIC_INLINE OP *
+Perl_newPADxVOP(pTHX_ I32 type, I32 flags, PADOFFSET padix)
+{
+    PERL_ARGS_ASSERT_NEWPADXVOP;
+
+    assert(type == OP_PADSV || type == OP_PADAV || type == OP_PADHV
+            || type == OP_PADCV);
+    OP *o = newOP(type, flags);
+    o->op_targ = padix;
+    return o;
+}
+
 /* ------------------ util.h ------------------------------------------- */
 
 /*
@@ -2509,7 +3154,7 @@ range bytes match only themselves.
 */
 
 PERL_STATIC_INLINE I32
-Perl_foldEQ(const char *s1, const char *s2, I32 len)
+Perl_foldEQ(pTHX_ const char *s1, const char *s2, I32 len)
 {
     const U8 *a = (const U8 *)s1;
     const U8 *b = (const U8 *)s2;
@@ -2527,7 +3172,7 @@ Perl_foldEQ(const char *s1, const char *s2, I32 len)
 }
 
 PERL_STATIC_INLINE I32
-Perl_foldEQ_latin1(const char *s1, const char *s2, I32 len)
+Perl_foldEQ_latin1(pTHX_ const char *s1, const char *s2, I32 len)
 {
     /* Compare non-UTF-8 using Unicode (Latin1) semantics.  Works on all folds
      * representable without UTF-8, except for LATIN_SMALL_LETTER_SHARP_S, and
@@ -2561,7 +3206,7 @@ same case-insensitively in the current locale; false otherwise.
 */
 
 PERL_STATIC_INLINE I32
-Perl_foldEQ_locale(const char *s1, const char *s2, I32 len)
+Perl_foldEQ_locale(pTHX_ const char *s1, const char *s2, I32 len)
 {
     const U8 *a = (const U8 *)s1;
     const U8 *b = (const U8 *)s2;
@@ -2571,8 +3216,14 @@ Perl_foldEQ_locale(const char *s1, const char *s2, I32 len)
     assert(len >= 0);
 
     while (len--) {
-        if (*a != *b && *a != PL_fold_locale[*b])
+        if (*a != *b && *a != PL_fold_locale[*b]) {
+            DEBUG_Lv(PerlIO_printf(Perl_debug_log,
+                     "%s:%d: Our records indicate %02x is not a fold of %02x"
+                     " or its mate %02x\n",
+                     __FILE__, __LINE__, *a, *b, PL_fold_locale[*b]));
+
             return 0;
+        }
         a++,b++;
     }
     return 1;
@@ -2661,7 +3312,7 @@ Perl_mortal_getenv(const char * str)
      * mutex is defined accordingly.
      *
      * But in all cases, using the mutex prevents these problems, as long as
-     * all code uses the same mutex..
+     * all code uses the same mutex.
      *
      * A complication is that this can be called during phases where the
      * mortalization process isn't available.  These are in interpreter
@@ -2699,7 +3350,7 @@ Perl_mortal_getenv(const char * str)
      * the recursive calls and calls from the logger, and treat them specially.
      * Let's say we want to do getenv("foo").  We first find
      * getenv(PERL_MEM_LOG) and save it to a fixed-length per-interpreter
-     * variable, so no temporary is required.  Then we do getenv(foo}, and in
+     * variable, so no temporary is required.  Then we do getenv(foo), and in
      * the process of creating a temporary to save it, this function will be
      * called recursively to do a getenv(PERL_MEM_LOG).  On the recursed call,
      * we detect that it is such a call and return our saved value instead of
@@ -2779,7 +3430,7 @@ Perl_mortal_getenv(const char * str)
             }
         }
 
-        /* Then each of the three significant characters */
+        /* Then each of the four significant characters */
         if (strchr(ret, 'm')) {
             *mem_log_meat++ = 'm';
         }
@@ -2788,6 +3439,9 @@ Perl_mortal_getenv(const char * str)
         }
         if (strchr(ret, 't')) {
             *mem_log_meat++ = 't';
+        }
+        if (strchr(ret, 'c')) {
+            *mem_log_meat++ = 'c';
         }
         *mem_log_meat = '\0';
 
@@ -2815,7 +3469,7 @@ Perl_mortal_getenv(const char * str)
     ret = getenv(str);
 
     if (ret != NULL) {
-        ret = SvPVX(sv_2mortal(newSVpv(ret, 0)));
+        ret = SvPVX( newSVpvn_flags(ret, strlen(ret) ,SVs_TEMP) );
     }
 
     GETENV_UNLOCK;
@@ -2829,6 +3483,282 @@ Perl_mortal_getenv(const char * str)
 
     return ret;
 }
+
+PERL_STATIC_INLINE bool
+Perl_sv_isbool(pTHX_ const SV *sv)
+{
+    return SvBoolFlagsOK(sv) && BOOL_INTERNALS_sv_isbool(sv);
+}
+
+#ifdef USE_ITHREADS
+
+PERL_STATIC_INLINE AV *
+Perl_cop_file_avn(pTHX_ const COP *cop) {
+
+    PERL_ARGS_ASSERT_COP_FILE_AVN;
+
+    const char *file = CopFILE(cop);
+    if (file) {
+        GV *gv = gv_fetchfile_flags(file, strlen(file), GVF_NOADD);
+        if (gv) {
+            return GvAVn(gv);
+        }
+        else
+            return NULL;
+     }
+     else
+         return NULL;
+}
+
+#endif
+
+PERL_STATIC_INLINE PADNAME *
+Perl_padname_refcnt_inc(PADNAME *pn)
+{
+    PadnameREFCNT(pn)++;
+    return pn;
+}
+
+PERL_STATIC_INLINE PADNAMELIST *
+Perl_padnamelist_refcnt_inc(PADNAMELIST *pnl)
+{
+    PadnamelistREFCNT(pnl)++;
+    return pnl;
+}
+
+/* copy a string to a safe spot */
+
+/*
+=for apidoc_section $string
+=for apidoc savepv
+
+Perl's version of C<strdup()>.  Returns a pointer to a newly allocated
+string which is a duplicate of C<pv>.  The size of the string is
+determined by C<strlen()>, which means it may not contain embedded C<NUL>
+characters and must have a trailing C<NUL>.  To prevent memory leaks, the
+memory allocated for the new string needs to be freed when no longer needed.
+This can be done with the C<L</Safefree>> function, or
+L<C<SAVEFREEPV>|perlguts/SAVEFREEPV(p)>.
+
+On some platforms, Windows for example, all allocated memory owned by a thread
+is deallocated when that thread ends.  So if you need that not to happen, you
+need to use the shared memory functions, such as C<L</savesharedpv>>.
+
+=cut
+*/
+
+PERL_STATIC_INLINE char *
+Perl_savepv(pTHX_ const char *pv)
+{
+    PERL_UNUSED_CONTEXT;
+    if (!pv)
+        return NULL;
+    else {
+        char *newaddr;
+        const STRLEN pvlen = strlen(pv)+1;
+        Newx(newaddr, pvlen, char);
+        return (char*)memcpy(newaddr, pv, pvlen);
+    }
+}
+
+/* same thing but with a known length */
+
+/*
+=for apidoc savepvn
+
+Perl's version of what C<strndup()> would be if it existed.  Returns a
+pointer to a newly allocated string which is a duplicate of the first
+C<len> bytes from C<pv>, plus a trailing
+C<NUL> byte.  The memory allocated for
+the new string can be freed with the C<Safefree()> function.
+
+On some platforms, Windows for example, all allocated memory owned by a thread
+is deallocated when that thread ends.  So if you need that not to happen, you
+need to use the shared memory functions, such as C<L</savesharedpvn>>.
+
+=cut
+*/
+
+PERL_STATIC_INLINE char *
+Perl_savepvn(pTHX_ const char *pv, Size_t len)
+{
+    char *newaddr;
+    PERL_UNUSED_CONTEXT;
+
+    Newx(newaddr,len+1,char);
+    /* Give a meaning to NULL pointer mainly for the use in sv_magic() */
+    if (pv) {
+        /* might not be null terminated */
+        newaddr[len] = '\0';
+        return (char *) CopyD(pv,newaddr,len,char);
+    }
+    else {
+        return (char *) ZeroD(newaddr,len+1,char);
+    }
+}
+
+/*
+=for apidoc savesvpv
+
+A version of C<savepv()>/C<savepvn()> which gets the string to duplicate from
+the passed in SV using C<SvPV()>
+
+On some platforms, Windows for example, all allocated memory owned by a thread
+is deallocated when that thread ends.  So if you need that not to happen, you
+need to use the shared memory functions, such as C<L</savesharedsvpv>>.
+
+=cut
+*/
+
+PERL_STATIC_INLINE char *
+Perl_savesvpv(pTHX_ SV *sv)
+{
+    STRLEN len;
+    const char * const pv = SvPV_const(sv, len);
+    char *newaddr;
+
+    PERL_ARGS_ASSERT_SAVESVPV;
+
+    ++len;
+    Newx(newaddr,len,char);
+    return (char *) CopyD(pv,newaddr,len,char);
+}
+
+/*
+=for apidoc savesharedsvpv
+
+A version of C<savesharedpv()> which allocates the duplicate string in
+memory which is shared between threads.
+
+=cut
+*/
+
+PERL_STATIC_INLINE char *
+Perl_savesharedsvpv(pTHX_ SV *sv)
+{
+    STRLEN len;
+    const char * const pv = SvPV_const(sv, len);
+
+    PERL_ARGS_ASSERT_SAVESHAREDSVPV;
+
+    return savesharedpvn(pv, len);
+}
+
+#ifndef PERL_GET_CONTEXT_DEFINED
+
+/*
+=for apidoc_section $embedding
+=for apidoc get_context
+
+Implements L<perlapi/C<PERL_GET_CONTEXT>>, which you should use instead.
+
+=cut
+*/
+
+PERL_STATIC_INLINE void *
+Perl_get_context(void)
+{
+#  if defined(USE_ITHREADS)
+#    ifdef OLD_PTHREADS_API
+    pthread_addr_t t;
+    int error = pthread_getspecific(PL_thr_key, &t);
+    if (error)
+        Perl_croak_nocontext("panic: pthread_getspecific, error=%d", error);
+    return (void*)t;
+#    elif defined(I_MACH_CTHREADS)
+    return (void*)cthread_data(cthread_self());
+#    else
+    return (void*)PTHREAD_GETSPECIFIC(PL_thr_key);
+#    endif
+#  else
+    return (void*)NULL;
+#  endif
+}
+
+#endif
+
+PERL_STATIC_INLINE MGVTBL*
+Perl_get_vtbl(pTHX_ int vtbl_id)
+{
+    PERL_UNUSED_CONTEXT;
+
+    return (vtbl_id < 0 || vtbl_id >= magic_vtable_max)
+        ? NULL : (MGVTBL*)PL_magic_vtables + vtbl_id;
+}
+
+/*
+=for apidoc my_strlcat
+
+The C library C<strlcat> if available, or a Perl implementation of it.
+This operates on C C<NUL>-terminated strings.
+
+C<my_strlcat()> appends string C<src> to the end of C<dst>.  It will append at
+most S<C<size - strlen(dst) - 1>> characters.  It will then C<NUL>-terminate,
+unless C<size> is 0 or the original C<dst> string was longer than C<size> (in
+practice this should not happen as it means that either C<size> is incorrect or
+that C<dst> is not a proper C<NUL>-terminated string).
+
+Note that C<size> is the full size of the destination buffer and
+the result is guaranteed to be C<NUL>-terminated if there is room.  Note that
+room for the C<NUL> should be included in C<size>.
+
+The return value is the total length that C<dst> would have if C<size> is
+sufficiently large.  Thus it is the initial length of C<dst> plus the length of
+C<src>.  If C<size> is smaller than the return, the excess was not appended.
+
+=cut
+
+Description stolen from http://man.openbsd.org/strlcat.3
+*/
+#ifndef HAS_STRLCAT
+PERL_STATIC_INLINE Size_t
+Perl_my_strlcat(char *dst, const char *src, Size_t size)
+{
+    Size_t used, length, copy;
+
+    used = strlen(dst);
+    length = strlen(src);
+    if (size > 0 && used < size - 1) {
+        copy = (length >= size - used) ? size - used - 1 : length;
+        memcpy(dst + used, src, copy);
+        dst[used + copy] = '\0';
+    }
+    return used + length;
+}
+#endif
+
+
+/*
+=for apidoc my_strlcpy
+
+The C library C<strlcpy> if available, or a Perl implementation of it.
+This operates on C C<NUL>-terminated strings.
+
+C<my_strlcpy()> copies up to S<C<size - 1>> characters from the string C<src>
+to C<dst>, C<NUL>-terminating the result if C<size> is not 0.
+
+The return value is the total length C<src> would be if the copy completely
+succeeded.  If it is larger than C<size>, the excess was not copied.
+
+=cut
+
+Description stolen from http://man.openbsd.org/strlcpy.3
+*/
+#ifndef HAS_STRLCPY
+PERL_STATIC_INLINE Size_t
+Perl_my_strlcpy(char *dst, const char *src, Size_t size)
+{
+    Size_t length, copy;
+
+    length = strlen(src);
+    if (size > 0) {
+        copy = (length >= size) ? size - 1 : length;
+        memcpy(dst, src, copy);
+        dst[copy] = '\0';
+    }
+    return length;
+}
+#endif
 
 /*
  * ex: set ts=8 sts=4 sw=4 et:

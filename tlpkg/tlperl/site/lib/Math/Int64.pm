@@ -4,7 +4,8 @@ use strict;
 use warnings;
 
 BEGIN {
-our $VERSION = '0.54';
+our $VERSION = '0.57';
+
 require XSLoader;
 XSLoader::load('Math::Int64', $VERSION);
 }
@@ -20,6 +21,7 @@ our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(int64
                     int64_to_number
                     net_to_int64 int64_to_net
+                    le_to_int64 int64_to_le
                     native_to_int64 int64_to_native
                     string_to_int64 hex_to_int64
                     BER_to_int64 int64_to_BER
@@ -29,6 +31,7 @@ our @EXPORT_OK = qw(int64
                     uint64
                     uint64_to_number
                     net_to_uint64 uint64_to_net
+                    le_to_uint64 uint64_to_le
                     native_to_uint64 uint64_to_native
                     string_to_uint64 hex_to_uint64
                     BER_to_uint64 uint64_to_BER
@@ -209,13 +212,20 @@ internal representation used by this module.
 =item int64_to_net($int64)
 
 Returns an 8 bytes string with the representation of the int64 value
-in network order.
+in network order (big endian).
 
 =item native_to_int64($str)
 
 =item int64_to_native($int64)
 
-similar to net_to_int64 and int64_to_net, but using the native CPU
+Similar to net_to_int64 and int64_to_net, but using the native CPU
+order.
+
+=item le_to_int64($str)
+
+=item int64_to_le($int64)
+
+Similar to net_to_int64 and int64_to_net, but using the little endian
 order.
 
 =item int64_to_number($int64)
@@ -323,6 +333,10 @@ C<$seed>, if given, should be a 2KB long string.
 =item native_to_uint64
 
 =item uint64_to_native
+
+=item le_to_uint64
+
+=item uint64_to_le
 
 =item string_to_uint64
 
@@ -577,7 +591,7 @@ L<Math::BigInt::GMP>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright E<copy> 2007, 2009, 2011-2015 by Salvador Fandiño
+Copyright E<copy> 2007, 2009, 2011-2015, 2024 by Salvador Fandiño
 (sfandino@yahoo.com)
 
 Copyright E<copy> 2014-2015 by Dave Rolsky (autarch@urth.org)

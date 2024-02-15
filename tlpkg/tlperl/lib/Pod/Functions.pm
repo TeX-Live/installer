@@ -54,11 +54,10 @@ L<perlfunc/"Perl Functions by Category"> section.
 
 =cut
 
-our $VERSION = '1.13';
+our $VERSION = '1.14';
 
-require Exporter;
+use Exporter 'import';
 
-our @ISA = qw(Exporter);
 our @EXPORT = qw(%Kinds %Type %Flavor %Type_Description @Type_Order);
 
 our(%Kinds, %Type, %Flavor, %Type_Description, @Type_Order);
@@ -142,6 +141,7 @@ chop	String	remove the last character from a string
 chown	File	change the ownership on a list of files
 chr	String	get character this number represents
 chroot	File	make directory new root for path lookups
+class	Namespace	Objects	declare a separate global namespace that is an object class
 close	I/O	close file (or pipe or socket) handle
 closedir	I/O	close directory handle
 connect	Socket	connect to a remote socket
@@ -171,6 +171,7 @@ exit	Flow	terminate this program
 exp	Math	raise I<e> to a power
 fc	String	return casefolded version of a string
 fcntl	File	file control system call
+field	Namespace	Objects	declare a field variable of the current class
 __FILE__	Flow	the name of the current source file
 fileno	I/O	return file descriptor from filehandle
 flock	I/O	lock an entire file with an advisory lock
@@ -229,6 +230,7 @@ log	Math	retrieve the natural logarithm for a number
 lstat	File	stat a symbolic link
 m//	Regexp	match a string with a regular expression pattern
 map	LIST	apply a change to a list to get back a new list with the changes
+method	Flow	Objects	declare a method of a class
 mkdir	File	create a directory
 msgctl	SysV	SysV IPC message control operations
 msgget	SysV	get SysV IPC message queue
@@ -332,14 +334,14 @@ times	Process	Time	return elapsed time for self and child processes
 tr///	String	transliterate a string
 truncate	I/O	shorten a file
 uc	String	return upper-case version of a string
-ucfirst	String	return a string with just the next letter in upper case
+ucfirst	String	return a string with the first letter in upper case
 umask	File	set file creation mode mask
 undef	Misc	remove a variable or function definition
 unlink	File	remove one link to a file
 unpack	Binary	LIST	convert binary structure into normal perl variables
 unshift	ARRAY	prepend more elements to the beginning of a list
 untie	Objects	break a tie binding to a variable
-use	Modules	Namespace	Objects	load in a module at compile time and import its namespace
+use	Modules	Namespace	Objects	enable Perl language features and declare required version
 utime	File	set a file's last access and modify times
 values	ARRAY	HASH	return a list of the values in a hash
 vec	Binary	test or set particular bits in a string
