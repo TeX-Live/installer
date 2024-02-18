@@ -6947,7 +6947,7 @@ sub action_shell {
 
 
 #  BUG
-# interactive bug support
+# bug-reporting info, possibly interactive
 # 
 sub action_bug {
   sub prompt_it {
@@ -6989,46 +6989,54 @@ sub action_bug {
   for my $pkg (sort keys %$fndptr) {
     if ($fndptr->{$pkg}{'desc'}) {
       push @deschit, [$pkg, "$pkg (" . $fndptr->{$pkg}{'desc'} . ")\n"] ;
-      # delete files if we found it already via description (which includes package name)
-      # since we don't want to show the same package two times, and the files hit will
-      # be mostly based on the directory name
+      # delete files if we found it already via description (which
+      # includes package name) since we don't want to show the same
+      # package twice times, and the files hit will be mostly based on the
+      # directory name.
       delete $fndptr->{$pkg}{'files'};
+    } elsif ($pkg eq "00texlive.image") { # never a good match
+        delete $fndptr->{$pkg}{'files'};
     }
   }
   my @filehit;
   for my $pkg (sort keys %$fndptr) {
     if ($fndptr->{$pkg}{'files'}) {
-      push @filehit, [$pkg, "$pkg\n\t" . join("\n\t", sort keys %{$fndptr->{$pkg}{'files'}}) . "\n"];
+      push @filehit, [$pkg, "$pkg\n\t"
+                      . join("\n\t", sort keys %{$fndptr->{$pkg}{'files'}})
+                      . "\n"];
     }
   }
   my $nr_total_hit = $#deschit + 1 + $#filehit + 1;
   my $pkg;
   if ($nr_total_hit > 1) {
     my $n = 1;
+    my $ndigits = $#deschit < 10 ? "1" : "2";
     if ($#deschit >= 0) {
-      print "\nPackage matches:\n";
+      print "\nPackage matches (alphabetical):\n";
       for my $i (0..$#deschit) {
-        print "$n. $deschit[$i][1]";
+        printf "%" . $ndigits . "d %s", $n, $deschit[$i][1];
         $n++;
       }
     }
     if ($#filehit >= 0) {
-      print "\nFile matches:\n";
+      print "\nFile matches (alphabetical by package):\n";
+      $ndigits = $n + $#filehit < 10 ? "1" : "2";
       for my $i (0..$#filehit) {
-        print "$n. $filehit[$i][1]";
+        printf "%" . $ndigits . "d %s", $n, $filehit[$i][1];
         $n++;
       }
     }
     print "\nSelect a package: ";
     my $pkgidx = <STDIN>;
+    $pkgidx = "" if ! defined ($pkgidx); # if they hit eof
     chomp($pkgidx);
     if ($pkgidx !~ /^\d+$/) {
-      print "Not a number, exiting.\n";
+      print "$prg: Not a positive integer, exiting: $pkgidx\n";
       return $F_ERROR;
     }
     $pkgidx = int($pkgidx);
     if (!defined($pkgidx) or $pkgidx < 1 or $pkgidx > $nr_total_hit) {
-      print "Number out of range, exiting.\n";
+      print "$prg: number out of range, exiting: $pkgidx\n";
       return $F_ERROR;
     }
     # print "#deschit = $#deschit, #filehit = $#filehit, pkgidx = $pkgidx\n";
@@ -7044,7 +7052,7 @@ sub action_bug {
       $pkg = $filehit[0][0];
     }
   } else {
-    print "Nothing found.\n";
+    print "$prg: Nothing found for: $ans\n";
     return $F_OK;
   }
   $tlp = $localtlpdb->get_package($pkg);
@@ -7053,13 +7061,16 @@ sub action_bug {
 
 sub issue_bug_info_for_package {
   my $tlp = shift;
-  print "Package: ", $tlp->name, "\n";
+  print "Package:        ", $tlp->name, "\n";
   if (defined($tlp->cataloguedata->{'ctan'})) {
-    print "CTAN link: https://mirror.ctan.org" . $tlp->cataloguedata->{'ctan'} . "\n";
+    print "CTAN page:      https://ctan.org/pkg/" . $tlp->name . "\n";
+    print "CTAN directory: https://mirror.ctan.org"
+          . $tlp->cataloguedata->{'ctan'} . "\n";
   }
   my $output = '';
   if (defined($tlp->cataloguedata->{'contact-bugs'})) {
-    $output .= "Bug contact address: " . $tlp->cataloguedata->{'contact-bugs'} . "\n";
+    $output .= "Bug contact:    " . $tlp->cataloguedata->{'contact-bugs'}
+               . "\n";
   }
   my $other_output = '';
   for my $k (keys %{$tlp->cataloguedata}) {
@@ -7069,12 +7080,12 @@ sub issue_bug_info_for_package {
     }
   }
   if ($other_output) {
-    $output .= "Other contact points:\n$other_output\n";
+    $output .= "\nOther contact points:\n$other_output\n";
   }
   if ($output) {
     print $output;
   } else {
-    print "No other information could be found!\n";
+    print "No other information was found.\n";
   }
   return $F_OK;
 }
@@ -8430,9 +8441,9 @@ performed are written to the terminal.
 
 =head2 bug [I<search string>]
 
-If no argument given, asks for a search string, otherwise uses the argument
-to search for a package and interactively guides through finding information
-where to report bugs.
+Looks for I<search string> (prompted for, if not specified) as a package
+name or file name, and outputs bug-reporting and other information for
+the package selected from the results.
 
 =head2 candidates I<pkg>
 
