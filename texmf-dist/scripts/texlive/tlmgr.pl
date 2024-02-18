@@ -7031,7 +7031,8 @@ sub action_bug {
       print "Number out of range, exiting.\n";
       return $F_ERROR;
     }
-    if ($pkgidx <= $#deschit) {
+    # print "#deschit = $#deschit, #filehit = $#filehit, pkgidx = $pkgidx\n";
+    if ($pkgidx <= $#deschit + 1) {
       $pkg = $deschit[$pkgidx - 1][0];
     } else {
       $pkg = $filehit[$pkgidx - 1 - $#deschit - 1][0];
@@ -8427,10 +8428,11 @@ performed are written to the terminal.
 
 =back
 
-=head2 bug
+=head2 bug [I<search string>]
 
-Interactively guides through finding information where to report
-bugs.
+If no argument given, asks for a search string, otherwise uses the argument
+to search for a package and interactively guides through finding information
+where to report bugs.
 
 =head2 candidates I<pkg>
 
