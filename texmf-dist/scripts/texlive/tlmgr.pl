@@ -8144,6 +8144,11 @@ repository (typically useful when updating from CTAN).
 Display detailed information about a package I<what>, such as the installation
 status and description, of searches for I<what> in all packages.
 
+=item C<tlmgr bug> I<what>
+
+Display available bug-reporting information for I<what>, a package or
+file name.
+
 =back
 
 For all the capabilities and details of C<tlmgr>, please read the
