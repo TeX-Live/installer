@@ -6982,7 +6982,7 @@ sub action_bug {
   # we are still here, so search for a file that matches
   my $fndptr = _search_tlpdb($localtlpdb, $ans,
     1, # search files,
-    1, # don't search descriptions
+    1, # search descriptions
     1  # don't search within words
   );
   my @deschit;
@@ -8444,11 +8444,15 @@ performed are written to the terminal.
 
 =back
 
-=head2 bug [I<search string>]
+=head2 bug [I<search-string>]
 
-Looks for I<search string> (prompted for, if not specified) as a package
-name or file name, and outputs bug-reporting and other information for
+Searches for I<search-string> (prompted for, if not given) as a package
+name and in package descriptions, as complete words, and in filenames,
+as any substring, and outputs bug-reporting and other information for
 the package selected from the results.
+
+The search is equivalent to C<tlmgr search --word --file I<search-string>.
+Thus, I<search-string> is interpreted as a (Perl) regular expression.
 
 =head2 candidates I<pkg>
 
