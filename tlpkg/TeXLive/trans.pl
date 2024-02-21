@@ -23,6 +23,19 @@ $^W = 1;
 use utf8;
 no utf8;
 
+use Encode;
+
+# Convert Unicode string to character code for console output.
+sub _encode_console_out {
+  my $str = shift;
+
+  my $enc = Encode::find_encoding('console_out');
+  if ($enc) {
+    return $enc->encode($str);
+  }
+  return $str;
+}
+
 if (defined($::opt_lang)) {
   $::lang = $::opt_lang;
   if ($::lang eq "zh") {
@@ -101,7 +114,13 @@ sub __ ($@) {
     $ret =~ s/\\\\/\\/g;
   }
   # translate back $ret:
-  return sprintf($ret, @_);
+
+  # If the internal character code is the character code of the console:
+  return sprintf(_encode_console_out($ret), @_);
+
+  # TODO: Make the internal character set to Unicode.
+  # If the internal character code is Unicode.
+  # return sprintf($ret, @_);
 }
 
 sub load_translations() {

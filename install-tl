@@ -175,9 +175,18 @@ if ($@) {
   Encode::Alias::define_alias('console_in' => 'UTF-8');
   Encode::Alias::define_alias('console_out' => 'UTF-8');
 }
-#binmode (STDIN, ':encoding(console_in)');
-#binmode (STDOUT, ':encoding(console_out)');
-#binmode (STDERR, ':encoding(console_out)');
+
+#
+# TODO: Make the internal character set to Unicode.
+#   If the three lines below this are commented out,
+#   standard input/output can be input/output in Unicode.
+#   However, those that handle filenames such as
+#   `$ENV`, `open()`, `mkdir()`, and `-e` etc. do not support Unicode,
+#   so we need to use `Encode::encode()`/`Encode::decode()` for all of them.
+#
+# binmode (STDIN, ':encoding(console_in)');
+# binmode (STDOUT, ':encoding(console_out)');
+# binmode (STDERR, ':encoding(console_out)');
 use open qw(:std :encoding(UTF-8));
 
 if (wndws()) {
@@ -2755,7 +2764,7 @@ sub do_cleanup {
   if (!defined($::LOGFILE)) {
     # no -logfile option; nothing written yet
     $::LOGFILENAME = "$vars{'TEXDIR'}/install-tl.log";
-    if (open(LOGF,">:utf8", $::LOGFILENAME)) {
+    if (open(LOGF,">", $::LOGFILENAME)) {
       $::LOGFILE = \*LOGF;
       foreach my $line(@::LOGLINES) {
         print $::LOGFILE "$line";
