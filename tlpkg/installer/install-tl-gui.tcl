@@ -35,6 +35,8 @@ package require Tk
 # security: disable send
 catch {rename send {}}
 
+encoding system utf-8
+
 # This file should be in $::instroot/tlpkg/installer.
 # On non-windows platforms, install-tl functions as a wrapper
 # for this file if it encounters a parameter '-gui' (but not -gui text).
@@ -132,23 +134,27 @@ proc show_time {s} {
 # write to a logfile which is shared with the backend.
 # both parties open, append and close every time.
 
-set dblogdir "/tmp"
-if [info exists ::env(TMPDIR)] {
-  set dblogdir $::env(TMPDIR)
-} elseif [info exists ::env(TMP)] {
-  set dblogdir $::env(TMP)
-} elseif [info exists ::env(TEMP)] {
-  set dblogdir $::env(TEMP)
-}
-set ::dblfile [file join $dblogdir "dblog"]
-unset dblogdir
-
-proc dblog {s} {
-  set db [open $::dblfile a]
-  set t [get_stacktrace]
-  puts $db "TCL: $s\n$t"
-  close $db
-}
+#set dblogdir "/tmp"
+#if [info exists ::env(TMPDIR)] {
+#  set dblogdir $::env(TMPDIR)
+#} elseif [info exists ::env(TMP)] {
+#  set dblogdir $::env(TMP)
+#} elseif [info exists ::env(TEMP)] {
+#  set dblogdir $::env(TEMP)
+#}
+#set ::dblfile [file join $dblogdir "dblog"]
+#unset dblogdir
+#
+##if [file exists $::dblfile] {
+##  file delete $::dblfile
+##}
+#
+#proc dblog {s} {
+#  set db [open $::dblfile a]
+#  set t [get_stacktrace]
+#  puts $db "TCL: $s\n$t"
+#  close $db
+#}
 
 # welcome message now provided by install-tl
 
@@ -443,15 +449,14 @@ proc log_exit {{mess ""}} {
 ##### installation root #####
 
 proc update_full_path {} {
-  set val [file join \
-               [.tltd.prefix_l cget -text] \
-               [.tltd.name_l cget -text] \
+  set val [string cat [.tltd.prefix_l cget -text] "/" \
+               [.tltd.name_l cget -text] "/" \
                [.tltd.rel_l cget -text]]
-  set val [native_slashify $val]
+  set val [forward_slashify $val]
   .tltd.path_l configure -text $val
   # ask perl to check path
   chan puts $::inst "checkdir"
-  chan puts $::inst [forward_slashify [.tltd.path_l cget -text]]
+  chan puts $::inst $val; # [encoding convertfrom $val]
   chan flush $::inst
   if {[read_line_no_eof] eq "0"} {
     .tltd.path_l configure -text \
@@ -1807,6 +1812,7 @@ proc read_descs {} {
 
 proc read_vars {} {
   set l [read_line_no_eof]
+  #dblog "reading $l"
   if {$l ne "vars"} {
     err_exit "'vars' expected but $l found"
   }
@@ -1827,7 +1833,12 @@ proc read_vars {} {
 
 proc write_vars {} {
   chan puts $::inst "vars"
-  foreach v [array names ::vars] {chan puts $::inst "$v: $::vars($v)"}
+  foreach v [array names ::vars] {
+    #if [regexp {TEXMF} $v] {
+    #  dblog "writing $v: $::vars($v)"
+    #}
+    chan puts $::inst "$v: $::vars($v)"
+  }
   chan puts $::inst "endvars"
   chan flush $::inst
 }
@@ -2003,12 +2014,14 @@ proc main_prog {} {
   }
   make_splash
 
-  # start install-tl-[tcl] via a pipe.
-  set cmd [list "|${::perlbin}" "${::instroot}/install-tl" \
+  # start install-tl-[tcl] via a pipe. '-CD' or '-CS' for utf-8,
+  # but no luck yet with enforcing unicode
+  set cmd [list "|${::perlbin}" "-CSDA" "${::instroot}/install-tl" \
                "-from_ext_gui" {*}$::argv "2>@1"]
   if [catch {open $cmd r+} ::inst] {
     err_exit "Error starting Perl backend"
   }
+  chan configure $::inst -encoding utf-8
 
   show_time "opened pipe"
   set ::perlpid [pid $::inst]

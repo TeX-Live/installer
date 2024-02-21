@@ -37,22 +37,22 @@ BEGIN {
 
 # debugging communication with external gui: use shared logfile
 
-our $dblfile = "/tmp/dblog";
-$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O =~ /^MSWin/i);
-$dblfile = $ENV{'TMPDIR'} . "/dblog" if ($^O eq 'darwin'
-                                         && exists $ENV{'TMPDIR'});
-sub dblog {
-  my $s = shift;
-  open(my $dbf, ">>", $dblfile);
-  print $dbf "PERL: $s\n";
-  close $dbf;
-}
-
-sub dblogsub {
-  my $s = shift;
-  my @stck = (caller(1));
-  dblog "$stck[3] $s";
-}
+#our $dblfile = "/tmp/dblog";
+#$dblfile = $ENV{'TEMP'} . "\\dblog.txt" if ($^O =~ /^MSWin/i);
+#$dblfile = $ENV{'TMPDIR'} . "/dblog" if ($^O eq 'darwin'
+#                                         && exists $ENV{'TMPDIR'});
+#sub dblog {
+#  my $s = shift;
+#  open(my $dbf, ">>", $dblfile);
+#  print $dbf "PERL: $s\n";
+#  close $dbf;
+#}
+#
+#sub dblogsub {
+#  my $s = shift;
+#  my @stck = (caller(1));
+#  dblog "$stck[3] $s";
+#}
 
 # On unix, this run of install-tl may do duty as a wrapper for
 # install-tl-gui.tcl, which in its turn will start an actual run of install-tl.
@@ -175,9 +175,10 @@ if ($@) {
   Encode::Alias::define_alias('console_in' => 'UTF-8');
   Encode::Alias::define_alias('console_out' => 'UTF-8');
 }
-binmode (STDIN, ':encoding(console_in)');
-binmode (STDOUT, ':encoding(console_out)');
-binmode (STDERR, ':encoding(console_out)');
+#binmode (STDIN, ':encoding(console_in)');
+#binmode (STDOUT, ':encoding(console_out)');
+#binmode (STDERR, ':encoding(console_out)');
+use open qw(:std :encoding(UTF-8));
 
 if (wndws()) {
   require TeXLive::TLWinGoo;
@@ -1217,6 +1218,8 @@ operations might be disturbed.\n\n";
 
   # Step 2: Setup the PATH, switch to the new Perl
 
+  # watch out when assigning a potentially wide-character string to an %ENV member
+
   my $pathsep = (wndws())? ';' : ':';
   my $plat_bindir = "$TEXDIR/bin/$vars{'this_platform'}";
   my $perl_bindir = "$TEXDIR/tlpkg/tlperl/bin";
@@ -1224,13 +1227,15 @@ operations might be disturbed.\n\n";
   my $progext = (wndws())? '.exe' : '';
 
   debug("Prepending $plat_bindir to PATH\n");
-  $ENV{'PATH'} = $plat_bindir . $pathsep . $ENV{'PATH'};
+  my $newpath = Encode::decode('UTF-8', $ENV{'PATH'});
+  $newpath = $plat_bindir . $pathsep . $newpath;
 
   if (wndws()) {
     debug("Prepending $perl_bindir to PATH\n");
-    $ENV{'PATH'} = "$perl_bindir" . "$pathsep" . "$ENV{'PATH'}";
-    $ENV{'PATH'} =~ s!/!\\!g;
+    $newpath = $perl_bindir . $pathsep . $newpath;
+    $newpath =~ s!/!\\!g;
   }
+  $ENV{'PATH'} = Encode::encode('UTF-8', $newpath);
 
   debug("\nNew PATH is:\n");
   foreach my $dir (split $pathsep, $ENV{'PATH'}) {
@@ -1238,7 +1243,7 @@ operations might be disturbed.\n\n";
   }
   debug("\n");
   if (wndws()) {
-    $ENV{'PERL5LIB'} = $perl_libdir;
+    $ENV{'PERL5LIB'} = Encode::encode('UTF-8', $perl_libdir);
   }
 
   #
