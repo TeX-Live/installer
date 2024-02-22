@@ -8451,7 +8451,7 @@ name and in package descriptions, as complete words, and in filenames,
 as any substring, and outputs bug-reporting and other information for
 the package selected from the results.
 
-The search is equivalent to C<tlmgr search --word --file I<search-string>.
+The search is equivalent to C<tlmgr search --word --file> I<search-string>.
 Thus, I<search-string> is interpreted as a (Perl) regular expression.
 
 =head2 candidates I<pkg>
