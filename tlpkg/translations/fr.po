@@ -1,14 +1,14 @@
 #
 #
 #
-# Denis Bitouzé <denis.bitouze@univ-littoral.fr>, 2013-2018, 2019, 2022, 2023.
+# Denis Bitouzé <denis.bitouze@univ-littoral.fr>, 2013-2018, 2019, 2022, 2023, 2024.
 # Manuel Pégourié-Gonnard <mpg@elzevir.fr>, 2010, 2011, 2012, 2013, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2024-01-28 01:50+0100\n"
-"PO-Revision-Date: 2023-03-03 11:44+0100\n"
+"PO-Revision-Date: 2024-02-22 22:35+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: s;\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -1969,7 +1969,7 @@ msgstr "Bienvenue sous TeX Live !"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2867
 #, perl-format
 msgid "See %s/index.html for links to documentation.\n"
-msgstr ""
+msgstr "Voir %s/index.html pour les liens vers la documentation.\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2869
 msgid ""
@@ -1979,6 +1979,14 @@ msgid ""
 "best for you. The list of groups is available on the web\n"
 "at https://tug.org/usergroups.html.\n"
 msgstr ""
+"Le site web TeX Live (https://tug.org/texlive/) fournit toutes les mises à"
+" jour et corrections.\n"
+"TeX Live est un projet commun des groupes d'utilisateurs de TeX dans le monde"
+" entier ;\n"
+"veuillez envisager de le soutenir en rejoignant le groupe qui vous convient"
+" le mieux.\n."
+"La liste des groupes est disponible sur le Web à l'adresse"
+" https://tug.org/usergroups.html.\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2877
 #, perl-format
@@ -1988,6 +1996,10 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions.\n"
 msgstr ""
+"Ajouter %s/texmf-dist/doc/man à MANPATH.\n"
+"Ajoutez %s/texmf-dist/doc/info à INFOPATH.\n"
+"Plus important encore, ajoutez %s/bin/%s\n"
+"à votre PATH pour les sessions actuelles et futures."
 
 #~ msgid ""
 #~ "See %s/index.html for links to documentation.\n"
