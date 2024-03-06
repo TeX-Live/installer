@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2024-01-28 01:50+0100\n"
+"POT-Creation-Date: 2024-03-06 01:44+0100\n"
 "PO-Revision-Date: 2023-03-02 16:26+0800\n"
 "Last-Translator: Kung-chih Jen <kaitul@outlook.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -33,8 +33,8 @@ msgstr "僅限新的"
 #: tlpkg/installer/install-tl-gui.tcl:1050
 #: tlpkg/installer/install-tl-gui.tcl:1698
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1653
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2877
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2895
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2880
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2898
 msgid "All"
 msgstr "所有"
 
@@ -148,7 +148,7 @@ msgid "Display configuration"
 msgstr "顯示組態"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:315
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2869
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2872
 msgid "Status"
 msgstr "狀態"
 
@@ -226,12 +226,12 @@ msgid "Package name"
 msgstr "套件名稱"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:411
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2964
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2967
 msgid "Local rev. (ver.)"
 msgstr "本機版本"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:412
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2965
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2968
 msgid "Remote rev. (ver.)"
 msgstr "遠端版本"
 
@@ -271,19 +271,19 @@ msgstr "備份"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:507
 #: tlpkg/installer/install-tl-gui.tcl:1621
 #: texmf-dist/scripts/tlshell/tlshell.tcl:880
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2329
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2685
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2332
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2688
 msgid "Options"
 msgstr "選項"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:509
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2675
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2678
 msgid "Actions"
 msgstr "動作"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:513
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2688
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2772
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2775
 msgid "Help"
 msgstr "說明"
 
@@ -305,7 +305,7 @@ msgstr "載入其他存放庫…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:538
 #: tlpkg/installer/install-tl-gui.tcl:1406
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2793
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2796
 msgid "Quit"
 msgstr "退出"
 
@@ -314,7 +314,7 @@ msgid "General ..."
 msgstr "一般…"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:546
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2694
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2697
 msgid "Paper ..."
 msgstr "紙張…"
 
@@ -421,8 +421,8 @@ msgstr "手冊"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:644
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:646
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2717
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2774
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2720
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2777
 msgid "About"
 msgstr "關於"
 
@@ -1077,7 +1077,7 @@ msgid "Not enough room"
 msgstr "空間不足"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2735
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2738
 msgid "GUI language"
 msgstr "GUI 語言"
 
@@ -1087,7 +1087,7 @@ msgstr "字型縮放"
 
 #: tlpkg/installer/install-tl-gui.tcl:1370
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1327
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2753
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2756
 msgid "Current:"
 msgstr "目前:"
 
@@ -1097,7 +1097,7 @@ msgid "TeX Live %s Installer"
 msgstr "TeX Live %s 安裝程式"
 
 #: tlpkg/installer/install-tl-gui.tcl:1411
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2702
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2705
 msgid "Advanced"
 msgstr "進階"
 
@@ -1133,7 +1133,7 @@ msgstr ""
 
 #: tlpkg/installer/install-tl-gui.tcl:1542
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1473
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2709
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2712
 msgid "Platforms"
 msgstr "平台"
 
@@ -1264,7 +1264,7 @@ msgstr "正在執行"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:387
 #: texmf-dist/scripts/tlshell/tlshell.tcl:548
-#: texmf-dist/scripts/tlshell/tlshell.tcl:3018
+#: texmf-dist/scripts/tlshell/tlshell.tcl:3021
 msgid "Idle"
 msgstr "閒置"
 
@@ -1277,7 +1277,7 @@ msgid "Up to date"
 msgstr "已是最新"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:658
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2823
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2826
 msgid "Unknown"
 msgstr "不明"
 
@@ -1290,8 +1290,8 @@ msgid "If loading takes too long, press Abort and choose another repository."
 msgstr "若載入消耗太多時間，請按下「中止」或選擇其他存放庫。"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:880
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2329
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2691
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2332
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2694
 msgid "Repositories"
 msgstr "存放庫"
 
@@ -1392,7 +1392,7 @@ msgid "platform"
 msgstr "平台"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1624
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2330
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2333
 msgid "Error"
 msgstr "錯誤"
 
@@ -1428,7 +1428,7 @@ msgid "No packages in backup directory %s"
 msgstr "備份目錄 %s 中沒有套件"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1809
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2936
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2939
 msgid "Restore from backup"
 msgstr "從備份還原"
 
@@ -1514,7 +1514,11 @@ msgstr "無論如何都要移除一些相依性 %s。要繼續嗎？"
 msgid "Info"
 msgstr "資訊"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2287
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2218
+msgid "Reporting bugs"
+msgstr ""
+
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2290
 msgid ""
 "GUI interface for TeX Live Manager\n"
 "Implemented in Tcl/Tk"
@@ -1522,7 +1526,7 @@ msgstr ""
 "TeX Live 管理員的 GUI 界面\n"
 "已在 Tcl/Tk 中實作"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2293
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2296
 msgid ""
 "This TeX Live Manager front-end should be pretty self-explanatory.\n"
 "Note that it does not cover the full functionality of tlmgr. Notably, it "
@@ -1534,7 +1538,7 @@ msgstr ""
 "還原。\n"
 "有關 tlmgr 本身的完整文件，請參閱「Tlmgr 說明」選單。"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2327
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2330
 #, tcl-format
 msgid ""
 "%s is not a local or remote repository.\n"
@@ -1543,185 +1547,185 @@ msgstr ""
 "%s 不是本機或遠端存放庫。\n"
 "請設定有效的存放庫"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2647
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2669
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2650
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2672
 msgid "File"
 msgstr "檔案"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2671
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2674
 msgid "Load repository"
 msgstr "載入存放庫"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2673
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2676
 msgid "Exit"
 msgstr "離開"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2677
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2680
 msgid "Regenerate filename database"
 msgstr "重新產生檔案名稱資料庫"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2678
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2681
 msgid "Regenerating filename database..."
 msgstr "正在重新產生檔案名稱資料庫…"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2679
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2682
 msgid "Regenerate formats"
 msgstr "重新產生格式"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2680
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2683
 msgid "Rebuilding formats..."
 msgstr "正在重新建置格式…"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2681
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2684
 msgid "Regenerate fontmaps"
 msgstr "重新產生字型對應"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2682
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2685
 msgid "Rebuilding fontmap files..."
 msgstr "正在重新建置字型對應檔案…"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2719
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2722
 msgid "Add/replace 64-bit binaries"
 msgstr "新增/取代 64 位元二進位檔案"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2722
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2725
 msgid "Add/replace from local file"
 msgstr "從本機檔案新增/取代"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2726
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2729
 msgid "Resynchronize with 32-bit"
 msgstr "重新同步處理 32 位元"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2730
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2733
 msgid "Remove 64-bit binaries"
 msgstr "移除 64 位元二進位檔案"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2749
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2752
 msgid "GUI font scaling"
 msgstr "GUI 字型縮放"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2775
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2778
 msgid "TLShell Help"
 msgstr "TLShell 說明"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2776
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2779
 msgid "Tlmgr Help"
 msgstr "Tlmgr 說明"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2795
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2798
 msgid "Restart self"
 msgstr "自我重啟"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2797
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2800
 msgid "Restart tlmgr"
 msgstr "重啟 tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2800
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2803
 msgid "Show logs"
 msgstr "顯示記錄"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2821
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2824
 msgid "TL Manager up to date?"
 msgstr "TL 管理員已是最新？"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2826
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2829
 msgid "Last tlmgr command:"
 msgstr "最新 tlmgr 命令:"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2839
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2842
 #, tcl-format
 msgid "Root at %s"
 msgstr "根位於 %s"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2852
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2855
 msgid "Package list"
 msgstr "套件清單"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2870
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2873
 msgid "Installed"
 msgstr "已安裝"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2872
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2875
 msgid "Not installed"
 msgstr "未安裝"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2882
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2885
 msgid "Updatable"
 msgstr "可更新"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2894
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2897
 msgid "Detail >> Global"
 msgstr ""
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2897
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2900
 msgid "Collections and schemes"
 msgstr "收藏和配置"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2899
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2902
 msgid "Only schemes"
 msgstr "僅配置"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2907
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2910
 msgid "Search"
 msgstr "搜尋"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2910
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2913
 msgid "By name"
 msgstr "依名稱"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2912
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2915
 msgid "By name and description"
 msgstr "依名稱和描述"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2926
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2929
 msgid "Install marked"
 msgstr "安裝已標示項目"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2929
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2932
 msgid "Update marked"
 msgstr "更新已標示項目"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2932
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2935
 msgid "Remove marked"
 msgstr "移除已標示項目"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2940
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2943
 msgid "Update tlmgr"
 msgstr "更新 tlmgr"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2942
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2945
 msgid "Update all"
 msgstr "全部更新"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2948
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2951
 msgid "Mark all displayed"
 msgstr "標示所有已顯示項目"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2950
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2953
 msgid "Mark none"
 msgstr "全部取消標示"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2953
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2956
 msgid "Only packages for installed platforms are displayed"
 msgstr "僅有已安裝平台的套件才會顯示"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2963
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2966
 msgid "Name"
 msgstr "名稱"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:2966
+#: texmf-dist/scripts/tlshell/tlshell.tcl:2969
 msgid "Description"
 msgstr "描述"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:3001
+#: texmf-dist/scripts/tlshell/tlshell.tcl:3004
 msgid "Multi-user"
 msgstr "多重使用者"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:3001
+#: texmf-dist/scripts/tlshell/tlshell.tcl:3004
 msgid "Single-user"
 msgstr "單一使用者"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:3086
+#: texmf-dist/scripts/tlshell/tlshell.tcl:3089
 #, tcl-format
 msgid ""
 "%s is not writable. You can probably not do much.\n"
@@ -1730,7 +1734,7 @@ msgstr ""
 "%s 無法寫入。你可能做不了太多。\n"
 "   您確定你要繼續嗎？"
 
-#: texmf-dist/scripts/tlshell/tlshell.tcl:3098
+#: texmf-dist/scripts/tlshell/tlshell.tcl:3101
 msgid "See internal help"
 msgstr "查看內部說明"
 
