@@ -202,7 +202,6 @@ $mirrors = {
     'Australia' => {
       'https://au.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
-      'https://mirror.cse.unsw.edu.au/pub/CTAN/' => 1,
     },
   },
   'South America' => {
