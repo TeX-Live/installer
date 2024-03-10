@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
-# Copyright 2007-2023 Norbert Preining
+# Copyright 2007-2024 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
