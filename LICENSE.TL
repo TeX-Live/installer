@@ -16,15 +16,13 @@ redistribute software from TeX Live only if you comply with the
 requirements placed thereon by the owners of the respective packages.
 
 To most easily learn these requirements, we suggest checking the TeX
-Catalogue at: https://ctan.org/tex-archive/help/Catalogue/ (or any
-CTAN mirror).  Of course the legal statements within the packages
-themselves are the final authority.
+Catalogue at: https://ctan.org/pkg. As always, the legal statements
+within the packages themselves are the final authority.
 
 In some cases, TeX Live is distributed with a snapshot of the CTAN
 archive, which is entirely independent of and separable from TeX Live
-itself.  (The TeX Collection DVD is one example of this.)  Please be
-aware that the CTAN snapshot contains many files which are *not* freely
-redistributable; see LICENSE.CTAN for more information.
+itself. Please be aware that the CTAN snapshot contains many files which
+are *not* freely redistributable; see LICENSE.CTAN for more information.
 
 To state explicitly what is implied by the above: Because TeX Live is
 free software, there is no warranty; not even for MERCHANTABILITY or
@@ -62,7 +60,7 @@ packaging and marketing details are not covered by any TeX Live license.
 
 a) Acknowledging that TeX Live is developed as a joint effort by all TeX
    user groups, and encouraging the user/reader to join their user group
-   of choice, as listed on the web page https://tug.org/usergroups.html.
+   of choice, as listed on this web page: https://tug.org/usergroups.html
 
 b) Referencing the TeX Live home page: https://tug.org/texlive/
 
@@ -71,8 +69,8 @@ and/or in accompanying text (for instance, in the acknowledgements
 section of a book).
 
 Finally, although it is again not a requirement, we'd like to invite any
-redistributors to make a donation to the project, whether cash or
-in-kind, for example via https://www.tug.org/donate/dev.html.  Thanks.
+redistributors to make a donation, whether cash or in-kind, for example
+via https://tug.org/donate.  Thanks.
 
 
 If you have any questions or comments, *please* contact us.  In general,
@@ -98,7 +96,7 @@ be available, including for documentation files.  Please see
 https://tug.org/texlive/pkgcontrib.html for more information, and other
 considerations.
 
-Thanks for your interest in TeX.
+Thanks for your interest in TeX and friends.
 
 - Karl Berry, for the TeX Live project
 
@@ -106,9 +104,9 @@ Thanks for your interest in TeX.
 TeX Live mailing list: https://lists.tug.org/tex-live
 TeX Live home page:    https://tug.org/texlive/
 
-The FSF's free software definition:  http://www.gnu.org/philosophy/free-sw.html
-Debian Free Software Guidelines:     http://www.debian.org/intro/free
-FSF commentary on existing licenses: http://www.gnu.org/licenses/license-list.html
+The FSF's free software definition:  https://gnu.org/philosophy/free-sw.html
+Debian Free Software Guidelines:     https://debian.org/intro/free
+FSF commentary on existing licenses: https://gnu.org/licenses/license-list.html
 
-LPPL: http://latex-project.org/lppl.html or texmf-dist/doc/latex/base/lppl.txt
-LPPL rationale: texmf-dist/doc/latex/base/modguide.pdf
+LPPL: https://latex-project.org/lppl.html
+LPPL rationale: https://latex-project.org/help/documentation/modguide.pdf
