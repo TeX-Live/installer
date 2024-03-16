@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2024-03-06 01:44+0100\n"
-"PO-Revision-Date: 2024-03-13 06:07+0100\n"
+"PO-Revision-Date: 2024-03-16 09:53+0100\n"
 "Last-Translator: Uwe Ziegenhagen <ziegenhagen@gmail.com>\n"
 "Language-Team: TL German Translation Team <tex-live@tug.org>\n"
 "Language: de\n"
@@ -1956,7 +1956,7 @@ msgstr "Willkommen bei TeX Live!"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2867
 #, perl-format
 msgid "See %s/index.html for links to documentation.\n"
-msgstr "Siehe %s/index.html für Links zur Dokumatation.\n"
+msgstr "Siehe %s/index.html für Links zur Dokumentation.\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2869
 msgid ""
@@ -1983,7 +1983,7 @@ msgid ""
 msgstr ""
 "Füge %s/texmf-dist/doc/man dem MANPATH hinzu.\n"
 "Füge %s/texmf-dist/doc/info dem INFOPATH hinzu.\n"
-"Und am wichtigsten: füge %s/bin/%s\n"
+"Und am wichtigsten: Füge %s/bin/%s\n"
 "zum PATH hinzu für die aktuelle und zukünftige Sessions.\n"
 
 #~ msgid ""
