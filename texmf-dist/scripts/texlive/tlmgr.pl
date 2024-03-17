@@ -5044,10 +5044,10 @@ sub action_platform {
         print "    $a\n";
       }
     }
-    print "Already installed platforms are marked with (i)\n";
-    print "You can add new platforms with: tlmgr platform add PLAT1 PLAT2...\n";
-    print "You can remove platforms with: tlmgr platform remove PLAT1 PLAT2...\n";
-    print "You can set the active platform with: tlmgr platform set PLAT\n";
+    print "Already installed platforms are marked with (i).\n";
+    print "Add new platforms with: tlmgr platform add PLAT1 PLAT2...\n";
+    print "Remove platforms with:  tlmgr platform remove PLAT1 PLAT2...\n";
+    print "Set the active platform with: tlmgr platform set PLAT\n";
     return ($F_OK | $F_NOPOSTACTION);
 
   } elsif ($what =~ m/^add$/i) {
@@ -5082,7 +5082,8 @@ sub action_platform {
                 }
               }
             } else {
-              tlwarn("$prg: action platform add, cannot find package $pkg.$a\n");
+              tlwarn("$prg: action platform add: package $pkg does not exist",
+                     " for platform: $a\n");
               $ret |= $F_WARNING;
             }
           }
