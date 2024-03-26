@@ -2268,7 +2268,7 @@ Run the ConTeXt cache generation commands, using C<$bindir> and
 C<$progext> to check if commands can be run. Use the function reference
 C<$run_postinst_cmd> to actually run the commands. The return status is
 zero if all succeeded, nonzero otherwise. If the main ConTeXt program
-(C<luametatex>) cannot be run at all, the return status is status.
+(C<luametatex>) cannot be run at all, the return status is zero.
 
 Functions C<info> and C<debug> are called with status reports.
 
