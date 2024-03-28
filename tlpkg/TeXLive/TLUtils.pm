@@ -2290,16 +2290,24 @@ sub update_context_cache {
   # can be done about it.
   my $lmtx = "$bindir/luametatex$progext";
   if (TeXLive::TLUtils::system_ok("$lmtx --version")) {
-    info("setting up ConTeXt cache: ");
+    info("setting up ConTeXt caches: ");
     $errcount += &$run_postinst_cmd("mtxrun --generate");
     #
     # If mtxrun failed, don't bother trying more.
     if ($errcount == 0) {
       $errcount += &$run_postinst_cmd("context --luatex --generate");
       #
+      # This is for finding fonts by font name (the --generate suffices
+      # for file name). Although ConTeXt does some automatic cache
+      # regeneration, Hans advises that this manual reload can help, and
+      # should be no harm.
+      # https://wiki.contextgarden.net/Use_the_fonts_you_want
+      # https://wiki.contextgarden.net/Mtxrun#base and #fonts
+      $errcount += &$run_postinst_cmd("mtxrun --script fonts --reload");
+      #
       # If context succeeded too, try luajittex. Missing on some platforms.
       # Although we build luajittex normally, instead of importing the
-      # binary, testing for file existence should suffice, we may as
+      # binary, so testing for file existence should suffice, we may as
       # well test execution since it's just as easy.
       # 
       if ($errcount == 0) {
