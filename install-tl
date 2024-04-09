@@ -863,7 +863,7 @@ and the repository being accessed are not compatible:
  repository: $texlive_release
 Perhaps you need to use a different CTAN mirror?
 (For more, see the output of install-tl --help, especially the
- -repository option.  Online via https://tug.org/texlive/doc.)
+ -repository option.  Online via https://tug.org/texlive/doc)
 =============================================================================
 END_MISMATCH
   }
