@@ -8,23 +8,48 @@ rem Originally written 2009 by Tomasz M. Trzeciak.
 rem Localize environment changes
 setlocal enableextensions enabledelayedexpansion
 
-rem check for version later than vista
-for /f "usebackq tokens=2 delims=[]" %%I in (`ver`) do set ver_str=%%I
-set ver_str=%ver_str:* =%
-rem windows 9x, 2000, xp, vista unsupported
-if %ver_str:~,2% == 4. goto tooold
-if %ver_str:~,2% == 5. goto tooold
-if %ver_str:~,3% == 6.0 (
-  echo WARNING: Windows 7 is the earliest supported version.
-  echo TeX Live 2020 has not been tested on Windows Vista.
-  pause
-)
 if "x86"=="%PROCESSOR_ARCHITECTURE%" (
 if ""=="%PROCESSOR_ARCHITEW6432%" (
-  echo 32-bit no longer supported
+  echo 32-bit no longer supported.
+  echo See https://tug.org/texlive/windows.html
+  echo about installing the 2022 32-bit release.
   pause
   goto eoff
 ))
+
+rem check version
+rem output from 'ver' e.g. 
+rem 'Microsoft Windows [Version 10.0.22621.382] for w11, and
+rem 'Microsoft Windows [Version 10.0.19042.508] for w10
+rem It is w11 from 10.0.22000 on.for f in
+for /f "usebackq tokens=2 delims=[]" %%I in (`ver`) do set ver_str=%%I
+set ver_str=%ver_str:* =%
+rem only windows 10 and higher officially supported
+if %ver_str:~,2% == 4. goto tooold
+if %ver_str:~,2% == 5. goto tooold
+if %ver_str:~,2% == 6. (
+  echo Windows 10 is the oldest officially supported version
+  echo but Windows 7 and 8 should mostly work.
+  echo Windows Vista has not recently been tested and may or may not work.
+  pause
+  goto winok
+)
+rem Windows 10 or higher
+if "AMD64" NEQ "%PROCESSOR_ARCHITECTURE%" (
+  if "AMD64" NEQ "%PROCESSOR_ARCHITEW6432%" (
+    rem Assume ARM64; will need windows 11 or later.
+    if %ver_str:~,5% EQU 10.0. (
+      if  %ver_str:~10,1% EQU . (
+        if %ver_str:~5,2% LSS 22 (
+          echo On ARM64, only Windows 11 and higher have x86_64 emulation.
+          pause
+          goto eoff
+        )
+      )
+    )
+  )
+)
+:winok
 
 rem version of external perl, if any. used by install-tl.
 set extperl=0
@@ -202,12 +227,8 @@ set errlev=0
 
 rem Start installer
 if %tcl% == yes (
-rem echo "%wish%" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
-rem pause
 "%wish%" "%instroot%tlpkg\installer\install-tl-gui.tcl" -- %args%
 ) else (
-rem echo perl "%instroot%install-tl" %args%
-rem pause
 perl "%instroot%install-tl" %args%
 )
 
@@ -217,7 +238,7 @@ goto :eoff
 
 :tooold
 echo TeX Live does not run on this Windows version.
-echo TeX Live is supported on Windows 7 and later.
+echo TeX Live is officially supported on Windows 10 and later.
 pause
 
 :eoff
