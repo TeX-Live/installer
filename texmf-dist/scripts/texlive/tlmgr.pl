@@ -5738,6 +5738,7 @@ sub check_runfiles {
   $omit_pkgs .= '^0+texlive|^bin-|^collection-|^scheme-|^texlive-|^texworks';
   $omit_pkgs .= '|^pgf$';           # intentionally duplicated .lua
   $omit_pkgs .= '|^latex-.*-dev$';  # intentionally duplicated base latex
+  $omit_pkgs .= '|^l3(kernel|backend)-dev$';  # more base latex
   my @runtime_files = ();
   #
   foreach my $tlpn ($localtlpdb->list_packages) {
