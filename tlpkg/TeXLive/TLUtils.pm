@@ -4895,8 +4895,11 @@ sub report_tlpdb_differences {
             info("      $f\n");
           }
         } else {
-          # e.g., fmttriggers; don't bother making a nice report.
-          info("  unknown differ $k\n");
+          # e.g., fmttriggers; don't bother making a complete report.
+          # The fmttriggers will differ when the global variables in
+          # 00texlive.autopatterns.tlpsrc change but we forget to
+          # tlforceincr all the packages that depend on the variables.
+          info("    $k differ\n");
         }
       }
     }
