@@ -4871,6 +4871,8 @@ sub tlnet_disabled_packages {
 Report, using info function, as given in hash reference argument RET,
 with keys removed_packages, added_packages, different_packages.
 
+=cut
+
 sub report_tlpdb_differences {
   my $rret = shift;
   my %ret = %$rret;
