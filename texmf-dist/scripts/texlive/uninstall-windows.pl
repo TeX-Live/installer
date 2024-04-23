@@ -26,9 +26,10 @@ if (@ARGV) {
 } else {
   my $askfile = $0;
   $askfile =~ s!^(.*)([\\/])([^\\/]*)$!$1$2!;
-  $askfile .= "uninstq.vbs";
-  $ans = system("wscript", $askfile);
-  # 0 means yes
+  $askfile .= "uninstq.ps1";
+  $ans = system("powershell", '-NoLogo', '-WindowStyle', 'hidden',
+       '-ExecutionPolicy', 'Bypass', $askfile);
+  # 0 means yes or ok
 }
 if ($ans) {
   exit(1);
