@@ -1843,13 +1843,29 @@ sub action_search {
     $tlpdb = $localtlpdb;
   }
 
-  my ($foundfile, $founddesc) = search_tlpdb($tlpdb, $r, 
+  my $ret = search_tlpdb($tlpdb, $r, 
     $opts{'file'} || $opts{'all'}, 
     (!$opts{'file'} || $opts{'all'}), 
     $opts{'word'});
- 
-  print $founddesc;
-  print $foundfile;
+
+  if ($opts{'json'}) {
+    my $json = TeXLive::TLUtils::encode_json($ret);
+    print($json);
+  } else {
+    my $retfile = '';
+    my $retdesc = '';
+    for my $pkg (sort keys %{$ret->{"packages"}}) {
+      $retdesc .= "$pkg - " . $ret->{"packages"}{$pkg} . "\n";
+    }
+    for my $pkg (sort keys %{$ret->{"files"}}) {
+      $retfile .= "$pkg:\n";
+      for my $f (@{$ret->{"files"}{$pkg}}) {
+        $retfile .= "\t$f\n";
+      }
+    }
+    print ($retdesc);
+    print ($retfile);
+  }
 
   return ($F_OK | $F_NOPOSTACTION);
 }
@@ -1896,20 +1912,24 @@ sub search_tlpdb {
   # first report on $pkg - $shortdesc found
   my $retfile = '';
   my $retdesc = '';
+  my %ret = ( "packages" => {}, "files" => {} );
   for my $pkg (sort keys %$fndptr) {
     if ($fndptr->{$pkg}{'desc'}) {
-      $retdesc .= "$pkg - " . $fndptr->{$pkg}{'desc'} . "\n";
+      $ret{"packages"}{$pkg} = $fndptr->{$pkg}{'desc'};
     }
   }
   for my $pkg (sort keys %$fndptr) {
     if ($fndptr->{$pkg}{'files'}) {
-      $retfile .= "$pkg:\n";
-      for my $f (keys %{$fndptr->{$pkg}{'files'}}) {
-        $retfile .= "\t$f\n";
-      }
+      $ret{"files"}{$pkg} = [ keys %{$fndptr->{$pkg}{'files'}} ];
     }
   }
-  return($retfile, $retdesc);
+  # {
+  #   require Data::Dumper;
+  #   print Data::Dumper->Dump([\%retjson], [qw(retjson)]);
+  #   my $json = TeXLive::TLUtils::encode_json(\%retjson);
+  #   print($json);
+  # }
+  return (\%ret);
 }
 
 sub search_pkg_files {
@@ -9466,6 +9486,11 @@ Restrict the search of package names and descriptions (but not
 filenames) to match only full words.  For example, searching for
 C<table> with this option will not output packages containing the word
 C<tables> (unless they also contain the word C<table> on its own).
+
+=item B<--json>
+
+Output search results as json hash with two keys: B<files> and B<packages>.
+
 
 =back
 
