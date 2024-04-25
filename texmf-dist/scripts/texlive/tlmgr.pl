@@ -1713,7 +1713,7 @@ sub action_info {
   my @datafields;
   my $fmt = "list";
   if ($opts{'data'} && $opts{'json'}) {
-    tlwarn("Preferring json output over data output!\n");
+    tlwarn("Preferring JSON output over data output!\n");
     delete($opts{'data'});
   }
   if ($opts{'json'}) {
@@ -8626,7 +8626,7 @@ Dump the remote TLPDB.
 =item B<--json>
 
 Instead of dumping the actual content, the database is dumped as
-JSON. For the format of JSON output see C<tlpkg/doc/JSON-formats.txt>,
+JSON. For the format of JSON output see C<tlpkg/doc/json-formats.txt>,
 format definition C<TLPDB>.
 
 =back
@@ -8850,11 +8850,11 @@ page for new packages: L<https://ctan.org/upload>.
 
 =item B<--json>
 
-In case C<--json> is specified, the output is a JSON encoded array where
-each array element is the JSON representation of a single C<TLPOBJ> but
-with additional information. For details see
-C<tlpkg/doc/JSON-formats.txt>, format definition: C<TLPOBJINFO>. If both
-C<--json> and C<--data> are given, C<--json> takes precedence.
+If C<--json> is specified, the output is a JSON encoded array where each
+array element is the JSON representation of a single C<TLPOBJ> but with
+additional information. For details see C<tlpkg/doc/json-formats.txt>,
+format definition: C<TLPOBJINFO>. If both C<--json> and C<--data> are
+given, C<--json> takes precedence.
 
 =back
 
@@ -8989,7 +8989,7 @@ synonym).
 Both C<show...> forms take an option C<--json>, which dumps the option
 information in JSON format.  In this case, both forms dump the same
 data. For the format of the JSON output see
-C<tlpkg/doc/JSON-formats.txt>, format definition C<TLOPTION>.
+C<tlpkg/doc/json-formats.txt>, format definition C<TLOPTION>.
 
 In the third form, with I<key>, if I<value> is not given, the setting
 for I<key> is displayed.  If I<value> is present, I<key> is set to
@@ -9105,7 +9105,7 @@ sizes for that program.  The first size shown is the default.
 
 If C<--json> is specified without other options, the paper setup is
 dumped in JSON format. For the format of JSON output see
-C<tlpkg/doc/JSON-formats.txt>, format definition C<TLPAPER>.
+C<tlpkg/doc/json-formats.txt>, format definition C<TLPAPER>.
 
 Incidentally, this syntax of having a specific program name before the
 C<paper> keyword is unusual.  It is inherited from the longstanding
@@ -9443,10 +9443,11 @@ Don't ask questions.
 
 =item B<--json>
 
-When listing backups, the option C<--json> turn on JSON output.
-The format is an array of JSON objects (C<name>, C<rev>, C<date>).
-For details see C<tlpkg/doc/JSON-formats.txt>, format definition: C<TLBACKUPS>.
-If both C<--json> and C<--data> are given, C<--json> takes precedence.
+When listing backups, the option C<--json> writes JSON output. The
+format is an array of JSON objects (C<name>, C<rev>, C<date>). For
+details see C<tlpkg/doc/json-formats.txt>, format definition:
+C<TLBACKUPS>. If both C<--json> and C<--data> are given, C<--json> takes
+precedence.
 
 =back
 
@@ -9492,8 +9493,9 @@ C<tables> (unless they also contain the word C<table> on its own).
 
 =item B<--json>
 
-Output search results as json hash with two keys: B<files> and B<packages>.
-
+Output search results as a JSON hash with two keys: B<files> and
+B<packages>. For the format of the JSON output see
+C<tlpkg/doc/json-formats.txt>, format definition C<TLSEARCH>.
 
 =back
 
