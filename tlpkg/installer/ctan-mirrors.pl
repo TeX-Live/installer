@@ -31,7 +31,6 @@ $mirrors = {
       'https://mirror.niser.ac.in/ctan/' => 1,
     },
     'Indonesia' => {
-      'http://repo.ugm.ac.id/ctan/' => 1,
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
@@ -39,7 +38,6 @@ $mirrors = {
       'https://ctan.yazd.ac.ir/' => 1,
     },
     'Japan' => {
-      'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
@@ -86,6 +84,7 @@ $mirrors = {
     'France' => {
       'https://ctan.gutenberg-asso.fr/' => 1,
       'https://ctan.mines-albi.fr/' => 1,
+      'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
       'https://mirrors.ircam.fr/pub/CTAN/' => 1,
@@ -178,6 +177,9 @@ $mirrors = {
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
+    },
+    'Costa Rica' => {
+      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
