@@ -168,7 +168,7 @@ my %action_specification = (
     "function" => \&action_conf
   },
   "dump-tlpdb" => { 
-    "options"  => { local => 1, remote => 1 },
+    "options"  => { local => 1, remote => 1, json => 1 },
     "run-post" => 0,
     "function" => \&action_dumptlpdb
   },
@@ -212,7 +212,8 @@ my %action_specification = (
       "all" => 1,
       "list" => 1, 
       "only-installed" => 1,
-      "only-remote" => 1
+      "only-remote" => 1,
+      "json" => 1
     },
     "run-post" => 0,
     "function" => \&action_info
@@ -240,11 +241,12 @@ my %action_specification = (
     "function" => \&action_key
   },
   "option" => { 
+    "options"  => { "json" => 1 },
     "run-post" => 1,
     "function" => \&action_option
   },
   "paper" => { 
-    "options"  => { "list" => 1 },
+    "options"  => { "list" => 1, "json" => 1 },
     "run-post" => 1,
     "function" => \&action_paper
   },
@@ -300,7 +302,8 @@ my %action_specification = (
       "all" => 1,
       "backupdir" => "=s",
       "dry-run|n" => 1,
-      "force" => 1
+      "force" => 1,
+      "json" => 1,
     },
     "run-post" => 1,
     "function" => \&action_restore
@@ -311,6 +314,7 @@ my %action_specification = (
       "file" => 1,
       "global" => 1,
       "word" => 1,
+      "json" => 1,
     },
     "run-post" => 1,
     "function" => \&action_search
@@ -348,7 +352,6 @@ my %globaloptions = (
   "debug-translation" => 1,
   "h|?" => 1,
   "help" => 1,
-  "json" => 1,
   "location|repository|repo" => "=s",
   "machine-readable" => 1,
   "no-execute-actions" => 1,
@@ -6715,7 +6718,7 @@ sub action_shell {
   # keys which can be set/get and are also settable via global cmdline opts
   my @valid_bool_keys
     = qw/debug-translation machine-readable no-execute-actions
-         verify-repo json/;  
+         verify-repo/;  
   my @valid_string_keys = qw/repository prompt/;
   my @valid_keys = (@valid_bool_keys, @valid_string_keys);
   # set auto flush unconditionally in action shell
