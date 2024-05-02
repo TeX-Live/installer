@@ -148,7 +148,6 @@ $mirrors = {
     'Russia' => {
       'https://ctan.altspu.ru/' => 1,
       'https://mirror.macomnet.net/pub/CTAN/' => 1,
-      'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
     'Spain' => {
       'https://ctan.fisiquimicamente.com/' => 1,
@@ -178,6 +177,9 @@ $mirrors = {
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
+    },
+    'Costa Rica' => {
+      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
       'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,

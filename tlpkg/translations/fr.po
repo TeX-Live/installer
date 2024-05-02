@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2024-03-06 01:44+0100\n"
+"POT-Creation-Date: 2024-05-03 01:40+0200\n"
 "PO-Revision-Date: 2024-02-22 22:35+0100\n"
 "Last-Translator: Denis Bitouzé <denis.bitouze@univ-littoral.fr>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -1966,16 +1966,16 @@ msgstr "Programmes pour le support de Windows seulement"
 msgid "XeTeX and packages"
 msgstr "XeTeX et packages associés"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2866
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2882
 msgid "Welcome to TeX Live!"
 msgstr "Bienvenue sous TeX Live !"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2867
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2883
 #, perl-format
 msgid "See %s/index.html for links to documentation.\n"
 msgstr "Voir %s/index.html pour les liens vers la documentation.\n"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2869
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2885
 msgid ""
 "The TeX Live web site (https://tug.org/texlive/) provides all updates\n"
 "and corrections. TeX Live is a joint project of the TeX user groups\n"
@@ -1992,7 +1992,7 @@ msgstr ""
 ".La liste des groupes est disponible sur le Web à l'adresse https://tug.org/"
 "usergroups.html.\n"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2877
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2893
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
