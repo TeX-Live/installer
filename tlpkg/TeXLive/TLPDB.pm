@@ -370,7 +370,7 @@ END_DOWNLOAD_FAILURE_MSG
 
         # If they have the Cygwin wget.exe, some other problem.
         if ($^O eq 'cygwin'
-            && (! -x "/usr/bin/curl.exe" || ! -x "/usr/bin/wget.exe")) {
+            && (! -x "/usr/bin/curl.exe" && ! -x "/usr/bin/wget.exe")) {
           $diemsg .= <<END_CYGWIN_WGET_MSG;
 
 It seems you are using Cygwin and have not installed Cygwin's

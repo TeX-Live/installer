@@ -602,7 +602,7 @@ if (!$opt_custom_bin && (platform() eq "i386-cygwin")) {
 # More Cygwin: if the user doesn't have Cygwin's wget or curl,
 # it's unlikely anything good will happen.
 if ($^O eq 'cygwin'
-    && (! -x "/usr/bin/curl.exe" || ! -x "/usr/bin/wget.exe")) {
+    && (! -x "/usr/bin/curl.exe" && ! -x "/usr/bin/wget.exe")) {
       print "mess_yesno\n" if $from_ext_gui; # prepare for dialog interaction
       print <<END_CYGWIN_WGET_MSG;
 It seems you are using Cygwin and have not installed Cygwin's
