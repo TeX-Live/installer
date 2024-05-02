@@ -369,12 +369,13 @@ More info: https://tug.org/texlive/acquire.html
 END_DOWNLOAD_FAILURE_MSG
 
         # If they have the Cygwin wget.exe, some other problem.
-        if ($^O eq 'cygwin' && -x "/usr/bin/wget.exe") {
+        if ($^O eq 'cygwin'
+            && (! -x "/usr/bin/curl.exe" || ! -x "/usr/bin/wget.exe")) {
           $diemsg .= <<END_CYGWIN_WGET_MSG;
 
-It seems you are using Cygwin and haven't installed Cygwin's wget.
-See the TeX Live Guide information on Cygwin for required and
-recommended packages:
+It seems you are using Cygwin and have not installed Cygwin's
+curl or wget. See the TeX Live Guide information on Cygwin for required
+and recommended packages:
   https://tug.org/texlive/doc/texlive-en/texlive-en.html#cygwin
 END_CYGWIN_WGET_MSG
         }

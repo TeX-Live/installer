@@ -60,6 +60,7 @@ sub reinit {
   # differing case-insensitive like foo=1 and FOO=2. Even on systems
   # that have case-sensitive environments, and even about variables that
   # have nothing whatsoever to do with LWP (like foo).
+  # https://github.com/libwww-perl/libwww-perl/issues/372
   # 
   # So, only pass env_proxy=>1 when creating the UserAgent if there are
   # in fact *_proxy variables (case-insensitive, just in case) set in
