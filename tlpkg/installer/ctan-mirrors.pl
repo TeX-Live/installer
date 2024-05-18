@@ -36,6 +36,7 @@ $mirrors = {
     },
     'Iran' => {
       'http://ctan.asis.ai/' => 1,
+      'https://ctan.yazd.ac.ir/' => 1,
     },
     'Japan' => {
       'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
@@ -114,7 +115,6 @@ $mirrors = {
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
     },
     'Greece' => {
-      'http://ftp.ntua.gr/mirror/ctan/' => 1,
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
