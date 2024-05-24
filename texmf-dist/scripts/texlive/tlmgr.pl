@@ -1821,6 +1821,22 @@ sub action_info {
 
 #  SEARCH
 #
+sub format_search_tlpdb_result {
+  my $ret = shift;
+  my $retfile = '';
+  my $retdesc = '';
+  for my $pkg (sort keys %{$ret->{"packages"}}) {
+    $retdesc .= "$pkg - " . $ret->{"packages"}{$pkg} . "\n";
+  }
+  for my $pkg (sort keys %{$ret->{"files"}}) {
+    $retfile .= "$pkg:\n";
+    for my $f (@{$ret->{"files"}{$pkg}}) {
+      $retfile .= "\t$f\n";
+    }
+  }
+  return ($retfile, $retdesc);
+}
+
 sub action_search {
   my ($r) = @ARGV;
   my $tlpdb;
@@ -1855,17 +1871,7 @@ sub action_search {
     my $json = TeXLive::TLUtils::encode_json($ret);
     print($json);
   } else {
-    my $retfile = '';
-    my $retdesc = '';
-    for my $pkg (sort keys %{$ret->{"packages"}}) {
-      $retdesc .= "$pkg - " . $ret->{"packages"}{$pkg} . "\n";
-    }
-    for my $pkg (sort keys %{$ret->{"files"}}) {
-      $retfile .= "$pkg:\n";
-      for my $f (@{$ret->{"files"}{$pkg}}) {
-        $retfile .= "\t$f\n";
-      }
-    }
+    my ($retfile, $retdesc) = format_search_tlpdb_result($ret);
     print ($retdesc);
     print ($retfile);
   }
@@ -4328,7 +4334,8 @@ sub show_one_package_detail {
       }
       # we didn't find a package like this, so use search
       info("$prg: cannot find package $pkg, searching for other matches:\n");
-      my ($foundfile, $founddesc) = search_tlpdb($remotetlpdb,$pkg,1,1,0);
+      my $ret = search_tlpdb($remotetlpdb,$pkg,1,1,0);
+      my ($foundfile, $founddesc) = format_search_tlpdb_result($ret);
       print "\nPackages containing \`$pkg\' in their title/description:\n";
       print $founddesc;
       print "\nPackages containing files matching \`$pkg\':\n";
