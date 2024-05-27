@@ -109,6 +109,7 @@ $mirrors = {
       'https://ftp.tu-chemnitz.de/pub/tex/' => 1,
       'https://markov.htwsaar.de/tex-archive/' => 1,
       'https://mirror.clientvps.com/CTAN/' => 1,
+      'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.funkfreundelandshut.de/latex/' => 1,
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
     },
