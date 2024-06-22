@@ -1677,7 +1677,7 @@ sub install_package_files {
              . "@installfiles\n"); 
       next;
     }
-    _post_install_package ($self, $tlpobj);
+    _post_install_pkg ($self, $tlpobj);
 
     # remember that we installed this package correctly
     $ret++;

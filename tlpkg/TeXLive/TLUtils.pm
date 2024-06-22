@@ -2644,7 +2644,7 @@ sub check_file_and_remove {
 
   if (!$checksum && !$checksize) {
     tlwarn("$fn_name: neither checksum nor checksize " .
-           "available for $xzfile, cannot check integrity"); 
+           "available for $xzfile, cannot check integrity\n"); 
     return;
   }
   
