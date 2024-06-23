@@ -9,7 +9,6 @@ $mirrors = {
   },
   'Asia' => {
     'China' => {
-      'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirror.nyist.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
@@ -38,13 +37,13 @@ $mirrors = {
       'http://ctan.asis.ai/' => 1,
     },
     'Japan' => {
+      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
     },
     'Korea' => {
       'http://ftp.ktug.org/tex-archive/' => 1,
-      'https://ftp.kaist.ac.kr/tex-archive/' => 1,
       'https://kr.mirrors.cicku.me/ctan/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
@@ -102,7 +101,6 @@ $mirrors = {
       'https://ctan.mc1.root.project-creative.net/' => 1,
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
-      'https://ctan.space-pro.be/tex-archive/' => 1,
       'https://de.mirrors.cicku.me/ctan/' => 1,
       'https://ftp.agdsn.de/pub/mirrors/latex/dante/' => 1,
       'https://ftp.fau.de/ctan/' => 1,
@@ -130,7 +128,6 @@ $mirrors = {
     'Netherlands' => {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
-      'https://mirror.lyrahosting.com/CTAN/' => 1,
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
@@ -148,6 +145,7 @@ $mirrors = {
       'https://mirrors.nxthost.com/ctan/' => 1,
     },
     'Russia' => {
+      'https://ctan.altspu.ru/' => 1,
       'https://mirror.macomnet.net/pub/CTAN/' => 1,
       'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
