@@ -32,7 +32,6 @@ $mirrors = {
     },
     'Indonesia' => {
       'http://repo.ugm.ac.id/ctan/' => 1,
-      'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
       'http://ctan.asis.ai/' => 1,
@@ -49,7 +48,6 @@ $mirrors = {
       'https://ftp.kaist.ac.kr/tex-archive/' => 1,
       'https://kr.mirrors.cicku.me/ctan/' => 1,
       'https://lab.uklee.pe.kr/tex-archive/' => 1,
-      'https://mirror.kakao.com/CTAN/' => 1,
       'https://mirror.navercorp.com/CTAN/' => 1,
     },
     'Singapore' => {
