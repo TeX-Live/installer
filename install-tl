@@ -1141,6 +1141,7 @@ sub do_installation {
   my $tlpobj = new TeXLive::TLPOBJ;
   $tlpobj->name("00texlive.config");
   my $t = $tlpdb->get_package("00texlive.config");
+  $tlpobj->category($t->category);
   $tlpobj->depends("minrelease/" . $tlpdb->config_minrelease,
                    "release/"    . $tlpdb->config_release);
   $localtlpdb->add_tlpobj($tlpobj);  
