@@ -9,6 +9,7 @@ $mirrors = {
   },
   'Asia' => {
     'China' => {
+      'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirror.nyist.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
@@ -168,7 +169,6 @@ $mirrors = {
     'United Kingdom' => {
       'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://eu.mirrors.cicku.me/ctan/' => 1,
-      'https://www-uxsup.csx.cam.ac.uk/pub/tex-archive/' => 1,
     },
   },
   'North America' => {
