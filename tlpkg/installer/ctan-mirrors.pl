@@ -38,6 +38,7 @@ $mirrors = {
       'http://ctan.asis.ai/' => 1,
     },
     'Japan' => {
+      'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
@@ -169,6 +170,7 @@ $mirrors = {
     'United Kingdom' => {
       'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://eu.mirrors.cicku.me/ctan/' => 1,
+      'https://mirror.apps.cam.ac.uk/pub/tex-archive/' => 1,
     },
   },
   'North America' => {
