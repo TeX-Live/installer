@@ -33,13 +33,11 @@ $mirrors = {
     },
     'Indonesia' => {
       'http://repo.ugm.ac.id/ctan/' => 1,
-      'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Iran' => {
       'http://ctan.asis.ai/' => 1,
     },
     'Japan' => {
-      'http://ring.airnet.ne.jp/archives/text/CTAN/' => 1,
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
