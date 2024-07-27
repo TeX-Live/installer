@@ -9,7 +9,6 @@ $mirrors = {
   },
   'Asia' => {
     'China' => {
-      'https://mirror.bjtu.edu.cn/CTAN/' => 1,
       'https://mirror.nyist.edu.cn/CTAN/' => 1,
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
@@ -69,10 +68,6 @@ $mirrors = {
     },
     'Belarus' => {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
-    },
-    'Bulgaria' => {
-      'https://mirrors.neterra.net/CTAN/' => 1,
-      'https://mirrors.netix.net/CTAN/' => 1,
     },
     'Czech Republic' => {
       'http://ftp.cvut.cz/tex-archive/' => 1,
