@@ -77,6 +77,10 @@ $mirrors = {
     'Belarus' => {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
     },
+    'Bulgaria' => {
+      'https://mirrors.neterra.net/CTAN/' => 1,
+      'https://mirrors.netix.net/CTAN/' => 1,
+    },
     'Czech Republic' => {
       'http://ftp.cvut.cz/tex-archive/' => 1,
       'https://mirrors.nic.cz/tex-archive/' => 1,
@@ -143,7 +147,6 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
-      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
@@ -153,7 +156,6 @@ $mirrors = {
       'https://mirrors.nxthost.com/ctan/' => 1,
     },
     'Russia' => {
-      'https://ctan.altspu.ru/' => 1,
       'https://mirror.macomnet.net/pub/CTAN/' => 1,
       'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
@@ -172,6 +174,7 @@ $mirrors = {
       'https://mirror.init7.net/ctan/' => 1,
     },
     'United Kingdom' => {
+      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://gb.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.apps.cam.ac.uk/pub/tex-archive/' => 1,
     },
