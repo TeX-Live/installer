@@ -142,7 +142,6 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
-      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
@@ -206,7 +205,6 @@ $mirrors = {
     'Australia' => {
       'https://au.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
-      'https://mirror.cse.unsw.edu.au/pub/CTAN/' => 1,
     },
   },
   'South America' => {
