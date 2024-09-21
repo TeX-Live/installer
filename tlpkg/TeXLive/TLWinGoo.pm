@@ -463,6 +463,7 @@ sub adjust_reg_path_for_texlive {
   debug("Warning: [pdf]tex program not found in $tlbindir\n")
     if (!is_a_texdir($tlbindir));
   my $path = ($mode eq 'system') ? get_system_path() : get_user_path();
+  debug("TLWinGoo: adjust_reg_path_for_texlive: current path before adjusting = $path\n");
   $tlbindir =~ s!/!\\!g;
   my $tlbindir_short = uc(short_name($tlbindir));
   my ($d, $d_short, @newpath);
@@ -490,7 +491,7 @@ sub adjust_reg_path_for_texlive {
     }
   }
   if (@newpath) {
-    debug("TLWinGoo: adjust_reg_path_for_texlive: calling setenv_reg in $mode\n");
+    debug("TLWinGoo: adjust_reg_path_for_texlive: calling setenv_reg in $mode with new path = ", join(';', @newpath), "\n");
     setenv_reg("Path", join(';', @newpath), $mode);
   } else {
     debug("TLWinGoo: adjust_reg_path_for_texlive: calling unsetenv_reg in $mode\n");
