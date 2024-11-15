@@ -126,9 +126,6 @@ $mirrors = {
     'Hungary' => {
       'https://mirror.szerverem.hu/ctan/' => 1,
     },
-    'Italy' => {
-      'https://ctan.mirror.garr.it/mirrors/ctan/' => 1,
-    },
     'Netherlands' => {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
