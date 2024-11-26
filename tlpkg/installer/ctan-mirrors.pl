@@ -25,6 +25,9 @@ $mirrors = {
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
+    'Hong Kong' => {
+      'https://mirror-hk.koddos.net/CTAN/' => 1,
+    },
     'India' => {
       'https://2.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
@@ -38,6 +41,7 @@ $mirrors = {
       'http://ctan.asis.ai/' => 1,
     },
     'Japan' => {
+      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
