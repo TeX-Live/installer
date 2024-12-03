@@ -3474,8 +3474,10 @@ Don't try to run the C<--help> message through C<perldoc>.
 
 =item C<TL_DOWNLOAD_ARGS>
 
-These override the normal choice of a download program; see the C<tlmgr>
-documentation, e.g.,
+=item C<TEXLIVE_PREFER_OWN>
+
+These override the normal choice of the download and other utility
+programs; see the C<tlmgr> documentation, e.g.,
 L<https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
 
 =item C<TEXLIVE_INSTALL_ENV_NOCHECK>
