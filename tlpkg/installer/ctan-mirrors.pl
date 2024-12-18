@@ -134,7 +134,6 @@ $mirrors = {
       'https://ftp.fagskolen.gjovik.no/pub/tex-archive/' => 1,
     },
     'Poland' => {
-      'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
@@ -155,6 +154,7 @@ $mirrors = {
       'https://ctan.javinator9889.com/' => 1,
     },
     'Sweden' => {
+      'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
       'https://mirror.accum.se/mirror/CTAN/' => 1,
     },
     'Switzerland' => {
