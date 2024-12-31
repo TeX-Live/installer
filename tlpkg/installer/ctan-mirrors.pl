@@ -117,7 +117,6 @@ $mirrors = {
       'https://mirror.clientvps.com/CTAN/' => 1,
       'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.funkfreundelandshut.de/latex/' => 1,
-      'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
     },
     'Greece' => {
       'http://ftp.ntua.gr/mirror/ctan/' => 1,
