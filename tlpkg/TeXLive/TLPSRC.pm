@@ -229,6 +229,9 @@ sub from_file {
     } elsif ($line =~ /^(depend|hard)\s+(.*)$/) {
       push (@depends, $2) if ($2 ne "");
 
+    } elsif ($line =~ /^soft\s+(.*)$/) {
+      ; # accept and ignore
+
     } elsif ($line =~ /^postaction\s+(.*)$/) {
       push (@postactions, $1) if ($1 ne "");
 
