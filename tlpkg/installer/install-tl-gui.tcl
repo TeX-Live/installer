@@ -1,6 +1,6 @@
 #!/usr/bin/env wish
 
-# Copyright 2018-2022 Siep Kroonenberg
+# Copyright 2018-2025 Siep Kroonenberg
 
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -334,7 +334,7 @@ proc pre_splash {} {
   }
 
   # wallpaper for remaining widgets
-  pack [ttk::frame .bg -padding 3pt] -fill both -expand 1
+  pack [ttk::frame .bg -padding 3p] -fill both -expand 1
 
   # frame for buttons (abort button, mirrors dropdown menu)
   pack [ttk::frame .splfb] -in .bg -side bottom -fill x
@@ -389,7 +389,7 @@ proc show_log {{do_abort 0}} {
   }
 
   # wallpaper
-  pack [ttk::frame .bg -padding 3pt] -fill both -expand 1
+  pack [ttk::frame .bg -padding 3p] -fill both -expand 1
 
   # buttons at bottom
   pack [ttk::frame .bottom] -in .bg -side bottom -fill x
@@ -471,14 +471,14 @@ proc edit_name {} {
   if $::plain_unix {wm attributes .tled -type dialog}
 
   # wallpaper
-  pack [ttk::frame .tled.bg -padding 3pt] -fill both -expand 1
+  pack [ttk::frame .tled.bg -padding 3p] -fill both -expand 1
 
   # widgets
   ttk::label .tled.l -text [__ "Change name (slashes not allowed)"]
-  pack .tled.l -in .tled.bg -padx 5pt -pady 5pt
+  pack .tled.l -in .tled.bg -padx 5p -pady 5p
   ttk::entry .tled.e -width 20
   .tled.e state !disabled
-  pack .tled.e -in .tled.bg -pady 5pt
+  pack .tled.e -in .tled.bg -pady 5p
   .tled.e insert 0 [.tltd.name_l cget -text]
 
   # now frame with ok and cancel buttons
@@ -492,9 +492,9 @@ proc edit_name {} {
       end_dlg "" .tled
     }
   }
-  ppack .tled.ok_b -in .tled.buttons -side right -padx 5pt -pady 5pt
+  ppack .tled.ok_b -in .tled.buttons -side right -padx 5p -pady 5p
   ttk::button .tled.cancel_b -text [__ "Cancel"] -command {end_dlg "" .tled}
-  ppack .tled.cancel_b -in .tled.buttons -side right -padx 5pt -pady 5pt
+  ppack .tled.cancel_b -in .tled.buttons -side right -padx 5p -pady 5p
   bind .tled <Escape> {.tled.cancel_b invoke}
 
   wm protocol .tled WM_DELETE_WINDOW \
@@ -570,14 +570,14 @@ proc texdir_setup {} {
   wm title .tltd [__ "Installation root"]
 
   # wallpaper
-  pack [ttk::frame .tltd.bg -padding 3pt] -expand 1 -fill both
+  pack [ttk::frame .tltd.bg -padding 3p] -expand 1 -fill both
 
   # full path
   pack [ttk::label .tltd.path_l -font lfont -anchor center] \
-      -in .tltd.bg -pady 10pt -fill x -expand 1
+      -in .tltd.bg -pady 10p -fill x -expand 1
 
   # installation root components, gridded
-  pack [ttk::frame .tltd.fr1 -borderwidth 2pt -relief groove] \
+  pack [ttk::frame .tltd.fr1 -borderwidth 2p -relief groove] \
       -in .tltd.bg -fill x -expand 1
   grid columnconfigure .tltd.fr1 0 -weight 1
   grid columnconfigure .tltd.fr1 2 -weight 1
@@ -620,7 +620,7 @@ proc texdir_setup {} {
   }
 
   # ok/cancel buttons
-  pack [ttk::frame .tltd.frbt] -in .tltd.bg -pady {10pt 0pt} -fill x
+  pack [ttk::frame .tltd.frbt] -in .tltd.bg -pady {10p 0p} -fill x
   ttk::button .tltd.ok_b -text [__ "Ok"] -command commit_root
   ppack .tltd.ok_b -in .tltd.frbt -side right
   ttk::button .tltd.cancel_b -text [__ "Cancel"] \
@@ -684,7 +684,7 @@ proc edit_dir {d} {
   if $::plain_unix {wm attributes .td -type dialog}
 
   # wallpaper
-  pack [ttk::frame .td.bg -padding 3pt] -fill both -expand 1
+  pack [ttk::frame .td.bg -padding 3p] -fill both -expand 1
 
   if {$d eq "TEXMFHOME"} {
     # explain tilde
@@ -889,7 +889,7 @@ proc select_binaries {} {
   wm title .tlbin [__ "Binaries"]
 
   # wallpaper
-  pack [ttk::frame .tlbin.bg -padding 3pt] -expand 1 -fill both
+  pack [ttk::frame .tlbin.bg -padding 3p] -expand 1 -fill both
 
   # ok, cancel buttons
   pack [ttk::frame .tlbin.buts] -in .tlbin.bg -side bottom -fill x
@@ -939,7 +939,7 @@ proc select_scheme {} {
   wm title .tlschm [__ "Schemes"]
 
   # wallpaper
-  pack [ttk::frame .tlschm.bg -padding 3pt] -fill both -expand 1
+  pack [ttk::frame .tlschm.bg -padding 3p] -fill both -expand 1
 
   # buttons at bottom
   pack [ttk::frame .tlschm.buts] -in .tlschm.bg -side bottom -fill x
@@ -1027,7 +1027,7 @@ proc select_collections {} {
   wm title .tlcoll [__ "Collections"]
 
   # wallpaper
-  pack [ttk::frame .tlcoll.bg -padding 3pt] -fill both -expand 1
+  pack [ttk::frame .tlcoll.bg -padding 3p] -fill both -expand 1
 
   # frame at bottom with ok and cancel buttons
   pack [ttk::frame .tlcoll.butf] -in .tlcoll.bg -side bottom -fill x
@@ -1047,14 +1047,14 @@ proc select_collections {} {
     set wgb .tlcoll.b$t
     ttk::frame $wgb
     ttk::label ${wgb}sel -text [__ "Select"]
-    ttk::button ${wgb}all -text [__ "All"] -padding 1pt -command \
+    ttk::button ${wgb}all -text [__ "All"] -padding 1p -command \
       "foreach c \[.tlcoll.$t children {}\] \{
         .tlcoll.$t set \$c mk \[mark_sym 1\]\}"
-    ttk::button ${wgb}none -text [__ "None"] -padding 1pt -command \
+    ttk::button ${wgb}none -text [__ "None"] -padding 1p -command \
       "foreach c \[.tlcoll.$t children {}\] \{
         .tlcoll.$t set \$c mk \[mark_sym 0\]\}"
     pack ${wgb}sel ${wgb}all ${wgb}none -in $wgb \
-        -side left -padx 3pt -pady 3pt
+        -side left -padx 3p -pady 3p
 
     # trees with collections and markers, lang and other separately
     set wgt ".tlcoll.$t"
@@ -1213,7 +1213,7 @@ if {$::tcl_platform(platform) ne "windows"} {
     create_dlg .edsyms .
     wm title .edsyms [__ "Symlinks"]
 
-    pack [ttk::frame .edsyms.bg -padding 3pt] -expand 1 -fill both
+    pack [ttk::frame .edsyms.bg -padding 3p] -expand 1 -fill both
     set rw -1
 
     pack [ttk::frame .edsyms.fr0] -in .edsyms.bg -expand 1 -fill both
@@ -1345,7 +1345,7 @@ proc run_menu {} {
   menu .mn
   . configure -menu .mn
   if $::plain_unix {
-    .mn configure -borderwidth 1pt
+    .mn configure -borderwidth 1p
     .mn configure -background $::default_bg
   }
   .mn add command -command abort_menu -label [__ "Abort"]
@@ -1387,20 +1387,20 @@ proc run_menu {} {
   }
 
   # wallpaper, for a uniform background
-  pack [ttk::frame .bg -padding 3pt] -fill both -expand 1
+  pack [ttk::frame .bg -padding 3p] -fill both -expand 1
 
   # title
   ttk::label .title -text [__ "TeX Live %s Installer" $::release_year] \
       -font titlefont
-  pack .title -pady {10pt 1pt} -in .bg
+  pack .title -pady {10p 1p} -in .bg
   pack [ttk::label .svn -text "r. $::svn"] -in .bg
 
   pack [ttk::separator .seph0 -orient horizontal] \
-      -in .bg -pady 3pt -fill x
+      -in .bg -pady 3p -fill x
 
   # frame at bottom with install/quit buttons
   pack [ttk::frame .final] \
-      -in .bg -side bottom -pady {5pt 2pt} -fill x
+      -in .bg -side bottom -pady {5p 2p} -fill x
   ppack [ttk::button .install -text [__ "Install"] -command maybe_install] \
     -in .final -side right
   ppack [ttk::button .quit -text [__ "Quit"] -command {
@@ -1414,7 +1414,7 @@ proc run_menu {} {
     }] -in .final -side left
   }
   pack [ttk::separator .seph1 -orient horizontal] \
-      -in .bg -side bottom -pady 3pt -fill x
+      -in .bg -side bottom -pady 3p -fill x
 
   # directories, selections
   # advanced and basic have different frame setups
@@ -1610,7 +1610,7 @@ proc run_menu {} {
   if $::advanced {
 
     pack [ttk::separator .sepv -orient vertical] \
-        -in .bg -side left -padx 3pt -fill y
+        -in .bg -side left -padx 3p -fill y
     pack [ttk::frame .options] -in .bg -side right -fill both -expand 1
 
     set curf .options
