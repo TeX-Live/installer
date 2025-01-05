@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live 2024\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2024-07-21 01:41+0200\n"
+"POT-Creation-Date: 2025-01-05 01:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,7 +106,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:896
 #: tlpkg/installer/install-tl-gui.tcl:946
 #: tlpkg/installer/install-tl-gui.tcl:1034
-#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:690
+#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:691
 #: texmf-dist/scripts/tlshell/tlshell.tcl:223
 msgid "Ok"
 msgstr ""
@@ -395,7 +395,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:899
 #: tlpkg/installer/install-tl-gui.tcl:963
 #: tlpkg/installer/install-tl-gui.tcl:1037
-#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:692
+#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:693
 #: texmf-dist/scripts/tlshell/tlshell.tcl:233
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1386
 msgid "Cancel"
@@ -450,14 +450,14 @@ msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:372
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:373
 #: texmf-dist/scripts/tlshell/tlshell.tcl:227
 msgid "Yes"
 msgstr ""
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:374
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:375
 #: texmf-dist/scripts/tlshell/tlshell.tcl:229
 msgid "No"
 msgstr ""
@@ -1035,7 +1035,7 @@ msgstr ""
 msgid "Symlinks"
 msgstr ""
 
-#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:682
+#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:683
 msgid "Browse..."
 msgstr ""
 
@@ -1215,15 +1215,15 @@ msgstr ""
 msgid "%s requires an argument"
 msgstr ""
 
-#: tlpkg/tltcl/tltcl.tcl:135
+#: tlpkg/tltcl/tltcl.tcl:136
 msgid "Specific mirror..."
 msgstr ""
 
-#: tlpkg/tltcl/tltcl.tcl:152
+#: tlpkg/tltcl/tltcl.tcl:153
 msgid "No mirror list available"
 msgstr ""
 
-#: tlpkg/tltcl/tltcl.tcl:765
+#: tlpkg/tltcl/tltcl.tcl:766
 msgid "Select or type"
 msgstr ""
 

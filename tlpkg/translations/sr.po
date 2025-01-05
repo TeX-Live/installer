@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2024-07-21 01:41+0200\n"
+"POT-Creation-Date: 2025-01-05 01:40+0100\n"
 "PO-Revision-Date: 2019-10-23 02:13+0300\n"
 "Last-Translator: Nikola Lečić <nikola.lecic@anthesphoria.net>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -113,7 +113,7 @@ msgstr ""
 #: tlpkg/installer/install-tl-gui.tcl:896
 #: tlpkg/installer/install-tl-gui.tcl:946
 #: tlpkg/installer/install-tl-gui.tcl:1034
-#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:690
+#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:691
 #: texmf-dist/scripts/tlshell/tlshell.tcl:223
 msgid "Ok"
 msgstr "У реду"
@@ -402,7 +402,7 @@ msgstr "TeX Live %s: уклањање"
 #: tlpkg/installer/install-tl-gui.tcl:899
 #: tlpkg/installer/install-tl-gui.tcl:963
 #: tlpkg/installer/install-tl-gui.tcl:1037
-#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:692
+#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:693
 #: texmf-dist/scripts/tlshell/tlshell.tcl:233
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1386
 msgid "Cancel"
@@ -460,14 +460,14 @@ msgstr "Инсталиран:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:372
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:373
 #: texmf-dist/scripts/tlshell/tlshell.tcl:227
 msgid "Yes"
 msgstr "да"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:694
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1103
-#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:374
+#: texmf-dist/scripts/texlive/tlmgrgui.pl:1724 tlpkg/tltcl/tltcl.tcl:375
 #: texmf-dist/scripts/tlshell/tlshell.tcl:229
 msgid "No"
 msgstr "не"
@@ -1075,7 +1075,7 @@ msgstr "Упозорење: у неке од изабраних директор
 msgid "Symlinks"
 msgstr "Симболички линкови"
 
-#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:682
+#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:683
 msgid "Browse..."
 msgstr "Изабрати директоријум..."
 
@@ -1258,15 +1258,15 @@ msgstr "%s није ни локални и удаљени репозиториј
 msgid "%s requires an argument"
 msgstr "Уз %s је потребан аргумент"
 
-#: tlpkg/tltcl/tltcl.tcl:135
+#: tlpkg/tltcl/tltcl.tcl:136
 msgid "Specific mirror..."
 msgstr "Специјални сајт-огледало (mirror)"
 
-#: tlpkg/tltcl/tltcl.tcl:152
+#: tlpkg/tltcl/tltcl.tcl:153
 msgid "No mirror list available"
 msgstr "Недоступан списак сајтова-огледала (mirror)"
 
-#: tlpkg/tltcl/tltcl.tcl:765
+#: tlpkg/tltcl/tltcl.tcl:766
 msgid "Select or type"
 msgstr "Изаберите или откуцајте"
 
