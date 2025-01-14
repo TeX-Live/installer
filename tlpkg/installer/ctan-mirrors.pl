@@ -36,9 +36,6 @@ $mirrors = {
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
-    'Iran' => {
-      'http://ctan.asis.ai/' => 1,
-    },
     'Japan' => {
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
@@ -141,6 +138,7 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
+      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
@@ -190,7 +188,6 @@ $mirrors = {
       'https://linux-mirror.xicalcoatl.mx/ctan/' => 1,
     },
     'USA' => {
-      'http://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
