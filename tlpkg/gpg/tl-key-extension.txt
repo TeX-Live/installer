@@ -31,13 +31,15 @@ unset GNUPGHOME
 # send keys
 # make sure that .gnupg/dirmngr.conf does NOT contain hkp-cacert lines!!!
 
-# keys.openpgp.org
-gpg --export $KEYID |  curl -T - https://keys.openpgp.org
+# upload to keys.openpgp.org:
+gpg --export $KEYID | curl -T - https://keys.openpgp.org
 # this will give an URL to associate key with email, visit it!
 
-# ubuntu key server
+# upload to ubuntu key server:
 gpg --send-key --keyserver hkp://keyserver.ubuntu.com:80 $KEYID
-
+#
+# to check if it's there:
+gpg --list-key --keyserver hkp://keyserver.ubuntu.com:80 tex-live
 
 
 # update TeX Live repository
@@ -78,4 +80,4 @@ gpg --homedir ..../Master/tlpkg/gpg --export -a 0x0D5E5D9106BAB6BC >tl.asc
   use --status-file and inspect:
 gpg --verify --verbose --status-file=/tmp/st foo.asc
 
-. see tlgpg, tl-sign-file, TLCrypto.pm for full implementation.
+. see tlgpg, tlgpg-verify, tl-sign-file, TLCrypto.pm for full implementation.
