@@ -158,6 +158,7 @@ $mirrors = {
     },
     'Spain' => {
       'https://ctan.fisiquimicamente.com/' => 1,
+      'https://ctan.javinator9889.com/' => 1,
     },
     'Sweden' => {
       'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
