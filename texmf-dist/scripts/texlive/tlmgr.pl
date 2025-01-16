@@ -1801,11 +1801,12 @@ sub action_info {
   }
   print "[" if ($fmt eq "json");
   my $first = 1;
+  my $nr_of_pkgs = $#whattolist + 1;
   foreach my $ppp (@whattolist) {
     next if ($ppp =~ m/^00texlive\./);
     print "," if ($fmt eq "json" && !$first);
     $first = 0;
-    $ret |= show_one_package($ppp, $fmt, @adds);
+    $ret |= show_one_package($ppp, $fmt, $nr_of_pkgs, @adds);
   }
   print "]\n" if ($fmt eq "json");
   if ($opts{'debug-json-timing'}) {
@@ -4052,16 +4053,16 @@ sub action_install {
 }
 
 sub show_one_package {
-  my ($pkg, $fmt, @rest) = @_;
+  my ($pkg, $fmt, $total_nr_of_pkgs, @rest) = @_;
   my $ret;
   if ($fmt eq "list") {
-    $ret = show_one_package_list($pkg, @rest);
+    $ret = show_one_package_list($pkg, $total_nr_of_pkgs, @rest);
   } elsif ($fmt eq "detail") {
-    $ret = show_one_package_detail($pkg, @rest);
+    $ret = show_one_package_detail($pkg, $total_nr_of_pkgs, @rest);
   } elsif ($fmt eq "csv") {
-    $ret = show_one_package_csv($pkg, @rest);
+    $ret = show_one_package_csv($pkg, $total_nr_of_pkgs, @rest);
   } elsif ($fmt eq "json") {
-    $ret = show_one_package_json($pkg);
+    $ret = show_one_package_json($pkg, $total_nr_of_pkgs);
   } else {
     tlwarn("$prg: show_one_package: unknown format: $fmt\n");
     return($F_ERROR);
@@ -4070,7 +4071,7 @@ sub show_one_package {
 }
 
 sub show_one_package_json {
-  my ($p) = @_;
+  my ($p, $total_nr_of_pkgs) = @_;
   my @out;
   my $loctlp = $localtlpdb->get_package($p);
   my $remtlp = $remotetlpdb->get_package($p);
@@ -4099,7 +4100,7 @@ sub show_one_package_json {
 
 
 sub show_one_package_csv {
-  my ($p, @datafields) = @_;
+  my ($p, $total_nr_of_pkgs, @datafields) = @_;
   my @out;
   my $loctlp = $localtlpdb->get_package($p);
   my $remtlp = $remotetlpdb->get_package($p) unless ($opts{'only-installed'});
@@ -4191,7 +4192,7 @@ sub show_one_package_csv {
 }
 
 sub show_one_package_list {
-  my ($p, @rest) = @_;
+  my ($p, $total_nr_of_pkgs, @rest) = @_;
   my @out;
   my $loctlp = $localtlpdb->get_package($p);
   my $remtlp = $remotetlpdb->get_package($p) unless ($opts{'only-installed'});
@@ -4268,7 +4269,7 @@ sub show_one_package_list {
 }
 
 sub show_one_package_detail {
-  my ($ppp, @rest) = @_;
+  my ($ppp, $total_nr_of_pkgs, @rest) = @_;
   my $ret = $F_OK;
   my ($pkg, $tag) = split ('@', $ppp, 2);
   my $tlpdb = $localtlpdb;
@@ -4370,7 +4371,7 @@ sub show_one_package_detail {
     }
   }
   if ($opts{"only-files"}) {
-    print "$pkg\n";
+    print "$pkg\n" if ($total_nr_of_pkgs > 1);
     return show_one_package_detail3($tlpdb, $pkg, $tlp, $source_found, $installed, 1, @colls);
   } else {
     return show_one_package_detail2($tlpdb, $pkg, $tlp, $source_found, $installed, 0, @colls);
