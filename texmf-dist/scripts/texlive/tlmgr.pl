@@ -4509,10 +4509,12 @@ sub show_one_package_detail3 {
       print "doc files:\n" if (!$silent);
       for my $f (sort $foo->docfiles) {
         print "  $f";
-        my $dfd = $foo->docfiledata;
-        if (defined($dfd->{$f})) {
-          for my $k (keys %{$dfd->{$f}}) {
-            print " $k=\"", $dfd->{$f}->{$k}, '"';
+        if (!$silent) {
+          my $dfd = $foo->docfiledata;
+          if (defined($dfd->{$f})) {
+            for my $k (keys %{$dfd->{$f}}) {
+              print " $k=\"", $dfd->{$f}->{$k}, '"';
+            }
           }
         }
         print "\n";
