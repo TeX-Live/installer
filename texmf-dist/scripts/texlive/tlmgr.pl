@@ -8843,7 +8843,8 @@ dependencies in a similar way.
 =item B<--only-files>
 
 If this option is given, only the files for a given package are listed,
-no further information.
+no further information. If more than one package name is given, each
+file list is preceded by the package name.
 
 =item B<--only-installed>
 

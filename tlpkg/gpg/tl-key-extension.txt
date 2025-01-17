@@ -24,14 +24,13 @@ gpg --edit-key $KEYID
 gpg -a --export $KEYID > texlive.asc
 
 # update USB drive with new stuff, remove from home,
-
 rm -rf $GNUPGHOME
 unset GNUPGHOME
 
 # send keys
 # make sure that .gnupg/dirmngr.conf does NOT contain hkp-cacert lines!!!
 
-# upload to keyserver
+# upload to keyservers. No other good key servers currently known.
 keyservers=(
   "hkps://keys.openpgp.org/"
   "hkps://keyserver.ubuntu.com/"
@@ -40,12 +39,15 @@ for ks in ${keyservers[@]} ; do
   gpg --send-key --keyserver $ks $KEYID
 done
 
+## upload to keys.openpgp.org:
+#gpg --export $KEYID | curl -T - https://keys.openpgp.org
+## this will give an URL to associate key with email, visit it!
 
-# old, not needed?
-# # upload to keys.openpgp.org:
-# gpg --export $KEYID | curl -T - https://keys.openpgp.org
-# # this will give an URL to associate key with email, visit it!
+# to check if it's there:
+gpg --list-key --keyserver hkp://keyserver.ubuntu.com:80 tex-live
 
+# The new GPG servers strip signatures due to signature poisoning
+# attacks, so we tell people to download the key from our web site.
 
 # update TeX Live repository
 export GNUPGHOME=/home/texlive/Master/tlpkg/gpg # wherever svn checkout
@@ -54,10 +56,11 @@ gpg1 --import texlive.asc
 
 svn commit
 
-
-# on the TUG server (needs the exported public key in
-# texlive.asc, see above how to export it)
-# NOTE: this needs to be done with the correct owner of the .gnupg directory
+# 
+# On the TUG server. Get the exported public key in
+#   texlive.asc, see above how to export it.
+# This needs to be done with the owner of the .gnupg directory,
+#   since group access is disallowed by gpg.
 gpg --homedir /home/texlive/.gnupg --import texlive.asc
 
 # can view that .asc with:
@@ -67,7 +70,14 @@ gpg --homedir /home/texlive/.gnupg texlive.asc
 cp texlive.asc ~www/texlive/files/texlive`date +%Y`.asc
 ln -s texlive`date +%Y`.asc ~www/texlive/files/texlive.asc
 
-More info: 
+# update key example on web page, as in:
+cd /home/httpd/html/texlive/
+co -l verify.html
+$EDITOR !$
+ci -u -m"`date +%Y` key update"
+
+
+ General info: 
 . tlgpg runs a gpg command with the above TL .gnupg directory, etc.
 
 . tl-sign-file (uses tlgpg) is used to sign texlive.tlpdb.sha512.
