@@ -3765,12 +3765,14 @@ sub parse_AddHyphen_line {
     $ret{"error"} = "AddHyphen is missing name setting: $a";
     return %ret;    
   }
-  if ($ret{"lefthyphenmin"} < 0) {
-    $ret{"error"} = "AddHyphen is missing lefthyphemin setting: $a";
+  if ($ret{"lefthyphenmin"} !~ /^[0-9]$/) {
+    $ret{"error"} = "AddHyphen has missing or bad "
+                    . " lefthyphenmin ($ret{lefthyphenmin}): $a";
     return %ret;    
   }
-  if ($ret{"righthyphenmin"} < 0) {
-    $ret{"error"} = "AddHyphen is missing righthyphemin setting: $a";
+  if ($ret{"righthyphenmin"} !~ /^[0-9]$/) {
+    $ret{"error"} = "AddHyphen has missing or bad "
+                    . " righthyphenmin ($ret{righthyphenmin}): $a";
     return %ret;    
   }
   # this default value couldn't be set earlier
