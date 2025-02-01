@@ -38,8 +38,10 @@ $mirrors = {
     },
     'Iran' => {
       'https://ctan.asis.sh/' => 1,
+      'https://ctan.yazd.ac.ir/' => 1,
     },
     'Japan' => {
+      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
@@ -135,7 +137,6 @@ $mirrors = {
       'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
     'Norway' => {
-      'https://ctan.uib.no/' => 1,
       'https://ftp.fagskolen.gjovik.no/pub/tex-archive/' => 1,
     },
     'Poland' => {
