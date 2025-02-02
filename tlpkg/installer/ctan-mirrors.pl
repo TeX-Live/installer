@@ -137,6 +137,7 @@ $mirrors = {
       'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
     'Norway' => {
+      'https://ctan.uib.no/' => 1,
       'https://ftp.fagskolen.gjovik.no/pub/tex-archive/' => 1,
     },
     'Poland' => {
