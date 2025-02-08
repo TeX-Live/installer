@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
-# Copyright 2007-2024 Norbert Preining, Reinhard Kotucha
+# Copyright 2007-2025 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
