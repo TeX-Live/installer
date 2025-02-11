@@ -1,13 +1,13 @@
-# Copyright 2010-2024 TeX Live Team
+# Copyright 2010-2025 TeX Live Team
 # This file is distributed under the same license as the TeX Live package.
 # Koji Yokota <yokota33@gmail.com>, 2010, 2011, 2012, 2014, 2015.
-# Takuto Asakura <tkt.asakura@gmail.com>, 2019-2024.
+# Takuto Asakura <tkt.asakura@gmail.com>, 2019-2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2025-01-05 01:40+0100\n"
-"PO-Revision-Date: 2024-02-04 15:32+0900\n"
+"POT-Creation-Date: 2025-02-08 19:09+0100\n"
+"PO-Revision-Date: 2025-02-11 16:28+0900\n"
 "Last-Translator: Takuto Asakura <tkt.asakura@gmail.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: ja\n"
@@ -1527,7 +1527,7 @@ msgstr "情報"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2218
 msgid "Reporting bugs"
-msgstr ""
+msgstr "バグを報告する"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2290
 msgid ""
@@ -1975,8 +1975,8 @@ msgstr ""
 "TeX Liveのウェブサイト（https://tug.org/texlive/）にはすべてのアップデートと"
 "コレクションの情報が掲載されています。TeX Liveは全世界のTeXユーザ会有志による"
 "合同プロジェクトです。TeX Liveプロジェクトをサポートしていただける場合お好き"
-"なTeXユーザ会に入会することをご検討ください。TeXユーザ会の一覧はhttps://tug."
-"org/usergroups.htmlでご確認いただけます。\n"
+"なTeXユーザ会に入会することをご検討ください。TeXユーザ会の一覧はhttps://"
+"tug.org/usergroups.htmlでご確認いただけます。\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2894
 #, perl-format
