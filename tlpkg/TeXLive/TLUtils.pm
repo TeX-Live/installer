@@ -3666,6 +3666,9 @@ sub _create_config_files {
     tlwarn("Updating $dest, backup copy in $dest.backup\n");
     copy("-f", $dest, "$dest.backup");
   }
+  # ensure destination directory exists.
+  my $destdir = dirname ($dest);
+  -d $destdir || mkdirhier $destdir; # if fails, the next open will die.
   open(OUTFILE,">$dest")
     or die("Cannot open $dest for writing: $!");
 
