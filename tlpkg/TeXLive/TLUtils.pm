@@ -3685,6 +3685,7 @@ sub parse_AddHyphen_line {
   my $default_lefthyphenmin = -1;
   my $default_righthyphenmin = -1;
   $ret{"synonyms"} = [];
+  $ret{"databases"} = ["dat", "def", "lua"];
   for my $p (quotewords('\s+', 0, "$line")) {
     my ($a, $b) = split /=/, $p;
     if ($a eq "name") {
@@ -3739,7 +3740,7 @@ sub parse_AddHyphen_line {
     }
     if ($a eq "databases") {
       if (!$b) {
-        $ret{"error"} = "AddHyphen line needs databases=something: $line";
+        $ret{"error"} = "AddHyphen line needs databases=foo[,bar]: $line";
         return %ret;
       }
       @{$ret{"databases"}} = split /,/, $b;
@@ -3747,7 +3748,7 @@ sub parse_AddHyphen_line {
     }
     if ($a eq "synonyms") {
       if (!$b) {
-        $ret{"error"} = "AddHyphen line needs synonyms=something: $line";
+        $ret{"error"} = "AddHyphen line needs synonyms=foo[,bar]: $line";
         return %ret;
       }
       @{$ret{"synonyms"}} = split /,/, $b;
@@ -3776,15 +3777,6 @@ sub parse_AddHyphen_line {
     $ret{"error"} = "AddHyphen has missing or bad "
                     . " righthyphenmin ($ret{righthyphenmin}): $line";
     return %ret;    
-  }
-  # this default value couldn't be set earlier
-  if (not defined($ret{"databases"})) {
-    if (defined $ret{"file_patterns"} or defined $ret{"file_exceptions"}
-        or defined $ret{"luaspecial"}) {
-      @{$ret{"databases"}} = qw(dat def lua);
-    } else {
-      @{$ret{"databases"}} = qw(dat def);
-    }
   }
   return %ret;
 }
