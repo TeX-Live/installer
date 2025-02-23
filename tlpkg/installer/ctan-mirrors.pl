@@ -30,6 +30,7 @@ $mirrors = {
     'India' => {
       'https://2.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
+      'https://mirror.niser.ac.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
