@@ -1179,7 +1179,7 @@ sub do_installation {
 sub run_postinst_cmd {
   my ($cmd) = @_;
   my $tim = localtime ();
-  log ("\n\f [$tim] running $cmd\n");
+  log ("\n[$tim] running $cmd\n");
   &TeXLive::TLUtils::run_cmd_with_log ($cmd, \&log);
   $tim = localtime ();
   log ("\n[$tim] --end of output of $cmd\n");
