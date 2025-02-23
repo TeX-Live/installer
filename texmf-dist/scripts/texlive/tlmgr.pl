@@ -8363,8 +8363,10 @@ the L<MACHINE-READABLE OUTPUT> section below.
 =item B<--no-execute-actions>
 
 Suppress the execution of the execute actions as defined in the tlpsrc
-files.  Documented only for completeness, as this is only useful in
-debugging.
+files. Unless you are going to do the postprocessing yourself (as, for
+example, C<install-tl> does), this shouldn't be specified.  Otherwise,
+format files and the filename database will become stale, among other
+problems.
 
 =item B<--package-logfile> I<file>
 
@@ -9133,6 +9135,10 @@ program.
 With a program given as the first argument and a paper size as the last
 argument (e.g., C<tlmgr dvips paper a4>), set the default for that
 program to that paper size.
+
+If either C<pdftex> or C<context> is one of the arguments, whether
+implicitly or explicitly, existing formats are rebuilt (i.e., C<fmtutil
+--refresh> is called), unless C<--no-execute-actions> is specified.
 
 With a program given as the first argument and C<--list> given as the
 last argument (e.g., C<tlmgr dvips paper --list>), shows all valid paper
