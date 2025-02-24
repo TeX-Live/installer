@@ -3420,11 +3420,10 @@ indicates to the C program that the nl_langinfo() routine is available.
 
 =item C<d_nl_langinfo_l>
 
-From F<d_nl_langinfo_l.U>:
+From F<d_nl_langinfo.U>:
 
-This variable contains the eventual value of the
-C<HAS_NL_LANGINFO_L> symbol, which indicates if the
-nl_langinfo_l() function exists.
+This variable conditionally defines the C<HAS_NL_LANGINFO_L> symbol, which
+indicates to the C program that the nl_langinfo_l() routine is available.
 
 =item C<d_non_int_bitfields>
 
@@ -3508,6 +3507,28 @@ From F<d_pause.U>:
 This variable conditionally defines the C<HAS_PAUSE> symbol, which
 indicates to the C program that the pause() routine is available
 to suspend a process until a signal is received.
+
+=item C<d_perl_lc_all_category_positions_init>
+
+From F<disparate_lc_all.U>:
+
+This symbol, if defined, indicates that $lc_all_category_positions_init
+is valid
+
+=item C<d_perl_lc_all_separator>
+
+From F<disparate_lc_all.U>:
+
+This symbol, if defined, indicates that $perl_lc_all_separator is valid
+
+=item C<d_perl_lc_all_uses_name_value_pairs>
+
+From F<disparate_lc_all.U>:
+
+This symbol, if defined, indicates that the string returned by
+setlocale(C<LC_ALL>, C<NULL>) uses C<name=value;> pairs to indicate what each
+category's locale is when they aren't all set to the same locale.
+When not defined, the platform uses positional notation.
 
 =item C<d_perl_otherlibdirs>
 
@@ -4807,14 +4828,6 @@ From F<d_thread_local.U>:
 
 This variable conditionally defines the C<PERL_THREAD_LOCAL> symbol. In
 turn that gives a linkage specification for thread-local storage.
-
-=item C<d_thread_safe_nl_langinfo_l>
-
-From F<d_nl_langinfo_l.U>:
-
-This variable contains the eventual value of the
-C<HAS_THREAD_SAFE_NL_LANGINFO_L> symbol, which indicates if the
-nl_langinfo_l() function exists and is thread-safe.
 
 =item C<d_time>
 
@@ -7864,6 +7877,25 @@ From F<perl5.U>:
 This variable contains the full path (if any) to a previously
 installed F<perl5.005> or later suitable for running the script
 to determine inc_version_list.
+
+=item C<perl_lc_all_category_positions_init>
+
+From F<disparate_lc_all.U>:
+
+This symbol, when defined, gives the C initializer for an array whose
+element [0] is the first category in the string returned by
+setlocale(C<LC_ALL>, C<NULL>) when not all categories are the same, on
+systems that use a positional notation.  After element [0] is
+$lc_all_separator_init, then the category given by element [1], and so on.
+
+=item C<perl_lc_all_separator>
+
+From F<disparate_lc_all.U>:
+
+This symbol, when defined, gives the substring used to separate
+categories in the aggregated string returned by setlocale(C<LC_ALL>, C<NULL>)
+when not all categories are in the same locale.  This is for systems
+that use a positional notation as opposed to C<name=value> pairs.
 
 =item C<perl_patchlevel>
 

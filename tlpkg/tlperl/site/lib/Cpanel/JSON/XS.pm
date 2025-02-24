@@ -1,5 +1,5 @@
 package Cpanel::JSON::XS;
-our $VERSION = '4.37';
+our $VERSION = '4.39';
 our $XS_VERSION = $VERSION;
 # $VERSION = eval $VERSION;
 
@@ -347,11 +347,12 @@ a Unicode string encoded in UTF-8, giving you a binary string.
 =item 5. A string containing "high" (> 255) character values is I<not>
 a UTF-8 string.
 
-=item 6. Unicode noncharacters only warn, as in core.
+=item 6. Raw non-Unicode characters below U+10FFFF are allowed.
 
-The 66 Unicode noncharacters U+FDD0..U+FDEF, and U+*FFFE, U+*FFFF just
-warn, see L<http://www.unicode.org/versions/corrigendum9.html>.  But
-illegal surrogate pairs fail to parse.
+The 66 Unicode noncharacters U+FDD0..U+FDEF, and U+*FFFE, U+*FFFF are
+allowed without warning, as JSON::PP does, see
+L<http://www.unicode.org/versions/corrigendum9.html>.  But illegal
+surrogate pairs fail to parse.
 
 =item 7. Raw non-Unicode characters above U+10FFFF are disallowed.
 
@@ -360,6 +361,17 @@ parse, because "A string is a sequence of zero or more Unicode
 characters" RFC 7159 section 1 and "JSON text SHALL be encoded in
 Unicode RFC 7159 section 8.1. We use now the UTF8_DISALLOW_SUPER
 flag when parsing unicode.
+
+=item 8. Lone surrogates or illegal surrogate pairs are disallowed.
+
+Since RFC 3629, U+D800 through U+DFFF are not legal Unicode values and
+their UTF-8 encodings must be treated as an invalid byte sequence.
+RFC 8259 section 8.2 admits the spec allows string values that contain
+bit sequences that cannot encode Unicode characters and that the
+behavior of software that receives such values is unpredictable. To
+avoid introducing non-Unicode strings into Perl we use the
+UTF8_DISALLOW_SURROGATE flag when parsing Unicode and verify escaped
+surrogates form valid pairs.
 
 =back
 
@@ -731,10 +743,11 @@ This setting has no effect when decoding JSON texts.
 
     $json = $json->unblessed_bool([$enable])
 
-If C<$enable> is true (or missing), then C<decode> will return
-Perl non-object boolean variables (1 and 0) for JSON booleans
-(C<true> and C<false>). If C<$enable> is false, then C<decode>
-will return C<JSON::PP::Boolean> objects for JSON booleans.
+If C<$enable> is true (or missing), then C<decode> will return Perl
+non-object boolean variables (1 and 0 as numbers or "1" and "" as
+strings) for JSON booleans (C<true> and C<false>). If C<$enable> is
+false, then C<decode> will return C<JSON::PP::Boolean> objects for
+JSON booleans.
 
 
 =item $json = $json->allow_singlequote ([$enable])
@@ -779,6 +792,10 @@ application-specific files written by humans.
 If C<$enable> is true (or missing), then C<decode> will convert
 the big integer Perl cannot handle as integer into a L<Math::BigInt>
 object and convert a floating number (any) into a L<Math::BigFloat>.
+
+   $int = $json->allow_nonref->allow_bignum->decode(1); # => 1
+   $bigint = $json->allow_bignum->decode('100000000000000000000000000000000000000');
+   $bigfloat = $json->allow_bignum->decode(1.0);
 
 On the contrary, C<encode> converts C<Math::BigInt> objects and
 C<Math::BigFloat> objects into JSON numbers with C<allow_blessed>
@@ -1205,7 +1222,7 @@ as early as the full parser, for example, it doesn't detect mismatched
 parentheses. The only thing it guarantees is that it starts decoding
 as soon as a syntactically valid JSON text has been seen. This means
 you need to set resource limits (e.g. C<max_size>) to ensure the
-parser will stop parsing in the presence if syntax errors.
+parser will stop parsing in the presence of syntax errors.
 
 The following methods implement this incremental parser.
 
@@ -1985,16 +2002,20 @@ output for these property strings, e.g.:
 This works because C<__proto__> is not valid outside of strings, so every
 occurrence of C<"__proto__"\s*:> must be a string used as property name.
 
-Unicode non-characters between U+FFFD and U+10FFFF are decoded either
-to the recommended U+FFFD REPLACEMENT CHARACTER (see Unicode PR #121:
-Recommended Practice for Replacement Characters), or in the binary or
-relaxed mode left as is, keeping the illegal non-characters as before.
-
 Raw non-Unicode characters outside the valid unicode range fail now to
 parse, because "A string is a sequence of zero or more Unicode
 characters" RFC 7159 section 1 and "JSON text SHALL be encoded in
 Unicode RFC 7159 section 8.1. We use now the UTF8_DISALLOW_SUPER
 flag when parsing unicode.
+
+Since RFC 3629, U+D800 through U+DFFF are not legal Unicode values and
+their UTF-8 encodings must be treated as an invalid byte sequence.
+RFC 8259 section 8.2 admits the spec allows string values that contain
+bit sequences that cannot encode Unicode characters and that the
+behavior of software that receives such values is unpredictable. To
+avoid introducing non-Unicode strings into Perl we use the
+UTF8_DISALLOW_SURROGATE flag when parsing Unicode and verify escaped
+surrogates form valid pairs.
 
 If you know of other incompatibilities, please let me know.
 
@@ -2414,9 +2435,9 @@ XSLoader::load 'Cpanel::JSON::XS', $XS_VERSION;
 
 The F<cpanel_json_xs> command line utility for quick experiments.
 
-L<JSON>, L<JSON::XS>, L<JSON::MaybeXS>, L<Mojo::JSON>, L<Mojo::JSON::MaybeXS>,
-L<JSON::SL>, L<JSON::DWIW>, L<JSON::YAJL>,  L<JSON::Any>, L<Test::JSON>,
-L<Locale::Wolowitz>,
+L<JSON::PP>, L<JSON>, L<JSON::XS>, L<JSON::MaybeXS>, L<Mojo::JSON>,
+L<Mojo::JSON::MaybeXS>, L<JSON::SL>, L<JSON::DWIW>, L<JSON::YAJL>,
+L<JSON::Any>, L<Test::JSON>, L<Locale::Wolowitz>,
 L<https://metacpan.org/search?q=JSON>
 
 L<https://tools.ietf.org/html/rfc7159>

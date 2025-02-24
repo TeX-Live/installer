@@ -1,9 +1,8 @@
 package ExtUtils::Config;
-$ExtUtils::Config::VERSION = '0.008';
+$ExtUtils::Config::VERSION = '0.010';
 use strict;
 use warnings;
 use Config;
-use Data::Dumper ();
 
 sub new {
 	my ($pack, $args) = @_;
@@ -34,7 +33,22 @@ sub all_config {
 
 sub serialize {
 	my $self = shift;
-	return $self->{serialized} ||= Data::Dumper->new([$self->values_set])->Terse(1)->Sortkeys(1)->Dump;
+	require Data::Dumper;
+	return $self->{serialized} ||= Data::Dumper->new([ $self->{values} ])->Terse(1)->Sortkeys(1)->Dump;
+}
+
+sub but {
+	my ($self, $args) = @_;
+	my %new = %{ $self->{values} };
+	for my $key (keys %$args) {
+		if (defined $args->{$key}) {
+			$new{$key} = $args->{$key}
+		}
+		else {
+			delete $new{$key};
+		}
+	}
+	return bless { values => \%new }, ref $self;
 }
 
 1;
@@ -53,7 +67,7 @@ ExtUtils::Config - A wrapper for perl's configuration
 
 =head1 VERSION
 
-version 0.008
+version 0.010
 
 =head1 SYNOPSIS
 
@@ -78,6 +92,10 @@ Get the value of C<$key>. If not overridden it will return the value in %Config.
 
 Tests for the existence of $key.
 
+=head2 but(\%keys)
+
+This creates a new C<ExtUtils::Config> object based on the current one, but with the values in %keys replacing the current values. Any undefined value means it will be removed from the overriden set.
+
 =head2 values_set()
 
 Get a hashref of all overridden values.
@@ -88,7 +106,27 @@ Get a hashref of the complete configuration, including overrides.
 
 =head2 serialize()
 
-This method serializes the object to some kind of string.
+This method serializes the object to some kind of string. This can be useful for various caching purposes.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Module::Build::Tiny>
+
+=item * L<ExtUtils::InstallPaths>
+
+=item * L<CPAN::Static::Install>
+
+=item * L<ExtUtils::HasCompiler>
+
+=item * L<ExtUtils::Builder>
+
+=item * L<CPAN::Requirements::Dynamic>
+
+=item * L<Devel::FindPerl>
+
+=back
 
 =head1 AUTHORS
 

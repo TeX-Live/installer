@@ -9,7 +9,7 @@
 
 /* Package name      : perl5
  * Source directory  : 
- * Configuration time: Mon Feb 12 11:14:47 2024
+ * Configuration time: Sat Feb 15 21:04:51 2025
  * Configured by     : siepo
  * Target system     : 
  */
@@ -1229,7 +1229,7 @@
  *	This symbol contains the ~name expanded version of ARCHLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define ARCHLIB "d:\\tlperl\\lib"		/**/
+#define ARCHLIB "D:\\tlperl\\lib"		/**/
 /*#define ARCHLIB_EXP ""	/ **/
 
 /* BIN:
@@ -1244,8 +1244,8 @@
  *	This symbol, if defined, indicates that we'd like to relocate entries
  *	in @INC at run time based on the location of the perl binary.
  */
-#define BIN "d:\\tlperl\\bin"	/**/
-#define BIN_EXP "d:\\tlperl\\bin"	/**/
+#define BIN "D:\\tlperl\\bin"	/**/
+#define BIN_EXP "D:\\tlperl\\bin"	/**/
 #define PERL_RELOCATABLE_INC "undef"		/**/
 
 /* PERL_INC_VERSION_LIST:
@@ -1283,7 +1283,7 @@
  *	This symbol contains the ~name expanded version of PRIVLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define PRIVLIB "d:\\tlperl\\lib"		/**/
+#define PRIVLIB "D:\\tlperl\\lib"		/**/
 #define PRIVLIB_EXP (PerlEnv_lib_path(PERL_VERSION_STRING, NULL))	/**/
 
 /* SITEARCH:
@@ -1301,7 +1301,7 @@
  *	This symbol contains the ~name expanded version of SITEARCH, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define SITEARCH "d:\\tlperl\\site\\lib"		/**/
+#define SITEARCH "D:\\tlperl\\site\\lib"		/**/
 /*#define SITEARCH_EXP ""	/ **/
 
 /* SITELIB:
@@ -1324,7 +1324,7 @@
  *	removed.  The elements in inc_version_list (inc_version_list.U) can
  *	be tacked onto this variable to generate a list of directories to search.
  */
-#define SITELIB "d:\\tlperl\\site\\lib"		/**/
+#define SITELIB "D:\\tlperl\\site\\lib"		/**/
 #define SITELIB_EXP (PerlEnv_sitelib_path(PERL_VERSION_STRING, NULL))	/**/
 #define SITELIB_STEM ""		/**/
 
@@ -1369,7 +1369,7 @@
  *	feature tests from Configure are generally more reliable.
  */
 #define OSNAME "MSWin32"		/**/
-#define OSVERS "10.0.22631.3085"		/**/
+#define OSVERS "10.0.26100.3194"		/**/
 
 /* CAT2:
  *	This macro concatenates 2 tokens together.
@@ -2289,7 +2289,7 @@
  *	This symbol, if defined, indicates that the acosh routine is
  *	available to do the inverse hyperbolic cosine function.
  */
-/*#define HAS_ACOSH		/ **/
+#define HAS_ACOSH		/**/
 
 /* HAS_AINTL:
  *	This symbol, if defined, indicates that the aintl routine is
@@ -2301,13 +2301,13 @@
  *	This symbol, if defined, indicates that the asinh routine is
  *	available to do the inverse hyperbolic sine function.
  */
-/*#define HAS_ASINH		/ **/
+#define HAS_ASINH		/**/
 
 /* HAS_ATANH:
  *	This symbol, if defined, indicates that the atanh routine is
  *	available to do the inverse hyperbolic tangent function.
  */
-/*#define HAS_ATANH		/ **/
+#define HAS_ATANH		/**/
 
 /* HAS_NON_INT_BITFIELDS:
  *	This symbol, if defined, indicates that the C compiler accepts, without
@@ -2381,13 +2381,13 @@
  *	This symbol, if defined, indicates that the copysign routine is
  *	available to do the copysign function.
  */
-/*#define HAS_COPYSIGN		/ **/
+#define HAS_COPYSIGN		/**/
 
 /* HAS_COPYSIGNL:
  *	This symbol, if defined, indicates that the copysignl routine is
  *	available.  If aintl is also present we can emulate modfl.
  */
-/*#define HAS_COPYSIGNL		/ **/
+#define HAS_COPYSIGNL		/**/
 
 /* USE_CPLUSPLUS:
  *	This symbol, if defined, indicates that a C++ compiler was
@@ -2445,7 +2445,7 @@
  *	This symbol, if defined, indicates that the exp2 routine is
  *	available to do the 2**x function.
  */
-/*#define HAS_EXP2		/ **/
+#define HAS_EXP2		/**/
 
 /* HAS_EXPM1:
  *	This symbol, if defined, indicates that the expm1 routine is
@@ -3143,10 +3143,16 @@
 
 /* HAS_NL_LANGINFO:
  *	This symbol, if defined, indicates that the nl_langinfo routine is
- *	available to return local data.  You will also need <langinfo.h>
+ *	available to return locale data.  You will also need <langinfo.h>
+ *	and therefore I_LANGINFO.
+ */
+/* HAS_NL_LANGINFO_L:
+ *	This symbol, if defined, indicates that the nl_langinfo_l routine is
+ *	available to return locale data.  You will also need <langinfo.h>
  *	and therefore I_LANGINFO.
  */
 /*#define HAS_NL_LANGINFO		/ **/
+/*#define HAS_NL_LANGINFO_L		/ **/
 
 /* HAS_OFF64_T:
  *	This symbol will be defined if the C compiler supports off64_t.
@@ -3301,7 +3307,7 @@
  *	in perl.  Users should call Perl_signbit(), which will be #defined to
  *	the system's signbit() function or macro if this symbol is defined.
  */
-/*#define HAS_SIGNBIT		/ **/
+#define HAS_SIGNBIT		/**/
 
 /* HAS_SIGPROCMASK:
  *	This symbol, if defined, indicates that the sigprocmask
@@ -3482,7 +3488,7 @@
  *	This symbol, if defined, indicates that the tgamma routine is
  *	available to do the gamma function. See also HAS_LGAMMA.
  */
-/*#define HAS_TGAMMA		/ **/
+#define HAS_TGAMMA		/**/
 
 /* HAS_CTIME64:
  *	This symbol, if defined, indicates that the ctime64 () routine is
@@ -3537,7 +3543,7 @@
  *	This symbol, if defined, indicates that the trunc routine is
  *	available to round doubles towards zero.
  */
-/*#define HAS_TRUNC		/ **/
+#define HAS_TRUNC		/**/
 
 /* HAS_TRUNCL:
  *	This symbol, if defined, indicates that the truncl routine is
@@ -3609,6 +3615,31 @@
  *	including '.' at the end of @INC.
  */
 #define DEFAULT_INC_EXCLUDES_DOT	/**/
+
+/* PERL_LC_ALL_USES_NAME_VALUE_PAIRS:
+ *	This symbol, if defined, indicates to the C program that the string
+ *	returned by setlocale(LC_ALL, NULL) uses 'name=value;' pairs to
+ *	indicate what each category's locale is when they aren't all set to the
+ *	same locale.  For example, "LC_NUMERIC=C;LC_CTYPE=de_DE;..."
+ *	When not defined, the system uses positional notation.
+ */
+/* PERL_LC_ALL_SEPARATOR:
+ *	This symbol, if defined, gives the string returned by
+ *	setlocale(LC_ALL, NULL) to separate categories that are in different
+ *	locales on systems that use a positional notation as opposed to
+ *	'name=value' pairs.  An example on some platforms could be the '/' in
+ *	"C/de_DE/C/en_UK/C/C"
+ */
+/* PERL_LC_ALL_CATEGORY_POSITIONS_INIT:
+ *	This symbol, when defined, gives the C initializer for an array whose
+ *	element [0] is the first category in the string returned by
+ *	setlocale(LC_ALL, NULL) when not all categories are the same, on
+ *	systems that use a positional notation.  After element [0] is
+ *	LC_ALL_SEPARATOR, then the category given by element [1] and so on.
+ */
+#define PERL_LC_ALL_USES_NAME_VALUE_PAIRS  	/**/
+/*#define  PERL_LC_ALL_SEPARATOR undef	/ **/
+/*#define  PERL_LC_ALL_CATEGORY_POSITIONS_INIT  undef	/ **/
 
 /* USE_DYNAMIC_LOADING:
  *	This symbol, if defined, indicates that dynamic loading of
@@ -4955,17 +4986,6 @@
  *	available to convert a multi-byte character into a wide character.
  */
 /*#define HAS_MBRTOWC	/ **/
-
-/* HAS_NL_LANGINFO_L:
- *	This symbol, when defined, indicates presence of the nl_langinfo_l()
- *	function
- */
-/* HAS_THREAD_SAFE_NL_LANGINFO_L:
- *	This symbol, when defined, indicates presence of the nl_langinfo_l()
- *	function, and that it is thread-safe.
- */
-/*#define HAS_NL_LANGINFO_L	/ **/
-/*#define HAS_THREAD_SAFE_NL_LANGINFO_L	/ **/
 
 /* OLD_PTHREAD_CREATE_JOINABLE:
  *	This symbol, if defined, indicates how to create pthread

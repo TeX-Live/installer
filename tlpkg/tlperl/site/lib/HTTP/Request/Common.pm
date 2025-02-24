@@ -3,9 +3,10 @@ package HTTP::Request::Common;
 use strict;
 use warnings;
 
-our $VERSION = '6.36';
+our $VERSION = '7.00';
 
 our $DYNAMIC_FILE_UPLOAD ||= 0;  # make it defined (don't know why)
+our $READ_BUFFER_SIZE      = 8192;
 
 use Exporter 5.57 'import';
 
@@ -86,9 +87,6 @@ sub request_type_with_data
 	    my $url = URI->new('http:');
 	    $url->query_form(ref($content) eq "HASH" ? %$content : @$content);
 	    $content = $url->query;
-
-	    # HTML/4.01 says that line breaks are represented as "CR LF" pairs (i.e., `%0D%0A')
-	    $content =~ s/(?<!%0D)%0A/%0D%0A/g if defined($content);
 	}
     }
 
@@ -253,7 +251,7 @@ sub form_data   # RFC1867
                     binmode($fh);
                 }
 		my $buflength = length $buf;
-		my $n = read($fh, $buf, 2048, $buflength);
+		my $n = read($fh, $buf, $READ_BUFFER_SIZE, $buflength);
 		if ($n) {
 		    $buflength += $n;
 		    unshift(@parts, ["", $fh]);
@@ -314,7 +312,7 @@ HTTP::Request::Common - Construct common HTTP::Request objects
 
 =head1 VERSION
 
-version 6.36
+version 7.00
 
 =head1 SYNOPSIS
 
@@ -412,6 +410,10 @@ The same as C<POST> below, but the method in the request is C<PUT>
 =item OPTIONS $url, Header => Value,..., Content => $content
 
 The same as C<POST> below, but the method in the request is C<OPTIONS>
+
+This was added in version 6.21, so you should require that in your code:
+
+ use HTTP::Request::Common 6.21;
 
 =item POST $url
 

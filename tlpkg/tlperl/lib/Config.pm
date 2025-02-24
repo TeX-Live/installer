@@ -10,7 +10,7 @@ use strict;
 use warnings;
 our ( %Config, $VERSION );
 
-$VERSION = "5.038002";
+$VERSION = "5.040001";
 
 # Skip @Config::EXPORT because it only contains %Config, which we special
 # case below as it's not a function. @Config::EXPORT won't change in the
@@ -56,11 +56,11 @@ sub import {
     return;
 }
 
-die "$0: Perl lib version (5.38.2) doesn't match executable '$^X' version ($])"
+die "$0: Perl lib version (5.40.1) doesn't match executable '$^X' version ($])"
     unless $^V;
 
-$^V eq 5.38.2
-    or die sprintf "%s: Perl lib version (5.38.2) doesn't match executable '$^X' version (%vd)", $0, $^V;
+$^V eq 5.40.1
+    or die sprintf "%s: Perl lib version (5.40.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
 
 
 sub FETCH {
@@ -100,9 +100,9 @@ tie %Config, 'Config', {
     inc_version_list => '',
     intsize => '4',
     ldlibpthname => '',
-    libpth => '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.38.33130\\\\lib\\x64"',
+    libpth => '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\\\lib\\x64"',
     osname => 'MSWin32',
-    osvers => '10.0.22631.3085',
+    osvers => '10.0.26100.3194',
     path_sep => ';',
     privlibexp => "$rootdir\\lib",
     scriptdir => "$rootdir\\bin",
@@ -111,5 +111,5 @@ tie %Config, 'Config', {
     so => 'dll',
     useithreads => 'define',
     usevendorprefix => undef,
-    version => '5.38.2',
+    version => '5.40.1',
 };

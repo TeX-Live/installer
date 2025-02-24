@@ -142,6 +142,7 @@ chown	File	change the ownership on a list of files
 chr	String	get character this number represents
 chroot	File	make directory new root for path lookups
 class	Namespace	Objects	declare a separate global namespace that is an object class
+__CLASS__	Objects	the class name of the current instance.
 close	I/O	close file (or pipe or socket) handle
 closedir	I/O	close directory handle
 connect	Socket	connect to a remote socket
@@ -242,7 +243,7 @@ no	Modules	unimport some module symbols or semantics at compile time
 oct	Math	String	convert a string to an octal number
 open	File	open a file, pipe, or descriptor
 opendir	File	open a directory
-ord	String	find a character's numeric representation
+ord	String	find a character's code point
 our	Namespace	declare and assign a package variable (lexical scoping)
 pack	Binary	String	convert a list into a binary representation
 package	Modules	Namespace	Objects	declare a separate global namespace
