@@ -88,6 +88,7 @@ $mirrors = {
     'Finland' => {
       'https://mirror.5i.fi/tex-archive/' => 1,
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
+      'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
       'https://ctan.mines-albi.fr/' => 1,
