@@ -1,18 +1,18 @@
-# Brazilian Portuguese Translation for TeX Live 2017
+# Brazilian Portuguese Translation for TeX Live 2025
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2025-02-24 01:40+0100\n"
-"PO-Revision-Date: 2022-02-21 07:43-0300\n"
-"Last-Translator: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
-"Language-Team: Paulo Roberto Massa Cereda <cereda.paulo@gmail.com>\n"
+"PO-Revision-Date: 2025-03-12 11:41-0300\n"
+"Last-Translator: Paulo Roberto Massa Cereda <cereda@duck.com>\n"
+"Language-Team: Paulo Roberto Massa Cereda <cereda@duck.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -1020,11 +1020,11 @@ msgstr "Raiz da instalação"
 
 #: tlpkg/installer/install-tl-gui.tcl:598
 msgid "Prefix"
-msgstr ""
+msgstr "Prefixo"
 
 #: tlpkg/installer/install-tl-gui.tcl:608
 msgid "Prefix must exist"
-msgstr ""
+msgstr "O prefixo deve existir"
 
 #: tlpkg/installer/install-tl-gui.tcl:616
 msgid "Localized directory names will be replaced by their real names"
@@ -1087,7 +1087,7 @@ msgstr "Páginas de informações"
 
 #: tlpkg/installer/install-tl-gui.tcl:1315
 msgid "Not enough room"
-msgstr ""
+msgstr "Não há espaço suficiente"
 
 #: tlpkg/installer/install-tl-gui.tcl:1356
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2738
@@ -1180,7 +1180,7 @@ msgstr "Espaço em disco requerido (em MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1600
 msgid "Disk space available (in MB):"
-msgstr ""
+msgstr "Espaço em disco disponível (em MB):"
 
 #: tlpkg/installer/install-tl-gui.tcl:1630
 msgid "Default paper size"
@@ -1531,7 +1531,7 @@ msgstr "Informação"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2218
 msgid "Reporting bugs"
-msgstr ""
+msgstr "Reportando falhas"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2290
 msgid ""
@@ -1752,7 +1752,7 @@ msgstr ""
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:3101
 msgid "See internal help"
-msgstr ""
+msgstr "Veja a ajuda interna"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:1
 msgid "basic scheme (plain and latex)"
@@ -1760,7 +1760,7 @@ msgstr "esquema básico (plain e latex)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "book publishing scheme (core LaTeX and add-ons)"
-msgstr ""
+msgstr "esquema de publicação de livros (núcleo do LaTeX e complementos)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "ConTeXt scheme"
@@ -1967,7 +1967,7 @@ msgstr "Bem-vindo ao TeX Live!"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2888
 #, perl-format
 msgid "See %s/index.html for links to documentation.\n"
-msgstr ""
+msgstr "Veja %s/index.html para os links de documentação.\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2890
 msgid ""
@@ -1977,6 +1977,12 @@ msgid ""
 "best for you. The list of groups is available on the web\n"
 "at https://tug.org/usergroups.html.\n"
 msgstr ""
+"Veja %s/index.html para ligações à documentação.\n"
+"A página web do TeX Live (https://tug.org/texlive/) contém todas as\n"
+"atualizações e correções. TeX Live é um projeto conjunto dos grupos de\n"
+"usuários TeX do mundo todo; por favor, considere apoiar este projeto\n"
+"inscrevendo-se em um grupo que lhe seja oportuno. A lista de grupos está\n"
+"disponível na web no endereço https://tug.org/usergroups.html.\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2898
 #, perl-format
@@ -1986,6 +1992,10 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions.\n"
 msgstr ""
+"Adicione %s/texmf-dist/doc/man à variável MANPATH.\n"
+"Adicione %s/texmf-dist/doc/info à variável INFOPATH.\n"
+"E o mais importante, adicione %s/bin/%s\n"
+"à variável PATH para a sessão corrente e sessões futuras.\n"
 
 #~ msgid ""
 #~ "See %s/index.html for links to documentation.\n"
@@ -2346,12 +2356,12 @@ msgstr ""
 #~ "you. The list of groups is available on the web at http://tug.org/"
 #~ "usergroups.html."
 #~ msgstr ""
-#~ "Consulte %s/index.html para links de documentação.\n"
-#~ "O site web do TeX Live (http://tug.org/texlive/) contém todas as "
-#~ "atualizações e correções. O TeX Live é um projeto em conjunto com os "
-#~ "grupos de usuários TeX ao redor do mundo; por favor, considere apoiar a "
-#~ "iniciativa registrando-se em um destes grupos. A lista de grupos está "
-#~ "disponível na web através do endereço http://tug.org/usergroups.html."
+#~ "Veja %s/index.html para ligações à documentação.\n"
+#~ "A página web do TeX Live (https://tug.org/texlive/) contém todas as "
+#~ "atualizações e correções. TeX Live é um projeto conjunto dos grupos de "
+#~ "usuários TeX do mundo todo; por favor, considere apoiar este projeto "
+#~ "inscrevendo-se em um grupo que lhe seja oportuno. A lista de grupos está "
+#~ "disponível na web no endereço https://tug.org/usergroups.html."
 
 #~ msgid "Error while reading from Perl backend"
 #~ msgstr "Erro enquanto lia a partir do backend Perl"
