@@ -30,6 +30,7 @@ $mirrors = {
     },
     'India' => {
       'https://2.mirrors.in.sahilister.net/ctan/' => 1,
+      'https://3.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
     },
@@ -40,7 +41,6 @@ $mirrors = {
       'https://ctan.asis.sh/' => 1,
     },
     'Japan' => {
-      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.kddilabs.jp/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
@@ -177,7 +177,9 @@ $mirrors = {
     'Canada' => {
       'https://ca.mirrors.cicku.me/ctan/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
+      'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
+      'https://mirror.its.dal.ca/ctan/' => 1,
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
