@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
 "POT-Creation-Date: 2025-02-24 01:40+0100\n"
-"PO-Revision-Date: 2023-03-10 09:39+0100\n"
+"PO-Revision-Date: 2025-03-14 11:28+0100\n"
 "Last-Translator: Siep Kroonenberg <siepo@bitmuis.nl>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
@@ -1526,7 +1526,7 @@ msgstr "Info"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2218
 msgid "Reporting bugs"
-msgstr ""
+msgstr "Bugs rapporteren"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2290
 msgid ""
@@ -1961,7 +1961,7 @@ msgstr "Welkom bij TeX Live!"
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2888
 #, perl-format
 msgid "See %s/index.html for links to documentation.\n"
-msgstr ""
+msgstr "Zie %s/index.html voor links naar documentatie.\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2890
 msgid ""
@@ -1971,6 +1971,12 @@ msgid ""
 "best for you. The list of groups is available on the web\n"
 "at https://tug.org/usergroups.html.\n"
 msgstr ""
+"De TeX Live web site (http://tug.org/texlive/) bevat alle updates en "
+"correcties. \n"
+"TeX Live is een gezamenlijk projekt van TeX gebruikersgroepen wereldwijd;\n"
+"overweeg ondersteuning door lid te worden van zo'n groep.\n"
+"De lijst van gebruikersgroepen kunt u vinden op https://tug.org/usergroups."
+"html.\n"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2898
 #, perl-format
@@ -1980,6 +1986,10 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions.\n"
 msgstr ""
+"Voeg %s/texmf-dist/doc/man toe aan MANPATH.\n"
+"Voeg %s/texmf-dist/doc/info toe aan INFOPATH.\n"
+"Boven al, voeg %s/bin/%s toe aan PATH\n"
+"voor huidige en toekomstige sessies.\n"
 
 #~ msgid ""
 #~ "See %s/index.html for links to documentation.\n"
