@@ -21,7 +21,7 @@ rem check version
 rem output from 'ver' e.g. 
 rem 'Microsoft Windows [Version 10.0.22621.382] for w11, and
 rem 'Microsoft Windows [Version 10.0.19042.508] for w10
-rem It is w11 from 10.0.22000 on.for f in
+rem It is w11 from 10.0.22000 on.
 for /f "usebackq tokens=2 delims=[]" %%I in (`ver`) do set ver_str=%%I
 set ver_str=%ver_str:* =%
 rem only windows 10 and higher officially supported
