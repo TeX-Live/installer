@@ -19,8 +19,8 @@ $mirrors = {
       'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
-      'https://mirrors.pku.edu.cn/ctan/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
+      'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
@@ -185,6 +185,9 @@ $mirrors = {
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
+    'Costa Rica' => {
+      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
+    },
     'Mexico' => {
       'https://linux-mirror.xicalcoatl.mx/ctan/' => 1,
     },
@@ -193,6 +196,7 @@ $mirrors = {
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
+      'https://ctan.tinycomputers.io/tex-archive/' => 1,
       'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
@@ -210,6 +214,7 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'https://br.mirrors.cicku.me/ctan/' => 1,
+      'https://linorg.usp.br/CTAN/' => 1,
     },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
