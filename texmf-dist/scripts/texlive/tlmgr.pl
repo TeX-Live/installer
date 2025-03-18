@@ -7634,7 +7634,7 @@ and the repository are not compatible:
   # - on every update, save the last seen remote main revision into
   #   00texlive.installation
   #
-  if ($is_main) {
+  if ($is_main && !$opts{"usermode"}) {
     my $rtlp = $remotetlpdb->get_package("texlive-scripts");
     my $ltlp = $localtlpdb->get_package("texlive-scripts");
     my $local_revision;
