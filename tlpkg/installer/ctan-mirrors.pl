@@ -25,6 +25,9 @@ $mirrors = {
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
+    'Hong Kong' => {
+      'https://mirror-hk.koddos.net/CTAN/' => 1,
+    },
     'India' => {
       'https://2.mirrors.in.sahilister.net/ctan/' => 1,
       'https://3.mirrors.in.sahilister.net/ctan/' => 1,
@@ -86,14 +89,12 @@ $mirrors = {
     'Finland' => {
       'https://mirror.5i.fi/tex-archive/' => 1,
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
-      'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
-      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
       'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
@@ -213,7 +214,6 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'https://br.mirrors.cicku.me/ctan/' => 1,
-      'https://linorg.usp.br/CTAN/' => 1,
     },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
