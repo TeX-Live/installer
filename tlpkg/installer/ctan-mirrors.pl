@@ -100,7 +100,6 @@ $mirrors = {
       'http://sendinnsky.selfhost.co/tex-archive/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
       'https://ctan.ebinger.cc/tex-archive/' => 1,
-      'https://ctan.joethei.xyz/' => 1,
       'https://ctan.mc1.root.project-creative.net/' => 1,
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
@@ -169,7 +168,6 @@ $mirrors = {
       'https://mirror.init7.net/ctan/' => 1,
     },
     'United Kingdom' => {
-      'https://anorien.csc.warwick.ac.uk/mirrors/CTAN/' => 1,
       'https://gb.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.apps.cam.ac.uk/pub/tex-archive/' => 1,
     },
