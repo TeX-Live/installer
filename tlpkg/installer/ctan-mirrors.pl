@@ -149,7 +149,6 @@ $mirrors = {
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
-      'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
       'https://mirrors.nxthost.com/ctan/' => 1,
@@ -214,7 +213,6 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'https://br.mirrors.cicku.me/ctan/' => 1,
-      'https://linorg.usp.br/CTAN/' => 1,
     },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
