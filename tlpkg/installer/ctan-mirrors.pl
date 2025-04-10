@@ -70,6 +70,7 @@ $mirrors = {
   },
   'Europe' => {
     'Austria' => {
+      'https://at.ctan.niranjan.co/' => 1,
       'https://mirror.easyname.at/ctan/' => 1,
       'https://mirror.kumi.systems/ctan/' => 1,
     },
