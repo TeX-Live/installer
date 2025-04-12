@@ -24,10 +24,11 @@ rem 'Microsoft Windows [Version 10.0.19042.508] for w10
 rem It is w11 from 10.0.22000 on.
 for /f "usebackq tokens=2 delims=[]" %%I in (`ver`) do set ver_str=%%I
 set ver_str=%ver_str:* =%
+for /f "tokens=1 delims=. " %%J in ("%ver_str%") do set ver_main=%%J
+for /f "tokens=3 delims=." %%K in ("%ver_str%") do set ver_sub=%%K
 rem only windows 10 and higher officially supported
-if %ver_str:~,2% == 4. goto tooold
-if %ver_str:~,2% == 5. goto tooold
-if %ver_str:~,2% == 6. (
+if %ver_main% LSS 7 goto tooold
+if %ver_main% EQU 6 (
   echo Windows 10 is the oldest officially supported version
   echo but Windows 7 and 8 should mostly work.
   echo Windows Vista has not recently been tested and may or may not work.
@@ -39,12 +40,10 @@ if "AMD64" NEQ "%PROCESSOR_ARCHITECTURE%" (
   if "AMD64" NEQ "%PROCESSOR_ARCHITEW6432%" (
     rem Assume ARM64; will need windows 11 or later.
     if %ver_str:~,5% EQU 10.0. (
-      if  %ver_str:~10,1% EQU . (
-        if %ver_str:~5,2% LSS 22 (
-          echo On ARM64, only Windows 11 and higher have x86_64 emulation.
-          pause
-          goto eoff
-        )
+      if %ver_sub% LSS 22000 (
+        echo On ARM64, only Windows 11 and higher have x86_64 emulation.
+        pause
+        goto eoff
       )
     )
   )
