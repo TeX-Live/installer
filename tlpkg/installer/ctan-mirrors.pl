@@ -84,9 +84,6 @@ $mirrors = {
     'Czech Republic' => {
       'https://mirrors.nic.cz/tex-archive/' => 1,
     },
-    'Denmark' => {
-      'https://mirrors.dotsrc.org/ctan/' => 1,
-    },
     'Finland' => {
       'https://mirror.5i.fi/tex-archive/' => 1,
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
@@ -217,9 +214,6 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'https://br.mirrors.cicku.me/ctan/' => 1,
-    },
-    'Chile' => {
-      'https://ctan.dcc.uchile.cl/' => 1,
     },
   },
 };
