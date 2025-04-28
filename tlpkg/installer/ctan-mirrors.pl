@@ -16,6 +16,7 @@ $mirrors = {
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
+      'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
@@ -150,7 +151,6 @@ $mirrors = {
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
-      'https://ftp.eq.uc.pt/software/TeX/' => 1,
       'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
@@ -201,6 +201,7 @@ $mirrors = {
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
+      'https://ctan.tinycomputers.io/tex-archive/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
