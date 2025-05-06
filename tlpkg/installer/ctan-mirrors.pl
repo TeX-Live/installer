@@ -103,7 +103,6 @@ $mirrors = {
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
       'https://mirrors.ircam.fr/pub/CTAN/' => 1,
-      'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
       'http://sendinnsky.selfhost.co/tex-archive/' => 1,
@@ -145,6 +144,7 @@ $mirrors = {
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
+      'https://ftp.fagskolen.gjovik.no/pub/tex-archive/' => 1,
     },
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
@@ -200,7 +200,6 @@ $mirrors = {
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
-      'https://ctan.tinycomputers.io/tex-archive/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.las.iastate.edu/tex-archive/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
