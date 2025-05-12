@@ -7659,7 +7659,8 @@ and the repository are not compatible:
     if ($remote_revision > 0 && $local_revision > $remote_revision) {
       info("fail load $location\n") if ($::machinereadable);
       return(undef, <<OLD_REMOTE_MSG);
-Remote database (revision $remote_revision of the texlive-scripts package)
+Remote database at $location
+(revision $remote_revision of the texlive-scripts package)
 seems to be older than the local installation (rev $local_revision of
 texlive-scripts); please use a different mirror and/or wait a day or two.
 OLD_REMOTE_MSG
