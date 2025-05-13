@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # $Id$
-# Copyright 2008-2024 Norbert Preining
+# Copyright 2008-2025 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 # 
@@ -7661,8 +7661,9 @@ and the repository are not compatible:
       return(undef, <<OLD_REMOTE_MSG);
 Remote database at $location
 (revision $remote_revision of the texlive-scripts package)
-seems to be older than the local installation (rev $local_revision of
-texlive-scripts); please use a different mirror and/or wait a day or two.
+seems to be older than the local installation
+(revision $local_revision of texlive-scripts);
+please use a different mirror and/or wait a day or two.
 OLD_REMOTE_MSG
     }
   }
