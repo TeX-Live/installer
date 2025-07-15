@@ -41,7 +41,6 @@ $mirrors = {
     },
     'Japan' => {
       'https://ctan.tikz.jp/' => 1,
-      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.aria-on-the-planet.es/CTAN/' => 1,
@@ -77,6 +76,7 @@ $mirrors = {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
     },
     'Bulgaria' => {
+      'https://ftp.uni-sofia.bg/CTAN/' => 1,
       'https://mirrors.neterra.net/CTAN/' => 1,
       'https://mirrors.netix.net/CTAN/' => 1,
     },
@@ -145,6 +145,7 @@ $mirrors = {
     },
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
+      'https://polish-mirror.evolution-host.com/ctan/' => 1,
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
