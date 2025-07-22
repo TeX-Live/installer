@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2025-06-07 01:40+0200\n"
+"POT-Creation-Date: 2025-07-22 23:25+0200\n"
 "PO-Revision-Date: 2025-04-06 21:47+0800\n"
 "Last-Translator: julian <juliansys@outlook.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1942,16 +1942,16 @@ msgstr "仅限 Windows 的支持程序"
 msgid "XeTeX and packages"
 msgstr "XeTeX 和包"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2887
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2902
 msgid "Welcome to TeX Live!"
 msgstr "欢迎进入 TeX Live 的世界！"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2888
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2903
 #, perl-format
 msgid "See %s/index.html for links to documentation.\n"
 msgstr "请参阅 %s/index.html 获取文档链接。\n"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2890
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2905
 msgid ""
 "The TeX Live web site (https://tug.org/texlive/) provides all updates\n"
 "and corrections. TeX Live is a joint project of the TeX user groups\n"
@@ -1964,7 +1964,7 @@ msgstr ""
 "请考虑加入最适合您的群组来支持它。群组列表可在 \n"
 "https://tug.org/usergroups.html 上找到。\n"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2898
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2913
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
