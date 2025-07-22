@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # $Id$
-# Copyright 2007-2024
+# Copyright 2007-2025
 # Reinhard Kotucha, Norbert Preining, Karl Berry, Siep Kroonenberg.
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -1176,11 +1176,24 @@ sub do_installation {
   return $status;
 } # do_installation
 
+# A full timestamp is too verbose for terminal output.
+# 
+sub short_time {
+  my ($sec,$min,$hour) = localtime ();
+  my $short = sprintf "%02d:%02d:%02d", $hour, $min, $sec;
+  return "[$short] ";
+}
+
+# We run a postinstall command here.  We ignore the return value?
+# 
 sub run_postinst_cmd {
   my ($cmd) = @_;
   my $tim = localtime ();
   log ("\n[$tim] running $cmd\n");
+  print &short_time ();
+  # actually run the command, with output to the log file.
   &TeXLive::TLUtils::run_cmd_with_log ($cmd, \&log);
+  #
   $tim = localtime ();
   log ("\n[$tim] --end of output of $cmd\n");
 }
@@ -1277,10 +1290,11 @@ operations might be disturbed.\n\n";
   my $errcount = 0;
 
   if (!$opt_in_place) {
-    wsystem("running", 'mktexlsr', "$TEXDIR/texmf-dist") && exit(1);
+    wsystem(&short_time() . "running", 'mktexlsr', "$TEXDIR/texmf-dist")
+    && exit(1);
   }
 
-  # we have to generate the various config file. That could be done with
+  # we have to generate the various config files. That could be done with
   # texconfig generate * but Windows does not have texconfig. But we have
   # $localtlpdb and this is simple code, so do it directly, i.e., duplicate
   # the code from the various generate-*.pl scripts
@@ -1315,7 +1329,7 @@ operations might be disturbed.\n\n";
     "$TEXMFSYSVAR/tex/generic/config/language.dat.lua",
     "$TEXMFLOCAL/tex/generic/config/language-local.dat.lua");
 
-  wsystem("running", "mktexlsr",
+  wsystem(&short_time() . "running", "mktexlsr",
                      $TEXMFSYSVAR, $TEXMFSYSCONFIG, "$TEXDIR/texmf-dist")
   && exit(1);
 
@@ -1347,14 +1361,15 @@ operations might be disturbed.\n\n";
   }
 
   # now rerun mktexlsr for updmap-sys and tlmgr paper letter updates.
-  wsystem("re-running", "mktexlsr", $TEXMFSYSVAR, $TEXMFSYSCONFIG) && exit(1);
+  wsystem(&short_time() . "re-running", "mktexlsr",
+          $TEXMFSYSVAR, $TEXMFSYSCONFIG) && exit(1);
 
   if (wndws() and !$vars{'instopt_portable'} and !$opt_in_place) {
     if ($vars{'tlpdbopt_desktop_integration'} != 2) {
       create_uninstaller($vars{'TEXDIR'});
     } else {
       $errcount += wsystem (
-        'Running','tlaunch.exe',
+        &short_time() . 'Running', 'tlaunch.exe',
         admin() ? 'admin_inst_silent' : 'user_inst_silent');
     }
   }
@@ -1406,7 +1421,7 @@ operations might be disturbed.\n\n";
 # Return number of errors found, or zero.
 
 sub do_tlpdb_postactions {
-  info ("running package-specific postactions\n");
+  info (&short_time() . "running package-specific postactions\n");
 
   # option settings already reflect portable- and in_place options.
   my $usedtlpdb = $opt_in_place ? $tlpdb : $localtlpdb;
@@ -1431,7 +1446,7 @@ sub do_tlpdb_postactions {
   }
   # windows: alert the system about changed file associations
   if (wndws()) { TeXLive::TLWinGoo::update_assocs(); }
-  info ("finished with package-specific postactions\n");
+  info (&short_time() . "finished with package-specific postactions\n");
   return $ret;
 } # do_tlpdb_postactions
 
