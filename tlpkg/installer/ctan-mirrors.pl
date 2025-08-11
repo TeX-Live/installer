@@ -137,7 +137,7 @@ $mirrors = {
     },
     'Netherlands' => {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
-      'https://mirror.lyrahosting.com/CTAN/' => 1,
+      'https://mirror.koddos.net/CTAN/' => 1,
       'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
     'Norway' => {
@@ -147,6 +147,7 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
+      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
