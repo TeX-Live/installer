@@ -82,6 +82,9 @@ $mirrors = {
       'https://mirrors.neterra.net/CTAN/' => 1,
       'https://mirrors.netix.net/CTAN/' => 1,
     },
+    'Czech Republic' => {
+      'https://tex.nic.cz/tex-archive/' => 1,
+    },
     'Denmark' => {
       'https://mirrors.dotsrc.org/ctan/' => 1,
     },
@@ -106,6 +109,7 @@ $mirrors = {
       'https://ctan.joethei.xyz/' => 1,
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
+      'https://ctan.project-creative.net/' => 1,
       'https://de.mirrors.cicku.me/ctan/' => 1,
       'https://ftp.agdsn.de/pub/mirrors/latex/dante/' => 1,
       'https://ftp.fau.de/ctan/' => 1,
@@ -133,7 +137,6 @@ $mirrors = {
     },
     'Netherlands' => {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
-      'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
       'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
@@ -162,7 +165,6 @@ $mirrors = {
       'https://ctan.javinator9889.com/' => 1,
     },
     'Sweden' => {
-      'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
       'https://mirror.accum.se/mirror/CTAN/' => 1,
     },
     'Switzerland' => {
