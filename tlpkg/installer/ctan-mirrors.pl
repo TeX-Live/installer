@@ -32,7 +32,6 @@ $mirrors = {
       'https://3.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
-      'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -197,7 +196,6 @@ $mirrors = {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
-      'https://ctan.mirrors.hoobly.com/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
