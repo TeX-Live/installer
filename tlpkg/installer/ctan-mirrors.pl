@@ -165,7 +165,6 @@ $mirrors = {
     },
     'Sweden' => {
       'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
-      'https://mirror.accum.se/mirror/CTAN/' => 1,
     },
     'Switzerland' => {
       'https://ch.mirrors.cicku.me/ctan/' => 1,
@@ -196,6 +195,7 @@ $mirrors = {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
+      'https://ctan.mirrors.hoobly.com/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
