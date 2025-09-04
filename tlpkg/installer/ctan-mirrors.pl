@@ -13,9 +13,9 @@ $mirrors = {
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
+      'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
-      'https://mirrors.pku.edu.cn/ctan/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -39,6 +39,7 @@ $mirrors = {
     },
     'Japan' => {
       'https://ctan.tikz.jp/' => 1,
+      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.aria-on-the-planet.es/CTAN/' => 1,
@@ -158,11 +159,11 @@ $mirrors = {
       'https://ctan.fisiquimicamente.com/' => 1,
     },
     'Sweden' => {
+      'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
       'https://mirror.accum.se/mirror/CTAN/' => 1,
     },
     'Switzerland' => {
       'https://ch.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.foobar.to/CTAN/' => 1,
       'https://mirror.init7.net/ctan/' => 1,
     },
     'United Kingdom' => {
