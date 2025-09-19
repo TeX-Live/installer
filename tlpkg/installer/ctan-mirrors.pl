@@ -31,7 +31,6 @@ $mirrors = {
       'https://3.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
-      'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -70,6 +69,7 @@ $mirrors = {
     'Austria' => {
       'https://at.ctan.niranjan.co/' => 1,
       'https://mirror.easyname.at/ctan/' => 1,
+      'https://mirror.kumi.systems/ctan/' => 1,
     },
     'Belarus' => {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
