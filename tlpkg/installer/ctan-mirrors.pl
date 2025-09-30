@@ -18,11 +18,9 @@ $mirrors = {
       'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
-      'https://mirrors.pku.edu.cn/ctan/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
-      'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
@@ -166,6 +164,7 @@ $mirrors = {
     'Switzerland' => {
       'https://ch.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.foobar.to/CTAN/' => 1,
+      'https://mirror.init7.net/ctan/' => 1,
     },
     'United Kingdom' => {
       'https://gb.mirrors.cicku.me/ctan/' => 1,
