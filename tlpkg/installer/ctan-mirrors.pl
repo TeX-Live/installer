@@ -71,6 +71,9 @@ $mirrors = {
       'https://mirror.easyname.at/ctan/' => 1,
       'https://mirror.kumi.systems/ctan/' => 1,
     },
+    'Belarus' => {
+      'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
+    },
     'Bulgaria' => {
       'https://ftp.uni-sofia.bg/CTAN/' => 1,
       'https://mirrors.neterra.net/CTAN/' => 1,
@@ -181,13 +184,9 @@ $mirrors = {
       'https://mirror.its.dal.ca/ctan/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
-    'Costa Rica' => {
-      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
-    },
     'USA' => {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
-      'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.clarkson.edu/ctan/' => 1,
