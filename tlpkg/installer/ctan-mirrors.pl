@@ -75,17 +75,14 @@ $mirrors = {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
     },
     'Bulgaria' => {
-      'https://ftp.uni-sofia.bg/CTAN/' => 1,
       'https://mirrors.neterra.net/CTAN/' => 1,
       'https://mirrors.netix.net/CTAN/' => 1,
-    },
-    'Czech Republic' => {
-      'https://tex.nic.cz/tex-archive/' => 1,
     },
     'Denmark' => {
       'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
+      'https://mirror.5i.fi/tex-archive/' => 1,
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
     },
@@ -190,7 +187,6 @@ $mirrors = {
     'USA' => {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
-      'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.clarkson.edu/ctan/' => 1,
