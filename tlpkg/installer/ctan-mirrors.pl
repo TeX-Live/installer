@@ -75,8 +75,7 @@ $mirrors = {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
     },
     'Bulgaria' => {
-      'https://mirrors.neterra.net/CTAN/' => 1,
-      'https://mirrors.netix.net/CTAN/' => 1,
+      'https://ftp.uni-sofia.bg/CTAN/' => 1,
     },
     'Denmark' => {
       'https://mirrors.dotsrc.org/ctan/' => 1,
@@ -96,6 +95,7 @@ $mirrors = {
       'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
+      'http://sendinnsky.selfhost.co/tex-archive/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
       'https://ctan.ebinger.cc/tex-archive/' => 1,
       'https://ctan.joethei.xyz/' => 1,
@@ -175,18 +175,14 @@ $mirrors = {
     'Canada' => {
       'https://ca.mirrors.cicku.me/ctan/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
-      'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
-      'https://mirror.its.dal.ca/ctan/' => 1,
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
-    },
-    'Costa Rica' => {
-      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
+      'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.clarkson.edu/ctan/' => 1,
