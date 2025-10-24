@@ -76,12 +76,13 @@ $mirrors = {
     },
     'Bulgaria' => {
       'https://ftp.uni-sofia.bg/CTAN/' => 1,
+      'https://mirrors.neterra.net/CTAN/' => 1,
+      'https://mirrors.netix.net/CTAN/' => 1,
     },
     'Denmark' => {
       'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
-      'https://mirror.5i.fi/tex-archive/' => 1,
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
     },
@@ -91,6 +92,7 @@ $mirrors = {
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
+      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
       'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
@@ -112,6 +114,7 @@ $mirrors = {
       'https://mirror.clientvps.com/CTAN/' => 1,
       'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.funkfreundelandshut.de/latex/' => 1,
+      'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
       'https://satztexnik.com/tex-archive/' => 1,
     },
     'Greece' => {
