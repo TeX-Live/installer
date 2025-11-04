@@ -3416,10 +3416,17 @@ sub action_update {
 
       if ($opts{"backup"} && !$opts{"dry-run"}) {
         my $compressorextension = $Compressors{$::progs{'compressor'}}{'extension'};
-        $tlp->make_container($::progs{'compressor'}, $root,
-                             destdir => $opts{"backupdir"},
-                             relative => $tlp->relocated,
-                             user => 1);
+        my ($s, undef, $fullname) = $tlp->make_container($::progs{'compressor'}, $root,
+                                                         destdir => $opts{"backupdir"},
+                                                         relative => $tlp->relocated,
+                                                         user => 1);
+        if ($s <= 0) {
+          tlwarn("\n$prg: creation of backup container failed for: $pkg\n");
+          tlwarn("$prg: continuing to update other packages, please retry...\n");
+          $ret |= $F_WARNING;
+          # we should try to update other packages at least
+          next;
+        }
         $unwind_package =
             "$opts{'backupdir'}/${pkg}.r" . $tlp->revision . ".tar.$compressorextension";
         

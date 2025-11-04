@@ -2727,6 +2727,18 @@ sub unpack {
     return (0, "nothing to unpack");
   }
 
+  # Shortcut for tar file, which can only be local and are backups when
+  # auto_backup == 0
+  if ($what =~ m/\.tar$/) {
+    if (untar($what, $target, 1)) {
+      my $pkg = $what;
+      $pkg =~ s/\.tar$//;
+      return (1, "$pkg");
+    } else {
+      return (0, "untar failed");
+    }
+  }
+
   my $decompressorType;
   my $compressorextension;
   if ($what =~ m/\.tar\.$CompressorExtRegexp$/) {
