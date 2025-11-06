@@ -3529,8 +3529,8 @@ sub action_update {
         if (wndws()) {
           # w32 is notorious for not releasing a file immediately
           # we experienced permission denied errors
-          my $newname = $unwind_package;
-          $newname =~ s/__BACKUP/___BACKUP/;
+          my ($suffix) = $unwind_package =~ /(\.tar\.[^.\s]+)$/;
+          my $newname = TeXLive::TLUtils::tl_tmpfile(SUFFIX => $suffix);
           copy ("-f", $unwind_package, $newname);
           # try to remove the file if has been created by us
           unlink($unwind_package) if $remove_unwind_container;
