@@ -31,7 +31,6 @@ $mirrors = {
       'https://2.mirrors.in.sahilister.net/ctan/' => 1,
       'https://3.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.niser.ac.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -99,7 +98,6 @@ $mirrors = {
     'Germany' => {
       'http://sendinnsky.selfhost.co/tex-archive/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
-      'https://ctan.ebinger.cc/tex-archive/' => 1,
       'https://ctan.joethei.xyz/' => 1,
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
