@@ -18,6 +18,7 @@ $mirrors = {
       'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
+      'https://mirrors.pku.edu.cn/ctan/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -207,6 +208,9 @@ $mirrors = {
     },
   },
   'South America' => {
+    'Brazil' => {
+      'https://br.mirrors.cicku.me/ctan/' => 1,
+    },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
     },
