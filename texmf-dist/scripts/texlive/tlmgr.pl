@@ -46,9 +46,9 @@ BEGIN {
   $^W = 1;
   # make subprograms (including kpsewhich) have the right path:
   my $kpsewhichname;
+  $Master = __FILE__;
   if ($^O =~ /^MSWin/i) {
     # on w32 $0 and __FILE__ point directly to tlmgr.pl; they can be relative
-    $Master = __FILE__;
     $Master =~ s!\\!/!g;
     $Master =~ s![^/]*$!../../..!
       unless ($Master =~ s!/texmf-dist/scripts/texlive/tlmgr\.pl$!!i);
@@ -56,11 +56,9 @@ BEGIN {
     $kpsewhichname = "kpsewhich.exe";
     # path already set by wrapper batchfile
   } else {
-    $Master = __FILE__;
     $Master =~ s,/*[^/]*$,,;
     $bindir = $Master;
     $Master = "$Master/../..";
-    # make subprograms (including kpsewhich) have the right path:
     $ENV{"PATH"} = "$bindir:$ENV{PATH}";
     $kpsewhichname = "kpsewhich";
   }
@@ -72,8 +70,12 @@ BEGIN {
   # if we have no directory in which to find our modules,
   # no point in going on.
   if (! $Master) {
-    die ("Could not determine directory of tlmgr executable, "
-         . "maybe shared library woes?\nCheck for error messages above");
+    warn "$0: Could not determine (Master) directory of tlmgr executable.\n";
+    warn "$0:   with __FILE__: ", __FILE__, "\n";
+    warn "$0:   and bindir: $bindir\n";
+    warn "$0:   and PATH: $ENV{PATH}\n";
+    die  "$0: Check for error messages above.\n";
+
   }
 
   $::installerdir = $Master;  # for config.guess et al., see TLUtils.pm
