@@ -18,6 +18,7 @@ $mirrors = {
       'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
+      'https://mirrors.pku.edu.cn/ctan/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -29,6 +30,7 @@ $mirrors = {
       'https://2.mirrors.in.sahilister.net/ctan/' => 1,
       'https://3.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
+      'https://mirror.niser.ac.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -38,6 +40,7 @@ $mirrors = {
     },
     'Japan' => {
       'https://ctan.tikz.jp/' => 1,
+      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.aria-on-the-planet.es/CTAN/' => 1,
@@ -64,7 +67,6 @@ $mirrors = {
     'Austria' => {
       'https://at.ctan.niranjan.co/' => 1,
       'https://mirror.easyname.at/ctan/' => 1,
-      'https://mirror.kumi.systems/ctan/' => 1,
     },
     'Belarus' => {
       'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
@@ -138,7 +140,6 @@ $mirrors = {
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
-      'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
       'https://mirrors.nxthost.com/ctan/' => 1,
@@ -149,7 +150,6 @@ $mirrors = {
     },
     'Spain' => {
       'https://ctan.fisiquimicamente.com/' => 1,
-      'https://ctan.javinator9889.com/' => 1,
     },
     'Sweden' => {
       'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
@@ -170,6 +170,7 @@ $mirrors = {
   'North America' => {
     'Canada' => {
       'https://ca.mirrors.cicku.me/ctan/' => 1,
+      'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
       'https://mirror.its.dal.ca/ctan/' => 1,
