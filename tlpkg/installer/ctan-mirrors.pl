@@ -155,6 +155,7 @@ $mirrors = {
     'Sweden' => {
       'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
       'https://mirror.accum.se/mirror/CTAN/' => 1,
+      'https://mirror.bahnhof.net/pub/ctan/' => 1,
     },
     'Switzerland' => {
       'https://ch.mirrors.cicku.me/ctan/' => 1,
