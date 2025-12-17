@@ -117,9 +117,6 @@ $mirrors = {
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
       'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
-    'Hungary' => {
-      'https://mirror.szerverem.hu/ctan/' => 1,
-    },
     'Italy' => {
       'https://ctan.mirror.garr.it/mirrors/ctan/' => 1,
     },
@@ -185,6 +182,7 @@ $mirrors = {
     'USA' => {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
+      'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.clarkson.edu/ctan/' => 1,
