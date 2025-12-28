@@ -88,10 +88,10 @@ $mirrors = {
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
+      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
       'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
-      'http://sendinnsky.selfhost.co/tex-archive/' => 1,
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
       'https://ctan.ebinger.cc/tex-archive/' => 1,
       'https://ctan.joethei.xyz/' => 1,
@@ -130,6 +130,7 @@ $mirrors = {
     },
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
+      'https://polish-mirror.evolution-host.com/ctan/' => 1,
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
@@ -177,7 +178,6 @@ $mirrors = {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
-      'https://ctan.mirrors.hoobly.com/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.clarkson.edu/ctan/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
