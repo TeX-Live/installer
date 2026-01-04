@@ -31,7 +31,6 @@ $mirrors = {
       'https://3.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
-      'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -89,6 +88,7 @@ $mirrors = {
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
+      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
       'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
