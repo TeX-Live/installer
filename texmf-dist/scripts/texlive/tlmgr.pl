@@ -54,13 +54,13 @@ BEGIN {
       unless ($Master =~ s!/texmf-dist/scripts/texlive/tlmgr\.pl$!!i);
     $bindir = "$Master/bin/windows";
     $kpsewhichname = "kpsewhich.exe";
-    # path already set by wrapper batchfile
+    # PATH already set by wrapper batchfile
   } else {
     $Master =~ s,/*[^/]*$,,;
     $bindir = $Master;
     $Master = "$Master/../..";
-    $ENV{"PATH"} = "$bindir:$ENV{PATH}";
     $kpsewhichname = "kpsewhich";
+    $ENV{"PATH"} = "$bindir:$ENV{PATH}";
   }
   if (-r "$bindir/$kpsewhichname") {
     # not in bootstrapping mode => kpsewhich exists, so use it to get $Master
