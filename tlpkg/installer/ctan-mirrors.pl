@@ -128,6 +128,7 @@ $mirrors = {
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
+      'https://ftp.fagskolen.gjovik.no/pub/tex-archive/' => 1,
     },
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
@@ -181,6 +182,7 @@ $mirrors = {
     'USA' => {
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
+      'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://ctan.mirrors.hoobly.com/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.clarkson.edu/ctan/' => 1,
