@@ -56,9 +56,9 @@ gpg1 --import texlive.asc
 
 svn commit
 
-# 
+
 # On the TUG server. Get the exported public key in
-#   texlive.asc, see above how to export it.
+#   texlive.asc, see above for how to export it.
 # This needs to be done with the owner of the .gnupg directory,
 #   since group access is disallowed by gpg.
 gpg --homedir /home/texlive/.gnupg --import texlive.asc
@@ -71,11 +71,20 @@ cp texlive.asc ~www/texlive/files/texlive`date +%Y`.asc
 ln -s texlive`date +%Y`.asc ~www/texlive/files/texlive.asc
 
 # update key example on web page, as in:
+su - kberry # or any user other than karl or norbert, or output lacks warning
+gpg --import /home/httpd/html/texlive/files/texlive.asc 
+gpg --verify /home/ftp/texlive/tlnet/install-tl-unx.tar.gz.sha512{.asc,} \
+  >/tmp/vout
+# check that the output is a "good signature", etc. Then:
+exit # back to normal user
+#
+# Then, update the web page:
 cd /home/httpd/html/texlive/
 co -l verify.html
 $EDITOR !$
+# paste /tmp/vout into the "similar to the following" <pre>,
+# replacing what's there.
 ci -u -m"`date +%Y` key update"
-
 
  General info: 
 . tlgpg runs a gpg command with the above TL .gnupg directory, etc.
