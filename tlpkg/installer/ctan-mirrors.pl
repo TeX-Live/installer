@@ -29,7 +29,6 @@ $mirrors = {
       'https://3.mirrors.in.sahilister.net/ctan/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
-      'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -145,6 +144,7 @@ $mirrors = {
       'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
     'Spain' => {
+      'https://ctan.fisiquimicamente.com/' => 1,
       'https://ctan.javinator9889.com/' => 1,
     },
     'Sweden' => {
