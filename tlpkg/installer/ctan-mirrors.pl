@@ -38,8 +38,10 @@ $mirrors = {
     },
     'Japan' => {
       'https://ctan.tikz.jp/' => 1,
+      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
+      'https://mirror.aria-on-the-planet.es/CTAN/' => 1,
       'https://mirror.kris.fail/ctan/' => 1,
     },
     'Korea' => {
@@ -184,7 +186,6 @@ $mirrors = {
       'http://mirror.clarkson.edu/ctan/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
-      'https://ctan.math.washington.edu/tex-archive/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
