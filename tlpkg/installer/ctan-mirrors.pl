@@ -18,8 +18,6 @@ $mirrors = {
       'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
-      'https://mirrors.pku.edu.cn/ctan/' => 1,
-      'https://mirrors.qlu.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -49,7 +47,6 @@ $mirrors = {
     'Korea' => {
       'https://ftp.kaist.ac.kr/ctan/' => 1,
       'https://kr.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.kakao.com/CTAN/' => 1,
     },
     'Saudi Arabia' => {
       'https://sa.mirrors.cicku.me/ctan/' => 1,
@@ -93,6 +90,7 @@ $mirrors = {
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
+      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
       'https://texlive.mycozy.space/' => 1,
     },
     'Germany' => {
@@ -113,7 +111,7 @@ $mirrors = {
       'https://mirror.clientvps.com/CTAN/' => 1,
       'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.funkfreundelandshut.de/latex/' => 1,
-      'https://satztexnik.com/tex-archive/' => 1,
+      'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
     },
     'Greece' => {
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
@@ -145,7 +143,6 @@ $mirrors = {
       'https://mirrors.nxthost.com/ctan/' => 1,
     },
     'Russia' => {
-      'https://mirror.macomnet.net/pub/CTAN/' => 1,
       'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
     'Spain' => {
