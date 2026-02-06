@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
-# Copyright 2007-2025 Norbert Preining, Reinhard Kotucha
+# Copyright 2007-2026 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -462,15 +462,15 @@ sub platform_name {
   
   if ($OS eq "darwin") {
     # We have two versions of Mac binary sets.
-    # 10.x and newer -> universal-darwin [MacTeX]
-    # 10.6/Snow Leopard through 10.x -> x86_64-darwinlegacy, if 64-bit.
+    # 11.x and newer -> universal-darwin [MacTeX]
+    # 10.x -> x86_64-darwinlegacy, if 64-bit.
     # x changes every year. As of TL 2021 (Big Sur) Apple started with 11.x.
     #
     # (BTW, uname -r numbers are larger by 4 than the Mac minor version.
     # We don't use uname numbers here.)
     #
-    # this changes each year, per above:
-    my $mactex_darwin = 14;  # lowest minor rev supported by universal-darwin.
+    # When MacTeX stops supporting the earliest 11.x, reinstate this.
+    #my $mactex_darwin = ;  # lowest minor rev supported by universal-darwin.
     #
     # Most robust approach is apparently to check sw_vers (os version,
     # returns "10.x" values), and sysctl (processor hardware).
@@ -482,10 +482,11 @@ sub platform_name {
       return "unknownmac-unknownmac";
     }
     # have to refine after all 10.x become "legacy".
-    if ($os_major >= 11 || $os_minor >= $mactex_darwin) {
+    if ($os_major >= 11) { # see above: || $os_minor >= $mactex_darwin) {
       $CPU = "universal";
       $OS = "darwin";
-    } elsif ($os_major == 10 && 6 <= $os_minor && $os_minor < $mactex_darwin){
+    } elsif ($os_major == 10 && 6 <= $os_minor) {
+             # see above: && $os_minor < $mactex_darwin){
       # in between, x86 hardware only.  On 10.6 only, must check if 64-bit,
       # since if later than that, always 64-bit.
       my $is64 = $os_minor == 6
