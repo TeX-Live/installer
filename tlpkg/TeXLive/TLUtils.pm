@@ -547,7 +547,7 @@ sub platform_desc {
     'powerpc-linux'    => 'GNU/Linux on PowerPC',
     'sparc-linux'      => 'GNU/Linux on Sparc',
     'sparc-solaris'    => 'Solaris on Sparc',
-    'universal-darwin' => 'MacOSX current (10.14-) on ARM/x86_64',
+    'universal-darwin' => 'MacOSX current (11-) on ARM/x86_64',
     'win32'            => 'Windows (32-bit)',
     'windows'          => 'Windows (64-bit)',
     'x86_64-cygwin'    => 'Cygwin on x86_64',
