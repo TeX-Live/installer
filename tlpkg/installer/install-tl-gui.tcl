@@ -205,7 +205,17 @@ proc read_line_loading {} {
 # ::out_log should no longer be needed
 proc read_line_cb {} {
   set l "" ; # will contain the line to be read
-  if {([catch {chan gets $::inst l} len] || [chan eof $::inst])} {
+  if {[catch {chan gets $::inst l} len]} {
+    .log.tx configure -state normal
+    .log.tx insert end "DEBUG: read_line_cb: catch: $len\n"
+    .log.tx yview moveto 1
+
+    catch {chan close $::inst}
+    # note. the normal way to terminate is terminating the GUI shell.
+    # This closes stdin of the child
+    .close state !disabled
+    if [winfo exists .abort] {.abort state disabled}
+  } elseif {[chan eof $::inst]} {
     catch {chan close $::inst}
     # note. the normal way to terminate is terminating the GUI shell.
     # This closes stdin of the child
@@ -1940,7 +1950,27 @@ proc run_installer {} {
   # the backend was already running and needs no further encouragement
 
   # switch to non-blocking i/o
-  chan configure $::inst -buffering line -blocking 0
+  if {$::tcl_platform(platform) eq "windows"} {
+    package require registry
+    set system_enc [encoding system]
+
+    # When the Tcl manifest specifies 'activeCodePage' as UTF-8, [encoding system]
+    # returns 'utf-8'. However, external processes often still output in the 
+    # system's original ANSI code page (e.g., CP932 for Japanese).
+    # We query the registry to get the 'true' system ANSI code page (ACP) 
+    # to correctly decode piped output from these external tools.
+    set regPath "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage"
+    if {![catch {registry get $regPath "ACP"} acp_num]} {
+      if {$acp_num eq "65001"} {
+        set system_enc "utf-8"
+      } elseif {"cp$acp_num" in [encoding names]} {
+        set system_enc "cp$acp_num"
+      }
+    }
+    chan configure $::inst -encoding $system_enc -profile replace -translation auto -buffering line -blocking 0
+  } else {
+    chan configure $::inst -buffering line -blocking 0
+  }
   chan event $::inst readable read_line_cb
   raise .
   if {$::tcl_platform(platform) eq "windows"} {wm deiconify .}
