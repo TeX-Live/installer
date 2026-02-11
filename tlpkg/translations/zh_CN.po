@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2025-07-22 23:25+0200\n"
+"POT-Creation-Date: 2026-02-11 01:40+0100\n"
 "PO-Revision-Date: 2025-04-06 21:47+0800\n"
 "Last-Translator: julian <juliansys@outlook.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -16,22 +16,22 @@ msgstr ""
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:137
 #: tlpkg/installer/install-menu-text.pl:37
 #: tlpkg/installer/install-menu-text.pl:41
-#: tlpkg/installer/install-tl-gui.tcl:828
-#: tlpkg/installer/install-tl-gui.tcl:1053
-#: tlpkg/installer/install-tl-gui.tcl:1698
+#: tlpkg/installer/install-tl-gui.tcl:838
+#: tlpkg/installer/install-tl-gui.tcl:1063
+#: tlpkg/installer/install-tl-gui.tcl:1708
 msgid "None"
 msgstr "无"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:138
 #: tlpkg/installer/install-menu-text.pl:38
-#: tlpkg/installer/install-tl-gui.tcl:1698
+#: tlpkg/installer/install-tl-gui.tcl:1708
 msgid "Only new"
 msgstr "只有新的"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:139
 #: tlpkg/installer/install-menu-text.pl:39
-#: tlpkg/installer/install-tl-gui.tcl:1050
-#: tlpkg/installer/install-tl-gui.tcl:1698
+#: tlpkg/installer/install-tl-gui.tcl:1060
+#: tlpkg/installer/install-tl-gui.tcl:1708
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1653
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2881
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2899
@@ -58,7 +58,7 @@ msgstr "... 加载完成"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2264
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2326
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2663
-#: tlpkg/installer/install-tl-gui.tcl:511
+#: tlpkg/installer/install-tl-gui.tcl:521
 msgid "Warning"
 msgstr "警告"
 
@@ -101,13 +101,13 @@ msgstr ""
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2460
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2498
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2663
-#: tlpkg/installer/install-tl-gui.tcl:486
-#: tlpkg/installer/install-tl-gui.tcl:624
-#: tlpkg/installer/install-tl-gui.tcl:709
-#: tlpkg/installer/install-tl-gui.tcl:896
-#: tlpkg/installer/install-tl-gui.tcl:946
-#: tlpkg/installer/install-tl-gui.tcl:1034
-#: tlpkg/installer/install-tl-gui.tcl:1257 tlpkg/tltcl/tltcl.tcl:691
+#: tlpkg/installer/install-tl-gui.tcl:496
+#: tlpkg/installer/install-tl-gui.tcl:634
+#: tlpkg/installer/install-tl-gui.tcl:719
+#: tlpkg/installer/install-tl-gui.tcl:906
+#: tlpkg/installer/install-tl-gui.tcl:956
+#: tlpkg/installer/install-tl-gui.tcl:1044
+#: tlpkg/installer/install-tl-gui.tcl:1267 tlpkg/tltcl/tltcl.tcl:691
 #: texmf-dist/scripts/tlshell/tlshell.tcl:223
 msgid "Ok"
 msgstr "确定"
@@ -253,7 +253,7 @@ msgid "Update"
 msgstr "更新"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:450
-#: tlpkg/installer/install-tl-gui.tcl:1404
+#: tlpkg/installer/install-tl-gui.tcl:1414
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2205
 msgid "Install"
 msgstr "安装"
@@ -269,7 +269,7 @@ msgid "Backup"
 msgstr "备份"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:507
-#: tlpkg/installer/install-tl-gui.tcl:1621
+#: tlpkg/installer/install-tl-gui.tcl:1631
 #: texmf-dist/scripts/tlshell/tlshell.tcl:880
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2333
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2689
@@ -304,7 +304,7 @@ msgid "Load other repository ..."
 msgstr "载入其他仓库..."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:538
-#: tlpkg/installer/install-tl-gui.tcl:1406
+#: tlpkg/installer/install-tl-gui.tcl:1416
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2797
 msgid "Quit"
 msgstr "退出"
@@ -390,13 +390,13 @@ msgstr "删除 TeX Live %s"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2463
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2500
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2581
-#: tlpkg/installer/install-tl-gui.tcl:496
-#: tlpkg/installer/install-tl-gui.tcl:626
-#: tlpkg/installer/install-tl-gui.tcl:711
-#: tlpkg/installer/install-tl-gui.tcl:899
-#: tlpkg/installer/install-tl-gui.tcl:963
-#: tlpkg/installer/install-tl-gui.tcl:1037
-#: tlpkg/installer/install-tl-gui.tcl:1259 tlpkg/tltcl/tltcl.tcl:693
+#: tlpkg/installer/install-tl-gui.tcl:506
+#: tlpkg/installer/install-tl-gui.tcl:636
+#: tlpkg/installer/install-tl-gui.tcl:721
+#: tlpkg/installer/install-tl-gui.tcl:909
+#: tlpkg/installer/install-tl-gui.tcl:973
+#: tlpkg/installer/install-tl-gui.tcl:1047
+#: tlpkg/installer/install-tl-gui.tcl:1269 tlpkg/tltcl/tltcl.tcl:693
 #: texmf-dist/scripts/tlshell/tlshell.tcl:233
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1386
 msgid "Cancel"
@@ -573,16 +573,16 @@ msgstr "默认的软件包仓库"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2427
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2432
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2437
-#: tlpkg/installer/install-tl-gui.tcl:602
-#: tlpkg/installer/install-tl-gui.tcl:1454
-#: tlpkg/installer/install-tl-gui.tcl:1470
-#: tlpkg/installer/install-tl-gui.tcl:1478
+#: tlpkg/installer/install-tl-gui.tcl:612
+#: tlpkg/installer/install-tl-gui.tcl:1464
+#: tlpkg/installer/install-tl-gui.tcl:1480
 #: tlpkg/installer/install-tl-gui.tcl:1488
-#: tlpkg/installer/install-tl-gui.tcl:1497
-#: tlpkg/installer/install-tl-gui.tcl:1505
-#: tlpkg/installer/install-tl-gui.tcl:1512
-#: tlpkg/installer/install-tl-gui.tcl:1558
-#: tlpkg/installer/install-tl-gui.tcl:1577
+#: tlpkg/installer/install-tl-gui.tcl:1498
+#: tlpkg/installer/install-tl-gui.tcl:1507
+#: tlpkg/installer/install-tl-gui.tcl:1515
+#: tlpkg/installer/install-tl-gui.tcl:1522
+#: tlpkg/installer/install-tl-gui.tcl:1568
+#: tlpkg/installer/install-tl-gui.tcl:1587
 msgid "Change"
 msgstr "修改"
 
@@ -595,7 +595,7 @@ msgstr "安装时创建格式文件"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1175
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1225
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1234
-#: tlpkg/installer/install-tl-gui.tcl:1531
+#: tlpkg/installer/install-tl-gui.tcl:1541
 msgid "Toggle"
 msgstr "切换"
 
@@ -637,7 +637,7 @@ msgid "Create shortcuts on the desktop"
 msgstr "在桌面上创建快捷方式"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1230
-#: tlpkg/installer/install-tl-gui.tcl:1711
+#: tlpkg/installer/install-tl-gui.tcl:1721
 msgid "Install for all users"
 msgstr "给所有用户安装"
 
@@ -830,7 +830,7 @@ msgid "Restore all packages to latest version"
 msgstr "将所有软件包还原到最新版本"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2411
-#: tlpkg/installer/install-tl-gui.tcl:396
+#: tlpkg/installer/install-tl-gui.tcl:406
 #: texmf-dist/scripts/tlshell/tlshell.tcl:892
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1017
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1486
@@ -934,29 +934,29 @@ msgstr ""
 "目标目录 %s 非空；\n"
 "您确定吗?"
 
-#: tlpkg/installer/install-tl-gui.tcl:224
+#: tlpkg/installer/install-tl-gui.tcl:234
 msgid "Really abort?"
 msgstr "真要终止?"
 
-#: tlpkg/installer/install-tl-gui.tcl:312
+#: tlpkg/installer/install-tl-gui.tcl:322
 msgid "Local repository"
 msgstr "本机存储库"
 
-#: tlpkg/installer/install-tl-gui.tcl:348
-#: tlpkg/installer/install-tl-gui.tcl:365
-#: tlpkg/installer/install-tl-gui.tcl:399
-#: tlpkg/installer/install-tl-gui.tcl:1351
+#: tlpkg/installer/install-tl-gui.tcl:358
+#: tlpkg/installer/install-tl-gui.tcl:375
+#: tlpkg/installer/install-tl-gui.tcl:409
+#: tlpkg/installer/install-tl-gui.tcl:1361
 #: texmf-dist/scripts/tlshell/tlshell.tcl:895
 msgid "Abort"
 msgstr "终止"
 
-#: tlpkg/installer/install-tl-gui.tcl:370
-#: tlpkg/installer/install-tl-gui.tcl:1342
+#: tlpkg/installer/install-tl-gui.tcl:380
+#: tlpkg/installer/install-tl-gui.tcl:1352
 msgid "TeX Live Installer"
 msgstr "TeX Live 安装程序"
 
-#: tlpkg/installer/install-tl-gui.tcl:373
-#: tlpkg/installer/install-tl-gui.tcl:2044
+#: tlpkg/installer/install-tl-gui.tcl:383
+#: tlpkg/installer/install-tl-gui.tcl:2074
 #, tcl-format
 msgid ""
 "Trying to load %s.\n"
@@ -967,23 +967,23 @@ msgstr ""
 "\n"
 "如果耗时过长，请按“中止”或选择其他存储库。"
 
-#: tlpkg/installer/install-tl-gui.tcl:458
+#: tlpkg/installer/install-tl-gui.tcl:468
 msgid "Cannot be created or cannot be written to"
 msgstr "无法创建或无法写入"
 
-#: tlpkg/installer/install-tl-gui.tcl:470
+#: tlpkg/installer/install-tl-gui.tcl:480
 msgid "Directory name..."
 msgstr "目录名称..."
 
-#: tlpkg/installer/install-tl-gui.tcl:477
+#: tlpkg/installer/install-tl-gui.tcl:487
 msgid "Change name (slashes not allowed)"
 msgstr "更改名称（不允许使用斜线）"
 
-#: tlpkg/installer/install-tl-gui.tcl:488
+#: tlpkg/installer/install-tl-gui.tcl:498
 msgid "No slashes allowed"
 msgstr "不允许使用斜线"
 
-#: tlpkg/installer/install-tl-gui.tcl:510
+#: tlpkg/installer/install-tl-gui.tcl:520
 msgid ""
 "TL release component highly recommended!\n"
 "Are you sure?"
@@ -991,137 +991,137 @@ msgstr ""
 "TL 发布组件强烈推荐！\n"
 "你确定吗?"
 
-#: tlpkg/installer/install-tl-gui.tcl:519
+#: tlpkg/installer/install-tl-gui.tcl:529
 msgid "Add year"
 msgstr "添加年份"
 
-#: tlpkg/installer/install-tl-gui.tcl:523
-#: tlpkg/installer/install-tl-gui.tcl:604
+#: tlpkg/installer/install-tl-gui.tcl:533
+#: tlpkg/installer/install-tl-gui.tcl:614
 msgid "Remove year"
 msgstr "删除年份"
 
-#: tlpkg/installer/install-tl-gui.tcl:570
-#: tlpkg/installer/install-tl-gui.tcl:1438
-#: tlpkg/installer/install-tl-gui.tcl:1446
+#: tlpkg/installer/install-tl-gui.tcl:580
+#: tlpkg/installer/install-tl-gui.tcl:1448
+#: tlpkg/installer/install-tl-gui.tcl:1456
 msgid "Installation root"
 msgstr "安装根目录"
 
-#: tlpkg/installer/install-tl-gui.tcl:598
+#: tlpkg/installer/install-tl-gui.tcl:608
 msgid "Prefix"
 msgstr "前缀"
 
-#: tlpkg/installer/install-tl-gui.tcl:608
+#: tlpkg/installer/install-tl-gui.tcl:618
 msgid "Prefix must exist"
 msgstr "前缀必须存在"
 
-#: tlpkg/installer/install-tl-gui.tcl:616
+#: tlpkg/installer/install-tl-gui.tcl:626
 msgid "Localized directory names will be replaced by their real names"
 msgstr "本地化目录名称将替换为真实名称"
 
-#: tlpkg/installer/install-tl-gui.tcl:699
+#: tlpkg/installer/install-tl-gui.tcl:709
 #, tcl-format
 msgid "'~' equals %s, e.g. %s"
 msgstr "'~' 等于 %s，例如 %s"
 
-#: tlpkg/installer/install-tl-gui.tcl:854
+#: tlpkg/installer/install-tl-gui.tcl:864
 msgid "Cannot deselect own platform"
 msgstr "无法取消选择自己的平台"
 
-#: tlpkg/installer/install-tl-gui.tcl:889
-#: tlpkg/installer/install-tl-gui.tcl:1241
+#: tlpkg/installer/install-tl-gui.tcl:899
+#: tlpkg/installer/install-tl-gui.tcl:1251
 msgid "Binaries"
 msgstr "二进制文件"
 
-#: tlpkg/installer/install-tl-gui.tcl:939
+#: tlpkg/installer/install-tl-gui.tcl:949
 msgid "Schemes"
 msgstr "方案"
 
-#: tlpkg/installer/install-tl-gui.tcl:1027
+#: tlpkg/installer/install-tl-gui.tcl:1037
 msgid "Collections"
 msgstr "收藏"
 
-#: tlpkg/installer/install-tl-gui.tcl:1049
+#: tlpkg/installer/install-tl-gui.tcl:1059
 msgid "Select"
 msgstr "选择"
 
-#: tlpkg/installer/install-tl-gui.tcl:1065
+#: tlpkg/installer/install-tl-gui.tcl:1075
 msgid "Languages"
 msgstr "语言"
 
-#: tlpkg/installer/install-tl-gui.tcl:1067
+#: tlpkg/installer/install-tl-gui.tcl:1077
 msgid "Other collections"
 msgstr "其他收藏"
 
-#: tlpkg/installer/install-tl-gui.tcl:1194
+#: tlpkg/installer/install-tl-gui.tcl:1204
 msgid "Warning. Not all configured directories are writable!"
 msgstr "警告。并非所有配置的目录都是可写的！"
 
-#: tlpkg/installer/install-tl-gui.tcl:1214
+#: tlpkg/installer/install-tl-gui.tcl:1224
 msgid "Symlinks"
 msgstr "符号链接"
 
-#: tlpkg/installer/install-tl-gui.tcl:1237 tlpkg/tltcl/tltcl.tcl:683
+#: tlpkg/installer/install-tl-gui.tcl:1247 tlpkg/tltcl/tltcl.tcl:683
 msgid "Browse..."
 msgstr "浏览..."
 
-#: tlpkg/installer/install-tl-gui.tcl:1242
+#: tlpkg/installer/install-tl-gui.tcl:1252
 msgid "Man pages"
 msgstr "手册页"
 
-#: tlpkg/installer/install-tl-gui.tcl:1243
+#: tlpkg/installer/install-tl-gui.tcl:1253
 msgid "Info pages"
 msgstr "信息页面"
 
-#: tlpkg/installer/install-tl-gui.tcl:1315
+#: tlpkg/installer/install-tl-gui.tcl:1325
 msgid "Not enough room"
 msgstr "空间不足"
 
-#: tlpkg/installer/install-tl-gui.tcl:1356
+#: tlpkg/installer/install-tl-gui.tcl:1366
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2739
 msgid "GUI language"
 msgstr "界面语言"
 
-#: tlpkg/installer/install-tl-gui.tcl:1368
+#: tlpkg/installer/install-tl-gui.tcl:1378
 msgid "Font scaling"
 msgstr "字体缩放"
 
-#: tlpkg/installer/install-tl-gui.tcl:1370
+#: tlpkg/installer/install-tl-gui.tcl:1380
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1327
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2757
 msgid "Current:"
 msgstr "当前的："
 
-#: tlpkg/installer/install-tl-gui.tcl:1393
+#: tlpkg/installer/install-tl-gui.tcl:1403
 #, tcl-format
 msgid "TeX Live %s Installer"
 msgstr "TeX Live %s 安装程序"
 
-#: tlpkg/installer/install-tl-gui.tcl:1411
+#: tlpkg/installer/install-tl-gui.tcl:1421
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2706
 msgid "Advanced"
 msgstr "高级"
 
-#: tlpkg/installer/install-tl-gui.tcl:1441
+#: tlpkg/installer/install-tl-gui.tcl:1451
 msgid "Directories"
 msgstr "目录"
 
-#: tlpkg/installer/install-tl-gui.tcl:1460
+#: tlpkg/installer/install-tl-gui.tcl:1470
 msgid "Main tree"
 msgstr "主树"
 
-#: tlpkg/installer/install-tl-gui.tcl:1483
+#: tlpkg/installer/install-tl-gui.tcl:1493
 msgid "Local additions"
 msgstr "本地添加"
 
-#: tlpkg/installer/install-tl-gui.tcl:1492
+#: tlpkg/installer/install-tl-gui.tcl:1502
 msgid "Per-user additions"
 msgstr "每个用户添加"
 
-#: tlpkg/installer/install-tl-gui.tcl:1519
+#: tlpkg/installer/install-tl-gui.tcl:1529
 msgid "More ..."
 msgstr "更多 ..."
 
-#: tlpkg/installer/install-tl-gui.tcl:1528
+#: tlpkg/installer/install-tl-gui.tcl:1538
 msgid ""
 "Portable setup:\n"
 "May reset TEXMFLOCAL\n"
@@ -1131,114 +1131,114 @@ msgstr ""
 "可以重置 TEXMFLOCAL\n"
 "和 TEXMFHOME"
 
-#: tlpkg/installer/install-tl-gui.tcl:1542
+#: tlpkg/installer/install-tl-gui.tcl:1552
 #: texmf-dist/scripts/tlshell/tlshell.tcl:1473
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2713
 msgid "Platforms"
 msgstr "平台"
 
-#: tlpkg/installer/install-tl-gui.tcl:1548
+#: tlpkg/installer/install-tl-gui.tcl:1558
 msgid "Current platform:"
 msgstr "当前平台："
 
-#: tlpkg/installer/install-tl-gui.tcl:1555
+#: tlpkg/installer/install-tl-gui.tcl:1565
 msgid "N. of additional platform(s):"
 msgstr "附加平台数量："
 
-#: tlpkg/installer/install-tl-gui.tcl:1568
+#: tlpkg/installer/install-tl-gui.tcl:1578
 msgid "Selections"
 msgstr "选择"
 
-#: tlpkg/installer/install-tl-gui.tcl:1573
+#: tlpkg/installer/install-tl-gui.tcl:1583
 msgid "Scheme:"
 msgstr "方案："
 
-#: tlpkg/installer/install-tl-gui.tcl:1582
+#: tlpkg/installer/install-tl-gui.tcl:1592
 msgid "N. of collections:"
 msgstr "收藏数量："
 
-#: tlpkg/installer/install-tl-gui.tcl:1585
+#: tlpkg/installer/install-tl-gui.tcl:1595
 msgid "Customize"
 msgstr "定制"
 
-#: tlpkg/installer/install-tl-gui.tcl:1594
+#: tlpkg/installer/install-tl-gui.tcl:1604
 msgid "Disk space required (in MB):"
 msgstr "所需磁盘空间 (MB)："
 
-#: tlpkg/installer/install-tl-gui.tcl:1600
+#: tlpkg/installer/install-tl-gui.tcl:1610
 msgid "Disk space available (in MB):"
 msgstr "可用磁盘空间 (MB)："
 
-#: tlpkg/installer/install-tl-gui.tcl:1630
+#: tlpkg/installer/install-tl-gui.tcl:1640
 msgid "Default paper size"
 msgstr "默认纸张尺寸"
 
-#: tlpkg/installer/install-tl-gui.tcl:1641
+#: tlpkg/installer/install-tl-gui.tcl:1651
 msgid "Allow execution of restricted list of programs via \\write18"
 msgstr "允许用 \\write18 执行一部分在限制列表内的程序"
 
-#: tlpkg/installer/install-tl-gui.tcl:1648
+#: tlpkg/installer/install-tl-gui.tcl:1658
 msgid "Create all format files"
 msgstr "创建所有格式文件"
 
-#: tlpkg/installer/install-tl-gui.tcl:1656
+#: tlpkg/installer/install-tl-gui.tcl:1666
 msgid "Install font/macro doc tree"
 msgstr "安装字体/宏包文档目录树"
 
-#: tlpkg/installer/install-tl-gui.tcl:1666
+#: tlpkg/installer/install-tl-gui.tcl:1676
 msgid "Install font/macro source tree"
 msgstr "安装字体/宏包源码目录树"
 
-#: tlpkg/installer/install-tl-gui.tcl:1679
+#: tlpkg/installer/install-tl-gui.tcl:1689
 msgid "Adjust searchpath"
 msgstr "调整搜索路径"
 
-#: tlpkg/installer/install-tl-gui.tcl:1686
+#: tlpkg/installer/install-tl-gui.tcl:1696
 msgid "No shortcuts"
 msgstr "没有快捷方式"
 
-#: tlpkg/installer/install-tl-gui.tcl:1686
+#: tlpkg/installer/install-tl-gui.tcl:1696
 msgid "TeX Live menu"
 msgstr "TeX Live 菜单"
 
-#: tlpkg/installer/install-tl-gui.tcl:1686
+#: tlpkg/installer/install-tl-gui.tcl:1696
 msgid "Launcher entry"
 msgstr "启动器入口"
 
-#: tlpkg/installer/install-tl-gui.tcl:1688
+#: tlpkg/installer/install-tl-gui.tcl:1698
 msgid "Desktop integration"
 msgstr "桌面集成"
 
-#: tlpkg/installer/install-tl-gui.tcl:1700
+#: tlpkg/installer/install-tl-gui.tcl:1710
 msgid "File associations"
 msgstr "文件关联"
 
-#: tlpkg/installer/install-tl-gui.tcl:1722
+#: tlpkg/installer/install-tl-gui.tcl:1732
 msgid "Install TeXworks front end"
 msgstr "安装 TeXworks 前端"
 
-#: tlpkg/installer/install-tl-gui.tcl:1734
+#: tlpkg/installer/install-tl-gui.tcl:1744
 msgid "Create symlinks in standard directories"
 msgstr "在标准目录中创建符号链接"
 
-#: tlpkg/installer/install-tl-gui.tcl:1740
+#: tlpkg/installer/install-tl-gui.tcl:1750
 msgid "Specify directories"
 msgstr "指定目录"
 
-#: tlpkg/installer/install-tl-gui.tcl:1754
+#: tlpkg/installer/install-tl-gui.tcl:1764
 msgid "After install, set CTAN as source for package updates"
 msgstr "安装后，将 CTAN 设置为包更新源"
 
-#: tlpkg/installer/install-tl-gui.tcl:1805
+#: tlpkg/installer/install-tl-gui.tcl:1815
 msgid "Custom scheme"
 msgstr "自定义配置"
 
-#: tlpkg/installer/install-tl-gui.tcl:1982
+#: tlpkg/installer/install-tl-gui.tcl:2012
 #, tcl-format
 msgid "%s not a local or remote repository"
 msgstr "%s 不是本地或远程存储库"
 
-#: tlpkg/installer/install-tl-gui.tcl:1986
+#: tlpkg/installer/install-tl-gui.tcl:2016
 #, tcl-format
 msgid "%s requires an argument"
 msgstr "%s 需要参数"
