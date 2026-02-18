@@ -280,7 +280,7 @@ msgstr "Opties"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:509
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2679
 msgid "Actions"
-msgstr "Akties"
+msgstr "Acties"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:513
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2688
@@ -334,16 +334,16 @@ msgstr "Geavanceerde instellingen"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:561
 msgid "Enable debugging output"
-msgstr "Aktiveer debug uitvoer"
+msgstr "Activeer debug uitvoer"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:565
 msgid "Disable auto-install of new packages"
-msgstr "Deaktiveer automatische installatie van nieuwe pakketten"
+msgstr "Deactiveer automatische installatie van nieuwe pakketten"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:568
 msgid "Disable auto-removal of server-deleted packages"
 msgstr ""
-"Deaktiveer automatische verwijdering van pakketten die op de server zijn "
+"Deactiveer automatische verwijdering van pakketten die op de server zijn "
 "verwijderd"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:575
@@ -490,7 +490,7 @@ msgstr "Trefwoorden:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:718
 msgid "Functionality:"
-msgstr "Funktionaliteit:"
+msgstr "Functionaliteit:"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:723
 msgid "Primary characterization:"
@@ -553,7 +553,7 @@ msgstr "Voer de wijzigingen uit"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1057
 msgid "Removals of the main platform not possible!"
-msgstr "Verwijdering van de hoofd-architektuur niet mogelijk!"
+msgstr "Verwijdering van de hoofd-architectuur niet mogelijk!"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1122
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1131
@@ -633,7 +633,7 @@ msgstr "Doelfolder voor symlinks info-bestanden"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1211
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2435
 msgid "Link destination for man pages"
-msgstr "Doelfolder voor symlinks man paginas"
+msgstr "Doelfolder voor symlinks man pagina's"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1221
 msgid "Create shortcuts on the desktop"
@@ -749,7 +749,7 @@ msgstr "Herstel"
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1765
 #, perl-format
 msgid "Select paper format for %s"
-msgstr "Selekteer papier-formaat voor %s"
+msgstr "Selecteer papier-formaat voor %s"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:1792
 msgid "keep arbitrarily many"
@@ -810,7 +810,7 @@ msgid ""
 "Please wait a bit after the program has terminated so that the update can be "
 "completed."
 msgstr ""
-"Wacht aub. even nadat het programma is geeindigd, zodat het bijwerken kan "
+"Wacht aub. even nadat het programma is geëindigd, zodat het bijwerken kan "
 "worden voltooid."
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2351
@@ -879,7 +879,7 @@ msgstr "Kies een lokale folder"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2556
 msgid "Use standard net repository"
-msgstr "Gebruik de standaard online installate-bron"
+msgstr "Gebruik de standaard online installatie-bron"
 
 #: texmf-dist/scripts/texlive/tlmgrgui.pl:2563
 msgid "Load"
@@ -911,7 +911,7 @@ msgid ""
 "Running %s failed.\n"
 "Please consult the log window for details."
 msgstr ""
-"%s is met een fout geeindigd.\n"
+"%s is met een fout geëindigd.\n"
 "Raadpleeg het log venster voor details."
 
 #: tlpkg/installer/install-menu-text.pl:42
@@ -1049,7 +1049,7 @@ msgstr "Collecties"
 
 #: tlpkg/installer/install-tl-gui.tcl:1059
 msgid "Select"
-msgstr "Selekteer"
+msgstr "Selecteer"
 
 #: tlpkg/installer/install-tl-gui.tcl:1075
 msgid "Languages"
@@ -1154,7 +1154,7 @@ msgstr "Aantal extra platforms:"
 
 #: tlpkg/installer/install-tl-gui.tcl:1578
 msgid "Selections"
-msgstr "Selekties"
+msgstr "Selecties"
 
 #: tlpkg/installer/install-tl-gui.tcl:1583
 msgid "Scheme:"
@@ -1182,7 +1182,7 @@ msgstr "Standaard papier-formaat"
 
 #: tlpkg/installer/install-tl-gui.tcl:1651
 msgid "Allow execution of restricted list of programs via \\write18"
-msgstr "Sta uitvoering van een beperkte lijst programmas toe via \\write18"
+msgstr "Sta uitvoering van een beperkte lijst programma's toe via \\write18"
 
 #: tlpkg/installer/install-tl-gui.tcl:1658
 msgid "Create all format files"
@@ -1497,7 +1497,7 @@ msgstr "Werk enkele afhankelijkheden: %s toch bij. Doorgaan?"
 #, tcl-format
 msgid "Skipped because not installed: %s"
 msgstr ""
-"Niet gïnstalleerd: %s\n"
+"Niet geïnstalleerd: %s\n"
 "overgeslagen"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2062
@@ -1547,7 +1547,7 @@ msgstr ""
 "moeten hebben.\n"
 "Merk op dat het niet de volledige functionaliteit van tlmgr omvat. Met name "
 "worden user mode en backup en restore niet ondersteund.\n"
-"Raadpleeg het 'Tlmgr Help' menu item voor volledige dokumentatie van tlmgr "
+"Raadpleeg het 'Tlmgr Help' menu item voor volledige documentatie van tlmgr "
 "zelf."
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2331
@@ -1691,15 +1691,15 @@ msgstr "Op naam en beschrijving"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2930
 msgid "Install marked"
-msgstr "Installeer selektie"
+msgstr "Installeer selectie"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2933
 msgid "Update marked"
-msgstr "Werk selektie bij"
+msgstr "Werk selectie bij"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2936
 msgid "Remove marked"
-msgstr "Verwijder selektie"
+msgstr "Verwijder selectie"
 
 #: texmf-dist/scripts/tlshell/tlshell.tcl:2944
 msgid "Update tlmgr"
@@ -1756,7 +1756,7 @@ msgstr "basis-schema (Plain en latex)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
 msgid "book publishing scheme (core LaTeX and add-ons)"
-msgstr "boek-publikatie schema (LaTeX kern en toevoegingen)"
+msgstr "boek-publicatie schema (LaTeX kern en toevoegingen)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "ConTeXt scheme"
@@ -1772,7 +1772,7 @@ msgstr "GUST TeX Live schema"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
 msgid "infrastructure-only scheme (no TeX at all)"
-msgstr "alleen infrastruktuur (helemaal geen TeX)"
+msgstr "alleen infrastructuur (helemaal geen TeX)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
 msgid "medium scheme (small + more packages and languages)"
@@ -1824,7 +1824,7 @@ msgstr "Extra formaten"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:19
 msgid "Games typesetting"
-msgstr "Spellen typesetten"
+msgstr "Spellen opmaken"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:20
 msgid "Humanities packages"
@@ -1840,7 +1840,7 @@ msgstr "Chinees"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
 msgid "Chinese/Japanese/Korean (base)"
-msgstr "Chiness/Japans/Koreaans (basis)"
+msgstr "Chinees/Japans/Koreaans (basis)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
 msgid "Cyrillic"
@@ -1973,7 +1973,7 @@ msgid ""
 msgstr ""
 "De TeX Live web site (http://tug.org/texlive/) bevat alle updates en "
 "correcties. \n"
-"TeX Live is een gezamenlijk projekt van TeX gebruikersgroepen wereldwijd;\n"
+"TeX Live is een gezamenlijk project van TeX gebruikersgroepen wereldwijd;\n"
 "overweeg ondersteuning door lid te worden van zo'n groep.\n"
 "De lijst van gebruikersgroepen kunt u vinden op https://tug.org/usergroups."
 "html.\n"
