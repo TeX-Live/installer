@@ -1,10 +1,10 @@
-=head2 Thu Feb 20 07:58:08 2025: C<Module> L<Math::Int64|Math::Int64>
+=head2 Mon Feb 16 22:47:25 2026: C<Module> L<Math::Int64|Math::Int64>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -20,13 +20,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 07:59:46 2025: C<Module> L<IO::String|IO::String>
+=head2 Mon Feb 16 22:47:28 2026: C<Module> L<IO::String|IO::String>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -42,13 +42,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:00:16 2025: C<Module> L<File::Which|File::Which>
+=head2 Mon Feb 16 22:47:31 2026: C<Module> L<File::Which|File::Which>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -64,13 +64,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:00:49 2025: C<Module> L<Digest::SHA|Digest::SHA>
+=head2 Mon Feb 16 22:47:39 2026: C<Module> L<Digest::SHA|Digest::SHA>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -86,13 +86,13 @@ C<EXE_FILES: shasum>
 
 =back
 
-=head2 Thu Feb 20 08:01:13 2025: C<Module> L<Encode::compat|Encode::compat>
+=head2 Mon Feb 16 22:47:41 2026: C<Module> L<Encode::compat|Encode::compat>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -108,13 +108,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:01:37 2025: C<Module> L<Encode::Locale|Encode::Locale>
+=head2 Mon Feb 16 22:47:45 2026: C<Module> L<Encode::Locale|Encode::Locale>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -130,13 +130,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:02:38 2025: C<Module> L<Win32::API|Win32::API>
+=head2 Mon Feb 16 22:47:56 2026: C<Module> L<Win32::API|Win32::API>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -152,13 +152,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:04:52 2025: C<Module> L<Win32API::Registry|Win32API::Registry>
+=head2 Mon Feb 16 22:48:02 2026: C<Module> L<Win32API::Registry|Win32API::Registry>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -174,13 +174,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:05:30 2025: C<Module> L<Win32::Console|Win32::Console>
+=head2 Mon Feb 16 22:48:06 2026: C<Module> L<Win32::Console|Win32::Console>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -196,13 +196,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:06:05 2025: C<Module> L<Win32::TieRegistry|Win32::TieRegistry>
+=head2 Mon Feb 16 22:48:09 2026: C<Module> L<Win32::TieRegistry|Win32::TieRegistry>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -218,13 +218,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:06:27 2025: C<Module> L<Win32::Shortcut|Win32::Shortcut>
+=head2 Mon Feb 16 22:48:15 2026: C<Module> L<Win32::Shortcut|Win32::Shortcut>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -240,13 +240,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:07:29 2025: C<Module> L<Cpanel::JSON::XS|Cpanel::JSON::XS>
+=head2 Mon Feb 16 22:48:31 2026: C<Module> L<Cpanel::JSON::XS|Cpanel::JSON::XS>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -254,7 +254,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 4.39>
+C<VERSION: 4.40>
 
 =item *
 
@@ -262,13 +262,13 @@ C<EXE_FILES: bin/cpanel_json_xs>
 
 =back
 
-=head2 Thu Feb 20 08:48:35 2025: C<Module> L<Test::Harness|Test::Harness>
+=head2 Mon Feb 16 22:48:59 2026: C<Module> L<Test::Harness|Test::Harness>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -276,7 +276,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 3.50>
+C<VERSION: 3.52>
 
 =item *
 
@@ -284,13 +284,13 @@ C<EXE_FILES: bin/prove>
 
 =back
 
-=head2 Thu Feb 20 08:57:28 2025: C<Module> L<Test::Needs|Test::Needs>
+=head2 Mon Feb 16 22:49:08 2026: C<Module> L<Test::Needs|Test::Needs>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -306,13 +306,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 08:57:55 2025: C<Module> L<JSON::MaybeXS|JSON::MaybeXS>
+=head2 Mon Feb 16 22:49:12 2026: C<Module> L<JSON::MaybeXS|JSON::MaybeXS>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -328,13 +328,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:01:19 2025: C<Module> L<Socket|Socket>
+=head2 Mon Feb 16 22:49:21 2026: C<Module> L<Socket|Socket>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -342,7 +342,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 2.038>
+C<VERSION: 2.040>
 
 =item *
 
@@ -350,13 +350,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:02:01 2025: C<Module> L<Date::Parse|Date::Parse>
+=head2 Mon Feb 16 22:49:25 2026: C<Module> L<Date::Parse|Date::Parse>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -372,13 +372,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:02:37 2025: C<Module> L<HTTP::Date|HTTP::Date>
+=head2 Mon Feb 16 22:49:28 2026: C<Module> L<HTTP::Date|HTTP::Date>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -394,13 +394,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:03:21 2025: C<Module> L<File::Listing|File::Listing>
+=head2 Mon Feb 16 22:49:36 2026: C<Module> L<File::Listing|File::Listing>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -416,13 +416,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:06:40 2025: C<Module> L<IO::HTML|IO::HTML>
+=head2 Mon Feb 16 22:49:39 2026: C<Module> L<IO::HTML|IO::HTML>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -438,13 +438,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:07:13 2025: C<Module> L<Try::Tiny|Try::Tiny>
+=head2 Mon Feb 16 22:49:43 2026: C<Module> L<Try::Tiny|Try::Tiny>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -460,13 +460,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:07:52 2025: C<Module> L<Test::Fatal|Test::Fatal>
+=head2 Mon Feb 16 22:49:47 2026: C<Module> L<Test::Fatal|Test::Fatal>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -474,7 +474,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 0.017>
+C<VERSION: 0.018>
 
 =item *
 
@@ -482,13 +482,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:08:24 2025: C<Module> L<LWP::MediaTypes|LWP::MediaTypes>
+=head2 Mon Feb 16 22:49:50 2026: C<Module> L<LWP::MediaTypes|LWP::MediaTypes>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -504,13 +504,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:09:35 2025: C<Module> L<Test::Warnings|Test::Warnings>
+=head2 Mon Feb 16 22:49:57 2026: C<Module> L<Test::Warnings|Test::Warnings>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -526,13 +526,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:30:01 2025: C<Module> L<MIME::Base32|MIME::Base32>
+=head2 Mon Feb 16 22:50:00 2026: C<Module> L<MIME::Base32|MIME::Base32>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -548,13 +548,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:30:33 2025: C<Module> L<URI|URI>
+=head2 Mon Feb 16 22:50:12 2026: C<Module> L<URI|URI>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -562,7 +562,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 5.31>
+C<VERSION: 5.34>
 
 =item *
 
@@ -570,13 +570,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:54:50 2025: C<Module> L<B::COW|B::COW>
+=head2 Mon Feb 16 22:50:16 2026: C<Module> L<B::COW|B::COW>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -592,13 +592,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:55:10 2025: C<Module> L<Clone|Clone>
+=head2 Mon Feb 16 22:50:21 2026: C<Module> L<Clone|Clone>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -614,13 +614,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:56:01 2025: C<Module> L<HTTP::Message|HTTP::Message>
+=head2 Mon Feb 16 22:50:29 2026: C<Module> L<HTTP::Message|HTTP::Message>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -628,7 +628,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 7.00>
+C<VERSION: 7.01>
 
 =item *
 
@@ -636,13 +636,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:56:56 2025: C<Module> L<HTML::Tagset|HTML::Tagset>
+=head2 Mon Feb 16 22:50:32 2026: C<Module> L<HTML::Tagset|HTML::Tagset>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -658,13 +658,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:57:36 2025: C<Module> L<HTML::Parser|HTML::Parser>
+=head2 Mon Feb 16 22:50:43 2026: C<Module> L<HTML::Parser|HTML::Parser>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -680,13 +680,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:58:06 2025: C<Module> L<WWW::RobotRules|WWW::RobotRules>
+=head2 Mon Feb 16 22:50:51 2026: C<Module> L<WWW::RobotRules|WWW::RobotRules>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -702,13 +702,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:58:41 2025: C<Module> L<HTTP::Negotiate|HTTP::Negotiate>
+=head2 Mon Feb 16 22:50:53 2026: C<Module> L<HTTP::Negotiate|HTTP::Negotiate>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -724,13 +724,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 09:59:17 2025: C<Module> L<Net::HTTP|Net::HTTP>
+=head2 Mon Feb 16 22:50:57 2026: C<Module> L<Net::HTTP|Net::HTTP>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -738,7 +738,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.23>
+C<VERSION: 6.24>
 
 =item *
 
@@ -746,13 +746,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 10:00:22 2025: C<Module> L<HTTP::Daemon|HTTP::Daemon>
+=head2 Mon Feb 16 22:51:04 2026: C<Module> L<HTTP::Daemon|HTTP::Daemon>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -768,13 +768,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 10:13:06 2025: C<Module> L<ExtUtils::Config|ExtUtils::Config>
+=head2 Mon Feb 16 22:51:07 2026: C<Module> L<ExtUtils::Config|ExtUtils::Config>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -790,13 +790,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 10:13:29 2025: C<Module> L<ExtUtils::Helpers|ExtUtils::Helpers>
+=head2 Mon Feb 16 22:51:10 2026: C<Module> L<ExtUtils::Helpers|ExtUtils::Helpers>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -812,13 +812,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 10:13:59 2025: C<Module> L<ExtUtils::InstallPaths|ExtUtils::InstallPaths>
+=head2 Mon Feb 16 22:51:13 2026: C<Module> L<ExtUtils::InstallPaths|ExtUtils::InstallPaths>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -826,7 +826,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 0.012>
+C<VERSION: 0.015>
 
 =item *
 
@@ -834,13 +834,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 10:16:07 2025: C<Module> L<Mozilla::CA|Mozilla::CA>
+=head2 Mon Feb 16 22:51:18 2026: C<Module> L<Mozilla::CA|Mozilla::CA>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -848,7 +848,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 20250202>
+C<VERSION: 20250602>
 
 =item *
 
@@ -856,13 +856,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 10:16:45 2025: C<Module> L<HTTP::Cookies|HTTP::Cookies>
+=head2 Mon Feb 16 22:51:22 2026: C<Module> L<HTTP::Cookies|HTTP::Cookies>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -878,13 +878,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Thu Feb 20 10:18:03 2025: C<Module> L<Test::RequiresInternet|Test::RequiresInternet>
+=head2 Mon Feb 16 22:51:28 2026: C<Module> L<Test::RequiresInternet|Test::RequiresInternet>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -900,13 +900,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Feb 21 09:53:38 2025: C<Module> L<Test::Deep|Test::Deep>
+=head2 Mon Feb 16 22:51:38 2026: C<Module> L<Test::Deep|Test::Deep>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -914,7 +914,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 1.204>
+C<VERSION: 1.205>
 
 =item *
 
@@ -922,13 +922,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Feb 21 10:11:35 2025: C<Module> L<Test::Requires|Test::Requires>
+=head2 Mon Feb 16 22:51:42 2026: C<Module> L<Test::Requires|Test::Requires>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -944,13 +944,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Feb 21 10:17:25 2025: C<Module> L<HTTP::CookieJar|HTTP::CookieJar>
+=head2 Mon Feb 16 22:51:46 2026: C<Module> L<HTTP::CookieJar|HTTP::CookieJar>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -966,13 +966,13 @@ C<EXE_FILES: >
 
 =back
 
-=head2 Fri Feb 21 10:18:47 2025: C<Module> L<LWP|LWP>
+=head2 Mon Feb 16 22:52:21 2026: C<Module> L<LWP|LWP>
 
 =over 4
 
 =item *
 
-C<installed into: d:\tlperl\site\lib>
+C<installed into: D:\a\tlperl-build\tlperl-build\work\inst\site\lib>
 
 =item *
 
@@ -980,7 +980,7 @@ C<LINKTYPE: dynamic>
 
 =item *
 
-C<VERSION: 6.77>
+C<VERSION: 6.81>
 
 =item *
 

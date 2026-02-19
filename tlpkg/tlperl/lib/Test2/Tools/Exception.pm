@@ -2,10 +2,10 @@ package Test2::Tools::Exception;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 use Carp qw/carp/;
-use Test2::API qw/context/;
+use Test2::API qw/context test2_add_pending_diag test2_clear_pending_diags/;
 
 our @EXPORT = qw/dies lives try_ok/;
 use base 'Exporter';
@@ -42,6 +42,8 @@ sub lives(&) {
         $err = $@;
     }
 
+    test2_add_pending_diag("Exception: $err");
+
     # If the eval failed we want to set $@ to the error.
     $@ = $err;
     return 0;
@@ -53,12 +55,13 @@ sub try_ok(&;$) {
     my $ok = &lives($code);
     my $err = $@;
 
+    my @diag = test2_clear_pending_diags();
+
     # Context should be obtained AFTER code is run so that events inside the
     # codeblock report inside the codeblock itself. This will also preserve $@
     # as thrown inside the codeblock.
     my $ctx = context();
-    chomp(my $diag = "Exception: $err");
-    $ctx->ok($ok, $name, [$diag]);
+    $ctx->ok($ok, $name, \@diag);
     $ctx->release;
 
     $@ = $err unless $ok;
@@ -139,7 +142,7 @@ probably already depend on that behavior.
 =head1 SOURCE
 
 The source code repository for Test2-Suite can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -159,7 +162,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

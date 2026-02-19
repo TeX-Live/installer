@@ -9,8 +9,8 @@
 
 /* Package name      : perl5
  * Source directory  : 
- * Configuration time: Sat Feb 15 21:04:51 2025
- * Configured by     : siepo
+ * Configuration time: Sun Feb 15 07:01:36 2026
+ * Configured by     : runneradmin
  * Target system     : 
  */
 
@@ -106,6 +106,12 @@
  *	the fcntl() function exists.
  */
 /*#define HAS_FCNTL		/ **/
+
+/* HAS_FDOPENDIR:
+ * This symbol, if defined, indicates that the fdopendir routine is
+ * available to open a directory descriptor.
+ */
+/*#define HAS_FDOPENDIR		/ **/
 
 /* HAS_FGETPOS:
  *	This symbol, if defined, indicates that the fgetpos routine is
@@ -1229,7 +1235,7 @@
  *	This symbol contains the ~name expanded version of ARCHLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define ARCHLIB "D:\\tlperl\\lib"		/**/
+#define ARCHLIB "D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\lib"		/**/
 /*#define ARCHLIB_EXP ""	/ **/
 
 /* BIN:
@@ -1244,8 +1250,8 @@
  *	This symbol, if defined, indicates that we'd like to relocate entries
  *	in @INC at run time based on the location of the perl binary.
  */
-#define BIN "D:\\tlperl\\bin"	/**/
-#define BIN_EXP "D:\\tlperl\\bin"	/**/
+#define BIN "D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\bin"	/**/
+#define BIN_EXP "D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\bin"	/**/
 #define PERL_RELOCATABLE_INC "undef"		/**/
 
 /* PERL_INC_VERSION_LIST:
@@ -1283,7 +1289,7 @@
  *	This symbol contains the ~name expanded version of PRIVLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define PRIVLIB "D:\\tlperl\\lib"		/**/
+#define PRIVLIB "D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\lib"		/**/
 #define PRIVLIB_EXP (PerlEnv_lib_path(PERL_VERSION_STRING, NULL))	/**/
 
 /* SITEARCH:
@@ -1301,7 +1307,7 @@
  *	This symbol contains the ~name expanded version of SITEARCH, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define SITEARCH "D:\\tlperl\\site\\lib"		/**/
+#define SITEARCH "D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\site\\lib"		/**/
 /*#define SITEARCH_EXP ""	/ **/
 
 /* SITELIB:
@@ -1324,7 +1330,7 @@
  *	removed.  The elements in inc_version_list (inc_version_list.U) can
  *	be tacked onto this variable to generate a list of directories to search.
  */
-#define SITELIB "D:\\tlperl\\site\\lib"		/**/
+#define SITELIB "D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\site\\lib"		/**/
 #define SITELIB_EXP (PerlEnv_sitelib_path(PERL_VERSION_STRING, NULL))	/**/
 #define SITELIB_STEM ""		/**/
 
@@ -1369,7 +1375,7 @@
  *	feature tests from Configure are generally more reliable.
  */
 #define OSNAME "MSWin32"		/**/
-#define OSVERS "10.0.26100.3194"		/**/
+#define OSVERS "10.0.26100.32230"		/**/
 
 /* CAT2:
  *	This macro concatenates 2 tokens together.
@@ -2827,7 +2833,7 @@
  *	This symbol, if defined, indicates that the isfinite routine is
  *	available to check whether a double is finite (non-infinity non-NaN).
  */
-/*#define HAS_ISFINITE		/ **/
+#define HAS_ISFINITE		/**/
 
 /* HAS_ISFINITEL:
  *	This symbol, if defined, indicates that the isfinitel routine is

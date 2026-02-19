@@ -1,6 +1,6 @@
 package Test2::Manual::Tooling::Plugin::ToolStarts;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 1;
 
@@ -96,7 +96,7 @@ L<Test2::Manual> - Primary index of the manual.
 =head1 SOURCE
 
 The source code repository for Test2-Manual can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -116,7 +116,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

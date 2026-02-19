@@ -1,8 +1,8 @@
-use v5.10.0;
+use v5.12.0;
 use strict;
 use warnings;
 
-package Test::Deep 1.204;
+package Test::Deep 1.205;
 # ABSTRACT: Extremely flexible deep comparison
 
 use Carp qw( confess );
@@ -655,7 +655,7 @@ Test::Deep - Extremely flexible deep comparison
 
 =head1 VERSION
 
-version 1.204
+version 1.205
 
 =head1 SYNOPSIS
 
@@ -716,13 +716,13 @@ Test::Deep has B<I<a lot>> of exports.  See L</EXPORTS> below.
 
 =head1 PERL VERSION
 
-This library should run on perls released even a long time ago.  It should work
-on any version of perl released in the last five years.
+This library should run on perls released even a long time ago.  It should
+work on any version of perl released in the last five years.
 
 Although it may work on older versions of perl, no guarantee is made that the
 minimum required version will not be increased.  The version may be increased
-for any reason, and there is no promise that patches will be accepted to lower
-the minimum required perl.
+for any reason, and there is no promise that patches will be accepted to
+lower the minimum required perl.
 
 =head1 EXAMPLES
 
@@ -1872,7 +1872,7 @@ Ricardo SIGNES <cpan@semiotic.systems>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Alexander Karelas Belden Lyman Daniel Böhmer David Steinbrunner Denis Ibaev Ed Adjei Fabrice Gabolde Felipe Gasper Fergal Daly George Hartzell Graham Knop Ivan Bessarabov José Joaquín Atria Karen Etheridge Kent Fredric Lance Wicks Matthew Horsfall Michael Hamlin Mohammad S Anwar Peter Haworth Philip J. Ludlam Ricardo Signes Zoffix Znet
+=for stopwords Alexander Karelas Belden Lyman Daniel Böhmer David Steinbrunner Denis Ibaev Ed Adjei Fabrice Gabolde Felipe Gasper Fergal Daly George Hartzell Graham Knop Ivan Bessarabov José Joaquín Atria Karen Etheridge Kent Fredric Lance Wicks Matthew Horsfall Michael Hamlin Mohammad S Anwar Peter Haworth Newman Philip J. Ludlam Ricardo Signes Zoffix Znet
 
 =over 4
 
@@ -1955,6 +1955,10 @@ Mohammad S Anwar <mohammad.anwar@yahoo.com>
 =item *
 
 Peter Haworth <peter.haworth@headforwards.com>
+
+=item *
+
+Peter Newman <peternewman@users.noreply.github.com>
 
 =item *
 

@@ -2,7 +2,7 @@ package Test2::Manual::Tooling::Testing;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 1;
 
@@ -38,7 +38,7 @@ No events or contexts generated within the intercept codeblock will have any
 effect on the outside testing state. The C<intercept> function completely
 isolates the tools called within.
 
-B<Note:> Plugins and things that effect global API state may not be fully
+B<Note:> Plugins and things that affect global API state may not be fully
 isolated. C<intercept> is intended specifically for event isolation.
 
 The C<intercept> function will return an arrayref containing all the events
@@ -121,7 +121,7 @@ L<Test2::Manual> - Primary index of the manual.
 =head1 SOURCE
 
 The source code repository for Test2-Manual can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -141,7 +141,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

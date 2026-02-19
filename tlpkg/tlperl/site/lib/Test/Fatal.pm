@@ -1,8 +1,8 @@
-use strict;
+use v5.12.0;
 use warnings;
-package Test::Fatal;
+package Test::Fatal 0.018;
 # ABSTRACT: incredibly simple helpers for testing code with exceptions
-$Test::Fatal::VERSION = '0.017';
+
 #pod =head1 SYNOPSIS
 #pod
 #pod   use Test::More;
@@ -59,12 +59,16 @@ our @EXPORT_OK = qw(exception success dies_ok lives_ok);
 #pod C<exception> takes a bare block of code and returns the exception thrown by
 #pod that block.  If no exception was thrown, it returns undef.
 #pod
-#pod B<Achtung!>  If the block results in a I<false> exception, such as 0 or the
-#pod empty string, Test::Fatal itself will die.  Since either of these cases
+#pod B<Achtung!>  If the block results in an I<unblessed false> exception, such as 0
+#pod or the empty string, Test::Fatal itself will die.  Since either of these cases
 #pod indicates a serious problem with the system under testing, this behavior is
-#pod considered a I<feature>.  If you must test for these conditions, you should use
-#pod L<Try::Tiny>'s try/catch mechanism.  (Try::Tiny is the underlying exception
-#pod handling system of Test::Fatal.)
+#pod considered a I<feature>. Note that this issue is only known to occur on perls
+#pod before 5.14.
+#pod
+#pod Exercise caution if you must test for these conditions: wrapping C<exception {
+#pod ... }> in an C<ok()> block will not give you the result you need, so make sure
+#pod you use C<is()> instead.  You can also directly use L<Try::Tiny>'s try/catch
+#pod mechanism, the underlying exception handling system of Test::Fatal.
 #pod
 #pod Note that there is no TAP assert being performed.  In other words, no "ok" or
 #pod "not ok" line is emitted.  It's up to you to use the rest of C<exception> in an
@@ -158,7 +162,7 @@ sub exception (&) {
     $code->();
     return undef;
   } catch {
-    return $_ if $_;
+    return $_ if $_ or ref; # allow objects with a false boolean overload
 
     my $problem = defined $_ ? 'false' : 'undef';
     Carp::confess("$problem exception caught by Test::Fatal::exception");
@@ -270,7 +274,7 @@ Test::Fatal - incredibly simple helpers for testing code with exceptions
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 
@@ -313,13 +317,13 @@ L<Test::Exception>.
 
 =head1 PERL VERSION
 
-This library should run on perls released even a long time ago.  It should work
-on any version of perl released in the last five years.
+This library should run on perls released even a long time ago.  It should
+work on any version of perl released in the last five years.
 
 Although it may work on older versions of perl, no guarantee is made that the
 minimum required version will not be increased.  The version may be increased
-for any reason, and there is no promise that patches will be accepted to lower
-the minimum required perl.
+for any reason, and there is no promise that patches will be accepted to
+lower the minimum required perl.
 
 =head1 FUNCTIONS
 
@@ -330,12 +334,16 @@ the minimum required perl.
 C<exception> takes a bare block of code and returns the exception thrown by
 that block.  If no exception was thrown, it returns undef.
 
-B<Achtung!>  If the block results in a I<false> exception, such as 0 or the
-empty string, Test::Fatal itself will die.  Since either of these cases
+B<Achtung!>  If the block results in an I<unblessed false> exception, such as 0
+or the empty string, Test::Fatal itself will die.  Since either of these cases
 indicates a serious problem with the system under testing, this behavior is
-considered a I<feature>.  If you must test for these conditions, you should use
-L<Try::Tiny>'s try/catch mechanism.  (Try::Tiny is the underlying exception
-handling system of Test::Fatal.)
+considered a I<feature>. Note that this issue is only known to occur on perls
+before 5.14.
+
+Exercise caution if you must test for these conditions: wrapping C<exception {
+... }> in an C<ok()> block will not give you the result you need, so make sure
+you use C<is()> instead.  You can also directly use L<Try::Tiny>'s try/catch
+mechanism, the underlying exception handling system of Test::Fatal.
 
 Note that there is no TAP assert being performed.  In other words, no "ok" or
 "not ok" line is emitted.  It's up to you to use the rest of C<exception> in an

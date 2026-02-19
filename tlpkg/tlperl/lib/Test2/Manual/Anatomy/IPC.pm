@@ -2,7 +2,7 @@ package Test2::Manual::Anatomy::IPC;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 1;
 
@@ -22,7 +22,7 @@ The IPC system is activated by loading L<Test2::IPC>. This makes hubs
 process/thread aware, and makes them forward events along to the parent
 process/thread as necessary.
 
-=head1 HOW DOES THE IPC SYSTEM EFFECT EVERYTHING?
+=head1 HOW DOES THE IPC SYSTEM AFFECT EVERYTHING?
 
 L<Test2::API> and L<Test2::API::Instance> have some behaviors that trigger if
 L<Test2::IPC> is loaded before the global state is initialized. Mainly an IPC
@@ -40,7 +40,7 @@ a process/thread/hub to read in any pending events that have been sent to it.
 
 =head1 HOW DOES THE DEFAULT IPC DRIVER WORK?
 
-The default IPC driver is L<Test2::API::Driver::Files>. This default driver,
+The default IPC driver is L<Test2::IPC::Driver::Files>. This default driver,
 when initialized, starts by creating a temporary directory. Any time an event
 needs to be sent to another process/thread/hub, the event will be written to a
 file using L<Storable>. The file is written with the destination process,
@@ -60,7 +60,7 @@ L<Test2::Manual> - Primary index of the manual.
 =head1 SOURCE
 
 The source code repository for Test2-Manual can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -80,7 +80,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

@@ -2,9 +2,9 @@ package Test2::Require::Threads;
 use strict;
 use warnings;
 
-use base 'Test2::Require';
+BEGIN { require Test2::Require; our @ISA = qw(Test2::Require) }
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 use Test2::Util qw/CAN_THREAD/;
 
@@ -63,7 +63,7 @@ also need to tell the harness that no tests should run and why.
 
 =over 4
 
-=item L<Test2::Require::CanFork>
+=item L<Test2::Require::Fork>
 
 Skip the test file if the system does not support forking.
 
@@ -76,7 +76,7 @@ Test2::Require::Threads uses L<Test2> under the hood.
 =head1 SOURCE
 
 The source code repository for Test2-Suite can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -96,7 +96,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

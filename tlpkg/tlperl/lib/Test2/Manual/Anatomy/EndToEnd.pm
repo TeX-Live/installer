@@ -2,7 +2,7 @@ package Test2::Manual::Anatomy::EndToEnd;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 1;
 
@@ -10,7 +10,7 @@ __END__
 
 =head1 NAME
 
-Test2::Manual::EndToEnd - Overview of Test2 from load to finish.
+Test2::Manual::Anatomy::EndToEnd - Overview of Test2 from load to finish.
 
 =head1 DESCRIPTION
 
@@ -155,12 +155,12 @@ If a new context was created, context-creation hooks will fire.
 =item $!, $@, $?, and $^E are restored.
 
 We make sure $!, $@, $?, and $^E are unchanged at this point so that changes we
-made will not effect anything else. This is done in case something inside the
+made will not affect anything else. This is done in case something inside the
 context construction accidentally changed these vars.
 
 =item The context is returned.
 
-You have a shiney new context object, or a clone of the existing context.
+You have a shiny new context object, or a clone of the existing context.
 
 =back
 
@@ -196,9 +196,9 @@ event can modify global test state.
 
 =item The global test state is updated to reflect the event.
 
-If the event effects test count then the count will be incremented. If the
+If the event affects test count then the count will be incremented. If the
 event causes failure then the failure count will be incremented. There are a
-couple other ways the global state can be effected as well.
+few other ways the global state can be affected as well.
 
 =item The event is sent to the formatter
 
@@ -346,7 +346,7 @@ L<Test2::Manual> - Primary index of the manual.
 =head1 SOURCE
 
 The source code repository for Test2-Manual can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -366,7 +366,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

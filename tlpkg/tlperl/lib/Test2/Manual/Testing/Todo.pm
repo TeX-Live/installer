@@ -2,7 +2,7 @@ package Test2::Manual::Testing::Todo;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 1;
 
@@ -71,7 +71,7 @@ todo).
 =head1 HOW THE TODO TOOLS WORK UNDER THE HOOD
 
 The L<Test2::Todo> library gets the current L<Test2::Hub> instance and adds a
-filter. The filter that is added will set the todo and effective pass fields on
+filter. The filter that is added will set the C<todo> and C<effective_pass> fields on
 any L<Test2::Event::Ok> events that pass through the hub. The filter also
 converts L<Test2::Event::Diag> events into L<Test2::Event::Note> events.
 
@@ -82,7 +82,7 @@ L<Test2::Manual> - Primary index of the manual.
 =head1 SOURCE
 
 The source code repository for Test2-Manual can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -102,7 +102,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

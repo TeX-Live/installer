@@ -1791,6 +1791,14 @@ From F<d_fdim.U>:
 This variable conditionally defines the C<HAS_FDIM> symbol, which
 indicates to the C program that the fdim() routine is available.
 
+=item C<d_fdopendir>
+
+From F<d_fdopendir.U>:
+
+This variable conditionally defines the C<HAS_FORK> symbol, which
+indicates that the fdopen routine is available to open a
+directory descriptor.
+
 =item C<d_fds_bits>
 
 From F<d_fd_set.U>:

@@ -10,7 +10,7 @@ use strict;
 use warnings;
 our ( %Config, $VERSION );
 
-$VERSION = "5.040001";
+$VERSION = "5.042000";
 
 # Skip @Config::EXPORT because it only contains %Config, which we special
 # case below as it's not a function. @Config::EXPORT won't change in the
@@ -56,11 +56,11 @@ sub import {
     return;
 }
 
-die "$0: Perl lib version (5.40.1) doesn't match executable '$^X' version ($])"
+die "$0: Perl lib version (5.42.0) doesn't match executable '$^X' version ($])"
     unless $^V;
 
-$^V eq 5.40.1
-    or die sprintf "%s: Perl lib version (5.40.1) doesn't match executable '$^X' version (%vd)", $0, $^V;
+$^V eq 5.42.0
+    or die sprintf "%s: Perl lib version (5.42.0) doesn't match executable '$^X' version (%vd)", $0, $^V;
 
 
 sub FETCH {
@@ -84,7 +84,7 @@ sub AUTOLOAD {
 
 # tie returns the object, so the value returned to require will be true.
 tie %Config, 'Config', {
-    archlibexp => 'D:\\tlperl\\lib',
+    archlibexp => 'D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\lib',
     archname => 'MSWin32-x64-multi-thread',
     cc => 'cl',
     d_readlink => 'define',
@@ -96,16 +96,16 @@ tie %Config, 'Config', {
     inc_version_list => '',
     intsize => '4',
     ldlibpthname => '',
-    libpth => '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\\\lib\\x64"',
+    libpth => '"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\\\lib\\x64"',
     osname => 'MSWin32',
-    osvers => '10.0.26100.3194',
+    osvers => '10.0.26100.32230',
     path_sep => ';',
-    privlibexp => 'D:\\tlperl\\lib',
-    scriptdir => 'D:\\tlperl\\bin',
-    sitearchexp => 'D:\\tlperl\\site\\lib',
-    sitelibexp => 'D:\\tlperl\\site\\lib',
+    privlibexp => 'D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\lib',
+    scriptdir => 'D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\bin',
+    sitearchexp => 'D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\site\\lib',
+    sitelibexp => 'D:\\a\\tlperl-build\\tlperl-build\\work\\inst\\site\\lib',
     so => 'dll',
     useithreads => 'define',
     usevendorprefix => undef,
-    version => '5.40.1',
+    version => '5.42.0',
 };

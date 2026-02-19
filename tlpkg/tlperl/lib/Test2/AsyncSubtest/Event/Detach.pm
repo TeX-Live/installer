@@ -2,7 +2,7 @@ package Test2::AsyncSubtest::Event::Detach;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 use base 'Test2::Event';
 use Test2::Util::HashBase qw/id/;
@@ -60,7 +60,7 @@ Used internally by L<Test2::AsyncSubtest>. No user serviceable parts inside.
 =head1 SOURCE
 
 The source code repository for Test2-AsyncSubtest can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -80,7 +80,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist7@gmail.comE<gt>.
+Copyright Chad Granum E<lt>exodist7@gmail.comE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

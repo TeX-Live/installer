@@ -4,7 +4,7 @@ use warnings;
 # this is for people who don't want Test::Builder to be loaded but want to
 # use eq_deeply. It's a bit hacky...
 
-package Test::Deep::NoTest 1.204;
+package Test::Deep::NoTest 1.205;
 # ABSTRACT: Use Test::Deep outside of the testing framework
 
 our $NoTest;
@@ -50,7 +50,7 @@ Test::Deep::NoTest - Use Test::Deep outside of the testing framework
 
 =head1 VERSION
 
-version 1.204
+version 1.205
 
 =head1 SYNOPSIS
 
@@ -67,13 +67,13 @@ Test::Builder so it can be used in ordinary non-test situations.
 
 =head1 PERL VERSION
 
-This library should run on perls released even a long time ago.  It should work
-on any version of perl released in the last five years.
+This library should run on perls released even a long time ago.  It should
+work on any version of perl released in the last five years.
 
 Although it may work on older versions of perl, no guarantee is made that the
 minimum required version will not be increased.  The version may be increased
-for any reason, and there is no promise that patches will be accepted to lower
-the minimum required perl.
+for any reason, and there is no promise that patches will be accepted to
+lower the minimum required perl.
 
 =head1 AUTHORS
 

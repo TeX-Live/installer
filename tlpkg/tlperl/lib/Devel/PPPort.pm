@@ -528,6 +528,7 @@ sorted by version> for that information.)
     PERL_SHORT_MIN
     PERL_SIGNALS_UNSAFE_FLAG
     PERL_STACK_OFFSET_DEFINED
+    PERL_STACK_REALIGN
     PERL_STATIC_INLINE
     PERL_UCHAR_MAX
     PERL_UCHAR_MIN
@@ -696,6 +697,7 @@ sorted by version> for that information.)
     SvPVX_const
     SvPVX_mutable
     SvPVx_nolen_const
+    SvREFCNT_dec_NN
     SvREFCNT_inc
     SvREFCNT_inc_NN
     SvREFCNT_inc_simple
@@ -737,8 +739,11 @@ sorted by version> for that information.)
     SvUVXx
     sv_vcatpvf
     sv_vcatpvf_mg
+    SvVOK
     sv_vsetpvf
     sv_vsetpvf_mg
+    SvVSTRING
+    sv_vstring_get
     SvVSTRING_mg
     switch_to_global_locale
     sync_locale
@@ -3923,11 +3928,13 @@ backported, first send mail to L<mailto:perl5-porters@perl.org>.
  PERLIO_FUNCS_CAST  (undocumented)
  PERLIO_FUNCS_DECL  (undocumented)
  PERL_STACK_OFFSET_DEFINED  (undocumented)
+ PERL_STACK_REALIGN  (undocumented)
  Stack_off_t  (undocumented)
  Stack_off_t_MAX  (undocumented)
  STORE_LC_NUMERIC_SET_STANDARD  (undocumented)
  STORE_NUMERIC_SET_STANDARD  (undocumented)
  SvPV_flags_const_nolen  (undocumented)
+ SvVSTRING  (undocumented)
  UNLOCK_NUMERIC_STANDARD  (undocumented)
  XSPROTO  (undocumented)
 
@@ -3985,7 +3992,7 @@ package Devel::PPPort;
 use strict;
 use vars qw($VERSION $data);
 
-$VERSION = '3.72';
+$VERSION = '3.73';
 
 sub _init_data
 {
@@ -4324,6 +4331,7 @@ SKIP
 |>    sv_setpvf_mg()            NEED_sv_setpvf_mg            NEED_sv_setpvf_mg_GLOBAL
 |>    sv_setpvf_mg_nocontext()  NEED_sv_setpvf_mg_nocontext  NEED_sv_setpvf_mg_nocontext_GLOBAL
 |>    sv_unmagicext()           NEED_sv_unmagicext           NEED_sv_unmagicext_GLOBAL
+|>    sv_vstring_get()          NEED_sv_vstring_get          NEED_sv_vstring_get_GLOBAL
 |>    utf8_to_uvchr_buf()       NEED_utf8_to_uvchr_buf       NEED_utf8_to_uvchr_buf_GLOBAL
 |>    vload_module()            NEED_vload_module            NEED_vload_module_GLOBAL
 |>    vmess()                   NEED_vmess                   NEED_vmess_GLOBAL
@@ -11111,6 +11119,7 @@ PerlSock_socketpair_cloexec|5.027008||Viu
 Perl_sqrt|5.006000|5.006000|n
 PERL_STACK_OFFSET_DEFINED|||piu
 PERL_STACK_OVERFLOW_CHECK|5.006000||Viu
+PERL_STACK_REALIGN|||piu
 PERL_STATIC_FORCE_INLINE|5.031011||Viu
 PERL_STATIC_FORCE_INLINE_NO_RET|5.031011||Viu
 PERL_STATIC_INLINE|5.013004|5.013004|poVn
@@ -13467,7 +13476,7 @@ sv_recode_to_utf8|5.007003|5.007003|
 sv_ref|5.023005|5.023005|
 SvREFCNT|5.003007|5.003007|
 SvREFCNT_dec|5.003007|5.003007|
-SvREFCNT_dec_NN|5.017007|5.017007|
+SvREFCNT_dec_NN|5.017007|5.017007|p
 SvREFCNT_IMMORTAL|5.017008||Viu
 SvREFCNT_inc|5.003007|5.003007|pn
 SvREFCNT_inc_NN|5.009004|5.003007|pn
@@ -13653,11 +13662,13 @@ sv_vcatpvf|5.006000|5.004000|p
 sv_vcatpvf_mg|5.006000|5.004000|p
 sv_vcatpvfn|5.004000|5.004000|
 sv_vcatpvfn_flags|5.017002|5.017002|
-SvVOK|5.008001|5.008001|
+SvVOK|5.008001|5.008001|p
 sv_vsetpvf|5.006000|5.004000|p
 sv_vsetpvf_mg|5.006000|5.004000|p
 sv_vsetpvfn|5.004000|5.004000|
+sv_vstring_get|||p
 SvVSTRING_mg|5.009004|5.003007|p
+SvVSTRING|||piu
 SvWEAKREF|5.006000||Viu
 SvWEAKREF_off|5.006000||Viu
 SvWEAKREF_on|5.006000||Viu
@@ -16532,6 +16543,19 @@ DPPP_(my_newCONSTSUB)(HV *stash, const char *name, SV *sv)
 #else
 #ifndef PERL_STATIC_INLINE
 #  define PERL_STATIC_INLINE             static
+#endif
+
+#endif
+
+/* work around a stack alignment bug in 32-bit GCC on Windows */
+#if defined(WIN32) && !defined(WIN64) && defined(__GNUC__)
+#ifndef PERL_STACK_REALIGN
+#  define PERL_STACK_REALIGN             __attribute__((force_align_arg_pointer))
+#endif
+
+#else
+#ifndef PERL_STACK_REALIGN
+#  define PERL_STACK_REALIGN
 #endif
 
 #endif
@@ -19954,6 +19978,11 @@ DPPP_(my_load_module)(U32 flags, SV *name, SV *ver, ...)
           (void)((PL_Sv=(SV*)(sv)) ? ++(SvREFCNT(PL_Sv)) : 0)
 #  endif
 #endif
+
+/* not as efficient as the real thing, but it works */
+#ifndef SvREFCNT_dec_NN
+#  define SvREFCNT_dec_NN(sv)            SvREFCNT_dec(sv)
+#endif
 #ifndef SvREFCNT_inc_simple_void
 #  define SvREFCNT_inc_simple_void(sv)   STMT_START { if (sv) SvREFCNT(sv)++; } STMT_END
 #endif
@@ -20616,6 +20645,49 @@ DPPP_(my_sv_unmagicext)(pTHX_ SV *const sv, const int type, const MGVTBL *vtbl)
 }
 
 #endif
+#endif
+#ifndef SvVSTRING
+#  define SvVSTRING(sv, len)             (sv_vstring_get(sv, &(len)))
+#endif
+
+#ifndef SvVOK
+#  define SvVOK(sv)                      (FALSE)
+#endif
+
+#if !defined(sv_vstring_get)
+
+#if defined(NEED_sv_vstring_get)
+static const char * DPPP_(my_sv_vstring_get)(pTHX_ SV * sv, STRLEN * lenp);
+static
+#else
+extern const char * DPPP_(my_sv_vstring_get)(pTHX_ SV * sv, STRLEN * lenp);
+#endif
+
+#if defined(NEED_sv_vstring_get) || defined(NEED_sv_vstring_get_GLOBAL)
+
+#ifdef sv_vstring_get
+#  undef sv_vstring_get
+#endif
+#define sv_vstring_get(a,b) DPPP_(my_sv_vstring_get)(aTHX_ a,b)
+#define Perl_sv_vstring_get DPPP_(my_sv_vstring_get)
+
+
+const char *
+DPPP_(my_sv_vstring_get)(pTHX_ SV *sv, STRLEN *lenp)
+{
+#ifdef SvVSTRING_mg
+    MAGIC *mg = SvVSTRING_mg(sv);
+    if (!mg) return NULL;
+
+    if (lenp) *lenp = mg->mg_len;
+    return mg->mg_ptr;
+#else
+    return NULL;
+#endif
+}
+
+#endif
+
 #endif
 
 #ifdef USE_ITHREADS

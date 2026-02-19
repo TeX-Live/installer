@@ -1,5 +1,5 @@
 package Module::Build::Tiny;
-$Module::Build::Tiny::VERSION = '0.051';
+$Module::Build::Tiny::VERSION = '0.052';
 use strict;
 use warnings;
 use Exporter 5.57 'import';
@@ -61,12 +61,12 @@ sub process_xs {
 	my $version = $options->{meta}->version;
 	require ExtUtils::CBuilder;
 	my $builder = ExtUtils::CBuilder->new(config => $options->{config}->values_set);
-	my @objects = $builder->compile(source => $c_file, defines => { VERSION => qq/"$version"/, XS_VERSION => qq/"$version"/ }, include_dirs => [ curdir, 'include', 'src', dirname($source) ]);
+	my @objects = $builder->compile(source => $c_file, defines => { VERSION => qq/"$version"/, XS_VERSION => qq/"$version"/ }, include_dirs => [ curdir, 'include', 'src', dirname($source) ], extra_compiler_flags => $options->{extra_compiler_flags});
 
 	my $o = $options->{config}->get('_o');
 	for my $c_source (@{ $c_files }) {
 		my $o_file = catfile($tempdir, basename($c_source, '.c') . $o);
-		push @objects, $builder->compile(source => $c_source, include_dirs => [ curdir, 'include', 'src', dirname($c_source) ])
+		push @objects, $builder->compile(source => $c_source, include_dirs => [ curdir, 'include', 'src', dirname($c_source) ], extra_compiler_flags => $options->{extra_compiler_flags});
 	}
 
 	require DynaLoader;
@@ -74,7 +74,7 @@ sub process_xs {
 
 	mkpath($archdir, $options->{verbose}, oct '755') unless -d $archdir;
 	my $lib_file = catfile($archdir, $mod2fname->(\@parts) . '.' . $options->{config}->get('dlext'));
-	return $builder->link(objects => \@objects, lib_file => $lib_file, module_name => join '::', @parts);
+	return $builder->link(objects => \@objects, lib_file => $lib_file, extra_linker_flags => $options->{extra_linker_flags}, module_name => join '::', @parts);
 }
 
 sub find {
@@ -161,11 +161,14 @@ my %actions = (
 	},
 );
 
+my @options = qw/install_base=s install_path=s% installdirs=s destdir=s prefix=s config=s% uninst:1 verbose:1 dry_run:1 pureperl-only:1 create_packlist=i jobs=i extra_compiler_flags=s extra_linker_flags=s/;
+
 sub get_arguments {
 	my @sources = @_;
 	my %opt;
-	GetOptionsFromArray($_, \%opt, qw/install_base=s install_path=s% installdirs=s destdir=s prefix=s config=s% uninst:1 verbose:1 dry_run:1 pureperl-only:1 create_packlist=i jobs=i/) for (@sources);
+	GetOptionsFromArray($_, \%opt, @options) for @sources;
 	$_ = detildefy($_) for grep { defined } @opt{qw/install_base destdir prefix/}, values %{ $opt{install_path} };
+	$_ = [ split_like_shell($_) ] for grep { defined } @opt{qw/extra_compiler_flags extra_linker_flags/};
 	$opt{config} = ExtUtils::Config->new($opt{config});
 	$opt{meta} = get_meta();
 	$opt{install_paths} = ExtUtils::InstallPaths->new(%opt, dist_name => $opt{meta}->name);
@@ -219,7 +222,7 @@ Module::Build::Tiny - A tiny replacement for Module::Build
 
 =head1 VERSION
 
-version 0.051
+version 0.052
 
 =head1 SYNOPSIS
 

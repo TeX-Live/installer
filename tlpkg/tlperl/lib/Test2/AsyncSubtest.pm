@@ -4,7 +4,7 @@ use warnings;
 
 use Test2::IPC;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 our @CARP_NOT = qw/Test2::Util::HashBase/;
 
@@ -713,7 +713,7 @@ L<Test2::Event::Ok> event.
 =item silent => 1
 
 This will prevent finish from generating a final L<Test2::Event::Subtest>
-event. This effectively ends the subtest without it effecting the parent
+event. This effectively ends the subtest without it affecting the parent
 subtest (or top level test).
 
 =item no_plan => 1
@@ -793,7 +793,7 @@ C<< $ast->run_fork >>, or C<< $ast->run_thread >>.
 =head1 SOURCE
 
 The source code repository for Test2-AsyncSubtest can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -813,7 +813,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist7@gmail.comE<gt>.
+Copyright Chad Granum E<lt>exodist7@gmail.comE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

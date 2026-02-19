@@ -2,7 +2,7 @@ package Test2::Util::Importer;
 use strict; no strict 'refs';
 use warnings; no warnings 'once';
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 my %SIG_TO_SLOT = (
     '&' => 'CODE',
@@ -802,7 +802,7 @@ See L<Importer>.
 
 =head1 COPYRIGHT
 
-Copyright 2023 Chad Granum E<lt>exodist7@gmail.comE<gt>.
+Copyright Chad Granum E<lt>exodist7@gmail.comE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

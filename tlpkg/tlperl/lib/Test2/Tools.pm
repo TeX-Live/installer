@@ -2,7 +2,7 @@ package Test2::Tools;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 1;
 
@@ -22,9 +22,9 @@ Tools are packages that export test functions, typically all related to a
 specific aspect of testing. If you have a couple different categories of
 exports then you may want to break them into separate modules.
 
-Tools should export testing functions. Loading tools B<should not> have side
+Tools should export testing functions. Loading tools B<should not> have side-
 effects, or alter the behavior of other tools. If you want to alter behaviors
-or create side effects then you probably want to write a L<Test2::Plugin>.
+or create side-effects then you probably want to write a L<Test2::Plugin>.
 
 =head1 FAQ
 
@@ -87,7 +87,7 @@ See L<Test2::API::Context> for documentation on what the C<$ctx> object can do.
 =head1 SOURCE
 
 The source code repository for Test2-Suite can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -107,7 +107,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

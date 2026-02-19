@@ -2,7 +2,7 @@ package Test2::Manual::Anatomy::Hubs;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 1;
 
@@ -56,10 +56,10 @@ connection to the parent hub, and usually does not have a formatter.
 
 =head1 WHEN SHOULD I ADD A HUB TO THE STACK?
 
-Any time you want to intercept or block events from effecting the test state.
+Any time you want to intercept or block events from affecting the test state.
 Adding a new hub is essentially a way to create a sandbox where you have
 absolute control over what events do. Adding a new hub insures that the main
-test state will not be effected.
+test state will not be affected.
 
 =head1 WHERE IS THE STACK?
 
@@ -90,7 +90,7 @@ L<Test2::Manual> - Primary index of the manual.
 =head1 SOURCE
 
 The source code repository for Test2-Manual can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -110,7 +110,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

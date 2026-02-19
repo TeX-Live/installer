@@ -1,12 +1,12 @@
 package ExtUtils::InstallPaths;
-$ExtUtils::InstallPaths::VERSION = '0.012';
-use 5.006;
+$ExtUtils::InstallPaths::VERSION = '0.015';
+use 5.008;
 use strict;
 use warnings;
 
 use File::Spec ();
 use Carp ();
-use ExtUtils::Config 0.002;
+use ExtUtils::Config 0.009;
 
 my %complex_accessors = map { $_ => 1 } qw/prefix_relpaths install_sets/;
 my %hash_accessors = map { $_ => 1 } qw/install_path install_base_relpaths original_prefix /;
@@ -69,6 +69,9 @@ my %filter = (
 sub new {
 	my ($class, %args) = @_;
 	my $config = $args{config} || ExtUtils::Config->new;
+	if ($config->get('installsitescript') eq '') {
+		$config = $config->but({ installsitescript => $config->get('installsitebin') });
+	}
 	my %self = (
 		config => $config,
 		map { $_ => exists $args{$_} ? $filter{$_} ? $filter{$_}->($args{$_}, $config) : $args{$_} : ref $defaults{$_} ? $defaults{$_}->($config) : $defaults{$_} } keys %defaults,
@@ -98,11 +101,10 @@ for my $attribute (keys %defaults) {
 	};
 }
 
-my $script = $] > 5.008000 ? 'script' : 'bin';
 my @install_sets_keys = qw/lib arch bin script bindoc libdoc binhtml libhtml/;
-my @install_sets_tail = ('bin', $script, qw/man1dir man3dir html1dir html3dir/);
+my @install_sets_tail = qw/bin script man1dir man3dir html1dir html3dir/;
 my %install_sets_values = (
-	core   => [ qw/privlib archlib /, @install_sets_tail ],
+	core   => [ qw/privlib archlib/, @install_sets_tail ],
 	site   => [ map { "site$_" } qw/lib arch/, @install_sets_tail ],
 	vendor => [ map { "vendor$_" } qw/lib arch/, @install_sets_tail ],
 );
@@ -342,7 +344,7 @@ sub install_map {
 
 	my (%map, @skipping);
 	foreach my $type (keys %localdir_for) {
-		next if not -e $localdir_for{$type};
+		next if not -e $localdir_for{$type} and not $self->is_default_installable($type);
 		if (my $dest = $self->install_destination($type)) {
 			$map{$localdir_for{$type}} = $dest;
 		} else {
@@ -404,7 +406,7 @@ ExtUtils::InstallPaths - Build.PL install path logic made easy
 
 =head1 VERSION
 
-version 0.012
+version 0.015
 
 =head1 SYNOPSIS
 
@@ -611,7 +613,7 @@ Ken Williams <kwilliams@cpan.org>
 
 =item *
 
-Leon Timmermans <leont@cpan.org>
+Leon Timmermans <fawaka@gmail.com>
 
 =back
 

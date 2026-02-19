@@ -2,25 +2,41 @@ package Test2::Tools::Warnings;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
-use Test2::API qw/context/;
+use Carp qw/carp/;
+use Test2::API qw/context test2_add_pending_diag/;
 
 our @EXPORT = qw/warns warning warnings no_warnings/;
 use base 'Exporter';
 
 sub warns(&) {
     my $code = shift;
+
+    defined wantarray or carp "Useless use of warns() in void context";
+
     my $warnings = 0;
     local $SIG{__WARN__} = sub { $warnings++ };
     $code->();
     return $warnings;
 }
 
-sub no_warnings(&) { return !&warns(@_) }
+sub no_warnings(&) {
+    defined wantarray or carp "Useless use of no_warnings() in void context";
+
+    my $warnings = &warnings(@_);
+    return 1 if !@$warnings;
+
+    test2_add_pending_diag(@$warnings);
+
+    return 0;
+}
 
 sub warning(&) {
     my $code = shift;
+
+    defined wantarray or carp "Useless use of warning() in void context";
+
     my @warnings;
     {
         local $SIG{__WARN__} = sub { push @warnings => @_ };
@@ -40,6 +56,8 @@ sub warning(&) {
 
 sub warnings(&) {
     my $code = shift;
+
+    defined wantarray or carp "Useless use of warnings() in void context";
 
     my @warnings;
     local $SIG{__WARN__} = sub { push @warnings => @_ };
@@ -123,7 +141,7 @@ Return true if the block has no warnings. Returns false if there are warnings.
 =head1 SOURCE
 
 The source code repository for Test2-Suite can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -143,7 +161,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

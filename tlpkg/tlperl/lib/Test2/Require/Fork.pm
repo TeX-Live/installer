@@ -4,7 +4,7 @@ use warnings;
 
 use base 'Test2::Require';
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 use Test2::Util qw/CAN_FORK/;
 
@@ -69,11 +69,11 @@ tell the harness that no tests should run and why.
 
 =over 4
 
-=item L<Test2::Require::CanReallyfork>
+=item L<Test2::Require::RealFork>
 
 Similar to this module, but will skip on any perl that only has fork emulation.
 
-=item L<Test2::Require::CanThread>
+=item L<Test2::Require::Threads>
 
 Skip the test file if the system does not support threads.
 
@@ -82,7 +82,7 @@ Skip the test file if the system does not support threads.
 =head1 SOURCE
 
 The source code repository for Test2-Suite can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -102,7 +102,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

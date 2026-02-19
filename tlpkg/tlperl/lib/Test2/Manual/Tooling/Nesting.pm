@@ -2,7 +2,7 @@ package Test2::Manual::Tooling::Nesting;
 use strict;
 use warnings;
 
-our $VERSION = '0.000162';
+our $VERSION = '1.302210';
 
 1;
 
@@ -80,7 +80,7 @@ the start of your function, and release it at the end... yes it is that simple.
 
 See, that was easy. With these 2 additional lines we know have proper file+line
 reporting. The nested tools will find the context we acquired here, and know to
-use it's file and line numbers.
+use its file and line numbers.
 
 =head3 THE OLD WAY (DO NOT DO THIS ANYMORE)
 
@@ -110,7 +110,7 @@ L<Test2::Manual> - Primary index of the manual.
 =head1 SOURCE
 
 The source code repository for Test2-Manual can be found at
-F<https://github.com/Test-More/Test2-Suite/>.
+F<https://github.com/Test-More/test-more/>.
 
 =head1 MAINTAINERS
 
@@ -130,7 +130,7 @@ F<https://github.com/Test-More/Test2-Suite/>.
 
 =head1 COPYRIGHT
 
-Copyright 2018 Chad Granum E<lt>exodist@cpan.orgE<gt>.
+Copyright Chad Granum E<lt>exodist@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-package Test::Deep::ListMethods 1.204;
+package Test::Deep::ListMethods 1.205;
 
 use base 'Test::Deep::Methods';
 
@@ -35,17 +35,17 @@ Test::Deep::ListMethods
 
 =head1 VERSION
 
-version 1.204
+version 1.205
 
 =head1 PERL VERSION
 
-This library should run on perls released even a long time ago.  It should work
-on any version of perl released in the last five years.
+This library should run on perls released even a long time ago.  It should
+work on any version of perl released in the last five years.
 
 Although it may work on older versions of perl, no guarantee is made that the
 minimum required version will not be increased.  The version may be increased
-for any reason, and there is no promise that patches will be accepted to lower
-the minimum required perl.
+for any reason, and there is no promise that patches will be accepted to
+lower the minimum required perl.
 
 =head1 AUTHORS
 
