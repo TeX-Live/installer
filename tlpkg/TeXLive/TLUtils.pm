@@ -2269,7 +2269,9 @@ Run the ConTeXt cache generation commands, using C<$bindir> and
 C<$progext> to check if commands can be run. Use the function reference
 C<$run_postinst_cmd> to actually run the commands. The return status is
 zero if all succeeded, nonzero otherwise. If the main ConTeXt program
-(C<luametatex>) cannot be run at all, the return status is zero.
+(C<luametatex>) cannot be run at all, the return status is zero. 
+
+This is called from both C<install-tl> and C<tlmgr>.
 
 Functions C<info> and C<debug> are called with status reports.
 
@@ -2292,33 +2294,23 @@ sub update_context_cache {
   my $lmtx = "$bindir/luametatex$progext";
   if (TeXLive::TLUtils::system_ok("$lmtx --version")) {
     info("setting up ConTeXt caches: ");
+    # Max advises (19feb26) that mtxrun --generate and context --generate
+    # are the same; mtxrun is preferred.
     $errcount += &$run_postinst_cmd("mtxrun --generate");
     #
     # If mtxrun failed, don't bother trying more.
     if ($errcount == 0) {
-      $errcount += &$run_postinst_cmd("context --luatex --generate");
+      $errcount += &$run_postinst_cmd("mtxrun --luatex --generate");
       #
-      # This is for finding fonts by font name (the --generate suffices
-      # for file name). Although ConTeXt does some automatic cache
-      # regeneration, Hans advises that this manual reload can help, and
-      # should be no harm.
-      # https://wiki.contextgarden.net/Use_the_fonts_you_want
-      # https://wiki.contextgarden.net/Mtxrun#base and #fonts
-      $errcount += &$run_postinst_cmd("mtxrun --script fonts --reload");
+      # In the past, we ran
+      #   mtxrun --script fonts --reload
+      # but Max advises that it's better to omit, and let ConTeXt's
+      # automatic regeneration do it.
       #
-      # If context succeeded too, try luajittex. Missing on some platforms.
-      # Although we build luajittex normally, instead of importing the
-      # binary, so testing for file existence should suffice, we may as
-      # well test execution since it's just as easy.
-      # 
-      if ($errcount == 0) {
-        my $luajittex = "$bindir/luajittex$progext";
-        if (TeXLive::TLUtils::system_ok("$luajittex --version")) {
-          $errcount += &$run_postinst_cmd("context --luajittex --generate");
-        } else {
-          debug("skipped luajittex cache setup, can't run $luajittex\n");
-        }
-      }
+      # In the past, we ran
+      #   context --luajittex --generate
+      # but Max advises that it has few if any users, and should be able
+      # to bootstrap its own caches if needed.
     }
   }
   return $errcount;
