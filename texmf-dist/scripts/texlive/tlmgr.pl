@@ -4139,7 +4139,7 @@ sub show_one_package_csv {
       }
     } elsif ($d eq "longdesc") {
       my $str = $tlp->longdesc;
-      if (defined $tlp->shortdesc) {
+      if (defined $tlp->longdesc) {
         $str =~ s/"/\\"/g;
         $str =~ s/\n/\\n/g;
         push @out, "\"$str\"";
