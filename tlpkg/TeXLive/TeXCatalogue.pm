@@ -160,6 +160,7 @@ sub initialize {
     }
   }
   # parse the keyval/topic entries
+  # old style before change in 2026-03
   foreach my $node ($parser->find('/entry/keyval')->get_nodelist) {
     my $k = $parser->findvalue('./@key',$node);
     my $v = $parser->findvalue('./@value',$node);
@@ -167,6 +168,11 @@ sub initialize {
     if ("$k" eq 'topic') {
       push @{$self->{'topic'}}, "$v";
     }
+  }
+  # new style after 2026-03
+  foreach my $node ($parser->find('/entry/topic')->get_nodelist) {
+    my $id = $parser->findvalue('./@id',$node);
+    push @{$self->{'topic'}}, "$id";
   }
 }
 
