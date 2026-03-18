@@ -2296,11 +2296,13 @@ sub update_context_cache {
     info("setting up ConTeXt caches: ");
     # Max advises (19feb26) that mtxrun --generate and context --generate
     # are the same; mtxrun is preferred.
+    # Max (18mar26): Things are actually more complicated than this; see
+    # https://mailman.ntg.nl/archives/list/ntg-context@ntg.nl/message/HUILWUINUYPUFX5MZBFFIBQZSCFQDOOK/
     $errcount += &$run_postinst_cmd("mtxrun --generate");
     #
     # If mtxrun failed, don't bother trying more.
     if ($errcount == 0) {
-      $errcount += &$run_postinst_cmd("mtxrun --luatex --generate");
+      $errcount += &$run_postinst_cmd("context --generate --luatex");
       #
       # In the past, we ran
       #   mtxrun --script fonts --reload
