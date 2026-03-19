@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TeXCatalogue - module for accessing the TeX Catalogue
-# Copyright 2007-2021 Norbert Preining
+# Copyright 2007-2026 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 # 
@@ -188,16 +188,6 @@ sub beautify {
   $txt =~ s/\s+$//g; # rm trailing whitespace
   $txt =~ s/\s\s+/ /g; # collapse multiple whitespace characters to one
   $txt =~ s/\t/ /g;    # tabs to spaces
-  
-  # one last bit of horribleness: there is one url in the descriptions
-  # which is longer than our multilineformat format (in TLPOBJ). The
-  # result is that it is forcibly broken. Apparently there is no way in
-  # Perl to override that. This makes it impossible to get identical
-  # longdesc results. Turns out that removing the "http://" prefix
-  # shortens it enough to fit, so do that. The better solution would be
-  # to use Text::Wrap or some other text-filling code, but going for
-  # quick and dirty here.
-  $txt =~ s,http://grants.nih.gov/,grants.nih.gov/,g;
 
   return $txt;
 }
@@ -316,7 +306,7 @@ sub initialize {
     # for debugging, nice to skip everything but: next unless /pst-node/;
     open(my $io,"<$_") or die "open($_) failed: $!";
     our $tce;
-    # the XML parser die's on malformed xml entries, so we catch
+    # the XML parser dies on malformed xml entries, so we catch
     # that and continue, simply skipping the entry
     eval { $tce = TeXLive::TeXCatalogue::Entry->new( 'ioref' => $io ); };
     if ($@) {

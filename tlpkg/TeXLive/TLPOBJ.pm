@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPOBJ.pm - module for using tlpobj files
-# Copyright 2007-2025 Norbert Preining
+# Copyright 2007-2026 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -286,9 +286,9 @@ sub writeout {
   # don't want to use FileHandle.pm; see man perlform
   #format_name $fd "multilineformat";
   select((select($fd),$~ = "multilineformat")[0]);
-  $fd->format_lines_per_page (99999); # no pages in this format
+  $fd->format_lines_per_page (99999); # avoid pagination from format
   if (defined($self->{'longdesc'})) {
-    $_tmp = "$self->{'longdesc'}";
+    $_tmp = "$self->{'longdesc'}"; # $_tmp is used in multilineformat
     write $fd;  # use that multilineformat
   }
   if (defined($self->{'depends'})) {
