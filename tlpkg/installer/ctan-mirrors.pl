@@ -34,14 +34,12 @@ $mirrors = {
       'https://in.ctanmirror.typescholar.com/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
-      'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Japan' => {
       'https://ctan.tikz.jp/' => 1,
-      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.aria-on-the-planet.es/CTAN/' => 1,
