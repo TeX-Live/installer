@@ -31,7 +31,6 @@ $mirrors = {
     'India' => {
       'https://2.mirrors.in.sahilister.net/ctan/' => 1,
       'https://3.mirrors.in.sahilister.net/ctan/' => 1,
-      'https://in.ctanmirror.typescholar.com/' => 1,
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
       'https://mirrors.sukhala.in/ctan/' => 1,
@@ -84,6 +83,7 @@ $mirrors = {
       'https://ctan.mirror.cherryfox.dev/' => 1,
       'https://mirror.5i.fi/tex-archive/' => 1,
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
+      'https://www.texlive.info/CTAN/' => 1,
     },
     'France' => {
       'https://ctan.ceremade.dauphine.fr/' => 1,
@@ -113,6 +113,7 @@ $mirrors = {
       'https://mirror.funkfreundelandshut.de/latex/' => 1,
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
       'https://mirror.rabisu.com/mirrors/CTAN/' => 1,
+      'https://satztexnik.com/tex-archive/' => 1,
     },
     'Greece' => {
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
@@ -181,7 +182,6 @@ $mirrors = {
     },
     'USA' => {
       'http://ctan.mirrors.hoobly.com/' => 1,
-      'http://mirror.clarkson.edu/ctan/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://ctan.math.washington.edu/tex-archive/' => 1,
