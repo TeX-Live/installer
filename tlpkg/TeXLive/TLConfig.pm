@@ -256,8 +256,13 @@ our %TLPDBSettings = (
 
 our $WindowsMainMenuName = "TeX Live $ReleaseYear";
 
-# Comma-separated list of engines which do not exist on all platforms.
-our $PartialEngineSupport = "luametatex,luajithbtex,luajittex,mfluajit";
+# Comma-separated list of engines which do not exist in all installations.
+# The lua versions are not buildable everywhere.
+# Although XeTeX can be built everywhere, people can install TL without
+# it, and we don't want that to cause an error from fmtutil.
+# Specifically, context-legacy has a cont-en.fmt and csplain has a
+# pdfcsplain.fmt which are built with XeTeX.
+our $PartialEngineSupport = "luametatex,luajithbtex,luajittex,mfluajit,xetex";
 
 # Flags for error handling across the scripts and modules
 # all fine
