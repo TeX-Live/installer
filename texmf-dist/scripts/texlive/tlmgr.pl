@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # $Id$
-# Copyright 2008-2025 Norbert Preining
+# Copyright 2008-2026 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 # 
@@ -6057,6 +6057,8 @@ sub check_executes {
         $pkg = "luajittex";
       } elsif ($engine eq "mfluajit") {
         $pkg = "mflua";
+      } elsif ($engine eq "xetex") {
+        $pkg = "xetex";
       } else {
         die "unknown partial engine $engine, goodbye"; # should not happen
       }
