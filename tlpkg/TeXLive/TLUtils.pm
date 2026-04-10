@@ -834,7 +834,9 @@ sub run_cmd_with_log {
     info ("done\n");
   } else {
     info ("failed\n");
-    tlwarn ("$0: $cmd failed (status $ret): $!\n");
+    tlwarn ("$0: $cmd failed: status $ret",
+            $! ? ", error: $!" : "", # usually $! will not be set
+            ")\n");
     $ret = 1;
   }
   &$logfn ($out); # log the output

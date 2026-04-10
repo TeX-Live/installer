@@ -305,6 +305,7 @@ my $opt_print_arch = 0;
 my $opt_profile = "";
 my $opt_scheme = "";
 my $opt_src_install = 1;
+my $opt_strict = 0;
 my $opt_texdir = "";
 my $opt_texuserdir = "";
 my $opt_version = 0;
@@ -407,6 +408,7 @@ GetOptions(
            "scheme|s=s"                  => \$opt_scheme,
            "select-repository"           => \$::opt_select_repository,
            "src-install!"                => \$opt_src_install,
+           "strict!"                     => \$opt_strict,
            "tcl",                       # handled by wrapper
            "texdir=s"                    => \$opt_texdir,
            "texmfconfig=s"               => \$pathopts{'texmfconfig'},
@@ -1166,7 +1168,7 @@ sub do_installation {
 
   # create_welcome(); already invoked in main program
   if (@::WARNLINES) {
-    unshift @::WARNLINES, ("\nSummary of warnings:\n");
+    unshift @::WARNLINES, "\nSummary of warnings (see log file):\n";
   }
   my $status = 0;
   if ($errcount > 0) {
@@ -1185,7 +1187,13 @@ sub short_time {
   return "[$short] ";
 }
 
-# We run a postinstall command here.  We ignore the return value?
+# We run a postinstall command here.  We ignore the return value,
+# because it seems better to let the install run to completion and fix
+# up afterwards as needed, instead of possibly doing a whole download
+# again. But maybe this is wrong.
+# 
+# We do check the log for errors when running fmtutil, since that will
+# definitely cause future tlmgr updates to fail.
 # 
 sub run_postinst_cmd {
   my ($cmd) = @_;
@@ -1193,7 +1201,17 @@ sub run_postinst_cmd {
   log ("\n[$tim] running $cmd\n");
   print &short_time ();
   # actually run the command, with output to the log file.
-  &TeXLive::TLUtils::run_cmd_with_log ($cmd, \&log);
+  my $status = &TeXLive::TLUtils::run_cmd_with_log ($cmd, \&log);
+  if ($status != 0) {
+    warn ("Post-installation command above failed.\n");
+    warn ("See log file: $vars{'TEXDIR'}/install-tl.log\n");
+    if ($opt_strict) {
+      tldie ("$0: exiting since --strict was specified.\n");
+    } else {
+      print "*** Continuing installation since --strict was not specified;\n";
+      print "*** TeX may work, but future tlmgr update runs will fail.\n";
+    }
+  }
   #
   $tim = localtime ();
   log ("\n[$tim] --end of output of $cmd\n");
@@ -1391,7 +1409,7 @@ operations might be disturbed.\n\n";
     if (-x "$plat_bindir/fmtutil-sys$progext") {
       info("pre-generating all format files, be patient...\n");
       $errcount += run_postinst_cmd(
-                     "fmtutil-sys $common_fmtutil_args --no-strict --all");
+                     "fmtutil-sys $common_fmtutil_args --all");
     } else {
       info("not running fmtutil-sys (script not installed)\n");
     }
@@ -2872,19 +2890,6 @@ sub install_warnlines_hook {
   push @::warn_hook, sub { push @::WARNLINES, @_; };
 }
 
-## a summary of warnings if there were any
-#sub warnings_summary {
-#  return '' unless @::WARNLINES;
-#  my $summary = <<EOF;
-#
-#Summary of warning messages during installation:
-#EOF
-#  $summary .= join ("", map { "  $_" } @::WARNLINES); # indent each warning
-#  $summary .= "\n";  # extra blank line
-#  return $summary;
-#}
-
-
 
 # some helper functions
 # 
@@ -3264,6 +3269,23 @@ option overrides that default. The I<scheme> argument value may
 optionally have a prefix C<scheme->. The list of supported scheme names
 depends on what your package repository provides; see the interactive
 menu list.
+
+=item B<-strict>
+
+=item B<-no-strict>
+
+By default, C<install-tl> runs to completion even if one of the
+post-installation commands fail, such as C<fmtutil-sys> or
+C<updmap-sys>. This is to avoid necessarily downloading the entire
+distribution again, since usually the problems can be fixed afterwards
+without too much trouble (warnings are summarized at the end of the
+C<install-tl> output, and see the log file for the exact error messages
+and other information), and TeX may well be functional. A future C<tlmgr
+update> run will almost certainly fail, however.
+
+If the B<-strict> option is given, C<install-tl> quits right away if any
+post-installation command fails. This can be useful for testing, if
+re-downloading is not a problem, etc.
 
 =item B<-texdir> I<dir>
 
