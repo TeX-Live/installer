@@ -104,21 +104,31 @@ sub initialize {
   $self->{'entry'}{'date'} = $parser->findvalue('/entry/@datestamp')->value();
   $self->{'entry'}{'modder'} = $parser->findvalue('/entry/@modifier')->value();
   $self->{'name'} = $parser->findvalue("/entry/name")->value();
-  $self->{'caption'} = beautify($parser->findvalue("/entry/caption")->value());
-  $self->{'description'} = beautify($parser->findvalue("/entry/description")->value());
-  # there can be multiple entries of licenses, collected them all
-  # into one string
+  $self->{'caption'}
+    = beautify($parser->findvalue("/entry/caption")->value());
+  $self->{'description'}
+    = beautify($parser->findvalue("/entry/description")->value());
+
+  # there can be multiple licenses; collect them all into one string. In
+  # a couple cases, we remove "other-nonfree" because we eliminate the
+  # nonfree files that are on CTAN when importing into TL (see ctan2tds).
+  # (These packages are all maintained by the same person and follow the
+  # same conventions.)
   my $licset = $parser->find('/entry/license');
-  my @liclist;
+  my @liclist = ();
   foreach my $node ($licset->get_nodelist) {
     my $lictype = $parser->find('./@type',$node);
-    push @liclist, "$lictype";
+    push @liclist, $lictype
+      unless ($lictype eq "other-nonfree"
+              && $self->{'entry'}{'id'}
+                 =~ /^(ciad-beamertheme
+                       |spim-phdthesisthemes
+                       |utbmciad-report)$/x);
   }
   $self->{'license'} = join(' ', @liclist);
-  # was before
-  # $self->{'license'} = $parser->findvalue('/entry/license/@type')->value();
+
   $self->{'version'} = Text::Unidecode::unidecode(
-                          $parser->findvalue('/entry/version/@number')->value());
+                        $parser->findvalue('/entry/version/@number')->value());
   $self->{'ctan'} = $parser->findvalue('/entry/ctan/@path')->value();
   if ($parser->findvalue('/entry/texlive/@location') ne "") {
     $self->{'texlive'} = $parser->findvalue('/entry/texlive/@location')->value();
