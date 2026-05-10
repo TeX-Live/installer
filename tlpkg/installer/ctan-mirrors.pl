@@ -11,7 +11,6 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'https://mirrors.aliyun.com/CTAN/' => 1,
-      'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
@@ -19,7 +18,6 @@ $mirrors = {
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.pku.edu.cn/ctan/' => 1,
-      'https://mirrors.qlu.edu.cn/CTAN/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
@@ -29,17 +27,12 @@ $mirrors = {
     },
     'India' => {
       'https://in.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.niser.ac.in/ctan/' => 1,
       'https://mirrors.in2.sahilister.net/ctan/' => 1,
       'https://mirrors.in3.sahilister.net/ctan/' => 1,
       'https://mirrors.sukhala.in/ctan/' => 1,
     },
-    'Indonesia' => {
-      'https://mirror.unpad.ac.id/ctan/' => 1,
-    },
     'Japan' => {
       'https://ctan.tikz.jp/' => 1,
-      'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.aria-on-the-planet.es/CTAN/' => 1,
@@ -89,7 +82,6 @@ $mirrors = {
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
-      'https://mirror.ibcp.fr/pub/CTAN/' => 1,
     },
     'Germany' => {
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
@@ -145,7 +137,6 @@ $mirrors = {
       'https://mirrors.nxthost.com/ctan/' => 1,
     },
     'Russia' => {
-      'https://mirror.macomnet.net/pub/CTAN/' => 1,
       'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
     'Spain' => {
@@ -205,6 +196,9 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'https://br.mirrors.cicku.me/ctan/' => 1,
+    },
+    'Chile' => {
+      'https://ctan.dcc.uchile.cl/' => 1,
     },
   },
 };
