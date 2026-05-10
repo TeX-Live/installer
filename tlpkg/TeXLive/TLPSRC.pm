@@ -235,7 +235,7 @@ sub from_file {
     } elsif ($line =~ /^postaction\s+(.*)$/) {
       push (@postactions, $1) if ($1 ne "");
 
-    } elsif ($line =~ /^tlpsetvar\s+([-_a-zA-Z0-9]+)\s+(.*)$/) {
+    } elsif ($line =~ /^tlpsetvar\s+([-_a-zA-Z0-9]+)\s*(.*)$/) {
       $tlpvars{$1} = $2;
 
     } elsif ($line =~ /^catalogue-([^\s]+)\s+(.*)$/o) {
