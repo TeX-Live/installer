@@ -74,7 +74,7 @@ sub init_from_svn {
   my $retval = $?;
   if ($retval != 0) {
     $retval /= 256 if $retval > 0;
-    tldie("TLTree: svn status -v returned $retval, stopping.\n");
+    tldie("TLTREE::init_from_svn: svn status -v returned $retval, stopping.\n");
   }
   $self->_initialize_lines(@lines);
 }
@@ -94,7 +94,7 @@ sub init_from_files {
   my $retval = $?;
   if ($retval != 0) {
     $retval /= 256 if $retval > 0;
-    tldie("TLTree: find $svnroot returned $retval, stopping.\n");
+    tldie("TLTREE::init_from_files: find $svnroot returned $retval, stopping.\n");
   }
   @lines = grep(!/\/\.svn/ , @lines);
   @lines = map { s@^$svnroot@@; s@^/@@; "             1 1 dummy $_" } @lines;
@@ -114,7 +114,7 @@ sub init_from_git {
   my @foo = `cd $svnroot; git log --pretty=format:COMMIT=%h --no-renames --name-status`;
   if ($retval != 0) {
     $retval /= 256 if $retval > 0;
-    tldie("TLTree: git log in $svnroot returned $retval, stopping.\n");
+    tldie("TLTREE::init_from_git: git log in $svnroot returned $retval, stopping.\n");
   }
   chomp(@foo);
 
@@ -174,7 +174,7 @@ sub init_from_gitsvn {
   my $retval = $?;
   if ($retval != 0) {
     $retval /= 256 if $retval > 0;
-    tldie("TLTree: git log in $svnroot returned $retval, stopping.\n");
+    tldie("TLTREE::init_from_gitsvn: git log in $svnroot returned $retval, stopping.\n");
   }
   my %com2rev;
   my @lines;
@@ -392,7 +392,7 @@ sub _get_matching_files {
   } elsif ($pattype eq "d") {
     @matchfiles = $self->files_under_path($patdata);
   } else {
-    die "Unknown pattern type `$pattype' in $p";
+    die "TLTREE::_get_matching_files: unknown pattern type `$pattype' in $p";
   }
   ddebug("p=$p; matchfiles=@matchfiles\n");
   return @matchfiles;
@@ -425,7 +425,7 @@ sub _get_files_matching_glob_pattern
   for my $f (@candfiles) {
     dddebug("matching $f in $dirpart via glob $globline\n");
     if ($f =~ /^$basepart$/) {
-      dddebug("hit: globline=$globline, $dirpart/$f\n");
+      ddebug("hit: globline=$globline, $dirpart/$f\n");
       if ("$dirpart" eq ".") {
         push @returnfiles, "$f";
       } else {
@@ -444,9 +444,9 @@ sub _get_files_matching_glob_pattern
       } else {
         $w32_binext = "(exe|dll)(.manifest)?|texlua|bat|cmd";
       }
-      ddebug("matching $f in $dirpart via glob $globline.($w32_binext)\n");
+      dddebug("matching $f in $dirpart via glob $globline.($w32_binext)\n");
       if ($f =~ /^$basepart\.($w32_binext)$/) {
-        ddebug("hit: globline=$globline, $dirpart/$f\n");
+        dddebug("hit: globline=$globline, $dirpart/$f\n");
         if ("$dirpart" eq ".") {
           push @returnfiles, "$f";
         } else {

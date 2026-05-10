@@ -464,11 +464,11 @@ sub make_tlpobj {
     
     # for all other patterns we create the list and add the files
     foreach my $p (@allpospats) {
-      ddebug("pos pattern $p\n");
+      dddebug("pos pattern $p\n");
       $self->_do_normal_pattern($p,$tlp,$tltree,$pattype);
     }
     foreach my $p (@allnegpats) {
-      ddebug("neg pattern $p\n");
+      dddebug("neg pattern: $p\n");
       $self->_do_normal_pattern($p,$tlp,$tltree,$pattype,1);
     }
   }
@@ -479,12 +479,14 @@ sub make_tlpobj {
   # in the above loop. We only have to deal with the specialities of
   # the bin patterns
   foreach my $p (@allpospats) {
+    #ddebug ("pos binpattern: $p\n");
     my @todoarchs = $tltree->architectures;
     my $finalp = $p;
-    if ($p =~ m%^(\w+)/(!?[-_a-z0-9,]+)\s+(.*)$%) {
-      my $pt = $1;
-      my $aa = $2;
-      my $pr = $3;
+    if ($p =~ m%^(\w+)/(!?[-_a-z0-9,]*)\s*(.*)$%) {
+      my $pt = $1; # pattern type
+      my $aa = $2; # arch list (after possible !)
+      my $pr = $3; # filename
+     # ddebug ("  pt=$pt, aa=$aa, pr=$pr\n"); #if $p=~/luajittex/;
       if ($aa =~ m/^!(.*)$/) {
         # negative specification
         my %negarchs;
@@ -501,6 +503,7 @@ sub make_tlpobj {
       }
       # set $p to the pattern without arch specification
       $finalp = "$pt $pr";
+      #ddebug ("finalp = $pt|$pr\n");
     }
     # one final trick
     # if the original pattern string matches bin/windows/ then we *only*
@@ -511,8 +514,10 @@ sub make_tlpobj {
     # now @todoarchs contains only those archs for which we want
     # to match the pattern
     foreach my $arch (sort @todoarchs) {
+      #ddebug ("  doing arch: $arch\n");
       # get only those files matching the pattern
-      my @archfiles = $tltree->get_matching_files('bin',$finalp, $pkgname, $arch);
+      my @archfiles
+        = $tltree->get_matching_files ('bin', $finalp, $pkgname, $arch);
       if (!@archfiles) {
         if (($arch ne "windows") || defined($::tlpsrc_pattern_warn_win)) {
           tlwarn("$self->{name} ($arch): no hit on binpattern $finalp\n");
@@ -522,9 +527,10 @@ sub make_tlpobj {
     }
   }
   foreach my $p (@allnegpats) {
+    #ddebug ("neg binpattern: $p\n");
     my @todoarchs = $tltree->architectures;
     my $finalp = $p;
-    if ($p =~ m%^(\w+)/(!?[-_a-z0-9,]+)\s+(.*)$%) {
+    if ($p =~ m%^(\w+)/(!?[-_a-z0-9,]*)\s*(.*)$%) {
       my $pt = $1;
       my $aa = $2;
       my $pr = $3;
@@ -549,7 +555,8 @@ sub make_tlpobj {
     # to match the pattern
     foreach my $arch (sort @todoarchs) {
       # get only those files matching the pattern
-      my @archfiles = $tltree->get_matching_files('bin', $finalp, $pkgname, $arch);
+      my @archfiles
+        = $tltree->get_matching_files('bin', $finalp, $pkgname, $arch);
       if (!@archfiles) {
         if (($arch ne "windows") || defined($::tlpsrc_pattern_warn_win)) {
           tlwarn("$self->{name} ($arch): no hit on negative binpattern $finalp\n")
@@ -642,16 +649,16 @@ sub find_default_patterns {
   for my $cat (keys %autopatterns) {
     ddebug ("Category $cat\n");
     for my $d (@{$autopatterns{$cat}{"bin"}}) {
-      ddebug ("auto bin pattern $d\n");
+      dddebug ("auto bin pattern $d\n");
     }
     for my $d (@{$autopatterns{$cat}{"src"}}) {
-      ddebug ("auto src pattern $d\n");
+      dddebug ("auto src pattern $d\n");
     }
     for my $d (@{$autopatterns{$cat}{"doc"}}) {
-      ddebug ("auto doc pattern $d\n");
+      dddebug ("auto doc pattern $d\n");
     }
     for my $d (@{$autopatterns{$cat}{"run"}}) {
-      ddebug ("auto run pattern $d\n");
+      dddebug ("auto run pattern $d\n");
     }
   }
   
