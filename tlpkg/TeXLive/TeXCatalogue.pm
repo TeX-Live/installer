@@ -118,7 +118,7 @@ sub initialize {
   my @liclist = ();
   foreach my $node ($licset->get_nodelist) {
     my $lictype = $parser->find('./@type',$node);
-    push @liclist, $lictype
+    push (@liclist, $lictype)
       unless ($lictype eq "other-nonfree"
               && $self->{'entry'}{'id'}
                  =~ /^(ciad-beamertheme
