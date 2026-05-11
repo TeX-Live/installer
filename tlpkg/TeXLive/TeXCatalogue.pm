@@ -101,6 +101,7 @@ sub initialize {
     = new XML::XPath->new(ioref => $self->{'ioref'}, parser => $_parser)
       || die "Failed to parse given ioref";
   $self->{'entry'}{'id'} = $parser->findvalue('/entry/@id')->value();
+  my $id = $self->{'entry'}{'id'}; # ease of reference
   $self->{'entry'}{'date'} = $parser->findvalue('/entry/@datestamp')->value();
   $self->{'entry'}{'modder'} = $parser->findvalue('/entry/@modifier')->value();
   $self->{'name'} = $parser->findvalue("/entry/name")->value();
@@ -109,21 +110,21 @@ sub initialize {
   $self->{'description'}
     = beautify($parser->findvalue("/entry/description")->value());
 
-  # there can be multiple licenses; collect them all into one string. In
-  # a couple cases, we remove "other-nonfree" because we eliminate the
-  # nonfree files that are on CTAN when importing into TL (see ctan2tds).
-  # (These packages are all maintained by the same person and follow the
-  # same conventions.)
+  # There can be multiple licenses; collect them all into one string.
+  # In the cases mentioned in the regexp below, we remove "other-nonfree"
+  # because we eliminate the nonfree files that are on CTAN when
+  # importing into TL (see ctan2tds). (These packages are all maintained
+  # by the same person and follow the same conventions.)
   my $licset = $parser->find('/entry/license');
   my @liclist = ();
   foreach my $node ($licset->get_nodelist) {
-    my $lictype = $parser->find('./@type',$node);
+    # XPATH::find returns an object; concatenate to get a simple string.
+    my $lictype = "" . $parser->find('./@type',$node);
     push (@liclist, $lictype)
       unless ($lictype eq "other-nonfree"
-              && $self->{'entry'}{'id'}
-                 =~ /^(ciad-beamertheme
-                       |spim-phdthesisthemes
-                       |utbmciad-report)$/x);
+              && $id =~ /^(ciad-beamertheme
+                           |spim-phdthesisthemes
+                           |utbmciad-report)$/x);
   }
   $self->{'license'} = join(' ', @liclist);
 
