@@ -90,6 +90,7 @@ $mirrors = {
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
+      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
     },
     'Germany' => {
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
