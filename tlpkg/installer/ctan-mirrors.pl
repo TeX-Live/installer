@@ -10,7 +10,6 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'https://mirrors.aliyun.com/CTAN/' => 1,
-      'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
@@ -78,7 +77,7 @@ $mirrors = {
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
-      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
+      'https://mirror.ibcp.fr/pub/CTAN/' => 1,
     },
     'Germany' => {
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
