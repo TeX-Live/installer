@@ -5,12 +5,14 @@ $mirrors = {
     },
     'South Africa' => {
       'https://mirror.ufs.ac.za/ctan/' => 1,
+      'https://za.mirrors.cicku.me/ctan/' => 1,
     },
   },
   'Asia' => {
     'China' => {
       'https://mirrors.aliyun.com/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
+      'https://mirrors.cqu.edu.cn/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
@@ -44,8 +46,15 @@ $mirrors = {
       'https://ftp.kaist.ac.kr/ctan/' => 1,
       'https://mirror.kakao.com/CTAN/' => 1,
     },
+    'Saudi Arabia' => {
+      'https://sa.mirrors.cicku.me/ctan/' => 1,
+    },
+    'Singapore' => {
+      'https://sg.mirrors.cicku.me/ctan/' => 1,
+    },
     'Taiwan' => {
       'https://ctan.mirror.twds.com.tw/tex-archive/' => 1,
+      'https://tw.mirrors.cicku.me/ctan/' => 1,
     },
     'Thailand' => {
       'https://mirror.kku.ac.th/CTAN/' => 1,
@@ -76,7 +85,7 @@ $mirrors = {
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
       'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
-      'https://mirrors.ircam.fr/pub/CTAN/' => 1,
+      'https://mirror.ibcp.fr/pub/CTAN/' => 1,
     },
     'Germany' => {
       'http://vesta.informatik.rwth-aachen.de/ftp/pub/mirror/ctan/' => 1,
@@ -112,6 +121,7 @@ $mirrors = {
     },
     'Netherlands' => {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
+      'https://mirror.lyrahosting.com/CTAN/' => 1,
       'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
     'Norway' => {
@@ -158,6 +168,7 @@ $mirrors = {
   },
   'North America' => {
     'Canada' => {
+      'https://ca.mirrors.cicku.me/ctan/' => 1,
       'https://ctan.mirror.globo.tech/' => 1,
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
@@ -181,10 +192,14 @@ $mirrors = {
   },
   'Oceania' => {
     'Australia' => {
+      'https://au.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.aarnet.edu.au/pub/CTAN/' => 1,
     },
   },
   'South America' => {
+    'Brazil' => {
+      'https://br.mirrors.cicku.me/ctan/' => 1,
+    },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
     },
