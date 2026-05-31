@@ -3448,7 +3448,7 @@ Install for portable use, e.g., on a USB stick, without touching the
 host system. Specifically, this forces the user directories
 C<TEXMFHOME>, C<TEXMFCONFIG>, C<TEXMFVAR> to be identical to the system
 directories C<TEXMFLOCAL>, C<TEXMFSYSCONFIG>, C<TEXMFSYSVAR>,
-respectively (regardless of other options and environment variable.)
+respectively (regardless of other options and environment variables).
 
 In addition, on Windows, it disables the desktop integration, path
 adjustment, and file associations actions usually performed.
