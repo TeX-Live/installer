@@ -912,7 +912,7 @@ sub update_from_catalogue {
     foreach my $tcdocfile (sort @tcdocfiles) {  # sort so shortest first
       #warn "looking at tcdocfile $tcdocfile\n";
       my $tcdocfilebasename = $tcdocfile;
-      $tcdocfilebasename =~ s/^ctan://;  # remove ctan: prefix
+      $tcdocfilebasename =~ s/^(ctan|pkg)://; # remove ctan: or pkg: prefix
       $tcdocfilebasename =~ s,.*/,,;     # remove all but the base file name
       #warn "  got basename $tcdocfilebasename\n";
       #
