@@ -7622,11 +7622,15 @@ do not include the version of the local installation
     # $texlive_minrelease not defined, so only one year is valid
     if ($texlive_release_year != $TeXLive::TLConfig::ReleaseYear) {
       info("fail load $location\n") if ($::machinereadable);
-      return(undef, "The TeX Live versions of the local installation
+      return(undef, <<END_INCOMPAT_VERSIONS);
+The TeX Live versions of the local installation
 and the repository are not compatible:
       local: $TeXLive::TLConfig::ReleaseYear
  repository: $texlive_release_year ($rroot)
-(Perhaps you need to use a different CTAN mirror? Just a guess.)");
+Perhaps that particular CTAN mirror is outdated? Just a guess.
+Or if you want to install an older version of TeX Live, see:
+  https://tug.org/texlive/acquire.html#past
+END_INCOMPAT_VERSIONS
     }
   }
 
