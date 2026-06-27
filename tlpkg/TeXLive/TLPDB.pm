@@ -1458,6 +1458,8 @@ package names given as the fourth argument, or all packages if not
 specified. The difference between the two functions is that the C<_with_deps>
 gives the size of packages including the size of all depending sizes.
 
+If the value for a given key is undef, that package has been deleted.
+
 If anything has been computed one additional key is synthesized,
 C<__TOTAL__>, which contains the total size of all packages under
 consideration. In the case of C<_with_deps> this total computation
@@ -1506,7 +1508,11 @@ sub _sizes_of_packages {
     $tlpobjs{$p} = $self->get_package($p);
     my $media = $self->media_of_package($p);
     if (!defined($tlpobjs{$p})) {
-      warn "STRANGE: $p not to be found in ", $self->root;
+      # This can happen if the user does tlmgr uninstall --force
+      # and then runs tlmgr info --list.
+      # https://tug.org/pipermail/tex-live/2026-May/052388.html
+      # Just return, since this is uncommon.
+      debug ("TLPDB::_sizes_of_packages: $p not found in $self->root\n");
       next;
     }
     #
@@ -1543,6 +1549,12 @@ sub _sizes_of_packages {
       # only collections
       next if ($p !~ m/collection-/);
       $realtlpsizes{$p} = $tlpsizes{$p};
+      if (! $tlpobjs{$p}) {
+        # This can also happen if the user forcibly uninstalls a collection;
+        # see above url to the report.
+        debug ("TLPDB::_sizes_of_packages: skipping $p, no tlpobjs\n");
+        next;
+      }
       ddebug("=== $p adding deps\n");
       for my $d ($tlpobjs{$p}->depends) {
         next if ($d =~ m/^collection-/);
