@@ -1,6 +1,6 @@
 # $Id$
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
-# Copyright 2007-2024 Norbert Preining
+# Copyright 2007-2026 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
@@ -832,6 +832,7 @@ respect to the depends operator. (Sorry, that was for mathematicians.)
 
 sub expand_dependencies {
   my $self = shift;
+  #&debug("expand_dependencies(@_)\n");
   my $only_arch = 0;
   my $no_collections = 0;
   my $first = shift;
@@ -852,34 +853,62 @@ sub expand_dependencies {
     my ($pp, $aa) = split('@', $p);
     $install{$pp} = (defined($aa) ? $aa : 0);;
   }
+
+  # We'll go around as long as the list of the dependencies changes, but
+  # no need to expand dependencies more than once for a given package.
+  my %seen;
   my $changed = 1;
   while ($changed) {
     $changed = 0;
     my @pre_select = keys %install;
-    ddebug("pre_select = @pre_select\n");
+    #debug("pre_select = @pre_select\n");
     for my $p (@pre_select) {
+      next if exists $seen{$p};
+      $seen{$p} = 1;
+      #debug(" starting with $p\n");
       next if ($p =~ m/^00texlive/);
       my $pkg = $self->get_package($p, ($install{$p}?$install{$p}:undef));
       if (!defined($pkg)) {
-        ddebug("W: $p is mentioned somewhere but not available, disabling\n");
+        ddebug("TLPDB::expand_dependencies: $p is mentioned somewhere " .
+               "but not available, disabling\n");
         $install{$p} = 0;
         next;
       }
       for my $p_dep ($pkg->depends) {
-        ddebug("checking $p_dep in $p\n");
+        #debug ("  doing dependency $p_dep (of $p)\n)";
         my $tlpdd = $self->get_package($p_dep);
-        if (defined($tlpdd)) {
-          # before we ignored all deps of schemes and colls if -no-collections
-          # was given, but this prohibited auto-install of new collections
-          # even if the scheme is updated.
-          # Now we suppress only "same-level dependencies", so scheme -> scheme
-          # and collections -> collections and package -> package
-          # hoping that this works out better
-          # if ($tlpdd->category =~ m/$MetaCategoriesRegexp/) {
-          if ($tlpdd->category eq $pkg->category) {
-            # we ignore same-level dependencies if "-no-collections" is given
-            ddebug("expand_deps: skipping $p_dep in $p due to -no-collections\n");
-            next if $no_collections;
+        if (defined($tlpdd) && $no_collections) {
+          # Originally we ignored all deps of schemes and colls if
+          # -no-collections was given, but this prohibited auto-install
+          # of new collections even if the scheme is updated. So, not this:
+          #if ($tlpdd->category =~ m/$MetaCategoriesRegexp/) {
+          #
+          # Instead, we suppress same or higher level dependencies,
+          # that is scheme -> scheme
+          # and collections -> collections|schemes
+          # and package -> package|collections|schemes.
+          # 
+          # In practice, some collections depend on other collections,
+          # and many packages depend on other packages,
+          # and a few packages (yb-book) depends on collections,
+          # but the other cases don't happen. Thus we don't bother
+          # implementing ignoring a scheme that is a dependency of
+          # collection, since that shouldn't ever happen.
+          #
+          my $pkg_category = $pkg->category;
+          my $dep_category = $tlpdd->category;
+          #debug("   package=$p($pkg_category) dep=$p_dep($dep_category)\n");
+          if ($pkg_category eq $dep_category) {
+            # ignore same-level dependencies if "-no-collections" is given
+            #debug("TLPDB::expand_dependencies: skipping $p_dep of $p "
+            #      . "due to -no-collections: both category $pkg_category\n");
+            next;
+          } elsif ($pkg_category eq "Package"
+                   && $dep_category =~ m/$MetaCategoriesRegexp/) {
+            # ignore higher-level dependency.
+            #debug("TLPDB::expand_dependencies: skipping $p_dep of $p "
+            #      . "due to -no-collections: $pkg_category->$dep_category\n");
+            next;
           }
         }
         if ($p_dep =~ m/^(.*)\.ARCH$/) {
@@ -904,7 +933,7 @@ sub expand_dependencies {
 
     # check for newly selected packages
     my @post_select = keys %install;
-    ddebug("post_select = @post_select\n");
+    #debug("post_select = @post_select\n");
     if ($#pre_select != $#post_select) {
       $changed = 1;
     }
@@ -1519,11 +1548,11 @@ sub _sizes_of_packages {
     # in case we are calling the _with_deps variant, we always
     # compute *UNCOMPRESSED* sizes (not the container sizes!!!)
     if ($with_deps) {
-      $tlpsizes{$p} = $self->size_of_one_package('local_uncompressed' , $tlpobjs{$p},
-                                                 $opt_src, $opt_doc, @archs);
+      $tlpsizes{$p} = $self->size_of_one_package
+        ('local_uncompressed' , $tlpobjs{$p}, $opt_src, $opt_doc, @archs);
     } else {
-      $tlpsizes{$p} = $self->size_of_one_package($media, $tlpobjs{$p},
-                                                 $opt_src, $opt_doc, @archs);
+      $tlpsizes{$p} = $self->size_of_one_package
+        ($media, $tlpobjs{$p}, $opt_src, $opt_doc, @archs);
     }
     $totalsize += $tlpsizes{$p};
   }
