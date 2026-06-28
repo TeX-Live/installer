@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # $Id$
 #
-# Copyright 2007-2022 Norbert Preining, Karl Berry
+# Copyright 2007-2026 Norbert Preining, Karl Berry
 # Copyright 2007-2008 Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -30,8 +30,8 @@ my $RETURN = $MENU_CONTINUE;
 
 my $portable_toggled = 0;
 my $ptoggle_alert = "\n".
-    "   !! Portable option changed;\n" .
-    "   !! Directories have been reinitialized!\n";
+ "!! Portable option changed;\n" .
+ "!! Directories TEXMFHOME,TEXMFVAR,TEXMFCONFIG have been reinitialized!\n";
 
 # some strings to describe the different meanings of tlpdbopt_file_assoc
 $::fileassocdesc[0] = __("None");
