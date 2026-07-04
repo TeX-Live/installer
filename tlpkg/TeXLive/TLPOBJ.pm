@@ -275,14 +275,26 @@ sub _recompute_size {
 
 sub writeout {
   my $self = shift;
-  my $fd = (@_ ? $_[0] : *STDOUT);
+  # weird way to handle arguments, but keeping existing behavior
+  # of an optional fd.
+  my ($fd,$catonly) = (*STDOUT,0);
+  $fd = $_[0] if defined $_[0];
+  $catonly = $_[1] if defined $_[1];
+  
   print $fd "name ", $self->name, "\n";
-  print $fd "category ", $self->category, "\n";
-  defined($self->{'revision'}) && print $fd "revision $self->{'revision'}\n";
+  if (! $catonly) {
+    print $fd "category ", $self->category, "\n";
+    defined($self->{'revision'}) && print $fd "revision $self->{'revision'}\n";
+   }
+
   defined($self->{'catalogue'}) && print $fd "catalogue $self->{'catalogue'}\n";
   defined($self->{'shortdesc'}) && print $fd "shortdesc $self->{'shortdesc'}\n";
   defined($self->{'license'}) && print $fd "license $self->{'license'}\n";
-  defined($self->{'relocated'}) && $self->{'relocated'} && print $fd "relocated 1\n";
+
+  if (! $catonly) {
+    defined($self->{'relocated'}) && $self->{'relocated'} && print $fd "relocated 1\n";
+  }
+
   # don't want to use FileHandle.pm; see man perlform
   #format_name $fd "multilineformat";
   select((select($fd),$~ = "multilineformat")[0]);
@@ -291,20 +303,16 @@ sub writeout {
     $_tmp = "$self->{'longdesc'}"; # $_tmp is used in multilineformat
     write $fd;  # use that multilineformat
   }
+
+ if (! $catonly) {
   if (defined($self->{'depends'})) {
-    foreach (sort @{$self->{'depends'}}) {
-      print $fd "depend $_\n";
-    }
+    foreach (sort @{$self->{'depends'}}) { print $fd "depend $_\n"; }
   }
   if (defined($self->{'executes'})) {
-    foreach (sort @{$self->{'executes'}}) {
-      print $fd "execute $_\n";
-    }
+    foreach (sort @{$self->{'executes'}}) { print $fd "execute $_\n"; }
   }
   if (defined($self->{'postactions'})) {
-    foreach (sort @{$self->{'postactions'}}) {
-      print $fd "postaction $_\n";
-    }
+    foreach (sort @{$self->{'postactions'}}) { print $fd "postaction $_\n"; }
   }
   if (defined($self->{'containersize'})) {
     print $fd "containersize $self->{'containersize'}\n";
@@ -370,6 +378,8 @@ sub writeout {
       }
     }
   }
+ } # end !catonly
+
   # writeout all the catalogue keys
   foreach my $k (sort keys %{$self->cataloguedata}) {
     next if $k eq "date";
@@ -1672,17 +1682,21 @@ then returns after reading one tlpobj.
 
 Returns C<1> if it found a C<tlpobj>, otherwise C<0>.
 
-=item C<writeout>
+=item C<writeout([$filehandle[, $catonly]]>
 
-writes the textual representation of a C<TLPOBJ> object to C<stdout>,
+writes the textual representation of the C<TLPOBJ> object to C<stdout>,
 or the filehandle if given:
 
   $tlpsrc->writeout;
   $tlpsrc->writeout(\*FILEHANDLE);
 
+If the C<$catonly> arg is true, write only the catalogue-related fields;
+for this, the C<$filehandle> must also be given.  This is used by the
+C<tl-dump-catalogue-as-tlpdb> script (q.v.).
+
 =item C<writeout_simple>
 
-debugging function for comparison with C<tpm>/C<tlps>, will go away.
+debugging function for comparison with C<tpm>/C<tlps>.
 
 =item C<as_json>
 
