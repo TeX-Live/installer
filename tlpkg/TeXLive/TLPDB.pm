@@ -425,6 +425,72 @@ END_CYGWIN_WGET_MSG
 
 =pod
 
+=item C<< $tlpdb->merge_catalogue_data >>
+
+Loads the catalogue-only database (C<texlive-catalogue-only.tlpdb>, a
+sibling of the main C<texlive.tlpdb>) and merges its catalogue-related
+fields (C<catalogue>, C<shortdesc>, C<longdesc>, and the C<catalogue-*>
+keys) into the packages already present in this database, overwriting
+any values found there.
+
+This is meant to be called on demand, only when catalogue data is
+actually needed (listing or searching catalogue data), so that the main
+database can be kept free of catalogue data that changes independently
+of the packages themselves.
+
+The operation is idempotent (the merge is done at most once), and it is
+not an error for the catalogue-only database to be absent: in that case
+nothing is merged and whatever catalogue data the main database already
+contains is used unchanged. For a virtual database only the C<main>
+member repository is enriched; sub-repositories keep whatever catalogue
+data they ship inline (or none), and no catalogue-only database is
+fetched for them.
+
+=cut
+
+sub merge_catalogue_data {
+  my $self = shift;
+  # do the merge at most once
+  return 1 if $self->{'catalogue_merged'};
+  # for a virtual tlpdb enrich only the main repository; the candidate
+  # tlpobjs are shared by reference (see virtual_add_tlpdb), so mutating
+  # the main member is visible through the virtual get_package.
+  if ($self->is_virtual) {
+    my $main = $self->{'tlpdbs'}{'main'};
+    return defined($main) ? $main->merge_catalogue_data : 1;
+  }
+  $self->{'catalogue_merged'} = 1;
+
+  my $catloc = $self->root . "/$TeXLive::TLConfig::CatalogueDatabaseLocation";
+  # for a local root, do not even try if the file is not there; for a net
+  # root from_file() handles the download, and a missing file is fine too.
+  if ($self->media ne "NET" && $catloc =~ m,^/, && ! -r $catloc) {
+    debug("TLPDB: no catalogue-only database at $catloc, "
+          . "using catalogue data from the main database\n");
+    return 1;
+  }
+  my $catdb = TeXLive::TLPDB->new(tlpdbfile => $catloc);
+  if (!defined($catdb)) {
+    debug("TLPDB: could not load catalogue-only database from $catloc, "
+          . "using catalogue data from the main database\n");
+    return 1;
+  }
+  debug("TLPDB: loaded catalogue-only database from $catloc, "
+        . "merging catalogue data into " . $self->root . "\n");
+  for my $pkg ($catdb->list_packages) {
+    my $tlp = $self->get_package($pkg);
+    next unless defined $tlp;
+    my $cat = $catdb->get_package($pkg);
+    $tlp->catalogue($cat->catalogue)     if defined $cat->catalogue;
+    $tlp->shortdesc($cat->shortdesc)     if defined $cat->shortdesc;
+    $tlp->longdesc($cat->longdesc)       if defined $cat->longdesc;
+    $tlp->cataloguedata(%{$cat->cataloguedata}) if %{$cat->cataloguedata};
+  }
+  return 1;
+}
+
+=pod
+
 =item C<< $tlpdb->writeout >>
 
 =item C<< $tlpdb->writeout(FILEHANDLE) >>

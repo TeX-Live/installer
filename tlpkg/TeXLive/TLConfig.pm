@@ -32,7 +32,9 @@ BEGIN {
     $InfraLocation
     $DatabaseName
     $DatabaseLocation
-    $PackageBackupDir 
+    $CatalogueDatabaseName
+    $CatalogueDatabaseLocation
+    $PackageBackupDir
     $BlockSize
     $Archive
     $TeXLiveServerURL
@@ -89,6 +91,13 @@ our $DefaultCategory = "Package";
 our $InfraLocation = "tlpkg";
 our $DatabaseName = "texlive.tlpdb";
 our $DatabaseLocation = "$InfraLocation/$DatabaseName";
+
+# the catalogue-only database holds the catalogue-related fields
+# (longdesc, catalogue-* keys, etc.) that are factored out of the main
+# texlive.tlpdb so that frequent catalogue updates do not force package
+# updates. It is loaded on demand only (catalogue listing and searching).
+our $CatalogueDatabaseName = "texlive-catalogue-only.tlpdb";
+our $CatalogueDatabaseLocation = "$InfraLocation/$CatalogueDatabaseName";
 
 # location of backups in default autobackup setting (under tlpkg)
 our $PackageBackupDir = "$InfraLocation/backups";
@@ -350,6 +359,17 @@ plain text file, not any kind of relational or other database.
 
 Concatenation of C<InfraLocation> "/" C<DatabaseName>, i.e.,
 C<tlpkg/texlive.tlpdb>.
+
+=item C<$TeXLive::TLConfig::CatalogueDatabaseName>
+
+The name of the catalogue-only database file:
+C<texlive-catalogue-only.tlpdb>. It holds the catalogue-related fields
+factored out of the main database and is loaded only on demand.
+
+=item C<$TeXLive::TLConfig::CatalogueDatabaseLocation>
+
+Concatenation of C<InfraLocation> "/" C<CatalogueDatabaseName>, i.e.,
+C<tlpkg/texlive-catalogue-only.tlpdb>.
 
 =item C<$TeXLive::TLConfig::BlockSize>
 
