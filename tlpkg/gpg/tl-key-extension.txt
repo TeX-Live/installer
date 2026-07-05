@@ -43,8 +43,22 @@ done
 #gpg --export $KEYID | curl -T - https://keys.openpgp.org
 ## this will give an URL to associate key with email, visit it!
 
-# to check if it's there:
-gpg --list-key --keyserver hkp://keyserver.ubuntu.com:80 tex-live
+# to check if it's there
+# note that keys.openpgp.org strips all non-self-sign signatures!
+for ks in ${keyservers[@]} ; do
+  echo "=== key on $ks ==="
+  TMPH=$(mktemp -d)
+  # pull the key straight from the keyserver into the empty temp homedir
+  gpg --homedir "$TMPH" --keyserver $ks --recv-keys $KEYID
+  # show expiry of the primary key AND each subkey
+  gpg --homedir "$TMPH" --list-keys --with-subkey-fingerprints $KEYID
+  rm -rf "$TMPH"
+done
+
+# This should show at the end
+#  sub   rsa2048 2016-03-19 [S] [expires: 2027-07-13]
+#      D8F2F86057A857E42A88106A4CE1877E19438C70
+
 
 # The new GPG servers strip signatures due to signature poisoning
 # attacks, so we tell people to download the key from our web site.
