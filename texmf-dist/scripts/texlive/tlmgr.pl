@@ -1772,14 +1772,13 @@ sub action_info {
   # also need their catalogue data merged.
   $localtlpdb->merge_catalogue_data if !$opts{"only-installed"};
 
-  #
   # tlmgr info
-  # tlmgr info collection
+  # tlmgr info collections
   # tlmgr info scheme
   # these commands just list the packages/collections/schemes installed with 
   # a short list
   my @whattolist;
-  $what = ($what || "-all");
+  $what = ($what || "-all"); # instead of using $opts{"all"}, comes to the same
   if ($what =~ m/^collections$/i) {
     @whattolist = $tlm->collections;
   } elsif ($what =~ m/^schemes$/i) {
@@ -8849,6 +8848,8 @@ Start the graphical user interface. See B<GUI> below.
 
 =item B<info [I<option>...] schemes>
 
+=item B<info [I<option>...] --all>
+
 With no argument, lists all packages available at the package
 repository, prefixing those already installed with C<i>.
 
@@ -8882,6 +8883,15 @@ but are still supported for backward compatibility.
 Options:
 
 =over 4
+
+=item B<--all>
+
+If C<--all> is given, by default a single line is output for each
+package installed, showing the name and shortdesc. The B<--data> or
+B<--json> options can be used to output other information. The B<--list>
+option is ignored; if you want to see all the information about
+everything, look at the C<tlpkg/texlive.tlpdb> file itself. It is plain
+text and the format is self-evident.
 
 =item B<--list>
 
