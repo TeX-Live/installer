@@ -315,7 +315,7 @@ sub from_file {
   #
   # actually load the TLPDB
   if ($path =~ m;^((https?|ftp)://|file:\/\/*); || $path =~ m;$TeXLive::TLUtils::SshURIRegex;) {
-    debug("TLPDB.pm: trying to initialize from $path\n");
+    debug("TLPDB::from_file: trying to initialize from $path\n");
     # now $xzfh filehandle is open, the file created
     # TLUtils::download_file will just overwrite what is there
     # on windows that doesn't work, so we close the fh immediately
@@ -461,22 +461,30 @@ sub merge_catalogue_data {
   }
   $self->{'catalogue_merged'} = 1;
 
+  # We never want to try to download texlive-catalogue-only.tlpdb from
+  # the net, since we don't provide it there. It should be in everyone's
+  # local installation, since it's part of texlive-scripts.
+  if ($self->media eq "NET") {
+    debug("TLPDB::merge_catalogue_data: not trying to find"
+          . " catalogue data from the net; returning early\n");
+    return 1;
+  }
+
   my $catloc = $self->root . "/$TeXLive::TLConfig::CatalogueDatabaseLocation";
-  # for a local root, do not even try if the file is not there; for a net
-  # root from_file() handles the download, and a missing file is fine too.
-  if ($self->media ne "NET" && $catloc =~ m,^/, && ! -r $catloc) {
-    debug("TLPDB: no catalogue-only database at $catloc, "
-          . "using catalogue data from the main database\n");
+  # for a local root, do not even try if the file is not there.
+  if ($catloc =~ m,^/, && ! -r $catloc) {
+    debug("TLPDB::merge_catalogue_data: no catalogue-only database at $catloc,"
+          . " using catalogue data from the main database\n");
     return 1;
   }
   my $catdb = TeXLive::TLPDB->new(tlpdbfile => $catloc);
   if (!defined($catdb)) {
-    debug("TLPDB: could not load catalogue-only database from $catloc, "
-          . "using catalogue data from the main database\n");
+    debug("TLPDB::merge_catalogue_data: could not load catalogue-only database"
+          . " from $catloc, using catalogue data from the main database\n");
     return 1;
   }
-  debug("TLPDB: loaded catalogue-only database from $catloc, "
-        . "merging catalogue data into " . $self->root . "\n");
+  debug("TLPDB::merge_catalogue_data: loaded catalogue-only database"
+        . "from $catloc, merging catalogue data into " . $self->root . "\n");
   for my $pkg ($catdb->list_packages) {
     my $tlp = $self->get_package($pkg);
     next unless defined $tlp;
