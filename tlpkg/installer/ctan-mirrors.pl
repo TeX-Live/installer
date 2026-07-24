@@ -108,7 +108,6 @@ $mirrors = {
       'https://markov.htwsaar.de/tex-archive/' => 1,
       'https://mirror.clientvps.com/CTAN/' => 1,
       'https://mirror.dogado.de/tex-archive/' => 1,
-      'https://mirror.funkfreundelandshut.de/latex/' => 1,
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
       'https://mirror.rabisu.com/mirrors/CTAN/' => 1,
       'https://satztexnik.com/tex-archive/' => 1,
@@ -155,6 +154,7 @@ $mirrors = {
     },
     'Sweden' => {
       'https://ftpmirror1.infania.net/mirror/CTAN/' => 1,
+      'https://mirror.accum.se/mirror/CTAN/' => 1,
       'https://mirror.bahnhof.net/pub/ctan/' => 1,
     },
     'Switzerland' => {
@@ -183,6 +183,7 @@ $mirrors = {
     'USA' => {
       'http://ctan.mirrors.hoobly.com/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
+      'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.latigo.net/ctan/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
