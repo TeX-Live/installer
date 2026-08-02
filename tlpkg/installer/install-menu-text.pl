@@ -960,7 +960,7 @@ sub do_install {
   if ($vars{'free_size'} > 0
       && $vars{'free_size'} + $reserve < $vars{'total_size'}) { 
     print STDERR <<"EOF";
-*** WARNING ****************************************************
+*** DISK SPACE WARNING *****************************************
 The installation requires $vars{'total_size'}M of disk space
 but only $vars{'free_size'}M is available.
 
@@ -974,13 +974,13 @@ EOF
     my $ans = readline (*STDIN);
     $doit = 0;
     chomp($ans);
-    if ($ans eq "i" or $ans eq "I") {
+    if ($ans eq "i" || $ans eq "I") {
       $doit = 1;
+      # set env variable to make install-tl not trip over
+      $ENV{'TEXLIVE_INSTALL_NO_DISKCHECK'} = 1;
     }
   }
   if ($doit) {
-    # set env variable to make install-tl not trip over
-    $ENV{'TEXLIVE_INSTALL_NO_DISKCHECK'} = 1;
     $RETURN = $MENU_INSTALL;
   } else {
     main_menu();
