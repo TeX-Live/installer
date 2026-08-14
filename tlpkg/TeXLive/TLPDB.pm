@@ -472,7 +472,7 @@ sub merge_catalogue_data {
 
   my $catloc = $self->root . "/$TeXLive::TLConfig::CatalogueDatabaseLocation";
   # for a local root, do not even try if the file is not there.
-  if ($catloc =~ m,^/, && ! -r $catloc) {
+  if (! -r $catloc) {
     debug("TLPDB::merge_catalogue_data: no catalogue-only database at $catloc,"
           . " using catalogue data from the main database\n");
     return 1;
