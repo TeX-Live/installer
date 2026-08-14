@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TeX Live translation\n"
 "Report-Msgid-Bugs-To: tex-live@tug.org\n"
-"POT-Creation-Date: 2026-04-11 01:40+0200\n"
+"POT-Creation-Date: 2026-08-15 01:41+0200\n"
 "PO-Revision-Date: 2023-03-02 16:26+0800\n"
 "Last-Translator: Kung-chih Jen <kaitul@outlook.com>\n"
 "Language-Team: TL Translation Team <tex-live@tug.org>\n"
@@ -1743,215 +1743,211 @@ msgid "basic scheme (plain and latex)"
 msgstr "基本配置 (純文字和 latex)"
 
 #: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2
-msgid "book publishing scheme (core LaTeX and add-ons)"
-msgstr "書籍出版配置 (核心 LaTeX 和附加元件)"
-
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "ConTeXt scheme"
 msgstr "ConTeXt 配置"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:3
 msgid "full scheme (everything)"
 msgstr "完整配置 (所有項目)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:4
 msgid "GUST TeX Live scheme"
 msgstr "GUST TeX Live 配置"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:5
 msgid "infrastructure-only scheme (no TeX at all)"
 msgstr "僅基礎結構配置 (全無 TeX)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:6
 msgid "medium scheme (small + more packages and languages)"
 msgstr "中等配置 (小 + 更多套件和語言)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:7
 msgid "minimal scheme (plain only)"
 msgstr "最小配置 (僅純文字)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:8
 msgid "small scheme (basic + xetex, metapost, a few languages)"
 msgstr "小型配置 (基本 + xetex，metapost，少數語言)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:9
 msgid "teTeX scheme (more than medium, but nowhere near full)"
 msgstr "teTeX 配置 (多於中等，但不完整)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:11
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:10
 msgid "Essential programs and files"
 msgstr "基本程式和檔案"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:12
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:11
 msgid "BibTeX additional styles"
 msgstr "BibTeX 額外樣式"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:13
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:12
 msgid "TeX auxiliary programs"
 msgstr "TeX 輔助程式"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:14
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:13
 msgid "ConTeXt and packages"
 msgstr "ConTeXt 和套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:15
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:14
 msgid "Additional fonts"
 msgstr "額外字型"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:16
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:15
 msgid "Recommended fonts"
 msgstr "建議字型"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:17
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:16
 msgid "Graphics and font utilities"
 msgstr "圖形和字型公用程式"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:18
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:17
 msgid "Additional formats"
 msgstr "額外格式"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:19
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:18
 msgid "Games typesetting"
 msgstr "遊戲排版"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:20
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:19
 msgid "Humanities packages"
 msgstr "人文套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:21
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:20
 msgid "Arabic"
 msgstr "阿拉伯文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:22
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:21
 msgid "Chinese"
 msgstr "中文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:22
 msgid "Chinese/Japanese/Korean (base)"
 msgstr "中文/日文/韓文 (基本)"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:23
 msgid "Cyrillic"
 msgstr "斯拉夫文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:25
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:24
 msgid "Czech/Slovak"
 msgstr "捷克文/斯洛伐克文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:26
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:25
 msgid "US and UK English"
 msgstr "美式英文/英式英文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:27
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:26
 msgid "Other European languages"
 msgstr "其他歐洲語言"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:28
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:27
 msgid "French"
 msgstr "法文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:29
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:28
 msgid "German"
 msgstr "德文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:30
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:29
 msgid "Greek"
 msgstr "希臘文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:31
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:30
 msgid "Italian"
 msgstr "義大利文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:32
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:31
 msgid "Japanese"
 msgstr "日文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:33
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:32
 msgid "Korean"
 msgstr "韓文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:34
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:33
 msgid "Other languages"
 msgstr "其他語言"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:35
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:34
 msgid "Polish"
 msgstr "波蘭文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:36
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:35
 msgid "Portuguese"
 msgstr "葡萄牙文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:37
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:36
 msgid "Spanish"
 msgstr "西班牙文"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:38
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:37
 msgid "LaTeX fundamental packages"
 msgstr "LaTeX 基本套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:38
 msgid "LaTeX additional packages"
 msgstr "LaTeX 額外套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:39
 msgid "LaTeX recommended packages"
 msgstr "LaTeX 建議套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:40
 msgid "LuaTeX packages"
 msgstr "LuaTeX 套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:41
 msgid "Mathematics, natural sciences, computer science packages"
 msgstr "數學，自然科學，電腦科學套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:42
 msgid "MetaPost and Metafont packages"
 msgstr "MetaPost 和 Metafont 套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:43
 msgid "Music packages"
 msgstr "音樂套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:45
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:44
 msgid "Graphics, pictures, diagrams"
 msgstr "圖形，圖片，圖表"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:45
 msgid "Plain (La)TeX packages"
 msgstr "純文字 (La)TeX 套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:47
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:46
 msgid "PSTricks"
 msgstr "PSTricks"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:48
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:47
 msgid "Publisher styles, theses, etc."
 msgstr "出版社樣式，論文等。"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:48
 msgid "TeXworks editor; TL includes only the Windows binary"
 msgstr "TeXworks 編輯器；TL 僅包含 Windows 二進位"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:49
 msgid "Windows-only support programs"
 msgstr "僅 Windows 支援程式"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:51
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:50
 msgid "XeTeX and packages"
 msgstr "XeTeX 和套件"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2921
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2920
 msgid "Welcome to TeX Live!"
 msgstr "歡迎使用 TeX Live！"
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2922
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2921
 #, perl-format
 msgid "See %s/index.html for links to documentation.\n"
 msgstr ""
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2924
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2923
 msgid ""
 "The TeX Live web site (https://tug.org/texlive/) provides all updates\n"
 "and corrections. TeX Live is a joint project of the TeX user groups\n"
@@ -1960,7 +1956,7 @@ msgid ""
 "at https://tug.org/usergroups.html.\n"
 msgstr ""
 
-#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2932
+#: /home/texlive/karl/Master/tlpkg/translations/shortdesc.pl:2931
 #, perl-format
 msgid ""
 "Add %s/texmf-dist/doc/man to MANPATH.\n"
@@ -1968,6 +1964,9 @@ msgid ""
 "Most importantly, add %s/bin/%s\n"
 "to your PATH for current and future sessions.\n"
 msgstr ""
+
+#~ msgid "book publishing scheme (core LaTeX and add-ons)"
+#~ msgstr "書籍出版配置 (核心 LaTeX 和附加元件)"
 
 #~ msgid ""
 #~ "See %s/index.html for links to documentation.\n"
