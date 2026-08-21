@@ -113,7 +113,6 @@ $mirrors = {
     },
     'Netherlands' => {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
-      'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
       'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
@@ -129,9 +128,6 @@ $mirrors = {
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
       'https://mirrors.up.pt/pub/CTAN/' => 1,
-    },
-    'Romania' => {
-      'https://mirrors.nxthost.com/ctan/' => 1,
     },
     'Russia' => {
       'https://mirror.macomnet.net/pub/CTAN/' => 1,
@@ -157,7 +153,6 @@ $mirrors = {
     },
     'United Kingdom' => {
       'https://gb.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.apps.cam.ac.uk/pub/tex-archive/' => 1,
       'https://tex.org.uk/' => 1,
     },
   },
