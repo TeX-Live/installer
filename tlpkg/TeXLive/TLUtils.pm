@@ -2295,7 +2295,7 @@ sub update_context_cache {
   # can be done about it.
   my $lmtx = "$bindir/luametatex$progext";
   if (TeXLive::TLUtils::system_ok("$lmtx --version")) {
-    info("setting up ConTeXt caches: ");
+    info("setting up ConTeXt caches:\n");
     # Max advises (19feb26) that mtxrun --generate and context --generate
     # are the same; mtxrun is preferred.
     # Max (18mar26): Things are actually more complicated than this; see
