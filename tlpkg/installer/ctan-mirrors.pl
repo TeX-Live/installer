@@ -21,7 +21,6 @@ $mirrors = {
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
-      'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
@@ -76,6 +75,7 @@ $mirrors = {
       'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
+      'https://ctan.qno.de/' => 1,
       'https://mirror.5i.fi/tex-archive/' => 1,
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
@@ -147,7 +147,6 @@ $mirrors = {
       'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
     'Spain' => {
-      'https://ctan.fisiquimicamente.com/' => 1,
       'https://ctan.gonzaleztroyano.es/' => 1,
       'https://ctan.javinator9889.com/' => 1,
       'https://softlibre.unizar.es/tex-archive/' => 1,
@@ -186,12 +185,14 @@ $mirrors = {
     'USA' => {
       'http://ctan.mirrors.hoobly.com/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
+      'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
       'https://latex.us/' => 1,
       'https://mirror.clarkson.edu/ctan/' => 1,
       'https://mirror.latigo.net/ctan/' => 1,
       'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://mirrors.mit.edu/CTAN/' => 1,
+      'https://mirrors.rit.edu/CTAN/' => 1,
       'https://us.mirrors.cicku.me/ctan/' => 1,
     },
   },
