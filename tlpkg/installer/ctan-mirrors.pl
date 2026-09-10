@@ -14,10 +14,10 @@ $mirrors = {
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
-      'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.pku.edu.cn/ctan/' => 1,
+      'https://mirrors.qlu.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
@@ -31,6 +31,7 @@ $mirrors = {
       'https://mirror.niser.ac.in/ctan/' => 1,
       'https://mirrors.in2.sahilister.net/ctan/' => 1,
       'https://mirrors.in3.sahilister.net/ctan/' => 1,
+      'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
       'https://mirror.unpad.ac.id/ctan/' => 1,
@@ -66,6 +67,9 @@ $mirrors = {
     'Austria' => {
       'https://at.ctan.niranjan.co/' => 1,
       'https://mirror.kumi.systems/ctan/' => 1,
+    },
+    'Belarus' => {
+      'https://mirror.datacenter.by/pub/mirrors/CTAN/' => 1,
     },
     'Bulgaria' => {
       'https://ftp.uni-sofia.bg/CTAN/' => 1,
@@ -125,6 +129,7 @@ $mirrors = {
     'Netherlands' => {
       'https://ftp.snt.utwente.nl/pub/software/tex/' => 1,
       'https://mirror.koddos.net/CTAN/' => 1,
+      'https://mirror.koetsier.org/ctan/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
       'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
@@ -138,6 +143,7 @@ $mirrors = {
       'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
+      'https://ftp.eq.uc.pt/software/TeX/' => 1,
       'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
@@ -148,6 +154,7 @@ $mirrors = {
       'https://mirror.truenetwork.ru/CTAN/' => 1,
     },
     'Spain' => {
+      'https://ctan.fisiquimicamente.com/' => 1,
       'https://ctan.gonzaleztroyano.es/' => 1,
       'https://ctan.javinator9889.com/' => 1,
       'https://softlibre.unizar.es/tex-archive/' => 1,
@@ -209,6 +216,9 @@ $mirrors = {
     },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
+    },
+    'Dominican Republic' => {
+      'https://mirror.hiesoft.net/ctan/' => 1,
     },
   },
 };
