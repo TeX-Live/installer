@@ -77,6 +77,9 @@ $mirrors = {
       'https://mirrors.neterra.net/CTAN/' => 1,
       'https://mirrors.netix.net/CTAN/' => 1,
     },
+    'Czechia' => {
+      'https://ftp.fi.muni.cz/pub/tex/CTAN/' => 1,
+    },
     'Denmark' => {
       'https://mirrors.dotsrc.org/ctan/' => 1,
     },
@@ -186,6 +189,7 @@ $mirrors = {
       'https://ctan.mirror.rafal.ca/' => 1,
       'https://mirror.csclub.uwaterloo.ca/CTAN/' => 1,
       'https://mirror.quantum5.ca/CTAN/' => 1,
+      'https://muug.ca/mirror/ctan/' => 1,
     },
     'Costa Rica' => {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
