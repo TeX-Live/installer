@@ -122,7 +122,6 @@ $mirrors = {
     },
     'Greece' => {
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
-      'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
     'Hungary' => {
       'https://ctan.uni-eszterhazy.hu/tex-archive/' => 1,
@@ -220,9 +219,6 @@ $mirrors = {
     },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
-    },
-    'Dominican Republic' => {
-      'https://mirror.hiesoft.net/ctan/' => 1,
     },
   },
 };
