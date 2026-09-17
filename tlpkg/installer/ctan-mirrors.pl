@@ -122,6 +122,7 @@ $mirrors = {
     },
     'Greece' => {
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
+      'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
     'Hungary' => {
       'https://ctan.uni-eszterhazy.hu/tex-archive/' => 1,
