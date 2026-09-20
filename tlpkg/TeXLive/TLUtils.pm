@@ -3313,8 +3313,18 @@ sub download_file {
 sub _download_file_lwp {
   my ($url, $dest) = @_;
   if (!defined($::tldownload_server)) {
-    ddebug("::tldownload_server not defined\n");
-    return(0);
+    # install-tl loads the remote tlpdb before it calls
+    # setup_persistent_downloads, and with TEXLIVE_DOWNLOADER=lwp there is
+    # no other downloader to fall back on, so that first download fails.
+    # Set the connection up here when lwp was asked for by name; when it
+    # was not, leave it alone, so that --no-persistent-downloads still
+    # means what it says and we just move on to curl or wget.
+    setup_persistent_downloads()
+      if (($ENV{'TEXLIVE_DOWNLOADER'} || '') eq 'lwp');
+    if (!defined($::tldownload_server)) {
+      ddebug("::tldownload_server not defined\n");
+      return(0);
+    }
   }
   if (!$::tldownload_server->enabled) {
     # try to reinitialize a disabled connection
