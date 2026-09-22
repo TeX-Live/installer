@@ -48,7 +48,9 @@ done
 for ks in ${keyservers[@]} ; do
   echo "=== key on $ks ==="
   TMPH=$(mktemp -d)
-  # pull the key straight from the keyserver into the empty temp homedir
+  # Pull the key from the keyserver into the empty temp homedir.
+  # Without --homedir it will use ~/.gnupg, i.e., the last time
+  #   you happened to receive our keys as yourself, i.e., random.
   gpg --homedir "$TMPH" --keyserver $ks --recv-keys $KEYID
   # show expiry of the primary key AND each subkey
   gpg --homedir "$TMPH" --list-keys --with-subkey-fingerprints $KEYID
@@ -59,6 +61,9 @@ done
 #  sub   rsa2048 2016-03-19 [S] [expires: 2027-07-13]
 #      D8F2F86057A857E42A88106A4CE1877E19438C70
 
+# [S] = (main) can be used for signing
+# [C] = (main) can be used to vouch for other keys
+# [E] = (subkey) used for encryption
 
 # The new GPG servers strip signatures due to signature poisoning
 # attacks, so we tell people to download the key from our web site.
@@ -120,3 +125,18 @@ ci -u -m"`date +%Y` key update"
 gpg --verify --verbose --status-file=/tmp/st foo.asc
 
 . see tlgpg, tlgpg-verify, tl-sign-file, TLCrypto.pm for full implementation.
+
+
+ID	Public Key Algorithm (algo)		ID	Hash Digest Algorithm (digest algo)
+1	RSA (Encrypt or Sign)		2	SHA-1
+17	DSA (Digital Signature Algorithm)		8	SHA-256
+19	ECDSA		9	SHA-384
+22	EdDSA		10	SHA-512
+
+digest algo 8 = sha-256
+           10 = sha-512
+
+https://davesteele.github.io/gpg/2014/09/20/anatomy-of-a-gpg-key/
+
+gpg --recv-keys 0x0D5E5D9106BAB6BC # update TL key in ~/.gnupg
+gpg --list-sigs 0x0D5E5D9106BAB6BC # show signers
