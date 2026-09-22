@@ -80,6 +80,9 @@ $mirrors = {
     'Czechia' => {
       'https://ftp.fi.muni.cz/pub/tex/CTAN/' => 1,
     },
+    'Denmark' => {
+      'https://mirrors.dotsrc.org/ctan/' => 1,
+    },
     'Finland' => {
       'https://ctan.qno.de/' => 1,
       'https://mirror.5i.fi/tex-archive/' => 1,
@@ -111,7 +114,7 @@ $mirrors = {
       'https://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/' => 1,
       'https://ftp.tu-chemnitz.de/pub/tex/' => 1,
       'https://markov.htwsaar.de/tex-archive/' => 1,
-      'https://mirror.clientvps.com/CTAN/' => 1,
+      'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.funkfreundelandshut.de/latex/' => 1,
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
       'https://mirror.rabisu.com/mirrors/CTAN/' => 1,
@@ -199,7 +202,6 @@ $mirrors = {
       'https://latex.us/' => 1,
       'https://mirror.clarkson.edu/ctan/' => 1,
       'https://mirror.latigo.net/ctan/' => 1,
-      'https://mirror.math.princeton.edu/pub/CTAN/' => 1,
       'https://mirrors.ibiblio.org/pub/mirrors/CTAN/' => 1,
       'https://mirrors.mit.edu/CTAN/' => 1,
       'https://mirrors.rit.edu/CTAN/' => 1,
