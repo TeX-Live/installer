@@ -176,6 +176,15 @@ our %Compressors = (
     "extension"       => "xz",
     "priority"        => 30,
   },
+  # zstd: fast decompression at near-xz ratios; not shipped with TL, so
+  # only available where the system provides it.  Priority between lz4 and
+  # gzip: lz4 (shipped everywhere) stays the default for backups.
+  "zstd" => {
+    "decompress_args" => ["-dcf"],
+    "compress_args"   => ["-zqf"],
+    "extension"       => "zst",
+    "priority"        => 15,
+  },
 );
 our $CompressorExtRegexp = "("
     . join("|", map { $Compressors{$_}{'extension'} } keys %Compressors)

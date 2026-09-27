@@ -2740,7 +2740,8 @@ sub unpack {
   my $compressorextension;
   if ($what =~ m/\.tar\.$CompressorExtRegexp$/) {
     $compressorextension = $1;
-    $decompressorType = $1 eq "gz" ? "gzip" : $1;
+    # the compressor whose extension this is (gz -> gzip, zst -> zstd, ...)
+    ($decompressorType) = grep { $Compressors{$_}{'extension'} eq $compressorextension } keys %Compressors;
   }
   if (!$decompressorType) {
     return(0, "don't know how to unpack");

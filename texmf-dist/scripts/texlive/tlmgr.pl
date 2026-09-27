@@ -2033,7 +2033,7 @@ sub restore_one_package {
   # this way we get rid of useless files
   my $restore_file;
   for my $ext (map {$Compressors{$_}{'extension'}} 
-                 sort {$Compressors{$a}{'priority'} <=> $Compressors{$a}{'priority'}} 
+                 sort {$Compressors{$a}{'priority'} <=> $Compressors{$b}{'priority'}} 
                    keys %Compressors) {
     if (-r "$bd/${pkg}.r${rev}.tar.$ext") {
       $restore_file = "$bd/${pkg}.r${rev}.tar.$ext";

@@ -634,6 +634,15 @@ sub make_container {
     &TeXLive::TLUtils::mkdirhier("$tlpobjdir");
     $removetlpobjdir = 1;
   }
+  # an installed tlpobj already there (tlmgr backup runs on the live tree)
+  # would be overwritten and then removed below; keep it aside meanwhile
+  my $tlpobjfile = "$tlpobjdir/$self->{'name'}.tlpobj";
+  my $savedtlpobj;
+  if (-f $tlpobjfile) {
+    $savedtlpobj = "$tlpobjfile.keep";
+    rename($tlpobjfile, $savedtlpobj)
+      || die "$0: rename($tlpobjfile, $savedtlpobj) failed: $!";
+  }
   open(TMP,">$tlpobjdir/$self->{'name'}.tlpobj") 
   || die "$0: create($tlpobjdir/$self->{'name'}.tlpobj) failed: $!";
   # when we do relative we have to cancel the prefix before writing out
@@ -804,7 +813,8 @@ sub make_container {
   }
   
   # cleaning up
-  unlink("$tlpobjdir/$self->{'name'}.tlpobj");
+  unlink($tlpobjfile);
+  rename($savedtlpobj, $tlpobjfile) if defined($savedtlpobj);
   unlink($tartempfile) if $tartempfile;
   rmdir($tlpobjdir) if $removetlpobjdir;
   rmdir($InfraLocation) if $removetlpkgdir;
