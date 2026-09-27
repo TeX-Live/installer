@@ -93,6 +93,7 @@ $mirrors = {
       'https://ctan.ceremade.dauphine.fr/' => 1,
       'https://ctan.mines-albi.fr/' => 1,
       'https://ctan.tetaneutral.net/' => 1,
+      'https://distrib-coffee.ipsl.jussieu.fr/pub/mirrors/ctan/' => 1,
       'https://mirror.ibcp.fr/pub/CTAN/' => 1,
       'https://mirror.xjj.sh/ctan/' => 1,
       'https://mirrors.ircam.fr/pub/CTAN/' => 1,
@@ -122,7 +123,6 @@ $mirrors = {
     },
     'Greece' => {
       'https://fosszone.csd.auth.gr/CTAN/' => 1,
-      'https://ftp.cc.uoc.gr/mirrors/CTAN/' => 1,
     },
     'Hungary' => {
       'https://ctan.uni-eszterhazy.hu/tex-archive/' => 1,
