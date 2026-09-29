@@ -375,6 +375,8 @@ if (-r "installation.profile"
 }
 
 
+# zero rename TL_ to TEXLIVE_ envvars
+TeXLive::TLUtils::tl_env_renames();
 # first process verbosity/quiet options
 process_logging_options();
 # now the others
@@ -404,7 +406,7 @@ GetOptions(
            "persistent-downloads!"       => \$opt_persistent_downloads,
            "portable"                    => \$opt_portable,
            # read where it is used, in TLUtils::prefetch_start
-           "prefetch=s"                  => sub { $ENV{'TL_PREFETCH'} = $_[1] },
+           "prefetch=s"                  => sub { $ENV{'TEXLIVE_PREFETCH'} = $_[1] },
            "print-platform|print-arch"   => \$opt_print_arch,
            "profile=s"                   => \$opt_profile,
            "scheme|s=s"                  => \$opt_scheme,
@@ -3259,7 +3261,7 @@ For network installs, fetch the containers in the background while
 installing, with I<jobs> downloads at a time (C<auto> for as many as there
 are processors, at most 8), and pausing while more than I<mb> megabytes
 (default 64) wait to be installed.  Off by default.  This is the same as
-setting C<TL_PREFETCH>, see below.
+setting C<TEXLIVE_PREFETCH>, see below.
 
 =item B<-print-platform>
 
@@ -3528,9 +3530,9 @@ Don't try to run the C<--help> message through C<perldoc>.
 
 =item C<TEXLIVE_DOWNLOADER>
 
-=item C<TL_DOWNLOAD_PROGRAM>
+=item C<TEXLIVE_DOWNLOAD_PROGRAM>
 
-=item C<TL_DOWNLOAD_ARGS>
+=item C<TEXLIVE_DOWNLOAD_ARGS>
 
 =item C<TEXLIVE_PREFER_OWN>
 
@@ -3538,7 +3540,7 @@ These override the normal choice of the download and other utility
 programs; see the C<tlmgr> documentation, e.g.,
 L<https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
 
-=item C<TL_PREFETCH>
+=item C<TEXLIVE_PREFETCH>
 
 Fetch the containers in the background while installing, instead of one
 at a time; off by default. The value is as for C<-prefetch>, which

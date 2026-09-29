@@ -406,12 +406,15 @@ sub main {
   # save command line options for later restart, if necessary
   @::SAVEDARGV = @ARGV;
 
+  # rename TL_ to TEXLIVE_ envvars
+  TeXLive::TLUtils::tl_env_renames();
+
   TeXLive::TLUtils::process_logging_options();
 
   GetOptions(\%opts, keys(%optarg)) or pod2usage(2);
 
   # read where it is used, in TLUtils::prefetch_start
-  $ENV{'TL_PREFETCH'} = $opts{'prefetch'} if defined($opts{'prefetch'});
+  $ENV{'TEXLIVE_PREFETCH'} = $opts{'prefetch'} if defined($opts{'prefetch'});
 
   # load the config file and set the config options
   # load it BEFORE starting downloads as we set persistent-downloads there!
@@ -3350,7 +3353,7 @@ sub action_update {
   # and following it after the change would make it much harder
   #
   # fetch the containers in the background while we install; a no-op unless
-  # TL_PREFETCH is set.  The list has to be the one the loop below
+  # TEXLIVE_PREFETCH is set.  The list has to be the one the loop below
   # walks, in that order, because the prefetch follows the loop through it;
   # packages that are not going to be installed are skipped by name.
   my @toprefetch = (@inst_packs, @new_packs, @inst_colls, @new_colls,
@@ -4034,7 +4037,7 @@ sub action_install {
   print "end-of-header\n" if $::machinereadable;
 
   # fetch the containers in the background while we install; a no-op unless
-  # TL_PREFETCH is set.  %packs holds packages asked for from one
+  # TEXLIVE_PREFETCH is set.  %packs holds packages asked for from one
   # particular repository; the prefetch leaves those alone, since it
   # resolves pkg@tag differently than get_package does.
   my $prefetch;
@@ -8485,7 +8488,7 @@ only useful in debugging.
 
 =item B<--prefetch> I<jobs>[B<:>I<mb>]
 
-Same as setting C<TL_PREFETCH> to I<jobs>[B<:>I<mb>], which see below.
+Same as setting C<TEXLIVE_PREFETCH> to I<jobs>[B<:>I<mb>], which see below.
 
 =item B<--usermode>
 
@@ -10041,12 +10044,12 @@ Additional trusted keys can be added using the C<key> action.
 =head2 Configuration of GnuPG invocation
 
 The executable used for GnuPG is searched as follows: If the environment
-variable C<TL_GNUPG> is set, it is tested and used; otherwise C<gpg> is
+variable C<TEXLIVE_GNUPG> is set, it is tested and used; otherwise C<gpg> is
 checked; finally C<gpg2> is checked.
 
 Further adaptation of the C<gpg> invocation can be made using the two
-environment variables C<TL_GNUPGHOME>, which is passed to C<gpg> as the
-value for C<--homedir>, and C<TL_GNUPGARGS>, which replaces the default
+environment variables C<TEXLIVE_GNUPGHOME>, which is passed to C<gpg> as the
+value for C<--homedir>, and C<TEXLIVE_GNUPGARGS>, which replaces the default
 options C<--no-secmem-warning --no-permission-warning>.
 
 =head1 USER MODE
@@ -10679,9 +10682,9 @@ unaffected, to minimize download sizes.
 
 =item C<TEXLIVE_DOWNLOADER>
 
-=item C<TL_DOWNLOAD_PROGRAM>
+=item C<TEXLIVE_DOWNLOAD_PROGRAM>
 
-=item C<TL_DOWNLOAD_ARGS>
+=item C<TEXLIVE_DOWNLOAD_ARGS>
 
 These options allow selecting different download programs then the ones
 automatically selected by the installer. The order of selection is:
@@ -10696,9 +10699,9 @@ C<aria2c>, C<curl>, C<wget>. The necessary options are added internally.
 
 =item 2.
 
-If the environment variable C<TL_DOWNLOAD_PROGRAM> is
+If the environment variable C<TEXLIVE_DOWNLOAD_PROGRAM> is
 defined (can be any value), use it together with
-C<TL_DOWNLOAD_ARGS>; abort if it doesn't work.
+C<TEXLIVE_DOWNLOAD_ARGS>; abort if it doesn't work.
 
 =item 3.
 
@@ -10723,11 +10726,11 @@ No aria2c binaries are shipped with TeX Live, so it is used only when the
 system provides it. TL provides C<wget> binaries for platforms where
 necessary, so some download method should always be available.
 
-=item C<TL_PREFETCH>
+=item C<TEXLIVE_PREFETCH>
 
 When installing or updating over the network, C<tlmgr> downloads one
 container at a time, so most of the time is spent waiting for the server.
-C<TL_PREFETCH> (or the C<--prefetch> option, which overrides it) instead
+C<TEXLIVE_PREFETCH> (or the C<--prefetch> option, which overrides it) instead
 fetches containers in the background while the installation proceeds.
 Its value is I<jobs>[B<:>I<mb>], where I<jobs> is
 

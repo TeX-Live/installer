@@ -46,6 +46,7 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::diskfree($path);
   TeXLive::TLUtils::get_user_home();
   TeXLive::TLUtils::expand_tilde($str);
+  TeXLive::TLUtils::tl_env_renames();
 
 =head2 File utilities
 
@@ -261,6 +262,7 @@ BEGIN {
     &diskfree
     &get_user_home
     &expand_tilde
+    &tl_env_renames
     &announce_execute_actions
     &add_symlinks
     &remove_symlinks
@@ -1000,6 +1002,40 @@ sub expand_tilde {
   my $h = get_user_home();
   $str =~ s/^~/$h/;
   return $str;
+}
+
+=item C<tl_env_renames()>
+
+Prefer env vars named C<TEXLIVE_*> over C<TL_*>, but recognize
+C<TL_*> for compatibility.
+
+=cut
+
+sub tl_env_renames {
+  for my $env (qw(DOWNLOAD_PROGRAM DOWNLOADS_ARGS GNUPG JSONMODE)) {
+    my $texlive_env = "TEXLIVE_" . $env;
+    my $tl_env = "TL_" . $env;
+
+    if (exists $ENV{$tl_env}) {
+      if (exists $ENV{$texlive_env}) {
+        if ($ENV{$tl_env} ne $ENV{$texlive_env}) {
+          tlwarn (<<END_WARNING);
+TLUtils::tl_env_renames: $texlive_env ne $tl_env, using $texlive_env
+TLUtils::tl_env_renames: $texlive_env=$ENV{$texlive_env}
+TLUtils::tl_env_renames: $tl_env=$ENV{$tl_env}
+END_WARNING
+        } else {
+          ; # have both TL_ and TEXLIVE_, but they are equal, do nothing
+        }
+      } else {
+        # have TL_ but not TEXLIVE_, set the latter to the former
+        debug("Renaming env var $tl_env to $texlive_env\n");
+        $ENV{$texlive_env} = $ENV{$tl_env};
+      }
+    } else {
+      ; # don't have TL_*, do nothing
+    }
+  } # envvar loop
 }
 
 =back
@@ -1888,7 +1924,7 @@ sub install_packages {
     $totalsize += $tlpsizes{$p};
   }
   # fetch the containers in the background while we install; a no-op unless
-  # TL_PREFETCH is set
+  # TEXLIVE_PREFETCH is set
   my $prefetch;
   $prefetch = prefetch_start($fromtlpdb, \@packs, $opt_src, $opt_doc)
     if ($media eq 'NET');
@@ -1990,7 +2026,7 @@ verified both when a container is prefetched and again in C<unpack>.
 
 How far ahead this runs is bounded by how much is in the cache that the
 installation has not consumed yet: nothing new is started while that
-exceeds the C<MB> part of C<TL_PREFETCH> (default 64, C<0> for no limit).
+exceeds the C<MB> part of C<TEXLIVE_PREFETCH> (default 64, C<0> for no limit).
 The check is made before starting on the next containers, and at least one
 is always taken however large it is, so in practice the cache reaches a few
 (around 2-3) times the setting.
@@ -2002,7 +2038,7 @@ consumed.  Left in the cache it would hold the cache over the budget for
 good and nothing would ever start again.  Knowing where the installation
 is, this skips past it and throws away what it has already gone by.
 
-Prefetching is off unless C<TL_PREFETCH> (C<JOBS[:MB]>) is set, with
+Prefetching is off unless C<TEXLIVE_PREFETCH> (C<JOBS[:MB]>) is set, with
 C<JOBS> other than C<0>: a number is how many downloads run at a time,
 C<auto> is as many as there are processors, capped at 8 so as not to hammer
 the mirrors.  Even one helps, since it downloads while the installation
@@ -2018,17 +2054,17 @@ Does nothing for non-NET packages, or when nothing is asked for.
 =cut
 
 sub _prefetch_settings {
-  # TL_PREFETCH=[JOBS][:][MB].  JOBS unset or 0: off; a number: that many
+  # TEXLIVE_PREFETCH=[JOBS][:][MB].  JOBS unset or 0: off; a number: that many
   # downloads at a time; auto: as many as there are processors, except
   # limited to 8, to be nice to the mirrors.  MB is the cache
   # budget in megabytes (default 64, 0 for no limit).  Returns the number of
   # jobs and the budget in bytes.
-  my $v = $ENV{'TL_PREFETCH'};
+  my $v = $ENV{'TEXLIVE_PREFETCH'};
   return (0, 0) if (!defined($v) || $v eq '');
   my ($jobs,$wmb) = split (/:/, $v, 2);
 
   if ($jobs eq '') {
-    tlwarn("TLUtils.pm::_prefetch_settings: TL_PREFETCH jobs not specified "
+    tlwarn("TLUtils.pm::_prefetch_settings: TEXLIVE_PREFETCH jobs not specified "
            . "ignoring: $v\n");
     return (0, 0);
   } elsif ($jobs eq 'auto') {
@@ -2039,7 +2075,7 @@ sub _prefetch_settings {
     }
     $jobs = $::tl_prefetch_nproc;
   } elsif ($jobs !~ /^[0-9]+$/) {
-    tlwarn("TLUtils.pm::_prefetch_settings: TL_PREFETCH jobs not numeric "
+    tlwarn("TLUtils.pm::_prefetch_settings: TEXLIVE_PREFETCH jobs not numeric "
            . "or auto, ignoring: $jobs (from $v)\n");
     return (0, 0);
   }
@@ -2047,7 +2083,7 @@ sub _prefetch_settings {
   if (!defined($wmb) || $wmb eq '') {
     $wmb = 64;
   } elsif ($wmb !~ /^[0-9]+$/) {
-    tlwarn("TLUtils.pm::_prefetch_settings: TL_PREFETCH cache-MB not numeric "
+    tlwarn("TLUtils.pm::_prefetch_settings: TEXLIVE_PREFETCH cache-MB not numeric "
            . "ignoring: $wmb (from $v)\n");
     return (0, 0);
   }
@@ -2300,7 +2336,7 @@ sub prefetch_start {
   my $type = _batch_downloader();
   if (!defined($type)) {
     if (!$::tl_prefetch_warned) {
-      tlwarn("TL_PREFETCH is set, but there is no downloader that can be "
+      tlwarn("TEXLIVE_PREFETCH is set, but there is no downloader that can be "
              . "run separately (lwp cannot), not prefetching\n");
       $::tl_prefetch_warned = 1;
     }
@@ -3473,7 +3509,7 @@ Selected downloader type TEXLIVE_DOWNLOADER=$ENV{'TEXLIVE_DOWNLOADER'}
 Please choose a different downloader type from the list below,
   or don't set TEXLIVE_DOWNLOADER. It's not possible to
   set this to an arbitrary executable, but you can use the environment
-  variables TL_DOWNLOAD_PROGRAM and TL_DOWNLOAD_ARGS to specify
+  variables TEXLIVE_DOWNLOAD_PROGRAM and TEXLIVE_DOWNLOAD_ARGS to specify
   anything you wish. See:
     https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES
 
@@ -3651,12 +3687,12 @@ a filename of simply C<|>. In the latter case a file handle is returned.
 
 Downloading first checks for the environment variable C<TEXLIVE_DOWNLOADER>,
 which takes various built-in values. If not set, the next check is for
-C<TL_DOWNLOAD_PROGRAM> and C<TL_DOWNLOAD_ARGS>. The former overrides the
+C<TEXLIVE_DOWNLOAD_PROGRAM> and C<TEXLIVE_DOWNLOAD_ARGS>. The former overrides the
 above specification devolving to C<wget>, and the latter overrides the
 default wget arguments.
 
-C<TL_DOWNLOAD_ARGS> must be defined so that the file the output goes to
-is the first argument after the C<TL_DOWNLOAD_ARGS>.  Thus, for wget it
+C<TEXLIVE_DOWNLOAD_ARGS> must be defined so that the file the output goes to
+is the first argument after the C<TEXLIVE_DOWNLOAD_ARGS>.  Thus, for wget it
 would end in C<-O>.  Use with care.
 
 =cut
@@ -3723,8 +3759,16 @@ sub download_file {
   my @downloader_trials;
   if ($ENV{'TEXLIVE_DOWNLOADER'}) {
     push @downloader_trials, $ENV{'TEXLIVE_DOWNLOADER'};
-  } elsif ($ENV{"TL_DOWNLOAD_PROGRAM"}) {
-    push @downloader_trials, 'custom';
+  } elsif ($ENV{"TEXLIVE_DOWNLOAD_PROGRAM"}) {
+    if (defined $ENV{"TEXLIVE_DOWNLOAD_ARGS"}) {
+      # we use defined, since one might reasonably use a script without any
+      # additional arguments, but they must then set TEXLIVE_DOWNLOAD_ARGS=''
+      # defined checks for the existence of the key
+      push @downloader_trials, 'custom';
+    } else {
+      tlwarn("TEXLIVE_DOWNLOAD_PROGRAM set without TEXLIVE_DOWNLOAD_ARGS, dropping back to default!\n");
+      @downloader_trials = ('lwp', @AcceptedFallbackDownloaders);
+    }
   } else {
     @downloader_trials = ('lwp', @AcceptedFallbackDownloaders);
   }
@@ -3818,10 +3862,13 @@ sub _download_file_program {
   my $downloaderargs;
   my @downloaderargs;
   if ($type eq 'custom') {
-    $downloader = $ENV{"TL_DOWNLOAD_PROGRAM"};
-    if ($ENV{"TL_DOWNLOAD_ARGS"}) {
-      $downloaderargs = $ENV{"TL_DOWNLOAD_ARGS"};
+    $downloader = $ENV{"TEXLIVE_DOWNLOAD_PROGRAM"};
+    if ($ENV{"TEXLIVE_DOWNLOAD_ARGS"}) {
+      $downloaderargs = $ENV{"TEXLIVE_DOWNLOAD_ARGS"};
       @downloaderargs = split(' ', $downloaderargs);
+    } else {
+      $downloaderargs = "";
+      @downloaderargs = [];
     }
   } else {
     $downloader = $::progs{$FallbackDownloaderProgram{$type}};
@@ -3865,8 +3912,8 @@ sub _download_file_program {
 sub _batch_downloader {
   # Which downloader can fetch a whole list of urls in one invocation?
   # Follows the same preference as download_file, and gives up on a custom
-  # TL_DOWNLOAD_PROGRAM, whose command line we know nothing about.
-  return undef if ($ENV{'TL_DOWNLOAD_PROGRAM'} && !$ENV{'TEXLIVE_DOWNLOADER'});
+  # TEXLIVE_DOWNLOAD_PROGRAM, whose command line we know nothing about.
+  return undef if ($ENV{'TEXLIVE_DOWNLOAD_PROGRAM'} && !$ENV{'TEXLIVE_DOWNLOADER'});
   my @working = @{$::progs{'working_downloaders'} || []};
   my @try = $ENV{'TEXLIVE_DOWNLOADER'}
             ? ($ENV{'TEXLIVE_DOWNLOADER'}) : @working;
@@ -5812,7 +5859,7 @@ This tries to load the C<JSON> Perl module, and uses it if available,
 otherwise falls back to module internal conversion.
 
 The used backend can be selected by setting the environment variable
-C<TL_JSONMODE> to either C<json> or C<texlive> (all other values are
+C<TEXLIVE_JSONMODE> to either C<json> or C<texlive> (all other values are
 ignored). If C<json> is requested and the C<JSON> module cannot be loaded
 the program terminates.
 
@@ -5858,18 +5905,18 @@ sub False {
 sub ensure_json_available {
   return if ($jsonmode);
   # check the environment for mode to use:
-  # $ENV{'TL_JSONMODE'} = texlive | json
+  # $ENV{'TEXLIVE_JSONMODE'} = texlive | json
   my $envdefined = 0;
-  if ($ENV{'TL_JSONMODE'}) {
+  if ($ENV{'TEXLIVE_JSONMODE'}) {
     $envdefined = 1;
-    if ($ENV{'TL_JSONMODE'} eq "texlive") {
+    if ($ENV{'TEXLIVE_JSONMODE'} eq "texlive") {
       $jsonmode = "texlive";
       debug("texlive json module used!\n");
       return;
-    } elsif ($ENV{'TL_JSONMODE'} eq "json") {
+    } elsif ($ENV{'TEXLIVE_JSONMODE'} eq "json") {
       # nothing to do
     } else {
-      tlwarn("Unsupported mode \'$ENV{TL_JSONMODE}\' set in TL_JSONMODE, ignoring it!");
+      tlwarn("Unsupported mode \'$ENV{TEXLIVE_JSONMODE}\' set in TEXLIVE_JSONMODE, ignoring it!");
       $envdefined = 0;
     }
   }
@@ -5879,7 +5926,7 @@ sub ensure_json_available {
     # that didn't work out, use home-grown json
     if ($envdefined) {
       # environment asks for JSON but cannot be loaded, die!
-      tldie("envvar TL_JSONMODE request JSON module but cannot be loaded!\n");
+      tldie("envvar TEXLIVE_JSONMODE request JSON module but cannot be loaded!\n");
     }
     $jsonmode = "texlive";
     debug("texlive json module used!\n");
