@@ -403,6 +403,8 @@ GetOptions(
            "paper=s"                     => \$opt_paper,
            "persistent-downloads!"       => \$opt_persistent_downloads,
            "portable"                    => \$opt_portable,
+           # read where it is used, in TLUtils::prefetch_start
+           "prefetch=s"                  => sub { $ENV{'TL_PREFETCH'} = $_[1] },
            "print-platform|print-arch"   => \$opt_print_arch,
            "profile=s"                   => \$opt_profile,
            "scheme|s=s"                  => \$opt_scheme,
@@ -864,6 +866,15 @@ sub only_load_remote {
       $media = 'NET';
     }
   }
+  # set up the persistent connection before the first download, so that the
+  # tlpdb and its checksum and signature go through lwp like the containers
+  # do; final_remote_init used to do this, after they had been fetched
+  if ($media eq 'NET' && $opt_persistent_downloads
+      && !defined($::tldownload_server)) {
+    TeXLive::TLUtils::setup_persistent_downloads(
+      "$::installerdir/tlpkg/installer/curl/curl-ca-bundle.crt"
+    );
+  }
   if ($from_ext_gui) {print "location: $location\n";}
   return load_tlpdb();
 } # only_load_remote
@@ -933,9 +944,6 @@ sub final_remote_init {
   } elsif ($media eq "NET") {
     info("Distribution: net  (downloading)\n");
     info("Using URL: $TeXLiveURL\n");
-    TeXLive::TLUtils::setup_persistent_downloads(
-      "$::installerdir/tlpkg/installer/curl/curl-ca-bundle.crt"
-    ) if $opt_persistent_downloads;
   } else {
     info("Distribution: $media\n");
   }
@@ -3245,6 +3253,14 @@ the C<tlmgr paper> command.
 Install for portable use, e.g., on a USB stick.  See the
 C<instopt_portable> description below for details.
 
+=item B<-prefetch> I<jobs>[B<:>I<mb>]
+
+For network installs, fetch the containers in the background while
+installing, with I<jobs> downloads at a time (C<auto> for as many as there
+are processors, at most 8), and pausing while more than I<mb> megabytes
+(default 64) wait to be installed.  Off by default.  This is the same as
+setting C<TL_PREFETCH>, see below.
+
 =item B<-print-platform>
 
 Print the TeX Live identifier for the detected platform
@@ -3520,6 +3536,13 @@ Don't try to run the C<--help> message through C<perldoc>.
 
 These override the normal choice of the download and other utility
 programs; see the C<tlmgr> documentation, e.g.,
+L<https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
+
+=item C<TL_PREFETCH>
+
+Fetch the containers in the background while installing, instead of one
+at a time; off by default. The value is as for C<-prefetch>, which
+overrides it. See the C<tlmgr> documentation, e.g.,
 L<https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
 
 =item C<TEXLIVE_INSTALL_ENV_NOCHECK>

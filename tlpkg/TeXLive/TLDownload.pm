@@ -113,6 +113,11 @@ sub disable
   my $self = shift;
   $self->{'enabled'} = 0;
 }
+sub unusable
+{
+  my $self = shift;
+  return $self->{'unusable'};
+}
 sub initcount
 {
   my $self = shift;
@@ -162,6 +167,7 @@ sub get_file {
   }
   my $response = $self->{'ua'}->get($url, ':content_file' => $realout);
   if ($response->is_success) {
+    $self->{'worked'} = 1;
     $self->decr_errorcount;
     if ($out ne "|") {
       return 1;
@@ -173,6 +179,17 @@ sub get_file {
   } else {
     debug("TLDownload::get_file: response error: "
             . $response->status_line . " (for $url)\n");
+    # LWP makes up this response itself when it could not talk to the
+    # server at all (cannot connect, certificate not accepted, ...).  If
+    # that happens before anything ever worked, it is not going to work,
+    # so give up on lwp instead of trying it again for every file.
+    if (!$self->{'worked'}
+        && ($response->header('Client-Warning') || '') eq 'Internal response') {
+      debug("TLDownload::get_file: lwp cannot reach the server, "
+            . "not using it any more\n");
+      $self->{'unusable'} = 1;
+      $self->disable;
+    }
     $self->incr_errorcount;
     return;
   }
