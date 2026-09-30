@@ -2026,7 +2026,7 @@ verified both when a container is prefetched and again in C<unpack>.
 
 How far ahead this runs is bounded by how much is in the cache that the
 installation has not consumed yet: nothing new is started while that
-exceeds the C<MB> part of C<TEXLIVE_PREFETCH> (default 64, C<0> for no limit).
+exceeds the C<MB> part of C<TEXLIVE_PREFETCH> (default 200, C<0> for no limit).
 The check is made before starting on the next containers, and at least one
 is always taken however large it is, so in practice the cache reaches a few
 (around 2-3) times the setting.
@@ -2081,7 +2081,7 @@ sub _prefetch_settings {
   }
   #
   if (!defined($wmb) || $wmb eq '') {
-    $wmb = 64;
+    $wmb = 200;
   } elsif ($wmb !~ /^[0-9]+$/) {
     tlwarn("TLUtils.pm::_prefetch_settings: TEXLIVE_PREFETCH cache-MB not numeric "
            . "ignoring: $wmb (from $v)\n");
