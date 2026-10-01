@@ -3258,10 +3258,12 @@ C<instopt_portable> description below for details.
 =item B<-prefetch> I<jobs>[B<:>I<mb>]
 
 For network installs, fetch the containers in the background while
-installing, with I<jobs> downloads at a time (C<auto> for as many as there
-are processors, at most 8), and pausing while more than I<mb> megabytes
-(default 64) wait to be installed.  Off by default.  This is the same as
-setting C<TEXLIVE_PREFETCH>, see below.
+installing, with I<jobs> downloads at a time (C<auto> for as many as
+there are processors, at most 8), and pausing while more than I<mb>
+megabytes (default 200) wait to be installed. Off by default. This
+overrides the C<TEXLIVE_PREFETCH> environment variable, see below. For
+details on prefetching, see the C<tlmgr> documentation, e.g.,
+L<https://tug.org/texlive/doc/tlmgr.html#TEXLIVE_PREFETCH>.
 
 =item B<-print-platform>
 
@@ -3544,8 +3546,9 @@ L<https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
 
 Fetch the containers in the background while installing, instead of one
 at a time; off by default. The value is as for C<-prefetch>, which
-overrides it. See the C<tlmgr> documentation, e.g.,
-L<https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
+overrides it. For details on prefetching, see the C<tlmgr>
+documentation, e.g.,
+L<https://tug.org/texlive/doc/tlmgr.html#TEXLIVE_PREFETCH>.
 
 =item C<TEXLIVE_INSTALL_ENV_NOCHECK>
 
