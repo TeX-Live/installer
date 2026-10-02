@@ -375,57 +375,59 @@ if (-r "installation.profile"
 }
 
 
-# zero rename TL_ to TEXLIVE_ envvars
+# 1) rename TL_ to TEXLIVE_ envvars:
 TeXLive::TLUtils::tl_env_renames();
-# first process verbosity/quiet options
+#
+# 2) process verbosity/quiet options
 process_logging_options();
-# now the others
+#
+# 3) now all the others:
 GetOptions(
-           "all-options"                 => \$::opt_all_options,
-           "continue!"                   => \$opt_continue,
-           "custom-bin=s"                => \$opt_custom_bin,
-           "debug-fakenet"               => \$opt_debug_fakenet,
-           "debug-setup-vars"            => \$opt_debug_setup_vars,
-           "debug-translation"           => \$::debug_translation,
-           "doc-install!"                => \$opt_doc_install,
-           "fancyselector",
-           "font=s"                      => \$opt_font,
-           "force-platform|force-arch=s" => \$opt_force_arch,
-           "gui:s"                       => \$opt_gui,
-           "in-place"                    => \$opt_in_place,
-           "init-from-profile=s"         => \$opt_init_from_profile,
-           "installation!",              => \$opt_installation,
-           "interaction!",               => \$opt_interaction,
-           "lang|gui-lang=s"             => \$::opt_lang,
-           "location|url|repository|repos|repo=s" => \$opt_location,
-           "no-cls",                    # $::opt_no_cls in install-menu-text-pl
-           "N"                           => \$opt_no_interaction,
-           "no-gui"                      => \$opt_no_gui,
-           "non-admin"                   => \$opt_nonadmin,
-           "paper=s"                     => \$opt_paper,
-           "persistent-downloads!"       => \$opt_persistent_downloads,
-           "portable"                    => \$opt_portable,
-           # read where it is used, in TLUtils::prefetch_start
-           "prefetch=s"                  => sub { $ENV{'TEXLIVE_PREFETCH'} = $_[1] },
-           "print-platform|print-arch"   => \$opt_print_arch,
-           "profile=s"                   => \$opt_profile,
-           "scheme|s=s"                  => \$opt_scheme,
-           "select-repository"           => \$::opt_select_repository,
-           "src-install!"                => \$opt_src_install,
-           "strict!"                     => \$opt_strict,
-           "tcl",                       # handled by wrapper
-           "texdir=s"                    => \$opt_texdir,
-           "texmfconfig=s"               => \$pathopts{'texmfconfig'},
-           "texmfhome=s"                 => \$pathopts{'texmfhome'},
-           "texmflocal=s"                => \$pathopts{'texmflocal'},
-           "texmfsysconfig=s"            => \$pathopts{'texmfsysconfig'},
-           "texmfsysvar=s"               => \$pathopts{'texmfsysvar'},
-           "texmfvar=s"                  => \$pathopts{'texmfvar'},
-           "texuserdir=s"                => \$opt_texuserdir,
-           "verify-downloads!"           => \$opt_verify_downloads,
-           "version"                     => \$opt_version,
-           "warn-checksums!"             => \$opt_warn_checksums,
-           "help|?"                      => \$opt_help) or pod2usage(2);
+  "all-options"                 => \$::opt_all_options,
+  "continue!"                   => \$opt_continue,
+  "custom-bin=s"                => \$opt_custom_bin,
+  "debug-fakenet"               => \$opt_debug_fakenet,
+  "debug-setup-vars"            => \$opt_debug_setup_vars,
+  "debug-translation"           => \$::debug_translation,
+  "doc-install!"                => \$opt_doc_install,
+  "fancyselector",
+  "font=s"                      => \$opt_font,
+  "force-platform|force-arch=s" => \$opt_force_arch,
+  "gui:s"                       => \$opt_gui,
+  "in-place"                    => \$opt_in_place,
+  "init-from-profile=s"         => \$opt_init_from_profile,
+  "installation!",              => \$opt_installation,
+  "interaction!",               => \$opt_interaction,
+  "lang|gui-lang=s"             => \$::opt_lang,
+  "location|url|repository|repos|repo=s" => \$opt_location,
+  "no-cls",                    # $::opt_no_cls in install-menu-text-pl
+  "N"                           => \$opt_no_interaction,
+  "no-gui"                      => \$opt_no_gui,
+  "non-admin"                   => \$opt_nonadmin,
+  "paper=s"                     => \$opt_paper,
+  "persistent-downloads!"       => \$opt_persistent_downloads,
+  "portable"                    => \$opt_portable,
+  # read where it is used, in TLUtils::prefetch_start
+  "prefetch=s"                  => sub { $ENV{'TEXLIVE_PREFETCH'} = $_[1] },
+  "print-platform|print-arch"   => \$opt_print_arch,
+  "profile=s"                   => \$opt_profile,
+  "scheme|s=s"                  => \$opt_scheme,
+  "select-repository"           => \$::opt_select_repository,
+  "src-install!"                => \$opt_src_install,
+  "strict!"                     => \$opt_strict,
+  "tcl",                       # handled by wrapper
+  "texdir=s"                    => \$opt_texdir,
+  "texmfconfig=s"               => \$pathopts{'texmfconfig'},
+  "texmfhome=s"                 => \$pathopts{'texmfhome'},
+  "texmflocal=s"                => \$pathopts{'texmflocal'},
+  "texmfsysconfig=s"            => \$pathopts{'texmfsysconfig'},
+  "texmfsysvar=s"               => \$pathopts{'texmfsysvar'},
+  "texmfvar=s"                  => \$pathopts{'texmfvar'},
+  "texuserdir=s"                => \$opt_texuserdir,
+  "verify-downloads!"           => \$opt_verify_downloads,
+  "version"                     => \$opt_version,
+  "warn-checksums!"             => \$opt_warn_checksums,
+  "help|?"                      => \$opt_help) or pod2usage(2);
 if ($from_ext_gui) {
   $opt_gui = "extl";
 }
@@ -3541,6 +3543,10 @@ Don't try to run the C<--help> message through C<perldoc>.
 These override the normal choice of the download and other utility
 programs; see the C<tlmgr> documentation, e.g.,
 L<https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES>.
+
+For historical compatibility, C<TL_DOWNLOAD_PROGRAM> and
+C<TL_DOWNLOAD_ARGS> are recognized if the corresponding C<TEXLIVE_*>
+environment variables are not set.
 
 =item C<TEXLIVE_PREFETCH>
 
