@@ -11,6 +11,7 @@ $mirrors = {
   'Asia' => {
     'China' => {
       'https://mirrors.aliyun.com/CTAN/' => 1,
+      'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
       'https://mirrors.hust.edu.cn/CTAN/' => 1,
@@ -21,6 +22,7 @@ $mirrors = {
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
       'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
+      'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
     'Hong Kong' => {
       'https://mirror-hk.koddos.net/CTAN/' => 1,
@@ -31,9 +33,6 @@ $mirrors = {
       'https://mirrors.in2.sahilister.net/ctan/' => 1,
       'https://mirrors.in3.sahilister.net/ctan/' => 1,
       'https://mirrors.sukhala.in/ctan/' => 1,
-    },
-    'Indonesia' => {
-      'https://mirror.unpad.ac.id/ctan/' => 1,
     },
     'Japan' => {
       'https://ctan.tikz.jp/' => 1,
@@ -77,9 +76,6 @@ $mirrors = {
     'Czechia' => {
       'https://ftp.cvut.cz/CTAN/' => 1,
       'https://ftp.fi.muni.cz/pub/tex/CTAN/' => 1,
-    },
-    'Denmark' => {
-      'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
       'https://ctan.qno.de/' => 1,
@@ -137,6 +133,7 @@ $mirrors = {
       'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
     'Norway' => {
+      'https://ctan.uib.no/' => 1,
       'https://ftp.fagskolen.gjovik.no/pub/tex-archive/' => 1,
     },
     'Poland' => {
