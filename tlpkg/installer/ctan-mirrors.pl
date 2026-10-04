@@ -34,12 +34,14 @@ $mirrors = {
       'https://mirrors.in3.sahilister.net/ctan/' => 1,
       'https://mirrors.sukhala.in/ctan/' => 1,
     },
+    'Indonesia' => {
+      'https://mirror.unpad.ac.id/ctan/' => 1,
+    },
     'Japan' => {
       'https://ctan.tikz.jp/' => 1,
       'https://ftp.jaist.ac.jp/pub/CTAN/' => 1,
       'https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/' => 1,
       'https://jp.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.aria-on-the-planet.es/CTAN/' => 1,
       'https://mirror.kris.fail/ctan/' => 1,
     },
     'Korea' => {
@@ -76,6 +78,9 @@ $mirrors = {
     'Czechia' => {
       'https://ftp.cvut.cz/CTAN/' => 1,
       'https://ftp.fi.muni.cz/pub/tex/CTAN/' => 1,
+    },
+    'Denmark' => {
+      'https://mirrors.dotsrc.org/ctan/' => 1,
     },
     'Finland' => {
       'https://ctan.qno.de/' => 1,
@@ -216,9 +221,6 @@ $mirrors = {
     },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
-    },
-    'Dominican Republic' => {
-      'https://mirror.hiesoft.net/ctan/' => 1,
     },
   },
 };
