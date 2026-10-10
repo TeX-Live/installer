@@ -223,5 +223,8 @@ $mirrors = {
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
     },
+    'Dominican Republic' => {
+      'https://mirror.hiesoft.net/ctan/' => 1,
+    },
   },
 };
