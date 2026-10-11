@@ -59,6 +59,8 @@ BEGIN {
     $ChecksumLength
     $ChecksumProgram
     $ChecksumExtension
+    $DefaultPrefetchPolicy
+    $DefaultFmtutilParallelPolicy
   );
   @EXPORT = @EXPORT_OK;
 }
@@ -356,6 +358,12 @@ our $ChecksumProgram = "sha512sum";
 # The extension of the checksum file
 our $ChecksumExtension = "sha512";
 
+# Default prefetch policy
+our $DefaultPrefetchPolicy = "auto";
+
+# Default fmtutil --parallel policy
+our $DefaultFmtutilParallelPolicy = "auto";
+
 1;
 
 
@@ -466,6 +474,15 @@ The texmf-tree name that can be relocated, defaults to C<texmf-dist>.
 
 The string that replaces the C<RelocTree> in the tlpdb if a package is
 relocated, defaults to C<RELOC>".
+
+=item C<$TeXLive::TLConfig::DefaultPrefetchPolicy>
+
+The default value for C<--prefetch> in the installer and TeX Live
+Manager.
+
+=item C<$TeXLive::TLConfig::DefaultFmtutilParallelPolicy>
+
+The default value for C<--parallel> in C<fmtutil>.
 
 =back
 

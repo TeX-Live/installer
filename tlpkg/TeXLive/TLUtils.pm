@@ -51,6 +51,7 @@ C<TeXLive::TLUtils> - TeX Live infrastructure common functionality
   TeXLive::TLUtils::get_user_home();
   TeXLive::TLUtils::expand_tilde($str);
   TeXLive::TLUtils::tl_env_renames();
+  TeXLive::TLUtils::setup_prefetch_parallel_env_var($env_name, $pos_name, $neg_name, $opts, $default);
 
 =head2 File utilities
 
@@ -267,6 +268,7 @@ BEGIN {
     &get_user_home
     &expand_tilde
     &tl_env_renames
+    &setup_prefetch_parallel_env_var
     &announce_execute_actions
     &add_symlinks
     &remove_symlinks
@@ -1040,6 +1042,56 @@ END_WARNING
       ; # don't have TL_*, do nothing
     }
   } # envvar loop
+}
+
+=item C<setup_prefetch_parallel_env_var($env_name, $pos_name, $neg_name, $opts, $default)>
+
+Set up the environment variable C<$env_name> depending on the values
+of C<$opts->{$pos_name}> and C<$opts->{$neg_name}>.
+
+C<$opts> is a reference to an hash of options.
+
+If C<--$pos_name[=X]> or C<--$neg_name> is given, set C<$env_name> to
+the respective value. Otherwise, if the env var is already set, keep it as is.
+Otherwise (no command line argument nor env var set), use the default setting
+in C<$default>.
+
+This deals with setting up C<--prefetch>/C<--no-prefetch>/C<TEXLIVE_PREFETCH>
+for C<install-tl> and C<tlmgr>, and C<--parallel>/C<--no-parallel>/C<FMTUTIL_PARALLEL>
+for C<fmtutil>.
+
+=cut
+
+sub setup_prefetch_parallel_env_var {
+  my ($env_name, $pos_name, $neg_name, $opts, $default) = @_;
+  #
+  # if TEXLIVE_PREFETCH is already defined, simply overwrite it with
+  # possible options of --prefetch/--no-prefetch
+  if (defined($opts->{$pos_name}) && defined($opts->{$neg_name})) {
+    # allow for --prefetch=0 --no-prefetch ... not that it matters
+    if ($opts->{$pos_name} ne "0") {
+      # we cannot have --prefetch=SOMETHING and --no-prefetch, bail out
+      tldie("TeXLive::TLUtils::setup_prefetch_parallel_env_var: --${pos_name}=" . $opts->{$pos_name} . " and --${neg_name} are incompatible.\n");
+    }
+  }
+  # read where it is used, in TLUtils::prefetch_start
+  if (defined($opts->{$neg_name})) {
+    $ENV{$env_name} = 0;
+  } elsif (defined($opts->{$pos_name})) {
+    # a bare --prefetch is the same as --prefetch=auto
+    if ($opts->{$pos_name} eq "") {
+      $ENV{$env_name} = "auto";
+    } else {
+      $ENV{$env_name} = $opts->{$pos_name};
+    }
+  } else {
+    # neither --no-prefetch nor --prefetch is given
+    # if TEXLIVE_PREFETCH env is defined, leave it untouched, otherwise
+    # set it to the default prefetch
+    if (!defined($ENV{$env_name})) {
+      $ENV{$env_name} = $default;
+    }
+  }
 }
 
 =back
@@ -6058,4 +6110,4 @@ GNU General Public License Version 2 or later.
 ### tab-width: 2
 ### indent-tabs-mode: nil
 ### End:
-# vim:set tabstop=2 shiftwidth=2 expandtab: #
+# vim:set tabstop=2 shiftwidth=2 softtabstop=-1 expandtab: #

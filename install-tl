@@ -297,10 +297,12 @@ my $opt_interaction = 1;
 my $opt_location = "";
 my $opt_no_gui = 0;
 my $opt_no_interaction = 0;
+my $opt_no_prefetch;
 my $opt_nonadmin = 0;
 my $opt_paper = "";
 my $opt_persistent_downloads = 1;
 my $opt_portable = 0;
+my $opt_prefetch;
 my $opt_print_arch = 0;
 my $opt_profile = "";
 my $opt_scheme = "";
@@ -407,8 +409,8 @@ GetOptions(
   "paper=s"                     => \$opt_paper,
   "persistent-downloads!"       => \$opt_persistent_downloads,
   "portable"                    => \$opt_portable,
-  # read where it is used, in TLUtils::prefetch_start
-  "prefetch=s"                  => sub { $ENV{'TEXLIVE_PREFETCH'} = $_[1] },
+  "prefetch:s"                  => \$opt_prefetch,
+  "no-prefetch"                 => \$opt_no_prefetch,
   "print-platform|print-arch"   => \$opt_print_arch,
   "profile=s"                   => \$opt_profile,
   "scheme|s=s"                  => \$opt_scheme,
@@ -428,6 +430,7 @@ GetOptions(
   "version"                     => \$opt_version,
   "warn-checksums!"             => \$opt_warn_checksums,
   "help|?"                      => \$opt_help) or pod2usage(2);
+
 if ($from_ext_gui) {
   $opt_gui = "extl";
 }
@@ -536,6 +539,15 @@ if ($opt_profile) { # not allowed if in_place
 
 if ($opt_nonadmin and wndws()) {
   non_admin();
+}
+
+{
+  my %opts;
+  $opts{'prefetch'} = $opt_prefetch if defined($opt_prefetch);
+  $opts{'no-prefetch'} = $opt_no_prefetch if defined($opt_no_prefetch);
+  TeXLive::TLUtils::setup_prefetch_parallel_env_var(
+    'TEXLIVE_PREFETCH', 'prefetch', 'no-prefetch', \%opts, $TeXLive::TLConfig::DefaultPrefetchPolicy
+  );
 }
 
 # done with options
@@ -3687,4 +3699,4 @@ $Id$
 ### tab-width: 2
 ### indent-tabs-mode: nil
 ### End:
-# vim:set tabstop=2 expandtab: #
+# vim:set tabstop=2 shiftwidth=2 softtabstop=-1 expandtab: #

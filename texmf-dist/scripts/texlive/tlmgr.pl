@@ -363,7 +363,8 @@ my %globaloptions = (
   "persistent-downloads" => "!",
   "pause" => 1,
   "pin-file" => "=s",
-  "prefetch" => "=s",
+  "prefetch" => ":s",
+  "no-prefetch" => 1,
   "print-platform|print-arch" => 1,
   "print-platform-info" => 1,
   "usermode|user-mode" => 1,
@@ -413,8 +414,10 @@ sub main {
 
   GetOptions(\%opts, keys(%optarg)) or pod2usage(2);
 
-  # read where it is used, in TLUtils::prefetch_start
-  $ENV{'TEXLIVE_PREFETCH'} = $opts{'prefetch'} if defined($opts{'prefetch'});
+  # set up the TEXLIVE_PREFETCH env var according to the options
+  TeXLive::TLUtils::setup_prefetch_parallel_env_var(
+    'TEXLIVE_PREFETCH', 'prefetch', 'no-prefetch', \%opts, $TeXLive::TLConfig::DefaultPrefetchPolicy
+  );
 
   # load the config file and set the config options
   # load it BEFORE starting downloads as we set persistent-downloads there!
@@ -10805,4 +10808,4 @@ $Id$
 ### tab-width: 2
 ### indent-tabs-mode: nil
 ### End:
-# vim:set tabstop=2 shiftwidth=2 expandtab: #
+# vim:set tabstop=2 shiftwidth=2 softtabstop=-1 expandtab: #
