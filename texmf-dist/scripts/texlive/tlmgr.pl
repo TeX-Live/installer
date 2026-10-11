@@ -416,7 +416,8 @@ sub main {
 
   # set up the TEXLIVE_PREFETCH env var according to the options
   TeXLive::TLUtils::setup_prefetch_parallel_env_var(
-    'TEXLIVE_PREFETCH', 'prefetch', 'no-prefetch', \%opts, $TeXLive::TLConfig::DefaultPrefetchPolicy
+    'TEXLIVE_PREFETCH', 'prefetch', 'no-prefetch', \%opts,
+    $TeXLive::TLConfig::DefaultPrefetchPolicy
   );
 
   # load the config file and set the config options
@@ -8491,7 +8492,8 @@ only useful in debugging.
 
 =item B<--prefetch> I<jobs>[B<:>I<mb>]
 
-Same as setting C<TEXLIVE_PREFETCH> to I<jobs>[B<:>I<mb>], which see below.
+Same as setting C<TEXLIVE_PREFETCH> to I<jobs>[B<:>I<mb>]; see below.
+This is enabled by default.
 
 =item B<--usermode>
 
@@ -10762,11 +10764,12 @@ regardless of any setting.
 
 =item C<TEXLIVE_PREFETCH>
 
-When installing or updating over the network, C<tlmgr> downloads one
-container at a time, so most of the time is spent waiting for the
-server. C<TEXLIVE_PREFETCH> (or the C<--prefetch> option, which
-overrides it) instead fetches containers in the background while the
-installation proceeds. Its value is I<jobs>[B<:>I<mb>], where I<jobs> is
+C<TEXLIVE_PREFETCH> (or the C<--prefetch> option, which overrides it)
+fetches containers in the background while the installation proceeds.
+It is enabled by default.
+
+The value for both the environment variable and the option is
+I<jobs>[B<:>I<mb>], where I<jobs> is
 
   unset or 0   one container at a time, as before (the default)
   1            one background worker
@@ -10786,7 +10789,7 @@ the background download may pile up in the meantime, it pauses while
 more than I<mb> megabytes (default 200; C<0> for no limit) are waiting
 to be installed. The workers check before starting on the next
 containers rather than during, so the cache in fact usually reaches a
-few (around 2-3) times this setting.
+few (around 2-3) multiples of this setting.
 
 Prefetch has no effect at all when installing from a local repository.
 
