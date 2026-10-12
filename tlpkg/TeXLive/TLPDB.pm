@@ -2248,11 +2248,14 @@ sub remove_package {
 
     # now do the removal
     for my $entry (@goodfiles) {
-      # sometimes the files might not be there: 1) we remove .tlpobj
-      # explicitly above; 2) we're called from tl-update-containers
-      # to update the network tlpdb, and that doesn't have an expanded
-      # texmf-dist.
-      next unless -e $entry;
+      # sometimes the files might not be there:
+      # 1) we remove .tlpobj explicitly above;
+      # 2) we're called from tl-update-containers to update the network
+      # tlpdb, and that doesn't have an expanded texmf-dist;
+      # 3) a bin/ symlink whose target was already removed with the main
+      # package (the .ARCH package is removed after it): -e is false then,
+      # so also test -l. If a symlink resolves ok, the -e will succeed.
+      next if ! (-e $entry || -l $entry);
       #
       unlink($entry)
       || tlwarn("TLPDB::remove_package: Could not unlink $entry: $!\n");
