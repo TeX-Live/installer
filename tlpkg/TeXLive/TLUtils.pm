@@ -2125,7 +2125,9 @@ sub _prefetch_settings {
     return (0, 0);
   } elsif ($jobs eq 'auto') {
     if (!defined($::tl_prefetch_nproc)) {
-      chomp(my $n = `getconf _NPROCESSORS_ONLN 2>/dev/null`);
+      my $n = wndws() ? $ENV{'NUMBER_OF_PROCESSORS'}
+                      : `getconf _NPROCESSORS_ONLN 2>/dev/null`;
+      chomp($n) if defined($n);
       $n = 4 if (!$n || $n !~ m/^[0-9]+$/ || $n < 1); # getconf not usable
       $::tl_prefetch_nproc = ($n > 8 ? 8 : $n);
     }
