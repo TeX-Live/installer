@@ -2425,7 +2425,7 @@ sub prefetch_start {
     'slots' => [ map { { 'pid' => undef, 'items' => [],
                          'stage' => "$dir/.stage$_" } } (1 .. $jobs) ],
   };
-  logit(\*STDERR, 0, "Prefetching " . scalar(@work)
+  logit(\*STDERR, 0, "$::prg: prefetching " . scalar(@work)
         . " containers using $jobs parallel downloads ($type)\n");
   _prefetch_launch($h);
   $::tl_prefetch_handle = $h;

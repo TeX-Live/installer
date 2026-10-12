@@ -19,6 +19,7 @@ $::installerrevision = ($1 ? $1 : 'unknown');
 
 # taken from 00texlive.config: release, $tlpdb->config_release;
 our $texlive_release;
+our $prg = "install-tl";
 
 BEGIN {
   $^W = 1;
