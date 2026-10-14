@@ -3991,8 +3991,13 @@ sub _download_files_command {
   return () if !defined($prog);
   my $listfile = "$dir/.list";
   open(my $fh, ">", $listfile) || return ();
+  # curl reads its config file with backslash escapes inside double
+  # quotes (\t, \n, ..., and "a backslash preceding any other letter is
+  # ignored"), so a Windows directory like C:\Users\...\Temp\xyz would
+  # lose its separators.  Forward slashes work on Windows too.
+  (my $fdir = $dir) =~ s!\\!/!g;
   for my $w (@$work) {
-    my %val = ('u' => $w->[0], 'f' => "$dir/$w->[1]", 'b' => $w->[1]);
+    my %val = ('u' => $w->[0], 'f' => "$fdir/$w->[1]", 'b' => $w->[1]);
     (my $line = $spec->{'listfmt'}) =~ s/%([ufb])/$val{$1}/g;
     print $fh $line;
   }
