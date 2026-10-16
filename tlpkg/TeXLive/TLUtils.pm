@@ -2173,6 +2173,27 @@ sub _prefetch_verify {
   return 1;
 }
 
+sub _prefetch_failed {
+  # unpack downloads whatever failed itself, as without prefetching.  Only
+  # the first failure is reported, the others go to the debug output, and
+  # after five prefetching is turned off for the rest of the run: by then
+  # it is broken rather than unlucky, and every failure means fetching
+  # the container twice.
+  my ($why) = @_;
+  return if $::tl_prefetch_off;
+  my $msg = "$::prg: prefetching failed ($why), downloading normally\n";
+  if ($::tl_prefetch_failures++) {
+    debug($msg);
+  } else {
+    info($msg);
+  }
+  if ($::tl_prefetch_failures >= 5) {
+    info("$::prg: prefetching failed $::tl_prefetch_failures times, "
+         . "turning it off\n");
+    $::tl_prefetch_off = 1;
+  }
+}
+
 sub _prefetch_tlp {
   # the tlpdb and tlpobj that install_package would use for this package
   my ($fromtlpdb, $pkg) = @_;
@@ -2293,7 +2314,8 @@ sub _prefetch_launch {
                                       $slot->{'stage'}, $h->{'type'});
     my $pid = @cmd ? _prefetch_spawn(@cmd) : undef;
     if (!defined($pid)) {
-      debug("TLUtils::_prefetch_launch: cannot start a downloader\n");
+      # tried again at the next package, until it has failed too often
+      _prefetch_failed("cannot start $h->{'type'}");
       $h->{'next'} -= $n;             # give the work back
       last;
     }
@@ -2315,12 +2337,17 @@ sub _prefetch_reap {
     # publish atomically: the installation reads the cache directory while
     # this writes to it, and must never see a half-written container
     for my $i (@{$slot->{'items'}}) {
-      my $f = "$slot->{'stage'}/$i->[1]";
-      next if (! -r $f);
       # it may have gone past this one while it was downloading, in which
-      # case publishing it would just leave litter in the cache
-      if ($i->[4] >= $h->{'pos'} && _prefetch_verify($f, $i->[3], $i->[2])) {
+      # case publishing it would just leave litter in the cache; this also
+      # covers prefetch_stop, which has killed the downloads
+      next if ($i->[4] < $h->{'pos'});
+      my $f = "$slot->{'stage'}/$i->[1]";
+      if (! -r $f) {
+        _prefetch_failed("$i->[1] not downloaded");
+      } elsif (_prefetch_verify($f, $i->[3], $i->[2])) {
         rename($f, "$h->{'dir'}/$i->[1]") || unlink($f);
+      } else {
+        _prefetch_failed("$i->[1] does not verify");
       }
     }
     unlink(glob("$slot->{'stage'}/*"));   # whatever did not make it
@@ -2342,6 +2369,7 @@ sub _prefetch_await {
   # bound the wait, as they would for unpack's own download.
   my ($h) = @_;
   for my $slot (@{$h->{'slots'}}) {
+    last if $::tl_prefetch_off;
     next if !defined($slot->{'pid'});
     my @mine = grep { $_->[4] == $h->{'pos'} } @{$slot->{'items'}};
     next if !@mine;
@@ -2359,8 +2387,7 @@ sub _prefetch_await {
       # with the size unknown, this simply waits for the slot to finish
       if ($i->[2] && $i->[2] ne "-1" && defined($s) && $s == $i->[2]) {
         if (!_prefetch_verify($f, $i->[3], $i->[2], 1)) {
-          debug("TLUtils::_prefetch_await: $i->[1] does not verify, "
-                . "not waiting for it\n");
+          _prefetch_failed("$i->[1] does not verify");
           last;
         }
         # rename fails on Windows while the downloader still has the file
@@ -2384,6 +2411,7 @@ sub _prefetch_await {
 
 sub prefetch_start {
   my ($fromtlpdb, $what, $opt_src, $opt_doc, $tags) = @_;
+  return undef if $::tl_prefetch_off;   # failed too often, see above
   my ($jobs, $budget) = _prefetch_settings();
   return undef if ($jobs < 1);
   my @work = _prefetch_worklist($fromtlpdb, $what, $opt_src, $opt_doc, $tags);
@@ -2425,8 +2453,8 @@ sub prefetch_start {
     'slots' => [ map { { 'pid' => undef, 'items' => [],
                          'stage' => "$dir/.stage$_" } } (1 .. $jobs) ],
   };
-  logit(\*STDERR, 0, "$::prg: prefetching " . scalar(@work)
-        . " containers using $jobs parallel downloads ($type)\n");
+  info("$::prg: prefetching " . scalar(@work)
+       . " containers using $jobs parallel downloads ($type)\n");
   _prefetch_launch($h);
   $::tl_prefetch_handle = $h;
   return $h;
@@ -2438,12 +2466,15 @@ sub prefetch_pump {
   # installation has gone past, and starts more.  Waits only for the
   # containers of the package at $idx, if they are being downloaded.
   my ($h, $idx) = @_;
-  return if !defined($h);
+  return if (!defined($h) || $::tl_prefetch_off);
   $h->{'pos'} = $idx if defined($idx);
   _prefetch_reap($h, 0);
   _prefetch_prune($h);
-  _prefetch_launch($h);
-  _prefetch_await($h);
+  _prefetch_launch($h) if !$::tl_prefetch_off;
+  _prefetch_await($h) if !$::tl_prefetch_off;
+  # turned off by a failure: stop the downloads still running.  What is
+  # already in the cache has been verified and is still used.
+  prefetch_stop($h) if $::tl_prefetch_off;
 }
 
 sub prefetch_stop {
