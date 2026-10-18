@@ -10805,10 +10805,10 @@ It is enabled by default.
 The value for both the environment variable and the option is
 I<jobs>[B<:>I<mb>], where I<jobs> is
 
-  unset or 0   one container at a time, as before (the default)
+  unset or 0   one container at a time, as before
   1            one background worker
   N            N background workers
-  auto         as many as there are processors, but at most 8
+  auto         as many as there are processors, but at most 8 (the default)
 
 and I<mb> is explained below; the default is C<auto:200>.
 
