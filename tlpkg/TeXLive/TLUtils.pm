@@ -3421,11 +3421,29 @@ sub untar {
     local $SIG{PIPE} = 'IGNORE';
     if (open(my $tfh, "| $tar $taropt -")) {
       binmode($tfh);
-      my $buf;
-      while (read($zfh, $buf, 65536)) {
-        last if !print $tfh $buf;
+      # Unbuffered writes: tar may exit as soon as it has read the
+      # end-of-archive blocks, before the padding that follows them
+      # (bsdtar, e.g. on macOS, does; GNU tar reads on to the end).  The
+      # write then fails with EPIPE, which is not an error: the verdict is
+      # tar's exit status.  With print, the failure would surface at the
+      # flush in close and make it return false for a tar that succeeded.
+      my ($buf, $n, $early);
+      while (($n = read($zfh, $buf, 65536))) {
+        my $off = 0;
+        while ($off < $n) {
+          my $w = syswrite($tfh, $buf, $n - $off, $off);
+          last if !defined($w);
+          $off += $w;
+        }
+        if ($off < $n) {
+          $early = 1;
+          last;
+        }
       }
-      $ok = close($tfh);
+      # let the decompressor finish rather than hit a closed pipe
+      1 while ($early && read($zfh, $buf, 65536));
+      close($tfh);
+      $ok = ($? == 0);
     }
     $ok = close($zfh) && $ok;
   } else {
