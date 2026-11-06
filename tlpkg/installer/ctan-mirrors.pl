@@ -14,11 +14,13 @@ $mirrors = {
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
+      'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.pku.edu.cn/ctan/' => 1,
       'https://mirrors.qlu.edu.cn/CTAN/' => 1,
       'https://mirrors.sjtug.sjtu.edu.cn/ctan/' => 1,
+      'https://mirrors.sustech.edu.cn/CTAN/' => 1,
       'https://mirrors.tuna.tsinghua.edu.cn/CTAN/' => 1,
       'https://mirrors.ustc.edu.cn/CTAN/' => 1,
     },
@@ -187,6 +189,9 @@ $mirrors = {
       'https://mirror.quantum5.ca/CTAN/' => 1,
       'https://muug.ca/mirror/ctan/' => 1,
     },
+    'Costa Rica' => {
+      'https://mirrors.ucr.ac.cr/CTAN/' => 1,
+    },
     'USA' => {
       'http://ctan.mirrors.hoobly.com/' => 1,
       'https://ctan.katoptra.org/' => 1,
@@ -214,6 +219,9 @@ $mirrors = {
     },
     'Chile' => {
       'https://ctan.dcc.uchile.cl/' => 1,
+    },
+    'Dominican Republic' => {
+      'https://mirror.hiesoft.net/ctan/' => 1,
     },
   },
 };
