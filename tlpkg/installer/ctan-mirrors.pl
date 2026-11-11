@@ -14,6 +14,7 @@ $mirrors = {
       'https://mirrors.bfsu.edu.cn/CTAN/' => 1,
       'https://mirrors.cloud.tencent.com/CTAN/' => 1,
       'https://mirrors.hit.edu.cn/CTAN/' => 1,
+      'https://mirrors.hust.edu.cn/CTAN/' => 1,
       'https://mirrors.jlu.edu.cn/CTAN/' => 1,
       'https://mirrors.nju.edu.cn/CTAN/' => 1,
       'https://mirrors.pku.edu.cn/ctan/' => 1,
@@ -106,13 +107,13 @@ $mirrors = {
       'https://ctan.mirror.norbert-ruehl.de/' => 1,
       'https://ctan.net/' => 1,
       'https://ctan.project-creative.net/' => 1,
-      'https://de.mirrors.cicku.me/ctan/' => 1,
       'https://ftp.agdsn.de/pub/mirrors/latex/dante/' => 1,
       'https://ftp.fau.de/ctan/' => 1,
       'https://ftp.gwdg.de/pub/ctan/' => 1,
       'https://ftp.rrze.uni-erlangen.de/ctan/' => 1,
       'https://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/' => 1,
       'https://ftp.tu-chemnitz.de/pub/tex/' => 1,
+      'https://markov.htwsaar.de/tex-archive/' => 1,
       'https://mirror.clientvps.com/CTAN/' => 1,
       'https://mirror.dogado.de/tex-archive/' => 1,
       'https://mirror.physik.tu-berlin.de/pub/CTAN/' => 1,
@@ -134,7 +135,6 @@ $mirrors = {
       'https://mirror.koddos.net/CTAN/' => 1,
       'https://mirror.koetsier.org/ctan/' => 1,
       'https://mirror.lyrahosting.com/CTAN/' => 1,
-      'https://nl.mirrors.cicku.me/ctan/' => 1,
     },
     'Norway' => {
       'https://ctan.uib.no/' => 1,
@@ -143,7 +143,6 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
-      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
@@ -169,7 +168,6 @@ $mirrors = {
       'https://mirror.bahnhof.net/pub/ctan/' => 1,
     },
     'Switzerland' => {
-      'https://ch.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.foobar.to/CTAN/' => 1,
       'https://mirror.init7.net/ctan/' => 1,
     },
@@ -177,7 +175,6 @@ $mirrors = {
       'https://mirror.alastyr.com/tex-archive/' => 1,
     },
     'United Kingdom' => {
-      'https://gb.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.apps.cam.ac.uk/pub/tex-archive/' => 1,
       'https://tex.org.uk/' => 1,
     },
