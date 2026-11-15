@@ -30,7 +30,6 @@ $mirrors = {
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
       'https://mirrors.in2.sahilister.net/ctan/' => 1,
-      'https://mirrors.in3.sahilister.net/ctan/' => 1,
       'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
@@ -217,6 +216,9 @@ $mirrors = {
   'South America' => {
     'Brazil' => {
       'https://br.mirrors.cicku.me/ctan/' => 1,
+    },
+    'Chile' => {
+      'https://ctan.dcc.uchile.cl/' => 1,
     },
     'Dominican Republic' => {
       'https://mirror.hiesoft.net/ctan/' => 1,
