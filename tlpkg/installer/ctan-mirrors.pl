@@ -30,7 +30,6 @@ $mirrors = {
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
       'https://mirrors.in2.sahilister.net/ctan/' => 1,
-      'https://mirrors.in3.sahilister.net/ctan/' => 1,
       'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
@@ -47,6 +46,7 @@ $mirrors = {
     'Korea' => {
       'https://ftp.kaist.ac.kr/ctan/' => 1,
       'https://kr.mirrors.cicku.me/ctan/' => 1,
+      'https://mirror.kakao.com/CTAN/' => 1,
     },
     'Saudi Arabia' => {
       'https://sa.mirrors.cicku.me/ctan/' => 1,
