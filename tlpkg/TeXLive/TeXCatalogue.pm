@@ -123,6 +123,7 @@ sub initialize {
     push (@liclist, $lictype)
       unless ($lictype eq "other-nonfree"
               && $id =~ /^(ciad-beamertheme
+                           |gmap-ufrgs
                            |spim-phdthesisthemes
                            |utbmciad-report)$/x);
   }
