@@ -145,6 +145,7 @@ $mirrors = {
     'Poland' => {
       'https://ctan.gust.org.pl/tex-archive/' => 1,
       'https://polish-mirror.evolution-host.com/ctan/' => 1,
+      'https://sunsite.icm.edu.pl/pub/CTAN/' => 1,
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
@@ -171,11 +172,11 @@ $mirrors = {
     },
     'Switzerland' => {
       'https://ch.mirrors.cicku.me/ctan/' => 1,
-      'https://mirror.foobar.to/CTAN/' => 1,
       'https://mirror.init7.net/ctan/' => 1,
     },
     'Turkey' => {
       'https://mirror.alastyr.com/tex-archive/' => 1,
+      'https://mirror.ixirhost.com/CTAN/' => 1,
     },
     'United Kingdom' => {
       'https://gb.mirrors.cicku.me/ctan/' => 1,
