@@ -32,6 +32,7 @@ $mirrors = {
     'India' => {
       'https://in.mirrors.cicku.me/ctan/' => 1,
       'https://mirror.niser.ac.in/ctan/' => 1,
+      'https://mirrors.in3.sahilister.net/ctan/' => 1,
       'https://mirrors.sukhala.in/ctan/' => 1,
     },
     'Indonesia' => {
@@ -172,6 +173,7 @@ $mirrors = {
     },
     'Switzerland' => {
       'https://ch.mirrors.cicku.me/ctan/' => 1,
+      'https://mirror.foobar.to/CTAN/' => 1,
       'https://mirror.init7.net/ctan/' => 1,
     },
     'Turkey' => {
@@ -197,7 +199,6 @@ $mirrors = {
       'https://mirrors.ucr.ac.cr/CTAN/' => 1,
     },
     'USA' => {
-      'http://ctan.mirrors.hoobly.com/' => 1,
       'https://ctan.katoptra.org/' => 1,
       'https://ctan.math.illinois.edu/' => 1,
       'https://ctan.math.utah.edu/ctan/tex-archive/' => 1,
