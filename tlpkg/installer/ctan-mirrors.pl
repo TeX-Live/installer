@@ -87,6 +87,7 @@ $mirrors = {
     'Finland' => {
       'https://ctan.qno.de/' => 1,
       'https://mirror.5i.fi/tex-archive/' => 1,
+      'https://mirror.download.org/ctan/' => 1,
       'https://www.nic.funet.fi/pub/TeX/CTAN/' => 1,
       'https://www.texlive.info/CTAN/' => 1,
     },
@@ -150,6 +151,7 @@ $mirrors = {
     },
     'Portugal' => {
       'https://ftp.eq.uc.pt/software/TeX/' => 1,
+      'https://mirrors.up.pt/pub/CTAN/' => 1,
     },
     'Romania' => {
       'https://mirrors.nxthost.com/ctan/' => 1,
